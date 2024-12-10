@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url(20241024140939_1.jpg);
+    background-size: cover;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    font-family: IBM Plex Mono;
+    background-color: rgba(0, 0, 0, 0.647);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.head1 {
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.head1 img {
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+
+.head2 {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.head2 div a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.head2 div a:hover {
+    border-bottom: solid white 2px;
+    
+}
+
+.head3 {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.head3 div a {
+    background-color: #043b32;
+    border: solid #009a86 2px;
+    border-radius: 10px;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    font-family: IBM Plex Mono;
+    margin-right: 30px;
+    text-decoration: none;
+}
+
+.head3 a:hover {
+    cursor: pointer;
+}
