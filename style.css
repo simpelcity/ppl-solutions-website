@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-image: url(background.jpg);
+    background-color: white;
     background-size: cover;
     margin: 0;
 }
@@ -13,6 +13,7 @@ header {
     background-color: rgba(0, 0, 0, 0.647);
     width: 100%;
     justify-content: space-between;
+    position: absolute;
 }
 
 .head1 {
@@ -50,6 +51,10 @@ header {
     
 }
 
+.active {
+    border-bottom: solid #009a86 2px;
+}
+
 .head3 {
     display: flex;
     flex-direction: row;
@@ -57,7 +62,7 @@ header {
     margin-bottom: auto;
 }
 
-.head3 div a {
+.head3 div .apply {
     background-color: #043b32;
     border: solid #009a86 2px;
     border-radius: 10px;
@@ -68,10 +73,45 @@ header {
     padding-right: 10px;
     font-size: 20px;
     font-family: IBM Plex Mono;
-    margin-right: 30px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.head3 div .vtc {
+    background-color: #043b32;
+    border: solid #009a86 2px;
+    border-radius: 10px;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    font-family: IBM Plex Mono;
+    margin-right: 20px;
     text-decoration: none;
 }
 
 .head3 a:hover {
     cursor: pointer;
+}
+
+.home-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: 50% 30%;
+}
+
+h1 {
+    font-family: IBM Plex Mono;
+    color: #009a86;
+    text-align: center;
+}
+
+.banner-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: 50% 33%;
 }
