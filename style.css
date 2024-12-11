@@ -25,6 +25,9 @@ header {
 .head1 p {
     font-weight: 500;
     margin-left: 10px;
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .head1 img {
@@ -48,8 +51,8 @@ header {
     text-decoration: none;
     font-size: 20px;
     font-weight: 400;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .head2 div a:hover {
@@ -111,6 +114,11 @@ header {
     object-position: 50% 30%;
 }
 
+.relative {
+    position: relative;
+    z-index: -1;
+}
+
 h1 {
     font-family: IBM Plex Mono;
     color: #009a86;
@@ -126,14 +134,22 @@ h1 {
 
 .social-home {
     position: absolute;
-    top: 40%;
-    left: 75%;
+    display: flex;
+    flex-direction: column;
+    top: 35%;
+    left: 70%;
     color: white;
     font-family: IBM Plex Mono;
+    align-items: center;
 }
 
 .social-home h1 {
     color: white;
+}
+
+.social-home div {
+    flex-direction: row;
+    align-self: center;
 }
 
 .social-home a {
@@ -150,4 +166,158 @@ h1 {
     outline: none;
     border: none;
     padding: 10px;
+    width: fit-content;
+}
+
+.our-team {
+    border-bottom: solid #009a86 3px;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+}
+
+.management {
+    text-align: center;
+}
+
+.management h2 {
+    font-family: IBM Plex Mono;
+    color: #009a86;
+}
+
+.management-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2%;
+    border-bottom: solid #009a86 3px;
+}
+
+.management-content div {
+    width: 300px;
+    height: 300px;
+    background-color: #202020;
+    color: white;
+    font-family: IBM Plex Mono;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.management-content h3, p {
+    margin: 0;
+}
+
+.management-content h3 {
+    margin-top: 2%;
+    font-weight: 500;
+}
+
+.management-content p {
+    font-weight: 500;
+}
+
+#founder {
+    color: #009a86;
+}
+
+#ceo {
+    color: #ffdd00;
+}
+
+#cao {
+    color: #00f867;
+}
+
+#coo {
+    color: #00e1ff;
+}
+
+.management-content div img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.upper-staff {
+    text-align: center;
+}
+
+.upper-staff h2 {
+    font-family: IBM Plex Mono;
+    color: #009a86;
+}
+
+.upper-staff-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2%;
+    border-bottom: solid #009a86 3px;
+}
+
+.upper-staff-content div {
+    width: 300px;
+    height: 300px;
+    background-color: #202020;
+    color: white;
+    font-family: IBM Plex Mono;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.upper-staff-content h3, p {
+    margin: 0;
+}
+
+.upper-staff-content h3 {
+    margin-top: 2%;
+    font-weight: 500;
+}
+
+.upper-staff-content p {
+    font-weight: 500;
+}
+
+.upper-staff-content div img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+#hrd, .hr {
+    color: #05493a;
+}
+
+#rtd, .tr {
+    color: #ff00a1;
+}
+
+#etm, .et {
+    color: #0ba500;
+}
+
+#mtm, .mt {
+    color: #dd00ff;
+}
+
+#ccm, .cc {
+    color: #ccff00;
 }
