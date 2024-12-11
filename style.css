@@ -321,3 +321,10 @@ h1 {
 #ccm, .cc {
     color: #ccff00;
 }
+
+.about-us {
+    font-family: IBM Plex Mono;
+    background-color: #009a86;
+    color: white;
+    padding: 1%;
+}
