@@ -322,7 +322,56 @@ h1 {
     color: #ccff00;
 }
 
-.about-us {
+.upper-staff h2 {
+    font-family: IBM Plex Mono;
+    color: #009a86;
+}
+
+.lower-staff-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2%;
+}
+
+.lower-staff-content div {
+    width: 300px;
+    height: 300px;
+    background-color: #202020;
+    color: white;
+    font-family: IBM Plex Mono;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.lower-staff-content h3, p {
+    margin: 0;
+}
+
+.lower-staff-content h3 {
+    margin-top: 2%;
+    font-weight: 500;
+}
+
+.lower-staff-content p {
+    font-weight: 500;
+}
+
+.lower-staff-content div img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.about-us-info {
     font-family: IBM Plex Mono;
     background-color: #009a86;
     color: white;
