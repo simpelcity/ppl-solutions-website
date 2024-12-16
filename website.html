@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>PPL Solitions - Home</title>
+        <title>PPL Solutions - Home</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -21,11 +21,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+        <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
         <link rel="icon" type="image/x-icon" href="favicon.ico">
     </head>
 
-    <body class="d-flex flex-column">
-        <header class="d-flex flex-row justify-content-between position-absolute w-100">
+    <body class="d-flex flex-column w-100">
+        <header class="d-flex flex-row justify-content-between">
             <div class="head1 d-flex flex-row text-white">
                 <img class="rounded-circle" src="ppls_logo.png">
                 <p class="mt-auto mb-auto">PPL Solutions VTC</p>
@@ -58,20 +59,20 @@
         </header>
         <main>
             <div>
-                <div class="relative">
-                    <img class="home-img" src="background.jpg">
-                    <div class="social-home">
-                        <h1>PPL Solutions</h1>
+                <div class="position-relative">
+                    <img src="background.jpg" class="img-fluid">
+                    <div class="position-absolute d-flex flex-column text-white align-items-center social-home">
+                        <h1 class="text-white">PPL Solutions</h1>
                         <div>
-                            <button><a href="https://discord.gg/mnKcKwsYm4">Discord</a></button>
-                            <button><a href="Apply.html">Apply</a></button>
+                            <button class="border-0 outline-0 rounded"><a href="https://discord.gg/mnKcKwsYm4">Discord</a></button>
+                            <button class="border-0 outline-0 rounded"><a href="Apply.html">Apply</a></button>
                         </div>
                     </div>
                 </div>
-                <div class="slogan">
+                <div>
                     <h1>Steering the future of digital logistics</h1>
                 </div>
-                <div class="about-us-info">
+                <div class="about-us-info mb-25">
                     <h2>A bit about us...</h2>
                     <p>
                         PPL Solutions was founded on 7 September 2024, 
@@ -81,11 +82,11 @@
                 </div>
             </div>
         </main>
-        <footer>
-            <div class="footer1">
-                <div class="logo">
-                    <img src="ppls_logo.png">
-                    <h3>PPL Solutions</h3>
+        <footer class="d-flex flex-row text-white">
+            <div class="footer1 d-flex flex-column">
+                <div class="logo d-flex">
+                    <img class="rounded-circle" src="ppls_logo.png">
+                    <h3 class="mt-auto mb-auto">PPL Solutions</h3>
                 </div>
                 <div>
                     <p>
@@ -99,9 +100,9 @@
                     <a href="https://www.tiktok.com/@pplsolutionsvtc"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
-            <div class="footer2">
+            <div class="footer2 d-flex flex-column">
                 <h3>Pages</h3>
-                <div>
+                <div class="d-flex flex-column position-relative">
                     <a href="website.html">》Home</a>
                     <a href="About us.html">》About us</a>
                     <a href="Events.html">》Events</a>
