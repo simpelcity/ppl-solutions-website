@@ -1,5 +1,5 @@
 body {
-    position: relative;  /* Ensure body is the reference point for absolute positioning */
+    position: relative;
 }
 
 header {
@@ -10,50 +10,29 @@ header {
     z-index: 1;
     width: 100%;
     font-family: IBM Plex Mono;
-    background-color: rgba(0, 0, 0, 0.647);
-}
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    width: 100%;
-    font-family: IBM Plex Mono;
-    background-color: rgba(0, 0, 0, 0.647);
-}
-
-.head1 img {
-    width: 50px;
-    height: 50px;
-    margin-left: 20px;
-}
-
-.head1 p {
-    font-weight: 500;
-    margin-left: 10px;
-}
-
-.head2 div a {
-    color: white;
-    text-decoration: none;
     font-size: 20px;
-    font-weight: 400;
-    margin-left: 15px;
-    margin-right: 15px;
 }
 
-.head2 div a:hover {
-    border-bottom: solid white 2px;
-    
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    font-family: IBM Plex Mono;
+}
+
+.navbar-brand p {
+    font-weight: 500;
+}
+
+.navbar-collapse ul li a:hover {
+    border-bottom: solid white 2px; 
 }
 
 .active {
     border-bottom: solid #009a86 2px;
 }
 
-.head3 div .apply {
+.navbar-buttons .apply {
     background-color: #043b32;
     border: solid #009a86 2px;
     color: white;
@@ -68,7 +47,11 @@ header {
     text-decoration: none;
 }
 
-.head3 div .vtc {
+.navbar-buttons .apply:hover {
+    background-color: #009a86;
+}
+
+.navbar-buttons .vtc {
     background-color: #043b32;
     border: solid #009a86 2px;
     color: white;
@@ -83,14 +66,23 @@ header {
     text-decoration: none;
 }
 
+.navbar-buttons .vtc:hover {
+    background-color: #009a86;
+}
+
 .home-img {
-    object-position: 50% 30%;
+    height: 75%;
 }
 
 h1 {
     font-family: IBM Plex Mono;
     color: #009a86;
     text-align: center;
+}
+
+.h1 {
+    font-weight: 600;
+    color: #009a86;
 }
 
 .social-home {
@@ -107,9 +99,17 @@ h1 {
     font-weight: 500;
 }
 
-.social-home button {
+.overlay div a {
     background-color: #009a86;
-    padding: 10px;
+    border: none;
+}
+
+.overlay-buttons {
+    text-decoration: none;
+}
+
+.overlay-buttons:hover {
+    background-color: #043b32;
 }
 
 .banner-img {
@@ -119,42 +119,49 @@ h1 {
 
 footer {
     font-family: IBM Plex Mono;
-    background-color: #009a86;
 }
 
-.footer1 {
-    width: 33%;
+.footer2 ul {
+    list-style: none;
+    padding: 0;
 }
 
-.logo img {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
+.fa-brands {
+    font-size: 22px;
 }
 
-.logo h3 {
-    margin-left: 5px;
+.fa-discord {
+    background-color: #5865F2;
+    border-radius: 50%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.footer2 {
-    width: 33%;
+.fa-tiktok {
+    background-color: #ffffff;
+    color: black;
+    border-radius: 50%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 13px;
+    padding-right: 13px;
 }
 
-.footer2 div a {
-    color: white;
-    text-decoration: none;
-}
-
-.footer1, .footer2 {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.about-us-info {
+.about-us {
     font-family: IBM Plex Mono;
     background-color: #009a86;
     color: white;
     padding: 1%;
+}
+
+.offers h2 {
+    color:  white;
+}
+
+.about {
+    background-color: white;
 }
 
 .our-team {
