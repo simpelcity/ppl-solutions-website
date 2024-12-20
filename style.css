@@ -588,7 +588,7 @@ h3 {
     color: #ccff00;
 }
 
-.gallery {
+.gallery-content {
     background-color: #009a86;
 }
 
@@ -624,6 +624,7 @@ h3 {
 .gallery-content div {
     max-width: 340px;
     color: whitesmoke;
+    background-color: #212529;
     font-family: IBM Plex Mono;
     display: flex;
     flex-direction: column;
