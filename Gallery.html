@@ -55,6 +55,35 @@
             footer {
                 text-align: left;
             }
+
+            .gallery-content {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px; /* Adjust gap between images */
+                justify-content: center;
+            }
+
+            .gallery-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 100%; /* Default to full width on small screens */
+            }
+
+            /* Ensure two columns on larger screens (from `md` breakpoint) */
+            @media (min-width: 576px) {
+                .gallery-item {
+                    width: 45%; /* Two images per row */
+                }
+            }
+
+            /* Ensure three columns on extra-large screens (from `xl` breakpoint) */
+            @media (min-width: 1200px) {
+                .gallery-item {
+                    width: 30%; /* Three images per row */
+                }
+            }
         </style>
     </head>
 
@@ -68,7 +97,6 @@
                         <p>PPL Solutions VTC</p>
                     </a>
 
-        
                     <!-- Toggle Button for Mobile -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -91,6 +119,7 @@
                 </div>
             </nav>
         </header>
+
         <main class="container-fluid p-0">
             <div>
                 <div class="banner">
@@ -99,32 +128,50 @@
                 <section class="col-12 text-center py-3">
                     <h1>Gallery</h1>
                 </section>
-                <div class="gallery d-flex flex-column w-100"></div>
-                    <div class="gallery-content w-100 d-flex flex-column flex-md-row flex-wrap row-cols-md-2 row-cols-1 row-cols-xl-1 gap-3 mx-auto justify-content-center pt-4">
-                        <div class="col">
-                            <img class="rounded w-100" src="media/lukas_scania.jpg" alt="Gallery image">
-                            <p>Creator: Lukyy09</p>
+
+                <div class="gallery">
+                    <div class="gallery-content">
+                        <div class="gallery-item">
+                            <div class="text-center">
+                                <img class="rounded w-100" src="media/lukas_scania.jpg" alt="Gallery image">
+                                <p>Creator: Lukyy09</p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <img class="rounded w-100" src="media/daf_ppls.jpg" alt="Gallery image">
-                            <p>Creator: Wietsegaming</p>
+                        <div class="gallery-item">
+                            <div class="text-center">
+                                <img class="rounded w-100" src="media/daf_ppls.jpg" alt="Gallery image">
+                                <p>Creator: Wietsegaming</p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <img class="rounded w-100" src="media/malek_save-edit.png" alt="Gallery image">
-                            <p>Creator: MaleklecoCZE</p>
+                        <div class="gallery-item">
+                            <div class="text-center">
+                                <img class="rounded w-100" src="media/malek_save-edit.png" alt="Gallery image">
+                                <p>Creator: MaleklecoCZE</p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <img class="rounded w-100" src="media/Bright2.jpg" alt="Gallery image">
-                            <p>Creator: Wietsegaming    </p>
+                        <div class="gallery-item">
+                            <div class="text-center">
+                                <img class="rounded w-100" src="media/Bright2.jpg" alt="Gallery image">
+                                <p>Creator: Wietsegaming</p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <img class="rounded w-100" src="media/ets2_20240908_135533_00.png" alt="Gallery image">
-                            <p>Creator: MaleklecoCZE</p>
+                        <div class="gallery-item">
+                            <div class="text-center">
+                                <img class="rounded w-100" src="media/ets2_20240908_135533_00.png" alt="Gallery image">
+                                <p>Creator: MaleklecoCZE</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="text-center">
+                                <img class="rounded w-100" src="media/truck.png" alt="Gallery image">
+                                <p>Creator: xX_shadowdagger2013_Xx</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+
         <footer class="bg-dark text-white py-4">
             <div class="container-fluid">
                 <div class="row ms-3">
@@ -133,7 +180,7 @@
                             <img class="rounded-circle me-2" src="media/ppls_logo.png" alt="Logo" width="50" height="50">
                             <h3 class="mb-0">PPL Solutions VTC</h3>
                         </div>
-                        <p class="">Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy.</p>
+                        <p>Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy.</p>
                         <div>
                             <a href="https://discord.gg/mnKcKwsYm4" class="text-white me-1"><i class="fa-brands fa-discord mt-2"></i></a>
                             <a href="https://www.tiktok.com/@pplsolutionsvtc" class="text-white"><i class="fa-brands fa-tiktok"></i></a>
