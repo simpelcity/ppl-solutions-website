@@ -224,7 +224,7 @@ h3 {
 
 .management h2 {
     font-family: IBM Plex Mono;
-    color: #009a86;
+    color: whitesmoke;
 }
 
 .management-content {
@@ -279,7 +279,7 @@ h3 {
 
 .human-resources h2 {
     font-family: IBM Plex Mono;
-    color: #009a86;
+    color: whitesmoke
 }
 
 .human-resources-content {
@@ -334,7 +334,7 @@ h3 {
 
 .recruitment-team h2 {
     font-family: IBM Plex Mono;
-    color: #009a86;
+    color: whitesmoke;
 }
 
 .recruitment-team-content {
@@ -389,7 +389,7 @@ h3 {
 
 .event-team h2 {
     font-family: IBM Plex Mono;
-    color: #009a86;
+    color: whitesmoke;
 }
 
 .event-team-content {
@@ -444,12 +444,12 @@ h3 {
 
 .event-team h2 {
     font-family: IBM Plex Mono;
-    color: #009a86;
+    color: whitesmoke;
 }
 
 .media-team h2 {
     font-family: IBM Plex Mono;
-    color: #009a86;
+    color: whitesmoke;
 }
 
 .media-team-content {
@@ -504,7 +504,7 @@ h3 {
 
 .convoy-control h2 {
     font-family: IBM Plex Mono;
-    color: #009a86;
+    color: whitesmoke;
 }
 
 .convoy-control-content {
