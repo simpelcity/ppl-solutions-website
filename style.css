@@ -114,6 +114,7 @@ h1 {
 
 footer {
     font-family: IBM Plex Mono;
+    background-color: #009a86;
 }
 
 .footer1 a {
@@ -147,6 +148,16 @@ footer {
     padding-bottom: 12px;
     padding-left: 13px;
     padding-right: 13px;
+}
+
+.fa-truck {
+    font-size: 22px;
+    background-color: black;
+    border-radius: 50%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 main {
@@ -219,7 +230,7 @@ h3 {
 }
 
 .team {
-    background-color: #009a86;
+    background-color: #043b32;
 }
 
 .management h2 {
@@ -279,7 +290,7 @@ h3 {
 
 .human-resources h2 {
     font-family: IBM Plex Mono;
-    color: whitesmoke
+    color: whitesmoke;
 }
 
 .human-resources-content {
@@ -577,7 +588,7 @@ h3 {
     color: #05493a;
 }
 
-.rtd, .tr {
+.rtd, .rt {
     color: #ff00a1;
 }
 
@@ -594,7 +605,7 @@ h3 {
 }
 
 .gallery-content {
-    background-color: #009a86;
+    background-color: #043b32;
 }
 
 .gallery-content img {
