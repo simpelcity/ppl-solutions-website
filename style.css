@@ -116,6 +116,11 @@ footer {
     font-family: IBM Plex Mono;
 }
 
+.footer1 a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 .footer2 ul {
     list-style: none;
     padding: 0;
@@ -632,4 +637,32 @@ h3 {
     justify-content: center;
     border-radius: 3%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+#events-container div div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+#events-container h3 {
+    font-weight: 700;
+}
+
+#events-container div {
+    color: whitesmoke;
+}
+
+.card {
+    border: solid #009a86 3px;
+}
+
+.card-body a {
+    border: solid #009a86 2px;
+    background-color: #043b32;
+    border-radius: 5px;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.card-body a:hover {
+    background-color: #009a86;
 }
