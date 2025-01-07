@@ -28,6 +28,12 @@ header {
     border-bottom: solid whitesmoke 2px; 
 }
 
+.nav-item {
+    height: fit-content;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
 .active {
     border-bottom: solid #009a86 2px;
 }
@@ -676,4 +682,14 @@ h3 {
 
 .card-body a:hover {
     background-color: #009a86;
+}
+
+form p {
+    color: black;
+    font-family: IBM Plex Mono;
+    font-weight: 500;
+}
+
+.socials {
+    width: fit-content;
 }
