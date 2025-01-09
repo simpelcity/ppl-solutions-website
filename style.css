@@ -75,6 +75,39 @@ header {
     background-color: #009a86;
 }
 
+.navbar-nav  a {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border-color: #ffffff;
+    transition: 0.5s ease;
+    user-select: none;
+}
+
+.navbar-nav a:hover,
+:focus {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: none;
+    background: #009a86;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: none;
+    transition: 0.5s ease;
+    user-select: none;
+}
+
 .home-img {
     height: 75%;
 }
@@ -100,17 +133,8 @@ h1 {
     font-weight: 500;
 }
 
-.overlay div a {
-    background-color: #009a86;
-    border: none;
-}
-
 .overlay-buttons {
     text-decoration: none;
-}
-
-.overlay-buttons:hover {
-    background-color: #043b32;
 }
 
 .banner-img {
@@ -692,4 +716,45 @@ form p {
 
 .socials {
     width: fit-content;
+}
+
+.overlay a {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #ffffff;
+    transition: 0.5s ease;
+    user-select: none;
+}
+  
+#btn:hover,
+:focus {
+    color: #ffffff;
+    background: #009a86;
+    border: 1px solid #009a86;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+    box-shadow: 0 0 5px #043b32, 0 0 20px #043b32, 0 0 50px #043b32,
+      0 0 100px #043b32;
+}
+
+#btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #ffffff;
+    transition: 0.5s ease;
+    user-select: none;
 }

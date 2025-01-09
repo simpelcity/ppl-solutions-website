@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <p><i class="bi bi-controller"></i> <strong>Game:</strong> ${event.game}</p>
                             <p><i class="bi bi-hdd-stack"></i> <strong>Server:</strong> ${event.server?.name || 'Event Server'}</p>
                             <p><i class="bi bi-download"></i> <strong>DLC:</strong> ${event.dlc || 'None'}</p><br>
-                            <a class="px-2 py-1" href="https://truckersmp.com/events/${event.id}" target="_blank">Event</a>
+                            <a id="btn" class="px-2 py-1" href="https://truckersmp.com${event.url}" target="_blank">Event</a>
                         </div>
                     </div>
                 </div>
