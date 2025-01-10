@@ -1,7 +1,19 @@
+<?php
+
+include_once('connection.php');
+
+session_start();
+
+if (!isset($_SESSION['loggedInUser'])) {
+    header('Location: login.php');
+    die();
+}
+
+?>
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Contact | PPL Solutions</title>
+        <title>Apply | PPL Solutions</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -82,7 +94,7 @@
                             <li class="nav-item"><a class="nav-link" href="Events.html">Events</a></li>
                             <li class="nav-item"><a class="nav-link" href="Team.html">Team</a></li>
                             <li class="nav-item"><a class="nav-link" href="Gallery.html">Gallery</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="Contact us.html">Contact us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Contact us.html">Contact us</a></li>
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
                             <a class="apply me-2 rounded" href="Apply.html">Apply</a>
@@ -98,39 +110,10 @@
                     <img class="banner-img w-100 object-fit-cover" src="media/banner.png">
                 </div>
                 <section class="col-12 text-center my-3">
-                    <h1>Contact us</h1>
+                    <h1>Drivershub panel</h1>
                 </section>
-                <div class="container">
-                    <div class="contact-form">
-                        <form class="d-flex">
-                            <div class="col-10">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="username" placeholder="Discord username">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" id="email" placeholder="Email">
-                                </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" id="message" rows="5" placeholder="Message"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-2 socials">
-                                <div class="mb-3 mx-3 mt-0">
-                                    <a href="https://discord.gg/mnKcKwsYm4" class="text-white me-1"><i class="fa-brands fa-discord mt-2 mx-1"></i></a>
-                                    <p>Discord</p>
-                                </div>
-                                <div class="m-3">
-                                    <a href="https://www.tiktok.com/@pplsolutionsvtc" class="text-white"><i class="fa-brands fa-tiktok"></i></a>
-                                    <p>TikTok</p>
-                                </div>
-                                <div class="m-3">
-                                    <a href="https://truckersmp.com/vtc/74455" class="text-white"><i class="fa-solid fa-truck"></i></a>
-                                    <p>TruckersMP</p>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <h2>Welcome <?= $_GET['username'] ?></h2>
+                <a href="logout.php">Uitloggen</a>
             </div>
         </main>
         <footer class="text-white py-4">
