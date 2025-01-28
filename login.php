@@ -127,21 +127,19 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 </section>
                 <div class="container">
                     <div class="contact-form">
-                        <form class="d-flex" method="post">
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" placeholder="Your username here">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Your password here">
-                                </div>
-                                <?php if (isset($_SESSION['error'])) { ?>
-                                    <div style="color: red;"><?= $_SESSION['error']; ?></div>
-                                <?php } ?>
-                                <input type="submit" value="Inloggen">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username">
                             </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">password</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                            <?php if (isset($_SESSION['error'])) { ?>
+                                <div style="color: red;"><?= $_SESSION['error']; ?></div>
+                            <?php } ?>
+                            <input type="submit" value="Inloggen">
                         </form>
                     </div>
                 </div>

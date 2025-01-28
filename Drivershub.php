@@ -112,8 +112,10 @@ if (!isset($_SESSION['loggedInUser'])) {
                 <section class="col-12 text-center my-3">
                     <h1>Drivershub panel</h1>
                 </section>
-                <h2>Welcome <?= $_GET['username'] ?></h2>
-                <a href="logout.php">Uitloggen</a>
+                <div class="text-center driver">
+                    <h2>Welcome <?= $_GET['username'] ?></h2>
+                    <a id="logout" href="logout.php">Uitloggen</a>
+                </div>
             </div>
         </main>
         <footer class="text-white py-4">

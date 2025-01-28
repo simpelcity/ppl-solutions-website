@@ -758,3 +758,18 @@ form p {
     transition: 0.5s ease;
     user-select: none;
 }
+
+#username, #password {
+    text-transform: none;
+}
+
+.driver {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#logout {
+    width: fit-content;
+    align-self: center;
+}
