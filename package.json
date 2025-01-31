@@ -1,17 +1,16 @@
 {
   "name": "ppl-solutions-website",
   "version": "1.0.0",
-  "main": "script.js",
+  "description": "Hello there, it seems you have stumbled across one of my projects. This project in particular is one of my finest work, this is the website for the Virtual Trucking Company: PPL Solutions. It features some awesome information about the VTC, dynamic showing of our events we participate in and an amazing Drivershub!",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "php fetch_events.php"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "php": "^1.1.0"
+    "sass": "^1.83.4"
   }
 }

@@ -1,9 +1,9 @@
 <?php
 
-$host = '127.0.0.1';
+$host = 'localhost';
 $db = 'ppl_solutions';
-$user = 'bit_academy';
-$pass = 'bit_academy';
+$user = 'your-username';
+$pass = 'your-password';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
