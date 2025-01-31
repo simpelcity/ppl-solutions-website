@@ -10,31 +10,17 @@ Before everything, you will need to have [git](https://git-scm.com) installed, i
 git clone git@git.nexed.com:0191bd26-8ad6-775a-a3fb-8161a33b6a11/0191d5d1-b9ce-7ad9-9c76-6deeabe8482d/Almost-there-05949418010a-40799e9f4aab.git
 ```
 
-To use and open the website, you will have to install XAMPP, to learn how to install it. Go to the [XAMPP](https://www.apachefriends.org/download.html) download page. Once XAMPP is installed, you need to turn on the modules Apache and MySQL. After that is done, you will need to add a database on the [phpmyadmin](http://localhost/phpmyadmin) page. When all is done, you need [NodeJS](https://nodejs.org/en/download) and its package manager [npm](https://www.npmjs.com/package/npm). Once they are installed, run
+To use and open the website, you will have to install XAMPP, to learn how to install it. Go to the [XAMPP](https://www.apachefriends.org/download.html) download page. Once XAMPP is installed, you need to turn on the modules Apache and MySQL. After that is done, you will need to add a database on the [phpmyadmin](http://localhost/phpmyadmin) page. When all is done, you need [NodeJS](https://nodejs.org/en/download) and its package manager [npm](https://www.npmjs.com/package/npm). Once they are installed, you will have to install the dependencies [Bootstrap](https://getbootstrap.com) and [Sass](https://sass-lang.com) with these commands:
 
 ```bash
-# creates a package.json
-npm init -y
-```
-
-Note: in the package.json, you will have to replace the "main": "index.js" with "main": "index.html".
-
-After that, you will have to install the dependencies [Bootstrap](https://getbootstrap.com) and [Sass](https://sass-lang.com) with the command:
-
-```bash
-#installs Sass
-npm i sass
-
 #installs Bootstrap and Popper
 npm i bootstrap
+
+#installs Sass
+npm i sass
 ```
 
-Note: 
-```bash
-npm i bootstrap
-```
-will also install [Popper](https://popper.js.org/docs/v2/).
-
+You need to execute them in this order in order for the .gitignore to not take the node_modules with the commits.
 
 Next-up, you will need to add some scripts into the "scripts" section of package.json:
 ```json
