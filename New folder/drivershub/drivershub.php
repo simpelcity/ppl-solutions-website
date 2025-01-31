@@ -1,7 +1,20 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['loggedInUser'])) {
+    header("Location: ../login.php");
+    die();
+}
+
+$username = $_SESSION['username'];
+
+
+?>
 <!doctype html>
 <html lang="en" class="overflow-x-hidden h-100 w-100 m-0 p-0">
     <head>
-        <title>Contact us | PPL Solutions</title>
+        <title>Drivershub | PPL Solutions</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -16,14 +29,15 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
-        <link rel="icon" type="image/x-icon" href="./media/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
+        <script src="drivershub.js"></script>
         <style>
             body {
                 font-family: IBM Plex Mono;
@@ -37,7 +51,7 @@
                 <div class="container-fluid w-100 px-0">
                     <!-- Brand Logo and Name -->
                      <a class="navbar-brand d-flex align-items-center" href="../index.html">
-                        <img class="rounded-circle me-2 ms-3" src="./media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
+                        <img class="rounded-circle me-2 ms-3" src="../media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
                         <p class="my-auto">PPL Solutions VTC</p>
                      </a>
 
@@ -48,14 +62,14 @@
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav w-100 justify-content-center">
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./events/events.html">Events</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="team.html">Team</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="gallery.html">Gallery</a></li>
-                            <li class="nav-item mx-2 active rounded"><a class="nav-link text-uppercase text-light" href="contact-us.html">Contact us</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../events/events.html">Events</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../team.html">Team</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../gallery.html">Gallery</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../contact-us.html">Contact us</a></li>
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="apply.html">Apply</a>
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="login.php">Drivershub</a>
+                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../apply.html">Apply</a>
+                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="../login.php">Drivershub</a>
                         </div>
                      </div>
                 </div>
@@ -64,45 +78,73 @@
         <main>
             <div>
                 <div class="banner">
-                    <img class="banner-img w-100 object-fit-cover" src="./media/banner.png">
+                    <img class="banner-img w-100 object-fit-cover" src="../media/banner.png">
                 </div>
                 <section class="col-12 text-center my-3">
-                    <h1 class="text-primary fw-700">Contact us</h1>
+                    <h1 class="text-primary fw-700">Drivershub panel</h1>
                 </section>
-                <div class="container d-flex justify-content-center">
-                    <div class="contact-form col-12 col-md-10 col-lg-8 col-xl-6">
-                        <form class="d-flex shadow p-3 rounded bg-white mb-3" action="mailto:pplsolutionsvtc@gmail.com" method="post" enctype="text/plain">
-                            <div class="col-8 col-xl-10">
-                                <div class="mb-2 discord-username">
-                                    <label for="username" class="form-label">Discord username</label>
-                                    <input type="text" class="form-control input" name="username">
-                                </div>
-                                <div class="mb-2 email">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="text" class="form-control input" name="email" placeholder="example@gmail.com" required>
-                                </div>
-                                <div class="mb-3 message">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control input" name="message" rows="5" required></textarea>
-                                </div>
-                                <button class="btn border border-2 border-primary text-primary mb-3" type="submit">Send</button>
+                <div class="text-center driver d-flex flex-row justify-content-center text-primary">
+                    <h2 class="fw-600">Welcome back,</h2>
+                    <h2 class="fw-600" id="driver-user"><?php echo $username ?></h2>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="card bg-dark rounded-4 col-12 col-lg-11">
+                        <div class="card-header text-center">
+                            <h2 class="text-primary fw-600">User Jobs</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="container-fluid d-flex flex-column align-items-center text-light scroll">
+                                <table class="mx-auto">
+                                    <thead class="bg-primary">
+                                        <tr>
+                                            <th class="rounded-start py-2 px-3">Username</th>
+                                            <th class="py-2 px-3">Game</th>
+                                            <th class="py-2 px-3">From - To</th>
+                                            <th class="py-2 px-3">Cargo</th>
+                                            <th class="py-2 px-3">Truck</th>
+                                            <th class="py-2 px-3">Distance</th>
+                                            <th class="rounded-end py-2 px-3">Income</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="container"></tbody>
+                                </table>
                             </div>
-                            <div class="col-4 col-lg-2 d-flex flex-column align-items-center mt-5">
-                                <div class="m-3 mt-0 d-flex flex-column align-items-center">
-                                    <a href="https://discord.gg/mnKcKwsYm4" target="_blank" class="me-1"><i class="fa-brands fa-discord mt-2 fs-4 text-info"></i></a>
-                                    <p class="m-0">Discord</p>
-                                </div>
-                                <div class="m-3 d-flex flex-column align-items-center">
-                                    <a href="https://www.tiktok.com/@pplsolutionsvtc" target="_blank"><i class="fa-brands fa-tiktok fs-4 text-black"></i></a>
-                                    <p class="m-0">TikTok</p>
-                                </div>
-                                <div class="m-3 d-flex flex-column align-items-center">
-                                    <a href="https://truckersmp.com/vtc/74455" target="_blank"><i class="fa-solid fa-truck fs-4 text-danger"></i></a>
-                                    <p class="m-0">TruckersMP</p>
-                                </div>
+                            <div class="navigation mt-2 d-flex justify-content-center">
+                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="previous">
+                                    <span id="buttonText">Previous</span>
+                                    <div id="dotSpinner" class="dot-spinner hidden left-37">
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                    </div>
+                                </button>
+                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
+                                    <span id="buttonText">Next</span>
+                                    <div id="dotSpinner" class="dot-spinner hidden left-20">
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                    </div>
+                                </button>
                             </div>
-                        </form>
+                            <div class="nav-info d-flex flex-row justify-content-center my-auto text-light">
+                                <p>Page&nbsp;</p><p id="currentPages">1</p>&nbsp;of&nbsp;<p id="totalPages">1</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="text-decoration-none text-center btn border border-2 border-primary text-primary my-3" id="logout" href="../../components/redirects/logout.php">Logout</a>
                 </div>
             </div>
         </main>
@@ -111,8 +153,8 @@
                 <div class="row mx-3">
                     <div class="col-12 col-md-6 footer1 my-3">
                         <div class="d-flex align-items-center mb-3">
-                            <a class="d-flex flex-row text-decoration-none color-light" href="../index.html">
-                                <img class="rounded-circle me-2" src="./media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
+                            <a class="d-flex flex-row text-decoration-none color-light" href="index.html">
+                                <img class="rounded-circle me-2" src="../media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
                                 <h3 class="my-auto text-light fw-600">PPL Solutions VTC</h3>
                             </a>
                         </div>
@@ -128,7 +170,7 @@
                             <div class="col-12 col-lg-4">
                                 <h3 class="fw-600">Pages</h3>
                                 <ul class="list-unstyled p-0 fs-5">
-                                    <li><a class="text-light text-decoration-none" href="../index.html"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                                    <li><a class="text-light text-decoration-none" href="index.html"><i class="fa-solid fa-angle-right"></i> Home</a></li>
                                     <li><a class="text-light text-decoration-none" href="./events/events.html"><i class="fa-solid fa-angle-right"></i> Events</a></li>
                                     <li><a class="text-light text-decoration-none" href="team.html"><i class="fa-solid fa-angle-right"></i> Team</a></li>
                                     <li><a class="text-light text-decoration-none" href="gallery.html"><i class="fa-solid fa-angle-right"></i> Gallery</a></li>
@@ -175,5 +217,28 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAS4-Nea-8pEmekBMFIinMEWGgBZJtPK-w",
+            authDomain: "ppl-solutions-vtc.firebaseapp.com",
+            projectId: "ppl-solutions-vtc",
+            storageBucket: "ppl-solutions-vtc.firebasestorage.app",
+            messagingSenderId: "97500814851",
+            appId: "1:97500814851:web:8f3db6f4b4c487dc153836",
+            measurementId: "G-NLHRG7919N"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        </script>
     </body>
 </html>

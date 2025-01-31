@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid w-100 px-0">
                     <!-- Brand Logo and Name -->
-                     <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                     <a class="navbar-brand d-flex align-items-center" href="index.html">
                         <img class="rounded-circle me-2 ms-3" src="./media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
                         <p class="my-auto">PPL Solutions VTC</p>
                      </a>
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav w-100 justify-content-center">
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="index.html">Home</a></li>
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./events/events.html">Events</a></li>
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="team.html">Team</a></li>
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="gallery.html">Gallery</a></li>
