@@ -20,7 +20,7 @@ npm i bootstrap
 npm i sass
 ```
 
-You need to execute them in this order in order for the .gitignore to not take the node_modules with the commits.
+You need to execute them in this order for the .gitignore to not take the node_modules with the commits.
 
 Next-up, you will need to add some scripts into the "scripts" section of package.json:
 ```json
@@ -36,7 +36,7 @@ To use and update the project you have to run the website on a localhost, to upd
 npm run watch
 ```
 
-When you're done, run
+And when you're done, run
 
 ```bash
 npm run build
