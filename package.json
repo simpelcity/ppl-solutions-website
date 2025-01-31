@@ -2,9 +2,11 @@
   "name": "ppl-solutions-website",
   "version": "1.0.0",
   "description": "Hello there, it seems you have stumbled across one of my projects. This project in particular is one of my finest work, this is the website for the Virtual Trucking Company: PPL Solutions. It features some awesome information about the VTC, dynamic showing of our events we participate in and an amazing Drivershub!",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "sass --watch ./src/pages/scss/custom.scss ./src/pages/css/style.css",
+    "build": "sass ./src/pages/scss/custom.scss ./src/pages/css/style.css --style compressed"
   },
   "keywords": [],
   "author": "",
