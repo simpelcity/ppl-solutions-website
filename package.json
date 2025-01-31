@@ -1,7 +1,6 @@
 {
-  "name": "ppl-solutions-website",
-  "version": "1.2.6",
-  "description": "Hello there, it seems you have stumbled across one of my projects. This project in particular is one of my finest work, this is the website for the Virtual Trucking Company: PPL Solutions. It features some awesome information about the VTC, dynamic showing of our events we participate in and an amazing Drivershub!",
+  "name": "almost-there-05949418010a-40799e9f4aab",
+  "version": "1.2.7",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,8 +8,9 @@
     "build": "sass ./src/pages/scss/custom.scss ./src/pages/css/style.css --style compressed"
   },
   "keywords": [],
-  "author": "Wietsegaming",
+  "author": "",
   "license": "ISC",
+  "description": "Hello there, it seems you have stumbled across one of my projects. This project in particular is one of my finest work, this is the website for the Virtual Trucking Company: PPL Solutions. It features some awesome information about the VTC, dynamic showing of our events we participate in and an amazing Drivershub!",
   "dependencies": {
     "bootstrap": "^5.3.3",
     "sass": "^1.83.4"
