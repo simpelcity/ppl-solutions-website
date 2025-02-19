@@ -252,3 +252,6 @@ $RECYCLE.BIN/
 _NCrunch*
 **/.vs/
 **/obj/
+.vercel
+.env*.local
+/vendor/

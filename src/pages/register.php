@@ -1,6 +1,6 @@
 <?php
 
-include '../components/redirects/connection.php';
+include __DIR__ . '/../components/redirects/db_config.php';
 
 $message = "";
 $style = "";
@@ -82,9 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </header>
         <main class="h-100">
             <div class="h-100">
-                <div class="container h-100 d-flex justify-content-center align-items-center">
-                    <div class="contact-form h-100 col-12 col-md-10 col-lg-8 col-xl-6">
-                        <form method="post" class="my-4 p-4 h-auto shadow rounded bg-white">
+                <div class="container h-100 d-flex justify-content-center">
+                    <div class="contact-form h-100 col-12 col-md-10 col-lg-8 col-xl-6 d-flex align-items-center">
+                        <form method="post" class="my-4 p-4 h-auto shadow rounded bg-white w-100">
                             <div class="row text-center">
                                 <i class="bi bi-person-circle"></i>
                                 <h5 class="text-center p-2 mb-4">Create Your Account</h5>
