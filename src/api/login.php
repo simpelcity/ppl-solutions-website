@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../components/redirects/db_config.php';
+include '../components/redirects/connection.php';
 
 $message = "";
 $style = "";
