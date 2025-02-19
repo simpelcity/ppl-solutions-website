@@ -1,6 +1,8 @@
 <?php
 
-include '../components/redirects/connection.php';
+var_dump(realpath('../../components/redirects/connection.php'));
+
+include '../../components/redirects/connection.php';
 
 $message = "";
 $style = "";
