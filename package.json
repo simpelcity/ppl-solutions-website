@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "Hello there, it seems you have stumbled across one of my projects. This project in particular is one of my finest work, this is the website for the Virtual Trucking Company: PPL Solutions. It features some awesome information about the VTC, dynamic showing of our events we participate in and an amazing Drivershub!",
   "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
     "bootstrap": "^5.3.3",
     "sass": "^1.83.4"
   }

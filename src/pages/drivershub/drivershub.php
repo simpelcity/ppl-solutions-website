@@ -83,8 +83,8 @@ $username = $_SESSION['username'];
                 <section class="col-12 text-center my-3">
                     <h1 class="text-primary fw-700">Drivershub panel</h1>
                 </section>
-                <div class="text-center driver d-flex flex-row justify-content-center text-primary">
-                    <h2 class="fw-600">Welcome back,</h2>
+                <div class="text-center driver d-flex justify-content-center text-primary">
+                    <h2 class="fw-600 mx-3">Welcome back,</h2>
                     <h2 class="fw-600" id="driver-user"><?php echo $username ?></h2>
                 </div>
                 <div class="d-flex justify-content-center">

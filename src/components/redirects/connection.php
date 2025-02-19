@@ -1,9 +1,9 @@
 <?php
 
-$host = 'sql205.byethost5.com';
-$db = 'b5_38201179_ppl_solutions';
-$user = 'b5_38201179';
-$pass = 'PPLSolutions2007!';
+$host = 'localhost';
+$db = 'ppl_solutions';
+$user = 'bit_academy';
+$pass = 'bit_academy';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

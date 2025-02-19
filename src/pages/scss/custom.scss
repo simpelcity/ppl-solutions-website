@@ -104,6 +104,10 @@ $nav-tabs-link-active-color: $primary;
   .footer2 div {
     flex-direction: column;
   }
+
+  .driver {
+    flex-direction: column !important;
+  }
 }
 
 /* index.html styling */
@@ -192,10 +196,6 @@ $nav-tabs-link-active-color: $primary;
 }
 
 /* drivershub.php styling */
-
-.driver {
-    gap: 20px;
-}
 
 table {
     width: 100%;
