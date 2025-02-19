@@ -37,7 +37,7 @@ $username = $_SESSION['username'];
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
         <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
-        <script src="drivershub.js"></script>
+        <script src="./drivershub/drivershub.js"></script>
         <style>
             body {
                 font-family: IBM Plex Mono;
