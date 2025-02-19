@@ -1,5 +1,8 @@
 <?php
 
+
+echo "Current directory: " . __DIR__;
+
 var_dump(realpath('../../components/redirects/connection.php'));
 
 include '../../components/redirects/connection.php';
