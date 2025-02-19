@@ -1,5 +1,13 @@
 <?php
 
+$file = __DIR__ . "/../components/redirects/connection.php";
+echo "Looking for file at: " . $file . "<br>";
+
+if (file_exists($file)) {
+    include $file;
+} else {
+    die("Error: connection.php file not found at: " . $file);
+}
 
 echo "Current directory: " . __DIR__;
 
