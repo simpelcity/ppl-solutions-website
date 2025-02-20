@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('events-container');
 
     try {
-        const response = await fetch('../../components/apis/api-events.php', {
+        const response = await fetch('../../api/api-events.php', {
             method: 'POST',
             body: JSON.stringify({
                 url: 'https://api.truckersmp.com/v2/vtc/74455/events/attending'

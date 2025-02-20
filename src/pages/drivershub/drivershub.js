@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function fetchJobs(page) {
         console.log(`Fetching data for page: ${page}`);
         try {
-            const responseApi3 = await fetch('../../components/apis/api-jobs.php', {
+            const responseApi3 = await fetch('../../api/api-jobs.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             if (!responseApi3.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                throw new Error(`HTTP error! Status: ${responseApi3.status}`);
             }
 
             const data = await responseApi3.json();

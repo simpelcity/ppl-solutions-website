@@ -27,16 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "Login successful";
                 $style = "text-success";
 
-                session_start();
-                if (!isset($_SESSION)) {
-                    die("Session not started!");
-                }
+                setcookie("loggedInUser", $user['id'], time() + 3600, "/", "", false, true);
+                setcookie("email", $email, time() + 3600, "/", "", false, true);
+                setcookie("username", $user['username'], time() + 3600, "/", "", false, true);
 
-                $_SESSION['loggedInUser'] = $user['id'];
-                $_SESSION['email'] = $email;
-                $_SESSION['username'] = $user['username'];
-
-                header("Location: https://pplsolutionsvtc.vercel.app/api/drivershub.php");
+                header("Location: drivershub.php");
                 exit();
             } else {
                 $message = "Incorrect password";
@@ -71,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="../pages/css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -79,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-        <link rel="icon" type="image/x-icon" href="./media/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="../pages/media/favicon.ico">
         <style>
             body {
                 font-family: IBM Plex Mono;
@@ -93,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="container-fluid w-100 px-0">
                     <!-- Brand Logo and Name -->
                      <a class="navbar-brand d-flex align-items-center" href="../index.html">
-                        <img class="rounded-circle me-2 ms-3" src="./media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
+                        <img class="rounded-circle me-2 ms-3" src="../pages/media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
                         <p class="my-auto">PPL Solutions VTC</p>
                      </a>
 
@@ -104,13 +99,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav w-100 justify-content-center">
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./events/events.html">Events</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="team.html">Team</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="gallery.html">Gallery</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="contact-us.html">Contact us</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/events/events.html">Events</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/team.html">Team</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/gallery.html">Gallery</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/contact-us.html">Contact us</a></li>
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="apply.html">Apply</a>
+                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../pages/apply.html">Apply</a>
                             <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="login.php">Drivershub</a>
                         </div>
                      </div>

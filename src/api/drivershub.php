@@ -1,15 +1,11 @@
 <?php
 
-session_start();
-
-if (!isset($_SESSION['loggedInUser'])) {
-    header("Location: login.php");
-    die();
+if (!isset($_COOKIE['loggedInUser'])) {
+    echo "not logged in.";
+    exit();
 }
 
-$username = $_SESSION['username'];
-
-
+$username = $_COOKIE['username'];
 ?>
 <!doctype html>
 <html lang="en" class="overflow-x-hidden h-100 w-100 m-0 p-0">
@@ -29,15 +25,15 @@ $username = $_SESSION['username'];
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../pages/css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
-        <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
-        <script src="./drivershub/drivershub.js"></script>
+        <link rel="icon" type="image/x-icon" href="../pages/media/favicon.ico">
+        <script src="../pages/drivershub/drivershub.js"></script>
         <style>
             body {
                 font-family: IBM Plex Mono;
@@ -50,8 +46,8 @@ $username = $_SESSION['username'];
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid w-100 px-0">
                     <!-- Brand Logo and Name -->
-                     <a class="navbar-brand d-flex align-items-center" href="../../index.html">
-                        <img class="rounded-circle me-2 ms-3" src="../media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
+                     <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                        <img class="rounded-circle me-2 ms-3" src="../pages/media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
                         <p class="my-auto">PPL Solutions VTC</p>
                      </a>
 
@@ -61,15 +57,15 @@ $username = $_SESSION['username'];
 
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav w-100 justify-content-center">
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../../index.html">Home</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../events/events.html">Events</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../team.html">Team</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../gallery.html">Gallery</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../contact-us.html">Contact us</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/events/events.html">Events</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/team.html">Team</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/gallery.html">Gallery</a></li>
+                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/contact-us.html">Contact us</a></li>
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../apply.html">Apply</a>
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="../login.php">Drivershub</a>
+                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../pages/apply.html">Apply</a>
+                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="login.php">Drivershub</a>
                         </div>
                      </div>
                 </div>
@@ -78,7 +74,7 @@ $username = $_SESSION['username'];
         <main>
             <div>
                 <div class="banner">
-                    <img class="banner-img w-100 object-fit-cover" src="../media/banner.png">
+                    <img class="banner-img w-100 object-fit-cover" src="../pages/media/banner.png">
                 </div>
                 <section class="col-12 text-center my-3">
                     <h1 class="text-primary fw-700">Drivershub panel</h1>
@@ -144,7 +140,7 @@ $username = $_SESSION['username'];
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a class="text-decoration-none text-center btn border border-2 border-primary text-primary my-3" id="logout" href="../../components/redirects/logout.php">Logout</a>
+                    <a class="text-decoration-none text-center btn border border-2 border-primary text-primary my-3" id="logout" href="logout.php">Logout</a>
                 </div>
             </div>
         </main>
@@ -153,8 +149,8 @@ $username = $_SESSION['username'];
                 <div class="row mx-3">
                     <div class="col-12 col-md-6 footer1 my-3">
                         <div class="d-flex align-items-center mb-3">
-                            <a class="d-flex flex-row text-decoration-none color-light" href="../../index.html">
-                                <img class="rounded-circle me-2" src="../media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
+                            <a class="d-flex flex-row text-decoration-none color-light" href="../index.html">
+                                <img class="rounded-circle me-2" src="../pages/media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
                                 <h3 class="my-auto text-light fw-600">PPL Solutions VTC</h3>
                             </a>
                         </div>
@@ -170,11 +166,11 @@ $username = $_SESSION['username'];
                             <div class="col-12 col-lg-4">
                                 <h3 class="fw-600">Pages</h3>
                                 <ul class="list-unstyled p-0 fs-5">
-                                    <li><a class="text-light text-decoration-none" href="../../index.html"><i class="fa-solid fa-angle-right"></i> Home</a></li>
-                                    <li><a class="text-light text-decoration-none" href="../events/events.html"><i class="fa-solid fa-angle-right"></i> Events</a></li>
-                                    <li><a class="text-light text-decoration-none" href="../team.html"><i class="fa-solid fa-angle-right"></i> Team</a></li>
-                                    <li><a class="text-light text-decoration-none" href="../gallery.html"><i class="fa-solid fa-angle-right"></i> Gallery</a></li>
-                                    <li><a class="text-light text-decoration-none" href="../contact-us.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+                                    <li><a class="text-light text-decoration-none" href="../index.html"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                                    <li><a class="text-light text-decoration-none" href="../pages/events/events.html"><i class="fa-solid fa-angle-right"></i> Events</a></li>
+                                    <li><a class="text-light text-decoration-none" href="../pages/team.html"><i class="fa-solid fa-angle-right"></i> Team</a></li>
+                                    <li><a class="text-light text-decoration-none" href="../pages/gallery.html"><i class="fa-solid fa-angle-right"></i> Gallery</a></li>
+                                    <li><a class="text-light text-decoration-none" href="../pages/contact-us.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
                                 </ul>
                             </div>
                             <div class="col-12 col-lg-8 fs-5">
@@ -189,8 +185,8 @@ $username = $_SESSION['username'];
                                 <div class="tab-content mt-4" id="footerTabsContent">
                                     <div class="tab-pane fade show active" id="links" role="tabpanel" aria-labelledby="home-tab">
                                         <ul class="list-unstyled">
-                                            <li><a class="text-light text-decoration-none" href="../login.php"><i class="fa-solid fa-angle-right"></i> Drivershub</a></li>
-                                            <li><a class="text-light text-decoration-none" href="../apply.html"><i class="fa-solid fa-angle-right"></i> Apply</a></li>
+                                            <li><a class="text-light text-decoration-none" href="login.php"><i class="fa-solid fa-angle-right"></i> Drivershub</a></li>
+                                            <li><a class="text-light text-decoration-none" href="../pages/apply.html"><i class="fa-solid fa-angle-right"></i> Apply</a></li>
                                             <li><a class="text-light text-decoration-none" href="https://truckersmp.com/vtc/74455" target="_blank"><i class="fa-solid fa-angle-right"></i> VTC</a></li>
                                         </ul>
                                     </div>
