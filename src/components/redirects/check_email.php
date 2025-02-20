@@ -1,6 +1,13 @@
 <?php
 
-include 'connection.php';
+$connectionPath = realpath(__DIR__ . "/connection.php");
+echo "Resolved Path: " . $connectionPath;
+
+if ($connectionPath) {
+    include $connectionPath;
+} else {
+    die("Error: connection.php file not found.");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];

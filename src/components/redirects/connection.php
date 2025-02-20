@@ -1,14 +1,12 @@
 <?php
-$host = 'sql205.byethost5.com';
-$dbname = 'b5_38201179_ppl_solutions';
-$username = 'b5_38201179';
-$password = 'PPLSolutions2007!';
+$host = '0ihc0.h.filess.io';
+$port = 3307;
+$dbname = 'pplsolutions_hearingtea';
+$username = 'pplsolutions_hearingtea';
+$password = '64d22f0537588ac8a6efd5204fdf35dc91c4af32';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ]);
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }

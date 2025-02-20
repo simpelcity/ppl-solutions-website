@@ -1,13 +1,12 @@
 <?php
 
-$file = __DIR__ . "/../components/redirects/connection.php";
-echo "Looking for file at: " . $file . "<br>";
+$connectionPath = realpath(__DIR__ . "/../components/redirects/connection.php");
 
-echo "Current directory: " . __DIR__;
-
-var_dump(realpath('../../components/redirects/connection.php'));
-
-include '../../components/redirects/connection.php';
+if ($connectionPath) {
+    include $connectionPath;
+} else {
+    die("Error: connection.php file not found.");
+}
 
 $message = "";
 $style = "";
@@ -29,13 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $style = "text-success";
 
                 session_start();
+                if (!isset($_SESSION)) {
+                    die("Session not started!");
+                }
+
                 $_SESSION['loggedInUser'] = $user['id'];
                 $_SESSION['email'] = $email;
                 $_SESSION['username'] = $user['username'];
 
-                var_dump($_SESSION);
-
-                header("Location: ./drivershub/drivershub.php");
+                header("Location: https://pplsolutionsvtc.vercel.app/api/drivershub.php");
                 exit();
             } else {
                 $message = "Incorrect password";

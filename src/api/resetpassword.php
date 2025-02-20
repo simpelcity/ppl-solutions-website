@@ -1,6 +1,13 @@
 <?php
 
-include __DIR__ . '/../components/redirects/db_config.php';
+$connectionPath = realpath(__DIR__ . "/../components/redirects/connection.php");
+echo "Resolved Path: " . $connectionPath;
+
+if ($connectionPath) {
+    include $connectionPath;
+} else {
+    die("Error: connection.php file not found.");
+}
 
 $message = "";
 $style = "";
