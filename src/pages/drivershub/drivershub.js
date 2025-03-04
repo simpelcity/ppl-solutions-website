@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function fetchJobs(page) {
         console.log(`Fetching data for page: ${page}`);
         try {
-            const responseApi3 = await fetch('../../api/api-jobs.php', {
+            const responseApi3 = await fetch('api-jobs.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
