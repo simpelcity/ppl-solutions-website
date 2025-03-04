@@ -39,7 +39,7 @@ if (isset($_POST['upload'])) {
     }
 }
 
-$stmt = $pdo->prepare("SELECT profile_picture FROM users WHERE id = :id");
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
 $stmt->bindParam(':id', $id);
 $stmt->execute();
 $user = $stmt->fetch();
@@ -72,6 +72,7 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
         <link rel="icon" type="image/x-icon" href="../pages/media/favicon.ico">
         <script src="../pages/drivershub/drivershub.js"></script>
+        <script src="../pages/drivershub/member.js"></script>
         <style>
             body {
                 font-family: IBM Plex Mono;
@@ -111,15 +112,9 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
         </header>
         <main>
             <div>
-                <div class="banner">
-                    <img class="banner-img w-100 object-fit-cover" src="../pages/media/banner.png">
-                </div>
-                <section class="col-12 text-center my-3">
-                    <h1 class="text-primary fw-700">Drivershub panel</h1>
-                </section>
                 <div class="text-center driver d-flex justify-content-center text-primary">
-                    <h2 class="fw-600 mx-3">Welcome to your account settings,</h2>
-                    <h2 class="fw-600" id="driver-user"><?= $_GET['username'] ?></h2>
+                    <h1 class="fw-600 mx-3">Welcome to your account settings,</h1>
+                    <h1 class="fw-600" id="driver-user"><?= $user['username'] ?></h1>
                 </div>
                 <div class="settings">
                     <form action="" method="post" enctype="multipart/form-data">
@@ -128,6 +123,27 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
                         <button type="submit" name="upload">Save</button>
                     </form>
                     <img src="<?= $pfp ?>" alt="Profile Picture" width="150">
+                </div>
+            </div>
+            <div class="profile-banner d-flex justify-content-center">
+                <div class="col-md-8">
+                    <!-- Column -->
+                    <div class="card bg-dark">
+                        <img class="card-img-top object-fit-cover" src="<?= $banner ?>" alt="Banner of <?= $user['username'] ?>">
+                        <div class="card-body little-profile text-center">
+                            <div class="profile">
+                                <img class="rounded-circle object-fit-cover pfp mb-3" src="<?= $pfp ?>" alt="Profile Picture of <?= $user['username'] ?>" width="160" height="160">
+                                <img id="country" class="position-absolute rounded" width="80" height="53">
+                            </div>
+                            <div class="edit">
+                                <a class="btn btn-primary text-light bg-transparent mb-4" href="account-settings.php">Edit profile</a>
+                            </div>
+                            <div class="details text-light">
+                                <h3 id="user" class="fw-600"><?= $user['username'] ?></h3>
+                                <p id="role" class="fw-500"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

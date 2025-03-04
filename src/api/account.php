@@ -48,6 +48,7 @@ $stmt->bindParam(':id', $id);
 $stmt->execute();
 $user = $stmt->fetch();
 $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_picture'] : "../pages/media/default_profile.png";
+$banner = $user['banner'] ? "data:image/jpeg;base64," . $user['banner'] : "../pages/media/default_banner.png";
 
 ?>
 <!doctype html>
@@ -115,16 +116,22 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
             </nav>
         </header>
         <main>
-            <div class="profile-banner bg-danger d-flex justify-content-center">
-                <div class="card col-8">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="profile-picture">
-                                <img src="<?= $pfp ?>" alt="pfp of <?= $user['username'] ?>" class="rounded-circle object-fit-cover" width="160" height="160">
+            <div class="profile-banner d-flex justify-content-center">
+                <div class="col-md-8">
+                    <!-- Column -->
+                    <div class="card bg-dark">
+                        <img class="card-img-top object-fit-cover" src="<?= $banner ?>" alt="Banner of <?= $user['username'] ?>">
+                        <div class="card-body little-profile text-center">
+                            <div class="profile">
+                                <img class="rounded-circle object-fit-cover pfp mb-3" src="<?= $pfp ?>" alt="Profile Picture of <?= $user['username'] ?>" width="160" height="160">
+                                <img id="country" class="position-absolute rounded" width="80" height="53">
                             </div>
-                            <div class="details">
-                                <h3><?= $user['username'] ?></h3>
-                                <p id="role"></p>
+                            <div class="edit">
+                                <a class="btn btn-primary text-light bg-transparent mb-4" href="account-settings.php">Edit profile</a>
+                            </div>
+                            <div class="details text-light">
+                                <h3 id="user" class="fw-600"><?= $user['username'] ?></h3>
+                                <p id="role" class="fw-500"></p>
                             </div>
                         </div>
                     </div>
