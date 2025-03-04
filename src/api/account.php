@@ -76,7 +76,7 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
         <link rel="icon" type="image/x-icon" href="../pages/media/favicon.ico">
-        <script src="member.js"></script>
+        <script src="../pages/drivershub/member.js"></script>
         <style>
             body {
                 font-family: IBM Plex Mono;
@@ -124,6 +124,7 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
                             </div>
                             <div class="details">
                                 <h3><?= $user['username'] ?></h3>
+                                <p id="role"></p>
                             </div>
                         </div>
                     </div>
