@@ -109,6 +109,11 @@ $dropdown-link-hover-bg: $primary !important;
   .driver {
     flex-direction: column !important;
   }
+
+  .mobile {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
 }
 
 /* index.html styling */
