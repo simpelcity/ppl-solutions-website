@@ -13,9 +13,31 @@ if (!isset($_COOKIE['loggedInUser'])) {
     exit();
 }
 
-$username = $_COOKIE['username'];
-
 $id = $_COOKIE['loggedInUser'];
+
+if (isset($_POST['upload'])) {
+    if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === 0) {
+        $fileTmp = $_FILES['pfp']['tmp_name'];
+        $fileName = $_FILES['pfp']['name'];
+        $fileType = $_FILES['pfp']['type'];
+        $fileSize = $_FILES['pfp']['size'];
+
+        $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($fileType, $allowed)) {
+            die("Invalid file type. Only JPG, PNG and GIF are allowed.");
+        }
+
+        $fileData = file_get_contents($fileTmp);
+        $fileData = base64_encode($fileData);
+
+        $stmt = $pdo->prepare("UPDATE users SET profile_picture = :profile_picture WHERE id = :id");
+        $stmt->bindParam(':profile_picture', $fileData);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    } else {
+        echo "Error uploading file.";
+    }
+}
 
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
 $stmt->bindParam(':id', $id);
@@ -50,6 +72,7 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
         <link rel="icon" type="image/x-icon" href="../pages/media/favicon.ico">
         <script src="../pages/drivershub/drivershub.js"></script>
+        <script src="../pages/drivershub/member.js"></script>
         <style>
             body {
                 font-family: IBM Plex Mono;
@@ -81,16 +104,7 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
                             <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../pages/apply.html">Apply</a>
-                            <div class="dropdown">
-                                <button class="bg-transparent border-0 text-light me-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="<?= $pfp ?>" alt="Profile Picture" class="object-fit-cover rounded-circle" height="33.2" width="33.2">
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end text-center dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="account.php">Profile</a></li>
-                                    <li><a class="dropdown-item" href="account_settings.php">Settings</a></li>
-                                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                                </ul>
-                            </div>
+                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="drivershub.php">Drivershub</a>
                         </div>
                      </div>
                 </div>
@@ -98,68 +112,35 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
         </header>
         <main>
             <div>
-                <div class="banner">
-                    <img class="banner-img w-100 object-fit-cover" src="../pages/media/banner.png">
-                </div>
-                <section class="col-12 text-center my-3">
-                    <h1 class="text-primary fw-700">Drivershub panel</h1>
-                </section>
                 <div class="text-center driver d-flex justify-content-center text-primary">
-                    <h2 class="fw-600 mx-3">Welcome back,</h2>
-                    <h2 class="fw-600" id="driver-user"><?php echo $username ?></h2>
+                    <h1 class="fw-600 mx-3">Welcome to your account settings,</h1>
+                    <h1 class="fw-600" id="driver-user"><?= $user['username'] ?></h1>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <div class="card bg-dark mb-4 rounded-4 col-12 col-lg-11">
-                        <div class="card-header text-center">
-                            <h2 class="text-primary fw-600">User Jobs</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="container-fluid d-flex flex-column align-items-center text-light scroll">
-                                <table class="mx-auto">
-                                    <thead class="bg-primary">
-                                        <tr>
-                                            <th class="rounded-start py-2 px-3">Username</th>
-                                            <th class="py-2 px-3">Game</th>
-                                            <th class="py-2 px-3">From - To</th>
-                                            <th class="py-2 px-3">Cargo</th>
-                                            <th class="py-2 px-3">Truck</th>
-                                            <th class="py-2 px-3">Distance</th>
-                                            <th class="rounded-end py-2 px-3">Income</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="container"></tbody>
-                                </table>
+                <div class="settings">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <label for="pfp">Profile picture:</label>
+                        <input type="file" name="pfp">
+                        <button type="submit" name="upload">Save</button>
+                    </form>
+                    <img src="<?= $pfp ?>" alt="Profile Picture" width="150">
+                </div>
+            </div>
+            <div class="profile-banner d-flex justify-content-center">
+                <div class="col-md-8">
+                    <!-- Column -->
+                    <div class="card bg-dark">
+                        <img class="card-img-top object-fit-cover" src="<?= $banner ?>" alt="Banner of <?= $user['username'] ?>">
+                        <div class="card-body little-profile text-center">
+                            <div class="profile">
+                                <img class="rounded-circle object-fit-cover pfp mb-3" src="<?= $pfp ?>" alt="Profile Picture of <?= $user['username'] ?>" width="160" height="160">
+                                <img id="country" class="position-absolute rounded" width="80" height="53">
                             </div>
-                            <div class="navigation mt-2 d-flex justify-content-center">
-                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="previous">
-                                    <span id="buttonText">Previous</span>
-                                    <div id="dotSpinner" class="dot-spinner hidden left-37">
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                    </div>
-                                </button>
-                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
-                                    <span id="buttonText">Next</span>
-                                    <div id="dotSpinner" class="dot-spinner hidden left-20">
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                    </div>
-                                </button>
+                            <div class="edit">
+                                <a class="btn btn-primary text-light bg-transparent mb-4" href="account-settings.php">Edit profile</a>
                             </div>
-                            <div class="nav-info d-flex flex-row justify-content-center my-auto text-light">
-                                <p>Page&nbsp;</p><p id="currentPages">1</p>&nbsp;of&nbsp;<p id="totalPages">1</p>
+                            <div class="details text-light">
+                                <h3 id="user" class="fw-600"><?= $user['username'] ?></h3>
+                                <p id="role" class="fw-500"></p>
                             </div>
                         </div>
                     </div>
@@ -235,28 +216,5 @@ $pfp = $user['profile_picture'] ? "data:image/jpeg;base64," . $user['profile_pic
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
-        <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyAS4-Nea-8pEmekBMFIinMEWGgBZJtPK-w",
-            authDomain: "ppl-solutions-vtc.firebaseapp.com",
-            projectId: "ppl-solutions-vtc",
-            storageBucket: "ppl-solutions-vtc.firebasestorage.app",
-            messagingSenderId: "97500814851",
-            appId: "1:97500814851:web:8f3db6f4b4c487dc153836",
-            measurementId: "G-NLHRG7919N"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        </script>
     </body>
 </html>

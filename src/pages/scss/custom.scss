@@ -12,6 +12,7 @@ $btn-font-weight: 500;
 $input-focus-box-shadow: none;
 $input-font-weight: 500;
 $nav-tabs-link-active-color: $primary;
+$dropdown-link-hover-bg: $primary !important;
 
 /* default styling */
 
@@ -336,6 +337,23 @@ table {
 
 .left-37 {
     left: 37%
+}
+
+.dropdown-toggle::after {
+  margin-left: 0 !important;
+}
+
+.card-img-top{
+  height:250px;
+}
+
+.pfp {
+  margin-top: -80px;
+}
+
+#country {
+  left: 53%;
+  top: 55%;
 }
 
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";

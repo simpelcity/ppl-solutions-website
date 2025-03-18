@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         $user = $stmt->fetch();
-
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $message = "Login successful";

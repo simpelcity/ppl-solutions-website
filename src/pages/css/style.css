@@ -303,6 +303,23 @@ table {
   left: 37%;
 }
 
+.dropdown-toggle::after {
+  margin-left: 0 !important;
+}
+
+.card-img-top {
+  height: 250px;
+}
+
+.pfp {
+  margin-top: -80px;
+}
+
+#country {
+  left: 53%;
+  top: 55%;
+}
+
 /*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
@@ -3659,7 +3676,7 @@ textarea.form-control-lg {
   --bs-dropdown-box-shadow: var(--bs-box-shadow);
   --bs-dropdown-link-color: var(--bs-body-color);
   --bs-dropdown-link-hover-color: var(--bs-body-color);
-  --bs-dropdown-link-hover-bg: var(--bs-tertiary-bg);
+  --bs-dropdown-link-hover-bg: #009a86 !important;
   --bs-dropdown-link-active-color: #fff;
   --bs-dropdown-link-active-bg: #009a86;
   --bs-dropdown-link-disabled-color: var(--bs-tertiary-color);
