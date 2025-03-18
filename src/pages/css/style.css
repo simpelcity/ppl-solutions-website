@@ -99,6 +99,10 @@
   top: 40%;
 }
 
+.language-switcher {
+  outline: none;
+}
+
 /* events.html styling */
 .banner-img {
   height: 300px;
