@@ -1,0 +1,41 @@
+{
+    "title": "Home | PPL Solutions",
+    "header": {
+      "brand": "PPL Solutions VTC",
+      "home": "Home",
+      "events": "Events",
+      "team": "Team",
+      "gallery": "Gallery",
+      "contact": "Contact us",
+      "apply": "Apply",
+      "drivershub": "Drivershub"
+    },
+    "main": {
+      "welcome": "PPL Solutions",
+      "apply":"Apply",
+      "about": "About us...",
+      "about_text": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a successful and friendly VTC where people from all over the world can hang out and drive with each other.",
+      "offers": "What do we offer?",
+      "friendly_staff": "Friendly Staff",
+      "friendly_staff_text": "We have a small but extremely friendly staff team that can help you with any problem you might face while driving for us.",
+      "save_edits": "Save-Edits",
+      "save_edits_text": "Our drivers have access to a wide variety of custom-made save-edits, including full-sets of trucks, custom parts, and much more.",
+      "custom_mods": "Custom Mods",
+      "custom_mods_text": "We also offer some exclusive PPL Solutions mods for our drivers to use while playing singleplayer or convoys mode."
+    },
+    "footer": {
+      "brand": "PPL Solutions VTC",
+      "footer_info": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together.",
+      "pages": "Pages",
+      "events": "Events",
+      "gallery":"Gallery",
+      "contact":"Contact Us",
+      "other_links": "Other links",
+      "message": "Message",
+      "drivershub": "Drivershub",
+      "apply": "Apply",
+      "vtc": "VTC",
+      "footer_message": "Hello there traveler, My name is <strong>Wietsegaming</strong>. Welcome on the website of the Virtual Trucking Company: <strong>PPL Solutions</strong>, we stand for driver comfort and the fun in doing great things together.",
+      "copyright": "Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Designed and developed by <strong>Wietsegaming</strong>"
+    }
+  }

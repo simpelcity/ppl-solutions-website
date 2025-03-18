@@ -29,6 +29,140 @@
                 font-family: IBM Plex Mono;
             }
         </style>
+        <script src="https://unpkg.com/i18next@21.6.3/dist/umd/i18next.min.js"></script>
+        <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.2/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+        <script>
+            i18next.use(i18nextBrowserLanguageDetector).init({
+              fallbackLng: 'en',
+              debug: true,
+              resources: {
+                en: {
+                  translation: {
+                    "title": "Home | PPL Solutions",
+                    "header": {
+                      "brand": "PPL Solutions VTC",
+                      "home": "Home",
+                      "events": "Events",
+                      "team": "Team",
+                      "gallery": "Gallery",
+                      "contact": "Contact us",
+                      "apply": "Apply",
+                      "drivershub": "Drivershub"
+                    },
+                    "main": {
+                      "welcome": "PPL Solutions",
+                      "apply": "Apply",
+                      "about": "About us...",
+                      "about_text": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a successful and friendly VTC where people from all over the world can hang out and drive with each other.",
+                      "offers": "What do we offer?",
+                      "friendly_staff": "Friendly Staff",
+                      "friendly_staff_text": "We have a small but extremely friendly staff team that can help you with any problem you might face while driving for us.",
+                      "save_edits": "Save-Edits",
+                      "save_edits_text": "Our drivers have access to a wide variety of custom-made save-edits, including full-sets of trucks, custom parts, and much more.",
+                      "custom_mods": "Custom Mods",
+                      "custom_mods_text": "We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode."
+                    },
+                    "footer": {
+					"brand": "PPL Solutions VTC",
+					"footer_info": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together.",
+                      "pages": "Pages",
+                      "events": " Events",
+                      "gallery":" Gallery",
+                      "contact":" Contact Us",
+                      "other_links": "Other links",
+                      "message": "Message",
+                      "drivershub": " Drivershub",
+                      "apply": " Apply",
+                      "vtc": " VTC",
+                      "footer_message": "Hello there traveler, My name is <strong>Wietsegaming</strong>. Welcome on the website of the Virtual Trucking Company: <strong>PPL Solutions</strong>, we stand for driver comfort and the fun in doing great things together.",
+                      "copyright": " Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Designed and developed by <strong>Wietsegaming</strong>"
+                    }
+                  }
+                },
+                nl: {
+                  translation: {
+                    "title": "Home | PPL Solutions",
+                    "header": {
+                    "brand": "PPL Solutions VTC",
+                    "home": "Home",
+                    "events": "Evenementen",
+                    "team": "Team",
+                    "gallery": "Gallerij",
+                    "contact": "Contacteer Ons",
+                    "apply": "Solliciteer",
+                    "drivershub": "Drivershub"
+                    },
+                    "main": {
+                    "welcome": "PPL Solutions",
+                    "apply": "Solliciteer",
+                    "about": "Over ons...",
+                    "about_text": "PPL Solutions werd op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te creëren waar mensen van over de hele wereld samen kunnen komen en rijden.",
+                    "offers": "Wat bieden wij aan?",
+                    "friendly_staff": "Vriendelijk Personeel",
+                    "friendly_staff_text": "Wij hebben een klein maar uiterst vriendelijk team dat u kan helpen met elk probleem dat u tegenkomt als u voor ons rijdt.",
+                    "save_edits": "Save-Edits",
+                    "save_edits_text": "Onze chauffeurs hebben toegang tot een breed scala aan op maat gemaakte save-edits, waaronder complete sets vrachtwagens, aangepaste onderdelen en nog veel meer.",
+                    "custom_mods": "Eigen Mods",
+                    "custom_mods_text": "We bieden ook een aantal exclusieve PPL Solutions mods aan die onze chaffeurs kunnen gebruiken tijdens het spelen van de singleplayer- of konvooimodus."
+                    },
+                    "footer": {
+					"brand": "PPL Solutions VTC",
+					"footer_info": "Ons doel is om een community te creëren waar mensen met elkaar in contact kunnen komen en samen kunnen genieten van vrachtwagenrijden.",
+                    "pages": "Pagina's",
+                    "events": " Evenementen",
+                    "gallery":" Gallerij",
+                    "contact":" Contacteer Ons",
+                    "other_links": "Andere links",
+                    "message": "Bericht",
+                    "drivershub": " Drivershub",
+                    "apply": " Solliciteer",
+                    "vtc": " VTC",
+                    "footer_message": "Hallo reiziger, Mijn naam is <strong>Wietsegaming</strong>. Welkom op de website van de Virtual Trucking Company: <strong>PPL Solutions</strong>, wij staan voor chauffeurscomfort en het plezier om samen geweldige dingen te doen.",
+                    "copyright": " Copyright 2025 <strong>PPL Solutions.</strong> Alle rechten voorbehouden | Ontworpen en ontwikkeld door <strong>Wietsegaming</strong>"
+                    }
+                  }
+                }
+              }
+            }, function(err, t) {
+              // Initialize the content
+              updateContent();
+            });
+          
+            function updateContent() {
+              document.title = i18next.t('title');
+              document.querySelector('.navbar-brand p').innerText = i18next.t('header.brand');
+              document.querySelector('.nav-link[href="./index.html"]').innerText = i18next.t('header.home');
+              document.querySelector('.nav-link[href="./pages/events/events.html"]').innerText = i18next.t('header.events');
+              document.querySelector('.nav-link[href="./pages/team.html"]').innerText = i18next.t('header.team');
+              document.querySelector('.nav-link[href="./pages/gallery.html"]').innerText = i18next.t('header.gallery');
+              document.querySelector('.nav-link[href="./pages/contact-us.html"]').innerText = i18next.t('header.contact');
+              document.querySelector('.btn[href="./pages/apply.html"]').innerText = i18next.t('header.apply');
+              document.querySelector('.btn[href="./api/login.php"]').innerText = i18next.t('header.drivershub');
+              document.querySelector('.overlay h2').innerText = i18next.t('main.welcome');
+              document.querySelector('.overlay a[href="./pages/apply.html"]').innerText = i18next.t('main.apply');
+              document.querySelector('.about-us h2').innerText = i18next.t('main.about');
+              document.querySelector('.about-us p').innerText = i18next.t('main.about_text');
+              document.querySelector('.offers h2').innerText = i18next.t('main.offers');
+              document.querySelectorAll('.card h3')[0].innerText = i18next.t('main.friendly_staff');
+              document.querySelectorAll('.card p')[0].innerText = i18next.t('main.friendly_staff_text');
+              document.querySelectorAll('.card h3')[1].innerText = i18next.t('main.save_edits');
+              document.querySelectorAll('.card p')[1].innerText = i18next.t('main.save_edits_text');
+              document.querySelectorAll('.card h3')[2].innerText = i18next.t('main.custom_mods');
+              document.querySelectorAll('.card p')[2].innerText = i18next.t('main.custom_mods_text');
+			  document.querySelector('.footer1 h3').innerText = i18next.t('footer.brand');
+			  document.querySelector('.footer1 p').innerText = i18next.t('footer.footer_info');
+              document.querySelector('.footer2 h3').innerText = i18next.t('footer.pages');
+              document.querySelector('.footer2 a[href="./pages/events/events.html"]').innerText = i18next.t('footer.events');
+              document.querySelector('.footer2 a[href="./pages/gallery.html"]').innerText = i18next.t('footer.gallery');
+              document.querySelector('.footer2 a[href="./pages/contact-us.html"]').innerText = i18next.t('footer.contact');
+              document.querySelector('.nav-link[href="#links"]').innerText = i18next.t('footer.other_links');
+              document.querySelector('.nav-link[href="#message"]').innerText = i18next.t('footer.message');
+              document.querySelector('.tab-pane#links a[href="./pages/apply.html"]').innerText = i18next.t('footer.apply');
+              document.querySelector('.tab-pane#links a[href="https://truckersmp.com/vtc/74455"]').innerText = i18next.t('footer.vtc');
+              document.querySelector('.tab-pane#message p').innerHTML = i18next.t('footer.footer_message');
+              document.querySelector('footer .border-top').innerHTML = i18next.t('footer.copyright');
+            }
+          </script>
     </head>
 
     <body class="bg-light overflow-x-hidden h-100 w-100 m-0 p-0 fw-500">
@@ -53,6 +187,23 @@
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./pages/gallery.html">Gallery</a></li>
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./pages/contact-us.html">Contact us</a></li>
                         </ul>
+                        <!-- <div class="language-switcher">
+                            <button onclick="changeLanguage('en')">English</button>
+                            <button onclick="changeLanguage('nl')">Dutch</button>
+                        </div> -->
+                        <select class="language-switcher" onchange="changeLanguage(this.value)">
+                            <option value="en">English</option>
+                            <option value="nl">Dutch</option>
+                        </select>
+                          
+                        <script>
+                            function changeLanguage(lng) {
+                              i18next.changeLanguage(lng, function(err, t) {
+                                if (err) return console.log('something went wrong loading', err);
+                                updateContent();
+                              });
+                            }
+                        </script>
                         <div class="navbar-buttons d-flex ms-lg-3">
                             <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="./pages/apply.html">Apply</a>
                             <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="./api/login.php">Drivershub</a>
@@ -105,7 +256,7 @@
                         <div class="card rounded-5 h-100">
                             <i class="fa-solid fa-gears fs-1 my-3 text-primary"></i>
                             <h3 class="fw-600 mb-0 text-primary">Custom Mods</h3>
-                            <p class="p-3 fs-5">We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode.</p>
+                            <p class="p-3 fs-5">We also offer some exclusive PPL Solutions mods for our drivers to use while playing singleplayer or convoys mode.</p>
                         </div>
                     </div>
                 </div>
@@ -133,11 +284,11 @@
                             <div class="col-12 col-lg-4">
                                 <h3 class="fw-600">Pages</h3>
                                 <ul class="list-unstyled p-0 fs-5">
-                                    <li><a class="text-light text-decoration-none" href="./index.html"><i class="fa-solid fa-angle-right"></i> Home</a></li>
-                                    <li><a class="text-light text-decoration-none" href="./pages/events/events.html"><i class="fa-solid fa-angle-right"></i> Events</a></li>
-                                    <li><a class="text-light text-decoration-none" href="./pages/team.html"><i class="fa-solid fa-angle-right"></i> Team</a></li>
-                                    <li><a class="text-light text-decoration-none" href="./pages/gallery.html"><i class="fa-solid fa-angle-right"></i> Gallery</a></li>
-                                    <li><a class="text-light text-decoration-none" href="./pages/contact-us.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="./index.html"> Home</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="./pages/events/events.html"> Events</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="./pages/team.html"> Team</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="./pages/gallery.html"> Gallery</a></li>
+                                    <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="./pages/contact-us.html"> Contact Us</a></li>
                                 </ul>
                             </div>
                             <div class="col-12 col-lg-8 fs-5">
@@ -152,9 +303,9 @@
                                 <div class="tab-content mt-4" id="footerTabsContent">
                                     <div class="tab-pane fade show active" id="links" role="tabpanel" aria-labelledby="home-tab">
                                         <ul class="list-unstyled">
-                                            <li><a class="text-light text-decoration-none" href="api/login.php"><i class="fa-solid fa-angle-right"></i> Drivershub</a></li>
-                                            <li><a class="text-light text-decoration-none" href="./pages/apply.html"><i class="fa-solid fa-angle-right"></i> Apply</a></li>
-                                            <li><a class="text-light text-decoration-none" href="https://truckersmp.com/vtc/74455" target="_blank"><i class="fa-solid fa-angle-right"></i> VTC</a></li>
+                                            <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="./api/login.php"> Drivershub</a></li>
+                                            <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="./pages/apply.html"> Apply</a></li>
+                                            <li><i class="fa-solid fa-angle-right"></i><a class="text-light text-decoration-none" href="https://truckersmp.com/vtc/74455" target="_blank"> VTC</a></li>
                                         </ul>
                                     </div>
                                     <div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="contact-tab">
@@ -164,7 +315,10 @@
                             </div>
                         </div>
                     </div>
-                    <p class="border-top border-light pt-3"><i class="bi bi-c-circle"></i> Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Designed and developed by <strong>Wietsegaming</strong></p>
+                    <div class="border-top border-light pt3 d-flex column-gap-2">
+                        <i class="bi bi-c-circle"></i>
+                        <p>Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Designed and developed by <strong>Wietsegaming</strong></p>
+                    </div>
                 </div>
             </div>
         </footer>
