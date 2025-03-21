@@ -1,4 +1,6 @@
-{
+[
+  "index.html",
+  {
     "title": "Home | PPL Solutions",
     "header": {
       "brand": "PPL Solutions VTC",
@@ -38,4 +40,41 @@
       "footer_message": "Hello there traveler, My name is <strong>Wietsegaming</strong>. Welcome on the website of the Virtual Trucking Company: <strong>PPL Solutions</strong>, we stand for driver comfort and the fun in doing great things together.",
       "copyright": "Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Designed and developed by <strong>Wietsegaming</strong>"
     }
+  },
+  "events.html",
+  {
+    "title": "Events | PPL Solutions",
+    "header": {
+      "brand": "PPL Solutions VTC",
+      "home": "Home",
+      "events": "Events",
+      "team": "Team",
+      "gallery": "Gallery",
+      "contact": "Contact us",
+      "apply": "Apply",
+      "drivershub": "Drivershub"
+    },
+    "main": {
+      "banner_alt": "Banner",
+      "heading": "Events",
+      "events_container": "Upcoming events will be displayed here."
+    },
+    "footer": {
+      "brand": "PPL Solutions VTC",
+      "footer_info": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together.",
+      "pages": "Pages",
+      "home": "Home",
+      "events": "Events",
+      "team": "Team",
+      "gallery": "Gallery",
+      "contact": "Contact Us",
+      "other_links": "Other links",
+      "message": "Message",
+      "drivershub": "Drivershub",
+      "apply": "Apply",
+      "vtc": "VTC",
+      "footer_message": "Hello there traveler, My name is <strong>Wietsegaming</strong>. Welcome on the website of the Virtual Trucking Company: <strong>PPL Solutions</strong>, we stand for driver comfort and the fun in doing great things together.",
+      "copyright": "Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Designed and developed by <strong>Wietsegaming</strong>"
+    }
   }
+]

@@ -121,6 +121,49 @@
                     "copyright": " Copyright 2025 <strong>PPL Solutions.</strong> Alle rechten voorbehouden | Ontworpen en ontwikkeld door <strong>Wietsegaming</strong>"
                     }
                   }
+                },
+                cz: {
+                    translation: {
+                        "title": "Domů | PPL Solutions",
+                        "header": {
+                        "brand": "PPL Solutions VTC",
+                        "home": "Domů",
+                        "events": "Události",
+                        "team": "Tým",
+                        "gallery": "Galerie",
+                        "contact": "Kontakt",
+                        "apply": "Přihlásit se",
+                        "drivershub": "Drivershub"
+                        },
+                        "main": {
+                        "welcome": "PPL Solutions",
+                        "apply": "Přihlásit se",
+                        "about": "O nás...",
+                        "about_text": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se mohou lidé z celého světa setkávat a jezdit spolu.",
+                        "offers": "Co nabízíme?",
+                        "friendly_staff": "Přátelský tým",
+                        "friendly_staff_text": "Máme velmi malé vedení, ale za to velmi přátelské, které vám pomůže s jakýmkoliv problémem, se kterým se můžete při jízdě u nás setkat.",
+                        "save_edits": "Úprava save-editů",
+                        "save_edits_text": "Naši řidiči mají přístup k široké škále save-editů, včetně kompletních sad kamionů, vlastních dílů a mnohem více.",
+                        "custom_mods": "Vlastní módy",
+                        "custom_mods_text": "Nabízíme také exkluzivní PPL Solutions módy pro naše řidiče k použití při hraní v režimu pro jednoho hráče nebo v konvojích."
+                        },
+                        "footer": {
+                        "brand": "PPL Solutions VTC",
+                        "footer_info": "Založeno 7. září 2024, naším cílem je vytvořit komunitu, kde se lidé mohou spojit a užívat si společnou přepravu.",
+                        "pages": "Stránky",
+                        "events": " Události",
+                        "gallery": " Galerie",
+                        "contact": " Kontaktujte nás",
+                        "other_links": "Další odkazy",
+                        "message": "Zpráva",
+                        "drivershub": " Portál řidičů",
+                        "apply": " Přihlásit se",
+                        "vtc": " VTC",
+                        "footer_message": "Zdravím tě, cestovateli. Jmenuji se <strong>Wietsegaming</strong>. Vítejte na webových stránkách virtuální dopravní společnosti.: <strong>PPL Solutions</strong>, stavíme si na pohodlí řidičů a radosti z dělání skvělých věcí společně.",
+                        "copyright": "Copyright 2025 <strong>PPL Solutions.</strong> Všechna práva vyhrazena | Navrženo a vyvinuto <strong>Wietsegaming</strong>"
+                        }
+                    }
                 }
               }
             }, function(err, t) {
@@ -157,6 +200,7 @@
               document.querySelector('.footer2 a[href="./pages/contact-us.html"]').innerText = i18next.t('footer.contact');
               document.querySelector('.nav-link[href="#links"]').innerText = i18next.t('footer.other_links');
               document.querySelector('.nav-link[href="#message"]').innerText = i18next.t('footer.message');
+              document.querySelector('.tab-pane#links a[href="./api/login.php"]').innerText = i18next.t('footer.drivershub');
               document.querySelector('.tab-pane#links a[href="./pages/apply.html"]').innerText = i18next.t('footer.apply');
               document.querySelector('.tab-pane#links a[href="https://truckersmp.com/vtc/74455"]').innerText = i18next.t('footer.vtc');
               document.querySelector('.tab-pane#message p').innerHTML = i18next.t('footer.footer_message');
@@ -186,23 +230,48 @@
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./pages/team.html">Team</a></li>
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./pages/gallery.html">Gallery</a></li>
                             <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="./pages/contact-us.html">Contact us</a></li>
-                        </ul>
-                        <select class="language-switcher text-light bg-secondary border border-primary border-2 rounded" onchange="changeLanguage(this.value)">
-                            <option value="en">English</option>
-                            <option value="nl">Dutch</option>
-                        </select>
+                        </ul>                        
                           
                         <script>
+                            // Function to change language
                             function changeLanguage(lng) {
-                              i18next.changeLanguage(lng, function(err, t) {
-                                if (err) return console.log('something went wrong loading', err);
-                                updateContent();
-                              });
+                                i18next.changeLanguage(lng, function(err, t) {
+                                    if (err) return console.log('something went wrong loading', err);
+                        
+                                    // Store the language preference in localStorage
+                                    localStorage.setItem('i18nextLng', lng);
+                        
+                                    // Update content after changing language
+                                    updateContent();
+                                });
                             }
-                        </script>
+                        
+                            // Check if there's a saved language on page load
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const savedLanguage = localStorage.getItem('i18nextLng');
+                                
+                                // If a language is saved in localStorage, change the language
+                                if (savedLanguage) {
+                                    i18next.changeLanguage(savedLanguage, function(err, t) {
+                                        if (err) return console.log('something went wrong loading', err);
+                        
+                                        // Update content
+                                        updateContent();
+                        
+                                        // Set the language switcher to the saved language
+                                        document.querySelector('.language-switcher').value = savedLanguage;
+                                    });
+                                }
+                            });
+                        </script>                        
                         <div class="navbar-buttons d-flex ms-lg-3">
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="./pages/apply.html">Apply</a>
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="./api/login.php">Drivershub</a>
+                            <a class="apply text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="./pages/apply.html">Apply</a>
+                            <a class="drivershub text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="./api/login.php">Drivershub</a>
+                            <select class="language-switcher text-light bg-secondary border border-primary border-2 rounded" onchange="changeLanguage(this.value)">
+                                <option value="en">English</option>
+                                <option value="nl">Dutch</option>
+                                <option value="cz">Czech</option>
+                            </select>
                         </div>
                      </div>
                 </div>

@@ -54,6 +54,11 @@
   background-size: cover;
 }
 
+.apply {
+  max-height: 36px;
+  width: max-content;
+}
+
 /* Mobile-specific styling */
 @media (max-width: 991px) {
   .navbar-collapse {
@@ -107,10 +112,6 @@
     top: 30%;
   }
 }
-.language-switcher {
-  outline: none;
-}
-
 /* events.html styling */
 .banner-img {
   height: 300px;
@@ -313,6 +314,23 @@ table {
 
 .left-37 {
   left: 37%;
+}
+
+.dropdown-toggle::after {
+  margin-left: 0 !important;
+}
+
+.card-img-top {
+  height: 250px;
+}
+
+.pfp {
+  margin-top: -80px;
+}
+
+#country {
+  left: 53%;
+  top: 55%;
 }
 
 /*!
@@ -3671,7 +3689,7 @@ textarea.form-control-lg {
   --bs-dropdown-box-shadow: var(--bs-box-shadow);
   --bs-dropdown-link-color: var(--bs-body-color);
   --bs-dropdown-link-hover-color: var(--bs-body-color);
-  --bs-dropdown-link-hover-bg: var(--bs-tertiary-bg);
+  --bs-dropdown-link-hover-bg: #009a86 !important;
   --bs-dropdown-link-active-color: #fff;
   --bs-dropdown-link-active-bg: #009a86;
   --bs-dropdown-link-disabled-color: var(--bs-tertiary-color);

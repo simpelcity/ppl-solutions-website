@@ -12,6 +12,7 @@ $btn-font-weight: 500;
 $input-focus-box-shadow: none;
 $input-font-weight: 500;
 $nav-tabs-link-active-color: $primary;
+$dropdown-link-hover-bg: $primary !important;
 
 /* default styling */
 
@@ -69,6 +70,10 @@ $nav-tabs-link-active-color: $primary;
     background-size: cover;
 }
 
+.apply {
+  max-height: 36px;
+  width: max-content;
+}
 
 /* Mobile-specific styling */
 @media (max-width: 991px) {
@@ -118,25 +123,21 @@ $nav-tabs-link-active-color: $primary;
 /* index.html styling */
 
 .left-10 {
-  left: 68%
+    left: 68%
 }
 
 .top-40 {
-  top: 7%
+    top: 7%
 }
 
 @media (max-width:991px) {
-.left-10 {
-  left: 15%;
-}
+  .left-10 {
+    left: 15%;
+  }
 
-.top-40 {
-  top: 30%;
-}
-}
-
-.language-switcher {
-  outline: none;
+  .top-40 {
+    top: 30%;
+  }
 }
 
 /* events.html styling */
@@ -350,6 +351,23 @@ table {
 
 .left-37 {
     left: 37%
+}
+
+.dropdown-toggle::after {
+  margin-left: 0 !important;
+}
+
+.card-img-top{
+  height:250px;
+}
+
+.pfp {
+  margin-top: -80px;
+}
+
+#country {
+  left: 53%;
+  top: 55%;
 }
 
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
