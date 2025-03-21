@@ -118,11 +118,21 @@ $nav-tabs-link-active-color: $primary;
 /* index.html styling */
 
 .left-10 {
-    left: 10%
+  left: 68%
 }
 
 .top-40 {
-    top: 40%
+  top: 7%
+}
+
+@media (max-width:991px) {
+.left-10 {
+  left: 15%;
+}
+
+.top-40 {
+  top: 30%;
+}
 }
 
 .language-switcher {
