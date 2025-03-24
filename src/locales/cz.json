@@ -1,0 +1,41 @@
+{
+    "title": "Domů | PPL Solutions",
+    "header": {
+      "brand": "PPL Solutions VTC",
+      "home": "Domů",
+      "events": "Události",
+      "team": "Tým",
+      "gallery": "Galerie",
+      "contact": "Kontakt",
+      "apply": "Přihlásit se",
+      "drivershub": "Drivershub"
+    },
+    "main": {
+      "welcome": "PPL Solutions",
+      "apply": "Přihlásit se",
+      "about": "O nás...",
+      "about_text": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se mohou lidé z celého světa setkávat a jezdit spolu.",
+      "offers": "Co nabízíme?",
+      "friendly_staff": "Přátelský tým",
+      "friendly_staff_text": "Máme velmi malé vedení, ale za to velmi přátelské, které vám pomůže s jakýmkoliv problémem, se kterým se můžete při jízdě u nás setkat.",
+      "save_edits": "Úprava save-editů",
+      "save_edits_text": "Naši řidiči mají přístup k široké škále save-editů, včetně kompletních sad kamionů, vlastních dílů a mnohem více.",
+      "custom_mods": "Vlastní módy",
+      "custom_mods_text": "Nabízíme také exkluzivní PPL Solutions módy pro naše řidiče k použití při hraní v režimu pro jednoho hráče nebo v konvojích."
+    },
+    "footer": {
+      "brand": "PPL Solutions VTC",
+      "footer_info": "Založeno 7. září 2024, naším cílem je vytvořit komunitu, kde se lidé mohou spojit a užívat si společnou přepravu.",
+      "pages": "Stránky",
+      "events": " Události",
+      "gallery": " Galerie",
+      "contact": " Kontaktujte nás",
+      "other_links": "Další odkazy",
+      "message": "Zpráva",
+      "drivershub": "Portál řidičů",
+      "apply": " Přihlásit se",
+      "vtc": "VTC",
+      "footer_message": "Zdravím tě, cestovateli. Jmenuji se <strong>Wietsegaming</strong>. Vítejte na webových stránkách virtuální dopravní společnosti.: <strong>PPL Solutions</strong>, stavíme si na pohodlí řidičů a radosti z dělání skvělých věcí společně.",
+      "copyright": "Copyright 2025 <strong>PPL Solutions.</strong> Všechna práva vyhrazena | Navrženo a vyvinuto <strong>Wietsegaming</strong>"
+    }
+  }
