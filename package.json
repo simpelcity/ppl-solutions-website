@@ -1,6 +1,10 @@
 {
   "name": "ppl-solutions-website",
+<<<<<<< HEAD
   "version": "1.3.2",
+=======
+  "version": "1.3.1",
+>>>>>>> 68585bf39fceb6e690d410a8bc512884576b868e
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

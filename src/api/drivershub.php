@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_COOKIE['loggedInUser'])) {
-    echo "not logged in.";
+    header("Location: login.php");
     exit();
 }
 
