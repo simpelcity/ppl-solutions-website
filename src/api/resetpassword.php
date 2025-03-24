@@ -96,11 +96,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="col mb-3 mt-3">
                                 <label for="password"><i class="fa fa-lock"></i> Password</label>
-                                <input type="text" name="password" id="password" class="form-control input" required>
+                                <div class="input-box">
+                                    <input type="password" name="password" id="password" class="form-control input" required>
+                                    <img src="../pages/media/eye-close.png" id="eyeicon">
+                                </div>
                             </div>
                             <div class="col mb-3 mt-3">
                                 <label for="confirm_password"><i class="fa fa-lock"></i> Confirm Password</label>
-                                <input type="text" name="confirm_password" id="confirm_password" class="form-control input" required>
+                                <div class="input-box">
+                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control input" required>
+                                    <img src="../pages/media/eye-close.png" id="confirm_eyeicon">
+                                </div>
                             </div>
                             <div class="col mb-3 mt-3">
                                 <button type="submit" class="btn btn-primary text-light">Reset Password</button>
@@ -128,6 +134,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        <script>
+            let eyeicon = document.getElementById('eyeicon');
+            let password = document.getElementById('password');
+            let confirmPassword = document.getElementById('confirm_password');
+            let confirmEyeicon = document.getElementById('confirm_eyeicon');
+
+            eyeicon.onclick = function() {
+                if (password.type == 'password') {
+                    password.type = 'text';
+                    eyeicon.src = '../pages/media/eye-open.png';
+                } else {
+                    password.type = 'password';
+                    eyeicon.src = '../pages/media/eye-close.png';
+                }
+            }
+
+            confirmEyeicon.onclick = function() {
+                if (confirmPassword.type == 'password') {
+                    confirmPassword.type = 'text';
+                    confirmEyeicon.src = '../pages/media/eye-open.png';
+                } else {
+                    confirmPassword.type = 'password';
+                    confirmEyeicon.src = '../pages/media/eye-close.png';
+                }
+            }
+        </script>
         <script>
         $(document).ready(function () {
             $('#email').on('blur', function () {

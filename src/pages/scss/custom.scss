@@ -348,4 +348,24 @@ table {
     left: 37%
 }
 
+/* show password styling */
+
+.input-box {
+  display: flex;
+  align-items: center;
+  border: solid #dee2e6 1px;
+  border-radius: 6px;
+}
+
+.input-box input {
+  width: 100%;
+  border: 0;
+}
+
+.input-box img {
+  width: 25px;
+  cursor: pointer;
+  margin-right: 1%;
+}
+
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
