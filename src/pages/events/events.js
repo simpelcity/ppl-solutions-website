@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return `
             <div class="col-12 col-md-6 col-lg-4 my-2">
                 <div class="card bg-dark p-0 rounded-4 text-light border border-primary border-3 h-100">
-                    <img src="${event.banner || 'media/default-banner.png'}" class="card-img-top rounded-top-4" alt="${event.name}">
+                    <img src="${event.banner || 'media/default-banner.png'}" class="card-img-top rounded-top-4 object-fit-cover" alt="${event.name}">
                     <div class="card-body rounded-bottom-4 d-flex flex-column">
                         <h3 class="card-title">${event.name}</h3><br>
                         <p class="m-0"><i class="bi bi-calendar3"></i> <strong>Date:</strong> ${formatDate(event.meetup_at)}</p><br>

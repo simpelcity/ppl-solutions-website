@@ -1,4 +1,6 @@
-{
+[
+  "index.html",
+  {
     "title": "Home | PPL Solutions",
     "header": {
       "brand": "PPL Solutions VTC",
@@ -12,7 +14,7 @@
     },
     "main": {
       "welcome": "PPL Solutions",
-      "apply":" Solliciteer",
+      "apply": " Solliciteer",
       "about": "Over ons...",
       "about_text": "PPL Solutions werd op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te creëren waar mensen van over de hele wereld samen kunnen komen en rijden.",
       "offers": "Wat bieden wij aan?",
@@ -28,8 +30,55 @@
       "footer_info": "Ons doel is om een community te creëren waar mensen met elkaar in contact kunnen komen en samen kunnen genieten van vrachtwagenrijden.",
       "pages": "Pagina's",
       "events": "Evenementen",
-      "gallery":"Gallerij",
-      "contact":"Contacteer Ons",
+      "gallery": "Gallerij",
+      "contact": "Contacteer Ons",
+      "other_links": "Andere links",
+      "message": "Bericht",
+      "apply": " Solliciteer",
+      "vtc": " VTC",
+      "footer_message": "Hallo reiziger, Mijn naam is <strong>Wietsegaming</strong>. Welkom op de website van de Virtual Trucking Company: <strong>PPL Solutions</strong>, wij staan voor chauffeurscomfort en het plezier om samen geweldige dingen te doen.",
+      "copyright": "Copyright 2025 <strong>PPL Solutions.</strong> Alle rechten voorbehouden | Ontworpen en ontwikkeld door <strong>Wietsegaming</strong>"
+    }
+  },
+  "events.html",
+  {
+    "title": "Evenementen | PPL Solutions",
+    "header": {
+      "brand": "PPL Solutions VTC",
+      "home": "Home",
+      "events": "Evenementen",
+      "team": "Team",
+      "gallery": "Gallerij",
+      "contact": "Contacteer Ons",
+      "apply": "Solliciteer",
+      "drivershub": "Drivershub"
+    },
+    "main": {
+      "banner_alt": "Banner",
+      "heading": "Evenementen",
+      "events_container": "Aankomende evenementen zullen hier komen te staan",
+      "events": {
+        "banner_alt": "Evenement banner",
+        "date": "Datum",
+        "meetup_time": "Verzameltijd",
+        "departure_time": "Vertrekijd",
+        "departure": "Vertrek Stad - Vertrek Locatie",
+        "destination": "Aankomst Stad - Aankomst Locatie",
+        "game": "Spel",
+        "server": "Server",
+        "dlc": "DLC",
+        "event_button": "Evenement",
+        "no_data": "Geen gegevens gevonden.",
+        "failed_to_load_data": "Gegevens laden mislukt"
+      }
+    },
+    "footer": {
+      "brand": "PPL Solutions VTC",
+      "footer_info": "Opgericht op 7 september door Wietsegaming en MaleklecoCZE, ons doel is om een community te creëren waar mensen met elkaar in contact kunnen komen en samen kunnen genieten van vrachtwagenrijden.",
+      "pages": "Pagina's",
+      "events": "Evenementen",
+      "gallery": "Gallerij",
+      "contact": "Contacteer Ons",
       "other_links": "Andere links",
       "message": "Bericht",
       "apply": " Solliciteer",
@@ -38,3 +87,4 @@
       "copyright": "Copyright 2025 <strong>PPL Solutions.</strong> Alle rechten voorbehouden | Ontworpen en ontwikkeld door <strong>Wietsegaming</strong>"
     }
   }
+]

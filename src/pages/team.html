@@ -55,8 +55,14 @@
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
                             <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="./apply.html">Apply</a>
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="../api/login.php">Drivershub</a>
+                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../api/login.php">Drivershub</a>
                         </div>
+                        <select class="language-switcher text-light btn py-1 px-1 bg-secondary border border-primary border-2 rounded me-3 fw-500"
+                            onchange="changeLanguage(this.value)">
+                            <option value="en">English</option>
+                            <option value="nl">Dutch</option>
+                            <option value="cz">Czech</option>
+                        </select>
                      </div>
                 </div>
             </nav>
