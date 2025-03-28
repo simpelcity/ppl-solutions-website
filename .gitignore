@@ -255,3 +255,4 @@ _NCrunch*
 .vercel
 .env*.local
 /vendor/
+/src/components/redirects/connection.php
