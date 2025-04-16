@@ -11,70 +11,67 @@ $btn-transition: 0.5s ease;
 $btn-font-weight: 500;
 $input-focus-box-shadow: none;
 $input-font-weight: 500;
+$input-focus-border-color: #495057;
 $nav-tabs-link-active-color: $primary;
 
 /* default styling */
 
 .fw-500 {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .fw-600 {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .fw-700 {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .navbar-collapse ul li:hover {
-    border-bottom: solid $light 2px;
+  border-bottom: solid $light 2px;
 }
 
 .active {
-    border-bottom: solid $primary 2px;
+  border-bottom: solid $primary 2px;
 }
 
 .padding-icon {
-    padding: 12px 10px;
+  padding: 12px 10px;
 }
 
 .padding-tiktok {
-    padding: 12px 13px;
+  padding: 12px 13px;
 }
 
 .nav-tabs li a,
 .nav-tabs li a:hover {
-    color: $light;
+  color: $light;
 }
 
 .btn:hover,
 .btn:focus {
-    color: $light !important;
-    border-color: $primary !important;
-    background-color: #009a86 !important;
-    text-shadow: 0 0 5px $light, 0 0 10px $light, 0 0 20px $light !important;
-}
-
-.input:focus {
-    border-color: #dee2e6 !important;
+  color: $light !important;
+  border-color: $primary !important;
+  background-color: #009a86 !important;
+  text-shadow: 0 0 5px $light, 0 0 10px $light, 0 0 20px $light !important;
 }
 
 .bi-person-circle {
-    font-size: 80px
+  font-size: 80px
 }
 
 .background {
-    background-image: url(../media/Bright2.jpg);
-    background-size: cover;
+  background-image: url(../media/Bright2.jpg);
+  background-size: cover;
 }
 
 
 /* Mobile-specific styling */
 @media (max-width: 991px) {
   .navbar-collapse {
-      padding: 10px;
-      border-radius: 10px;
+    padding: 10px;
+    border-radius: 10px;
   }
 
   .navbar-nav {
@@ -82,19 +79,19 @@ $nav-tabs-link-active-color: $primary;
   }
 
   .nav-item {
-      padding: 10px 0;
+    padding: 10px 0;
   }
 
   .navbar-buttons {
-      display: flex;
-      margin-top: 15px;
-      text-align: center;
-      justify-content: center;
+    display: flex;
+    margin-top: 15px;
+    text-align: center;
+    justify-content: center;
   }
 
   .navbar-buttons a {
-      width: 100%;
-      text-align: center;
+    width: 100%;
+    text-align: center;
   }
 
   .navbar-buttons a:last-child {
@@ -118,11 +115,11 @@ $nav-tabs-link-active-color: $primary;
 /* index.html styling */
 
 .left-10 {
-    left: 68%
+  left: 68%
 }
 
 .top-40 {
-    top: 7%
+  top: 7%
 }
 
 @media (max-width:991px) {
@@ -138,8 +135,8 @@ $nav-tabs-link-active-color: $primary;
 /* events.html styling */
 
 .banner-img {
-    height: 300px;
-    object-position: 50% 33%;
+  height: 300px;
+  object-position: 50% 33%;
 }
 
 .w-fit-content {
@@ -149,59 +146,70 @@ $nav-tabs-link-active-color: $primary;
 /* team.html styling */
 
 .wh-150 {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .team div div div div {
-    width: 300px;
-    height: 300px;
+  width: 300px;
+  height: 300px;
 }
 
 .founder {
-    color: #009a86;
+  color: #009a86;
 }
 
 .ceo {
-    color: #ffdd00;
+  color: #ffdd00;
 }
 
 .cao {
-    color: #00f867;
+  color: #00f867;
 }
 
 .coo {
-    color: #00e1ff;
+  color: #00e1ff;
 }
 
 .cm {
-    color: #ff0e0e;
+  color: #ff0e0e;
 }
 
-.hrd, .hr {
-    color: #05493a;
+.hrd,
+.hr {
+  color: #05493a;
 }
 
-.rtd, .rt {
-    color: #ff00a1;
+.rtd,
+.rt {
+  color: #ff00a1;
 }
 
-.etm, .et {
-    color: #0ba500;
+.etm,
+.et {
+  color: #0ba500;
 }
 
-.mtm, .mt {
-    color: #dd00ff;
+.mtm,
+.mt {
+  color: #dd00ff;
 }
 
-.ccm, .cc {
-    color: #ccff00;
+.ccm,
+.cc {
+  color: #ccff00;
 }
 
 /* gallery.html styling */
 
 .mw-340 {
-    max-width: 340px;
+  max-width: 340px;
+}
+
+/* contact-us.html styling */
+
+.text-gray {
+  color: gray;
 }
 
 /* login.php styling */
@@ -213,9 +221,9 @@ $nav-tabs-link-active-color: $primary;
 /* drivershub.php styling */
 
 table {
-    width: 100%;
-    min-width: 1290px;
-    border-collapse: collapse;
+  width: 100%;
+  min-width: 1290px;
+  border-collapse: collapse;
 }
 
 @media (max-width: 1470px) {
@@ -314,6 +322,7 @@ table {
 }
 
 @keyframes pulse0112 {
+
   0%,
   100% {
     transform: scale(0);
@@ -327,25 +336,25 @@ table {
 }
 
 #next {
-    width: 82.41px;
-    height: 48px;
+  width: 82.41px;
+  height: 48px;
 }
 
 #previous {
-    width: 120.81px;
-    height: 48px;
+  width: 120.81px;
+  height: 48px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .left-20 {
-    left: 20%
+  left: 20%
 }
 
 .left-37 {
-    left: 37%
+  left: 37%
 }
 
 /* show password styling */
