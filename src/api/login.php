@@ -98,11 +98,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav w-100 justify-content-center">
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/events/events.html">Events</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/team.html">Team</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/gallery.html">Gallery</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/contact-us.html">Contact us</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/events/events.html">Events</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/team.html">Team</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/gallery.html">Gallery</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/contact-us.html">Contact us</a></li>
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
                             <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../pages/apply.html">Apply</a>

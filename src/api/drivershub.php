@@ -57,11 +57,11 @@ $username = $_COOKIE['username'];
 
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav w-100 justify-content-center">
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/events/events.html">Events</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/team.html">Team</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/gallery.html">Gallery</a></li>
-                            <li class="nav-item mx-2 rounded"><a class="nav-link text-uppercase text-light" href="../pages/contact-us.html">Contact us</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../index.html">Home</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/events/events.html">Events</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/team.html">Team</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/gallery.html">Gallery</a></li>
+                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="../pages/contact-us.html">Contact us</a></li>
                         </ul>
                         <div class="navbar-buttons d-flex ms-lg-3">
                             <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="../pages/apply.html">Apply</a>
@@ -73,13 +73,15 @@ $username = $_COOKIE['username'];
         </header>
         <main>
             <div>
-                <div class="banner">
-                    <img class="banner-img w-100 object-fit-cover" src="../pages/media/banner.png">
+                <div class="col-12 position-relative m-0">
+                    <div class="banner">
+                        <img class="banner-img w-100 object-fit-cover" src="../pages/media/banner.png">
+                    </div>
+                    <div class="title text-center my-3">
+                        <h1 class="text-primary fw-700">Drivershub</h1>
+                    </div>
                 </div>
-                <section class="col-12 text-center my-3">
-                    <h1 class="text-primary fw-700">Drivershub panel</h1>
-                </section>
-                <div class="text-center driver d-flex justify-content-center text-primary">
+                <div class="text-center driver d-flex justify-content-center text-primary my-3">
                     <h2 class="fw-600 mx-3">Welcome back,</h2>
                     <h2 class="fw-600" id="driver-user"><?php echo $username ?></h2>
                 </div>
