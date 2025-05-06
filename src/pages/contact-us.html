@@ -71,20 +71,24 @@
                         <h1 class="text-primary fw-700">Contact us</h1>
                     </div>
                 </div>
-                <div class="container d-flex justify-content-center gap-4 mobile my-4">
+                <section class="col-12 text-center my-3">
+                    <h1 class="text-primary fw-700">Contact us</h1>
+                    <p class="text-gray">Fields marked with * are required</p>
+                </section>
+                <div class="container d-flex justify-content-center gap-4 mobile">
                     <div class="contact-form col-12 col-md-10 col-lg-8 col-xl-6">
-                        <form class="d-flex shadow p-3 rounded bg-dark text-light" action="mailto:pplsolutionsvtc@gmail.com" method="post" enctype="text/plain" data-bs-theme="dark">
+                        <form class="d-flex shadow p-3 rounded mb-3 bg-dark text-light" action="https://formspree.io/f/mqapoajo" method="POST" data-bs-theme="dark">
                             <div class="col-8 col-xl-10">
-                                <div class="mb-2 discord-username">
-                                    <label for="username" class="form-label">Discord username</label>
-                                    <input type="text" class="form-control input" name="username">
+                                <div class="mb-2">
+                                    <label for="name" class="form-label">Name / Discord username*</label>
+                                    <input type="text" class="form-control input" name="name" required>
                                 </div>
                                 <div class="mb-2 email">
-                                    <label for="email" class="form-label">Email</label>
+                                    <label for="email" class="form-label">Email*</label>
                                     <input type="text" class="form-control input" name="email" placeholder="example@gmail.com" required>
                                 </div>
                                 <div class="mb-3 message">
-                                    <label for="message" class="form-label">Message</label>
+                                    <label for="message" class="form-label">Message*</label>
                                     <textarea class="form-control input" name="message" rows="5" required></textarea>
                                 </div>
                                 <button class="btn border border-2 border-primary text-primary mb-3" type="submit">Send</button>
