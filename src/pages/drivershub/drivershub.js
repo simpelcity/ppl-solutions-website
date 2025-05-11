@@ -3,20 +3,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     let driver = document.getElementById('driver-user').textContent;
     
-    let steamID = "";
-    if (driver === "Wietsegaming") {
-        steamID = "76561199224465097";
-    } else if (driver === "malekleco") {
-        steamID = "76561199523692352";
-    } else if (driver === "47Brambora") {
-        steamID = "76561198333686856";
-    } else if (driver === "Lukyy09") {
-        steamID = "76561199571002029";
-    }
-
+    
     let currentPage = 1;
-
+    
     async function fetchJobs(page) {
+        const responseApiMembers = await fetch('api-members.php');
+
+        if (!responseApiMembers.ok) {
+            throw new Error(`Failed to fetch driver data. Status: ${responseApiMembers.status}`);
+        }
+
+        const driversData = await responseApiMembers.json();
+        const driverData = driversData.data.find(d => d.username === driver);
+        const steamID = driverData.steamID;
+
+        console.log('Drivers data: ', driversData);
+        console.log('Driver Data: ', driverData);
+        console.log('steamID: ', steamID);
+
         console.log(`Fetching data for page: ${page}`);
         try {
             const responseApi3 = await fetch('api-jobs.php', {
