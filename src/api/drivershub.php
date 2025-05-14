@@ -94,23 +94,35 @@ $username = $_COOKIE['username'];
                             <div class="container-fluid d-flex flex-column align-items-center text-light scroll">
                                 <table class="mx-auto">
                                     <thead class="bg-primary">
-                                        <tr>
-                                            <th class="rounded-start py-2 px-3">Username</th>
-                                            <th class="py-2 px-3">Game</th>
-                                            <th class="py-2 px-3">From - To</th>
-                                            <th class="py-2 px-3">Cargo</th>
-                                            <th class="py-2 px-3">Truck</th>
-                                            <th class="py-2 px-3">Distance</th>
-                                            <th class="rounded-end py-2 px-3">Income</th>
+                                        <tr id="tableHeader">
+                                            <th id="0" class="rounded-start py-2 px-3">Date</th>
+                                            <th id="1" class="py-2 px-3">Username</th>
+                                            <th id="2" class="py-2 px-3">Game</th>
+                                            <th id="3" class="py-2 px-3">From - To</th>
+                                            <th id="4" class="py-2 px-3">Cargo</th>
+                                            <th id="5" class="py-2 px-3">Truck</th>
+                                            <th id="6" class="py-2 px-3">Distance</th>
+                                            <th id="7" class="rounded-end py-2 px-3">Income</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="container"></tbody>
+                                    <tbody id="container">
+                                        <tr>
+                                            <td id="0,0" class="py-2 px-3 "></td>
+                                            <td id="1,0" class="py-2 px-3 "></td>
+                                            <td id="2,0" class="py-2 px-3 text-uppercase "></td>
+                                            <td id="3,0" class="py-2 px-3 "></td>
+                                            <td id="4,0" class="py-2 px-3 "></td>
+                                            <td id="5,0" class="py-2 px-3 "></td>
+                                            <td id="6,0" class="py-2 px-3 "></td>
+                                            <td id="7,0" class="py-2 px-3 "></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <div class="navigation mt-2 d-flex justify-content-center">
                                 <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="previous">
                                     <span id="buttonText">Previous</span>
-                                    <div id="dotSpinner" class="dot-spinner hidden left-37">
+                                    <div id="dotSpinnerPrevious" class="dot-spinner hidden">
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
@@ -123,7 +135,20 @@ $username = $_COOKIE['username'];
                                 </button>
                                 <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
                                     <span id="buttonText">Next</span>
-                                    <div id="dotSpinner" class="dot-spinner hidden left-20">
+                                    <div id="dotSpinnerNext" class="dot-spinner hidden">
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                        <div class="dot-spinner__dot"></div>
+                                    </div>
+                                </button>
+                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="overview">
+                                    <span id="buttonText">Overview</span>
+                                    <div id="dotSpinnerOverview" class="dot-spinner hidden">
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
