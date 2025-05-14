@@ -106,7 +106,7 @@ $username = $_COOKIE['username'];
                                         </tr>
                                     </thead>
                                     <tbody id="container">
-                                        <tr>
+                                        <tr id="tableBody">
                                             <td id="0,0" class="py-2 px-3 "></td>
                                             <td id="1,0" class="py-2 px-3 "></td>
                                             <td id="2,0" class="py-2 px-3 text-uppercase "></td>
@@ -133,9 +133,9 @@ $username = $_COOKIE['username'];
                                         <div class="dot-spinner__dot"></div>
                                     </div>
                                 </button>
-                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
-                                    <span id="buttonText">Next</span>
-                                    <div id="dotSpinnerNext" class="dot-spinner hidden">
+                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="overview">
+                                    <span id="buttonText">Overview</span>
+                                    <div id="dotSpinnerOverview" class="dot-spinner hidden">
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
@@ -146,9 +146,9 @@ $username = $_COOKIE['username'];
                                         <div class="dot-spinner__dot"></div>
                                     </div>
                                 </button>
-                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="overview">
-                                    <span id="buttonText">Overview</span>
-                                    <div id="dotSpinnerOverview" class="dot-spinner hidden">
+                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
+                                    <span id="buttonText">Next</span>
+                                    <div id="dotSpinnerNext" class="dot-spinner hidden">
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
                                         <div class="dot-spinner__dot"></div>
