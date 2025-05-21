@@ -1,6 +1,6 @@
 {
   "name": "ppl-solutions-website",
-  "version": "1.3.2",
+  "version": "1.3.5",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,6 +13,7 @@
   "description": "Hello there, it seems you have stumbled across one of my projects. This project in particular is one of my finest work, this is the website for the Virtual Trucking Company: PPL Solutions. It features some awesome information about the VTC, dynamic showing of our events we participate in and an amazing Drivershub!",
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "ldrs": "^1.1.7",
     "sass": "^1.86.0"
   }
 }

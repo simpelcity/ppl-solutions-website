@@ -70,6 +70,18 @@ $nav-tabs-link-active-color: $primary;
   margin: 0 .5rem;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $light;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 5px;
+}
 
 /* Mobile-specific styling */
 @media (max-width: 991px) {
@@ -280,14 +292,23 @@ $nav-tabs-link-active-color: $primary;
 
 table {
   width: 100%;
-  min-width: 1290px;
+  min-width: 1595px;
   border-collapse: collapse;
 }
 
-@media (max-width: 1470px) {
+@media (max-width: 1678px) {
   .scroll {
-    overflow-x: scroll;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: #494949;
 }
 
 /* From Uiverse.io by abrahamcalsin */
@@ -418,6 +439,49 @@ table {
 .w-206 {
   width: 206.33px;
 }
+
+#e0 {
+  width: 138px;
+}
+
+#e1 {
+  width: 159px;
+}
+
+#e2 {
+  width: 81px;
+}
+
+#e3 {
+  width: 350px;
+}
+
+#e4 {
+  width: 350px;
+}
+
+#e5 {
+  width: 275px;
+}
+
+#e6 {
+  width: 120px;
+}
+
+#e7 {
+  width: 122px;
+}
+
+#tableHeader > th, #container > tr > td {
+  padding: 10px 21px;
+}
+
+#container > tr td {
+  width: fit-content;
+  height: fit-content;
+}
+
+
 
 /* show password styling */
 

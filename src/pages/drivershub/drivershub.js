@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('container');
+    const error = document.getElementById('error');
     let driver = document.getElementById('driver-user').textContent;
     let allPagesData = [];
     let currentPage = 1;
+    const dotSpinner = document.getElementById('dotSpinner');
     const dotSpinnerNext = document.getElementById('dotSpinnerNext');
     let cachedSteamID = null;
+    const placeholder = document.getElementById('placeholder');
+    const overviewButton = document.getElementById('overview');
+
 
     async function fetchDrivers() {
         const responseApiMembers = await fetch('api-members.php');
@@ -14,11 +19,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const driversData = await responseApiMembers.json();
+        console.log('Drivers data:', driversData);
         const driverData = driversData.data.find(d => d.username === driver);
-        const steamID = driverData.steamID;
         console.log('Driver data:', driverData);
+        
 
-        return steamID;
+        if (driverData) {
+            const steamID = driverData.steamID;
+            if (steamID) {
+                return steamID;
+            }
+        } else {
+            console.error(`Driver ${driver} not found`);
+            error.innerHTML = `Driver not found`;
+            throw new Error(`Driver not found: ${driver}`);
+        }
     }
 
     async function initializeSteamID() {
@@ -55,7 +70,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function fetchJobs(page) {
         try {
-            dotSpinnerNext.style.display = 'block';
+            placeholder.style.display = 'table-row';
+
             await initializeSteamID();
 
             console.log('Fetching jobs for page:', page);
@@ -80,14 +96,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             allPagesData[page - 1] = reversedData;
 
+            placeholder.style.display = 'none';
+            overviewButton.classList.remove('placeholder');
             renderJobs(reversedData);
 
             updatePagination(data.links);
         } catch (error) {
             console.error('Error fetching jobs:', error);
             container.innerHTML = `<p class="text-center">Error loading jobs</p>`;
-        } finally {
-            dotSpinnerNext.style.display = 'none';
         }
     }
 
@@ -123,18 +139,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 month: "2-digit",
             };
             let formattedDate = date.toLocaleDateString("nl-NL", options);
-            console.log(formattedDate);
 
             return`
                 <tr>
-                    <td class="py-2 px-3">${formattedDate}</td>
-                    <td class="py-2 px-3">${job.driver.username}</td>
-                    <td class="py-2 px-3 text-uppercase">${job.game.id}</td>
-                    <td class="py-2 px-3">${job.source.city.name} - ${job.destination.city.name}</td>
-                    <td class="py-2 px-3">${job.cargo.name} (${calculatedNumber}t)</td>
-                    <td class="py-2 px-3">${job.truck.name} ${job.truck.model.name}</td>
-                    <td class="py-2 px-3">${job.distanceDriven} km</td>
-                    <td class="py-2 px-3">&euro; ${job.income}</td>
+                    <td id="e00" class="">${formattedDate}</td>
+                    <td id="e01" class="">${job.driver.username}</td>
+                    <td id="e02" class="text-uppercase">${job.game.id}</td>
+                    <td id="e03" class="">${job.source.city.name} - ${job.destination.city.name}</td>
+                    <td id="e04" class="">${job.cargo.name} (${calculatedNumber}t)</td>
+                    <td id="e05" class="">${job.truck.name} ${job.truck.model.name}</td>
+                    <td id="e06" class="">${job.distanceDriven} km</td>
+                    <td id="e07" class="">&euro; ${job.income}</td>
                 </tr>
             `;
         }).join('');
@@ -153,16 +168,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    const pagination = document.getElementById('pagination');
+    const allJobs = document.getElementById('allJobs');
     const previousButton = document.getElementById('previous');
-
     previousButton.addEventListener('click', async () => {
         if (currentPage >= 1 && currentPage < lastPage) {
+            allJobs.classList.add('hidden');
+            pagination.classList.remove('hidden');
             currentPage++;
             if (!allPagesData[currentPage - 1]) {
                 await fetchJobs(currentPage);
             } else {
                 renderJobs(allPagesData[currentPage - 1]);
-
+    
                 updatePagination({
                     first: `?page=1`,
                     last: `?page=${allPagesData.length}`,
@@ -174,27 +192,41 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     const nextButton = document.getElementById('next');
-    
+    const nextButtonText = document.getElementById('nextButtonText');
     nextButton.addEventListener('click', async () => {
         if (currentPage <= lastPage && currentPage > 1) {
-            currentPage--;
-            if (!allPagesData[currentPage - 1]) {
-                await fetchJobs(currentPage);
-            } else {
-                renderJobs(allPagesData[currentPage - 1]);
-    
-                updatePagination({
-                    first: `?page=1`,
-                    last: `?page=${allPagesData.length}`,
-                    next: `?page=${currentPage + 1}`,
-                    prev: `?page=${currentPage - 1}`,
-                }, true);
+            allJobs.classList.add('hidden');
+            pagination.classList.remove('hidden');
+            nextButtonText.classList.add('hidden');
+            dotSpinnerNext.style.display = 'block';
+            try {
+                currentPage--;
+                if (!allPagesData[currentPage - 1]) {
+                    await fetchJobs(currentPage);
+                } else {
+                    renderJobs(allPagesData[currentPage - 1]);
+        
+                    updatePagination({
+                        first: `?page=1`,
+                        last: `?page=${allPagesData.length}`,
+                        next: `?page=${currentPage + 1}`,
+                        prev: `?page=${currentPage - 1}`,
+                    }, true);
+                }
+            } finally {
+                dotSpinnerNext.style.display = 'none';
+                nextButtonText.classList.remove('hidden');
             }
         }
     });
 
-    const overviewButton = document.getElementById('overview');
+    const overviewButtonText = document.getElementById('overviewButtonText');
     overviewButton.addEventListener('click', async () => {
+        overviewButtonText.classList.add('hidden');
+        dotSpinnerOverview.style.display = 'block';
+        pagination.classList.add('hidden');
+        allJobs.classList.remove('hidden');
+        allJobs.innerHTML = 'Loading all jobs.';
         console.log('Fetching all pages for overview...');
         let page;
 
@@ -267,23 +299,36 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 calculatedNumber = Math.floor(number / 1000);
             }
+
+            let unixTimestamp = job.realtime.end;
+            let date = new Date(unixTimestamp);
+            const options = {
+                day: "2-digit",
+                year: "numeric",
+                month: "2-digit",
+            };
+            let formattedDate = date.toLocaleDateString("nl-NL", options);
             
             return`
                 <tr>
-                    <td class="py-2 px-3"></td>
-                    <td class="py-2 px-3">${job.driver.username}</td>
-                    <td class="py-2 px-3 text-uppercase">${job.game.id}</td>
-                    <td class="py-2 px-3">${job.source.city.name} - ${job.destination.city.name}</td>
-                    <td class="py-2 px-3">${job.cargo.name} (${calculatedNumber}t)</td>
-                    <td class="py-2 px-3 w-206">${job.truck.name} ${job.truck.model.name}</td>
-                    <td class="py-2 px-3">${job.distanceDriven} km</td>
-                    <td class="py-2 px-3">&euro; ${job.income}</td>
+                    <td id="e00" class="py-2 px-3">${formattedDate}</td>
+                    <td id="e01" class="py-2 px-3">${job.driver.username}</td>
+                    <td id="e02" class="py-2 px-3 text-uppercase">${job.game.id}</td>
+                    <td id="e03" class="py-2 px-3">${job.source.city.name} - ${job.destination.city.name}</td>
+                    <td id="e04" class="py-2 px-3">${job.cargo.name} (${calculatedNumber}t)</td>
+                    <td id="e05" class="py-2 px-3 w-206">${job.truck.name} ${job.truck.model.name}</td>
+                    <td id="e06" class="py-2 px-3">${job.distanceDriven} km</td>
+                    <td id="e07" class="py-2 px-3">&euro; ${job.income}</td>
                 </tr>
             `;
         }).join('');
+
+        dotSpinnerOverview.style.display = 'none';
+        overviewButtonText.classList.remove('hidden');
+        allJobs.innerHTML = 'Showing all jobs.';
     });
 });
 
-// for (let i = 0; i <= 7; i++) {
-//     document.getElementById(`${i}`).width = document.getElementById(`${i},0`).width;
+// for (let i = 0; i <= 8; i++) {
+//     document.getElementById(`e0${i}`).width = document.getElementById(`e${i}`).width;
 // }
