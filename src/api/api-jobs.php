@@ -32,7 +32,13 @@ if (!$response) {
 
 if ($response === FALSE) {
     http_response_code(500);
-    echo json_encode(["error" => "Failed to fetch events"]);
+    echo json_encode(["error" => "Failed to fetch jobs"]);
+    exit;
+}
+
+if (empty($steamID)) {
+    http_response_code(400);
+    echo json_encode(["error" => "Missing steamID"]);
     exit;
 }
 

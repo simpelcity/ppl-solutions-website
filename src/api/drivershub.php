@@ -85,58 +85,169 @@ $username = $_COOKIE['username'];
                     <h2 class="fw-600 mx-3">Welcome back,</h2>
                     <h2 class="fw-600" id="driver-user"><?php echo $username ?></h2>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <div class="card bg-dark rounded-4 col-12 col-lg-11">
-                        <div class="card-header text-center">
-                            <h2 class="text-primary fw-600">User Jobs</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="container-fluid d-flex flex-column align-items-center text-light scroll">
-                                <table class="mx-auto">
-                                    <thead class="bg-primary">
-                                        <tr>
-                                            <th class="rounded-start py-2 px-3">Username</th>
-                                            <th class="py-2 px-3">Game</th>
-                                            <th class="py-2 px-3">From - To</th>
-                                            <th class="py-2 px-3">Cargo</th>
-                                            <th class="py-2 px-3">Truck</th>
-                                            <th class="py-2 px-3">Distance</th>
-                                            <th class="rounded-end py-2 px-3">Income</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="container"></tbody>
-                                </table>
+                <div class="mx-2">
+                    <div class="d-flex justify-content-center">
+                        <div class="card bg-dark rounded-4 col-12 col-lg-11 w-100">
+                            <div class="card-header text-center">
+                                <h2 class="text-primary fw-600">User Jobs</h2>
                             </div>
-                            <div class="navigation mt-2 d-flex justify-content-center">
-                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="previous">
-                                    <span id="buttonText">Previous</span>
-                                    <div id="dotSpinner" class="dot-spinner hidden left-37">
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
+                            <div class="card-body">
+                                <div class="container-fluid d-flex flex-column align-items-center text-light scroll">
+                                    <table class="mx-auto">
+                                        <thead class="bg-primary">
+                                            <tr id="tableHeader">
+                                                <th id="e0" class="rounded-start">Date</th>
+                                                <th id="e1" class="">Username</th>
+                                                <th id="e2" class="">Game</th>
+                                                <th id="e3" class="">From - To</th>
+                                                <th id="e4" class="">Cargo</th>
+                                                <th id="e5" class="">Truck</th>
+                                                <th id="e6" class="">Distance</th>
+                                                <th id="e7" class="rounded-end">Income</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="container">
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                            <tr id="placeholder">
+                                                <td id="e00" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e01" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e02" class="py-2 px-3 text-uppercase"><span class="placeholder col-12"></span></td>
+                                                <td id="e03" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e04" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e05" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e06" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                                <td id="e07" class="py-2 px-3"><span class="placeholder col-12"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p id="error"></p>
+                                </div>
+                                <div class="navigation mt-2 d-flex justify-content-center">
+                                    <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="previous">
+                                        <span id="buttonText">Previous</span>
+                                    </button>
+                                    <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="overview">
+                                        <span id="overviewButtonText" class="">Overview</span>
+                                        <div id="dotSpinnerOverview" class="dot-spinner hidden mx-auto">
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                        </div>
+                                    </button>
+                                    <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
+                                        <span id="nextButtonText" class="">Next</span>
+                                        <div id="dotSpinnerNext" class="dot-spinner hidden mx-auto">
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                            <div class="dot-spinner__dot"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="nav-info d-flex justify-content-center my-auto text-light">
+                                    <div id="pagination" class="d-flex">
+                                        <p>Page&nbsp;</p><p id="currentPages">1</p>&nbsp;of&nbsp;<p id="totalPages">1</p>
                                     </div>
-                                </button>
-                                <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
-                                    <span id="buttonText">Next</span>
-                                    <div id="dotSpinner" class="dot-spinner hidden left-20">
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                        <div class="dot-spinner__dot"></div>
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="nav-info d-flex flex-row justify-content-center my-auto text-light">
-                                <p>Page&nbsp;</p><p id="currentPages">1</p>&nbsp;of&nbsp;<p id="totalPages">1</p>
+                                    <div id="allJobs" class="hidden"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
