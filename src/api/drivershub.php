@@ -77,7 +77,7 @@ $username = $_COOKIE['username'];
                     <div class="banner">
                         <img class="banner-img w-100 object-fit-cover" src="../pages/media/banner.png">
                     </div>
-                    <div class="title text-center my-3">
+                    <div class="title text-center">
                         <h1 class="text-primary fw-700">Drivershub</h1>
                     </div>
                 </div>
@@ -217,34 +217,16 @@ $username = $_COOKIE['username'];
                                     </button>
                                     <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="overview">
                                         <span id="overviewButtonText" class="">Overview</span>
-                                        <div id="dotSpinnerOverview" class="dot-spinner hidden mx-auto">
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                        </div>
+                                        <div id="loaderOverview" class="loader hidden mx-auto"></div>
                                     </button>
                                     <button class="btn border border-2 border-primary text-light mb-3 mx-2" id="next">
                                         <span id="nextButtonText" class="">Next</span>
-                                        <div id="dotSpinnerNext" class="dot-spinner hidden mx-auto">
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                            <div class="dot-spinner__dot"></div>
-                                        </div>
+                                        <div id="loaderNext" class="loader hidden mx-auto"></div>
                                     </button>
                                 </div>
-                                <div class="nav-info d-flex justify-content-center my-auto text-light">
-                                    <div id="pagination" class="d-flex">
-                                        <p>Page&nbsp;</p><p id="currentPages">1</p>&nbsp;of&nbsp;<p id="totalPages">1</p>
+                                <div class="nav-info d-flex flex-column align-items-center text-light">
+                                    <div id="pagination" class="">
+                                        <span>Page&nbsp;</span><span id="currentPage">1</span><span>&nbsp;of&nbsp;</span><span id="totalPages">1</span>
                                     </div>
                                     <div id="allJobs" class="hidden"></div>
                                 </div>
@@ -310,7 +292,7 @@ $username = $_COOKIE['username'];
                             </div>
                         </div>
                     </div>
-                    <p class="border-top border-light pt-3"><i class="bi bi-c-circle"></i> Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Designed and developed by <strong>Wietsegaming</strong></p>
+                    <p class="border-top border-light pt-3"><i class="bi bi-c-circle"></i> Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Developed by <strong><a class="text-light text-decoration-none author" href="https://simpelcity.github.io">Wietsegaming</a></strong></p>
                 </div>
             </div>
         </footer>

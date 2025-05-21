@@ -9,19 +9,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             })
         });
 
-        console.log(response);
-
+        
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
+        
         const data = await response.json();
+        console.log('Data:', data);
 
-        if (!data || data.length === 0) {
-            container.innerHTML = `<p class="text-center">No data found.</p>`;
+        if (!data || data.response.length == 0) {
+            container.innerHTML = `<p class="text-center fs-1 text-dark fw-600">No upcoming events <i class="bi bi-calendar3 fs-1"></i></p>`;
             return;
         }
-
+        
         const events = data.response;
 
         const formatDate = (dateString) => {
