@@ -43,6 +43,10 @@
         "destination": "/api/resetpassword.php"
       },
       {
+        "source": "/logout",
+        "destination": "/api/logout.php"
+      },
+      {
         "source": "/drivershub",
         "destination": "/api/drivershub.php"
       }
