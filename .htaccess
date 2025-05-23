@@ -1,5 +1,5 @@
 # Enable URL rewriting
 RewriteEngine On
-RewriteRule ^test$ pages/team.html [L]
+RewriteRule ^test$ src/pages/team.html [L]
 
 # Remove .php extension for all files, including subfolders
