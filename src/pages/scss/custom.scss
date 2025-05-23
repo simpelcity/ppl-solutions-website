@@ -71,18 +71,6 @@ $nav-tabs-border-color: $primary;
   margin: 0 .5rem;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: $light;
-}
- 
-::-webkit-scrollbar-thumb {
-  background: $primary;
-  border-radius: 5px;
-}
 
 /* Mobile-specific styling */
 @media (max-width: 991px) {
@@ -296,14 +284,13 @@ $nav-tabs-border-color: $primary;
 
 table {
   width: 100%;
-  min-width: 1595px;
+  min-width: 1290px;
   border-collapse: collapse;
 }
 
-@media (max-width: 1678px) {
+@media (max-width: 1470px) {
   .scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
   }
 }
 
