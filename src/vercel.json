@@ -13,6 +13,38 @@
       {
         "source": "/events",
         "destination": "/pages/events/events.html"
+      },
+      {
+        "source": "/team",
+        "destination": "/pages/team.html"
+      },
+      {
+        "source": "/gallery",
+        "destination": "/pages/gallery.html"
+      },
+      {
+        "source": "/contact",
+        "destination": "/pages/contact-us.html"
+      },
+      {
+        "source": "/apply",
+        "destination": "/pages/apply.html"
+      },
+      {
+        "source": "/login",
+        "destination": "/api/login.php"
+      },
+      {
+        "source": "/register",
+        "destination": "/api/register.php"
+      },
+      {
+        "source": "/reset",
+        "destination": "/api/resetpassword.php"
+      },
+      {
+        "source": "/drivershub",
+        "destination": "/api/drivershub.php"
       }
     ]
   }
