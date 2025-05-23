@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // function to fetch all truckershub drivers and their data
   async function fetchDrivers() {
-    const responseApiMembers = await fetch("api-members.php");
+    const responseApiMembers = await fetch("/api/api-members.php");
 
     if (!responseApiMembers.ok) {
       throw new Error(`Failed to fetch driver data. Status: ${responseApiMembers.status}`);
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await initializeSteamID();
     const page = 1;
 
-    const responseLinks = await fetch("api-jobs.php", {
+    const responseLinks = await fetch("/api/api-jobs.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       await initializeSteamID();
 
       console.log("Fetching jobs for page:", page);
-      const response = await fetch("api-jobs.php", {
+      const response = await fetch("/api/api-jobs.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!allPagesData[page - 1]) {
           console.log(`Fetching page ${page}...`);
 
-          const response = await fetch("api-jobs.php", {
+          const response = await fetch("/api/api-jobs.php", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
