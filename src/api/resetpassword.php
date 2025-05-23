@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="../pages/css/style.css">
+        <link rel="stylesheet" href="/pages/css/style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-        <link rel="icon" type="image/x-icon" href="../pages/media/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="/pages/media/favicon.ico">
         <style>
             body {
                 font-family: IBM Plex Mono;
@@ -98,21 +98,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <label for="password"><i class="fa fa-lock"></i> Password</label>
                                 <div class="input-box">
                                     <input type="password" name="password" id="password" class="form-control input" required>
-                                    <img src="../pages/media/eye-close.png" id="eyeicon">
+                                    <img src="/pages/media/eye-close.png" id="eyeicon">
                                 </div>
                             </div>
                             <div class="col mb-3 mt-3">
                                 <label for="confirm_password"><i class="fa fa-lock"></i> Confirm Password</label>
                                 <div class="input-box">
                                     <input type="password" name="confirm_password" id="confirm_password" class="form-control input" required>
-                                    <img src="../pages/media/eye-close.png" id="confirm_eyeicon">
+                                    <img src="/pages/media/eye-close.png" id="confirm_eyeicon">
                                 </div>
                             </div>
                             <div class="col mb-3 mt-3">
                                 <button type="submit" class="btn btn-primary text-light">Reset Password</button>
                             </div>
                             <div class="col mb-2 mt-4 text-center">
-                                <a class="text-decoration-none" href="register.php">Create Account</a> OR <a class="text-decoration-none" href="login.php">Login</a>
+                                <a class="text-decoration-none" href="/register">Create Account</a> OR <a class="text-decoration-none" href="login.php">Login</a>
                             </div>
                         </form>
                     </div>
@@ -143,20 +143,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             eyeicon.onclick = function() {
                 if (password.type == 'password') {
                     password.type = 'text';
-                    eyeicon.src = '../pages/media/eye-open.png';
+                    eyeicon.src = '/pages/media/eye-open.png';
                 } else {
                     password.type = 'password';
-                    eyeicon.src = '../pages/media/eye-close.png';
+                    eyeicon.src = '/pages/media/eye-close.png';
                 }
             }
 
             confirmEyeicon.onclick = function() {
                 if (confirmPassword.type == 'password') {
                     confirmPassword.type = 'text';
-                    confirmEyeicon.src = '../pages/media/eye-open.png';
+                    confirmEyeicon.src = '/pages/media/eye-open.png';
                 } else {
                     confirmPassword.type = 'password';
-                    confirmEyeicon.src = '../pages/media/eye-close.png';
+                    confirmEyeicon.src = '/pages/media/eye-close.png';
                 }
             }
         </script>

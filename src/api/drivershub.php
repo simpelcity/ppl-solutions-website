@@ -234,7 +234,7 @@ $username = $_COOKIE['username'];
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <a class="text-decoration-none text-center btn border border-2 border-primary text-primary my-3" id="logout" href="logout.php">Logout</a>
+                <a class="text-decoration-none text-center btn border border-2 border-primary text-primary my-3" id="logout" href="/api/logout.php">Logout</a>
             </div>
         </div>
     </main>
@@ -244,7 +244,7 @@ $username = $_COOKIE['username'];
                 <div class="col-12 col-md-6 footer1 my-3">
                     <div class="d-flex align-items-center mb-3">
                         <a class="d-flex flex-row text-decoration-none color-light" href="/">
-                            <img class="rounded-circle me-2" src="../pages/media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
+                            <img class="rounded-circle me-2" src="/pages/media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
                             <h3 class="my-auto text-light fw-600">PPL Solutions VTC</h3>
                         </a>
                     </div>
