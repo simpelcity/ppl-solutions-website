@@ -29,12 +29,19 @@ $nav-tabs-border-color: $primary;
   font-weight: 700;
 }
 
-.navbar-collapse ul li:hover {
+.navbar-nav > .nav-item:hover {
   border-bottom: solid $light 2px;
+  padding: 0;
+}
+
+.navbar-nav > .nav-item {
+  border-bottom: none;
+  padding: 0 0 2px 0;
 }
 
 .active {
-  border-bottom: solid $primary 2px;
+  border-bottom: solid $primary 2px !important;
+  padding: 0 !important;
 }
 
 .padding-icon {
@@ -71,6 +78,18 @@ $nav-tabs-border-color: $primary;
   margin: 0 .5rem;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $light;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 5px;
+}
 
 /* Mobile-specific styling */
 @media (max-width: 991px) {
@@ -181,7 +200,7 @@ $nav-tabs-border-color: $primary;
   }
 }
 
-/* /events styling */
+/* events.html styling */
 
 .banner-img {
   height: calc(100vh - 76px) !important;
@@ -205,11 +224,11 @@ $nav-tabs-border-color: $primary;
   width: fit-content;
 }
 
-/* /team styling */
+/* team.html styling */
 
 .wh-150 {
-  width: 150px;
-  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .team div div div div {
@@ -284,13 +303,14 @@ $nav-tabs-border-color: $primary;
 
 table {
   width: 100%;
-  min-width: 1290px;
+  min-width: 1595px;
   border-collapse: collapse;
 }
 
-@media (max-width: 1470px) {
+@media (max-width: 1678px) {
   .scroll {
-    overflow-x: scroll;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 

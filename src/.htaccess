@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteRule ^$ index.html [L]
+RewriteRule ^events$ pages/events/events.html [L]
+RewriteRule ^team$ pages/team.html [L]
+RewriteRule ^gallery$ pages/gallery.html [L]
+RewriteRule ^contact$ pages/contact-us.html [L]
+RewriteRule ^apply$ pages/apply.html [L]
+RewriteRule ^login$ api/login.php [L]
+RewriteRule ^register$ api/register.php [L]
+RewriteRule ^reset$ api/resetpassword.php [L]
+RewriteRule ^logout$ api/logout.php [L]
+RewriteRule ^drivershub$ api/drivershub.php [L]
