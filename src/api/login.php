@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie("email", $email, time() + 3600, "/", "", false, true);
                 setcookie("username", $user['username'], time() + 3600, "/", "", false, true);
 
-                header("Location: drivershub.php");
+                header("Location: /drivershub");
                 exit();
             } else {
                 $message = "Incorrect password";
