@@ -234,7 +234,7 @@ $username = $_COOKIE['username'];
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <a class="text-decoration-none text-center btn border border-2 border-primary text-primary my-3" id="logout" href="/api/logout.php">Logout</a>
+                <a class="text-decoration-none text-center btn border border-2 border-primary text-primary my-3" id="logout" href="/logout">Logout</a>
             </div>
         </div>
     </main>

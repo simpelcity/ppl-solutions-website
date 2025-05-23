@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <button type="submit" class="btn btn-primary text-light">Reset Password</button>
                             </div>
                             <div class="col mb-2 mt-4 text-center">
-                                <a class="text-decoration-none" href="/register">Create Account</a> OR <a class="text-decoration-none" href="login.php">Login</a>
+                                <a class="text-decoration-none" href="/register">Create Account</a> OR <a class="text-decoration-none" href="/login">Login</a>
                             </div>
                         </form>
                     </div>
