@@ -3,5 +3,16 @@
       "api/*.php": {
         "runtime": "vercel-php@0.7.3"
       }
-    }
+    },
+    "$schema": "https://ppl-solutions-website-git-urlrewrite-simpelcitys-projects.vercel.app/vercel.json",
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/events",
+        "destination": "/pages/events/events.html"
+      }
+    ]
   }
