@@ -12,7 +12,7 @@
       },
       {
         "source": "/events",
-        "destination": "/pages/events/events.html"
+        "destination": "/pages/events.html"
       },
       {
         "source": "/team",
