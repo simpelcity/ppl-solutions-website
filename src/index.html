@@ -1,183 +1,149 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="overflow-x-hidden h-100 w-100 m-0 p-0">
-    <head>
-        <title>Home | PPL Solutions</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+	<head>
+		<title>Home | PPL Solutions</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-        <link rel="stylesheet" href="/pages/css/style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
-        <link rel="icon" type="image/x-icon" href="/pages/media/favicon.ico">
-        <style>
-            body {
-                font-family: IBM Plex Mono;
-            }
-        </style>
-    </head>
+		<!-- Bootstrap CSS v5.2.1 -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+			crossorigin="anonymous" />
+		<link rel="stylesheet" href="/assets/styles/css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+		<script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
+		<link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
+		<style>
+			body {
+				font-family: IBM Plex Mono;
+			}
+		</style>
+		<script>
+			fetch("/components/navbar/navbar.html")
+				.then((response) => response.text())
+				.then((data) => {
+					document.getElementById("navbar").innerHTML = data;
+					const currentpage = window.location.pathname;
+					console.log(currentpage);
+					const navItem = document.querySelectorAll(".navbar-nav .nav-item");
+					document.querySelectorAll(".navbar-nav .nav-link").forEach((link) => {
+						const navItem = link.closest(".nav-item");
+						if (link.getAttribute("href") === currentpage) {
+							navItem.classList.add("active");
+						} else {
+							navItem.classList.remove("active");
+						}
+					});
+				});
+			fetch("/components/footer/footer.html")
+				.then((response) => response.text())
+				.then((data) => {
+					document.getElementById("footer").innerHTML = data;
+				});
+		</script>
+	</head>
 
-    <body class="bg-light overflow-x-hidden h-100 w-100 m-0 p-0 fw-500">
-        <header class="text-light position-relative top-0 left-0 right-0 z-1 w100 my-0 mx-auto p-0">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid w-100 px-0">
-                    <!-- Brand Logo and Name -->
-                     <a class="navbar-brand d-flex align-items-center" href="/">
-                        <img class="rounded-circle me-2 ms-3" src="/pages/media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
-                        <p class="my-auto">PPL Solutions VTC</p>
-                     </a>
+	<body class="bg-light overflow-x-hidden h-100 w-100 m-0 p-0 fw-500">
+		<header id="navbar" class="text-light position-relative top-0 left-0 right-0 z-1 my-0 mx-auto p-0 bg-dark">
+			<!-- place navbar here -->
+		</header>
+		<main class="container-fluid p-0">
+			<div class="row w-100 m-0">
+				<div class="col-12 position-relative p-0 home-img">
+					<img
+						src="/assets/images/background.jpg"
+						class="img-fluid custom-img object-fit-cover w-100"
+						alt="Background image" />
+					<div
+						class="overlay d-flex flex-column align-items-center justify-content-center text-center text-light position-absolute top-40 left-10 p-4">
+						<h2>PPL Solutions</h2>
+						<div class="d-flex mt-3">
+							<a href="/pages/apply.html" class="btn border text-light text-decoration-none me-3"
+								>Apply</a
+							>
+							<a
+								href="https://discord.gg/mnKcKwsYm4"
+								class="btn border text-light text-decoration-none"
+								target="_blank"
+								>Discord</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row w-100 mx-0 my-2">
+				<h1 class="text-primary text-center fw-700">Steering the future of Digital Logistics</h1>
+			</div>
+			<div class="row w-100 m-0">
+				<div class="col about-us w-100 bg-primary text-light">
+					<h2 class="px-2 fw-700">About us...</h2>
+					<p class="px-2 fs-5">
+						PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to
+						make a succesful and friendly VTC where people from all over the world can hangout and drive
+						with eachother.
+					</p>
+				</div>
+			</div>
+			<div class="container bg-dark offers mw-100 w-100 text-primary text-center p-3 my-0 mx-auto">
+				<h2 class="text-center mb-4 fw-700">What do we offer?</h2>
+				<div class="row justify-content-center g-3">
+					<div class="col-12 col-sm-10 col-md-6 col-xl-4">
+						<div class="card rounded-5 h-100">
+							<i class="fa-solid fa-users fs-1 my-3 text-primary"></i>
+							<h3 class="fw-600 mb-0 text-primary">Friendly Staff</h3>
+							<p class="p-3 fs-5">
+								We have a small but extremely friendly staff team that can help you with any problem you
+								might face while driving for us.
+							</p>
+						</div>
+					</div>
+					<div class="col-12 col-sm-10 col-md-6 col-xl-4">
+						<div class="card rounded-5 h-100">
+							<i class="fa-solid fa-pen-to-square fs-1 my-3 text-primary"></i>
+							<h3 class="fw-600 mb-0 text-primary">Save-Edits</h3>
+							<p class="p-3 fs-5">
+								Our drivers have access to a wide variety of custom-made save-edits, including full-sets
+								of trucks, custom parts, and much more.
+							</p>
+						</div>
+					</div>
+					<div class="col-12 col-sm-10 col-md-6 col-xl-4">
+						<div class="card rounded-5 h-100">
+							<i class="fa-solid fa-gears fs-1 my-3 text-primary"></i>
+							<h3 class="fw-600 mb-0 text-primary">Custom Mods</h3>
+							<p class="p-3 fs-5">
+								We also offer some exclusive PPL Solutions mods to use while playing singleplayer or
+								convoys mode.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer id="footer" class="text-light py-4 w-100 my-0 mx-auto p-0 text-start bg-primary">
+			<!-- place footer here -->
+		</footer>
 
-                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navigation">
-                        <span class="navbar-toggler-icon"></span>
-                     </button>
+		<!-- Bootstrap JavaScript Libraries -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+			crossorigin="anonymous"></script>
 
-                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav w-100 justify-content-center">
-                            <li class="nav-item active rounded"><a class="nav-link text-uppercase text-light" href="/">Home</a></li>
-                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="/events">Events</a></li>
-                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="/team">Team</a></li>
-                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="/gallery">Gallery</a></li>
-                            <li class="nav-item rounded"><a class="nav-link text-uppercase text-light" href="/contact">Contact us</a></li>
-                        </ul>
-                        <div class="navbar-buttons d-flex ms-lg-3">
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-2 text-decoration-none py-1 px-2" href="/apply">Apply</a>
-                            <a class="text-light btn border border-2 border-primary bg-secondary me-3 text-decoration-none py-1 px-2" href="/login">Drivershub</a>
-                        </div>
-                     </div>
-                </div>
-            </nav>
-        </header>
-        <main class="container-fluid p-0">
-            <div class="row w-100 m-0">
-                <div class="col-12 position-relative p-0 home-img">
-                    <img src="/pages/media/background.jpg" class="img-fluid custom-img object-fit-cover w-100" alt="Background image">
-                    <div class="overlay d-flex flex-column align-items-center justify-content-center text-center text-light position-absolute top-40 left-10 p-4">
-                        <h2>PPL Solutions</h2>
-                        <div class="d-flex mt-3">
-                            <a href="/pages/apply.html" class="btn border text-light text-decoration-none me-3">Apply</a>
-                            <a href="https://discord.gg/mnKcKwsYm4" class="btn border text-light text-decoration-none" target="_blank">Discord</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row w-100 mx-0 my-2">
-                <h1 class="text-primary text-center fw-700">Steering the future of Digital Logistics</h1>
-            </div>
-            <div class="row w-100 m-0">
-                <div class="col about-us w-100 bg-primary text-light">
-                    <h2 class="px-2 fw-700">About us...</h2>
-                    <p class="px-2 fs-5">PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother.</p>
-                </div>
-            </div>
-            <div class="container bg-dark offers mw-100 w-100 text-primary text-center p-3 my-0 mx-auto">
-                <h2 class="text-center mb-4 fw-700">What do we offer?</h2>
-                <div class="row justify-content-center g-3">
-                    <div class="col-12 col-sm-10 col-md-6 col-xl-4">
-                        <div class="card rounded-5 h-100">
-                            <i class="fa-solid fa-users fs-1 my-3 text-primary"></i>
-                            <h3 class="fw-600 mb-0 text-primary">Friendly Staff</h3>
-                            <p class="p-3 fs-5">We have a small but extremely friendly staff team that can help you with any problem you might face while driving for us.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-10 col-md-6 col-xl-4">
-                        <div class="card rounded-5 h-100">
-                            <i class="fa-solid fa-pen-to-square fs-1 my-3 text-primary"></i>
-                            <h3 class="fw-600 mb-0 text-primary">Save-Edits</h3>
-                            <p class="p-3 fs-5">Our drivers have access to a wide variety of custom-made save-edits, including full-sets of trucks, custom parts, and much more.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-10 col-md-6 col-xl-4">
-                        <div class="card rounded-5 h-100">
-                            <i class="fa-solid fa-gears fs-1 my-3 text-primary"></i>
-                            <h3 class="fw-600 mb-0 text-primary">Custom Mods</h3>
-                            <p class="p-3 fs-5">We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer class="text-light py-4 w-100 my-0 mx-auto p-0 text-start bg-primary">
-            <div class="container-fluid w-100 px-0">
-                <div class="row mx-3">
-                    <div class="col-12 col-md-6 footer1 my-3">
-                        <div class="d-flex align-items-center mb-3">
-                            <a class="d-flex flex-row text-decoration-none color-light" href="/">
-                                <img class="rounded-circle me-2" src="/pages/media/ppls_logo.png" alt="PPL Solutions Logo" width="50" height="50">
-                                <h3 class="my-auto text-light fw-600">PPL Solutions VTC</h3>
-                            </a>
-                        </div>
-                        <p class="fs-5">Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together.</p>
-                        <div>
-                            <a href="https://discord.gg/mnKcKwsYm4" target="_blank" class="text-light me-1"><i class="fa-brands fs-4 fa-discord bg-info rounded-circle padding-icon mt-2"></i></a>
-                            <a href="https://www.tiktok.com/@pplsolutionsvtc" target="_blank" class="text-light"><i class="fa-brands fs-4 fa-tiktok bg-black padding-tiktok rounded-circle"></i></a>
-                            <a href="https://truckersmp.com/vtc/74455" target="_blank" class="text-light"><i class="fa-solid fs-4 fa-truck bg-black padding-icon rounded-circle"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 footer2 my-3">
-                        <div class="d-flex">
-                            <div class="col-12 col-lg-4">
-                                <h3 class="fw-600">Pages</h3>
-                                <ul class="list-unstyled p-0 fs-5">
-                                    <li><a class="text-light text-decoration-none" href="/"><i class="fa-solid fa-angle-right"></i> Home</a></li>
-                                    <li><a class="text-light text-decoration-none" href="/events"><i class="fa-solid fa-angle-right"></i> Events</a></li>
-                                    <li><a class="text-light text-decoration-none" href="/team"><i class="fa-solid fa-angle-right"></i> Team</a></li>
-                                    <li><a class="text-light text-decoration-none" href="/gallery"><i class="fa-solid fa-angle-right"></i> Gallery</a></li>
-                                    <li><a class="text-light text-decoration-none" href="/contact"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-12 col-lg-8 fs-5">
-                                <ul class="nav nav-tabs justify-content-center w-100" id="footerTabs" role="tablist">
-                                    <li class="nav-item m-0 w-50" role="presentation">
-                                        <a class="nav-link active text-center m-0" id="home-tab" data-bs-toggle="pill" href="#links" role="tab" aria-controls="home" aria-selected="true">Other links</a>
-                                    </li>
-                                    <li class="nav-item m-0 w-50" role="presentation">
-                                        <a class="nav-link text-center m-0" id="contact-tab" data-bs-toggle="pill" href="#message" role="tab" aria-controls="contact" aria-selected="false">Message</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content mt-4" id="footerTabsContent">
-                                    <div class="tab-pane fade show active" id="links" role="tabpanel" aria-labelledby="home-tab">
-                                        <ul class="list-unstyled">
-                                            <li><a class="text-light text-decoration-none" href="/login"><i class="fa-solid fa-angle-right"></i> Drivershub</a></li>
-                                            <li><a class="text-light text-decoration-none" href="/apply"><i class="fa-solid fa-angle-right"></i> Apply</a></li>
-                                            <li><a class="text-light text-decoration-none" href="https://truckersmp.com/vtc/74455" target="_blank"><i class="fa-solid fa-angle-right"></i> VTC</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="contact-tab">
-                                        <p>Hello there traveler, My name is <strong>Wietsegaming</strong>. Welcome on the website of the Virtual Trucking Company: <strong>PPL Solutions</strong>, we stand for driver comfort and the fun in doing great things together.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="border-top border-light pt-3"><i class="bi bi-c-circle"></i> Copyright 2025 <strong>PPL Solutions.</strong> All rights Reserved | Developed by <strong><a class="text-light text-decoration-none author" href="https://simpelcity.github.io">Wietsegaming</a></strong></p>
-                </div>
-            </div>
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+			integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+			crossorigin="anonymous"></script>
+	</body>
 </html>

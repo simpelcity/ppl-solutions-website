@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="overflow-x-hidden h-100 w-100 m-0 p-0">
 	<head>
-		<title>Gallery | PPL Solutions</title>
+		<title>Events | PPL Solutions</title>
 		<!-- Required meta tags -->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -24,6 +24,7 @@
 			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 		<script src="https://kit.fontawesome.com/555ef81382.js" crossorigin="anonymous"></script>
 		<link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
+		<script src="/modules/events/events.js"></script>
 		<style>
 			body {
 				font-family: IBM Plex Mono;
@@ -58,63 +59,18 @@
 		<header
 			id="navbar"
 			class="text-light position-relative top-0 left-0 right-0 z-1 w100 my-0 mx-auto p-0 bg-dark"></header>
-		<main class="container-fluid p-0">
+		<main>
 			<div>
 				<div class="col-12 position-relative m-0">
 					<div class="banner">
-						<img class="banner-img w-100 object-fit-cover" src="/assets/images/banner.png" />
+						<img class="banner-img w-100 object-fit-cover" src="/assets/images/banner.png" alt="Banner" />
 					</div>
 					<div class="title text-center">
-						<h1 class="text-primary fw-700">Gallery</h1>
+						<h1 class="text-primary fw-700">Events</h1>
 					</div>
 				</div>
-
-				<div class="gallery">
-					<div
-						class="d-flex flex-wrap justify-content-center w-auto pb-2 bg-secondary gap-5 py-4 mw-100 w-100 pb-4">
-						<div class="col-12 col-md-4 mw-340 w-100">
-							<div class="card text-center bg-dark border-0 text-light">
-								<img class="rounded w-100" src="/assets/images/lukas_scania.jpg" alt="Gallery image" />
-								<p class="mb-0">Creator: Lukyy09</p>
-							</div>
-						</div>
-						<div class="col-12 col-md-4 mw-340 w-100">
-							<div class="card text-center bg-dark border-0 text-light">
-								<img class="rounded w-100" src="/assets/images/daf_ppls.jpg" alt="Gallery image" />
-								<p class="mb-0">Creator: Wietsegaming</p>
-							</div>
-						</div>
-						<div class="col-12 col-md-4 mw-340 w-100">
-							<div class="card text-center bg-dark border-0 text-light">
-								<img
-									class="rounded w-100"
-									src="/assets/images/malek_save-edit.png"
-									alt="Gallery image" />
-								<p class="mb-0">Creator: MaleklecoCZE</p>
-							</div>
-						</div>
-						<div class="col-12 col-md-4 mw-340 w-100">
-							<div class="card text-center bg-dark border-0 text-light">
-								<img class="rounded w-100" src="/assets/images/Bright2.jpg" alt="Gallery image" />
-								<p class="mb-0">Creator: Wietsegaming</p>
-							</div>
-						</div>
-						<div class="col-12 col-md-4 mw-340 w-100">
-							<div class="card text-center bg-dark border-0 text-light">
-								<img
-									class="rounded w-100"
-									src="/assets/images/ets2_20240908_135533_00.png"
-									alt="Gallery image" />
-								<p class="mb-0">Creator: MaleklecoCZE</p>
-							</div>
-						</div>
-						<div class="col-12 col-md-4 mw-340 w-100">
-							<div class="card text-center bg-dark border-0 text-light">
-								<img class="rounded w-100" src="/assets/images/truck.png" alt="Gallery image" />
-								<p class="mb-0">Creator: xX_shadowdagger2013_Xx</p>
-							</div>
-						</div>
-					</div>
+				<div class="container-fluid p-0">
+					<div id="events-container" class="row d-flex justify-content-center mx-auto my-4 h-100"></div>
 				</div>
 			</div>
 		</main>
@@ -126,6 +82,7 @@
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 			crossorigin="anonymous"></script>
+
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 			integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"

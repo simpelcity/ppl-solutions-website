@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteRule ^$ index.html [L]
-RewriteRule ^events$ pages/events/events.html [L]
+RewriteRule ^events$ pages/events.html [L]
 RewriteRule ^team$ pages/team.html [L]
 RewriteRule ^gallery$ pages/gallery.html [L]
 RewriteRule ^contact$ pages/contact-us.html [L]
