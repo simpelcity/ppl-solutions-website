@@ -1,5 +1,6 @@
 @import "./variables.scss";
 @import "./buttons.scss";
+@import "./icons.scss";
 
 body {
   font-family: "Nunito" !important;
@@ -25,4 +26,15 @@ h6 {
 
 .bg-dark-subtle {
   --bs-dark-bg-subtle: #1a1d20;
+}
+
+main {
+  min-height: calc(100vh - 76px);
+}
+
+.input:focus,
+.form-check-input:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 }

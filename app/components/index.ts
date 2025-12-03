@@ -8,3 +8,4 @@ export { default as CardGallery } from './CardGallery';
 export { default as CardContact } from './CardContact';
 export { default as DivTeam } from './DivTeam';
 export { default as StartBanner } from './StartBanner';
+export { default as LoginForm } from './LoginForm';

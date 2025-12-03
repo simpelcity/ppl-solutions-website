@@ -18,15 +18,21 @@ export default function CardContact() {
             <Col xs={8} xl={10}>
               <Form.Group className="mb-2">
                 <Form.Label>Name / Discord username *</Form.Label>
-                <Form.Control type="text" name="name" className="input rounded-0 border border-2" required />
+                <Form.Control
+                  type="text"
+                  name="name"
+                  placeholder="Your (user)name"
+                  className="input rounded-0 border-0 shadow bg-dark-subtle"
+                  required
+                />
               </Form.Group>
               <Form.Group className="mb-2">
                 <Form.Label>Email *</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
-                  placeholder="example@gmail.com"
-                  className="input rounded-0 border border-2"
+                  placeholder="your@email.com"
+                  className="input rounded-0 border-0 shadow bg-dark-subtle"
                   required
                 />
               </Form.Group>
@@ -35,8 +41,9 @@ export default function CardContact() {
                 <Form.Control
                   as="textarea"
                   name="message"
+                  placeholder="Your message"
                   rows={5}
-                  className="input rounded-0 border border-2"
+                  className="input rounded-0 border-0 shadow bg-dark-subtle"
                   required
                 />
               </Form.Group>

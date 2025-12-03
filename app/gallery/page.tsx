@@ -1,5 +1,5 @@
-import { StartBanner, CardGallery } from "@/components";
-import { Container, Row, Col } from "react-bootstrap";
+import { StartBanner, CardGallery } from "@/components"
+import { Container, Row, Col } from "react-bootstrap"
 
 export default function GalleryPage() {
   const galleryItems = [
@@ -9,7 +9,7 @@ export default function GalleryPage() {
     { src: "simpelcity-maleklecocze-2.jpg", title: "Scania's by Simpelcity" },
     { src: "simpelcity-maleklecocze.png", title: "Scania's by MaleklecoCZE" },
     { src: "xx-shadowdagger2013-xx-truck.png", title: "Truck by xX_shadowdagger2013_Xx" },
-  ];
+  ]
 
   return (
     <>
@@ -19,8 +19,8 @@ export default function GalleryPage() {
           <Container className="my-5">
             <Row className="w-100 row-gap-4 d-flex justify-content-center">
               {galleryItems.map((item) => (
-                <Col xs={12} md={6} xl={3} className="">
-                  <CardGallery key={item.src} img={item.src} title={item.title} />
+                <Col xs={12} md={6} xl={3} key={item.title}>
+                  <CardGallery img={item.src} title={item.title} />
                 </Col>
               ))}
             </Row>
@@ -28,5 +28,5 @@ export default function GalleryPage() {
         </section>
       </main>
     </>
-  );
+  )
 }
