@@ -1,0 +1,12 @@
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-transparent:hover {
+  &:active {
+    color: $light !important;
+    background-color: $primary !important;
+    border-color: $primary !important;
+  }
+  color: $light !important;
+  background-color: $primary !important;
+  border-color: $primary !important;
+}

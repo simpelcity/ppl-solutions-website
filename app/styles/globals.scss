@@ -1,0 +1,28 @@
+@import "./variables.scss";
+@import "./buttons.scss";
+
+body {
+  font-family: "Nunito" !important;
+}
+
+body,
+a {
+  font-weight: 500 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700 !important;
+}
+
+.banner-img {
+  height: calc(100vh - 76px);
+}
+
+.bg-dark-subtle {
+  --bs-dark-bg-subtle: #1a1d20;
+}

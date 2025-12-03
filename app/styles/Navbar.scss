@@ -1,0 +1,13 @@
+@import "./variables.scss";
+
+.active {
+  border-bottom: solid 2px $primary !important;
+}
+
+.nav-link {
+  border-bottom: solid 2px none;
+
+  &:hover {
+    border-bottom: solid 2px $light;
+  }
+}

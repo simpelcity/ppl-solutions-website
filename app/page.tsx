@@ -1,66 +1,64 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Container, Image, Row, Col } from 'react-bootstrap';
+import { ButtonOutline, CardText } from '@/components/';
+import '@/styles/Home.scss';
 
-export default function Home() {
+export const metadata = {
+  title: "PPL Solutions | Steering the future of Digital Logistics",
+  description: "Welcome to PPL Solutions VTC's official website",
+}
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <main className="fs-5">
+        <section className="d-flex w-100 text-light">
+          <Container className="px-0 position-relative d-flex justify-content-center" fluid>
+            <Image src={"/assets/images/banner.jpg"} alt="PPL Solutions Scania S650 V8" className="object-fit-cover w-100 home-img" fluid />
+            <div className="overlay position-absolute top-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+              <h4 className="text-center">"Steering the future of Digital Logistics"</h4>
+              <div className="mt-3 d-flex justify-content-center column-gap-3">
+                <ButtonOutline border="light" paddingx="20" paddingy="10" href="/apply">apply</ButtonOutline>
+                <ButtonOutline border="light" paddingx="20" paddingy="10" href="https://discord.gg/mnKcKwsYm4" target="_blank">discord</ButtonOutline>
+              </div>
+            </div>
+          </Container>
+        </section>
+        <section className="short-about text-center text-light bg-dark-subtle d-flex justify-content-center">
+          <Container className="my-5">
+            <h1 className="text-uppercase">
+              <span>about</span>{" "}
+              <span className="text-primary">us</span>
+            </h1>
+            <p className="m-0">
+              PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother.
+            </p>
+          </Container>
+        </section>
+        <section className="offers d-flex justify-content-center text-center bg-dark">
+          <Container className="my-5 d-flex flex-column align-items-center">
+            <h2 className="text-uppercase mb-3 text-light mb-4">
+              <span>what do we</span>{" "}
+              <span className="text-primary">offer</span>{" "}
+              <span>?</span>
+            </h2>
+            <Row className="w-100 d-flex justify-content-center row-gap-4">
+              <Col xs={12} md={6} xl={4}><CardText title="friendly staff" icon="FaUsers">We have a small but extremely friendly staff team that can help you with any problem you might face while driving for us.</CardText></Col>
+              <Col xs={12} md={6} xl={4}><CardText title="save-edits" icon="FaEdit">Our drivers have access to a wide variety of custom-made save-edits, including full-sets of trucks, custom parts, and much more.</CardText></Col>
+              <Col xs={12} md={6} xl={4}><CardText title="custom mods" icon="FaGears">We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode.</CardText></Col>
+            </Row>
+          </Container>
+        </section>
+        <section className="apply-today d-flex justify-conetent-center text-center bg-dark-subtle text-light">
+          <Container className="my-5">
+            <h2 className="text-uppercase">
+              <span>apply</span>{" "}
+              <span className="text-primary">today</span>
+            </h2>
+            <p>Apply through our discord server today, and start your amazing journey with PPL Solutions.</p>
+            <ButtonOutline border="primary" text="primary">apply now</ButtonOutline>
+          </Container>
+        </section>
       </main>
-    </div>
+    </>
   );
 }

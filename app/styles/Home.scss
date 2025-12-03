@@ -1,0 +1,11 @@
+@import "./variables.scss";
+
+.home-img {
+  height: calc(100vh - 76px);
+}
+
+.overlay {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(3.7px);
+}

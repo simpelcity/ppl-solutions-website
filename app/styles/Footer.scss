@@ -1,0 +1,23 @@
+@import "./variables.scss";
+
+.react-icons {
+  font-size: 3rem;
+  border-radius: 50%;
+}
+
+.bg-discord {
+  background-color: #5865f2;
+}
+
+.bg-tiktok {
+  background-color: #fe2c55;
+}
+
+.bg-tmp {
+  background-color: #ac2925;
+}
+
+.footer-link > span:hover,
+.footer-link > span:active {
+  color: $primary !important;
+}
