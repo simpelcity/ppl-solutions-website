@@ -28,7 +28,6 @@ export default function LoginForm() {
         return
       }
 
-      // Signed in via Supabase client — redirect
       router.push("/drivershub")
     } catch (err: any) {
       console.error(err)
@@ -107,3 +106,4 @@ export default function LoginForm() {
     </>
   )
 }
+

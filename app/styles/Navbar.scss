@@ -11,3 +11,16 @@
     border-bottom: solid 2px $light;
   }
 }
+
+@media (max-width: 992px) {
+  #main-navbar > .navbar-nav .nav-link {
+    background-color: #373737;
+    border-radius: 0.25rem;
+  }
+}
+
+.navbar-toggler {
+  box-shadow: none !important;
+  border: none !important;
+}
+

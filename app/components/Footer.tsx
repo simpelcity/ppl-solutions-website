@@ -8,11 +8,11 @@ import "@/styles/Footer.scss"
 
 export default function Footer() {
   const footerLinks = [
-    { title: "Home", href: "/" },
-    { title: "Events", href: "/events" },
-    { title: "Team", href: "/team" },
-    { title: "Gallery", href: "/gallery" },
-    { title: "Contact", href: "/contact" },
+    { title: "Home", href: "" },
+    { title: "Events", href: "events" },
+    { title: "Team", href: "team" },
+    { title: "Gallery", href: "gallery" },
+    { title: "Contact", href: "contact" },
   ]
   const currentYear = new Date().getFullYear()
 

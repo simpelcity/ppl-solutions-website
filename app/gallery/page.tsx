@@ -16,7 +16,7 @@ export default function GalleryPage() {
       <main className="fs-5">
         <StartBanner>gallery</StartBanner>
         <section className="d-flex w-100 bg-dark-subtle text-center">
-          <Container className="my-5">
+          <Container className="d-flex justify-content-center my-5">
             <Row className="w-100 row-gap-4 d-flex justify-content-center">
               {galleryItems.map((item) => (
                 <Col xs={12} md={6} xl={3} key={item.title}>
@@ -30,3 +30,4 @@ export default function GalleryPage() {
     </>
   )
 }
+

@@ -10,3 +10,6 @@ export { default as DivTeam } from './DivTeam';
 export { default as StartBanner } from './StartBanner';
 export { default as LoginForm } from './LoginForm';
 export { default as RegisterForm } from './RegisterForm';
+export { default as CardEvents } from './CardEvents';
+export { default as TableJobs } from './TableJobs';
+export { default as PlaceholderTable } from './PlaceholderTable';

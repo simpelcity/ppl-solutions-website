@@ -1,0 +1,13 @@
+@import "./variables.scss";
+
+.table-card-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table {
+  white-space: nowrap;
+  min-width: 1595px;
+}
+

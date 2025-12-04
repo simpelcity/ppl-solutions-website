@@ -13,15 +13,17 @@ export default function ButtonOutline({
   paddingy,
   text = "light",
   width,
+  classes,
   ...props
 }: ButtonOutlineProps) {
   return (
     <Button
       variant="transparent"
-      className={`border border-${width} border-${border} text-uppercase text-${text} fw-bold rounded-1 btn-outline-${border}`}
+      className={`border border-${width} border-${border} text-uppercase text-${text} fw-bold rounded-1 btn-outline-${border} ${classes}`}
       style={{ padding: `${paddingy}px ${paddingx}px` }}
       {...props}>
       {children}
     </Button>
   )
 }
+

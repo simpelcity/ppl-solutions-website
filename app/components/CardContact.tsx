@@ -13,9 +13,9 @@ export default function CardContact() {
           <Form
             method="post"
             action="https://formspree.io/f/mqapoajo"
-            className="text-light text-start d-flex column-gap-2"
+            className="text-light text-start d-flex flex-column flex-md-row column-gap-2 row-gap-3"
             data-bs-theme="dark">
-            <Col xs={8} xl={10}>
+            <Col xs={12} md={10} xl={10}>
               <Form.Group className="mb-2">
                 <Form.Label>Name / Discord username *</Form.Label>
                 <Form.Control
@@ -47,11 +47,17 @@ export default function CardContact() {
                   required
                 />
               </Form.Group>
-              <ButtonOutline type="submit" border="primary" text="primary" paddingy="10" paddingx="20" width="2">
-                Send
-              </ButtonOutline>
+              <div className="d-grid d-md-inline-block">
+                <ButtonOutline type="submit" border="primary" text="primary" paddingy="10" paddingx="20" width="2">
+                  Send
+                </ButtonOutline>
+              </div>
             </Col>
-            <Col xs={4} xl={2} className="d-flex flex-column align-items-center justify-content-center">
+            <Col
+              xs={12}
+              md={2}
+              xl={2}
+              className="d-flex flex-row flex-md-column align-items-center justify-content-center">
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
                 <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="me-1">
                   <IconContext.Provider value={{ className: "react-icons" }}>
@@ -83,3 +89,4 @@ export default function CardContact() {
     </>
   )
 }
+
