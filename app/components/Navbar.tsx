@@ -17,29 +17,6 @@ const Navbar: React.FC = () => {
   const router = useRouter()
   const showAuth = Boolean(user && pathname && pathname.startsWith("/drivershub"))
 
-  React.useEffect(() => {
-    if (user && showAuth) {
-      const fetchAvatar = async () => {
-        try {
-          const token = (await supabase.auth.getSession()).data.session?.access_token
-          if (!token) return
-          const res = await fetch("/api/profile/avatar/signed", {
-            headers: { Authorization: `Bearer ${token}` },
-          })
-          const json = await res.json()
-          if (res.ok && json.signed_url) {
-            setAvatarUrl(json.signed_url)
-          }
-        } catch (e) {
-          // ignore
-        }
-      }
-      fetchAvatar()
-    } else {
-      setAvatarUrl(null)
-    }
-  }, [user, showAuth])
-
   const handleLogout = async () => {
     if (!logout) return
     await logout()
@@ -80,18 +57,6 @@ const Navbar: React.FC = () => {
               (showAuth ? (
                 <>
                   <Nav.Item className="me-2 d-flex align-items-center">
-                    {avatarUrl || (user as any)?.user_metadata?.avatar_url ? (
-                      <Image
-                        src={avatarUrl ?? (user as any)?.user_metadata?.avatar_url}
-                        alt="avatar"
-                        width={36}
-                        height={36}
-                        roundedCircle
-                        className="me-2"
-                      />
-                    ) : (
-                      <FaUser size={36} className="me-2" />
-                    )}
                     <span className="nav-link">{(user as any)?.user_metadata?.username ?? user?.email}</span>
                   </Nav.Item>
                   <Nav.Item>
