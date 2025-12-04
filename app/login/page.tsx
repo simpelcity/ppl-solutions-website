@@ -1,13 +1,11 @@
-"use client"
-
 import { Container, Row, Col } from "react-bootstrap"
 import { LoginForm } from "@/components"
-import "@/styles/Login.scss"
+import "@/styles/AuthCards.scss"
 
 export default function LoginPage() {
   return (
     <>
-      <main className="fs-5 main-login">
+      <main className="fs-5 main">
         <section className="d-flex w-100 text-light">
           <Container className="my-5 d-flex justify-content-center">
             <Row className="w-100 d-flex justify-content-center align-items-center">

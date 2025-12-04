@@ -32,6 +32,15 @@ main {
   min-height: calc(100vh - 76px);
 }
 
+.main {
+  background: url(/assets/images/banner-3.jpg);
+  background-size: cover;
+}
+
+.main > section {
+  height: calc(100vh - 76px);
+}
+
 .input:focus,
 .form-check-input:focus {
   border-color: none !important;

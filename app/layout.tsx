@@ -8,7 +8,7 @@ import "@/styles/globals.scss"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const hideFooter = pathname === "/login"
+  const hideFooter = pathname === "/login" || pathname === "/reset-password" || pathname === "/forgot-password"
 
   return (
     <html lang="en">

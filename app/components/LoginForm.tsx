@@ -15,9 +15,25 @@ export default function LoginForm() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) setError(error.message)
-    else router.push("/drivershub")
+    setError("")
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.trim().toLowerCase(),
+        password,
+      })
+
+      if (error) {
+        setError(error.message)
+        return
+      }
+
+      // Signed in via Supabase client — redirect
+      router.push("/drivershub")
+    } catch (err: any) {
+      console.error(err)
+      setError(err?.message ?? "Unexpected error")
+    }
   }
 
   return (
@@ -49,7 +65,7 @@ export default function LoginForm() {
             </Form.Group>
             <Form.Group className="mb-2 d-flex justify-content-between align-items-center">
               <Form.Label className="m-0">Password</Form.Label>
-              <a href="forgot-password" className="text-light m-0">
+              <a href="/forgot-password" className="text-light m-0">
                 forgot password?
               </a>
             </Form.Group>
