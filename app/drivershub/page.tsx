@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/AuthContext"
+import ProfilePictureUpload from "@/components/ProfilePictureUpload"
 
 export default function DriversHubPage() {
   const { session, loading } = useAuth()
@@ -28,6 +29,7 @@ export default function DriversHubPage() {
     <div className="p-4">
       <h1>Drivers Hub</h1>
       <p>Welcome, {username}</p>
+      <ProfilePictureUpload onUploaded={(url) => console.log("uploaded", url)} />
     </div>
   )
 }

@@ -4,7 +4,7 @@
   border-bottom: solid 2px $primary !important;
 }
 
-.nav-link {
+.navbar-nav:first-child .nav-link {
   border-bottom: solid 2px none;
 
   &:hover {
