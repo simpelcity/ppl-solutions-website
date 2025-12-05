@@ -11,3 +11,33 @@
   min-width: 1595px;
 }
 
+.pagination-div .btn-pagination:disabled {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.btn-pagination {
+  height: fit-content !important;
+}
+
+.page-link:hover {
+  color: $light !important;
+}
+
+.table-card-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.table-card-scroll::-webkit-scrollbar-track {
+  background: rgba($light, 0.3);
+}
+
+.table-card-scroll::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 0.5rem;
+}
+
+.drivershub {
+  height: calc(100vh - 76px);
+}
+

@@ -1,14 +1,20 @@
 @import "./variables.scss";
 
-.active {
+.navbar-nav .active {
   border-bottom: solid 2px $primary !important;
+  @media (min-width: 1200px) {
+    padding: 0 !important;
+  }
 }
 
 .navbar-nav:first-child .nav-link {
-  border-bottom: solid 2px none;
+  @media (min-width: 1200px) {
+    padding: 0 0 2px 0 !important;
 
-  &:hover {
-    border-bottom: solid 2px $light;
+    &:hover {
+      border-bottom: solid 2px $light;
+      padding: 0 !important;
+    }
   }
 }
 
@@ -22,5 +28,28 @@
 .navbar-toggler {
   box-shadow: none !important;
   border: none !important;
+}
+
+@media (max-width: 991px) {
+  #main-navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #212529;
+    z-index: 9999;
+  }
+
+  .navbar-collapse.collapse:not(.show) {
+    display: none !important;
+  }
+
+  .navbar-collapse.show {
+    display: block !important;
+  }
+
+  header {
+    position: relative;
+  }
 }
 

@@ -1,10 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Table } from "react-bootstrap"
+import { Table, Button } from "react-bootstrap"
 import { PlaceholderTable } from "@/components"
 import { useAuth } from "@/lib/AuthContext"
-import { ButtonOutline } from "@/components"
+import { ButtonPrimary, ButtonSecondary } from "@/components"
+import { MdNavigateBefore } from "react-icons/md"
+import { MdNavigateNext } from "react-icons/md"
+import { useRouter } from "next/navigation"
 
 type Job = any
 
@@ -18,6 +21,7 @@ export default function TableJobs() {
   const [error, setError] = useState<string | null>(null)
   const [showAll, setShowAll] = useState<boolean>(false)
   const [allJobs, setAllJobs] = useState<Job[]>([])
+  const router = useRouter()
 
   if (!session) return null
   const driverUsername = (session as any).user?.user_metadata?.username || session.user.email
@@ -50,6 +54,7 @@ export default function TableJobs() {
       throw new Error(`Failed to fetch jobs (status ${res.status}): ${text}`)
     }
     const payload = await res.json()
+    console.log(payload)
     return payload
   }
 
@@ -112,38 +117,45 @@ export default function TableJobs() {
     }
   }, [driverUsername])
 
-  const handleNext = async () => {
-    if (currentPage <= 1) return
-    const nextPage = currentPage - 1
+  const goToDisplayPage = async (displayPageNum: number) => {
+    const targetApiPage = lastPage - displayPageNum + 1
+    if (targetApiPage < 1 || targetApiPage > lastPage) return
+
     setLoading(true)
     setError(null)
+
     try {
-      const payload = await fetchJobsPage(nextPage)
+      const payload = await fetchJobsPage(targetApiPage)
       setJobs(Array.isArray(payload.data) ? payload.data.slice().reverse() : [])
-      setCurrentPage(nextPage)
+      setCurrentPage(targetApiPage)
     } catch (err: any) {
       console.error(err)
-      setError(err.message ?? "Failed to load next page")
+      setError(err.message ?? "Failed to load page")
     } finally {
       setLoading(false)
     }
   }
 
-  const handlePrevious = async () => {
-    if (currentPage >= lastPage) return
-    const prevPage = currentPage + 1
-    setLoading(true)
-    setError(null)
-    try {
-      const payload = await fetchJobsPage(prevPage)
-      setJobs(Array.isArray(payload.data) ? payload.data.slice().reverse() : [])
-      setCurrentPage(prevPage)
-    } catch (err: any) {
-      console.error(err)
-      setError(err.message ?? "Failed to load previous page")
-    } finally {
-      setLoading(false)
+  const getDisplayPages = (): (number | "ellipsis")[] => {
+    const total = lastPage
+    const currentDisplay = lastPage - currentPage + 1
+    if (total <= 9) {
+      return Array.from({ length: total }, (_, i) => i + 1)
     }
+
+    const pages: (number | "ellipsis")[] = []
+    const left = Math.max(1, currentDisplay - 2)
+    const right = Math.min(total, currentDisplay + 2)
+
+    pages.push(1)
+    if (left > 2) pages.push("ellipsis")
+    for (let p = left; p <= right; p++) {
+      if (p !== 1 && p !== total) pages.push(p)
+    }
+    if (right < total - 1) pages.push("ellipsis")
+    if (total !== 1) pages.push(total)
+
+    return pages
   }
 
   const handleToggleShowAll = async () => {
@@ -184,11 +196,11 @@ export default function TableJobs() {
     new Date(ts).toLocaleDateString("nl-NL", { day: "2-digit", month: "2-digit", year: "numeric" })
 
   const tableItems = [
+    { title: "date" },
     { title: "username" },
     { title: "game" },
     { title: "from - to" },
     { title: "cargo" },
-    { title: "date" },
     { title: "truck" },
     { title: "distance" },
     { title: "income" },
@@ -198,7 +210,7 @@ export default function TableJobs() {
     <>
       <div className="table-card-scroll">
         {loading ? (
-          <PlaceholderTable columns={8} rows={6} />
+          <PlaceholderTable columns={8} rows={10} />
         ) : error ? (
           <div className="text-danger text-center py-3">{error}</div>
         ) : (
@@ -207,7 +219,9 @@ export default function TableJobs() {
               <thead className="">
                 <tr className="text-uppercase">
                   {tableItems.map((item) => (
-                    <th className="bg-primary px-4 py-2">{item.title}</th>
+                    <th key={item.title} className="bg-primary px-4 py-2">
+                      {item.title}
+                    </th>
                   ))}
                 </tr>
               </thead>
@@ -244,25 +258,66 @@ export default function TableJobs() {
           </>
         )}
       </div>
-      <div className="d-flex align-items-center justify-content-between mt-3 gap-2">
+      <div className="d-flex flex-column flex-md-row align-items-center justify-content-md-between mt-4 gap-2 ms-0 ms-md-4">
         {!showAll && (
-          <div className="text-light">
-            Page {displayPage} of {lastPage}
+          <div className="text-primary border border-light border-opacity-25 px-3 py-2 rounded-1 small">
+            Showing page {displayPage} of {lastPage}
           </div>
         )}
 
-        <div className="d-flex justify-content-center align-items-center column-gap-2">
+        <div className="pagination-div d-flex flex-column flex-md-row justify-content-center align-items-center row-gap-3 column-gap-3">
+          <ButtonPrimary classes="py-1" onClick={handleToggleShowAll}>
+            {showAll ? "Show Paginated" : "show all jobs"}
+          </ButtonPrimary>
           {!showAll && (
             <>
-              <ButtonOutline onClick={handlePrevious} disabled={currentPage >= lastPage}>
-                previous
-              </ButtonOutline>
-              <ButtonOutline onClick={handleNext} disabled={currentPage <= 1}>
-                next
-              </ButtonOutline>
+              <div className="d-flex justify-content-center align-items-center column-gap-1">
+                <Button
+                  className="p-1 btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
+                  onClick={() => {
+                    if (currentPage < lastPage) goToDisplayPage(displayPage - 1)
+                  }}
+                  disabled={currentPage >= lastPage}>
+                  <MdNavigateBefore className="fs-4" />
+                </Button>
+
+                <nav aria-label="Job pages" className="">
+                  <ul className="pagination mb-0 column-gap-1">
+                    {getDisplayPages().map((p, idx) =>
+                      p === "ellipsis" ? (
+                        <li key={`el-${idx}`} className="page-item disabled">
+                          <span className="page-link">…</span>
+                        </li>
+                      ) : (
+                        <li
+                          key={`p-${p}`}
+                          className={`page-item d-flex align-items-center ${displayPage === p ? "active" : ""}`}>
+                          <button
+                            className={`page-link rounded-3 py-1 d-flex align-items-center ${
+                              displayPage === p ? "bg-primary" : "bg-transparent border-0 text-light text-opacity-50"
+                            }`}
+                            onClick={() => goToDisplayPage(p as number)}
+                            aria-current={displayPage === p ? "page" : undefined}
+                            disabled={displayPage === p}>
+                            {p}
+                          </button>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </nav>
+
+                <Button
+                  className="p-1 btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
+                  onClick={() => {
+                    if (currentPage > 1) goToDisplayPage(displayPage + 1)
+                  }}
+                  disabled={currentPage <= 1}>
+                  <MdNavigateNext className="fs-4" />
+                </Button>
+              </div>
             </>
           )}
-          <ButtonOutline onClick={handleToggleShowAll}>{showAll ? "Show Paginated" : "Show All Jobs"}</ButtonOutline>
         </div>
       </div>
     </>

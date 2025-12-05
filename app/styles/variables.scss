@@ -1,5 +1,8 @@
 $primary: #009a86;
 $secondary: #043b32;
 $light: whitesmoke;
+$dropdown-link-hover-bg: $primary;
+$dropdown-link-color: $light;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+

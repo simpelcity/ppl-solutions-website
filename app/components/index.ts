@@ -13,3 +13,5 @@ export { default as RegisterForm } from './RegisterForm';
 export { default as CardEvents } from './CardEvents';
 export { default as TableJobs } from './TableJobs';
 export { default as PlaceholderTable } from './PlaceholderTable';
+export { default as CardTeamForm } from './CardTeamForm';
+export { default as CardGalleryForm } from './CardGalleryForm';

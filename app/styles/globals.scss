@@ -42,8 +42,10 @@ main {
 }
 
 .input:focus,
-.form-check-input:focus {
+.form-check-input:focus,
+.page-link:focus {
   border-color: none !important;
   box-shadow: none !important;
   outline: none !important;
 }
+

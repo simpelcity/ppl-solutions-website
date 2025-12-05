@@ -6,13 +6,20 @@ interface ButtonPrimaryProps {
   [key: string]: any
 }
 
-export default function ButtonPrimary({ children, text = "light", ...props }: ButtonPrimaryProps) {
+export default function ButtonPrimary({
+  children,
+  text = "light",
+  border = "primary",
+  classes,
+  ...props
+}: ButtonPrimaryProps) {
   return (
     <Button
       variant="primary"
-      className={`border border-2 border-primary text-uppercase text-${text} w-100 fw-bold rounded-1`}
+      className={`border border-2 border-${border} text-uppercase text-${text} fw-bold rounded-1 ${classes}`}
       {...props}>
       {children}
     </Button>
   )
 }
+
