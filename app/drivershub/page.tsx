@@ -149,6 +149,12 @@ export default function DriversHubPage() {
             </div>
             <div className="content-wrapper">
               <h2>Dashboard</h2>
+              {/* <Card className="w-100 bg-dark rounded-0 border-0 shadow">
+              <CardBody className="p-4">
+                <CardTitle className="text-uppercase fs-2 text-light mb-3">user jobs</CardTitle>
+                <TableJobs />
+              </CardBody>
+            </Card> */}
             </div>
           </Container>
         </section>
