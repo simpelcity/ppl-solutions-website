@@ -2,6 +2,7 @@
 
 .table-card-scroll {
   width: 100%;
+  max-width: 75vw;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -34,10 +35,10 @@
 
 .table-card-scroll::-webkit-scrollbar-thumb {
   background: $primary;
-  border-radius: 0.5rem;
+  border-radius: 0;
 }
 
 .drivershub {
-  height: calc(100vh - 76px);
+  min-height: calc(100vh - 76px);
 }
 

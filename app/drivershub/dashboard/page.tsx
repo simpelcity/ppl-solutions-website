@@ -1,14 +1,17 @@
-import { CardTeamForm } from "@/components"
-import { Container, ListGroup } from "react-bootstrap"
+import { CardTeamForm, Dashboard } from "@/components"
+import { Container, ListGroup, Row, Col } from "react-bootstrap"
+import "@/styles/Drivershub.scss"
 
 export default function DashboardPage() {
   return (
     <main className="fs-5">
-      <section className="w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
-        <Container className="d-flex justify-content-center">
-          <h1 className="mb-3">Dashboard</h1>
-          <CardTeamForm />
-        </Container>
+      <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
+        <Dashboard title="Dashboard">
+          <Row className="w-100">
+            <CardTeamForm />
+            <Col xs={12} md={6} xl={6}></Col>
+          </Row>
+        </Dashboard>
       </section>
     </main>
   )
