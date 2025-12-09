@@ -9,7 +9,8 @@ import { BsDownload } from "react-icons/bs"
 import DivEvents from "@/components/DivEvents"
 
 export default async function CardEvents() {
-  const response = await fetch("/api/events", { next: { revalidate: 60 } })
+  const baseUrl = process.env.BASE_URL || "http://localhost:3000"
+  const response = await fetch(`${baseUrl}/api/events`, { next: { revalidate: 60 } })
   if (!response.ok) throw new Error(`Failed to fetch events: ${response.status}`)
   const data = await response.json()
   const events = data.response
