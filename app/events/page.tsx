@@ -2,6 +2,11 @@ import { StartBanner } from "@/components"
 import { Container, Row } from "react-bootstrap"
 import CardEvents from "@/components/CardEvents"
 
+export const metadata = {
+  title: "Events | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Events page",
+}
+
 export default async function EventsPage() {
   return (
     <>

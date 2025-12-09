@@ -2,6 +2,11 @@ import { Container, Row, Col } from "react-bootstrap"
 import { RegisterForm } from "@/components"
 import "@/styles/AuthCards.scss"
 
+export const metadata = {
+  title: "Register | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Register page",
+}
+
 export default function RegisterPage() {
   return (
     <>
@@ -19,3 +24,4 @@ export default function RegisterPage() {
     </>
   )
 }
+

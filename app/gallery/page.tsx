@@ -1,6 +1,11 @@
 import { StartBanner, CardGallery } from "@/components"
 import { Container, Row, Col } from "react-bootstrap"
 
+export const metadata = {
+  title: "Gallery | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Gallery page",
+}
+
 export default function GalleryPage() {
   const galleryItems = [
     { src: "lukas-scania.jpg", title: "Scania by Lukyy09" },

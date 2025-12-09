@@ -7,6 +7,11 @@ import { useRouter } from "next/navigation"
 import { ButtonPrimary } from "@/components"
 import "@/styles/AuthCards.scss"
 
+export const metadata = {
+  title: "Reset your password | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's reset password page",
+}
+
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")

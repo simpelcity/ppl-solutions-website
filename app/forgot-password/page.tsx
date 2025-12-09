@@ -6,6 +6,11 @@ import { supabase } from "@/lib/supabaseClient"
 import { ButtonPrimary } from "@/components"
 import "@/styles/AuthCards.scss"
 
+export const metadata = {
+  title: "Forgot your password? | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Forgot password page",
+}
+
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")
   const [error, setError] = useState("")
@@ -103,3 +108,4 @@ export default function ForgotPasswordPage() {
     </>
   )
 }
+

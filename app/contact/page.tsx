@@ -2,6 +2,11 @@ import { Container, Row, Col } from "react-bootstrap"
 import { StartBanner, CardContact } from "@/components"
 import "@/styles/Contact.scss"
 
+export const metadata = {
+  title: "Contact | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Contact page",
+}
+
 export default function ContactPage() {
   return (
     <>
@@ -28,3 +33,4 @@ export default function ContactPage() {
     </>
   )
 }
+

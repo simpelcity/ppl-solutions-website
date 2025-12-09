@@ -2,6 +2,11 @@ import { CardTeamForm, Dashboard } from "@/components"
 import { Container, ListGroup, Row, Col } from "react-bootstrap"
 import "@/styles/Drivershub.scss"
 
+export const metadata = {
+  title: "Dashboard | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Admin Dashboard page",
+}
+
 export default function DashboardPage() {
   return (
     <main className="fs-5">

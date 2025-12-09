@@ -6,6 +6,11 @@ import { HiOutlineSwitchHorizontal } from "react-icons/hi"
 import { FaUserCircle } from "react-icons/fa"
 import "@/styles/Drivershub.scss"
 
+export const metadata = {
+  title: "Drivershub | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Drivershub page",
+}
+
 export default function DriversHubPage() {
   return (
     <>

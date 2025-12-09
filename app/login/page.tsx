@@ -2,6 +2,11 @@ import { Container, Row, Col } from "react-bootstrap"
 import { LoginForm } from "@/components"
 import "@/styles/AuthCards.scss"
 
+export const metadata = {
+  title: "Login | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Login page",
+}
+
 export default function LoginPage() {
   return (
     <>

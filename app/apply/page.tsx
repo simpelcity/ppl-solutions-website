@@ -5,6 +5,11 @@ import { StartBanner } from "@/components"
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa"
 import { IconContext } from "react-icons"
 
+export const metadata = {
+  title: "Contact | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Contact page",
+}
+
 export default function ApplyPage() {
   return (
     <>
@@ -59,3 +64,4 @@ export default function ApplyPage() {
     </>
   )
 }
+

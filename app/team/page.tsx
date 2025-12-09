@@ -2,6 +2,11 @@ import { StartBanner, DivTeam, CardTeam } from "@/components"
 import { Container, Row } from "react-bootstrap"
 import "@/styles/roles.scss"
 
+export const metadata = {
+  title: "Team | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's Team page",
+}
+
 export default function TeamPage() {
   return (
     <>
