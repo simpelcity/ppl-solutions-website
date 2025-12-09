@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
                   href={link.href}
                   className={`${
                     pathname === link.href ? "active" : ""
-                  } text-light fs-5 py-3 p-xl-0 text-center mx-xl-2`}>
+                  } text-light fs-5 px-xl-0 pt-xl-0 text-center mx-xl-2`}>
                   {link.title}
                 </Nav.Link>
               ))}

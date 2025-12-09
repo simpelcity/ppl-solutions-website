@@ -3,18 +3,22 @@
 .navbar-nav .active {
   border-bottom: solid 2px $primary !important;
   @media (min-width: 1200px) {
-    padding: 0 !important;
+    padding: 0;
   }
 }
 
 .navbar-nav:first-child .nav-link {
   @media (min-width: 1200px) {
-    padding: 0 0 2px 0 !important;
+    padding: 0 0 2px 0;
 
     &:hover {
       border-bottom: solid 2px $light;
-      padding: 0 !important;
+      padding: 0;
     }
+  }
+
+  @media (max-width: 992px) {
+    padding: 1rem 0;
   }
 }
 
