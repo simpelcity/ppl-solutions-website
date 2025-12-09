@@ -5,13 +5,7 @@ import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabaseClient"
 import { useRouter } from "next/navigation"
 import { ButtonPrimary } from "@/components"
-import type { Metadata } from "next"
 import "@/styles/AuthCards.scss"
-
-export const metadata: Metadata = {
-  title: "Reset your password | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's reset password page",
-}
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState("")
@@ -21,6 +15,26 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [tokenValid, setTokenValid] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    document.title = "Reset your password | PPL Solutions"
+
+    let metaDesc = document.querySelector('meta[name="description"]')
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta")
+      metaDesc.setAttribute("name", "description")
+      document.head.appendChild(metaDesc)
+    }
+    metaDesc.setAttribute("content", "Welcome to PPL Solutions VTC's reset password page")
+
+    let ogTitle = document.querySelector('meta[property="og:title"]')
+    if (!ogTitle) {
+      ogTitle = document.createElement("meta")
+      ogTitle.setAttribute("property", "og:title")
+      document.head.appendChild(ogTitle)
+    }
+    ogTitle.setAttribute("content", "Reset your password | PPL Solutions")
+  }, [])
 
   useEffect(() => {
     const hash = window.location.hash.substring(1)

@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap"
 
 export const metadata = {
   title: "Gallery | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Gallery page",
+  description: "Welcome to PPL Solutions VTC's gallery page",
 }
 
 export default function GalleryPage() {

@@ -1,15 +1,12 @@
-"use client"
-
 import { Card, CardBody, CardTitle } from "react-bootstrap"
 import { StartBanner, TableJobs, Dashboard } from "@/components"
 import { HiOutlineSwitchHorizontal } from "react-icons/hi"
 import { FaUserCircle } from "react-icons/fa"
-import type { Metadata } from "next"
 import "@/styles/Drivershub.scss"
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Drivershub | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Drivershub page",
+  description: "Welcome to PPL Solutions VTC's drivershub page",
 }
 
 export default function DriversHubPage() {

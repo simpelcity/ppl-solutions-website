@@ -4,7 +4,7 @@ import "@/styles/roles.scss"
 
 export const metadata = {
   title: "Team | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Team page",
+  description: "Welcome to PPL Solutions VTC's team page",
 }
 
 export default function TeamPage() {

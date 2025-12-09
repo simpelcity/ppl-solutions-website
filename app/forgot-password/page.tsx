@@ -1,22 +1,36 @@
 "use client"
 
 import { Container, Row, Col, Card, Form, Image } from "react-bootstrap"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabaseClient"
 import { ButtonPrimary } from "@/components"
-import type { Metadata } from "next"
 import "@/styles/AuthCards.scss"
-
-export const metadata: Metadata = {
-  title: "Forgot your password? | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Forgot password page",
-}
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    document.title = "Forgot your password? | PPL Solutions"
+
+    let metaDesc = document.querySelector('meta[name="description"]')
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta")
+      metaDesc.setAttribute("name", "description")
+      document.head.appendChild(metaDesc)
+    }
+    metaDesc.setAttribute("content", "Welcome to PPL Solutions VTC's forgot password page")
+
+    let ogTitle = document.querySelector('meta[property="og:title"]')
+    if (!ogTitle) {
+      ogTitle = document.createElement("meta")
+      ogTitle.setAttribute("property", "og:title")
+      document.head.appendChild(ogTitle)
+    }
+    ogTitle.setAttribute("content", "Forgot your password? | PPL Solutions")
+  }, [])
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault()

@@ -4,7 +4,7 @@ import "@/styles/AuthCards.scss"
 
 export const metadata = {
   title: "Register | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Register page",
+  description: "Welcome to PPL Solutions VTC's register page",
 }
 
 export default function RegisterPage() {

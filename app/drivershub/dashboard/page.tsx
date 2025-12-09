@@ -4,7 +4,7 @@ import "@/styles/Drivershub.scss"
 
 export const metadata = {
   title: "Dashboard | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Admin Dashboard page",
+  description: "Welcome to PPL Solutions VTC's admin dashboard page",
 }
 
 export default function DashboardPage() {

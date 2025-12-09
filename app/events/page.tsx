@@ -4,7 +4,7 @@ import CardEvents from "@/components/CardEvents"
 
 export const metadata = {
   title: "Events | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Events page",
+  description: "Welcome to PPL Solutions VTC's events page",
 }
 
 export default async function EventsPage() {

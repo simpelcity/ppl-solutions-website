@@ -4,7 +4,7 @@ import "@/styles/AuthCards.scss"
 
 export const metadata = {
   title: "Login | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Login page",
+  description: "Welcome to PPL Solutions VTC's login page",
 }
 
 export default function LoginPage() {

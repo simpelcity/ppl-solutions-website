@@ -1,14 +1,11 @@
-"use client"
-
 import { Container, Card, Row, Col } from "react-bootstrap"
 import { StartBanner } from "@/components"
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Contact | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Contact page",
+export const metadata = {
+  title: "Apply | PPL Solutions",
+  description: "Welcome to PPL Solutions VTC's apply page",
 }
 
 export default function ApplyPage() {

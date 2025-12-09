@@ -4,7 +4,7 @@ import "@/styles/Contact.scss"
 
 export const metadata = {
   title: "Contact | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's Contact page",
+  description: "Welcome to PPL Solutions VTC's contact page",
 }
 
 export default function ContactPage() {
