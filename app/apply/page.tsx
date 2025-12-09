@@ -1,14 +1,32 @@
+"use client"
+
 import { Container, Card, Row, Col } from "react-bootstrap"
 import { StartBanner } from "@/components"
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa"
 import { IconContext } from "react-icons"
-
-export const metadata = {
-  title: "Apply | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's apply page",
-}
+import { useEffect } from "react"
 
 export default function ApplyPage() {
+  useEffect(() => {
+    document.title = "Apply | PPL Solutions"
+
+    let metaDesc = document.querySelector('meta[name="description"]')
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta")
+      metaDesc.setAttribute("name", "description")
+      document.head.appendChild(metaDesc)
+    }
+    metaDesc.setAttribute("content", "Welcome to PPL Solutions VTC's apply page")
+
+    let ogTitle = document.querySelector('meta[property="og:title"]')
+    if (!ogTitle) {
+      ogTitle = document.createElement("meta")
+      ogTitle.setAttribute("property", "og:title")
+      document.head.appendChild(ogTitle)
+    }
+    ogTitle.setAttribute("content", "Forgot your password? | PPL Solutions")
+  }, [])
+
   return (
     <>
       <main className="fs-5">
