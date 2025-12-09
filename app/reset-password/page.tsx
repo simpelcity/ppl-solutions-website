@@ -3,7 +3,7 @@
 import { Container, Row, Col, Card, Form, Image } from "react-bootstrap"
 import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabaseClient"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { ButtonPrimary } from "@/components"
 import "@/styles/AuthCards.scss"
 
@@ -15,12 +15,9 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [tokenValid, setTokenValid] = useState(false)
   const router = useRouter()
-  const searchParams = useSearchParams()
 
   useEffect(() => {
-    // Supabase sends recovery link with hash fragment: #access_token=...&type=recovery
-    // Parse the URL hash to get the token and type
-    const hash = window.location.hash.substring(1) // Remove the '#'
+    const hash = window.location.hash.substring(1)
     const params = new URLSearchParams(hash)
     const accessToken = params.get("access_token")
     const type = params.get("type")
@@ -184,3 +181,4 @@ export default function ResetPasswordPage() {
     </>
   )
 }
+

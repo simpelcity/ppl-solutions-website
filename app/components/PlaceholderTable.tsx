@@ -1,4 +1,3 @@
-// app/components/PlaceholderTable.tsx
 import Placeholder from "react-bootstrap/Placeholder"
 import Table from "react-bootstrap/Table"
 

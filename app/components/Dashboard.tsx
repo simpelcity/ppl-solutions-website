@@ -26,14 +26,14 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
 
   useEffect(() => {
     const fetchProfileAndRole = async () => {
-      if (!user?.user_metadata?.username) return // safe check
+      if (!user?.user_metadata?.username) return
 
       try {
         const res = await fetch("/api/team")
         if (!res.ok) return
 
         const { data: members }: { data: TeamMember[] } = await res.json()
-        const member = members.find((m) => m.name === user.user_metadata?.username) // optional chaining
+        const member = members.find((m) => m.name === user.user_metadata?.username)
         if (!member?.profile_url) return
 
         setProfileUrl(member.profile_url)

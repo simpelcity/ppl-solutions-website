@@ -2,6 +2,8 @@ import { StartBanner } from "@/components"
 import { Container, Row } from "react-bootstrap"
 import CardEvents from "@/components/CardEvents"
 
+export const dynamic = "force-dynamic"
+
 export default async function EventsPage() {
   return (
     <>
