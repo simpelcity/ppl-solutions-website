@@ -8,12 +8,8 @@ import { BsHddStack } from "react-icons/bs"
 import { BsDownload } from "react-icons/bs"
 import DivEvents from "@/components/DivEvents"
 
-interface CardEventsProps {
-  url: string
-}
-
-export default async function CardEvents({ url }: CardEventsProps) {
-  const response = await fetch(url, { next: { revalidate: 60 } })
+export default async function CardEvents() {
+  const response = await fetch("/api/events", { next: { revalidate: 60 } })
   if (!response.ok) throw new Error(`Failed to fetch events: ${response.status}`)
   const data = await response.json()
   const events = data.response

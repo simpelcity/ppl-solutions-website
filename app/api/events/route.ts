@@ -1,4 +1,3 @@
-// app/api/events/route.ts
 import { NextResponse } from "next/server"
 
 export async function GET() {
@@ -12,4 +11,3 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to fetch events" }, { status: 500 })
   }
 }
-export const dynamic = "force-dynamic";
