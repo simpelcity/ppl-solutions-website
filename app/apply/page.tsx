@@ -4,8 +4,9 @@ import { Container, Card, Row, Col } from "react-bootstrap"
 import { StartBanner } from "@/components"
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa"
 import { IconContext } from "react-icons"
+import type { Metadata } from "next"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Contact | PPL Solutions",
   description: "Welcome to PPL Solutions VTC's Contact page",
 }

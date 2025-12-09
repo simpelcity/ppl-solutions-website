@@ -4,9 +4,10 @@ import { Container, Row, Col, Card, Form, Image } from "react-bootstrap"
 import { useState } from "react"
 import { supabase } from "@/lib/supabaseClient"
 import { ButtonPrimary } from "@/components"
+import type { Metadata } from "next"
 import "@/styles/AuthCards.scss"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Forgot your password? | PPL Solutions",
   description: "Welcome to PPL Solutions VTC's Forgot password page",
 }
