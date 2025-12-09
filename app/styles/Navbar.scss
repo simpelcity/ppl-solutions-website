@@ -3,7 +3,7 @@
 .navbar-nav .active {
   border-bottom: solid 2px $primary !important;
   @media (min-width: 1200px) {
-    padding: 0;
+    padding: 0 !important;
   }
 }
 
