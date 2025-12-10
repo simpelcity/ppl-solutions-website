@@ -2,7 +2,6 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export async function GET() {
   try {
-    // fetch department-team-member joins with aliases
     const { data: items, error } = await supabaseAdmin
       .from("department_team_member")
       .select(`
@@ -10,11 +9,10 @@ export async function GET() {
         team_member:team_members!inner(id, name, profile_url, profile_path, admin),
         role:roles!inner(id, name, code)
       `)
-      .order("department_id", { ascending: true }); // ordering by pivot column
+      .order("department_id", { ascending: true });
 
     if (error) throw error;
 
-    // Resolve missing profile_url via storage if profile_path exists
     const itemsWithUrls = await Promise.all(
       (items || []).map(async (item: any) => {
         const member = item.team_member || {};
@@ -25,14 +23,11 @@ export async function GET() {
             const { data: publicUrlData } = supabaseAdmin.storage
               .from("members")
               .getPublicUrl(member.profile_path);
-
-            // attach resolved url (getPublicUrl returns data.publicUrl)
             return {
               ...item,
               team_member: { ...member, profile_url: publicUrlData?.publicUrl ?? null },
             };
           } catch (e) {
-            // non-fatal — return member without profile_url
             return item;
           }
         }

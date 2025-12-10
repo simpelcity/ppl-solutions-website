@@ -33,15 +33,11 @@ export default function CardTeamForm() {
 
       let payload = json.data ?? []
 
-      // If API returns joined rows (department/team_member/role), normalize to team_members
-      // Detect joined rows by checking first item
       if (Array.isArray(payload) && payload.length > 0 && payload[0].team_member) {
-        // map to team_member objects
         const membersMap = new Map<number, Member>()
         payload.forEach((item: any) => {
           const tm = item.team_member
           if (!tm || !tm.id) return
-          // keep first non-null profile_url if multiple rows exist for one member
           const existing = membersMap.get(tm.id)
           membersMap.set(tm.id, {
             id: tm.id,
@@ -56,9 +52,7 @@ export default function CardTeamForm() {
         return
       }
 
-      // Otherwise assume we received a flat members array already
       if (Array.isArray(payload)) {
-        // ensure each member at least includes the fields we expect
         const membersArray: Member[] = payload.map((m: any) => ({
           id: m.id,
           name: m.name,

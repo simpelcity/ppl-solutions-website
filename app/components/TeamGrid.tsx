@@ -54,7 +54,6 @@ export default function TeamGrid() {
     return <div className="text-danger">Error loading team: {error}</div>
   }
 
-  // Group by department id
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}
   ;(items || []).forEach((it) => {
     if (!it || !it.department || !it.team_member || !it.role) return

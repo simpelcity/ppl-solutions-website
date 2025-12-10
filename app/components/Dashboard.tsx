@@ -35,18 +35,15 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
         const json = await res.json()
         const payload = json.data ?? []
 
-        // Normalize to an array of members { name, profile_url, admin }
         let members: { name: string; profile_url?: string | null; admin?: boolean | string | null }[] = []
 
         if (Array.isArray(payload) && payload.length > 0) {
-          // joined rows case: item.team_member exists
           if (payload[0].team_member) {
             members = payload.map((item: any) => {
               const tm = item.team_member ?? {}
               return { name: tm.name, profile_url: tm.profile_url ?? null, admin: tm.admin ?? null }
             })
           } else {
-            // flat team_members array
             members = payload.map((m: any) => ({
               name: m.name,
               profile_url: m.profile_url ?? null,
@@ -60,11 +57,9 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
         console.log("member:", member)
         console.log("member.admin raw:", member?.admin)
 
-        // robust admin check (handle boolean true, string "true", etc.)
         const adminFlag = member?.admin === true || member?.admin === "true" || Boolean(member?.admin)
         setIsAdmin(adminFlag)
 
-        // set profile URL (allow null -> fallback image)
         setProfileUrl(member?.profile_url ?? null)
       } catch (err) {
         console.error("Failed to fetch team profile:", err)

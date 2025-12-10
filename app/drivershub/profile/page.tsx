@@ -1,13 +1,24 @@
 import React from "react"
 
-export const metadata = {
-  title: "Profile | PPL Solutions",
-  description: "Welcome to PPL Solutions VTC's driver profile page",
-}
-
 export default function ProfilePage() {
   return (
     <>
+      <title>Profile | PPL Solutions</title>
+      <meta
+        name="description"
+        content="PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Profile | PPL Solutions" />
+      <meta
+        property="og:description"
+        content="PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a
+              succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+      />
+      <meta property="og:url" content="https://ppl-solutions.vercel.app/drivershub/profile" />
+      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
+      <link rel="canonical" href="https://ppl-solutions.vercel.app/drivershub/profile" />
+
       <h1>Profile</h1>
     </>
   )

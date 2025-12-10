@@ -17,26 +17,6 @@ export default function ResetPasswordPage() {
   const router = useRouter()
 
   useEffect(() => {
-    document.title = "Reset your password | PPL Solutions"
-
-    let metaDesc = document.querySelector('meta[name="description"]')
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta")
-      metaDesc.setAttribute("name", "description")
-      document.head.appendChild(metaDesc)
-    }
-    metaDesc.setAttribute("content", "Welcome to PPL Solutions VTC's reset password page")
-
-    let ogTitle = document.querySelector('meta[property="og:title"]')
-    if (!ogTitle) {
-      ogTitle = document.createElement("meta")
-      ogTitle.setAttribute("property", "og:title")
-      document.head.appendChild(ogTitle)
-    }
-    ogTitle.setAttribute("content", "Reset your password | PPL Solutions")
-  }, [])
-
-  useEffect(() => {
     const hash = window.location.hash.substring(1)
     const params = new URLSearchParams(hash)
     const accessToken = params.get("access_token")
@@ -90,6 +70,22 @@ export default function ResetPasswordPage() {
   if (!tokenValid) {
     return (
       <>
+        <title>Reset your password | PPL Solutions</title>
+        <meta
+          name="description"
+          content="PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Reset your password | PPL Solutions" />
+        <meta
+          property="og:description"
+          content="PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a
+              succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+        />
+        <meta property="og:url" content="https://ppl-solutions.vercel.app/reset-password" />
+        <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
+        <link rel="canonical" href="https://ppl-solutions.vercel.app/reset-password" />
+
         <main className="fs-5 main">
           <section className="d-flex w-100 text-center">
             <Container className="d-flex justify-content-center my-5">
