@@ -8,8 +8,22 @@ export const metadata = {
 }
 
 export default function HomePage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "webSite",
+    name: "PPL Solutions VTC",
+    alternateName: "PPLS",
+    url: "https://ppl-solutions.vercel.app/",
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <main className="fs-5">
         <section className="d-flex w-100 text-light">
           <Container className="px-0 position-relative d-flex justify-content-center" fluid>
