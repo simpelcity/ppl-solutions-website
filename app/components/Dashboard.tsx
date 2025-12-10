@@ -32,12 +32,40 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
         const res = await fetch("/api/team")
         if (!res.ok) return
 
-        const { data: members }: { data: TeamMember[] } = await res.json()
-        const member = members.find((m) => m.name === user.user_metadata?.username)
-        if (!member?.profile_url) return
+        const json = await res.json()
+        const payload = json.data ?? []
 
-        setProfileUrl(member.profile_url)
-        setIsAdmin(member.admin === true)
+        // Normalize to an array of members { name, profile_url, admin }
+        let members: { name: string; profile_url?: string | null; admin?: boolean | string | null }[] = []
+
+        if (Array.isArray(payload) && payload.length > 0) {
+          // joined rows case: item.team_member exists
+          if (payload[0].team_member) {
+            members = payload.map((item: any) => {
+              const tm = item.team_member ?? {}
+              return { name: tm.name, profile_url: tm.profile_url ?? null, admin: tm.admin ?? null }
+            })
+          } else {
+            // flat team_members array
+            members = payload.map((m: any) => ({
+              name: m.name,
+              profile_url: m.profile_url ?? null,
+              admin: m.admin ?? null,
+            }))
+          }
+        }
+
+        const member = members.find((m) => m.name === user.user_metadata?.username)
+        console.log("members:", members)
+        console.log("member:", member)
+        console.log("member.admin raw:", member?.admin)
+
+        // robust admin check (handle boolean true, string "true", etc.)
+        const adminFlag = member?.admin === true || member?.admin === "true" || Boolean(member?.admin)
+        setIsAdmin(adminFlag)
+
+        // set profile URL (allow null -> fallback image)
+        setProfileUrl(member?.profile_url ?? null)
       } catch (err) {
         console.error("Failed to fetch team profile:", err)
       }
@@ -75,15 +103,15 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
 
   return (
     <>
-      <div className="sidebar-wrapper w-25 d-flex flex-column justify-content-between bg-light bg-opacity-25">
+      <div
+        className="sidebar-wrapper w-25 d-flex flex-column justify-content-between bg-light bg-opacity-25"
+        id="sidebar">
         <ul className="sidebar list-unstyled">
-          <li className="sidebar-header bg-light bg-opacity-10 py-3 px-3">
-            <a
-              href="#"
-              className="text-light d-flex align-items-center justify-content-between text-decoration-none column-gap-2">
+          <li className="sidebar-header bg-light bg-opacity-10 py-3 px-3 d-flex align-items-center justify-content-between ">
+            <a href="#" className="text-light text-decoration-none column-gap-2">
               <h3 className="m-0">Dashboard</h3>
-              <HiOutlineSwitchHorizontal />
             </a>
+            <HiOutlineSwitchHorizontal />
           </li>
           <li className="sidebar-title text-uppercase text-light text-opacity-25 fw-bold mt-3 mb-2 ps-3 text-start">
             navigation

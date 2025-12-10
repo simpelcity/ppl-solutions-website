@@ -2,32 +2,49 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export async function GET() {
   try {
-    const { data: members, error } = await supabaseAdmin
-      .from("team")
-      .select("*")
-      .order("id", { ascending: true });
+    // fetch department-team-member joins with aliases
+    const { data: items, error } = await supabaseAdmin
+      .from("department_team_member")
+      .select(`
+        department:departments!inner(id, name),
+        team_member:team_members!inner(id, name, profile_url, profile_path, admin),
+        role:roles!inner(id, name, code)
+      `)
+      .order("department_id", { ascending: true }); // ordering by pivot column
 
     if (error) throw error;
 
-    const membersWithUrls = members.map((member: any) => {
-      if (member.profile_url) {
-        return member;
-      }
+    // Resolve missing profile_url via storage if profile_path exists
+    const itemsWithUrls = await Promise.all(
+      (items || []).map(async (item: any) => {
+        const member = item.team_member || {};
+        if (member.profile_url) return item;
 
-      if (member.profile_path) {
-        const { data: publicUrlData } = supabaseAdmin.storage
-          .from("members")
-          .getPublicUrl(member.profile_path);
+        if (member.profile_path) {
+          try {
+            const { data: publicUrlData } = supabaseAdmin.storage
+              .from("members")
+              .getPublicUrl(member.profile_path);
 
-        return { ...member, profile_url: publicUrlData.publicUrl };
-      }
+            // attach resolved url (getPublicUrl returns data.publicUrl)
+            return {
+              ...item,
+              team_member: { ...member, profile_url: publicUrlData?.publicUrl ?? null },
+            };
+          } catch (e) {
+            // non-fatal — return member without profile_url
+            return item;
+          }
+        }
 
-      return member;
-    });
+        return item;
+      })
+    );
 
-    return new Response(JSON.stringify({ data: membersWithUrls }), { status: 200 });
+    return new Response(JSON.stringify({ data: itemsWithUrls }), { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    console.error("GET /api/team error:", err);
+    return new Response(JSON.stringify({ error: err.message || String(err) }), { status: 500 });
   }
 }
 
@@ -66,7 +83,7 @@ export async function POST(req: Request) {
     if (role) payload.role = role;
 
     const { data, error } = await supabaseAdmin
-      .from("team")
+      .from("team_members")
       .insert([payload])
       .select();
 
@@ -96,7 +113,7 @@ export async function PUT(req: Request) {
 
     if (file) {
       const { data: memberData, error: fetchError } = await supabaseAdmin
-        .from("team")
+        .from("team_members")
         .select("profile_url")
         .eq("id", id)
         .single();
@@ -132,7 +149,7 @@ export async function PUT(req: Request) {
     }
 
     const { data, error } = await supabaseAdmin
-      .from("team")
+      .from("team_members")
       .update(updates)
       .eq("id", id)
       .select();
@@ -151,7 +168,7 @@ export async function DELETE(req: Request) {
     const { id } = await req.json();
     if (!id) return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
 
-    const { data, error } = await supabaseAdmin.from("team").delete().eq("id", id).select();
+    const { data, error } = await supabaseAdmin.from("team_members").delete().eq("id", id).select();
     if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
     return new Response(JSON.stringify({ data }), { status: 200 });
@@ -169,7 +186,7 @@ export async function PATCH(req: Request) {
     }
 
     const { data: memberData, error: fetchError } = await supabaseAdmin
-      .from("team")
+      .from("team_members")
       .select("id, profile_url, profile_path")
       .eq("id", id)
       .single();
@@ -212,7 +229,7 @@ export async function PATCH(req: Request) {
     }
 
     const { data: updated, error: updateError } = await supabaseAdmin
-      .from("team")
+      .from("team_members")
       .update({ profile_url: null, profile_path: null })
       .eq("id", id)
       .select()

@@ -30,7 +30,47 @@ export default function CardTeamForm() {
       if (!res.ok) {
         throw new Error(json?.error || `Failed to fetch team (${res.status})`)
       }
-      setMembers(json.data || [])
+
+      let payload = json.data ?? []
+
+      // If API returns joined rows (department/team_member/role), normalize to team_members
+      // Detect joined rows by checking first item
+      if (Array.isArray(payload) && payload.length > 0 && payload[0].team_member) {
+        // map to team_member objects
+        const membersMap = new Map<number, Member>()
+        payload.forEach((item: any) => {
+          const tm = item.team_member
+          if (!tm || !tm.id) return
+          // keep first non-null profile_url if multiple rows exist for one member
+          const existing = membersMap.get(tm.id)
+          membersMap.set(tm.id, {
+            id: tm.id,
+            name: tm.name,
+            profile_url: tm.profile_url ?? existing?.profile_url ?? null,
+            function: (tm as any).function ?? existing?.function ?? null,
+            role: (tm as any).role ?? existing?.role ?? null,
+          })
+        })
+        const membersArray = Array.from(membersMap.values())
+        setMembers(membersArray)
+        return
+      }
+
+      // Otherwise assume we received a flat members array already
+      if (Array.isArray(payload)) {
+        // ensure each member at least includes the fields we expect
+        const membersArray: Member[] = payload.map((m: any) => ({
+          id: m.id,
+          name: m.name,
+          profile_url: m.profile_url ?? null,
+          function: m.function ?? null,
+          role: m.role ?? null,
+        }))
+        setMembers(membersArray)
+        return
+      }
+
+      setMembers([])
     } catch (err: any) {
       setError(err.message ?? String(err))
     }
@@ -124,7 +164,7 @@ export default function CardTeamForm() {
 
   return (
     <Col xs={12} md={6} xl={6}>
-      <Card className="p-3 my-3">
+      <Card className="p-3 my-3" data-bs-theme="dark">
         <Card.Title>{editingId ? "Edit Member" : "Create New Member"}</Card.Title>
         <Card.Body>
           <Form onSubmit={handleSubmit}>
@@ -137,54 +177,6 @@ export default function CardTeamForm() {
                 placeholder="Username"
                 required
               />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Member Title (Function)</Form.Label>
-              <Form.Select
-                value={functionTitle}
-                onChange={(e) => {
-                  const selected = e.target.value
-                  setFunctionTitle(selected)
-
-                  const roleMap: Record<string, string> = {
-                    Founder: "founder",
-                    "Chief Executive Officer": "ceo",
-                    "Chief Administrative Officer": "cao",
-                    "Chief Operating Officer": "coo",
-                    "Community Manager": "cm",
-                    "Human Resources Director": "hrd",
-                    "Human Resources": "hr",
-                    "Recruitment Team Director": "rtd",
-                    "Recruitment Team": "rt",
-                    "Event Team Manager": "etm",
-                    "Event Team": "et",
-                    "Media Team Manager": "mtm",
-                    "Media Team": "mt",
-                    "Convoy Control Manager": "ccm",
-                    "Convoy Control": "cc",
-                  }
-
-                  setRoleCode(roleMap[selected] ?? "")
-                }}
-                required>
-                <option value="">Select a role</option>
-                <option>Founder</option>
-                <option>Chief Executive Officer</option>
-                <option>Chief Administrative Officer</option>
-                <option>Chief Operating Officer</option>
-                <option>Community Manager</option>
-                <option>Human Resources Director</option>
-                <option>Human Resources</option>
-                <option>Recruitment Team Director</option>
-                <option>Recruitment Team</option>
-                <option>Event Team Manager</option>
-                <option>Event Team</option>
-                <option>Media Team Manager</option>
-                <option>Media Team</option>
-                <option>Convoy Control Manager</option>
-                <option>Convoy Control</option>
-              </Form.Select>
             </Form.Group>
 
             <Form.Group className="mb-3">
