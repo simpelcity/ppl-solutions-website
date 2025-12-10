@@ -50,6 +50,7 @@ export default async function CardEvents() {
                 className="rounded-0"
                 src={event.banner || "/default-event-image.jpg"}
                 alt={event.name}
+                loading="lazy"
               />
               <CardBody>
                 <CardTitle className="fs-4 mb-3 text-start">{event.name}</CardTitle>

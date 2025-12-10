@@ -27,7 +27,14 @@ export default function Footer() {
             className="d-flex flex-column align-items-center text-center align-items-xl-start text-xl-start">
             <div className="d-flex align-items-center mb-3">
               <a href="/" className="d-flex flex-row text-decoration-none text-light column-gap-2">
-                <Image src={"/assets/images/ppls-logo.png"} alt="PPLS Logo" width={50} height={50} roundedCircle />
+                <Image
+                  src={"/assets/images/ppls-logo.png"}
+                  alt="PPLS Logo"
+                  loading="lazy"
+                  width={50}
+                  height={50}
+                  roundedCircle
+                />
                 <h3 className="my-auto">PPL Solutions VTC</h3>
               </a>
             </div>
@@ -99,3 +106,4 @@ export default function Footer() {
     </footer>
   )
 }
+

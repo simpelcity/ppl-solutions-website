@@ -31,7 +31,7 @@ export default function DashboardPage() {
             <Row className="w-100">
               <CardTeamForm />
               <Col xs={12} md={6} xl={6} className="d-flex justify-content-center">
-                <TeamGrid />
+                {/* <TeamGrid /> */}
               </Col>
             </Row>
           </Dashboard>

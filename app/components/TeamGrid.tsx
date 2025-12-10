@@ -65,13 +65,13 @@ export default function TeamGrid() {
   const departments = Object.values(departmentsMap)
 
   return (
-    <Row className="w-100 mt-3 row-gap-4">
+    <Row className="w-100 my-3 row-gap-4">
       {departments.length === 0 && <Col>No departments / members found.</Col>}
 
       {departments.map((dept, idx) => (
         <Card key={idx} className="border-0 rounded-0 shadow" data-bs-theme="dark">
           <Card.Header className="bg-dark">
-            <strong>{dept.name}</strong>
+            <span className="fw-bold text-primary">{dept.name}</span>
           </Card.Header>
           <ListGroup variant="flush">
             {dept.members.map((m, i) => (
