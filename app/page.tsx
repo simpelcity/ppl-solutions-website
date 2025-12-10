@@ -19,6 +19,13 @@ export default function HomePage() {
   return (
     <>
       <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="PPL Solutions VTC" />
+      <meta property="og:description" content="Welcome to PPL Solutions VTC's official website" />
+      <meta property="og:url" content="https://ppl-solutions.vercel.app/" />
+      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
+      <link rel="canonical" href="https://ppl-solutions.vercel.app/" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
