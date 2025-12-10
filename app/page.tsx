@@ -18,6 +18,7 @@ export default function HomePage() {
 
   return (
     <>
+      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
