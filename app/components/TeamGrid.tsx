@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
-import { Row, Col, Card, ListGroup, Image, Spinner } from "react-bootstrap"
+import { useEffect, useState } from "react"
+import { Row, Col, Card, Image, Spinner } from "react-bootstrap"
 
 type Role = { id: number; name: string; code: string }
 type TeamMember = { id: number; name: string; profile_url?: string | null; profile_path?: string | null }
@@ -44,7 +44,7 @@ export default function TeamGrid() {
 
   if (loading) {
     return (
-      <div className="text-center p-3">
+      <div className="text-center text-light p-3">
         <Spinner animation="border" /> Loading team...
       </div>
     )
@@ -65,34 +65,34 @@ export default function TeamGrid() {
   const departments = Object.values(departmentsMap)
 
   return (
-    <Row className="w-100 my-3 row-gap-4">
-      {departments.length === 0 && <Col>No departments / members found.</Col>}
-
+    <>
       {departments.map((dept, idx) => (
-        <Card key={idx} className="border-0 rounded-0 shadow" data-bs-theme="dark">
-          <Card.Header className="bg-dark">
-            <span className="fw-bold text-primary">{dept.name}</span>
-          </Card.Header>
-          <ListGroup variant="flush">
+        <Row key={idx} className="w-100 d-flex justify-content-center row-gap-4">
+          {departments.length === 0 && <Col>No departments / members found.</Col>}
+
+          <h2 className="text-primary my-4">{dept.name}</h2>
+          <Row className="d-flex justify-content-center row-gap-4">
             {dept.members.map((m, i) => (
-              <ListGroup.Item key={i} className="d-flex align-items-center gap-3">
-                <Image
-                  src={m.member.profile_url ?? "/assets/icons/profile-user.png"}
-                  alt={m.member.name}
-                  width={48}
-                  height={48}
-                  roundedCircle
-                />
-                <div className="flex-grow-1 text-start">
-                  <div className="fw-semibold">{m.member.name}</div>
-                  <div className={`small ${m.role.code}`}>{m.role.name}</div>
-                </div>
-              </ListGroup.Item>
+              <Col key={i} xs={12} md={6} xl={3}>
+                <Card className="h-100 rounded-0 border-0 shadow" data-bs-theme="dark">
+                  <Card.Body className="p-4">
+                    <Image
+                      src={m.member.profile_url ?? "/assets/icons/profile-user.png"}
+                      alt={m.member.name}
+                      width={150}
+                      height={150}
+                      roundedCircle
+                    />
+                    <Card.Title className="fs-3 mt-2">{m.member.name}</Card.Title>
+                    <Card.Text className={`${m.role.code}`}>{m.role.name}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-          </ListGroup>
-        </Card>
+          </Row>
+        </Row>
       ))}
-    </Row>
+    </>
   )
 }
 

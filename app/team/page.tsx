@@ -1,5 +1,5 @@
-import { StartBanner, DivTeam, CardTeam } from "@/components"
-import { Container, Row } from "react-bootstrap"
+import { StartBanner } from "@/components"
+import { Container } from "react-bootstrap"
 import TeamGrid from "@/components/TeamGrid"
 import "@/styles/roles.scss"
 
