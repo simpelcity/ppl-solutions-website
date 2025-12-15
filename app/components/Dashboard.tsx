@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { useAuth } from "@/lib/AuthContext"
-import { Container, Dropdown, Row, Col, Image } from "react-bootstrap"
+import { Container, Dropdown, Row, Col, Image, Spinner } from "react-bootstrap"
 import { HiOutlineSwitchHorizontal } from "react-icons/hi"
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"
 
 interface TeamMember {
   name: string
@@ -23,6 +24,7 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
   const router = useRouter()
   const [profileUrl, setProfileUrl] = useState<string | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [isManagementOpen, setIsManagementOpen] = useState(false)
 
   useEffect(() => {
     const fetchProfileAndRole = async () => {
@@ -53,9 +55,6 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
         }
 
         const member = members.find((m) => m.name === user.user_metadata?.username)
-        console.log("members:", members)
-        console.log("member:", member)
-        console.log("member.admin raw:", member?.admin)
 
         const adminFlag = member?.admin === true || member?.admin === "true" || Boolean(member?.admin)
         setIsAdmin(adminFlag)
@@ -87,7 +86,14 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
   }, [session, loading, router])
 
   if (loading) {
-    return <div className="p-4">Loading...</div>
+    return (
+      <>
+        <div className="loader w-100 d-flex justify-content-center align-items-center vh-100 text-light">
+          <Spinner animation="border" className="me-2" />
+          <span className="fs-2">Loading...</span>
+        </div>
+      </>
+    )
   }
 
   if (!session) {
@@ -118,10 +124,31 @@ export default function Dashboard({ title, children, ...props }: DashboardProps)
           </li>
           {isAdmin && (
             <>
-              <li className="sidebar-list text-start ps-4 ">
-                <a href="/drivershub/dashboard" className="text-decoration-none text-light">
-                  <span>Dashboard</span>
-                </a>
+              <li className="sidebar-list text-start ps-4">
+                <div className="text-light d-flex align-items-center column-gap-2 pe-3" style={{ cursor: "pointer" }}>
+                  <a href="/drivershub/dashboard" className="text-decoration-none text-light">
+                    Dashboard
+                  </a>
+                  {isManagementOpen ? (
+                    <FaChevronUp onClick={() => setIsManagementOpen(!isManagementOpen)} size={12} />
+                  ) : (
+                    <FaChevronDown onClick={() => setIsManagementOpen(!isManagementOpen)} size={12} />
+                  )}
+                </div>
+                {isManagementOpen && (
+                  <ul className="list-unstyled ps-3 mt-2">
+                    <li className="mb-2">
+                      <a href="/drivershub/dashboard/team" className="text-decoration-none text-light">
+                        Team
+                      </a>
+                    </li>
+                    <li className="mb-2">
+                      <a href="/drivershub/dashboard/gallery" className="text-decoration-none text-light">
+                        Gallery
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
             </>
           )}

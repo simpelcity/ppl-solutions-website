@@ -1,11 +1,10 @@
 "use client"
 
-import { Dashboard, DashboardStats } from "@/components"
+import { CardGalleryForm, Dashboard } from "@/components"
 import { Row, Col } from "react-bootstrap"
 import "@/styles/Drivershub.scss"
-import "@/styles/roles.scss"
 
-export default function DashboardPage() {
+export default function DashboardGalleryPage() {
   return (
     <>
       <title>Dashboard | PPL Solutions</title>
@@ -27,8 +26,8 @@ export default function DashboardPage() {
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
           <Dashboard title="Dashboard">
-            <Row className="w-100 d-flex px-3">
-              <DashboardStats />
+            <Row className="w-100">
+              <CardGalleryForm />
             </Row>
           </Dashboard>
         </section>

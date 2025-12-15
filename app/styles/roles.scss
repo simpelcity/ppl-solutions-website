@@ -1,5 +1,3 @@
-@import "./variables.scss";
-
 .founder {
   color: #009a86;
 }
@@ -44,3 +42,51 @@
 .cc {
   color: #ccff00;
 }
+
+.bg-founder {
+  background: #009a86;
+}
+
+.bg-ceo {
+  background: #ffdd00;
+  color: black;
+}
+
+.bg-cao {
+  background: #00f867;
+}
+
+.bg-coo {
+  background: #00e1ff;
+}
+
+.bg-cm {
+  background: #ff0e0e;
+}
+
+.bg-hrd,
+.bg-hr {
+  background: #05493a;
+}
+
+.bg-rtd,
+.bg-rt {
+  background: #ff00a1;
+}
+
+.bg-etm,
+.bg-et {
+  background: #0ba500;
+}
+
+.bg-mtm,
+.bg-mt {
+  background: #dd00ff;
+}
+
+.bg-ccm,
+.bg-cc {
+  background: #ccff00;
+  color: black;
+}
+

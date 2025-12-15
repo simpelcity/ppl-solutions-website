@@ -1,6 +1,5 @@
-import { StartBanner } from "@/components"
+import { StartBanner, TeamGrid } from "@/components"
 import { Container } from "react-bootstrap"
-import TeamGrid from "@/components/TeamGrid"
 import "@/styles/roles.scss"
 
 export default function TeamPage() {

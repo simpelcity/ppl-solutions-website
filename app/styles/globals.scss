@@ -1,6 +1,7 @@
 @import "./variables.scss";
 @import "./buttons.scss";
 @import "./icons.scss";
+@import "./animations.scss";
 
 body {
   font-family: "Nunito" !important;
@@ -39,13 +40,5 @@ main {
 
 .main > section {
   height: calc(100vh - 76px);
-}
-
-.input:focus,
-.form-check-input:focus,
-.page-link:focus {
-  border-color: none !important;
-  box-shadow: none !important;
-  outline: none !important;
 }
 

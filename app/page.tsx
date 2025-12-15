@@ -1,5 +1,5 @@
 import { Container, Image, Row, Col } from "react-bootstrap"
-import { ButtonOutline, CardText } from "@/components/"
+import { ButtonOutline, CardText } from "@/components"
 import "@/styles/Home.scss"
 
 export default function HomePage() {

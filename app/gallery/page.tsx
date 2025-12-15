@@ -1,6 +1,5 @@
-import { StartBanner, CardGallery } from "@/components"
+import { StartBanner, GalleryGrid } from "@/components"
 import { Container, Row, Col } from "react-bootstrap"
-import GalleryGrid from "@/components/GalleryGrid"
 
 export default function GalleryPage() {
   const galleryItems = [

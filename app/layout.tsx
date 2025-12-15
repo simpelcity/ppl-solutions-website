@@ -1,8 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
+import { Navbar, Footer } from "@/components"
 import { AuthProvider } from "@/lib/AuthContext"
 import "@/styles/globals.scss"
 
@@ -33,3 +32,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+

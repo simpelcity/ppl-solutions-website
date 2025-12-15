@@ -73,15 +73,18 @@ VALUES
 (4, 4, 13);
 
 CREATE TABLE gallery (
-  title TEXT
-)
+  id SERIAL PRIMARY KEY,
+  title TEXT,
+  image_path TEXT,
+  image_url TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
 
-INSERT INTO team (member, function, role)
+INSERT INTO gallery (title, image_path)
 VALUES
-('Simpelcity', 'Founder', 'founder'),
-('MaleklecoCZE', 'Chief Executive Officer', 'ceo')
-
-INSERT INTO gallery (title)
-VALUES
-('Scania by Lukyy09'),
-('DAF by Simpelcity')
+('Scania by Lukyy09', 'lukas-scania.jpg'),
+('DAF by Simpelcity', 'simpelcity-daf.jpg'),
+('Save-edit by MaleklecoCZE', 'malekleco-save-edit.jpg'),
+("Scania's by Simpelcity", 'simpelcity-maleklecocze-2.jpg'),
+("Scania's by MaleklecoCZE", 'simpelcity-maleklecocze.png'),
+('xX_shadowdagger2013_Xx', 'xx-shadowdagger2013-xx-truck.png');

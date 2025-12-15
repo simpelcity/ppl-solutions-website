@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { Table, Button } from "react-bootstrap"
-import { PlaceholderTable } from "@/components"
+import { PlaceholderTable, ButtonPrimary } from "@/components"
 import { useAuth } from "@/lib/AuthContext"
-import { ButtonPrimary, ButtonSecondary } from "@/components"
 import { MdNavigateBefore } from "react-icons/md"
 import { MdNavigateNext } from "react-icons/md"
 import { useRouter } from "next/navigation"
@@ -181,6 +180,7 @@ export default function TableJobs() {
         const all = await fetchAllJobs()
         setAllJobs(all)
         setShowAll(true)
+        console.log("Fetched all jobs:", all)
       } catch (err: any) {
         console.error(err)
         setError(err.message ?? "Failed to load all jobs")
@@ -294,7 +294,9 @@ export default function TableJobs() {
                           className={`page-item d-flex align-items-center ${displayPage === p ? "active" : ""}`}>
                           <button
                             className={`page-link rounded-3 py-1 d-flex align-items-center ${
-                              displayPage === p ? "bg-primary" : "bg-transparent border-0 text-light text-opacity-50"
+                              displayPage === p
+                                ? "bg-primary"
+                                : "bg-transparent border-0 shadow-none text-light text-opacity-50"
                             }`}
                             onClick={() => goToDisplayPage(p as number)}
                             aria-current={displayPage === p ? "page" : undefined}

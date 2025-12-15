@@ -1,6 +1,5 @@
-import { StartBanner } from "@/components"
+import { StartBanner, CardEvents } from "@/components"
 import { Container, Row } from "react-bootstrap"
-import CardEvents from "@/components/CardEvents"
 
 export default async function EventsPage() {
   return (
