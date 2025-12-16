@@ -1,5 +1,5 @@
 import React from "react"
-import Sidebar from "@/components/Sidebar"
+import { Dashboard } from "@/components"
 import "@/styles/Drivershub.scss"
 
 export default function ProfilePage() {
@@ -23,7 +23,9 @@ export default function ProfilePage() {
 
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-          <Sidebar />
+          <Dashboard>
+            <h1>Statistics</h1>
+          </Dashboard>
         </section>
       </main>
     </>
