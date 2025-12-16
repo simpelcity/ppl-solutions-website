@@ -8,6 +8,7 @@ import "@/styles/globals.scss"
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const hideFooter = pathname === "/login" || pathname === "/reset-password" || pathname === "/forgot-password"
+  const hideNavbar = pathname?.startsWith("/drivershub")
 
   return (
     <html lang="en">
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <AuthProvider>
-          <Navbar />
+          {!hideNavbar && <Navbar />}
           {children}
           {!hideFooter && <Footer />}
         </AuthProvider>

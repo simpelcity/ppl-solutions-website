@@ -2,16 +2,13 @@
 
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { Navbar as BSNavbar, Nav, Container, Image, Dropdown } from "react-bootstrap"
-import { useAuth } from "@/lib/AuthContext"
+import { usePathname } from "next/navigation"
+import { Navbar as BSNavbar, Nav, Container, Image } from "react-bootstrap"
 import { ButtonSecondary } from "@/components"
 import "@/styles/Navbar.scss"
 
 const Navbar: React.FC = () => {
-  const { user, logout, loading } = useAuth()
   const pathname = usePathname()
-  const router = useRouter()
   const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
@@ -74,3 +71,4 @@ const Navbar: React.FC = () => {
 }
 
 export default Navbar
+

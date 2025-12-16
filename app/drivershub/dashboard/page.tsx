@@ -26,7 +26,7 @@ export default function DashboardPage() {
 
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
-          <Dashboard title="Dashboard">
+          <Dashboard>
             <Row className="w-100 d-flex px-3">
               <DashboardStats />
             </Row>

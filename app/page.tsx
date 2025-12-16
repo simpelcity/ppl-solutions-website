@@ -21,6 +21,7 @@ export default function HomePage() {
       <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
       <meta property="og:site_name" content="PPL Solutions VTC" />
       <link rel="canonical" href="https://ppl-solutions.vercel.app/" />
+      <script src="https://kit.fontawesome.com/555ef81382.js" crossOrigin="anonymous"></script>
 
       <main className="fs-5">
         <section className="d-flex w-100 text-light">

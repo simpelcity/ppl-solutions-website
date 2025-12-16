@@ -20,10 +20,8 @@ export default function TableJobs() {
   const [error, setError] = useState<string | null>(null)
   const [showAll, setShowAll] = useState<boolean>(false)
   const [allJobs, setAllJobs] = useState<Job[]>([])
-  const router = useRouter()
 
-  if (!session) return null
-  const driverUsername = (session as any).user?.user_metadata?.username || session.user.email
+  const driverUsername = session ? (session as any).user?.user_metadata?.username || session.user.email : null
 
   const fetchMembers = async () => {
     const res = await fetch("/api/members")
@@ -85,6 +83,8 @@ export default function TableJobs() {
   }
 
   useEffect(() => {
+    if (!session || !driverUsername) return
+
     let cancelled = false
 
     const init = async () => {
@@ -114,7 +114,7 @@ export default function TableJobs() {
     return () => {
       cancelled = true
     }
-  }, [driverUsername])
+  }, [session, driverUsername])
 
   const goToDisplayPage = async (displayPageNum: number) => {
     const targetApiPage = lastPage - displayPageNum + 1
@@ -205,6 +205,8 @@ export default function TableJobs() {
     { title: "distance" },
     { title: "income" },
   ]
+
+  if (!session) return null
 
   return (
     <>

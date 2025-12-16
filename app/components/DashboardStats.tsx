@@ -1,11 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Card, Spinner, Row, Col } from "react-bootstrap"
+import { Card, Row, Col } from "react-bootstrap"
 import { Loader } from "@/components"
 
 export default function DashboardStats() {
-  // ETS2 stats
   const [ets2Distance, setEts2Distance] = useState<number>(0)
   const [ets2Jobs, setEts2Jobs] = useState<number>(0)
   const [ets2Revenue, setEts2Revenue] = useState<number>(0)
@@ -13,7 +12,6 @@ export default function DashboardStats() {
   const [ets2Hours, setEts2Hours] = useState<number>(0)
   const [ets2Minutes, setEts2Minutes] = useState<number>(0)
 
-  // ATS stats
   const [atsDistance, setAtsDistance] = useState<number>(0)
   const [atsJobs, setAtsJobs] = useState<number>(0)
   const [atsRevenue, setAtsRevenue] = useState<number>(0)
@@ -21,7 +19,6 @@ export default function DashboardStats() {
   const [atsHours, setAtsHours] = useState<number>(0)
   const [atsMinutes, setAtsMinutes] = useState<number>(0)
 
-  // Combined stats
   const [totalDistance, setTotalDistance] = useState<number>(0)
   const [totalJobs, setTotalJobs] = useState<number>(0)
   const [totalRevenue, setTotalRevenue] = useState<number>(0)
@@ -68,14 +65,12 @@ export default function DashboardStats() {
     let totalRevenue = 0
     let totalTime = 0
 
-    // Collect ATS jobs in array
     const atsJobsArray: any[] = []
 
     for (const job of jobs) {
       const isETS2 = job.game.id === "ets2" || job.game.id === "ets2"
       const isATS = job.game.id === "ats" || job.game.id === "ats"
 
-      // Add ATS jobs to array
       if (isATS) {
         atsJobsArray.push(job)
       }
@@ -105,11 +100,9 @@ export default function DashboardStats() {
       }
     }
 
-    // Log ATS jobs
     console.log("ATS Jobs:", atsJobsArray)
     console.log("Total ATS Jobs:", atsJobsArray.length)
 
-    // Convert milliseconds to days, hours, minutes for each game
     const convertTime = (ms: number) => {
       const totalMinutes = Math.floor(ms / 60000)
       return {
@@ -171,7 +164,6 @@ export default function DashboardStats() {
       try {
         const statistics = await getStatistics()
 
-        // Set ETS2 stats
         setEts2Distance(statistics.ets2.distance)
         setEts2Jobs(statistics.ets2.jobs)
         setEts2Revenue(statistics.ets2.revenue)
@@ -179,7 +171,6 @@ export default function DashboardStats() {
         setEts2Hours(statistics.ets2.hours)
         setEts2Minutes(statistics.ets2.minutes)
 
-        // Set ATS stats
         setAtsDistance(statistics.ats.distance)
         setAtsJobs(statistics.ats.jobs)
         setAtsRevenue(statistics.ats.revenue)
@@ -187,7 +178,6 @@ export default function DashboardStats() {
         setAtsHours(statistics.ats.hours)
         setAtsMinutes(statistics.ats.minutes)
 
-        // Set total stats
         setTotalDistance(statistics.total.distance)
         setTotalJobs(statistics.total.jobs)
         setTotalRevenue(statistics.total.revenue)

@@ -1,4 +1,6 @@
 import React from "react"
+import Sidebar from "@/components/Sidebar"
+import "@/styles/Drivershub.scss"
 
 export default function ProfilePage() {
   return (
@@ -19,7 +21,11 @@ export default function ProfilePage() {
       <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
       <link rel="canonical" href="https://ppl-solutions.vercel.app/drivershub/profile" />
 
-      <h1>Profile</h1>
+      <main className="fs-5">
+        <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
+          <Sidebar />
+        </section>
+      </main>
     </>
   )
 }

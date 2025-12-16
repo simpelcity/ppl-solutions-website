@@ -2,7 +2,6 @@
 
 .table-card-scroll {
   width: 100%;
-  max-width: 75vw;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -49,5 +48,9 @@
 
 .border-custom {
   border-style: dashed !important;
+}
+
+.bg-light-subtle {
+  background-color: #303336 !important;
 }
 
