@@ -27,7 +27,13 @@ interface SidebarProps {
   [key: string]: any
 }
 
-export default function Sidebar({ isSidebarCollapsed, setIsSidebarCollapsed, isMobile, isNavbarVisible = false, ...props }: SidebarProps) {
+export default function Sidebar({
+  isSidebarCollapsed,
+  setIsSidebarCollapsed,
+  isMobile,
+  isNavbarVisible = false,
+  ...props
+}: SidebarProps) {
   const { user, logout, session, loading } = useAuth()
   const pathname = usePathname()
   const router = useRouter()
@@ -38,17 +44,17 @@ export default function Sidebar({ isSidebarCollapsed, setIsSidebarCollapsed, isM
   const navItems: NavItem[] = [
     {
       href: "/drivershub",
-      icon: <GoHomeFill className="me-2" />,
+      icon: <GoHomeFill />,
       label: "Drivershub",
     },
     {
       href: "/drivershub/statistics",
-      icon: <FaChartLine className="me-2" />,
-      label: "Statistics",
+      icon: <FaChartLine />,
+      label: "User Statistics",
     },
     {
       href: "/drivershub/leaderboard",
-      icon: <MdLeaderboard className="me-2" />,
+      icon: <MdLeaderboard />,
       label: "Leaderboard",
     },
   ]
@@ -56,17 +62,17 @@ export default function Sidebar({ isSidebarCollapsed, setIsSidebarCollapsed, isM
   const collapseItems: NavItem[] = [
     {
       href: "/drivershub/dashboard",
-      icon: <FaChartLine className="me-2" />,
-      label: "Statistics",
+      icon: <FaChartLine />,
+      label: "VTC Statistics",
     },
     {
       href: "/drivershub/dashboard/team",
-      icon: <FaUsers className="me-2" />,
+      icon: <FaUsers />,
       label: "Team",
     },
     {
       href: "/drivershub/dashboard/gallery",
-      icon: <MdPhotoLibrary className="me-2" />,
+      icon: <MdPhotoLibrary />,
       label: "Gallery",
     },
   ]
@@ -149,103 +155,146 @@ export default function Sidebar({ isSidebarCollapsed, setIsSidebarCollapsed, isM
 
   return (
     <div
-      className="sidebar d-flex flex-column flex-shrink-0 p-3 text-light bg-light-subtle text-start"
+      className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
       style={{
-        width: isMobile ? (isSidebarCollapsed ? "100%" : "280px") : isSidebarCollapsed ? "4.5rem" : "280px",
-        minWidth: isMobile ? (isSidebarCollapsed ? "100%" : "280px") : isSidebarCollapsed ? "4.5rem" : "280px",
-        height: isMobile && isSidebarCollapsed ? "4.5rem" : isMobile ? (isNavbarVisible ? "calc(100vh - 72px)" : "100vh") : "100vh",
+        width: isMobile ? "280px" : isSidebarCollapsed ? "4.5rem" : "280px",
+        minWidth: isMobile ? "280px" : isSidebarCollapsed ? "4.5rem" : "280px",
+        height: isMobile ? (isNavbarVisible ? "calc(100vh - 4.5rem)" : "100vh") : "100%",
         position: isMobile ? "fixed" : "relative",
-        top: isMobile && isNavbarVisible ? "72px" : isMobile ? 0 : "auto",
+        top: isMobile && isNavbarVisible ? "4.5rem" : isMobile ? 0 : "auto",
         left: isMobile ? 0 : "auto",
-        zIndex: isMobile ? 1000 : "auto",
-        transition: "all 0.3s ease",
-        overflow: isSidebarCollapsed ? "hidden" : "auto",
+        zIndex: isMobile ? 1000 : 10,
+        transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",
+        transition: "transform 0.3s ease, width 0.3s ease",
+        overflow: isSidebarCollapsed && !isMobile ? "visible" : "auto",
+        padding: isSidebarCollapsed && !isMobile ? "1rem 0" : "1rem",
       }}
       {...props}>
       <div
-        className={`sidebar-header d-flex align-items-center mb-3 mb-md-0 text-light text-decoration-none ${
-          isSidebarCollapsed ? "justify-content-center" : "justify-content-between"
+        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${
+          isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
         }`}>
         <a href="#" className="text-light text-decoration-none column-gap-2">
           <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
             Sidebar
           </h3>
         </a>
-        <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
+        {!isMobile && (
+          <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
+        )}
       </div>
-      {!isSidebarCollapsed && (
-        <>
-          <hr />
-          <Nav variant="pills" className="flex-column mb-auto">
-            {navItems.map((item) => (
+      <hr className={isSidebarCollapsed ? "d-none" : "d-block"} />
+      <Nav variant="pills" className="flex-column mb-auto">
+        {navItems.map((item) => (
+          <Nav.Item key={item.href}>
+            <Nav.Link
+              href={item.href}
+              className={`text-light d-flex align-items-center ${
+                isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : ""
+              } ${pathname === item.href ? "active" : ""}`}
+              title={item.label}>
+              <span className={isSidebarCollapsed ? "me-0" : "me-2"}>{item.icon}</span>
+              {!isSidebarCollapsed && item.label}
+            </Nav.Link>
+          </Nav.Item>
+        ))}
+        {isAdmin && !isSidebarCollapsed && (
+          <>
+            <Nav.Item className={open ? "bg-light bg-opacity-10 rounded-2" : ""}>
+              <Nav.Link
+                onClick={() => setOpen(!open)}
+                aria-controls="dashboard-collapse-menu"
+                aria-expanded={open}
+                className={`d-flex align-items-center column-gap-2 rounded-bottom-0 text-light ${
+                  pathname.startsWith("/drivershub/dashboard") ? "active" : ""
+                }`}>
+                <BiSolidDashboard />
+                Dashboard
+                {open ? <FaAngleDown /> : <FaAngleRight />}
+              </Nav.Link>
+              <Collapse in={open}>
+                <div id="dashboard-collapse-menu">
+                  <ul className="list-unstyled m-0">
+                    {collapseItems.map((item, index) => (
+                      <li key={item.href}>
+                        <a
+                          href={item.href}
+                          className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${
+                            pathname === item.href ? "bg-light bg-opacity-10" : ""
+                          } ${index === collapseItems.length - 1 ? "rounded-bottom-2" : ""}`}
+                          title={item.label}>
+                          <span className="me-2">{item.icon}</span>
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Collapse>
+            </Nav.Item>
+          </>
+        )}
+        {isAdmin && isSidebarCollapsed && (
+          <>
+            {collapseItems.map((item) => (
               <Nav.Item key={item.href}>
                 <Nav.Link
                   href={item.href}
-                  className={`text-light d-flex align-items-center ${pathname === item.href ? "active" : ""}`}>
+                  className={`text-light d-flex align-items-center justify-content-center p-3 rounded-0 ${
+                    pathname === item.href ? "active" : ""
+                  }`}
+                  title={item.label}>
                   {item.icon}
-                  {item.label}
                 </Nav.Link>
               </Nav.Item>
             ))}
-            {isAdmin && (
-              <>
-                <Nav.Item>
-                  <Nav.Link
-                    onClick={() => setOpen(!open)}
-                    aria-controls="dashboard-collapse-menu"
-                    aria-expanded={open}
-                    className={`d-flex align-items-center column-gap-2 text-light ${
-                      pathname.startsWith("/drivershub/dashboard") ? "active" : ""
-                    }`}>
-                    <BiSolidDashboard />
-                    Dashboard
-                    {open ? <FaAngleDown /> : <FaAngleRight />}
-                  </Nav.Link>
-                  <Collapse in={open}>
-                    <div id="dashboard-collapse-menu">
-                      <ul className="list-unstyled">
-                        {collapseItems.map((item) => (
-                          <li key={item.href}>
-                            <a
-                              href={item.href}
-                              className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${
-                                pathname === item.href ? "bg-secondary bg-opacity-25" : ""
-                              }`}>
-                              {item.icon}
-                              {item.label}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </Collapse>
-                </Nav.Item>
-              </>
-            )}
-          </Nav>
-          <hr />
-          <Dropdown data-bs-theme="dark">
-            <Dropdown.Toggle
-              variant="dark"
-              className="bg-transparent border-0 p-0 d-flex align-items-center text-light text-decoration-none w-100">
-              <Image
-                src={profileUrl ?? "/assets/icons/profile-user.png"}
-                alt="Profile"
-                width={32}
-                height={32}
-                roundedCircle
-                className="me-2"
-              />
-              <strong>{username}</strong>
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdown-menu-dark shadow w-100">
-              <Dropdown.Item href="/drivershub/profile/settings">Settings</Dropdown.Item>
-              <Dropdown.Item href="/drivershub/profile">Profile</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </>
+          </>
+        )}
+      </Nav>
+      <hr />
+      {!isSidebarCollapsed && (
+        <Dropdown data-bs-theme="dark">
+          <Dropdown.Toggle
+            variant="dark"
+            className="bg-transparent border-0 p-0 d-flex align-items-center text-light text-decoration-none w-100">
+            <Image
+              src={profileUrl ?? "/assets/icons/profile-user.png"}
+              alt="Profile"
+              width={32}
+              height={32}
+              roundedCircle
+              className="me-2"
+            />
+            <strong>{username}</strong>
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown-menu-dark shadow mb-1" style={{ zIndex: 1050 }}>
+            <Dropdown.Item href="/drivershub/profile/settings">Settings</Dropdown.Item>
+            <Dropdown.Item href="/drivershub/profile">Profile</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      )}
+      {isSidebarCollapsed && (
+        <Dropdown data-bs-theme="dark">
+          <Dropdown.Toggle
+            variant="dark"
+            className="bg-transparent border-0 p-0 d-flex align-items-center justify-content-center text-light text-decoration-none w-100">
+            <Image
+              src={profileUrl ?? "/assets/icons/profile-user.png"}
+              alt="Profile"
+              width={32}
+              height={32}
+              roundedCircle
+            />
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown-menu-dark shadow ms-3 mb-1" style={{ zIndex: 1050 }}>
+            <Dropdown.Item href="/drivershub/profile/settings">Settings</Dropdown.Item>
+            <Dropdown.Item href="/drivershub/profile">Profile</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       )}
     </div>
   )

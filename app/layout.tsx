@@ -3,12 +3,12 @@
 import { usePathname } from "next/navigation"
 import { Navbar, Footer } from "@/components"
 import { AuthProvider } from "@/lib/AuthContext"
+import { SidebarProvider } from "@/lib/SidebarContext"
 import "@/styles/globals.scss"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const hideFooter = pathname === "/login" || pathname === "/reset-password" || pathname === "/forgot-password"
-  const hideNavbar = pathname?.startsWith("/drivershub")
 
   return (
     <html lang="en">
@@ -25,9 +25,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <AuthProvider>
-          {!hideNavbar && <Navbar />}
-          {children}
-          {!hideFooter && <Footer />}
+          <SidebarProvider>
+            <Navbar />
+            {children}
+            {!hideFooter && <Footer />}
+          </SidebarProvider>
         </AuthProvider>
       </body>
     </html>

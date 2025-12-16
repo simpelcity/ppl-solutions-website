@@ -1,12 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { usePathname, useRouter } from "next/navigation"
-import { useAuth } from "@/lib/AuthContext"
-import { Container, Dropdown, Row, Col, Image, Spinner, ListGroup, Collapse, Nav } from "react-bootstrap"
-import { HiOutlineSwitchHorizontal } from "react-icons/hi"
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"
-import Sidebar from "./Sidebar"
+import { Container } from "react-bootstrap"
+import { Sidebar } from "@/components"
+import { useSidebar } from "@/lib/SidebarContext"
 
 interface TeamMember {
   name: string
@@ -20,22 +16,7 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ children, isNavbarVisible = false, ...props }: DashboardProps) {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 992
-      setIsMobile(mobile)
-      if (mobile) {
-        setIsSidebarCollapsed(true)
-      }
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+  const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile } = useSidebar()
 
   const sidebarWidth = isSidebarCollapsed ? "4.5rem" : "280px"
 
@@ -48,14 +29,14 @@ export default function Dashboard({ children, isNavbarVisible = false, ...props 
         isSidebarCollapsed={isSidebarCollapsed}
         setIsSidebarCollapsed={setIsSidebarCollapsed}
         isMobile={isMobile}
-        isNavbarVisible={isNavbarVisible}
+        isNavbarVisible={true}
       />
       <Container
         className="content-wrapper d-flex justify-content-center px-3"
         style={{
           width: isMobile ? "100vw" : `calc(100vw - ${sidebarWidth})`,
           maxWidth: isMobile ? "100vw" : `calc(100vw - ${sidebarWidth})`,
-          transition: "width 0.3s ease",
+          transition: "width 0.3s ease, margin-top 0.3s ease",
           overflowX: "hidden",
         }}
         fluid>

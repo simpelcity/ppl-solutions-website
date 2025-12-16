@@ -5,11 +5,15 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Navbar as BSNavbar, Nav, Container, Image } from "react-bootstrap"
 import { ButtonSecondary } from "@/components"
+import { RxHamburgerMenu } from "react-icons/rx"
+import { useSidebar } from "@/lib/SidebarContext"
 import "@/styles/Navbar.scss"
 
 const Navbar: React.FC = () => {
   const pathname = usePathname()
   const [expanded, setExpanded] = useState(false)
+  const { toggleSidebar, isMobile } = useSidebar()
+  const isDrivershub = pathname?.startsWith("/drivershub")
 
   useEffect(() => {
     setExpanded(false)
@@ -30,7 +34,15 @@ const Navbar: React.FC = () => {
   return (
     <header>
       <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark">
-        <Container className="m-0 p-0" fluid>
+        <Container className="m-0 p-0 d-flex align-items-center" fluid>
+          {isDrivershub && isMobile && (
+            <button
+              className="btn btn-link text-light border-0 ms-1"
+              style={{ padding: "0 0.75rem", fontSize: "30px" }}
+              onClick={toggleSidebar}>
+              <RxHamburgerMenu />
+            </button>
+          )}
           <BSNavbar.Brand
             as={Link}
             onClick={() => setExpanded(false)}
