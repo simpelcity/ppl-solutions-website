@@ -74,7 +74,7 @@ export function useUserJobs() {
     try {
       const apiPage = lastPage - displayPage + 1
       const payload = await fetchJobsPage(apiPage)
-      setJobs(Array.isArray(payload.data) ? payload.data : [])
+      setJobs(Array.isArray(payload.data) ? payload.data.reverse() : [])
       setCurrentPage(apiPage)
     } catch (err: any) {
       setError(err.message)
@@ -121,7 +121,7 @@ export function useUserJobs() {
         const lastPayload = await fetchJobsPage(lp)
         console.log("last payload:", lastPayload)
         if (!cancelled) {
-          setJobs(Array.isArray(lastPayload.data) ? lastPayload.data : [])
+          setJobs(Array.isArray(lastPayload.data) ? lastPayload.data.reverse() : [])
           setCurrentPage(lp)
         }
       } catch (err: any) {

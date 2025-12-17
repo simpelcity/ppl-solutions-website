@@ -1,173 +1,173 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal } from "react-bootstrap"
-import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa"
-import { ButtonPrimary, ButtonSecondary } from "@/components"
+import { useState, useEffect } from "react";
+import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal } from "react-bootstrap";
+import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
+import BSButton from "../Button";
 
 interface TeamMember {
-  id: number
-  name: string
-  profile_url?: string | null
+  id: number;
+  name: string;
+  profile_url?: string | null;
 }
 
 interface Department {
-  id: number
-  name: string
+  id: number;
+  name: string;
 }
 
 interface Role {
-  id: number
-  name: string
-  code: string
+  id: number;
+  name: string;
+  code: string;
 }
 
 interface MemberRole {
-  team_member_id: number
-  department: Department
-  role: Role
+  team_member_id: number;
+  department: Department;
+  role: Role;
 }
 
-type ConfirmAction = "delete-member" | "delete-picture" | null
+type ConfirmAction = "delete-member" | "delete-picture" | null;
 
 export default function CardTeamForm() {
-  const [name, setName] = useState("")
-  const [file, setFile] = useState<File | null>(null)
-  const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState<string | null>(null)
-  const [members, setMembers] = useState<TeamMember[]>([])
-  const [loading, setLoading] = useState(false)
-  const [editingId, setEditingId] = useState<number | null>(null)
-  const [show, setShow] = useState(true)
+  const [name, setName] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [members, setMembers] = useState<TeamMember[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [show, setShow] = useState(true);
 
-  const [departments, setDepartments] = useState<Department[]>([])
-  const [roles, setRoles] = useState<Role[]>([])
-  const [memberRoles, setMemberRoles] = useState<MemberRole[]>([])
-  const [selectedDepartment, setSelectedDepartment] = useState<string>("")
-  const [selectedRole, setSelectedRole] = useState<string>("")
-  const [loadingRoles, setLoadingRoles] = useState(false)
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [roles, setRoles] = useState<Role[]>([]);
+  const [memberRoles, setMemberRoles] = useState<MemberRole[]>([]);
+  const [selectedDepartment, setSelectedDepartment] = useState<string>("");
+  const [selectedRole, setSelectedRole] = useState<string>("");
+  const [loadingRoles, setLoadingRoles] = useState(false);
 
   // Modal state
-  const [showModal, setShowModal] = useState(false)
-  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null)
-  const [targetId, setTargetId] = useState<number | null>(null)
+  const [showModal, setShowModal] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
+  const [targetId, setTargetId] = useState<number | null>(null);
 
   useEffect(() => {
-    fetchMembers()
-    fetchDepartments()
-    fetchRoles()
-  }, [])
+    fetchMembers();
+    fetchDepartments();
+    fetchRoles();
+  }, []);
 
   useEffect(() => {
     if (editingId) {
-      fetchMemberRoles(editingId)
+      fetchMemberRoles(editingId);
     } else {
-      setMemberRoles([])
+      setMemberRoles([]);
     }
-  }, [editingId])
+  }, [editingId]);
 
   const fetchDepartments = async () => {
     try {
-      const res = await fetch("/api/departments")
-      const json = await res.json()
-      if (res.ok) setDepartments(json.data || [])
+      const res = await fetch("/api/departments");
+      const json = await res.json();
+      if (res.ok) setDepartments(json.data || []);
     } catch (err) {
-      console.error("Failed to fetch departments:", err)
+      console.error("Failed to fetch departments:", err);
     }
-  }
+  };
 
   const fetchRoles = async () => {
     try {
-      const res = await fetch("/api/roles")
-      const json = await res.json()
-      if (res.ok) setRoles(json.data || [])
+      const res = await fetch("/api/roles");
+      const json = await res.json();
+      if (res.ok) setRoles(json.data || []);
     } catch (err) {
-      console.error("Failed to fetch roles:", err)
+      console.error("Failed to fetch roles:", err);
     }
-  }
+  };
 
   const fetchMemberRoles = async (memberId: number) => {
-    setLoadingRoles(true)
+    setLoadingRoles(true);
     try {
-      const res = await fetch(`/api/team/roles?memberId=${memberId}`)
-      const json = await res.json()
-      if (res.ok) setMemberRoles(json.data || [])
+      const res = await fetch(`/api/team/roles?memberId=${memberId}`);
+      const json = await res.json();
+      if (res.ok) setMemberRoles(json.data || []);
     } catch (err) {
-      console.error("Failed to fetch member roles:", err)
+      console.error("Failed to fetch member roles:", err);
     } finally {
-      setLoadingRoles(false)
+      setLoadingRoles(false);
     }
-  }
+  };
 
   const fetchMembers = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await fetch("/api/team/members")
-      const json = await res.json()
+      const res = await fetch("/api/team/members");
+      const json = await res.json();
       if (res.ok) {
-        const items = (json.data || []) as TeamMember[]
-        setMembers(items)
+        const items = (json.data || []) as TeamMember[];
+        setMembers(items);
       }
     } catch (err) {
-      console.error(err)
+      console.error(err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
-    setSuccess(null)
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
     if (!name.trim()) {
-      setError("Name is required")
-      return
+      setError("Name is required");
+      return;
     }
 
-    const fd = new FormData()
-    fd.append("name", name.trim())
-    if (file) fd.append("file", file)
+    const fd = new FormData();
+    fd.append("name", name.trim());
+    if (file) fd.append("file", file);
 
-    setSubmitting(true)
+    setSubmitting(true);
     try {
-      const res = await fetch("/api/team", { method: "POST", body: fd })
-      const json = await res.json()
+      const res = await fetch("/api/team", { method: "POST", body: fd });
+      const json = await res.json();
       if (!res.ok) {
-        throw new Error(json?.error || "Failed to add member")
+        throw new Error(json?.error || "Failed to add member");
       }
-      setSuccess("Team member added successfully!")
-      setName("")
-      setFile(null)
-      const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null
-      if (fileInput) fileInput.value = ""
-      fetchMembers()
+      setSuccess("Team member added successfully!");
+      setName("");
+      setFile(null);
+      const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null;
+      if (fileInput) fileInput.value = "";
+      fetchMembers();
     } catch (err: any) {
-      setError(err?.message ?? "Unexpected error")
+      setError(err?.message ?? "Unexpected error");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   const openConfirmModal = (action: ConfirmAction, id: number) => {
-    setConfirmAction(action)
-    setTargetId(id)
-    setShowModal(true)
-  }
+    setConfirmAction(action);
+    setTargetId(id);
+    setShowModal(true);
+  };
 
   const handleConfirm = async () => {
-    setShowModal(false)
-    if (!targetId || !confirmAction) return
+    setShowModal(false);
+    if (!targetId || !confirmAction) return;
 
     if (confirmAction === "delete-member") {
-      await executeDeleteMember(targetId)
+      await executeDeleteMember(targetId);
     } else if (confirmAction === "delete-picture") {
-      await executeDeleteProfilePicture(targetId)
+      await executeDeleteProfilePicture(targetId);
     }
 
-    setTargetId(null)
-    setConfirmAction(null)
-  }
+    setTargetId(null);
+    setConfirmAction(null);
+  };
 
   const executeDeleteMember = async (id: number) => {
     try {
@@ -175,17 +175,17 @@ export default function CardTeamForm() {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
-      })
+      });
       if (!res.ok) {
-        const json = await res.json()
-        throw new Error(json?.error || "Failed to delete")
+        const json = await res.json();
+        throw new Error(json?.error || "Failed to delete");
       }
-      setSuccess("Member deleted successfully!")
-      fetchMembers()
+      setSuccess("Member deleted successfully!");
+      fetchMembers();
     } catch (err: any) {
-      setError(err?.message ?? "Failed to delete member")
+      setError(err?.message ?? "Failed to delete member");
     }
-  }
+  };
 
   const executeDeleteProfilePicture = async (id: number) => {
     try {
@@ -193,30 +193,30 @@ export default function CardTeamForm() {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
-      })
+      });
       if (!res.ok) {
-        const json = await res.json()
-        throw new Error(json?.error || "Failed to delete picture")
+        const json = await res.json();
+        throw new Error(json?.error || "Failed to delete picture");
       }
-      setSuccess("Profile picture deleted successfully!")
-      fetchMembers()
+      setSuccess("Profile picture deleted successfully!");
+      fetchMembers();
     } catch (err: any) {
-      setError(err?.message ?? "Failed to delete profile picture")
+      setError(err?.message ?? "Failed to delete profile picture");
     }
-  }
+  };
 
   const handleEdit = (member: TeamMember) => {
-    setEditingId(member.id)
-    setName(member.name || "")
-    setFile(null)
-    setSelectedDepartment("")
-    setSelectedRole("")
-  }
+    setEditingId(member.id);
+    setName(member.name || "");
+    setFile(null);
+    setSelectedDepartment("");
+    setSelectedRole("");
+  };
 
   const handleAddRole = async () => {
     if (!editingId || !selectedDepartment || !selectedRole) {
-      setError("Please select both department and role")
-      return
+      setError("Please select both department and role");
+      return;
     }
 
     try {
@@ -228,24 +228,24 @@ export default function CardTeamForm() {
           department_id: parseInt(selectedDepartment),
           role_id: parseInt(selectedRole),
         }),
-      })
+      });
 
       if (!res.ok) {
-        const json = await res.json()
-        throw new Error(json?.error || "Failed to add role")
+        const json = await res.json();
+        throw new Error(json?.error || "Failed to add role");
       }
 
-      setSuccess("Role added successfully!")
-      setSelectedDepartment("")
-      setSelectedRole("")
-      fetchMemberRoles(editingId)
+      setSuccess("Role added successfully!");
+      setSelectedDepartment("");
+      setSelectedRole("");
+      fetchMemberRoles(editingId);
     } catch (err: any) {
-      setError(err?.message ?? "Failed to add role")
+      setError(err?.message ?? "Failed to add role");
     }
-  }
+  };
 
   const handleRemoveRole = async (departmentId: number, roleId: number) => {
-    if (!editingId) return
+    if (!editingId) return;
 
     try {
       const res = await fetch("/api/team/roles", {
@@ -256,55 +256,55 @@ export default function CardTeamForm() {
           department_id: departmentId,
           role_id: roleId,
         }),
-      })
+      });
 
       if (!res.ok) {
-        const json = await res.json()
-        throw new Error(json?.error || "Failed to remove role")
+        const json = await res.json();
+        throw new Error(json?.error || "Failed to remove role");
       }
 
-      setSuccess("Role removed successfully!")
-      fetchMemberRoles(editingId)
+      setSuccess("Role removed successfully!");
+      fetchMemberRoles(editingId);
     } catch (err: any) {
-      setError(err?.message ?? "Failed to remove role")
+      setError(err?.message ?? "Failed to remove role");
     }
-  }
+  };
 
   const handleUpdate = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!editingId) return
-    setError(null)
-    setSuccess(null)
+    e.preventDefault();
+    if (!editingId) return;
+    setError(null);
+    setSuccess(null);
     if (!name.trim()) {
-      setError("Name is required")
-      return
+      setError("Name is required");
+      return;
     }
 
-    const fd = new FormData()
-    fd.append("id", editingId.toString())
-    fd.append("name", name.trim())
-    if (file) fd.append("file", file)
+    const fd = new FormData();
+    fd.append("id", editingId.toString());
+    fd.append("name", name.trim());
+    if (file) fd.append("file", file);
 
-    setSubmitting(true)
+    setSubmitting(true);
     try {
-      const res = await fetch("/api/team", { method: "PUT", body: fd })
-      const json = await res.json()
+      const res = await fetch("/api/team", { method: "PUT", body: fd });
+      const json = await res.json();
       if (!res.ok) {
-        throw new Error(json?.error || "Failed to update")
+        throw new Error(json?.error || "Failed to update");
       }
-      setSuccess("Member updated successfully!")
-      setName("")
-      setFile(null)
-      setEditingId(null)
-      const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null
-      if (fileInput) fileInput.value = ""
-      fetchMembers()
+      setSuccess("Member updated successfully!");
+      setName("");
+      setFile(null);
+      setEditingId(null);
+      const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null;
+      if (fileInput) fileInput.value = "";
+      fetchMembers();
     } catch (err: any) {
-      setError(err?.message ?? "Failed to update member")
+      setError(err?.message ?? "Failed to update member");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   return (
     <>
@@ -423,7 +423,7 @@ export default function CardTeamForm() {
                 </Alert>
               )}
 
-              <ButtonPrimary type="submit" disabled={submitting} classes="mt-2">
+              <BSButton variant="primary" type="submit" disabled={submitting} classes="mt-2">
                 {submitting ? (
                   <>
                     <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
@@ -433,24 +433,25 @@ export default function CardTeamForm() {
                 ) : (
                   "Add Member"
                 )}
-              </ButtonPrimary>
+              </BSButton>
 
               {editingId && (
-                <ButtonSecondary
+                <BSButton
+                  variant="secondary"
                   classes="mt-2 ms-2 border-secondary"
                   onClick={() => {
-                    setEditingId(null)
-                    setName("")
-                    setFile(null)
-                    setSelectedDepartment("")
-                    setSelectedRole("")
-                    setMemberRoles([])
-                    const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null
-                    if (fileInput) fileInput.value = ""
+                    setEditingId(null);
+                    setName("");
+                    setFile(null);
+                    setSelectedDepartment("");
+                    setSelectedRole("");
+                    setMemberRoles([]);
+                    const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null;
+                    if (fileInput) fileInput.value = "";
                   }}
                   disabled={submitting}>
                   Cancel
-                </ButtonSecondary>
+                </BSButton>
               )}
             </Form>
           </Card.Body>
@@ -532,9 +533,9 @@ export default function CardTeamForm() {
           {confirmAction === "delete-picture" && "Are you sure you want to delete this member's profile picture?"}
         </Modal.Body>
         <Modal.Footer>
-          <ButtonSecondary classes="border-secondary" onClick={() => setShowModal(false)}>
+          <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
             Cancel
-          </ButtonSecondary>
+          </BSButton>
           <Button
             variant="danger"
             className="border border-2 border-danger text-uppercase fw-bold rounded-1"
@@ -544,6 +545,6 @@ export default function CardTeamForm() {
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
 

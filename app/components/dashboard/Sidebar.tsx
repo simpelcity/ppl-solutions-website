@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { usePathname, useRouter } from "next/navigation"
-import { useAuth } from "@/lib/AuthContext"
-import { Dropdown, Image, Nav, Collapse, Spinner } from "react-bootstrap"
-import { FaAngleLeft, FaAngleRight, FaAngleDown } from "react-icons/fa6"
-import { GoHomeFill } from "react-icons/go"
-import { MdLeaderboard } from "react-icons/md"
-import { FaChartLine } from "react-icons/fa6"
-import { BiSolidDashboard } from "react-icons/bi"
-import { GoArrowSwitch } from "react-icons/go"
-import { FaUsers } from "react-icons/fa"
-import { MdPhotoLibrary } from "react-icons/md"
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/lib/AuthContext";
+import { Dropdown, Image, Nav, Collapse, Spinner } from "react-bootstrap";
+import { FaAngleLeft, FaAngleRight, FaAngleDown } from "react-icons/fa6";
+import { GoHomeFill } from "react-icons/go";
+import { MdLeaderboard } from "react-icons/md";
+import { FaChartLine } from "react-icons/fa6";
+import { BiSolidDashboard } from "react-icons/bi";
+import { GoArrowSwitch } from "react-icons/go";
+import { FaUsers } from "react-icons/fa";
+import { MdPhotoLibrary } from "react-icons/md";
 
 interface NavItem {
-  href: string
-  icon: React.ReactNode
-  label: string
+  href: string;
+  icon: React.ReactNode;
+  label: string;
 }
 
 interface SidebarProps {
-  isSidebarCollapsed: boolean
-  setIsSidebarCollapsed: (value: boolean) => void
-  isMobile: boolean
-  isNavbarVisible?: boolean
-  [key: string]: any
+  isSidebarCollapsed: boolean;
+  setIsSidebarCollapsed: (value: boolean) => void;
+  isMobile: boolean;
+  isNavbarVisible?: boolean;
+  [key: string]: any;
 }
 
 export default function Sidebar({
@@ -34,12 +34,12 @@ export default function Sidebar({
   isNavbarVisible = false,
   ...props
 }: SidebarProps) {
-  const { user, logout, session, loading } = useAuth()
-  const pathname = usePathname()
-  const router = useRouter()
-  const [profileUrl, setProfileUrl] = useState<string | null>(null)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [open, setOpen] = useState(false)
+  const { user, logout, session, loading } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [profileUrl, setProfileUrl] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const navItems: NavItem[] = [
     {
@@ -57,7 +57,7 @@ export default function Sidebar({
       icon: <MdLeaderboard />,
       label: "Leaderboard",
     },
-  ]
+  ];
 
   const collapseItems: NavItem[] = [
     {
@@ -75,83 +75,83 @@ export default function Sidebar({
       icon: <MdPhotoLibrary />,
       label: "Gallery",
     },
-  ]
+  ];
 
   useEffect(() => {
     const fetchProfileAndRole = async () => {
-      if (!user?.user_metadata?.username) return
+      if (!user?.user_metadata?.username) return;
 
       try {
-        const res = await fetch("/api/team")
-        if (!res.ok) return
+        const res = await fetch("/api/team");
+        if (!res.ok) return;
 
-        const json = await res.json()
-        const payload = json.data ?? []
+        const json = await res.json();
+        const payload = json.data ?? [];
 
-        let members: { name: string; profile_url?: string | null; admin?: boolean | string | null }[] = []
+        let members: { name: string; profile_url?: string | null; admin?: boolean | string | null }[] = [];
 
         if (Array.isArray(payload) && payload.length > 0) {
           if (payload[0].team_member) {
             members = payload.map((item: any) => {
-              const tm = item.team_member ?? {}
-              return { name: tm.name, profile_url: tm.profile_url ?? null, admin: tm.admin ?? null }
-            })
+              const tm = item.team_member ?? {};
+              return { name: tm.name, profile_url: tm.profile_url ?? null, admin: tm.admin ?? null };
+            });
           } else {
             members = payload.map((m: any) => ({
               name: m.name,
               profile_url: m.profile_url ?? null,
               admin: m.admin ?? null,
-            }))
+            }));
           }
         }
 
-        const member = members.find((m) => m.name === user.user_metadata?.username)
+        const member = members.find((m) => m.name === user.user_metadata?.username);
 
-        const adminFlag = member?.admin === true || member?.admin === "true" || Boolean(member?.admin)
-        setIsAdmin(adminFlag)
+        const adminFlag = member?.admin === true || member?.admin === "true" || Boolean(member?.admin);
+        setIsAdmin(adminFlag);
 
-        setProfileUrl(member?.profile_url ?? null)
+        setProfileUrl(member?.profile_url ?? null);
       } catch (err) {
-        console.error("Failed to fetch team profile:", err)
+        console.error("Failed to fetch team profile:", err);
       }
-    }
+    };
 
-    fetchProfileAndRole()
+    fetchProfileAndRole();
 
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    })
-  }, [user, pathname])
+    });
+  }, [user, pathname]);
 
   const handleLogout = async () => {
-    if (!logout) return
-    await logout()
-    router.push("/")
-  }
+    if (!logout) return;
+    await logout();
+    router.push("/");
+  };
 
   useEffect(() => {
     if (!loading && !session) {
-      router.push("/login")
+      router.push("/login");
     }
-  }, [session, loading, router])
+  }, [session, loading, router]);
 
   if (loading) {
     return (
       <>
-        <div className="loader w-100 d-flex justify-content-center align-items-center vh-100 text-light">
+        <div className="loader w-auto d-flex justify-content-center align-items-center vh-100 text-light px-3">
           <Spinner animation="border" className="me-2" />
           <span className="fs-2">Loading...</span>
         </div>
       </>
-    )
+    );
   }
 
   if (!session) {
-    return null
+    return null;
   }
 
-  const username = (session as any).user?.user_metadata?.username || session.user.email
+  const username = (session as any).user?.user_metadata?.username || session.user.email;
 
   return (
     <div
@@ -297,6 +297,6 @@ export default function Sidebar({
         </Dropdown>
       )}
     </div>
-  )
+  );
 }
 

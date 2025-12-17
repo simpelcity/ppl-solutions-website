@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Card, Form, Col } from "react-bootstrap"
-import { ButtonOutline } from "@/components"
-import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa"
-import { IconContext } from "react-icons"
+import { Card, Form, Col } from "react-bootstrap";
+import BSButton from "../Button";
+import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 export default function CardContact() {
   return (
@@ -48,9 +48,9 @@ export default function CardContact() {
                 />
               </Form.Group>
               <div className="d-grid d-md-inline-block">
-                <ButtonOutline type="submit" border="primary" text="primary" paddingy="10" paddingx="20" width="2">
+                <BSButton variant="outline" size="lg" type="submit" border="primary" text="primary" width="2">
                   Send
-                </ButtonOutline>
+                </BSButton>
               </div>
             </Col>
             <Col
@@ -87,6 +87,6 @@ export default function CardContact() {
         </Card.Body>
       </Card>
     </>
-  )
+  );
 }
 

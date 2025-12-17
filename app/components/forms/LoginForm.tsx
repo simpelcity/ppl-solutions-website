@@ -1,39 +1,39 @@
-"use client"
+"use client";
 
-import { Card, Form, Image } from "react-bootstrap"
-import { useState } from "react"
-import { supabase } from "@/lib/supabaseClient"
-import { useRouter } from "next/navigation"
-import { ButtonPrimary } from "@/components"
+import { Card, Form, Image } from "react-bootstrap";
+import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
+import BSButton from "../ui/Button";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [remeber, setRemember] = useState(false)
-  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [remeber, setRemember] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+    e.preventDefault();
+    setError("");
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email.trim().toLowerCase(),
         password,
-      })
+      });
 
       if (error) {
-        setError(error.message)
-        return
+        setError(error.message);
+        return;
       }
 
-      router.push("/drivershub")
+      router.push("/drivershub");
     } catch (err: any) {
-      console.error(err)
-      setError(err?.message ?? "Unexpected error")
+      console.error(err);
+      setError(err?.message ?? "Unexpected error");
     }
-  }
+  };
 
   return (
     <>
@@ -90,7 +90,9 @@ export default function LoginForm() {
             </Form.Group>
             {error && <p className="text-danger mt-3">{error}</p>}
             <Form.Group className="mb-3">
-              <ButtonPrimary type="submit">Log in</ButtonPrimary>
+              <BSButton variant="primary" type="submit">
+                Log in
+              </BSButton>
             </Form.Group>
             <div className="text-center">
               <small>
@@ -104,6 +106,6 @@ export default function LoginForm() {
         </Card.Body>
       </Card>
     </>
-  )
+  );
 }
 

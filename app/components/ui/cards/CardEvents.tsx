@@ -1,19 +1,21 @@
-import { Col, Card, CardImg, CardBody, CardTitle } from "react-bootstrap"
-import { BsCalendar3 } from "react-icons/bs"
-import { FaRegClock } from "react-icons/fa6"
-import { LuTruck } from "react-icons/lu"
-import { FiMapPin } from "react-icons/fi"
-import { LuGamepad2 } from "react-icons/lu"
-import { BsHddStack } from "react-icons/bs"
-import { BsDownload } from "react-icons/bs"
-import { DivEvents } from "@/components"
+import { Col, Card, CardImg, CardBody, CardTitle } from "react-bootstrap";
+import { BsCalendar3 } from "react-icons/bs";
+import { FaRegClock } from "react-icons/fa6";
+import { LuTruck } from "react-icons/lu";
+import { FiMapPin } from "react-icons/fi";
+import { LuGamepad2 } from "react-icons/lu";
+import { BsHddStack } from "react-icons/bs";
+import { BsDownload } from "react-icons/bs";
+import { DivEvents } from "@/components";
+import BSButton from "@/components/ui/Button";
 
 export default async function CardEvents() {
-  const baseUrl = process.env.BASE_URL || "http://localhost:3000"
-  const response = await fetch(`${baseUrl}/api/events`, { next: { revalidate: 60 } })
-  if (!response.ok) throw new Error(`Failed to fetch events: ${response.status}`)
-  const data = await response.json()
-  const events = data.response
+  const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+  const response = await fetch(`${baseUrl}/api/events`, { next: { revalidate: 60 } });
+  if (!response.ok) throw new Error(`Failed to fetch events: ${response.status}`);
+  const data = await response.json();
+  const events = data.response;
+  console.log("Fetched events:", events);
 
   if (!events || events.length === 0) {
     return (
@@ -22,22 +24,22 @@ export default async function CardEvents() {
           No upcoming events <BsCalendar3 />
         </h2>
       </div>
-    )
+    );
   }
 
   const formatDate = (dateString: Date) => {
-    if (!dateString) return "N/A"
-    const date = new Date(dateString)
-    return date.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })
-  }
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
+  };
 
   const formatTime = (dateString: Date) => {
-    if (!dateString) return "N/A"
-    const date = new Date(dateString)
-    const hours = date.getHours().toString().padStart(2, "0")
-    const minutes = date.getMinutes().toString().padStart(2, "0")
-    return `${hours}:${minutes}`
-  }
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
 
   return (
     <>
@@ -52,7 +54,7 @@ export default async function CardEvents() {
                 alt={event.name}
                 loading="lazy"
               />
-              <CardBody>
+              <CardBody className="d-flex flex-column align-items-stretch align-items-md-start">
                 <CardTitle className="fs-4 mb-3 text-start">{event.name}</CardTitle>
                 <DivEvents>
                   <div>
@@ -94,12 +96,15 @@ export default async function CardEvents() {
                     {event.dlc ?? "None"}
                   </div>
                 </DivEvents>
+                <BSButton variant="outline" size="lg" href={`https://truckersmp.com${event.url}`} target="_blank">
+                  Event
+                </BSButton>
               </CardBody>
             </Card>
           </Col>
-        )
+        );
       })}
     </>
-  )
+  );
 }
 

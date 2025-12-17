@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Navbar as BSNavbar, Nav, Container, Image } from "react-bootstrap"
-import { ButtonSecondary } from "@/components"
-import { RxHamburgerMenu } from "react-icons/rx"
-import { useSidebar } from "@/lib/SidebarContext"
-import "@/styles/Navbar.scss"
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import BSButton from "@/components/ui/Button";
+import { Navbar as BSNavbar, Nav, Container, Image } from "react-bootstrap";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { useSidebar } from "@/lib/SidebarContext";
+import "@/styles/Navbar.scss";
 
 const Navbar: React.FC = () => {
-  const pathname = usePathname()
-  const [expanded, setExpanded] = useState(false)
-  const { toggleSidebar, isMobile } = useSidebar()
-  const isDrivershub = pathname?.startsWith("/drivershub")
+  const pathname = usePathname();
+  const [expanded, setExpanded] = useState(false);
+  const { toggleSidebar, isMobile } = useSidebar();
+  const isDrivershub = pathname?.startsWith("/drivershub");
 
   useEffect(() => {
-    setExpanded(false)
+    setExpanded(false);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    })
-  }, [pathname])
+    });
+  }, [pathname]);
 
   const navLinks = [
     { title: "Home", href: "/" },
@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
     { title: "Team", href: "/team" },
     { title: "Gallery", href: "/gallery" },
     { title: "Contact", href: "/contact" },
-  ]
+  ];
 
   return (
     <header>
@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
             as={Link}
             onClick={() => setExpanded(false)}
             href="/"
-            className="d-flex align-items-center ms-3 me-0 column-gap-2">
+            className="d-flex align-items-center mx-0 ms-xl-3 me-xl-0 column-gap-2">
             <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
             <h5 className="my-auto">PPL Solutions VTC</h5>
           </BSNavbar.Brand>
@@ -68,19 +68,29 @@ const Navbar: React.FC = () => {
               ))}
             </Nav>
             <Nav className="d-flex align-items-lg-center justify-content-center flex-row nav-buttons column-gap-2">
-              <ButtonSecondary href="/apply" classes="w-100" onClick={() => setExpanded(false)}>
+              <BSButton
+                variant="secondary"
+                border="primary 2"
+                href="/apply"
+                classes="w-100"
+                onClick={() => setExpanded(false)}>
                 Apply
-              </ButtonSecondary>
-              <ButtonSecondary href="/drivershub" classes="w-100" onClick={() => setExpanded(false)}>
+              </BSButton>
+              <BSButton
+                variant="secondary"
+                border="primary 2"
+                href="/drivershub"
+                classes="w-100"
+                onClick={() => setExpanded(false)}>
                 Drivershub
-              </ButtonSecondary>
+              </BSButton>
             </Nav>
           </BSNavbar.Collapse>
         </Container>
       </BSNavbar>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
 

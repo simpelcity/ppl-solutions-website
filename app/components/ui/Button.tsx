@@ -15,7 +15,7 @@ interface ButtonProps {
 
 export default function BSButton({
   children,
-  border,
+  border = "primary",
   text = "light",
   classes,
   variant = "primary",

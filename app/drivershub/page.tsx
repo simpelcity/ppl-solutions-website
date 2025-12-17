@@ -1,8 +1,8 @@
-import { Card, CardBody, CardTitle } from "react-bootstrap"
-import { StartBanner, TableJobs, Dashboard } from "@/components"
-import { HiOutlineSwitchHorizontal } from "react-icons/hi"
-import { FaUserCircle } from "react-icons/fa"
-import "@/styles/Drivershub.scss"
+import { Card, CardBody, CardTitle } from "react-bootstrap";
+import { StartBanner, TableJobs, Dashboard } from "@/components";
+import { HiOutlineSwitchHorizontal } from "react-icons/hi";
+import { FaUserCircle } from "react-icons/fa";
+import "@/styles/Drivershub.scss";
 
 export default function DriversHubPage() {
   return (
@@ -36,6 +36,6 @@ export default function DriversHubPage() {
         </section>
       </main>
     </>
-  )
+  );
 }
 

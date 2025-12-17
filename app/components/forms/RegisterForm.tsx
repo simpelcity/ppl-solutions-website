@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import { Card, Form, Image } from "react-bootstrap"
-import { useState } from "react"
-import { supabase } from "@/lib/supabaseClient"
-import { useRouter } from "next/navigation"
-import { ButtonPrimary } from "@/components"
+import { Card, Form, Image } from "react-bootstrap";
+import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
+import BSButton from "../ui/Button";
 
 export default function RegisterForm() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [username, setUsername] = useState("")
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setSuccess("")
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    setLoading(true);
     try {
       const { data, error } = await supabase.auth.signUp({
         email: email.trim().toLowerCase(),
         password,
         options: { data: { username } },
-      })
+      });
 
-      setLoading(false)
+      setLoading(false);
       if (error) {
-        setError(error.message)
-        return
+        setError(error.message);
+        return;
       }
 
-      setSuccess("Registration successful. Please check your email to confirm.")
-      setTimeout(() => router.push("/login"), 900)
+      setSuccess("Registration successful. Please check your email to confirm.");
+      setTimeout(() => router.push("/login"), 900);
     } catch (err: any) {
-      setLoading(false)
-      setError(err?.message ?? "Unexpected error during registration")
+      setLoading(false);
+      setError(err?.message ?? "Unexpected error during registration");
     }
-  }
+  };
 
   return (
     <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
@@ -97,9 +97,9 @@ export default function RegisterForm() {
           {error && <p className="text-danger mt-3">{error}</p>}
           {success && <p className="text-success mt-3">{success}</p>}
           <Form.Group className="mb-3">
-            <ButtonPrimary type="submit" disabled={loading}>
+            <BSButton variant="primary" type="submit" disabled={loading}>
               {loading ? "Creating account..." : "Sign up"}
-            </ButtonPrimary>
+            </BSButton>
           </Form.Group>
           <div className="text-center">
             <small>
@@ -112,5 +112,6 @@ export default function RegisterForm() {
         </Form>
       </Card.Body>
     </Card>
-  )
+  );
 }
+

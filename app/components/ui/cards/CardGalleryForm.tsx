@@ -1,152 +1,152 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from "react-bootstrap"
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa"
-import { ButtonPrimary, ButtonSecondary } from "@/components"
+import { useState, useEffect } from "react";
+import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from "react-bootstrap";
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import BSButton from "@/components/ui/Button";
 
 interface GalleryItem {
-  id: number
-  title: string | null
-  image_url: string | null
-  image_path: string | null
+  id: number;
+  title: string | null;
+  image_url: string | null;
+  image_path: string | null;
 }
 
-type ConfirmAction = "delete-item" | null
+type ConfirmAction = "delete-item" | null;
 
 export default function CardGalleryForm() {
-  const [title, setTitle] = useState("")
-  const [file, setFile] = useState<File | null>(null)
-  const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState<string | null>(null)
-  const [items, setItems] = useState<GalleryItem[]>([])
-  const [loading, setLoading] = useState(false)
-  const [editingId, setEditingId] = useState<number | null>(null)
+  const [title, setTitle] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [items, setItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
 
   // Modal state
-  const [showModal, setShowModal] = useState(false)
-  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null)
-  const [targetId, setTargetId] = useState<number | null>(null)
+  const [showModal, setShowModal] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
+  const [targetId, setTargetId] = useState<number | null>(null);
 
   useEffect(() => {
-    fetchItems()
-  }, [])
+    fetchItems();
+  }, []);
 
   const fetchItems = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await fetch("/api/gallery")
-      const json = await res.json()
+      const res = await fetch("/api/gallery");
+      const json = await res.json();
       if (res.ok) {
-        setItems(json.data || [])
+        setItems(json.data || []);
       }
     } catch (err) {
-      console.error(err)
+      console.error(err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
-    setSuccess(null)
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
 
     if (!title.trim()) {
-      setError("Title is required")
-      return
+      setError("Title is required");
+      return;
     }
 
     if (!file) {
-      setError("Image is required")
-      return
+      setError("Image is required");
+      return;
     }
 
-    const fd = new FormData()
-    fd.append("title", title.trim())
-    fd.append("file", file)
+    const fd = new FormData();
+    fd.append("title", title.trim());
+    fd.append("file", file);
 
-    setSubmitting(true)
+    setSubmitting(true);
     try {
-      const res = await fetch("/api/gallery", { method: "POST", body: fd })
-      const json = await res.json()
+      const res = await fetch("/api/gallery", { method: "POST", body: fd });
+      const json = await res.json();
       if (!res.ok) {
-        throw new Error(json?.error || "Failed to add item")
+        throw new Error(json?.error || "Failed to add item");
       }
-      setSuccess("Gallery item added")
-      setTitle("")
-      setFile(null)
-      const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null
-      if (fileInput) fileInput.value = ""
-      fetchItems()
+      setSuccess("Gallery item added");
+      setTitle("");
+      setFile(null);
+      const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
+      if (fileInput) fileInput.value = "";
+      fetchItems();
     } catch (err: any) {
-      setError(err?.message ?? "Unexpected error")
+      setError(err?.message ?? "Unexpected error");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   const handleUpdate = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!editingId) return
-    setError(null)
-    setSuccess(null)
+    e.preventDefault();
+    if (!editingId) return;
+    setError(null);
+    setSuccess(null);
 
     if (!title.trim()) {
-      setError("Title is required")
-      return
+      setError("Title is required");
+      return;
     }
 
-    const fd = new FormData()
-    fd.append("id", editingId.toString())
-    fd.append("title", title.trim())
-    if (file) fd.append("file", file)
+    const fd = new FormData();
+    fd.append("id", editingId.toString());
+    fd.append("title", title.trim());
+    if (file) fd.append("file", file);
 
-    setSubmitting(true)
+    setSubmitting(true);
     try {
-      const res = await fetch("/api/gallery", { method: "PUT", body: fd })
-      const json = await res.json()
+      const res = await fetch("/api/gallery", { method: "PUT", body: fd });
+      const json = await res.json();
       if (!res.ok) {
-        throw new Error(json?.error || "Failed to update")
+        throw new Error(json?.error || "Failed to update");
       }
-      setSuccess("Gallery item updated")
-      setTitle("")
-      setFile(null)
-      setEditingId(null)
-      const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null
-      if (fileInput) fileInput.value = ""
-      fetchItems()
+      setSuccess("Gallery item updated");
+      setTitle("");
+      setFile(null);
+      setEditingId(null);
+      const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
+      if (fileInput) fileInput.value = "";
+      fetchItems();
     } catch (err: any) {
-      setError(err?.message ?? "Update failed")
+      setError(err?.message ?? "Update failed");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   const handleEdit = (item: GalleryItem) => {
-    setEditingId(item.id)
-    setTitle(item.title || "")
-    setFile(null)
-  }
+    setEditingId(item.id);
+    setTitle(item.title || "");
+    setFile(null);
+  };
 
   const openConfirmModal = (action: ConfirmAction, id: number) => {
-    setConfirmAction(action)
-    setTargetId(id)
-    setShowModal(true)
-  }
+    setConfirmAction(action);
+    setTargetId(id);
+    setShowModal(true);
+  };
 
   const handleConfirm = async () => {
-    setShowModal(false)
-    if (!targetId || !confirmAction) return
+    setShowModal(false);
+    if (!targetId || !confirmAction) return;
 
     if (confirmAction === "delete-item") {
-      await executeDelete(targetId)
+      await executeDelete(targetId);
     }
 
-    setTargetId(null)
-    setConfirmAction(null)
-  }
+    setTargetId(null);
+    setConfirmAction(null);
+  };
 
   const executeDelete = async (id: number) => {
     try {
@@ -154,17 +154,17 @@ export default function CardGalleryForm() {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
-      })
+      });
       if (!res.ok) {
-        const json = await res.json()
-        throw new Error(json?.error || "Failed to delete")
+        const json = await res.json();
+        throw new Error(json?.error || "Failed to delete");
       }
-      setSuccess("Gallery item deleted")
-      fetchItems()
+      setSuccess("Gallery item deleted");
+      fetchItems();
     } catch (err: any) {
-      setError(err?.message ?? "Delete failed")
+      setError(err?.message ?? "Delete failed");
     }
-  }
+  };
 
   return (
     <>
@@ -209,7 +209,7 @@ export default function CardGalleryForm() {
                 </Alert>
               )}
 
-              <ButtonPrimary type="submit" disabled={submitting} classes="mt-2">
+              <BSButton variant="primary" size="lg" type="submit" disabled={submitting} classes="mt-2">
                 {submitting ? (
                   <>
                     <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
@@ -219,21 +219,22 @@ export default function CardGalleryForm() {
                 ) : (
                   "Add Item"
                 )}
-              </ButtonPrimary>
+              </BSButton>
 
               {editingId && (
-                <ButtonSecondary
+                <BSButton
+                  variant="secondary"
                   classes="mt-2 ms-2 border-secondary"
                   onClick={() => {
-                    setEditingId(null)
-                    setTitle("")
-                    setFile(null)
-                    const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null
-                    if (fileInput) fileInput.value = ""
+                    setEditingId(null);
+                    setTitle("");
+                    setFile(null);
+                    const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
+                    if (fileInput) fileInput.value = "";
                   }}
                   disabled={submitting}>
                   Cancel
-                </ButtonSecondary>
+                </BSButton>
               )}
             </Form>
           </Card.Body>
@@ -313,6 +314,6 @@ export default function CardGalleryForm() {
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
 

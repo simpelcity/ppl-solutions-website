@@ -20,7 +20,6 @@ export default function TableJobs() {
     goToPreviousPage,
   } = useUserJobs();
 
-  // Get page numbers to display (max 5 visible)
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
     const maxVisible = 5;
@@ -47,6 +46,10 @@ export default function TableJobs() {
       }
     }
     return pages;
+  };
+
+  const formatDate = (date: number) => {
+    return new Date(date).toLocaleDateString("nl-NL", { day: "2-digit", month: "2-digit", year: "numeric" });
   };
 
   const tableItems = [
@@ -81,7 +84,7 @@ export default function TableJobs() {
           <tbody>
             {jobs.map((job) => (
               <tr key={job.jobID} className="border-0">
-                <td className="px-4 py-2">{new Date(job.realtime?.end ?? Date.now()).toLocaleDateString()}</td>
+                <td className="px-4 py-2">{formatDate(job.realtime?.end ?? Date.now())}</td>
                 <td className="px-4 py-2">{job.driver?.username ?? "—"}</td>
                 <td className="text-uppercase px-4 py-2">{job.game?.id ?? "—"}</td>
                 <td className="px-4 py-2">
@@ -90,20 +93,25 @@ export default function TableJobs() {
                 <td className="px-4 py-2">
                   {job.cargo?.name ?? "—"} ({Math.floor((job.cargo?.mass ?? 0) / 1000)}t)
                 </td>
+                <td className="px-4 py-2">
+                  {job.truck?.name ?? "—"} {job.truck?.model?.name ?? ""}
+                </td>
+                <td className="px-4 py-2">{job.distanceDriven ?? "—"} km</td>
+                <td className="px-4 py-2">€ {job.income ?? "—"}</td>
               </tr>
             ))}
           </tbody>
         </Table>
       </div>
-      <div className="d-flex flex-column flex-md-row align-items-center justify-content-md-between mt-4 gap-2 ms-0 ms-md-4">
+      <div className="d-flex flex-column flex-md-row align-items-center justify-content-md-between mt-4 row-gap-4 ms-0 ms-md-4">
         {!showAll && (
           <div className="text-primary border border-light border-opacity-25 px-3 py-2 rounded-1 small">
             Showing page {displayPage} of {lastPage}
           </div>
         )}
 
-        <div className="pagination-div d-flex flex-column flex-md-row justify-content-center align-items-center row-gap-3 column-gap-3">
-          <BSButton classes="py-1" onClick={toggleShowAll}>
+        <div className="pagination-div d-flex flex-column flex-md-row justify-content-center align-items-center row-gap-4 column-gap-3">
+          <BSButton variant="primary" onClick={toggleShowAll}>
             {showAll ? "Show Paginated" : "show all jobs"}
           </BSButton>
           {!showAll && lastPage > 1 && (
@@ -156,101 +164,5 @@ export default function TableJobs() {
       </div>
     </>
   );
-}
-
-// {
-//   (showAll ? allJobs : jobs).length === 0 ? (
-//     <tr>
-//       <td colSpan={8} className="text-center">
-//         No jobs found
-//       </td>
-//     </tr>
-//   ) : (
-//     (showAll ? allJobs : jobs).map((job: any) => (
-//       <tr key={job.jobID} className="border-0">
-//         <td className="px-4 py-2">{formatDate(job.realtime?.end ?? Date.now())}</td>
-//         <td className="px-4 py-2">{job.driver?.username ?? "—"}</td>
-//         <td className="text-uppercase px-4 py-2">{job.game?.id ?? "—"}</td>
-//         <td className="px-4 py-2">
-//           {job.source?.city?.name ?? "—"} - {job.destination?.city?.name ?? "—"}
-//         </td>
-//         <td className="px-4 py-2">
-//           {job.cargo?.name ?? "—"} ({Math.floor((job.cargo?.mass ?? 0) / 1000)}t)
-//         </td>
-//         <td className="px-4 py-2">
-//           {job.truck?.name ?? "—"} {job.truck?.model?.name ?? ""}
-//         </td>
-//         <td className="px-4 py-2">{job.distanceDriven ?? "—"} km</td>
-//         <td className="px-4 py-2">€ {job.income ?? "—"}</td>
-//       </tr>
-//     ))
-//   );
-// }
-
-{
-  /* <div className="d-flex flex-column flex-md-row align-items-center justify-content-md-between mt-4 gap-2 ms-0 ms-md-4">
-  {!showAll && (
-    <div className="text-primary border border-light border-opacity-25 px-3 py-2 rounded-1 small">
-      Showing page {displayPage} of {lastPage}
-    </div>
-  )}
-
-  <div className="pagination-div d-flex flex-column flex-md-row justify-content-center align-items-center row-gap-3 column-gap-3">
-    <ButtonPrimary classes="py-1" onClick={handleToggleShowAll}>
-      {showAll ? "Show Paginated" : "show all jobs"}
-    </ButtonPrimary>
-    {!showAll && (
-      <>
-        <div className="d-flex justify-content-center align-items-center column-gap-1">
-          <Button
-            className="p-1 btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
-            onClick={() => {
-              if (currentPage < lastPage) goToDisplayPage(displayPage - 1);
-            }}
-            disabled={currentPage >= lastPage}>
-            <MdNavigateBefore className="fs-4" />
-          </Button>
-
-          <nav aria-label="Job pages" className="">
-            <ul className="pagination mb-0 column-gap-1">
-              {getDisplayPages().map((p, idx) =>
-                p === "ellipsis" ? (
-                  <li key={`el-${idx}`} className="page-item disabled">
-                    <span className="page-link">…</span>
-                  </li>
-                ) : (
-                  <li
-                    key={`p-${p}`}
-                    className={`page-item d-flex align-items-center ${displayPage === p ? "active" : ""}`}>
-                    <button
-                      className={`page-link rounded-3 py-1 d-flex align-items-center ${
-                        displayPage === p
-                          ? "bg-primary"
-                          : "bg-transparent border-0 shadow-none text-light text-opacity-50"
-                      }`}
-                      onClick={() => goToDisplayPage(p as number)}
-                      aria-current={displayPage === p ? "page" : undefined}
-                      disabled={displayPage === p}>
-                      {p}
-                    </button>
-                  </li>
-                )
-              )}
-            </ul>
-          </nav>
-
-          <Button
-            className="p-1 btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
-            onClick={() => {
-              if (currentPage > 1) goToDisplayPage(displayPage + 1);
-            }}
-            disabled={currentPage <= 1}>
-            <MdNavigateNext className="fs-4" />
-          </Button>
-        </div>
-      </>
-    )}
-  </div>
-</div>; */
 }
 
