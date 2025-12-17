@@ -1,6 +1,7 @@
-import { Container, Image, Row, Col } from "react-bootstrap"
-import { ButtonOutline, CardText } from "@/components"
-import "@/styles/Home.scss"
+import { Container, Image, Row, Col } from "react-bootstrap";
+import { CardText } from "@/components";
+import BSButton from "@/components/ui/Button";
+import "@/styles/Home.scss";
 
 export default function HomePage() {
   return (
@@ -35,17 +36,17 @@ export default function HomePage() {
             <div className="overlay position-absolute top-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
               <h4 className="text-center">"Steering the future of Digital Logistics"</h4>
               <div className="mt-3 d-flex justify-content-center column-gap-3">
-                <ButtonOutline border="light" paddingx="20" paddingy="10" href="/apply">
+                <BSButton variant="outline" size="lg" border="light" href="/apply">
                   apply
-                </ButtonOutline>
-                <ButtonOutline
+                </BSButton>
+                <BSButton
+                  variant="outline"
+                  size="lg"
                   border="light"
-                  paddingx="20"
-                  paddingy="10"
                   href="https://discord.gg/mnKcKwsYm4"
                   target="_blank">
                   discord
-                </ButtonOutline>
+                </BSButton>
               </div>
             </div>
           </Container>
@@ -94,14 +95,14 @@ export default function HomePage() {
             </h2>
             <p>Apply through our discord server today, and start your amazing journey with PPL Solutions.</p>
             <div className="d-grid d-md-inline-block">
-              <ButtonOutline border="primary" text="primary">
+              <BSButton variant="outline" border="primary" text="primary">
                 apply now
-              </ButtonOutline>
+              </BSButton>
             </div>
           </Container>
         </section>
       </main>
     </>
-  )
+  );
 }
 

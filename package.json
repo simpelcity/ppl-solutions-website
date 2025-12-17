@@ -12,7 +12,7 @@
     "@supabase/auth-helpers-nextjs": "^0.15.0",
     "@supabase/supabase-js": "^2.86.0",
     "bootstrap": "^5.3.8",
-    "next": "16.0.7",
+    "next": "^16.0.10",
     "react": "19.2.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "19.2.0",
