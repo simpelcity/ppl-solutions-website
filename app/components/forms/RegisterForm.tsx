@@ -24,7 +24,7 @@ export default function RegisterForm() {
       const { data, error } = await supabase.auth.signUp({
         email: email.trim().toLowerCase(),
         password,
-        options: { data: { username, display } },
+        options: { data: { username, display_name: username } },
       });
 
       setLoading(false);
