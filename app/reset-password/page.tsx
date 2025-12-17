@@ -1,71 +1,71 @@
-"use client"
+"use client";
 
-import { Container, Row, Col, Card, Form, Image } from "react-bootstrap"
-import { useState, useEffect } from "react"
-import { supabase } from "@/lib/supabaseClient"
-import { useRouter } from "next/navigation"
-import { ButtonPrimary } from "@/components"
-import "@/styles/AuthCards.scss"
+import { Container, Row, Col, Card, Form, Image } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
+import BSButton from "@/components/ui/Button";
+import "@/styles/AuthCards.scss";
 
 export default function ResetPasswordPage() {
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [tokenValid, setTokenValid] = useState(false)
-  const router = useRouter()
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [tokenValid, setTokenValid] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const hash = window.location.hash.substring(1)
-    const params = new URLSearchParams(hash)
-    const accessToken = params.get("access_token")
-    const type = params.get("type")
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const accessToken = params.get("access_token");
+    const type = params.get("type");
 
     if (type === "recovery" && accessToken) {
-      setTokenValid(true)
+      setTokenValid(true);
     } else {
-      setError("Invalid or missing reset token. Please request a new password reset.")
+      setError("Invalid or missing reset token. Please request a new password reset.");
     }
-  }, [])
+  }, []);
 
   const handleResetPassword = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setSuccess("")
+    e.preventDefault();
+    setError("");
+    setSuccess("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
-      return
+      setError("Passwords do not match");
+      return;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters")
-      return
+      setError("Password must be at least 6 characters");
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     try {
       const { error } = await supabase.auth.updateUser({
         password: password,
-      })
+      });
 
       if (error) {
-        setError(error.message)
-        return
+        setError(error.message);
+        return;
       }
 
-      setSuccess("Password reset successfully! Redirecting to login...")
+      setSuccess("Password reset successfully! Redirecting to login...");
       setTimeout(() => {
-        router.push("/login")
-      }, 2000)
+        router.push("/login");
+      }, 2000);
     } catch (err: any) {
-      setError(err?.message ?? "An error occurred while resetting your password")
+      setError(err?.message ?? "An error occurred while resetting your password");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   if (!tokenValid) {
     return (
@@ -119,7 +119,7 @@ export default function ResetPasswordPage() {
           </section>
         </main>
       </>
-    )
+    );
   }
 
   return (
@@ -174,9 +174,9 @@ export default function ResetPasswordPage() {
                       {success && <p className="text-success mt-3 mb-3">{success}</p>}
 
                       <Form.Group className="mb-3">
-                        <ButtonPrimary type="submit" disabled={loading}>
+                        <BSButton variant="primary" type="submit" disabled={loading}>
                           {loading ? "Resetting..." : "Reset Password"}
-                        </ButtonPrimary>
+                        </BSButton>
                       </Form.Group>
 
                       <div className="text-center">
@@ -195,6 +195,6 @@ export default function ResetPasswordPage() {
         </section>
       </main>
     </>
-  )
+  );
 }
 

@@ -1,41 +1,41 @@
-"use client"
+"use client";
 
-import { Container, Row, Col, Card, Form, Image } from "react-bootstrap"
-import { useState } from "react"
-import { supabase } from "@/lib/supabaseClient"
-import { ButtonPrimary } from "@/components"
-import "@/styles/AuthCards.scss"
+import { Container, Row, Col, Card, Form, Image } from "react-bootstrap";
+import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
+import BSButton from "@/components/ui/Button";
+import "@/styles/AuthCards.scss";
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState("")
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
-  const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleForgotPassword = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setSuccess("")
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    setLoading(true);
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
         redirectTo: `${window.location.origin}/reset-password`,
-      })
+      });
 
       if (error) {
-        setError(error.message)
-        return
+        setError(error.message);
+        return;
       }
 
-      setSuccess("Password reset email sent! Check your inbox for a link to reset your password.")
-      setEmail("")
+      setSuccess("Password reset email sent! Check your inbox for a link to reset your password.");
+      setEmail("");
     } catch (err: any) {
-      setError(err?.message ?? "An error occurred while sending the reset email")
+      setError(err?.message ?? "An error occurred while sending the reset email");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <>
@@ -95,9 +95,9 @@ export default function ForgotPasswordPage() {
                       {success && <p className="text-success mt-3 mb-3">{success}</p>}
 
                       <Form.Group className="mb-3">
-                        <ButtonPrimary type="submit" disabled={loading}>
+                        <BSButton variant="primary" type="submit" disabled={loading}>
                           {loading ? "Sending..." : "Send Reset Email"}
-                        </ButtonPrimary>
+                        </BSButton>
                       </Form.Group>
 
                       <div className="text-center">
@@ -117,6 +117,6 @@ export default function ForgotPasswordPage() {
         </section>
       </main>
     </>
-  )
+  );
 }
 
