@@ -11,7 +11,6 @@ export default function ForgotPasswordPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
-  const baseUrl = process.env.BASE_URL;
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +20,7 @@ export default function ForgotPasswordPage() {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
-        redirectTo: `${baseUrl}/reset-password`,
+        redirectTo: "https://ppl-solutions.vercel.app/reset-password",
       });
 
       if (error) {
