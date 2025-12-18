@@ -19,8 +19,9 @@ export default function ForgotPasswordPage() {
     setLoading(true);
 
     try {
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ppl-solutions.vercel.app";
       const { error } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
-        redirectTo: "https://ppl-solutions.vercel.app/reset-password",
+        redirectTo: `${siteUrl}/reset-password`,
       });
 
       if (error) {
