@@ -308,7 +308,7 @@ export default function CardTeamForm() {
 
   return (
     <>
-      <Col xs={12} md={6} xl={6}>
+      <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
           <Card.Title className="fs-4">{editingId ? "Edit Member" : "Add Member"}</Card.Title>
           <Card.Body>
@@ -458,7 +458,7 @@ export default function CardTeamForm() {
         </Card>
       </Col>
 
-      <Col xs={12} md={6} xl={6}>
+      <Col xs={12} md={10} xl={6}>
         {/* Members List */}
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
           <Card.Title className="fs-4">Team Members</Card.Title>
@@ -475,7 +475,7 @@ export default function CardTeamForm() {
                 {members.map((member) => (
                   <ListGroup.Item
                     key={member.id}
-                    className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle">
+                    className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle flex-wrap row-gap-2">
                     <div className="d-flex align-items-center">
                       <Image
                         src={member.profile_url || "/assets/icons/profile-user.png"}

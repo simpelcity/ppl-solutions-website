@@ -27,7 +27,7 @@ export default function DashboardTeamPage() {
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
           <Dashboard>
-            <Row className="w-100">
+            <Row className="w-100 justify-content-center">
               <CardTeamForm />
             </Row>
           </Dashboard>

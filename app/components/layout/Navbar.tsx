@@ -60,9 +60,8 @@ const Navbar: React.FC = () => {
                   as={Link}
                   onClick={() => setExpanded(false)}
                   href={link.href}
-                  className={`${
-                    pathname === link.href ? "active" : ""
-                  } text-light fs-5 px-xl-0 pt-xl-0 text-center mx-xl-2`}>
+                  className={`${pathname === link.href ? "active" : ""
+                    } text-light fs-5 px-xl-0 pt-xl-0 text-center mx-xl-2`}>
                   {link.title}
                 </Nav.Link>
               ))}
@@ -79,7 +78,7 @@ const Navbar: React.FC = () => {
               <BSButton
                 variant="secondary"
                 border="primary 2"
-                href="/drivershub"
+                href="/login"
                 classes="w-100"
                 onClick={() => setExpanded(false)}>
                 Drivershub

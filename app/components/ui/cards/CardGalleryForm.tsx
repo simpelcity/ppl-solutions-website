@@ -168,7 +168,7 @@ export default function CardGalleryForm() {
 
   return (
     <>
-      <Col xs={12} md={6} xl={6}>
+      <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
           <Card.Title className="fs-4">{editingId ? "Edit Gallery Item" : "Add Gallery Item"}</Card.Title>
           <Card.Body>
@@ -242,7 +242,7 @@ export default function CardGalleryForm() {
       </Col>
 
       {/* Gallery Items List */}
-      <Col xs={12} md={6} xl={6}>
+      <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
           <Card.Title className="fs-4">Gallery Items</Card.Title>
           <Card.Body className="p-1">
@@ -258,7 +258,7 @@ export default function CardGalleryForm() {
                 {items.map((item) => (
                   <ListGroup.Item
                     key={item.id}
-                    className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle">
+                    className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle flex-wrap row-gap-2">
                     <div className="d-flex align-items-center">
                       <Image
                         src={item.image_url || "/assets/icons/image-placeholder.png"}

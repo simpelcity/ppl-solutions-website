@@ -225,7 +225,7 @@ export default function DashboardStats() {
       <Card className="my-3 px-0 rounded-0 border-0 shadow" data-bs-theme="dark">
         <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">VTC Statistics</Card.Title>
         <Card.Body className="d-flex flex-column align-items-center p-4">
-          <Row className="w-100">
+          <Row className="w-100 row-gap-3">
             <Col xs={12} md={6} xl={3}>
               <div className="border border-1 border-primary border-custom rounded-3 h-100 p-2">
                 <p className="fs-2 fw-bold">{formatDistance(totalDistance)} km</p>
@@ -255,7 +255,7 @@ export default function DashboardStats() {
           </Row>
 
           <Row className="mt-4">
-            <Col xs={6}>
+            <Col xs={12} md={6}>
               <Card className="rounded-0 border-0 shadow h-100">
                 <Card.Title className="fs-4 py-3 border-bottom border-dark-subtle">ETS2 Statistics</Card.Title>
                 <Card.Body>
@@ -290,7 +290,7 @@ export default function DashboardStats() {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={6}>
+            <Col xs={12} md={6}>
               <Card className="rounded-0 border-0 shadow h-100">
                 <Card.Title className="fs-4 py-3 border-bottom border-dark-subtle">ATS Statistics</Card.Title>
                 <Card.Body>
