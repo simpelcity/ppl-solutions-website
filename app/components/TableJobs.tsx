@@ -137,11 +137,10 @@ export default function TableJobs() {
                         key={`page-${page}`}
                         className={`page-item d-flex align-items-center ${displayPage === page ? "active" : ""}`}>
                         <button
-                          className={`page-link rounded-3 py-1 d-flex align-items-center ${
-                            displayPage === page
-                              ? "bg-primary"
-                              : "bg-transparent border-0 shadow-none text-light text-opacity-50"
-                          }`}
+                          className={`page-link rounded-3 py-1 d-flex align-items-center ${displayPage === page
+                            ? "bg-primary"
+                            : "bg-transparent border-0 shadow-none text-light text-opacity-50"
+                            }`}
                           onClick={() => goToPage(page as number)}
                           disabled={displayPage === page}>
                           {page}
