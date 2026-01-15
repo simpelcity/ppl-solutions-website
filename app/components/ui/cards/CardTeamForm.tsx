@@ -1,309 +1,88 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
 import BSButton from "../Button";
-
-interface TeamMember {
-  id: number;
-  name: string;
-  profile_url?: string | null;
-}
-
-interface Department {
-  id: number;
-  name: string;
-}
-
-interface Role {
-  id: number;
-  name: string;
-  code: string;
-}
-
-interface MemberRole {
-  team_member_id: number;
-  department: Department;
-  role: Role;
-}
+import { useTeam, TeamMember } from "@/hooks/useTeam";
 
 type ConfirmAction = "delete-member" | "delete-picture" | null;
 
 export default function CardTeamForm() {
+  const {
+    members,
+    departments,
+    roles,
+    memberRoles,
+    loading,
+    loadingRoles,
+    submitting,
+    editingId,
+    error,
+    success,
+    setEditingId,
+    createMember,
+    updateMember,
+    deleteMember,
+    deleteProfilePicture,
+    addRole,
+    removeRole,
+  } = useTeam();
+
   const [name, setName] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-  const [members, setMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [editingId, setEditingId] = useState<number | null>(null);
-  const [show, setShow] = useState(true);
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
 
-  const [departments, setDepartments] = useState<Department[]>([]);
-  const [roles, setRoles] = useState<Role[]>([]);
-  const [memberRoles, setMemberRoles] = useState<MemberRole[]>([]);
-  const [selectedDepartment, setSelectedDepartment] = useState<string>("");
-  const [selectedRole, setSelectedRole] = useState<string>("");
-  const [loadingRoles, setLoadingRoles] = useState(false);
-
-  // Modal state
   const [showModal, setShowModal] = useState(false);
   const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
   const [targetId, setTargetId] = useState<number | null>(null);
 
-  useEffect(() => {
-    fetchMembers();
-    fetchDepartments();
-    fetchRoles();
-  }, []);
+  const resetForm = () => {
+    setName("");
+    setFile(null);
+    setSelectedDepartment("");
+    setSelectedRole("");
+    setEditingId(null);
 
-  useEffect(() => {
-    if (editingId) {
-      fetchMemberRoles(editingId);
-    } else {
-      setMemberRoles([]);
-    }
-  }, [editingId]);
-
-  const fetchDepartments = async () => {
-    try {
-      const res = await fetch("/api/departments");
-      const json = await res.json();
-      if (res.ok) setDepartments(json.data || []);
-    } catch (err) {
-      console.error("Failed to fetch departments:", err);
-    }
-  };
-
-  const fetchRoles = async () => {
-    try {
-      const res = await fetch("/api/roles");
-      const json = await res.json();
-      if (res.ok) setRoles(json.data || []);
-    } catch (err) {
-      console.error("Failed to fetch roles:", err);
-    }
-  };
-
-  const fetchMemberRoles = async (memberId: number) => {
-    setLoadingRoles(true);
-    try {
-      const res = await fetch(`/api/team/roles?memberId=${memberId}`);
-      const json = await res.json();
-      if (res.ok) setMemberRoles(json.data || []);
-    } catch (err) {
-      console.error("Failed to fetch member roles:", err);
-    } finally {
-      setLoadingRoles(false);
-    }
-  };
-
-  const fetchMembers = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/team/members");
-      const json = await res.json();
-      if (res.ok) {
-        const items = (json.data || []) as TeamMember[];
-        setMembers(items);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    const input = document.getElementById("team-file-input") as HTMLInputElement | null;
+    if (input) input.value = "";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
-    if (!name.trim()) {
-      setError("Name is required");
-      return;
-    }
-
-    const fd = new FormData();
-    fd.append("name", name.trim());
-    if (file) fd.append("file", file);
-
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/team", { method: "POST", body: fd });
-      const json = await res.json();
-      if (!res.ok) {
-        throw new Error(json?.error || "Failed to add member");
-      }
-      setSuccess("Team member added successfully!");
-      setName("");
-      setFile(null);
-      const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null;
-      if (fileInput) fileInput.value = "";
-      fetchMembers();
-    } catch (err: any) {
-      setError(err?.message ?? "Unexpected error");
-    } finally {
-      setSubmitting(false);
-    }
+    await createMember(name, file);
+    resetForm();
   };
 
-  const openConfirmModal = (action: ConfirmAction, id: number) => {
+  const handleUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingId) return;
+    await updateMember(editingId, name, file);
+    resetForm();
+  };
+
+  const handleEdit = (member: TeamMember) => {
+    setEditingId(member.id);
+    setName(member.name);
+    setFile(null);
+  };
+
+  const confirm = (action: ConfirmAction, id: number) => {
     setConfirmAction(action);
     setTargetId(id);
     setShowModal(true);
   };
 
   const handleConfirm = async () => {
-    setShowModal(false);
     if (!targetId || !confirmAction) return;
 
-    if (confirmAction === "delete-member") {
-      await executeDeleteMember(targetId);
-    } else if (confirmAction === "delete-picture") {
-      await executeDeleteProfilePicture(targetId);
-    }
+    if (confirmAction === "delete-member") await deleteMember(targetId);
+    if (confirmAction === "delete-picture") await deleteProfilePicture(targetId);
 
+    setShowModal(false);
     setTargetId(null);
     setConfirmAction(null);
-  };
-
-  const executeDeleteMember = async (id: number) => {
-    try {
-      const res = await fetch("/api/team", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      if (!res.ok) {
-        const json = await res.json();
-        throw new Error(json?.error || "Failed to delete");
-      }
-      setSuccess("Member deleted successfully!");
-      fetchMembers();
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to delete member");
-    }
-  };
-
-  const executeDeleteProfilePicture = async (id: number) => {
-    try {
-      const res = await fetch("/api/team", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      if (!res.ok) {
-        const json = await res.json();
-        throw new Error(json?.error || "Failed to delete picture");
-      }
-      setSuccess("Profile picture deleted successfully!");
-      fetchMembers();
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to delete profile picture");
-    }
-  };
-
-  const handleEdit = (member: TeamMember) => {
-    setEditingId(member.id);
-    setName(member.name || "");
-    setFile(null);
-    setSelectedDepartment("");
-    setSelectedRole("");
-  };
-
-  const handleAddRole = async () => {
-    if (!editingId || !selectedDepartment || !selectedRole) {
-      setError("Please select both department and role");
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/team/roles", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          team_member_id: editingId,
-          department_id: parseInt(selectedDepartment),
-          role_id: parseInt(selectedRole),
-        }),
-      });
-
-      if (!res.ok) {
-        const json = await res.json();
-        throw new Error(json?.error || "Failed to add role");
-      }
-
-      setSuccess("Role added successfully!");
-      setSelectedDepartment("");
-      setSelectedRole("");
-      fetchMemberRoles(editingId);
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to add role");
-    }
-  };
-
-  const handleRemoveRole = async (departmentId: number, roleId: number) => {
-    if (!editingId) return;
-
-    try {
-      const res = await fetch("/api/team/roles", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          team_member_id: editingId,
-          department_id: departmentId,
-          role_id: roleId,
-        }),
-      });
-
-      if (!res.ok) {
-        const json = await res.json();
-        throw new Error(json?.error || "Failed to remove role");
-      }
-
-      setSuccess("Role removed successfully!");
-      fetchMemberRoles(editingId);
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to remove role");
-    }
-  };
-
-  const handleUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editingId) return;
-    setError(null);
-    setSuccess(null);
-    if (!name.trim()) {
-      setError("Name is required");
-      return;
-    }
-
-    const fd = new FormData();
-    fd.append("id", editingId.toString());
-    fd.append("name", name.trim());
-    if (file) fd.append("file", file);
-
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/team", { method: "PUT", body: fd });
-      const json = await res.json();
-      if (!res.ok) {
-        throw new Error(json?.error || "Failed to update");
-      }
-      setSuccess("Member updated successfully!");
-      setName("");
-      setFile(null);
-      setEditingId(null);
-      const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null;
-      if (fileInput) fileInput.value = "";
-      fetchMembers();
-    } catch (err: any) {
-      setError(err?.message ?? "Failed to update member");
-    } finally {
-      setSubmitting(false);
-    }
   };
 
   return (
@@ -361,7 +140,7 @@ export default function CardTeamForm() {
                                 </span>
                                 <FaTimes
                                   style={{ cursor: "pointer" }}
-                                  onClick={() => handleRemoveRole(mr.department.id, mr.role.id)}
+                                  onClick={() => removeRole(editingId, mr.department.id, mr.role.id)}
                                 />
                               </Badge>
                             ))}
@@ -398,7 +177,7 @@ export default function CardTeamForm() {
                         <Button
                           variant="success"
                           size="sm"
-                          onClick={handleAddRole}
+                          onClick={() => addRole(editingId, Number(selectedDepartment), Number(selectedRole))}
                           disabled={!selectedDepartment || !selectedRole || submitting}>
                           <FaPlus />
                         </Button>
@@ -409,7 +188,7 @@ export default function CardTeamForm() {
               )}
 
               {error && (
-                <Alert variant="danger" className="py-2" onClose={() => setShow(false)} dismissible>
+                <Alert variant="danger" className="py-2" dismissible>
                   {error}
                 </Alert>
               )}
@@ -417,7 +196,6 @@ export default function CardTeamForm() {
                 <Alert
                   variant="success"
                   className="py-2 d-flex align-items-center"
-                  onClose={() => setShow(false)}
                   dismissible>
                   {success}
                 </Alert>
@@ -439,16 +217,7 @@ export default function CardTeamForm() {
                 <BSButton
                   variant="secondary"
                   classes="mt-2 ms-2 border-secondary"
-                  onClick={() => {
-                    setEditingId(null);
-                    setName("");
-                    setFile(null);
-                    setSelectedDepartment("");
-                    setSelectedRole("");
-                    setMemberRoles([]);
-                    const fileInput = document.getElementById("team-file-input") as HTMLInputElement | null;
-                    if (fileInput) fileInput.value = "";
-                  }}
+                  onClick={resetForm}
                   disabled={submitting}>
                   Cancel
                 </BSButton>
@@ -459,7 +228,6 @@ export default function CardTeamForm() {
       </Col>
 
       <Col xs={12} md={10} xl={6}>
-        {/* Members List */}
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
           <Card.Title className="fs-4">Team Members</Card.Title>
           <Card.Body>
@@ -501,7 +269,7 @@ export default function CardTeamForm() {
                           variant="outline-warning"
                           size="sm"
                           className="d-flex align-items-center justify-content-center p-2"
-                          onClick={() => openConfirmModal("delete-picture", member.id)}
+                          onClick={() => confirm("delete-picture", member.id)}
                           title="Delete profile picture">
                           <FaUserSlash className="fs-6" />
                         </Button>
@@ -510,7 +278,7 @@ export default function CardTeamForm() {
                         variant="outline-danger"
                         size="sm"
                         className="d-flex align-items-center justify-content-center p-2"
-                        onClick={() => openConfirmModal("delete-member", member.id)}
+                        onClick={() => confirm("delete-member", member.id)}
                         title="Delete member">
                         <FaTrash className="fs-6" />
                       </Button>
@@ -523,7 +291,6 @@ export default function CardTeamForm() {
         </Card>
       </Col>
 
-      {/* Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">
         <Modal.Header closeButton>
           <Modal.Title>Confirm Action</Modal.Title>

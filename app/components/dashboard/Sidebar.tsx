@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
 import { Dropdown, Image, Nav, Collapse, Spinner } from "react-bootstrap";
-import { FaAngleLeft, FaAngleRight, FaAngleDown } from "react-icons/fa6";
+import { FaAngleLeft, FaAngleRight, FaAngleUp, FaAngleDown } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
 import { FaChartLine } from "react-icons/fa6";
@@ -171,9 +171,8 @@ export default function Sidebar({
       }}
       {...props}>
       <div
-        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${
-          isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
-        }`}>
+        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
+          }`}>
         <a href="#" className="text-light text-decoration-none column-gap-2">
           <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
             Sidebar
@@ -189,9 +188,8 @@ export default function Sidebar({
           <Nav.Item key={item.href}>
             <Nav.Link
               href={item.href}
-              className={`text-light d-flex align-items-center ${
-                isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : ""
-              } ${pathname === item.href ? "active" : ""}`}
+              className={`text-light d-flex align-items-center ${isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : ""
+                } ${pathname === item.href ? "active" : ""}`}
               title={item.label}>
               <span className={isSidebarCollapsed ? "me-0" : "me-2"}>{item.icon}</span>
               {!isSidebarCollapsed && item.label}
@@ -205,12 +203,13 @@ export default function Sidebar({
                 onClick={() => setOpen(!open)}
                 aria-controls="dashboard-collapse-menu"
                 aria-expanded={open}
-                className={`d-flex align-items-center column-gap-2 rounded-bottom-0 text-light ${
-                  pathname.startsWith("/drivershub/dashboard") ? "active" : ""
-                }`}>
-                <BiSolidDashboard />
-                Dashboard
-                {open ? <FaAngleDown /> : <FaAngleRight />}
+                className={`d-flex align-items-center justify-content-between rounded-bottom-0 text-light ${pathname.startsWith("/drivershub/dashboard") ? "active" : ""
+                  }`}>
+                <div className="d-flex">
+                  <span className="me-2"><BiSolidDashboard /></span>
+                  Dashboard
+                </div>
+                {open ? <FaAngleRight className="rotate-90-cw" /> : <FaAngleDown className="rotate-90-ccw" />}
               </Nav.Link>
               <Collapse in={open}>
                 <div id="dashboard-collapse-menu">
@@ -219,9 +218,8 @@ export default function Sidebar({
                       <li key={item.href}>
                         <a
                           href={item.href}
-                          className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${
-                            pathname === item.href ? "bg-light bg-opacity-10" : ""
-                          } ${index === collapseItems.length - 1 ? "rounded-bottom-2" : ""}`}
+                          className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${pathname === item.href ? "bg-light bg-opacity-10" : ""
+                            } ${index === collapseItems.length - 1 ? "rounded-bottom-2" : ""}`}
                           title={item.label}>
                           <span className="me-2">{item.icon}</span>
                           {item.label}
@@ -240,9 +238,8 @@ export default function Sidebar({
               <Nav.Item key={item.href}>
                 <Nav.Link
                   href={item.href}
-                  className={`text-light d-flex align-items-center justify-content-center p-3 rounded-0 ${
-                    pathname === item.href ? "active" : ""
-                  }`}
+                  className={`text-light d-flex align-items-center justify-content-center p-3 rounded-0 ${pathname === item.href ? "active" : ""
+                    }`}
                   title={item.label}>
                   {item.icon}
                 </Nav.Link>

@@ -1,127 +1,54 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import BSButton from "@/components/ui/Button";
-
-interface GalleryItem {
-  id: number;
-  title: string | null;
-  image_url: string | null;
-  image_path: string | null;
-}
+import { useGallery, GalleryItem } from "@/hooks/useGallery";
 
 type ConfirmAction = "delete-item" | null;
 
 export default function CardGalleryForm() {
+  const {
+    items,
+    loading,
+    submitting,
+    editingId,
+    error,
+    success,
+    setEditingId,
+    createItem,
+    updateItem,
+    deleteItem,
+  } = useGallery();
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-  const [items, setItems] = useState<GalleryItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [editingId, setEditingId] = useState<number | null>(null);
 
   // Modal state
   const [showModal, setShowModal] = useState(false);
   const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
   const [targetId, setTargetId] = useState<number | null>(null);
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  const fetchItems = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/gallery");
-      const json = await res.json();
-      if (res.ok) {
-        setItems(json.data || []);
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+  const resetForm = () => {
+    setTitle("");
+    setFile(null);
+    setEditingId(null);
+    const input = document.getElementById("gallery-file-input") as HTMLInputElement | null;
+    if (input) input.value = "";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(null);
-
-    if (!title.trim()) {
-      setError("Title is required");
-      return;
-    }
-
-    if (!file) {
-      setError("Image is required");
-      return;
-    }
-
-    const fd = new FormData();
-    fd.append("title", title.trim());
-    fd.append("file", file);
-
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/gallery", { method: "POST", body: fd });
-      const json = await res.json();
-      if (!res.ok) {
-        throw new Error(json?.error || "Failed to add item");
-      }
-      setSuccess("Gallery item added");
-      setTitle("");
-      setFile(null);
-      const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
-      if (fileInput) fileInput.value = "";
-      fetchItems();
-    } catch (err: any) {
-      setError(err?.message ?? "Unexpected error");
-    } finally {
-      setSubmitting(false);
-    }
+    if (!title.trim() || !file) return;
+    await createItem(title.trim(), file);
+    resetForm();
   };
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!editingId) return;
-    setError(null);
-    setSuccess(null);
-
-    if (!title.trim()) {
-      setError("Title is required");
-      return;
-    }
-
-    const fd = new FormData();
-    fd.append("id", editingId.toString());
-    fd.append("title", title.trim());
-    if (file) fd.append("file", file);
-
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/gallery", { method: "PUT", body: fd });
-      const json = await res.json();
-      if (!res.ok) {
-        throw new Error(json?.error || "Failed to update");
-      }
-      setSuccess("Gallery item updated");
-      setTitle("");
-      setFile(null);
-      setEditingId(null);
-      const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
-      if (fileInput) fileInput.value = "";
-      fetchItems();
-    } catch (err: any) {
-      setError(err?.message ?? "Update failed");
-    } finally {
-      setSubmitting(false);
-    }
+    if (!editingId || !title.trim()) return;
+    await updateItem(editingId, title.trim(), file);
+    resetForm();
   };
 
   const handleEdit = (item: GalleryItem) => {
@@ -130,40 +57,17 @@ export default function CardGalleryForm() {
     setFile(null);
   };
 
-  const openConfirmModal = (action: ConfirmAction, id: number) => {
-    setConfirmAction(action);
+  const openConfirmModal = (id: number) => {
     setTargetId(id);
+    setConfirmAction("delete-item");
     setShowModal(true);
   };
 
   const handleConfirm = async () => {
+    if (targetId) await deleteItem(targetId);
     setShowModal(false);
-    if (!targetId || !confirmAction) return;
-
-    if (confirmAction === "delete-item") {
-      await executeDelete(targetId);
-    }
-
     setTargetId(null);
     setConfirmAction(null);
-  };
-
-  const executeDelete = async (id: number) => {
-    try {
-      const res = await fetch("/api/gallery", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      if (!res.ok) {
-        const json = await res.json();
-        throw new Error(json?.error || "Failed to delete");
-      }
-      setSuccess("Gallery item deleted");
-      fetchItems();
-    } catch (err: any) {
-      setError(err?.message ?? "Delete failed");
-    }
   };
 
   return (
@@ -199,12 +103,12 @@ export default function CardGalleryForm() {
               </Form.Group>
 
               {error && (
-                <Alert variant="danger" className="py-2" dismissible onClose={() => setError(null)}>
+                <Alert variant="danger" className="py-2" dismissible>
                   {error}
                 </Alert>
               )}
               {success && (
-                <Alert variant="success" className="py-2" dismissible onClose={() => setSuccess(null)}>
+                <Alert variant="success" className="py-2" dismissible>
                   {success}
                 </Alert>
               )}
@@ -283,7 +187,7 @@ export default function CardGalleryForm() {
                         variant="outline-danger"
                         size="sm"
                         className="d-flex align-items-center justify-content-center p-2"
-                        onClick={() => openConfirmModal("delete-item", item.id)}
+                        onClick={() => openConfirmModal(item.id)}
                         title="Delete item">
                         <FaTrash className="fs-6" />
                       </Button>
