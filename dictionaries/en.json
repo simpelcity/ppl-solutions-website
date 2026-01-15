@@ -1,0 +1,22 @@
+{
+  "navigation": {
+    "home": "Home",
+    "events": "Events",
+    "gallery": "Gallery",
+    "team": "Team",
+    "contact": "Contact",
+    "apply": "Apply",
+    "drivershub": "Drivers Hub"
+  },
+  "events": {
+    "title": "Events",
+    "description": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a successful and friendly VTC where people from all over the world can hangout and drive with each other.",
+    "noEvents": "No upcoming events",
+    "seeMore": "See More"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "submit": "Submit"
+  }
+}

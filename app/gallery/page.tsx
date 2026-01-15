@@ -1,16 +1,7 @@
-import { StartBanner, GalleryGrid } from "@/components"
-import { Container, Row, Col } from "react-bootstrap"
+import { StartBanner, GalleryGrid } from "@/components/"
+import { Container } from "react-bootstrap"
 
 export default function GalleryPage() {
-  const galleryItems = [
-    { src: "lukas-scania.jpg", title: "Scania by Lukyy09" },
-    { src: "simpelcity-daf.jpg", title: "DAF by Simpelcity" },
-    { src: "maleklecocze-save-edit.png", title: "Save-edit by MaleklecoCZE" },
-    { src: "simpelcity-maleklecocze-2.jpg", title: "Scania's by Simpelcity" },
-    { src: "simpelcity-maleklecocze.png", title: "Scania's by MaleklecoCZE" },
-    { src: "xx-shadowdagger2013-xx-truck.png", title: "Truck by xX_shadowdagger2013_Xx" },
-  ]
-
   return (
     <>
       <title>Gallery | PPL Solutions</title>

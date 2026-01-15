@@ -19,8 +19,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./app/*"],
-      "@/utils/*": ["./utils/*"]
+      "@/*": ["./*"],
+      "@/app/*": ["./app/*"],
+      "@/utils/*": ["./utils/*"],
+      "@/components/*": ["./app/components/index.ts"],
+      "@/lib/*": ["./app/lib/index.ts"],
+      "@/hooks/*": ["./app/hooks/*"],
+      "@/styles/*": ["./app/styles/*"]
     }
   },
   "include": [

@@ -2,9 +2,9 @@
 
 import { Card, Form, Image } from "react-bootstrap";
 import { useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/";
 import { useRouter } from "next/navigation";
-import BSButton from "../ui/Button";
+import { BSButton } from "@/components/";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");

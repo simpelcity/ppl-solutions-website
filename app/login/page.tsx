@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap"
-import { LoginForm } from "@/components"
+import { LoginForm } from "@/components/"
 import "@/styles/AuthCards.scss"
 
 export default function LoginPage() {

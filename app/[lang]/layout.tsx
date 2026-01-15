@@ -1,17 +1,16 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import { Navbar, Footer } from "@/components"
-import { AuthProvider } from "@/lib/AuthContext"
-import { SidebarProvider } from "@/lib/SidebarContext"
+import { Navbar, Footer } from "@/components/"
+import { AuthProvider, SidebarProvider } from "@/lib/"
 import "@/styles/globals.scss"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const hideFooter = pathname === "/login" || pathname === "/reset-password" || pathname === "/forgot-password"
+  const hideFooter = pathname?.includes("/login") || pathname?.includes("/reset-password") || pathname?.includes("/forgot-password")
 
   return (
-    <html lang="en">
+    <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,4 +34,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-

@@ -1,0 +1,22 @@
+{
+  "navigation": {
+    "home": "Home",
+    "events": "Evenementen",
+    "gallery": "Galerij",
+    "team": "Team",
+    "contact": "Contact",
+    "apply": "Solliciteren",
+    "drivershub": "Chauffeurs Hub"
+  },
+  "events": {
+    "title": "Evenementen",
+    "description": "PPL Solutions is opgericht op 7 september 2024 door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld kunnen samenkomen en met elkaar kunnen rijden.",
+    "noEvents": "Geen aankomende evenementen",
+    "seeMore": "Meer zien"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Er is een fout opgetreden",
+    "submit": "Verzenden"
+  }
+}

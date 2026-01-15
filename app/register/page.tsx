@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap"
-import { RegisterForm } from "@/components"
+import { RegisterForm } from "@/components/"
 import "@/styles/AuthCards.scss"
 
 export default function RegisterPage() {

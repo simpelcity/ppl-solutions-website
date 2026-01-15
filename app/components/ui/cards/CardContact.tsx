@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, Form, Col } from "react-bootstrap";
-import BSButton from "../Button";
+import { BSButton } from "@/components/";
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa";
 import { IconContext } from "react-icons";
 

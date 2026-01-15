@@ -1,8 +1,8 @@
 "use client";
 
 import { Container } from "react-bootstrap";
-import { Sidebar } from "@/components";
-import { useSidebar } from "@/lib/SidebarContext";
+import { Sidebar } from "@/components/";
+import { useSidebar } from "@/lib/";
 
 interface TeamMember {
   name: string;

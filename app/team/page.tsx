@@ -1,4 +1,4 @@
-import { StartBanner, TeamGrid } from "@/components"
+import { StartBanner, TeamGrid } from "@/components/"
 import { Container } from "react-bootstrap"
 import "@/styles/roles.scss"
 

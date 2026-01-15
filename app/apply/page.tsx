@@ -1,9 +1,15 @@
 "use client"
 
 import { Container, Card, Row, Col } from "react-bootstrap"
-import { StartBanner } from "@/components"
+import { StartBanner } from "@/components/"
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa"
 import { IconContext } from "react-icons"
+import { getDictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
+
+type PageProps = {
+  params: Promise<{ lang: Locale }>
+}
 
 export default function ApplyPage() {
   return (

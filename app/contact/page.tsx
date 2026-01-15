@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap"
-import { StartBanner, CardContact } from "@/components"
+import { StartBanner, CardContact } from "@/components/"
 import "@/styles/Contact.scss"
 
 export default function ContactPage() {

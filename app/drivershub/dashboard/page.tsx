@@ -1,6 +1,6 @@
 "use client"
 
-import { Dashboard, DashboardStats } from "@/components"
+import { Dashboard, DashboardStats } from "@/components/"
 import { Row, Col } from "react-bootstrap"
 import "@/styles/Drivershub.scss"
 import "@/styles/roles.scss"

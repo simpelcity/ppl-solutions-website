@@ -1,5 +1,4 @@
-import React from "react"
-import { Dashboard } from "@/components"
+import { Dashboard } from "@/components/"
 import "@/styles/Drivershub.scss"
 
 export default function ProfilePage() {

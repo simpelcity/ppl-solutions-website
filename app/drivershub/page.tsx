@@ -1,5 +1,5 @@
 import { Card, CardBody, CardTitle } from "react-bootstrap";
-import { StartBanner, TableJobs, Dashboard } from "@/components";
+import { StartBanner, TableJobs, Dashboard } from "@/components/";
 import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import { FaUserCircle } from "react-icons/fa";
 import "@/styles/Drivershub.scss";

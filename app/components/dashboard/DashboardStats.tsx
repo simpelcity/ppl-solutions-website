@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, Row, Col } from "react-bootstrap"
-import { Loader } from "@/components"
+import { Loader } from "@/components/"
 import { useVtcStats } from "@/hooks/useVtcStats"
 
 export default function DashboardStats() {

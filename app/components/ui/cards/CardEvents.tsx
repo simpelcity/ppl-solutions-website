@@ -6,8 +6,7 @@ import { FiMapPin } from "react-icons/fi";
 import { LuGamepad2 } from "react-icons/lu";
 import { BsHddStack } from "react-icons/bs";
 import { BsDownload } from "react-icons/bs";
-import { DivEvents } from "@/components";
-import BSButton from "@/components/ui/Button";
+import { DivEvents, BSButton } from "@/components/";
 
 export default async function CardEvents() {
   const baseUrl = process.env.BASE_URL || "http://localhost:3000";

@@ -1,6 +1,5 @@
 import { Container, Image, Row, Col } from "react-bootstrap";
-import { CardText } from "@/components";
-import BSButton from "@/components/ui/Button";
+import { CardText, BSButton } from "@/components/index";
 import "@/styles/Home.scss";
 
 export default function HomePage() {

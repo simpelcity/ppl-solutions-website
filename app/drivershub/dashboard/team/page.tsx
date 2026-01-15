@@ -1,6 +1,6 @@
 "use client"
 
-import { CardTeamForm, Dashboard } from "@/components"
+import { CardTeamForm, Dashboard } from "@/components/"
 import { Row, Col } from "react-bootstrap"
 import "@/styles/Drivershub.scss"
 import "@/styles/roles.scss"

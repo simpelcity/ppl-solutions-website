@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import BSButton from "@/components/ui/Button";
+import { BSButton } from "@/components/";
 import { Navbar as BSNavbar, Nav, Container, Image } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useSidebar } from "@/lib/SidebarContext";
+import { useSidebar } from "@/lib/";
 import "@/styles/Navbar.scss";
 
 const Navbar: React.FC = () => {

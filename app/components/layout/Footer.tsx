@@ -3,7 +3,7 @@
 import { Container, Row, Col, Image, Tab, Tabs, ListGroup } from "react-bootstrap"
 import { FaDiscord, FaTiktok, FaTruck, FaRegCopyright } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { FooterLink } from "@/components"
+import { FooterLink } from "@/components/"
 import "@/styles/Footer.scss"
 
 export default function Footer() {

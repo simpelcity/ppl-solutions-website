@@ -1,6 +1,6 @@
 "use client"
 
-import { CardGalleryForm, Dashboard } from "@/components"
+import { CardGalleryForm, Dashboard } from "@/components/"
 import { Row, Col } from "react-bootstrap"
 import "@/styles/Drivershub.scss"
 

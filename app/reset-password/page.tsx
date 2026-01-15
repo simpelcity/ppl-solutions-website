@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, Form, Image } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
-import BSButton from "@/components/ui/Button";
+import { BSButton } from "@/components/";
 import "@/styles/AuthCards.scss";
 
 export default function ResetPasswordPage() {
