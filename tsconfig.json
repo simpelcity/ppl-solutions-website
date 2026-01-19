@@ -25,7 +25,8 @@
       "@/components/*": ["./app/components/index.ts"],
       "@/lib/*": ["./app/lib/index.ts"],
       "@/hooks/*": ["./app/hooks/*"],
-      "@/styles/*": ["./app/styles/*"]
+      "@/styles/*": ["./app/styles/*"],
+      "@/supabaseAdmin/*": ["./app/lib/supabaseAdmin.ts"]
     }
   },
   "include": [

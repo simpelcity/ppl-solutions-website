@@ -1,6 +1,6 @@
 @import "./variables.scss";
 
-.navbar-nav .active {
+#main-navbar > .navbar-nav > .active {
   border-bottom: solid 2px $primary !important;
   @media (min-width: 1200px) {
     padding: 0 !important;
@@ -26,6 +26,10 @@
   #main-navbar > .navbar-nav .nav-link {
     background-color: #373737;
     border-radius: 0.25rem;
+  }
+
+  .nav-buttons a[role="button"] {
+    width: fit-content !important;
   }
 }
 
@@ -57,3 +61,6 @@
   }
 }
 
+#dropdown-lang {
+  background: transparent !important;
+}

@@ -1,16 +1,21 @@
-"use client"
-
-import { usePathname } from "next/navigation"
-import { Navbar, Footer } from "@/components/"
+import { Navbar } from "@/components/"
 import { AuthProvider, SidebarProvider } from "@/lib/"
+import { getDictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
+import LayoutClient from "../[lang]/LayoutClient"
 import "@/styles/globals.scss"
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const hideFooter = pathname?.includes("/login") || pathname?.includes("/reset-password") || pathname?.includes("/forgot-password")
+type Props = {
+  children: React.ReactNode
+  params: Promise<{ lang: string }>
+}
+
+export default async function RootLayout({ children, params }: Props) {
+  const { lang } = await params
+  const dict = await getDictionary(lang as Locale)
 
   return (
-    <html>
+    <html lang={lang}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,9 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <AuthProvider>
           <SidebarProvider>
-            <Navbar />
-            {children}
-            {!hideFooter && <Footer />}
+            <LayoutClient dict={dict} lang={lang as Locale}>
+              {children}
+            </LayoutClient>
           </SidebarProvider>
         </AuthProvider>
       </body>

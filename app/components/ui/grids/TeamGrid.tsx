@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Row, Col, Card, Image, Spinner } from "react-bootstrap"
+import { type Locale } from "@/i18n"
 
 type Role = { id: number; name: string; code: string }
 type TeamMember = { id: number; name: string; profile_url?: string | null; profile_path?: string | null }
@@ -13,7 +14,8 @@ type ApiItem = {
   role: Role
 }
 
-export default function TeamGrid() {
+export default function TeamGrid({ lang, teamDict }: { lang: Locale; teamDict: { loading: string; error: string } }) {
+
   const [items, setItems] = useState<ApiItem[] | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
@@ -22,7 +24,7 @@ export default function TeamGrid() {
     let mounted = true
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/team")
+        const res = await fetch(`/api/team?lang=${lang}`)
         if (!res.ok) throw new Error(`API error ${res.status}`)
         const json = await res.json()
         if (!mounted) return
@@ -44,23 +46,23 @@ export default function TeamGrid() {
 
   if (loading) {
     return (
-      <div className="text-center text-light p-3">
-        <Spinner animation="border" /> Loading team...
+      <div className="text-center text-light p-3 d-flex align-items-center column-gap-2">
+        <Spinner animation="border" /> {teamDict.loading}
       </div>
     )
   }
 
   if (error) {
-    return <div className="text-danger">Error loading team: {error}</div>
+    return <div className="text-danger">{teamDict.error} {error}</div>
   }
 
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}
-  ;(items || []).forEach((it) => {
-    if (!it || !it.department || !it.team_member || !it.role) return
-    const deptId = it.department.id
-    if (!departmentsMap[deptId]) departmentsMap[deptId] = { name: it.department.name, members: [] }
-    departmentsMap[deptId].members.push({ member: it.team_member, role: it.role })
-  })
+    ; (items || []).forEach((it) => {
+      if (!it || !it.department || !it.team_member || !it.role) return
+      const deptId = it.department.id
+      if (!departmentsMap[deptId]) departmentsMap[deptId] = { name: it.department.name, members: [] }
+      departmentsMap[deptId].members.push({ member: it.team_member, role: it.role })
+    })
 
   const departments = Object.values(departmentsMap)
 

@@ -2,24 +2,38 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { i18n } from './i18n'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
-  // Check if there is any supported locale in the pathname
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  // Check if the pathname has a locale prefix
+  const pathnameLocale = i18n.locales.find(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  // Redirect if there is no locale
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request)
+  if (pathnameLocale) {
+    // If the locale is the default (en), rewrite to remove it from the URL
+    if (pathnameLocale === i18n.defaultLocale) {
+      const newPathname = pathname.replace(`/${pathnameLocale}`, '') || '/'
+      return NextResponse.rewrite(new URL(`/${pathnameLocale}${newPathname}`, request.url))
+    }
+    // For non-default locales, continue normally
+    return NextResponse.next()
+  }
 
-    // e.g. incoming request is /events
-    // The new URL is now /en/events
+  // No locale in pathname - determine which locale to use
+  const locale = getLocale(request)
+
+  // If it's not the default locale, redirect to add the locale prefix
+  if (locale !== i18n.defaultLocale) {
     return NextResponse.redirect(
       new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
     )
   }
+
+  // For default locale, rewrite to add locale prefix internally without showing in URL
+  return NextResponse.rewrite(
+    new URL(`/${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
+  )
 }
 
 function getLocale(request: NextRequest): string {

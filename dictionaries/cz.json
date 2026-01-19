@@ -48,8 +48,8 @@
   },
   "home": {
     "meta": {
-      "title": "Steering the future of Digital Logistics",
-      "description": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+      "title": "",
+      "description": ""
     },
     "slogan": "Steering the future of Digital Logistics",
     "buttons": {
@@ -82,11 +82,8 @@
     }
   },
   "events": {
-    "meta": {
-      "title": "Events",
-      "description": "Find all our upcoming events here and join us for an unforgettable trucking experience!"
-    },
     "title": "events",
+    "noEvents": "No upcoming events",
     "card": {
       "date": "Date",
       "meetupTime": "Meetup Time",
@@ -96,37 +93,22 @@
       "game": "Game",
       "server": "Server",
       "dlc": "DLC",
-      "event": "event",
-      "more": "more"
-    },
-    "error": {
-      "noEvents": "No upcoming events",
-      "na": "Not applicable",
-      "noServer": "Event Server",
-      "noDLC": "None"
+      "event": "event"
     }
   },
   "team": {
     "meta": {
-      "title": "Team",
-      "description": "See all of our amazing team members who make PPL Solutions possible."
+      "title": "Tým",
+      "description": "Podívejte se na všechny naše úžasné členy týmu, kteří dělají PPL Solutions možným."
     },
     "title": "team",
-    "loading": "Loading team...",
-    "error": "Error loading team."
+    "loading": "Načítání týmu...",
+    "error": "Chyba při načítání týmu:"
   },
   "gallery": {
-    "meta": {
-      "title": "Gallery",
-      "description": "Browse through our gallery showcasing the best moments and trucks from PPL Solutions."
-    },
     "title": "gallery"
   },
   "contact": {
-    "meta": {
-      "title": "Contact",
-      "description": "Get in touch with the PPL Solutions team for any inquiries, support, or feedback."
-    },
     "title": "contact",
     "form": {
       "required": "Fields marked with * are required",
@@ -140,20 +122,12 @@
     }
   },
   "apply": {
-    "meta": {
-      "title": "Apply",
-      "description": "Apply to become a driver for PPL Solutions through our Discord server."
-    },
     "title": "apply",
     "card": {
       "description": "So you want to apply to become a driver for PPL Solutions? Please make a ticket in our Discord server, see you there!"
     }
   },
   "login": {
-    "meta": {
-      "title": "",
-      "description": ""
-    },
     "form": {
       "title": "Log in",
       "email": "Email",
@@ -167,10 +141,6 @@
     }
   },
   "signup": {
-    "meta": {
-      "title": "",
-      "description": ""
-    },
     "form": {
       "title": "Sign up",
       "email": "Email",
@@ -185,10 +155,6 @@
     }
   },
   "forgotPassword": {
-    "meta": {
-      "title": "",
-      "description": ""
-    },
     "form": {
       "title": "Forgot Password?",
       "description": "Enter your email and we'll send you a link to reset your password.",
@@ -199,10 +165,6 @@
     }
   },
   "resetPassword": {
-    "meta": {
-      "title": "",
-      "description": ""
-    },
     "form": {
       "title": "Reset Password",
       "newPasswordBelow": "Enter your new password below.",
@@ -233,10 +195,6 @@
       }
     },
     "jobs": {
-      "meta": {
-        "title": "",
-        "description": ""
-      },
       "title": "user jobs",
       "table": {
         "date": "date",
@@ -254,10 +212,6 @@
       }
     },
     "vtcStats": {
-      "meta": {
-        "title": "",
-        "description": ""
-      },
       "vtc": {
         "title": "VTC Statistics",
         "totalDistance": "Total Distance",
@@ -281,10 +235,6 @@
       }
     },
     "team": {
-      "meta": {
-        "title": "",
-        "description": ""
-      },
       "form": {
         "titleNewMember": "Add Member",
         "titleEditMember": "Edit Member",
@@ -314,10 +264,6 @@
       }
     },
     "gallery": {
-      "meta": {
-        "title": "",
-        "description": ""
-      },
       "form": {
         "titleNewItem": "Add Gallery Item",
         "titleEditItem": "Edit Gallery Item",

@@ -1,22 +1,311 @@
 {
-  "navigation": {
-    "home": "Home",
-    "events": "Evenementen",
-    "gallery": "Galerij",
-    "team": "Team",
-    "contact": "Contact",
-    "apply": "Solliciteren",
-    "drivershub": "Chauffeurs Hub"
+  "navbar": {
+    "brand": "PPL Solutions VTC",
+    "navigation": {
+      "home": "Thuis",
+      "events": "Evenementen",
+      "gallery": "Galerij",
+      "team": "Team",
+      "contact": "Contact"
+    },
+    "buttons": {
+      "apply": "Solliciteer",
+      "drivershub": "Bestuurdershub"
+    }
+  },
+  "footer": {
+    "footer1": {
+      "brand": "PPL Solutions VTC",
+      "description": "Opgericht op 7 september 2024, ons doel is om een gemeenschap te creëren waar mensen elkaar kunnen ontmoeten en samen van het vrachtwagenrijden kunnen genieten."
+    },
+    "footer2": {
+      "title": "Pagina's",
+      "pages": {
+        "home": "Thuis",
+        "events": "Evenementen",
+        "gallery": "Galerij",
+        "team": "Team",
+        "contact": "Contact"
+      }
+    },
+    "footer3": {
+      "tab1": {
+        "title": "Andere links",
+        "pages": {
+          "drivershub": "Bestuurdershub",
+          "apply": "Solliciteer",
+          "vtc": "VTC"
+        }
+      },
+      "tab2": {
+        "title": "Bericht",
+        "description": "Hallo daar reiziger, mijn naam is Simpelcity. Welkom op de website van het Virtuele Transportbedrijf PPL Solutions. Wij staan voor chauffeurscomfort, en het plezier om samen mooie dingen te doen."
+      }
+    },
+    "bottom": {
+      "copyright": "Copyright {year} PPL Solutions. Alle rechten voorbehouden | Ontwikkeld door Simpelcity"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "De toekomst van digitale logistiek vormgeven",
+      "description": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
+    },
+    "slogan": "De toekomst van digitale logistiek vormgeven",
+    "buttons": {
+      "apply": "solliciteer",
+      "discord": "discord"
+    },
+    "about-us": {
+      "title": "over ons",
+      "description": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
+    },
+    "offers": {
+      "title": "wat bieden wij",
+      "card1": {
+        "title": "vriendelijk personeel",
+        "description": "We hebben een klein maar uiterst vriendelijk personeelsteam dat u kan helpen met elk probleem dat u tegenkomt tijdens het rijden voor ons."
+      },
+      "card2": {
+        "title": "save-edits",
+        "description": "Onze chauffeurs hebben toegang tot een breed scala aan op maat gemaakte opslagbewerkingen, waaronder volledige sets vrachtwagens, aangepaste onderdelen en nog veel meer."
+      },
+      "card3": {
+        "title": "aangepaste mods",
+        "description": "We bieden ook enkele exclusieve PPL Solutions mods die je kunt gebruiken tijdens het spelen van de singleplayer- of konvooimodus."
+      }
+    },
+    "apply": {
+      "title": "solliciteer vandaag nog",
+      "description": "Solliciteer vandaag nog via onze discord-server en begin uw geweldige reis met PPL Solutions.",
+      "button": "solliciteer nu"
+    }
   },
   "events": {
-    "title": "Evenementen",
-    "description": "PPL Solutions is opgericht op 7 september 2024 door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld kunnen samenkomen en met elkaar kunnen rijden.",
-    "noEvents": "Geen aankomende evenementen",
-    "seeMore": "Meer zien"
+    "meta": {
+      "title": "Evenementen",
+      "description": "Bekijk hier al onze aankomende evenementen en beleef samen met ons een onvergetelijke truckervaring!"
+    },
+    "title": "evenementen",
+    "card": {
+      "date": "Datum",
+      "meetupTime": "Ontmoetingstijd",
+      "departureTime": "Vertrektijd",
+      "departureLocation": "Vertrek",
+      "destinationLocation": "Bestemming",
+      "game": "Spel",
+      "server": "Server",
+      "dlc": "DLC",
+      "event": "evenement",
+      "more": "meer"
+    },
+    "error": {
+      "noEvents": "Geen aankomende evenementen",
+      "na": "Niet van toepassing",
+      "noServer": "Evenementenserver",
+      "noDLC": "Geen"
+    }
   },
-  "common": {
-    "loading": "Laden...",
-    "error": "Er is een fout opgetreden",
-    "submit": "Verzenden"
+  "team": {
+    "meta": {
+      "title": "Team",
+      "description": "Bekijk al onze geweldige teamleden die PPL Solutions mogelijk maken."
+    },
+    "title": "team",
+    "loading": "Team laden...",
+    "error": "Fout bij laden van het team."
+  },
+  "gallery": {
+    "meta": {
+      "title": "Galerij",
+      "description": "Blader door onze galerij met de mooiste momenten en vrachtwagens van PPL Solutions."
+    },
+    "title": "galerij"
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Neem voor vragen, ondersteuning of feedback contact op met het team van PPL Solutions."
+    },
+    "title": "contact",
+    "form": {
+      "required": "Velden gemarkeerd met * zijn verplicht",
+      "name": "Naam / Discord gebruikersnaam",
+      "namePlaceholder": "Uw (gebruikers)naam",
+      "email": "E-mail",
+      "emailPlaceholder": "jouw@e-mail.com",
+      "message": "Bericht",
+      "messagePlaceholder": "Jouw bericht",
+      "submit": "verstuur"
+    }
+  },
+  "apply": {
+    "meta": {
+      "title": "Solliciteer",
+      "description": "Solliciteer om chauffeur te worden voor PPL Solutions via onze Discord-server."
+    },
+    "title": "solliciteer",
+    "card": {
+      "description": "Dus jij wilt solliciteren om chauffeur te worden bij PPL Solutions? Maak een ticket aan op onze Discord server, tot daar!"
+    }
+  },
+  "login": {
+    "form": {
+      "title": "Inloggen",
+      "email": "E-mail",
+      "emailPlaceholder": "jouw@e-mail.com",
+      "password": "Wachtwoord",
+      "passwordPlaceholder": "••••••",
+      "forgotPassword": "wachtwoord vergeten",
+      "rememberMe": "Onthoud mij",
+      "submit": "inloggen",
+      "noAccount": "Heeft u geen account? Schrijf je in"
+    }
+  },
+  "signup": {
+    "form": {
+      "title": "Schrijf je in",
+      "email": "E-mail",
+      "emailPlaceholder": "jouw@e-mail.com",
+      "username": "Gebruikersnaam",
+      "usernamePlaceholder": "jouw_gebruikersnaam",
+      "allowedChars": "3-50 tekens, letters, cijfers, onderstrepingstekens, koppeltekens",
+      "password": "Wachtwoord",
+      "passwordPlaceholder": "••••••",
+      "submit": "aanmelden",
+      "haveAccount": "Heeft u al een account? Inloggen"
+    }
+  },
+  "forgotPassword": {
+    "form": {
+      "title": "Wachtwoord vergeten",
+      "description": "Vul uw e-mailadres in om een link voor het opnieuw instellen van uw wachtwoord te ontvangen.",
+      "email": "E-mail",
+      "emailPlaceholder": "jouw@e-mail.com",
+      "submit": "resetlink sturen",
+      "remember": "Onthoud uw wachtwoord? Terug naar inloggen"
+    }
+  },
+  "resetPassword": {
+    "form": {
+      "title": "Wachtwoord opnieuw instellen",
+      "newPasswordBelow": "Voer hieronder uw nieuwe wachtwoord in.",
+      "newPassword": "Nieuw wachtwoord",
+      "newPasswordPlaceholder": "••••••",
+      "confirmPassword": "Bevestig wachtwoord",
+      "confirmPasswordPlaceholder": "••••••",
+      "submit": "wachtwoord opnieuw instellen",
+      "backToLogin": "Terug naar inloggen"
+    }
+  },
+  "drivershub": {
+    "sidebar": {
+      "title": "Zijbalk",
+      "drivershub": "Bestuurdershub",
+      "userStats": "Gebruikersstatistieken",
+      "leaderboard": "Ranglijst",
+      "dashboard": {
+        "title": "Dashboard",
+        "vtcStats": "VTC-statistieken",
+        "team": "Team",
+        "gallery": "Galerij"
+      },
+      "profile": {
+        "settings": "Instellingen",
+        "profile": "Profiel",
+        "logout": "Uitloggen"
+      }
+    },
+    "jobs": {
+      "title": "gebruikers vrachten",
+      "table": {
+        "date": "datum",
+        "username": "gebruikersnaam",
+        "fromTo": "van - naar",
+        "cargo": "lading",
+        "truck": "vrachtwagen",
+        "distance": "afstand",
+        "income": "inkomen",
+        "navigation": {
+          "showing": "Pagina 1 van 1 wordt weergegeven",
+          "allJobs": "toon alle vrachten",
+          "paginated": "toon gepagineerd"
+        }
+      }
+    },
+    "vtcStats": {
+      "vtc": {
+        "title": "VTC-statistieken",
+        "totalDistance": "Totale afstand",
+        "totalJobs": "Totaal aantal vrachten",
+        "totalIncome": "Totale omzet",
+        "totalTimeDriven": "Totale rijtijd"
+      },
+      "ets2": {
+        "title": "ETS2-statistieken",
+        "totalDistance": "Totale afstand",
+        "totalJobs": "Totaal aantal vrachten",
+        "totalIncome": "Totale omzet",
+        "totalTimeDriven": "Totale rijtijd"
+      },
+      "ats": {
+        "title": "ATS-statistieken",
+        "totalDistance": "Totale afstand",
+        "totalJobs": "Totaal aantal vrachten",
+        "totalIncome": "Totale omzet",
+        "totalTimeDriven": "Totale rijtijd"
+      }
+    },
+    "team": {
+      "form": {
+        "titleNewMember": "Lid toevoegen",
+        "titleEditMember": "Lid bewerken",
+        "username": "Lidnaam",
+        "usernamePlaceholder": "Gebruikersnaam",
+        "profilePicture": "Profielfoto (optioneel)",
+        "submitNewMember": "lid toevoegen",
+        "submitEditMember": "lid bijwerken",
+        "calcelEditMember": "annuleren",
+        "rolesDepartments": {
+          "title": "Beheer rollen en afdelingen",
+          "currentRoles": "Huidige Rollen",
+          "addRole": "Rol Toevoegen",
+          "department": "Selecteer Afdeling",
+          "role": "Selecteer Rol"
+        }
+      },
+      "card": {
+        "title": "Teamleden"
+      },
+      "modal": {
+        "title": "Bevestig Actie",
+        "descriptionmember": "Weet je zeker dat je dit lid wilt verwijderen",
+        "descriptionPicture": "Weet je zeker dat je de profielfoto van dit lid wilt verwijderen",
+        "cancel": "annuleren",
+        "confirm": "bevestigen"
+      }
+    },
+    "gallery": {
+      "form": {
+        "titleNewItem": "Galerij Item Toevoegen",
+        "titleEditItem": "Galerij Item Bewerken",
+        "title": "Titel",
+        "titlePlaceholder": "Afbeeldingstitel",
+        "image": "Afbeelding",
+        "imageEdit": "Afbeelding (leeg laten om huidige te behouden)",
+        "submit": "item toevoegen",
+        "submitEdit": "item bijwerken",
+        "cancel": "annuleren"
+      },
+      "card": {
+        "title": "Galerij Items"
+      },
+      "modal": {
+        "title": "Bevestig Actie",
+        "description": "Weet je zeker dat je dit galerij item wilt verwijderen",
+        "cancel": "annuleren",
+        "confirm": "bevestigen"
+      }
+    }
   }
 }
