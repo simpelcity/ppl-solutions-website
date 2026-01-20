@@ -5,52 +5,6 @@ import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 
 type DictionaryType = {
-  navbar: {
-    brand: string,
-    navigation: {
-      home: string,
-      events: string,
-      gallery: string,
-      team: string,
-      contact: string
-    },
-    buttons: {
-      apply: string,
-      drivershub: string
-    }
-  },
-  footer: {
-    footer1: {
-      description: string
-    },
-    footer2: {
-      title: string,
-      pages: {
-        home: string,
-        events: string,
-        gallery: string,
-        team: string,
-        contact: string
-      }
-    },
-    footer3: {
-      tab1: {
-        title: string,
-        pages: {
-          drivershub: string,
-          apply: string,
-          vtc: string
-        }
-      },
-      tab2: {
-        title: string,
-        description: string
-      }
-    },
-    bottom: {
-      copyright: string
-    }
-  },
   home: {
     meta: {
       title: string,
@@ -86,59 +40,6 @@ type DictionaryType = {
       button: string
     }
   },
-  events: {
-    title: string,
-    noEvents: string,
-    card: {
-      date: string,
-      meetupTime: string,
-      departureTime: string,
-      departureLocation: string,
-      destinationLocation: string,
-      game: string,
-      server: string,
-      dlc: string,
-      event: string
-    }
-  },
-  team: {
-    title: string
-  },
-  gallery: {
-    title: string
-  },
-  contact: {
-    title: string,
-    form: {
-      required: string,
-      name: string,
-      namePlaceholder: string,
-      email: string,
-      emailPlaceholder: string,
-      message: string,
-      messagePlaceholder: string,
-      submit: string
-    }
-  },
-  apply: {
-    title: string,
-    card: {
-      description: string
-    }
-  },
-  login: {
-    form: {
-      title: string,
-      email: string,
-      emailPlaceholder: string,
-      password: string,
-      passwordPlaceholder: string,
-      forgotPassword: string,
-      rememberMe: string,
-      submit: string,
-      noAccount: string
-    }
-  },
   signup: {
     form: {
       title: string,
@@ -153,12 +54,12 @@ type DictionaryType = {
       haveAccount: string
     }
   },
-  "forgot-password": {
+  forgotPassword: {
     form: {
       title: string,
       description: string,
       email: string,
-      "email-placeholder": string,
+      emailPlaceholder: string,
       submit: string,
       remember: string
     }

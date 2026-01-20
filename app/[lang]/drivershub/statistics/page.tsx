@@ -1,7 +1,16 @@
 import { Dashboard } from "@/components/"
+import { getDictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
 
-export default function ProfilePage() {
+type PageProps = {
+  params: Promise<{ lang: Locale }>
+}
+
+export default async function StatisticsPage({ params }: PageProps) {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
   return (
     <>
       <title>Statistics | PPL Solutions</title>
@@ -22,7 +31,7 @@ export default function ProfilePage() {
 
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-          <Dashboard>
+          <Dashboard dict={dict.drivershub.sidebar}>
             <h1>Statistics</h1>
           </Dashboard>
         </section>

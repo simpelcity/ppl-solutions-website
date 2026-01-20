@@ -13,7 +13,7 @@ type Props = {
 
 export default function LayoutClient({ children, dict, lang }: Props) {
   const pathname = usePathname()
-  const hideFooter = pathname?.includes("/login") || pathname?.includes("/reset-password") || pathname?.includes("/forgot-password")
+  const hideFooter = pathname?.includes("/login") || pathname?.includes("/register") || pathname?.includes("/reset-password") || pathname?.includes("/forgot-password")
 
   return (
     <>

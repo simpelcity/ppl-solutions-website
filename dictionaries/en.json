@@ -151,27 +151,35 @@
   },
   "login": {
     "meta": {
-      "title": "",
-      "description": ""
+      "title": "Sign in",
+      "description": "Log into your PPL Solutions Drivershub account."
     },
     "form": {
-      "title": "Log in",
+      "brand": "PPL Solutions",
+      "title": "Sign in",
       "email": "Email",
       "emailPlaceholder": "your@email.com",
       "password": "Password",
       "passwordPlaceholder": "••••••",
       "forgotPassword": "forgot password?",
       "rememberMe": "Remember me",
-      "submit": "log in",
-      "noAccount": "Don't have an account? Sign up"
+      "submit": "sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": " Sign up",
+      "error": {
+        "invalidCredentials": "Invalid email or password. Please try again.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "loading": "Logging in..."
+      }
     }
   },
   "signup": {
     "meta": {
-      "title": "",
-      "description": ""
+      "title": "Sign up",
+      "description": "Sign up for a PPL Solutions Drivershub account."
     },
     "form": {
+      "brand": "PPL Solutions",
       "title": "Sign up",
       "email": "Email",
       "emailPlaceholder": "your@email.com",
@@ -181,29 +189,45 @@
       "password": "Password",
       "passwordPlaceholder": "••••••",
       "submit": "sign up",
-      "haveAccount": "Already have an account? Sign in"
+      "haveAccount": "Already have an account?",
+      "login": "Sign in",
+      "error": {
+        "emailInUse": "This email is already registered. Please use a different email.",
+        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "success": "Registration successful. Please check your email to confirm.",
+        "loading": "Creating account..."
+      }
     }
   },
   "forgotPassword": {
     "meta": {
-      "title": "",
-      "description": ""
+      "title": "Forgot your password?",
+      "description": "Forgot your PPL Solutions Drivershub account password."
     },
     "form": {
+      "brand": "PPL Solutions",
       "title": "Forgot Password?",
       "description": "Enter your email and we'll send you a link to reset your password.",
       "email": "Email",
       "emailPlaceholder": "your@email.com",
       "submit": "send reset link",
-      "remember": "Remember your password? Back to login"
+      "remember": "Remember your password?",
+      "backToLogin": "Back to login",
+      "error": {
+        "error": "An error occurred while sending the reset email",
+        "success": "Password reset email sent! Check your inbox for a link to reset your password.",
+        "loading": "Sending..."
+      }
     }
   },
   "resetPassword": {
     "meta": {
-      "title": "",
-      "description": ""
+      "title": "Reset your password",
+      "description": "Reset your PPL Solutions Drivershub account password."
     },
     "form": {
+      "brand": "PPL Solutions",
       "title": "Reset Password",
       "newPasswordBelow": "Enter your new password below.",
       "newPassword": "New Password",
@@ -211,10 +235,23 @@
       "confirmPassword": "Confirm Password",
       "confirmPasswordPlaceholder": "••••••",
       "submit": "reset password",
-      "backToLogin": "Back to login"
+      "backToLogin": "Back to login",
+      "error": {
+        "invalidToken": "Invalid or missing reset token. Please request a new password reset.",
+        "passwordMismatch": "Passwords do not match. Please try again.",
+        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+        "success": "Password reset successfully! Redirecting to login...",
+        "unexpected": "An unexpected error occurred while resetting your password",
+        "newPassword": "Request a new password reset",
+        "loading": "Resetting..."
+      }
     }
   },
   "drivershub": {
+    "meta": {
+      "title": "Drivershub",
+      "description": "Log into your PPL Solutions Drivershub account to view your driving statistics and more."
+    },
     "sidebar": {
       "title": "Sidebar",
       "drivershub": "Drivershub",
@@ -233,14 +270,11 @@
       }
     },
     "jobs": {
-      "meta": {
-        "title": "",
-        "description": ""
-      },
       "title": "user jobs",
       "table": {
         "date": "date",
         "username": "username",
+        "game": "game",
         "fromTo": "from - to",
         "cargo": "cargo",
         "truck": "truck",
@@ -250,13 +284,17 @@
           "showing": "Showing page 1 of 1",
           "allJobs": "show all jobs",
           "paginated": "show paginated"
+        },
+        "error": {
+          "error": "Error:",
+          "noJobs": "No jobs found"
         }
       }
     },
     "vtcStats": {
       "meta": {
-        "title": "",
-        "description": ""
+        "title": "Dashboard - VTC Statistics",
+        "description": "View VTC statistics and more."
       },
       "vtc": {
         "title": "VTC Statistics",
@@ -278,12 +316,15 @@
         "totalJobs": "Total Jobs",
         "totalIncome": "Total Revenue",
         "totalTimeDriven": "Total Time Driven"
+      },
+      "error": {
+        "noStats": "No statistics available"
       }
     },
     "team": {
       "meta": {
-        "title": "",
-        "description": ""
+        "title": "Dashboard - Team Management",
+        "description": "Manage your team members by adding, editing, or removing them."
       },
       "form": {
         "titleNewMember": "Add Member",
@@ -315,8 +356,8 @@
     },
     "gallery": {
       "meta": {
-        "title": "",
-        "description": ""
+        "title": "Dashboard - Manage Gallery",
+        "description": "Manage your gallery items by adding, editing, or deleting images."
       },
       "form": {
         "titleNewItem": "Add Gallery Item",

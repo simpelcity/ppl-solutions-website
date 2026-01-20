@@ -150,7 +150,12 @@
     }
   },
   "login": {
+    "meta": {
+      "title": "Inloggen",
+      "description": "Log in op uw PPL Solutions Bestuurdershub account."
+    },
     "form": {
+      "brand": "PPL Solutions",
       "title": "Inloggen",
       "email": "E-mail",
       "emailPlaceholder": "jouw@e-mail.com",
@@ -159,11 +164,22 @@
       "forgotPassword": "wachtwoord vergeten",
       "rememberMe": "Onthoud mij",
       "submit": "inloggen",
-      "noAccount": "Heeft u geen account? Schrijf je in"
+      "noAccount": "Heeft u geen account?",
+      "signUp": "Schrijf je in",
+      "error": {
+        "invalidCredentials": "Ongeldig e-mailadres of wachtwoord. Probeer het opnieuw.",
+        "unexpected": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+        "loading": "Inloggen..."
+      }
     }
   },
   "signup": {
+    "meta": {
+      "title": "Aanmelden",
+      "description": "Meld u aan voor een PPL Solutions Drivershub account."
+    },
     "form": {
+      "brand": "PPL Solutions",
       "title": "Schrijf je in",
       "email": "E-mail",
       "emailPlaceholder": "jouw@e-mail.com",
@@ -173,21 +189,45 @@
       "password": "Wachtwoord",
       "passwordPlaceholder": "••••••",
       "submit": "aanmelden",
-      "haveAccount": "Heeft u al een account? Inloggen"
+      "haveAccount": "Heeft u al een account?",
+      "login": "Inloggen",
+      "error": {
+        "emailInUse": "Dit e-mailadres is al geregistreerd. Gebruik een ander e-mailadres.",
+        "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
+        "unexpected": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+        "success": "Registratie is gelukt. Controleer uw e-mail voor bevestiging.",
+        "loading": "Account aanmaken..."
+      }
     }
   },
   "forgotPassword": {
+    "meta": {
+      "title": "",
+      "description": ""
+    },
     "form": {
-      "title": "Wachtwoord vergeten",
+      "brand": "PPL Solutions",
+      "title": "Wachtwoord vergeten?",
       "description": "Vul uw e-mailadres in om een link voor het opnieuw instellen van uw wachtwoord te ontvangen.",
       "email": "E-mail",
       "emailPlaceholder": "jouw@e-mail.com",
       "submit": "resetlink sturen",
-      "remember": "Onthoud uw wachtwoord? Terug naar inloggen"
+      "remember": "Onthoud uw wachtwoord?",
+      "backToLogin": "Terug naar inloggen",
+      "error": {
+        "error": "Er is een fout opgetreden tijdens het verzenden van de reset-e-mail.",
+        "success": "E-mail voor het opnieuw instellen van uw wachtwoord verzonden! Controleer uw inbox voor een link om uw wachtwoord opnieuw in te stellen.",
+        "loading": "Versturen..."
+      }
     }
   },
   "resetPassword": {
+    "meta": {
+      "title": "",
+      "description": ""
+    },
     "form": {
+      "brand": "PPL Solutions",
       "title": "Wachtwoord opnieuw instellen",
       "newPasswordBelow": "Voer hieronder uw nieuwe wachtwoord in.",
       "newPassword": "Nieuw wachtwoord",
@@ -195,10 +235,23 @@
       "confirmPassword": "Bevestig wachtwoord",
       "confirmPasswordPlaceholder": "••••••",
       "submit": "wachtwoord opnieuw instellen",
-      "backToLogin": "Terug naar inloggen"
+      "backToLogin": "Terug naar inloggen",
+      "error": {
+        "invalidToken": "Ongeldig of ontbrekend resettoken. Vraag een nieuwe wachtwoordreset aan.",
+        "passwordMismatch": "De wachtwoorden komen niet overeen. Probeer het opnieuw.",
+        "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
+        "success": "Wachtwoord succesvol gereset! U wordt doorgestuurd naar de inlogpagina...",
+        "unexpected": "Er is een onverwachte fout opgetreden tijdens het opnieuw instellen van uw wachtwoord.",
+        "newPassword": "Vraag een nieuwe wachtwoordreset aan",
+        "loading": "Resetten..."
+      }
     }
   },
   "drivershub": {
+    "meta": {
+      "title": "Bestuurdershub",
+      "description": "Log in op uw PPL Solutions Bestuurdershub account om uw rijstatistieken te bekijken en meer."
+    },
     "sidebar": {
       "title": "Zijbalk",
       "drivershub": "Bestuurdershub",
@@ -217,10 +270,11 @@
       }
     },
     "jobs": {
-      "title": "gebruikers vrachten",
+      "title": "gebruiker vrachten",
       "table": {
         "date": "datum",
         "username": "gebruikersnaam",
+        "game": "spel",
         "fromTo": "van - naar",
         "cargo": "lading",
         "truck": "vrachtwagen",
@@ -230,10 +284,18 @@
           "showing": "Pagina 1 van 1 wordt weergegeven",
           "allJobs": "toon alle vrachten",
           "paginated": "toon gepagineerd"
+        },
+        "error": {
+          "error": "Error:",
+          "noJobs": "Geen vrachten gevonden"
         }
       }
     },
     "vtcStats": {
+      "meta": {
+        "title": "Dashboard - VTC-statistieken",
+        "description": "Bekijk VTC-statistieken en meer."
+      },
       "vtc": {
         "title": "VTC-statistieken",
         "totalDistance": "Totale afstand",
@@ -254,9 +316,16 @@
         "totalJobs": "Totaal aantal vrachten",
         "totalIncome": "Totale omzet",
         "totalTimeDriven": "Totale rijtijd"
+      },
+      "error": {
+        "noStats": "Geen statistieken beschikbaar"
       }
     },
     "team": {
+      "meta": {
+        "title": "Dashboard - Team beheren",
+        "description": "Beheer je teamleden door ze toe te voegen, te bewerken of te verwijderen."
+      },
       "form": {
         "titleNewMember": "Lid toevoegen",
         "titleEditMember": "Lid bewerken",
@@ -286,6 +355,10 @@
       }
     },
     "gallery": {
+      "meta": {
+        "title": "Dashboard - Galerij beheren",
+        "description": "Beheer de items in uw galerij door afbeeldingen toe te voegen, te bewerken of te verwijderen."
+      },
       "form": {
         "titleNewItem": "Galerij Item Toevoegen",
         "titleEditItem": "Galerij Item Bewerken",

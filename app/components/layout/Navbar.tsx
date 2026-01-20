@@ -28,10 +28,10 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
   ) || i18n.defaultLocale;
 
   const languageNames: Record<Locale, string> = {
-    en: "English",
-    nl: "Nederlands",
-    cz: "Čeština",
-    sk: "Slovenčina",
+    en: "EN",
+    nl: "NL",
+    cz: "ČR",
+    sk: "SK",
   };
 
   const languageFlags: Record<Locale, string> = {
@@ -99,13 +99,13 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
             as={Link}
             onClick={() => setExpanded(false)}
             href="/"
-            className="d-flex align-items-center mx-0 ms-xl-3 me-xl-0 column-gap-2">
+            className="d-flex align-items-center mx-0 ms-lg-3 me-lg-0 column-gap-2">
             <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
             <h5 className="my-auto">{dict.navbar.brand}</h5>
           </BSNavbar.Brand>
           <BSNavbar.Toggle className="me-1" aria-controls="main-navbar" />
-          <BSNavbar.Collapse className="pb-3 pt-2 py-xl-0 px-3 px-xl-0 me-xl-3" id="main-navbar">
-            <Nav className="w-100 d-flex justify-content-center mb-3 mb-xl-0 row-gap-1">
+          <BSNavbar.Collapse className="pb-3 pt-2 py-lg-0 px-3 px-lg-0 me-lg-3" id="main-navbar">
+            <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
               {navLinks.map((link) => (
                 <Nav.Link
                   key={link.href}
@@ -118,7 +118,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
                 </Nav.Link>
               ))}
             </Nav>
-            <Nav className="d-flex align-items-lg-center justify-content-center flex-row nav-buttons column-gap-2">
+            <Nav className="d-flex align-items-center justify-content-center flex-row nav-buttons column-gap-2">
               <BSButton
                 variant="secondary"
                 border="primary 2"
@@ -135,21 +135,21 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
                 onClick={() => setExpanded(false)}>
                 {dict.navbar.buttons.drivershub}
               </BSButton>
-              <div className="vr d-none d-lg-block text-white"></div>
-              <Dropdown align="end" data-bs-theme="dark" className="z-1" style={{ width: 'min-content' }}>
-                <Dropdown.Toggle variant="dark" className="bg-transparent border-0 text-light d-flex align-items-center py-0 ps-0" id="dropdown-lang">
+              <div className="vr d-block text-white"></div>
+              <Dropdown align="end" data-bs-theme="dark" className="pe-3" style={{ width: 'min-content' }}>
+                <Dropdown.Toggle variant="dark" className="bg-transparent border-0 text-light d-flex align-items-center py-0 ps-0 fw-semibold" id="dropdown-lang">
                   <Image
                     src={languageFlags[currentLocale]}
                     alt={languageNames[currentLocale]}
                     className="me-1 text-white"
                     style={{ width: "65%", height: "65%" }}
                   />
-                  {currentLocale.toUpperCase()}
+                  {languageNames[currentLocale]}
                 </Dropdown.Toggle>
-                <Dropdown.Menu className="mt-3">
+                <Dropdown.Menu className="mt-3 position-absolute">
                   {i18n.locales.map((locale) => (
                     <Dropdown.Item
-                      className="d-flex align-items-center"
+                      className="d-flex align-items-center fw-semibold"
                       key={locale}
                       active={currentLocale === locale}
                       onClick={() => switchLanguage(locale)}>
@@ -158,7 +158,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
                         alt={languageNames[locale]}
                         className="w-25 h-25 me-2"
                       />
-                      {locale.toUpperCase()}
+                      {languageNames[locale]}
                     </Dropdown.Item>
                   ))}
                 </Dropdown.Menu>
