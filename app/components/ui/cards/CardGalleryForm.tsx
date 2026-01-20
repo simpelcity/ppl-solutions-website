@@ -3,12 +3,39 @@
 import { useState } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import BSButton from "@/components/ui/Button";
+import { BSButton } from "@/components/";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
 
 type ConfirmAction = "delete-item" | null;
 
-export default function CardGalleryForm() {
+type GalleryDict = {
+  form: {
+    titleNewItem: string;
+    titleEditItem: string;
+    title: string;
+    titlePlaceholder: string;
+    image: string;
+    imageEdit: string;
+    submit: string;
+    submitEdit: string;
+    cancel: string;
+  };
+  card: {
+    title: string;
+  };
+  modal: {
+    title: string;
+    description: string;
+    cancel: string;
+    confirm: string;
+  };
+};
+
+type CardGalleryFormProps = {
+  dict?: GalleryDict;
+};
+
+export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
   const {
     items,
     loading,
@@ -74,14 +101,14 @@ export default function CardGalleryForm() {
     <>
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{editingId ? "Edit Gallery Item" : "Add Gallery Item"}</Card.Title>
+          <Card.Title className="fs-4">{editingId ? (dict?.form?.titleEditItem || "Edit Gallery Item") : (dict?.form?.titleNewItem || "Add Gallery Item")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>Title</Form.Label>
+                <Form.Label>{dict?.form?.title || "Title"}</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Image title"
+                  placeholder={dict?.form?.titlePlaceholder || "Image title"}
                   className="rounded-0 border-0 shadow bg-dark-subtle"
                   required
                   value={title}
@@ -91,7 +118,7 @@ export default function CardGalleryForm() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Image {editingId ? "(leave empty to keep current)" : ""}</Form.Label>
+                <Form.Label>{dict?.form?.image || "Image"} {editingId ? (dict?.form?.imageEdit || "(leave empty to keep current)") : ""}</Form.Label>
                 <Form.Control
                   id="gallery-file-input"
                   type="file"
@@ -119,9 +146,9 @@ export default function CardGalleryForm() {
                     <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
                   </>
                 ) : editingId ? (
-                  "Update Item"
+                  dict?.form?.submitEdit || "Update Item"
                 ) : (
-                  "Add Item"
+                  dict?.form?.submit || "Add Item"
                 )}
               </BSButton>
 
@@ -137,7 +164,7 @@ export default function CardGalleryForm() {
                     if (fileInput) fileInput.value = "";
                   }}
                   disabled={submitting}>
-                  Cancel
+                  {dict?.form?.cancel || "Cancel"}
                 </BSButton>
               )}
             </Form>
@@ -148,7 +175,7 @@ export default function CardGalleryForm() {
       {/* Gallery Items List */}
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">Gallery Items</Card.Title>
+          <Card.Title className="fs-4">{dict?.card?.title || "Gallery Items"}</Card.Title>
           <Card.Body className="p-1">
             {loading ? (
               <div className="d-flex justify-content-center align-items-center column-gap-2">
@@ -203,17 +230,17 @@ export default function CardGalleryForm() {
       {/* Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Action</Modal.Title>
+          <Modal.Title>{dict?.modal?.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {confirmAction === "delete-item" && "Are you sure you want to delete this gallery item?"}
+          {confirmAction === "delete-item" && (dict?.modal?.description || "Are you sure you want to delete this gallery item?")}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
+            {dict?.modal?.cancel || "Cancel"}
           </Button>
           <Button variant="danger" onClick={handleConfirm}>
-            Confirm
+            {dict?.modal?.confirm || "Confirm"}
           </Button>
         </Modal.Footer>
       </Modal>

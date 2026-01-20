@@ -1,20 +1,36 @@
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { supabaseAdmin } from "@/supabaseAdmin/";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const url = new URL(request.url);
+    const lang = url.searchParams.get('lang') || 'en';
+
     const { data: items, error } = await supabaseAdmin
       .from("department_team_member")
       .select(`
-        department:departments!inner(id, name),
+        department:departments!inner(id, name, name_en, name_nl, name_cz, name_sk),
         team_member:team_members!inner(id, name, profile_url, profile_path, admin),
-        role:roles!inner(id, name, code)
+        role:roles!inner(id, name, code, name_en, name_nl, name_cz, name_sk)
       `)
       .order("department_id", { ascending: true });
 
     if (error) throw error;
 
+    const translatedItems = (items || []).map((item: any) => {
+      const dept = item.department || {};
+      const role = item.role || {};
+      const translatedDeptName = dept[`name_${lang}`] || dept.name;
+      const translatedRoleName = role[`name_${lang}`] || role.name;
+
+      return {
+        ...item,
+        department: { ...dept, name: translatedDeptName },
+        role: { ...role, name: translatedRoleName },
+      };
+    });
+
     const itemsWithUrls = await Promise.all(
-      (items || []).map(async (item: any) => {
+      translatedItems.map(async (item: any) => {
         const member = item.team_member || {};
         if (member.profile_url) return item;
 

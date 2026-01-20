@@ -1,0 +1,384 @@
+{
+  "navbar": {
+    "brand": "PPL Solutions VTC",
+    "navigation": {
+      "home": "Domů",
+      "events": "Události",
+      "gallery": "Galerie",
+      "team": "Tým",
+      "contact": "Kontakt"
+    },
+    "buttons": {
+      "apply": "Přihlásit se",
+      "drivershub": "Centrum řidičů"
+    }
+  },
+  "footer": {
+    "footer1": {
+      "brand": "PPL Solutions VTC",
+      "description": "Založeno 7. září 2024, naším cílem je vytvořit komunitu, kde se lidé mohou spojit a společně si užívat trucking."
+    },
+    "footer2": {
+      "title": "Stránky",
+      "pages": {
+        "home": "Domů",
+        "events": "Události",
+        "gallery": "Galerie",
+        "team": "Tým",
+        "contact": "Kontakt"
+      }
+    },
+    "footer3": {
+      "tab1": {
+        "title": "Další odkazy",
+        "pages": {
+          "drivershub": "Centrum řidičů",
+          "apply": "Přihlásit se",
+          "vtc": "VTC"
+        }
+      },
+      "tab2": {
+        "title": "Zpráva",
+        "description": "Ahoj cestovateli, jmenuji se Simpelcity. Vítej na webových stránkách virtuální truckingové společnosti PPL Solutions. Stojíme za pohodlím řidičů a radostí ze společného dosahování skvělých věcí."
+      }
+    },
+    "bottom": {
+      "copyright": "Copyright {year} PPL Solutions. Všechna práva vyhrazena | Vytvořil Simpelcity"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "Řídíme budoucnost digitální logistiky",
+      "description": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
+    },
+    "slogan": "Řídíme budoucnost digitální logistiky",
+    "buttons": {
+      "apply": "přihlásit se",
+      "discord": "discord"
+    },
+    "about-us": {
+      "title": "o nás",
+      "description": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
+    },
+    "offers": {
+      "title": "co nabízíme?",
+      "card1": {
+        "title": "přátelský tým",
+        "description": "Máme malý, ale velmi přátelský tým, který ti pomůže s jakýmkoliv problémem, se kterým se můžeš při jízdě setkat."
+      },
+      "card2": {
+        "title": "save-edity",
+        "description": "Naši řidiči mají přístup k široké škále vlastních save-editů, včetně kompletních sad kamionů, vlastních dílů a mnohem více."
+      },
+      "card3": {
+        "title": "vlastní módy",
+        "description": "Nabízíme také exkluzivní módy PPL Solutions pro použití v singleplayeru nebo konvojovém režimu."
+      }
+    },
+    "apply": {
+      "title": "přihlas se ještě dnes",
+      "description": "Přihlas se prostřednictvím našeho Discord serveru a začni svou úžasnou cestu s PPL Solutions.",
+      "button": "přihlásit se nyní"
+    }
+  },
+  "events": {
+    "meta": {
+      "title": "Události",
+      "description": "Najdeš zde všechny naše nadcházející události a můžeš se k nám připojit pro nezapomenutelný truckingový zážitek!"
+    },
+    "title": "události",
+    "card": {
+      "date": "Datum",
+      "meetupTime": "Čas srazu",
+      "departureTime": "Čas odjezdu",
+      "departureLocation": "Odjezd",
+      "destinationLocation": "Cíl",
+      "game": "Hra",
+      "server": "Server",
+      "dlc": "DLC",
+      "event": "událost",
+      "more": "více"
+    },
+    "error": {
+      "noEvents": "Žádné nadcházející události",
+      "na": "Není k dispozici",
+      "noServer": "Server události",
+      "noDLC": "Žádné"
+    }
+  },
+  "team": {
+    "meta": {
+      "title": "Tým",
+      "description": "Podívej se na všechny úžasné členy našeho týmu, kteří stojí za PPL Solutions."
+    },
+    "title": "tým",
+    "loading": "Načítání týmu...",
+    "error": "Chyba při načítání týmu."
+  },
+  "gallery": {
+    "meta": {
+      "title": "Galerie",
+      "description": "Prohlédni si galerii s nejlepšími momenty a kamiony z PPL Solutions."
+    },
+    "title": "galerie"
+  },
+  "contact": {
+    "meta": {
+      "title": "Kontakt",
+      "description": "Kontaktuj tým PPL Solutions s dotazy, žádostmi o podporu nebo zpětnou vazbou."
+    },
+    "title": "kontakt",
+    "form": {
+      "required": "Pole označená * jsou povinná",
+      "name": "Jméno / Discord uživatelské jméno",
+      "namePlaceholder": "Tvé (uživatelské) jméno",
+      "email": "Email",
+      "emailPlaceholder": "tvuj@email.cz",
+      "message": "Zpráva",
+      "messagePlaceholder": "Tvoje zpráva",
+      "submit": "odeslat"
+    }
+  },
+  "apply": {
+    "meta": {
+      "title": "Přihláška",
+      "description": "Přihlas se jako řidič PPL Solutions prostřednictvím našeho Discord serveru."
+    },
+    "title": "přihláška",
+    "card": {
+      "description": "Chceš se přihlásit jako řidič PPL Solutions? Vytvoř si ticket na našem Discord serveru, těšíme se na tebe!"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Přihlášení",
+      "description": "Přihlas se do svého účtu PPL Solutions Centrum řidičů."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Přihlášení",
+      "email": "Email",
+      "emailPlaceholder": "tvuj@email.cz",
+      "password": "Heslo",
+      "passwordPlaceholder": "••••••",
+      "forgotPassword": "zapomenuté heslo?",
+      "rememberMe": "Zapamatovat si mě",
+      "submit": "přihlásit se",
+      "noAccount": "Nemáš účet?",
+      "signUp": " Zaregistrovat se",
+      "error": {
+        "invalidCredentials": "Neplatný email nebo heslo. Zkus to znovu.",
+        "unexpected": "Došlo k neočekávané chybě. Zkus to prosím znovu.",
+        "loading": "Přihlašování..."
+      }
+    }
+  },
+  "signup": {
+    "meta": {
+      "title": "Registrace",
+      "description": "Zaregistruj si účet PPL Solutions Centrum řidičů."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Registrace",
+      "email": "Email",
+      "emailPlaceholder": "tvuj@email.cz",
+      "username": "Uživatelské jméno",
+      "usernamePlaceholder": "tvoje_uzivatelske_jmeno",
+      "allowedChars": "3–50 znaků, písmena, čísla, podtržítka, pomlčky",
+      "password": "Heslo",
+      "passwordPlaceholder": "••••••",
+      "submit": "zaregistrovat se",
+      "haveAccount": "Už máš účet?",
+      "login": "Přihlásit se",
+      "error": {
+        "emailInUse": "Tento email je již zaregistrován. Použij jiný email.",
+        "passwordTooShort": "Heslo musí mít alespoň 8 znaků a obsahovat velké, malé písmeno a číslo.",
+        "unexpected": "Došlo k neočekávané chybě. Zkus to prosím znovu.",
+        "success": "Registrace byla úspěšná. Zkontroluj svůj email pro potvrzení.",
+        "loading": "Vytváření účtu..."
+      }
+    }
+  },
+  "forgotPassword": {
+    "meta": {
+      "title": "Zapomněl jsi heslo?",
+      "description": "Zapomněl jsi heslo ke svému účtu PPL Solutions Centrum řidičů."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Zapomenuté heslo",
+      "description": "Zadej svůj email a pošleme ti odkaz pro reset hesla.",
+      "email": "Email",
+      "emailPlaceholder": "tvuj@email.cz",
+      "submit": "odeslat odkaz",
+      "remember": "Pamatuješ si heslo?",
+      "backToLogin": "Zpět na přihlášení",
+      "error": {
+        "error": "Při odesílání emailu došlo k chybě",
+        "success": "Email pro reset hesla byl odeslán! Zkontroluj svou schránku.",
+        "loading": "Odesílání..."
+      }
+    }
+  },
+  "resetPassword": {
+    "meta": {
+      "title": "Obnovení hesla",
+      "description": "Obnov heslo ke svému účtu PPL Solutions Centrum řidičů."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Obnovení hesla",
+      "newPasswordBelow": "Níže zadej své nové heslo.",
+      "newPassword": "Nové heslo",
+      "newPasswordPlaceholder": "••••••",
+      "confirmPassword": "Potvrdit heslo",
+      "confirmPasswordPlaceholder": "••••••",
+      "submit": "obnovit heslo",
+      "backToLogin": "Zpět na přihlášení",
+      "error": {
+        "invalidToken": "Neplatný nebo chybějící resetovací token. Požádej o nový reset hesla.",
+        "passwordMismatch": "Hesla se neshodují. Zkus to znovu.",
+        "passwordTooShort": "Heslo musí mít alespoň 8 znaků a obsahovat velké, malé písmeno a číslo.",
+        "success": "Heslo bylo úspěšně obnoveno! Přesměrování na přihlášení...",
+        "unexpected": "Při obnově hesla došlo k neočekávané chybě",
+        "newPassword": "Požádat o nový reset hesla",
+        "loading": "Obnovování..."
+      }
+    }
+  },
+  "drivershub": {
+    "meta": {
+      "title": "Centrum řidičů",
+      "description": "Přihlas se do svého účtu PPL Solutions Centrum řidičů a zobraz si statistiky jízd a další informace."
+    },
+    "sidebar": {
+      "title": "Postranní panel",
+      "drivershub": "Centrum řidičů",
+      "userStats": "Statistiky uživatele",
+      "leaderboard": "Žebříček",
+      "dashboard": {
+        "title": "Přehled",
+        "vtcStats": "Statistiky VTC",
+        "team": "Tým",
+        "gallery": "Galerie"
+      },
+      "profile": {
+        "settings": "Nastavení",
+        "profile": "Profil",
+        "logout": "Odhlásit se"
+      }
+    },
+    "jobs": {
+      "title": "uživatelské zakázky",
+      "table": {
+        "date": "datum",
+        "username": "uživatelské jméno",
+        "game": "hra",
+        "fromTo": "od - do",
+        "cargo": "náklad",
+        "truck": "kamion",
+        "distance": "vzdálenost",
+        "income": "příjem",
+        "navigation": {
+          "showing": "Zobrazuje se stránka 1 z 1",
+          "allJobs": "zobrazit všechny zakázky",
+          "paginated": "zobrazit stránkování"
+        },
+        "error": {
+          "error": "Chyba:",
+          "noJobs": "Nenalezeny žádné zakázky"
+        }
+      }
+    },
+    "vtcStats": {
+      "meta": {
+        "title": "Přehled – Statistiky VTC",
+        "description": "Zobraz statistiky VTC a další informace."
+      },
+      "vtc": {
+        "title": "Statistiky VTC",
+        "totalDistance": "Celková vzdálenost",
+        "totalJobs": "Celkový počet zakázek",
+        "totalIncome": "Celkové příjmy",
+        "totalTimeDriven": "Celkový čas jízdy"
+      },
+      "ets2": {
+        "title": "Statistiky ETS2",
+        "totalDistance": "Celková vzdálenost",
+        "totalJobs": "Celkový počet zakázek",
+        "totalIncome": "Celkové příjmy",
+        "totalTimeDriven": "Celkový čas jízdy"
+      },
+      "ats": {
+        "title": "Statistiky ATS",
+        "totalDistance": "Celková vzdálenost",
+        "totalJobs": "Celkový počet zakázek",
+        "totalIncome": "Celkové příjmy",
+        "totalTimeDriven": "Celkový čas jízdy"
+      },
+      "error": {
+        "noStats": "Nejsou k dispozici žádné statistiky"
+      }
+    },
+    "team": {
+      "meta": {
+        "title": "Přehled – Správa týmu",
+        "description": "Spravuj členy týmu přidáváním, úpravami nebo jejich odebráním."
+      },
+      "form": {
+        "titleNewMember": "Přidat člena",
+        "titleEditMember": "Upravit člena",
+        "username": "Jméno člena",
+        "usernamePlaceholder": "Uživatelské jméno",
+        "profilePicture": "Profilový obrázek (volitelné)",
+        "submitNewMember": "přidat člena",
+        "submitEditMember": "aktualizovat člena",
+        "calcelEditMember": "zrušit",
+        "rolesDepartments": {
+          "title": "Správa rolí a oddělení",
+          "currentRoles": "Aktuální role",
+          "addRole": "Přidat roli",
+          "department": "Vybrat oddělení",
+          "role": "Vybrat roli"
+        }
+      },
+      "card": {
+        "title": "Členové týmu"
+      },
+      "modal": {
+        "title": "Potvrdit akci",
+        "descriptionmember": "Opravdu chceš smazat tohoto člena?",
+        "descriptionPicture": "Opravdu chceš smazat profilový obrázek tohoto člena?",
+        "cancel": "zrušit",
+        "confirm": "potvrdit"
+      }
+    },
+    "gallery": {
+      "meta": {
+        "title": "Přehled – Správa galerie",
+        "description": "Spravuj položky galerie přidáváním, úpravami nebo mazáním obrázků."
+      },
+      "form": {
+        "titleNewItem": "Přidat položku galerie",
+        "titleEditItem": "Upravit položku galerie",
+        "title": "Název",
+        "titlePlaceholder": "Název obrázku",
+        "image": "Obrázek",
+        "imageEdit": "Obrázek (ponech prázdné pro zachování aktuálního)",
+        "submit": "přidat položku",
+        "submitEdit": "aktualizovat položku",
+        "cancel": "zrušit"
+      },
+      "card": {
+        "title": "Položky galerie"
+      },
+      "modal": {
+        "title": "Potvrdit akci",
+        "description": "Opravdu chceš smazat tuto položku galerie?",
+        "cancel": "zrušit",
+        "confirm": "potvrdit"
+      }
+    }
+  }
+}

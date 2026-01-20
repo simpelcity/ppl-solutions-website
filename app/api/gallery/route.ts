@@ -1,4 +1,4 @@
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { supabaseAdmin } from "@/supabaseAdmin/";
 
 export type GalleryItem = {
   id: number;
