@@ -1,0 +1,384 @@
+{
+  "navbar": {
+    "brand": "PPL Solutions VTC",
+    "navigation": {
+      "home": "Home",
+      "events": "Events",
+      "gallery": "Gallery",
+      "team": "Team",
+      "contact": "Contact"
+    },
+    "buttons": {
+      "apply": "Apply",
+      "drivershub": "Drivershub"
+    }
+  },
+  "footer": {
+    "footer1": {
+      "brand": "PPL Solutions VTC",
+      "description": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together."
+    },
+    "footer2": {
+      "title": "Pages",
+      "pages": {
+        "home": "Home",
+        "events": "Events",
+        "gallery": "Gallery",
+        "team": "Team",
+        "contact": "Contact"
+      }
+    },
+    "footer3": {
+      "tab1": {
+        "title": "Other links",
+        "pages": {
+          "drivershub": "Drivershub",
+          "apply": "Apply",
+          "vtc": "VTC"
+        }
+      },
+      "tab2": {
+        "title": "Message",
+        "description": "Hello there traveler, my name is Simpelcity. Welcome to the website of the Virtual Trucking Company PPL Solutions. We stand for driver comfort, and the fun in doing great things together."
+      }
+    },
+    "bottom": {
+      "copyright": "Copyright {year} PPL Solutions. All rights Reserved | Developed by Simpelcity"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "Steering the future of Digital Logistics",
+      "description": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+    },
+    "slogan": "Steering the future of Digital Logistics",
+    "buttons": {
+      "apply": "apply",
+      "discord": "discord"
+    },
+    "about-us": {
+      "title": "about us",
+      "description": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+    },
+    "offers": {
+      "title": "what do we offer ?",
+      "card1": {
+        "title": "friendly staff",
+        "description": "We have a small but extremely friendly staff team that can help you with any problem you might face while driving for us."
+      },
+      "card2": {
+        "title": "save-edits",
+        "description": "Our drivers have access to a wide variety of custom-made save-edits, including full-sets of trucks, custom parts, and much more."
+      },
+      "card3": {
+        "title": "custom mods",
+        "description": "We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode."
+      }
+    },
+    "apply": {
+      "title": "apply today",
+      "description": "Apply through our discord server today, and start your amazing journey with PPL Solutions.",
+      "button": "apply now"
+    }
+  },
+  "events": {
+    "meta": {
+      "title": "Events",
+      "description": "Find all our upcoming events here and join us for an unforgettable trucking experience!"
+    },
+    "title": "events",
+    "card": {
+      "date": "Date",
+      "meetupTime": "Meetup Time",
+      "departureTime": "Departure Time",
+      "departureLocation": "Departure",
+      "destinationLocation": "Destination",
+      "game": "Game",
+      "server": "Server",
+      "dlc": "DLC",
+      "event": "event",
+      "more": "more"
+    },
+    "error": {
+      "noEvents": "No upcoming events",
+      "na": "Not applicable",
+      "noServer": "Event Server",
+      "noDLC": "None"
+    }
+  },
+  "team": {
+    "meta": {
+      "title": "Team",
+      "description": "See all of our amazing team members who make PPL Solutions possible."
+    },
+    "title": "team",
+    "loading": "Loading team...",
+    "error": "Error loading team."
+  },
+  "gallery": {
+    "meta": {
+      "title": "Gallery",
+      "description": "Browse through our gallery showcasing the best moments and trucks from PPL Solutions."
+    },
+    "title": "gallery"
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Get in touch with the PPL Solutions team for any inquiries, support, or feedback."
+    },
+    "title": "contact",
+    "form": {
+      "required": "Fields marked with * are required",
+      "name": "Name / Discord username",
+      "namePlaceholder": "Your (user)name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Your message",
+      "submit": "send"
+    }
+  },
+  "apply": {
+    "meta": {
+      "title": "Apply",
+      "description": "Apply to become a driver for PPL Solutions through our Discord server."
+    },
+    "title": "apply",
+    "card": {
+      "description": "So you want to apply to become a driver for PPL Solutions? Please make a ticket in our Discord server, see you there!"
+    }
+  },
+  "login": {
+    "meta": {
+      "title": "Sign in",
+      "description": "Log into your PPL Solutions Drivershub account."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Sign in",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••••",
+      "forgotPassword": "forgot password?",
+      "rememberMe": "Remember me",
+      "submit": "sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": " Sign up",
+      "error": {
+        "invalidCredentials": "Invalid email or password. Please try again.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "loading": "Logging in..."
+      }
+    }
+  },
+  "signup": {
+    "meta": {
+      "title": "Sign up",
+      "description": "Sign up for a PPL Solutions Drivershub account."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Sign up",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "username": "Username",
+      "usernamePlaceholder": "your_username",
+      "allowedChars": "3-50 characters, letters, numbers, underscores, hyphens",
+      "password": "Password",
+      "passwordPlaceholder": "••••••",
+      "submit": "sign up",
+      "haveAccount": "Already have an account?",
+      "login": "Sign in",
+      "error": {
+        "emailInUse": "This email is already registered. Please use a different email.",
+        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+        "unexpected": "An unexpected error occurred. Please try again.",
+        "success": "Registration successful. Please check your email to confirm.",
+        "loading": "Creating account..."
+      }
+    }
+  },
+  "forgotPassword": {
+    "meta": {
+      "title": "Forgot your password?",
+      "description": "Forgot your PPL Solutions Drivershub account password."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Forgot Password?",
+      "description": "Enter your email and we'll send you a link to reset your password.",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "submit": "send reset link",
+      "remember": "Remember your password?",
+      "backToLogin": "Back to login",
+      "error": {
+        "error": "An error occurred while sending the reset email",
+        "success": "Password reset email sent! Check your inbox for a link to reset your password.",
+        "loading": "Sending..."
+      }
+    }
+  },
+  "resetPassword": {
+    "meta": {
+      "title": "Reset your password",
+      "description": "Reset your PPL Solutions Drivershub account password."
+    },
+    "form": {
+      "brand": "PPL Solutions",
+      "title": "Reset Password",
+      "newPasswordBelow": "Enter your new password below.",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "••••••",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "••••••",
+      "submit": "reset password",
+      "backToLogin": "Back to login",
+      "error": {
+        "invalidToken": "Invalid or missing reset token. Please request a new password reset.",
+        "passwordMismatch": "Passwords do not match. Please try again.",
+        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+        "success": "Password reset successfully! Redirecting to login...",
+        "unexpected": "An unexpected error occurred while resetting your password",
+        "newPassword": "Request a new password reset",
+        "loading": "Resetting..."
+      }
+    }
+  },
+  "drivershub": {
+    "meta": {
+      "title": "Drivershub",
+      "description": "Log into your PPL Solutions Drivershub account to view your driving statistics and more."
+    },
+    "sidebar": {
+      "title": "Sidebar",
+      "drivershub": "Drivershub",
+      "userStats": "User Statistics",
+      "leaderboard": "Leaderboard",
+      "dashboard": {
+        "title": "Dashboard",
+        "vtcStats": "VTC Statistics",
+        "team": "Team",
+        "gallery": "Gallery"
+      },
+      "profile": {
+        "settings": "Settings",
+        "profile": "Profile",
+        "logout": "Sign out"
+      }
+    },
+    "jobs": {
+      "title": "user jobs",
+      "table": {
+        "date": "date",
+        "username": "username",
+        "game": "game",
+        "fromTo": "from - to",
+        "cargo": "cargo",
+        "truck": "truck",
+        "distance": "distance",
+        "income": "income",
+        "navigation": {
+          "showing": "Showing page 1 of 1",
+          "allJobs": "show all jobs",
+          "paginated": "show paginated"
+        },
+        "error": {
+          "error": "Error:",
+          "noJobs": "No jobs found"
+        }
+      }
+    },
+    "vtcStats": {
+      "meta": {
+        "title": "Dashboard - VTC Statistics",
+        "description": "View VTC statistics and more."
+      },
+      "vtc": {
+        "title": "VTC Statistics",
+        "totalDistance": "Total Distance",
+        "totalJobs": "Total Jobs",
+        "totalIncome": "Total Revenue",
+        "totalTimeDriven": "Total Time Driven"
+      },
+      "ets2": {
+        "title": "ETS2 Statistics",
+        "totalDistance": "Total Distance",
+        "totalJobs": "Total Jobs",
+        "totalIncome": "Total Revenue",
+        "totalTimeDriven": "Total Time Driven"
+      },
+      "ats": {
+        "title": "ATS Statistics",
+        "totalDistance": "Total Distance",
+        "totalJobs": "Total Jobs",
+        "totalIncome": "Total Revenue",
+        "totalTimeDriven": "Total Time Driven"
+      },
+      "error": {
+        "noStats": "No statistics available"
+      }
+    },
+    "team": {
+      "meta": {
+        "title": "Dashboard - Team Management",
+        "description": "Manage your team members by adding, editing, or removing them."
+      },
+      "form": {
+        "titleNewMember": "Add Member",
+        "titleEditMember": "Edit Member",
+        "username": "Member Name",
+        "usernamePlaceholder": "Username",
+        "profilePicture": "Profile Picture (optional",
+        "submitNewMember": "add member",
+        "submitEditMember": "update member",
+        "calcelEditMember": "cancel",
+        "rolesDepartments": {
+          "title": "Manage Roles & Departments",
+          "currentRoles": "Current Roles",
+          "addRole": "Add Role",
+          "department": "Select Department",
+          "role": "Select Role"
+        }
+      },
+      "card": {
+        "title": "team Members"
+      },
+      "modal": {
+        "title": "Confirm Action",
+        "descriptionmember": "Are you sure you want to delete this member",
+        "descriptionPicture": "Are you sure you want to delete this member's profile picture",
+        "cancel": "cancel",
+        "confirm": "confirm"
+      }
+    },
+    "gallery": {
+      "meta": {
+        "title": "Dashboard - Manage Gallery",
+        "description": "Manage your gallery items by adding, editing, or deleting images."
+      },
+      "form": {
+        "titleNewItem": "Add Gallery Item",
+        "titleEditItem": "Edit Gallery Item",
+        "title": "Title",
+        "titlePlaceholder": "Image title",
+        "image": "Image",
+        "imageEdit": "Image (leave empty to keep current)",
+        "submit": "add item",
+        "submitEdit": "update item",
+        "cancel": "cancel"
+      },
+      "card": {
+        "title": "Gallery Items"
+      },
+      "modal": {
+        "title": "Confirm Action",
+        "description": "Are you sure you want to delete this gallery item",
+        "cancel": "cancel",
+        "confirm": "confirm"
+      }
+    }
+  }
+}

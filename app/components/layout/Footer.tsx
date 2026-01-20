@@ -3,18 +3,75 @@
 import { Container, Row, Col, Image, Tab, Tabs, ListGroup } from "react-bootstrap"
 import { FaDiscord, FaTiktok, FaTruck, FaRegCopyright } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { FooterLink } from "@/components"
+import { FooterLink } from "@/components/"
 import "@/styles/Footer.scss"
+import type { Dictionary } from "@/app/i18n";
 
-export default function Footer() {
+type FooterDictionary = {
+  footer1: {
+    brand: string,
+    description: string
+  },
+  footer2: {
+    title: string,
+    pages: {
+      home: string,
+      events: string,
+      gallery: string,
+      team: string,
+      contact: string
+    }
+  },
+  footer3: {
+    tab1: {
+      title: string,
+      pages: {
+        drivershub: string,
+        apply: string,
+        vtc: string
+      }
+    },
+    tab2: {
+      title: string,
+      description: string
+    }
+  },
+  bottom: {
+    copyright: string
+  }
+}
+
+type FooterProps = {
+  dict: Dictionary
+}
+
+export default function Footer({ dict }: FooterProps) {
+  const footerDict = (dict as any).footer as FooterDictionary
+
   const footerLinks = [
-    { title: "Home", href: "" },
-    { title: "Events", href: "events" },
-    { title: "Team", href: "team" },
-    { title: "Gallery", href: "gallery" },
-    { title: "Contact", href: "contact" },
+    { title: `${footerDict.footer2.pages.home}`, href: "" },
+    { title: `${footerDict.footer2.pages.events}`, href: "events" },
+    { title: `${footerDict.footer2.pages.team}`, href: "team" },
+    { title: `${footerDict.footer2.pages.gallery}`, href: "gallery" },
+    { title: `${footerDict.footer2.pages.contact}`, href: "contact" },
   ]
   const currentYear = new Date().getFullYear()
+
+  const split = footerDict.footer3.tab2.description.split(" ");
+  const message1 = split.slice(0, split.indexOf("Simpelcity.")).join(" ");
+  const message2 = footerDict.footer3.tab2.description.match(/\bSimpelcity\b/);
+  const start1 = footerDict.footer3.tab2.description.indexOf("Simpelcity") + "Simpelcity".length;
+  const end1 = footerDict.footer3.tab2.description.indexOf("PPL Solutions");
+  const message3 = footerDict.footer3.tab2.description.slice(start1, end1);
+  const message4 = footerDict.footer3.tab2.description.match(/\bPPL Solutions\b/);
+  const message5 = footerDict.footer3.tab2.description.slice(end1 + "PPL Solutions".length);
+
+  const bottom1 = footerDict.bottom.copyright.split(" ")[0];
+  const brand = footerDict.bottom.copyright.match(/\bPPL Solutions\b/);
+  const start2 = footerDict.bottom.copyright.indexOf("PPL Solutions") + "PPL Solutions".length;
+  const end2 = footerDict.bottom.copyright.indexOf("Simpelcity");
+  const bottom3 = footerDict.bottom.copyright.slice(start2, end2);
+  const developer = footerDict.bottom.copyright.slice(end2);
 
   return (
     <footer className="bg-dark text-light py-4">
@@ -35,12 +92,11 @@ export default function Footer() {
                   height={50}
                   roundedCircle
                 />
-                <h3 className="my-auto">PPL Solutions VTC</h3>
+                <h3 className="my-auto">{footerDict.footer1.brand}</h3>
               </a>
             </div>
             <p className="fs-5">
-              Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking
-              together.
+              {footerDict.footer1.description}
             </p>
             <div className="d-flex flex-row column-gap-3">
               <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="text-light">
@@ -63,7 +119,7 @@ export default function Footer() {
           <Col xs={12} md={12} xl={6}>
             <Row className="d-flex row-gap-4 w-100">
               <Col xs={12} md={3} lg={4}>
-                <h3>Pages</h3>
+                <h3>{footerDict.footer2.title}</h3>
                 <ListGroup className="fs-5">
                   {footerLinks.map((item) => (
                     <FooterLink key={item.href} link={item.href}>
@@ -74,20 +130,18 @@ export default function Footer() {
               </Col>
               <Col xs={12} md={9} lg={8} className="fs-5">
                 <Tabs defaultActiveKey="links" className="nav-fill mb-3 border-primary">
-                  <Tab eventKey="links" title="Other links" className="border-0">
+                  <Tab eventKey="links" title={footerDict.footer3.tab1.title} className="border-0">
                     <ListGroup>
-                      <FooterLink link="drivershub">Drivershub</FooterLink>
-                      <FooterLink link="apply">Apply</FooterLink>
+                      <FooterLink link="drivershub">{footerDict.footer3.tab1.pages.drivershub}</FooterLink>
+                      <FooterLink link="apply">{footerDict.footer3.tab1.pages.apply}</FooterLink>
                       <FooterLink href="https://truckersmp.com/vtc/74455" target="_blank">
-                        VTC
+                        {footerDict.footer3.tab1.pages.vtc}
                       </FooterLink>
                     </ListGroup>
                   </Tab>
-                  <Tab eventKey="message" title="Message" className="border-0">
+                  <Tab eventKey="message" title={footerDict.footer3.tab2.title} className="border-0">
                     <p className="text-center text-md-start">
-                      Hello there traveler, My name is <strong>Simpelcity</strong>. Welcome on the website of the
-                      Virtual Trucking Company: <strong>PPL Solutions</strong>, we stand for driver comfort and the fun
-                      in doing great things together.
+                      {message1} <strong>{message2}</strong>{message3}<strong>{message4}</strong>{message5}
                     </p>
                   </Tab>
                 </Tabs>
@@ -96,10 +150,9 @@ export default function Footer() {
           </Col>
         </Row>
         <p className="border-top border-light pt-3 mt-4 mb-0 fs-5 text-center w-100">
-          <FaRegCopyright className="fs-6" /> Copyright {currentYear} <strong>PPL Solutions.</strong> All rights
-          Reserved | Developed by{" "}
+          <FaRegCopyright className="fs-6" /> {bottom1} {currentYear} <strong>{brand}</strong>{bottom3}
           <a className="text-decoration-none author fw-bold" href="https://simpelcity.github.io">
-            Simpelcity
+            {developer}
           </a>
         </p>
       </Container>

@@ -1,4 +1,4 @@
-import { supabaseAdmin } from "@/lib/supabaseAdmin"
+import { supabaseAdmin } from "@/supabaseAdmin/"
 import { NextResponse } from "next/server"
 
 // Get all department-role assignments for a specific team member

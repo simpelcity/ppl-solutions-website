@@ -3,12 +3,46 @@
 import { useState } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
-import BSButton from "../Button";
-import { useTeam, TeamMember } from "@/hooks/useTeam";
+import { BSButton } from "@/components/";
+import { useTeam, TeamMember } from "@/app/hooks/useTeam";
 
 type ConfirmAction = "delete-member" | "delete-picture" | null;
 
-export default function CardTeamForm() {
+type TeamDict = {
+  form: {
+    titleNewMember: string;
+    titleEditMember: string;
+    username: string;
+    usernamePlaceholder: string;
+    profilePicture: string;
+    submitNewMember: string;
+    submitEditMember: string;
+    calcelEditMember: string;
+    rolesDepartments: {
+      title: string;
+      currentRoles: string;
+      addRole: string;
+      department: string;
+      role: string;
+    };
+  };
+  card: {
+    title: string;
+  };
+  modal: {
+    title: string;
+    descriptionmember: string;
+    descriptionPicture: string;
+    cancel: string;
+    confirm: string;
+  };
+};
+
+type CardTeamFormProps = {
+  dict?: TeamDict;
+};
+
+export default function CardTeamForm({ dict }: CardTeamFormProps) {
   const {
     members,
     departments,
@@ -89,14 +123,14 @@ export default function CardTeamForm() {
     <>
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{editingId ? "Edit Member" : "Add Member"}</Card.Title>
+          <Card.Title className="fs-4">{editingId ? (dict?.form?.titleEditMember || "Edit Member") : (dict?.form?.titleNewMember || "Add Member")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>Member Name</Form.Label>
+                <Form.Label>{dict?.form?.username || "Member Name"}</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Username"
+                  placeholder={dict?.form?.usernamePlaceholder || "Username"}
                   className="rounded-0 border-0 shadow bg-dark-subtle"
                   required
                   value={name}
@@ -106,7 +140,7 @@ export default function CardTeamForm() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Profile Picture (optional)</Form.Label>
+                <Form.Label>{dict?.form?.profilePicture || "Profile Picture (optional)"}</Form.Label>
                 <Form.Control
                   id="team-file-input"
                   type="file"
@@ -120,7 +154,7 @@ export default function CardTeamForm() {
               {editingId && (
                 <>
                   <hr className="my-4" />
-                  <h5 className="mb-3">Manage Roles & Departments</h5>
+                  <h5 className="mb-3">{dict?.form?.rolesDepartments?.title || "Manage Roles & Departments"}</h5>
 
                   {loadingRoles ? (
                     <div className="d-flex justify-content-center align-items-center column-gap-2 mb-3">
@@ -131,7 +165,7 @@ export default function CardTeamForm() {
                     <>
                       {memberRoles.length > 0 && (
                         <div className="mb-3">
-                          <Form.Label>Current Roles:</Form.Label>
+                          <Form.Label>{dict?.form?.rolesDepartments?.currentRoles || "Current Roles:"}</Form.Label>
                           <div className="d-flex flex-wrap gap-2">
                             {memberRoles.map((mr, idx) => (
                               <Badge key={idx} bg={mr.role.code} className="d-flex align-items-center gap-2 p-2">
@@ -148,13 +182,13 @@ export default function CardTeamForm() {
                         </div>
                       )}
 
-                      <Form.Label>Add Role:</Form.Label>
+                      <Form.Label>{dict?.form?.rolesDepartments?.addRole || "Add Role:"}</Form.Label>
                       <div className="d-flex gap-2 mb-3">
                         <Form.Select
                           value={selectedDepartment}
                           onChange={(e) => setSelectedDepartment(e.target.value)}
                           disabled={submitting}>
-                          <option value="">Select Department</option>
+                          <option value="">{dict?.form?.rolesDepartments?.department || "Select Department"}</option>
                           {departments.map((dept) => (
                             <option key={dept.id} value={dept.id}>
                               {dept.name}
@@ -166,7 +200,7 @@ export default function CardTeamForm() {
                           value={selectedRole}
                           onChange={(e) => setSelectedRole(e.target.value)}
                           disabled={submitting}>
-                          <option value="">Select Role</option>
+                          <option value="">{dict?.form?.rolesDepartments?.role || "Select Role"}</option>
                           {roles.map((role) => (
                             <option key={role.id} value={role.id}>
                               {role.name}
@@ -207,9 +241,9 @@ export default function CardTeamForm() {
                     <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
                   </>
                 ) : editingId ? (
-                  "Update Member"
+                  dict?.form?.submitEditMember || "Update Member"
                 ) : (
-                  "Add Member"
+                  dict?.form?.submitNewMember || "Add Member"
                 )}
               </BSButton>
 
@@ -219,7 +253,7 @@ export default function CardTeamForm() {
                   classes="mt-2 ms-2 border-secondary"
                   onClick={resetForm}
                   disabled={submitting}>
-                  Cancel
+                  {dict?.form?.calcelEditMember || "Cancel"}
                 </BSButton>
               )}
             </Form>
@@ -229,7 +263,7 @@ export default function CardTeamForm() {
 
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">Team Members</Card.Title>
+          <Card.Title className="fs-4">{dict?.card?.title || "Team Members"}</Card.Title>
           <Card.Body>
             {loading ? (
               <div className="d-flex justify-content-center align-items-center column-gap-2">
@@ -293,21 +327,21 @@ export default function CardTeamForm() {
 
       <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Action</Modal.Title>
+          <Modal.Title>{dict?.modal?.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {confirmAction === "delete-member" && "Are you sure you want to delete this member?"}
-          {confirmAction === "delete-picture" && "Are you sure you want to delete this member's profile picture?"}
+          {confirmAction === "delete-member" && (dict?.modal?.descriptionmember || "Are you sure you want to delete this member?")}
+          {confirmAction === "delete-picture" && (dict?.modal?.descriptionPicture || "Are you sure you want to delete this member's profile picture?")}
         </Modal.Body>
         <Modal.Footer>
           <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
-            Cancel
+            {dict?.modal?.cancel || "Cancel"}
           </BSButton>
           <Button
             variant="danger"
             className="border border-2 border-danger text-uppercase fw-bold rounded-1"
             onClick={handleConfirm}>
-            Confirm
+            {dict?.modal?.confirm || "Confirm"}
           </Button>
         </Modal.Footer>
       </Modal>

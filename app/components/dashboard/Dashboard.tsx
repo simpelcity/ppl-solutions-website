@@ -1,8 +1,8 @@
 "use client";
 
 import { Container } from "react-bootstrap";
-import { Sidebar } from "@/components";
-import { useSidebar } from "@/lib/SidebarContext";
+import { Sidebar } from "@/components/";
+import { useSidebar } from "@/lib/";
 
 interface TeamMember {
   name: string;
@@ -13,9 +13,26 @@ interface TeamMember {
 interface DashboardProps {
   children: React.ReactNode;
   isNavbarVisible?: boolean;
+  dict?: {
+    title: string;
+    drivershub: string;
+    userStats: string;
+    leaderboard: string;
+    dashboard: {
+      title: string;
+      vtcStats: string;
+      team: string;
+      gallery: string;
+    };
+    profile: {
+      settings: string;
+      profile: string;
+      logout: string;
+    };
+  };
 }
 
-export default function Dashboard({ children, isNavbarVisible = false, ...props }: DashboardProps) {
+export default function Dashboard({ children, isNavbarVisible = false, dict, ...props }: DashboardProps) {
   const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile } = useSidebar();
 
   const sidebarWidth = isSidebarCollapsed ? "4.5rem" : "280px";
@@ -30,6 +47,7 @@ export default function Dashboard({ children, isNavbarVisible = false, ...props 
         setIsSidebarCollapsed={setIsSidebarCollapsed}
         isMobile={isMobile}
         isNavbarVisible={true}
+        dict={dict}
       />
       <Container
         className="content-wrapper d-flex justify-content-center px-3 mx-0"

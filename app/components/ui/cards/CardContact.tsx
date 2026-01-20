@@ -1,11 +1,31 @@
 "use client";
 
 import { Card, Form, Col } from "react-bootstrap";
-import BSButton from "../Button";
+import { BSButton } from "@/components/";
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa";
-import { IconContext } from "react-icons";
 
-export default function CardContact() {
+type DictionaryType = {
+  contact: {
+    meta: {
+      title: string,
+      description: string
+    },
+    title: string,
+    form: {
+      required: string,
+      name: string,
+      namePlaceholder: string,
+      email: string,
+      emailPlaceholder: string,
+      message: string,
+      messagePlaceholder: string,
+      submit: string
+    }
+  },
+}
+
+export default function CardContact({ dict }: { dict: DictionaryType }) {
+
   return (
     <>
       <Card className="rounded-0 border-0 shadow bg-dark h-100">
@@ -17,31 +37,31 @@ export default function CardContact() {
             data-bs-theme="dark">
             <Col xs={12} md={10} xl={10}>
               <Form.Group className="mb-2">
-                <Form.Label>Name / Discord username *</Form.Label>
+                <Form.Label>{`${dict.contact.form.name} *`}</Form.Label>
                 <Form.Control
                   type="text"
                   name="name"
-                  placeholder="Your (user)name"
+                  placeholder={dict.contact.form.namePlaceholder}
                   className="input rounded-0 border-0 shadow bg-dark-subtle"
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-2">
-                <Form.Label>Email *</Form.Label>
+                <Form.Label>{`${dict.contact.form.email} *`}</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
-                  placeholder="your@email.com"
+                  placeholder={dict.contact.form.emailPlaceholder}
                   className="input rounded-0 border-0 shadow bg-dark-subtle"
                   required
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Message *</Form.Label>
+                <Form.Label>{`${dict.contact.form.message} *`}</Form.Label>
                 <Form.Control
                   as="textarea"
                   name="message"
-                  placeholder="Your message"
+                  placeholder={dict.contact.form.messagePlaceholder}
                   rows={5}
                   className="input rounded-0 border-0 shadow bg-dark-subtle"
                   required
@@ -49,7 +69,7 @@ export default function CardContact() {
               </Form.Group>
               <div className="d-grid d-md-inline-block">
                 <BSButton variant="outline" size="lg" type="submit" border="primary" text="primary" width="2">
-                  Send
+                  {dict.contact.form.submit}
                 </BSButton>
               </div>
             </Col>
@@ -60,25 +80,19 @@ export default function CardContact() {
               className="d-flex flex-row flex-md-column align-items-center justify-content-center">
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
                 <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="me-1">
-                  <IconContext.Provider value={{ className: "react-icons" }}>
-                    <FaDiscord className="discord-icon p-1" />
-                  </IconContext.Provider>
+                  <FaDiscord className="react-icons discord-icon p-1" />
                 </a>
                 <p className="m-0">Discord</p>
               </div>
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
                 <a href="" target="_blank" className="me-1">
-                  <IconContext.Provider value={{ className: "react-icons" }}>
-                    <FaTiktok className="tiktok-icon p-1" />
-                  </IconContext.Provider>
+                  <FaTiktok className="react-icons tiktok-icon p-1" />
                 </a>
                 <p className="m-0">TikTok</p>
               </div>
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
                 <a href="" target="_blank" className="me-1">
-                  <IconContext.Provider value={{ className: "react-icons" }}>
-                    <FaTruck className="tmp-icon p-1" />
-                  </IconContext.Provider>
+                  <FaTruck className="react-icons tmp-icon p-1" />
                 </a>
                 <p className="m-0">TruckersMP</p>
               </div>

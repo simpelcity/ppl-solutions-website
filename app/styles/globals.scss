@@ -40,8 +40,9 @@ main {
 .main {
   background: url(/assets/images/banner-3.jpg);
   background-size: cover;
+  background-position: center;
 }
 
 .main > section {
-  height: calc(100vh - 76px);
+  min-height: calc(100vh - 76px);
 }
