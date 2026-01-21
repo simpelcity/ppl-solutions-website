@@ -24,6 +24,7 @@ type RegisterFormClientProps = {
         login: string;
         error: {
           emailInUse: string,
+          usernameInUse: string,
           passwordTooShort: string,
           unexpected: string,
           success: string,
@@ -41,14 +42,57 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+  const [checkingUsername, setCheckingUsername] = useState(false);
   const router = useRouter();
+
+  const checkUsernameAvailability = async (username: string) => {
+    if (!username.trim()) return;
+    setCheckingUsername(true);
+    try {
+      const response = await fetch('/api/check-display-name', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ display_name: username.trim() }),
+      });
+      const result = await response.json();
+      if (!result.available) {
+        setError(`${dict.signup.form.error.usernameInUse}`);
+      } else {
+        setError(""); // Clear error if available
+      }
+    } catch (err) {
+      // Ignore errors during check
+    } finally {
+      setCheckingUsername(false);
+    }
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setSuccess("");
     setLoading(true);
+
     try {
+      // Check if display_name is available
+      const checkResponse = await fetch('/api/check-display-name', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ display_name: username.trim() }),
+      });
+
+      const checkResult = await checkResponse.json();
+
+      if (!checkResult.available) {
+        setLoading(false);
+        setError(`${dict.signup.form.error.usernameInUse}`);
+        return;
+      }
+
       const { data, error } = await supabase.auth.signUp({
         email: email.trim().toLowerCase(),
         password,
@@ -57,9 +101,9 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
 
       setLoading(false);
       if (error) {
-        if (error.message.includes("User already registered")) {
+        if (error.code?.includes('user_already_exists')) {
           setError(`${dict.signup.form.error.emailInUse}`);
-        } else if (error.message.includes("Password should be at least 8 characters. Password should contain at least one character of each: abcdefghijklmnopqrstuvwxyz, ABCDEFGHIJKLMNOPQRSTUVWXYZ, 0123456789.")) {
+        } else if (error.code?.includes('weak_password')) {
           setError(`${dict.signup.form.error.passwordTooShort}`);
         } else {
           setError(error.message);
@@ -111,6 +155,7 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
                 placeholder={dict.signup.form.usernamePlaceholder}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                onBlur={(e) => checkUsernameAvailability(e.target.value)}
                 className="input rounded-0 border-0 shadow"
                 required
                 disabled={loading}

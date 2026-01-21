@@ -193,7 +193,8 @@
       "haveAccount": "Už máš účet?",
       "login": "Prihlásiť sa",
       "error": {
-        "emailInUse": "Tento email je už zaregistrovaný. Použi iný email.",
+        "emailInUse": "Tento e-mail je už obsadený. Použite iný e-mail.",
+        "usernameInUse": "Toto používateľské meno je už obsadené. Zvoľ si iné.",
         "passwordTooShort": "Heslo musí mať aspoň 8 znakov a obsahovať veľké, malé písmeno a číslo.",
         "unexpected": "Nastala neočakávaná chyba. Skús to prosím znova.",
         "success": "Registrácia bola úspešná. Skontroluj svoj email pre potvrdenie.",

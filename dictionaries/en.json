@@ -193,7 +193,8 @@
       "haveAccount": "Already have an account?",
       "login": "Sign in",
       "error": {
-        "emailInUse": "This email is already registered. Please use a different email.",
+        "emailInUse": "This email is already taken. Please use a different email.",
+        "usernameInUse": "This username is already taken. Please choose a different one.",
         "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
         "unexpected": "An unexpected error occurred. Please try again.",
         "success": "Registration successful. Please check your email to confirm.",

@@ -194,6 +194,7 @@
       "login": "Přihlásit se",
       "error": {
         "emailInUse": "Tento email je již zaregistrován. Použij jiný email.",
+        "usernameInUse": "Tento e-mail je již obsazený. Použijte prosím jiný e-mail.",
         "passwordTooShort": "Heslo musí mít alespoň 8 znaků a obsahovat velké, malé písmeno a číslo.",
         "unexpected": "Došlo k neočekávané chybě. Zkus to prosím znovu.",
         "success": "Registrace byla úspěšná. Zkontroluj svůj email pro potvrzení.",

@@ -193,7 +193,8 @@
       "haveAccount": "Heeft u al een account?",
       "login": "Inloggen",
       "error": {
-        "emailInUse": "Dit e-mailadres is al geregistreerd. Gebruik een ander e-mailadres.",
+        "emailInUse": "Dit e-mailadres is al in gebruik. Gebruik een ander e-mailadres.",
+        "usernameInUse": "Deze gebruikersnaam is al in gebruik. Kies een andere.",
         "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
         "unexpected": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
         "success": "Registratie is gelukt. Controleer uw e-mail voor bevestiging.",
