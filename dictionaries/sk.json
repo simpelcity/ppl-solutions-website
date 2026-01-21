@@ -2,6 +2,7 @@
   "navbar": {
     "brand": "PPL Solutions VTC",
     "navigation": {
+      "title": "Navigačné tlačidlá",
       "home": "Domov",
       "events": "Udalosti",
       "gallery": "Galéria",

@@ -2,6 +2,7 @@
   "navbar": {
     "brand": "PPL Solutions VTC",
     "navigation": {
+      "title": "Navigatieknoppen",
       "home": "Thuis",
       "events": "Evenementen",
       "gallery": "Galerij",

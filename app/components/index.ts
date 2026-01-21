@@ -35,6 +35,7 @@ export { default as TableJobsClient } from './ui/tables/TableJobsClient'
 // UI Components
 export { default as BSButton } from './ui/Button'
 export { default as Loader } from './ui/Loader'
-// Others
+export { default as NavButtons } from './ui/NavButtons'
+// Other
 export { default as DivEvents} from './DivEvents'
 export { default as LanguageSwitcher } from './LanguageSwitcher'
