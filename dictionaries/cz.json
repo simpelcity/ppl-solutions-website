@@ -293,9 +293,15 @@
         }
       }
     },
+    "userStats": {
+      "meta": {
+        "title": "Statistiky",
+        "description": "Statistiky {username} na PPL Solutions VTC"
+      }
+    },
     "vtcStats": {
       "meta": {
-        "title": "Přehled – Statistiky VTC",
+        "title": "Přehled - Statistiky VTC",
         "description": "Zobraz statistiky VTC a další informace."
       },
       "vtc": {

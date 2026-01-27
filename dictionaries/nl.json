@@ -293,6 +293,12 @@
         }
       }
     },
+    "userStats": {
+      "meta": {
+        "title": "'s Statistieken",
+        "description": "'s Statistieken bij PPL Solutions VTC"
+      }
+    },
     "vtcStats": {
       "meta": {
         "title": "Dashboard - VTC-statistieken",

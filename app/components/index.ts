@@ -2,6 +2,7 @@
 export { default as Dashboard } from './dashboard/Dashboard'
 export { default as DashboardStats } from './dashboard/DashboardStats'
 export { default as Sidebar } from './dashboard/Sidebar'
+export { default as UserStats } from './dashboard/UserStats'
 // Forms
 export { default as ForgotPasswordForm } from './forms/ForgotPasswordForm'
 export { default as ForgotPasswordFormClient } from './forms/ForgotPasswordFormClient'

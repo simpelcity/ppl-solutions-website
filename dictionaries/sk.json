@@ -297,6 +297,12 @@
         }
       }
     },
+    "userStats": {
+      "meta": {
+        "title": "Štatistiky",
+        "description": "Štatistiky {username} na PPL Solutions VTC"
+      }
+    },
     "vtcStats": {
       "meta": {
         "title": "",

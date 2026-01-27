@@ -10,5 +10,5 @@ export default async function TableJobs({ params }: TableJobsProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
 
-  return <TableJobsClient dict={dict} />
+  return <TableJobsClient lang={(await params).lang} dict={dict} />
 }
