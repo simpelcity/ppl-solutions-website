@@ -17,7 +17,7 @@
   "footer": {
     "footer1": {
       "brand": "PPL Solutions VTC",
-      "description": "Opgericht op 7 september 2024, ons doel is om een gemeenschap te creëren waar mensen elkaar kunnen ontmoeten en samen van het vrachtwagenrijden kunnen genieten."
+      "text": "Opgericht op 7 september 2024, ons doel is om een gemeenschap te creëren waar mensen elkaar kunnen ontmoeten en samen van het vrachtwagenrijden kunnen genieten."
     },
     "footer2": {
       "title": "Pagina's",
@@ -40,7 +40,7 @@
       },
       "tab2": {
         "title": "Bericht",
-        "description": "Hallo daar reiziger, mijn naam is Simpelcity. Welkom op de website van het Virtuele Transportbedrijf PPL Solutions. Wij staan voor chauffeurscomfort, en het plezier om samen mooie dingen te doen."
+        "text": "Hallo daar reiziger, mijn naam is Simpelcity. Welkom op de website van het Virtuele Transportbedrijf PPL Solutions. Wij staan voor chauffeurscomfort, en het plezier om samen mooie dingen te doen."
       }
     },
     "bottom": {
@@ -59,26 +59,26 @@
     },
     "about-us": {
       "title": "over ons",
-      "description": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
+      "text": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
     },
     "offers": {
       "title": "wat bieden wij",
       "card1": {
         "title": "vriendelijk personeel",
-        "description": "We hebben een klein maar uiterst vriendelijk personeelsteam dat u kan helpen met elk probleem dat u tegenkomt tijdens het rijden voor ons."
+        "text": "We hebben een klein maar uiterst vriendelijk personeelsteam dat u kan helpen met elk probleem dat u tegenkomt tijdens het rijden voor ons."
       },
       "card2": {
         "title": "save-edits",
-        "description": "Onze chauffeurs hebben toegang tot een breed scala aan op maat gemaakte opslagbewerkingen, waaronder volledige sets vrachtwagens, aangepaste onderdelen en nog veel meer."
+        "text": "Onze chauffeurs hebben toegang tot een breed scala aan op maat gemaakte opslagbewerkingen, waaronder volledige sets vrachtwagens, aangepaste onderdelen en nog veel meer."
       },
       "card3": {
         "title": "aangepaste mods",
-        "description": "We bieden ook enkele exclusieve PPL Solutions mods die je kunt gebruiken tijdens het spelen van de singleplayer- of konvooimodus."
+        "text": "We bieden ook enkele exclusieve PPL Solutions mods die je kunt gebruiken tijdens het spelen van de singleplayer- of konvooimodus."
       }
     },
     "apply": {
       "title": "solliciteer vandaag nog",
-      "description": "Solliciteer vandaag nog via onze discord-server en begin uw geweldige reis met PPL Solutions.",
+      "text": "Solliciteer vandaag nog via onze discord-server en begin uw geweldige reis met PPL Solutions.",
       "button": "solliciteer nu"
     }
   },
@@ -147,7 +147,7 @@
     },
     "title": "solliciteer",
     "card": {
-      "description": "Dus jij wilt solliciteren om chauffeur te worden bij PPL Solutions? Maak een ticket aan op onze Discord server, tot daar!"
+      "text": "Dus jij wilt solliciteren om chauffeur te worden bij PPL Solutions? Maak een ticket aan op onze Discord server, tot daar!"
     }
   },
   "login": {
@@ -174,7 +174,7 @@
       }
     }
   },
-  "signup": {
+  "register": {
     "meta": {
       "title": "Aanmelden",
       "description": "Meld u aan voor een PPL Solutions Drivershub account."
@@ -210,7 +210,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Wachtwoord vergeten?",
-      "description": "Vul uw e-mailadres in om een link voor het opnieuw instellen van uw wachtwoord te ontvangen.",
+      "text": "Vul uw e-mailadres in om een link voor het opnieuw instellen van uw wachtwoord te ontvangen.",
       "email": "E-mail",
       "emailPlaceholder": "jouw@e-mail.com",
       "submit": "resetlink sturen",
@@ -356,8 +356,8 @@
       },
       "modal": {
         "title": "Bevestig Actie",
-        "descriptionmember": "Weet je zeker dat je dit lid wilt verwijderen",
-        "descriptionPicture": "Weet je zeker dat je de profielfoto van dit lid wilt verwijderen",
+        "textmember": "Weet je zeker dat je dit lid wilt verwijderen",
+        "textPicture": "Weet je zeker dat je de profielfoto van dit lid wilt verwijderen",
         "cancel": "annuleren",
         "confirm": "bevestigen"
       }
@@ -383,7 +383,7 @@
       },
       "modal": {
         "title": "Bevestig Actie",
-        "description": "Weet je zeker dat je dit galerij item wilt verwijderen",
+        "text": "Weet je zeker dat je dit galerij item wilt verwijderen",
         "cancel": "annuleren",
         "confirm": "bevestigen"
       }

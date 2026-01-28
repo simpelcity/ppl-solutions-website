@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { NavButtons } from "@/components/";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -39,7 +39,6 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // Extract current locale from pathname
   const currentLocale = i18n.locales.find(
     (locale) => pathname?.startsWith(`/${locale}/`) || pathname === `/${locale}`
   ) || i18n.defaultLocale;

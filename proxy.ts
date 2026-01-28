@@ -3,8 +3,22 @@ import type { NextRequest } from 'next/server'
 import { i18n } from './i18n'
 import { createServerClient } from '@supabase/ssr'
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+
+  // Exclude static files from rewrites/redirects
+  const staticFiles = [
+    '/robots.txt',
+    '/sitemap.xml',
+    '/favicon.ico',
+    '/favicon.png',
+    '/assets',
+    '/_next/static',
+    '/_next/image'
+  ];
+  if (staticFiles.some((file) => pathname === file || pathname.startsWith(file + '/'))) {
+    return NextResponse.next();
+  }
 
   let response = NextResponse.next({
     request: { headers: request.headers },

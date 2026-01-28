@@ -17,7 +17,7 @@
   "footer": {
     "footer1": {
       "brand": "PPL Solutions VTC",
-      "description": "Založeno 7. září 2024, naším cílem je vytvořit komunitu, kde se lidé mohou spojit a společně si užívat trucking."
+      "text": "Založeno 7. září 2024, naším cílem je vytvořit komunitu, kde se lidé mohou spojit a společně si užívat trucking."
     },
     "footer2": {
       "title": "Stránky",
@@ -40,7 +40,7 @@
       },
       "tab2": {
         "title": "Zpráva",
-        "description": "Ahoj cestovateli, jmenuji se Simpelcity. Vítej na webových stránkách virtuální truckingové společnosti PPL Solutions. Stojíme za pohodlím řidičů a radostí ze společného dosahování skvělých věcí."
+        "text": "Ahoj cestovateli, jmenuji se Simpelcity. Vítej na webových stránkách virtuální truckingové společnosti PPL Solutions. Stojíme za pohodlím řidičů a radostí ze společného dosahování skvělých věcí."
       }
     },
     "bottom": {
@@ -59,26 +59,26 @@
     },
     "about-us": {
       "title": "o nás",
-      "description": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
+      "text": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
     },
     "offers": {
       "title": "co nabízíme?",
       "card1": {
         "title": "přátelský tým",
-        "description": "Máme malý, ale velmi přátelský tým, který ti pomůže s jakýmkoliv problémem, se kterým se můžeš při jízdě setkat."
+        "text": "Máme malý, ale velmi přátelský tým, který ti pomůže s jakýmkoliv problémem, se kterým se můžeš při jízdě setkat."
       },
       "card2": {
         "title": "save-edity",
-        "description": "Naši řidiči mají přístup k široké škále vlastních save-editů, včetně kompletních sad kamionů, vlastních dílů a mnohem více."
+        "text": "Naši řidiči mají přístup k široké škále vlastních save-editů, včetně kompletních sad kamionů, vlastních dílů a mnohem více."
       },
       "card3": {
         "title": "vlastní módy",
-        "description": "Nabízíme také exkluzivní módy PPL Solutions pro použití v singleplayeru nebo konvojovém režimu."
+        "text": "Nabízíme také exkluzivní módy PPL Solutions pro použití v singleplayeru nebo konvojovém režimu."
       }
     },
     "apply": {
       "title": "přihlas se ještě dnes",
-      "description": "Přihlas se prostřednictvím našeho Discord serveru a začni svou úžasnou cestu s PPL Solutions.",
+      "text": "Přihlas se prostřednictvím našeho Discord serveru a začni svou úžasnou cestu s PPL Solutions.",
       "button": "přihlásit se nyní"
     }
   },
@@ -147,7 +147,7 @@
     },
     "title": "přihláška",
     "card": {
-      "description": "Chceš se přihlásit jako řidič PPL Solutions? Vytvoř si ticket na našem Discord serveru, těšíme se na tebe!"
+      "text": "Chceš se přihlásit jako řidič PPL Solutions? Vytvoř si ticket na našem Discord serveru, těšíme se na tebe!"
     }
   },
   "login": {
@@ -174,7 +174,7 @@
       }
     }
   },
-  "signup": {
+  "register": {
     "meta": {
       "title": "Registrace",
       "description": "Zaregistruj si účet PPL Solutions Centrum řidičů."
@@ -210,7 +210,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Zapomenuté heslo",
-      "description": "Zadej svůj email a pošleme ti odkaz pro reset hesla.",
+      "text": "Zadej svůj email a pošleme ti odkaz pro reset hesla.",
       "email": "Email",
       "emailPlaceholder": "tvuj@email.cz",
       "submit": "odeslat odkaz",
@@ -331,7 +331,7 @@
     },
     "team": {
       "meta": {
-        "title": "Přehled – Správa týmu",
+        "title": "Přehled - Správa týmu",
         "description": "Spravuj členy týmu přidáváním, úpravami nebo jejich odebráním."
       },
       "form": {
@@ -356,15 +356,15 @@
       },
       "modal": {
         "title": "Potvrdit akci",
-        "descriptionmember": "Opravdu chceš smazat tohoto člena?",
-        "descriptionPicture": "Opravdu chceš smazat profilový obrázek tohoto člena?",
+        "textmember": "Opravdu chceš smazat tohoto člena?",
+        "textPicture": "Opravdu chceš smazat profilový obrázek tohoto člena?",
         "cancel": "zrušit",
         "confirm": "potvrdit"
       }
     },
     "gallery": {
       "meta": {
-        "title": "Přehled – Správa galerie",
+        "title": "Přehled - Správa galerie",
         "description": "Spravuj položky galerie přidáváním, úpravami nebo mazáním obrázků."
       },
       "form": {
@@ -383,7 +383,7 @@
       },
       "modal": {
         "title": "Potvrdit akci",
-        "description": "Opravdu chceš smazat tuto položku galerie?",
+        "text": "Opravdu chceš smazat tuto položku galerie?",
         "cancel": "zrušit",
         "confirm": "potvrdit"
       }

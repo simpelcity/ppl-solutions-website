@@ -25,7 +25,7 @@ type GalleryDict = {
   };
   modal: {
     title: string;
-    description: string;
+    text: string;
     cancel: string;
     confirm: string;
   };
@@ -233,7 +233,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
           <Modal.Title>{dict?.modal?.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {confirmAction === "delete-item" && (dict?.modal?.description || "Are you sure you want to delete this gallery item?")}
+          {confirmAction === "delete-item" && (dict?.modal?.text || "Are you sure you want to delete this gallery item?")}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>

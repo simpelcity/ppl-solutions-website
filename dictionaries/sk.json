@@ -17,7 +17,7 @@
   "footer": {
     "footer1": {
       "brand": "PPL Solutions VTC",
-      "description": "Založené 7. septembra 2024, naším cieľom je vytvoriť komunitu, kde sa ľudia môžu spájať a spoločne si užívať trucking."
+      "text": "Založené 7. septembra 2024, naším cieľom je vytvoriť komunitu, kde sa ľudia môžu spájať a spoločne si užívať trucking."
     },
     "footer2": {
       "title": "Stránky",
@@ -40,7 +40,7 @@
       },
       "tab2": {
         "title": "Správa",
-        "description": "Ahoj cestovateľ, volám sa Simpelcity. Vitaj na webovej stránke virtuálnej truckingovej spoločnosti PPL Solutions. Stojíme za pohodlím vodičov a radosťou zo spoločného dosahovania skvelých vecí."
+        "text": "Ahoj cestovateľ, volám sa Simpelcity. Vitaj na webovej stránke virtuálnej truckingovej spoločnosti PPL Solutions. Stojíme za pohodlím vodičov a radosťou zo spoločného dosahovania skvelých vecí."
       }
     },
     "bottom": {
@@ -59,26 +59,26 @@
     },
     "about-us": {
       "title": "o nás",
-      "description": "PPL Solutions bola založená 7. septembra 2024 Wietsegamingom a MaleklecoCZE s cieľom vytvoriť úspešnú a priateľskú VTC, kde sa ľudia z celého sveta môžu stretávať a jazdiť spolu."
+      "text": "PPL Solutions bola založená 7. septembra 2024 Wietsegamingom a MaleklecoCZE s cieľom vytvoriť úspešnú a priateľskú VTC, kde sa ľudia z celého sveta môžu stretávať a jazdiť spolu."
     },
     "offers": {
       "title": "čo ponúkame?",
       "card1": {
         "title": "priateľský tím",
-        "description": "Máme malý, ale mimoriadne priateľský tím, ktorý ti pomôže s akýmkoľvek problémom, s ktorým sa môžeš pri jazde stretnúť."
+        "text": "Máme malý, ale mimoriadne priateľský tím, ktorý ti pomôže s akýmkoľvek problémom, s ktorým sa môžeš pri jazde stretnúť."
       },
       "card2": {
         "title": "save-edity",
-        "description": "Naši vodiči majú prístup k širokej škále vlastných save-editov vrátane kompletných setov kamiónov, vlastných dielov a oveľa viac."
+        "text": "Naši vodiči majú prístup k širokej škále vlastných save-editov vrátane kompletných setov kamiónov, vlastných dielov a oveľa viac."
       },
       "card3": {
         "title": "vlastné módy",
-        "description": "Ponúkame aj exkluzívne módy PPL Solutions na použitie v singleplayeri alebo v konvojovom režime."
+        "text": "Ponúkame aj exkluzívne módy PPL Solutions na použitie v singleplayeri alebo v konvojovom režime."
       }
     },
     "apply": {
       "title": "prihlás sa ešte dnes",
-      "description": "Prihlás sa prostredníctvom nášho Discord servera a začni svoju úžasnú cestu s PPL Solutions.",
+      "text": "Prihlás sa prostredníctvom nášho Discord servera a začni svoju úžasnú cestu s PPL Solutions.",
       "button": "prihlásiť sa teraz"
     }
   },
@@ -147,7 +147,7 @@
     },
     "title": "prihláška",
     "card": {
-      "description": "Chceš sa prihlásiť ako vodič PPL Solutions? Vytvor si ticket na našom Discord serveri, tešíme sa na teba!"
+      "text": "Chceš sa prihlásiť ako vodič PPL Solutions? Vytvor si ticket na našom Discord serveri, tešíme sa na teba!"
     }
   },
   "login": {
@@ -174,7 +174,7 @@
       }
     }
   },
-  "signup": {
+  "register": {
     "meta": {
       "title": "Registrácia",
       "description": "Zaregistruj si účet PPL Solutions Centrum vodičov."
@@ -210,7 +210,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Zabudnuté heslo",
-      "description": "Zadaj svoj email a pošleme ti odkaz na obnovenie hesla.",
+      "text": "Zadaj svoj email a pošleme ti odkaz na obnovenie hesla.",
       "email": "Email",
       "emailPlaceholder": "tvoj@email.com",
       "submit": "odoslať odkaz",
@@ -360,8 +360,8 @@
       },
       "modal": {
         "title": "Potvrdiť akciu",
-        "descriptionmember": "Naozaj chceš odstrániť tohto člena?",
-        "descriptionPicture": "Naozaj chceš odstrániť profilový obrázok tohto člena?",
+        "textmember": "Naozaj chceš odstrániť tohto člena?",
+        "textPicture": "Naozaj chceš odstrániť profilový obrázok tohto člena?",
         "cancel": "zrušiť",
         "confirm": "potvrdiť"
       }
@@ -387,7 +387,7 @@
       },
       "modal": {
         "title": "Potvrdiť akciu",
-        "description": "Naozaj chceš odstrániť túto položku galérie?",
+        "text": "Naozaj chceš odstrániť túto položku galérie?",
         "cancel": "zrušiť",
         "confirm": "potvrdiť"
       }

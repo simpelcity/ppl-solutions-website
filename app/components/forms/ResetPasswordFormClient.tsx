@@ -51,6 +51,7 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
     const params = new URLSearchParams(hash);
     const accessToken = params.get("access_token");
     const type = params.get("type");
+    console.log("Reset token type:", params);
 
     if (type === "recovery" && accessToken) {
       setTokenValid(true);

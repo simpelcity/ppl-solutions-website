@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     titleText = `${driverUsername}${dict.drivershub.userStats.meta.title}`;
   } else if (lang === 'nl') {
     titleText = `${driverUsername}${dict.drivershub.userStats.meta.title}`;
-  } else if (lang === 'cz') {
+  } else if (lang === 'cs') {
     titleText = `${split[0]} ${driverUsername}`;
     descriptionText = `${splitDesc[0]} ${driverUsername} ${splitDesc.slice(2).join(' ')}`;
   } else if (lang === 'sk') {

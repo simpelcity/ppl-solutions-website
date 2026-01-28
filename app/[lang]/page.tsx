@@ -13,24 +13,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { lang } = await params
   const dict = await getDictionary(lang)
 
+  const canonical = lang === 'en' ? '/' : `/${lang}`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
     title: `PPL Solutions | ${dict.home.meta.title}`,
     description: dict.home.meta.description,
     openGraph: {
-      type: 'website',
       title: `PPL Solutions | ${dict.home.meta.title}`,
       description: dict.home.meta.description,
-      url: '/',
+      url: canonical,
       siteName: 'PPL Solutions VTC',
       images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
     },
     alternates: {
-      canonical: '/',
+      canonical,
       languages: {
-        'en-US': '/en',
+        'en-US': '/',
         'nl-NL': '/nl',
-        'cz-CZ': '/cz',
+        'cs-CZ': '/cs',
         'sk-SK': '/sk',
       },
     },
@@ -89,7 +93,7 @@ export default async function HomePage({ params }: PageProps) {
               <span>{aboutUs1}</span> <span className="text-primary">{aboutUs2}</span>
             </h1>
             <p className="m-0">
-              {dict.home["about-us"].description}
+              {dict.home["about-us"].text}
             </p>
           </Container>
         </section>
@@ -101,17 +105,17 @@ export default async function HomePage({ params }: PageProps) {
             <Row className="w-100 d-flex justify-content-center row-gap-4">
               <Col xs={12} md={6} xl={4}>
                 <CardText title={dict.home.offers.title} icon="FaUsers">
-                  {dict.home.offers.card1.description}
+                  {dict.home.offers.card1.text}
                 </CardText>
               </Col>
               <Col xs={12} md={6} xl={4}>
                 <CardText title={dict.home.offers.card2.title} icon="FaEdit">
-                  {dict.home.offers.card2.description}
+                  {dict.home.offers.card2.text}
                 </CardText>
               </Col>
               <Col xs={12} md={6} xl={4}>
                 <CardText title={dict.home.offers.card3.title} icon="FaGears">
-                  {dict.home.offers.card3.description}
+                  {dict.home.offers.card3.text}
                 </CardText>
               </Col>
             </Row>
@@ -122,7 +126,7 @@ export default async function HomePage({ params }: PageProps) {
             <h2 className="text-uppercase">
               <span>{apply1}</span> <span className="text-primary">{apply2} {apply3}</span>
             </h2>
-            <p>{dict.home.apply.description}</p>
+            <p>{dict.home.apply.text}</p>
             <div className="d-grid d-md-inline-block">
               <BSButton variant="outline" border="primary" text="primary">
                 {dict.home.apply.button}

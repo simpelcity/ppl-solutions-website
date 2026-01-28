@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap"
 import "@/styles/roles.scss"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { type Metadata } from "next"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
@@ -20,27 +21,44 @@ type DictionaryType = {
   };
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const canonical = lang === 'en' ? '/team' : `/${lang}/team`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: `${dict.team.meta.title} | PPL Solutions`,
+    description: dict.team.meta.description,
+    openGraph: {
+      title: `${dict.team.meta.title} | PPL Solutions`,
+      description: dict.team.meta.description,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/team',
+        'nl-NL': '/nl/team',
+        'cs-CZ': '/cs/team',
+        'sk-SK': '/sk/team',
+      },
+    },
+  }
+}
+
 export default async function TeamPage({ params }: PageProps) {
   const { lang } = await params
   const dict = await getDictionary(lang) as DictionaryType
 
   return (
     <>
-      <title>{`${dict.team.meta.title} | PPL Solutions`}</title>
-      <meta
-        name="description"
-        content={dict.team.meta.description}
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={`${dict.team.meta.title} | PPL Solutions`} />
-      <meta
-        property="og:description"
-        content={dict.team.meta.description}
-      />
-      <meta property="og:url" content="https://ppl-solutions.vercel.app/team" />
-      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
-      <link rel="canonical" href="https://ppl-solutions.vercel.app/team" />
-
       <main className="fs-5">
         <StartBanner>{dict.team.title}</StartBanner>
         <section className="team d-flex w-100 bg-dark-subtle text-center">

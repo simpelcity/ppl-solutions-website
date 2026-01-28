@@ -10,7 +10,7 @@ import type { Dictionary } from "@/app/i18n";
 type FooterDictionary = {
   footer1: {
     brand: string,
-    description: string
+    text: string
   },
   footer2: {
     title: string,
@@ -33,7 +33,7 @@ type FooterDictionary = {
     },
     tab2: {
       title: string,
-      description: string
+      text: string
     }
   },
   bottom: {
@@ -57,14 +57,14 @@ export default function Footer({ dict }: FooterProps) {
   ]
   const currentYear = new Date().getFullYear()
 
-  const split = footerDict.footer3.tab2.description.split(" ");
+  const split = footerDict.footer3.tab2.text.split(" ");
   const message1 = split.slice(0, split.indexOf("Simpelcity.")).join(" ");
-  const message2 = footerDict.footer3.tab2.description.match(/\bSimpelcity\b/);
-  const start1 = footerDict.footer3.tab2.description.indexOf("Simpelcity") + "Simpelcity".length;
-  const end1 = footerDict.footer3.tab2.description.indexOf("PPL Solutions");
-  const message3 = footerDict.footer3.tab2.description.slice(start1, end1);
-  const message4 = footerDict.footer3.tab2.description.match(/\bPPL Solutions\b/);
-  const message5 = footerDict.footer3.tab2.description.slice(end1 + "PPL Solutions".length);
+  const message2 = footerDict.footer3.tab2.text.match(/\bSimpelcity\b/);
+  const start1 = footerDict.footer3.tab2.text.indexOf("Simpelcity") + "Simpelcity".length;
+  const end1 = footerDict.footer3.tab2.text.indexOf("PPL Solutions");
+  const message3 = footerDict.footer3.tab2.text.slice(start1, end1);
+  const message4 = footerDict.footer3.tab2.text.match(/\bPPL Solutions\b/);
+  const message5 = footerDict.footer3.tab2.text.slice(end1 + "PPL Solutions".length);
 
   const bottom1 = footerDict.bottom.copyright.split(" ")[0];
   const brand = footerDict.bottom.copyright.match(/\bPPL Solutions\b/);
@@ -96,7 +96,7 @@ export default function Footer({ dict }: FooterProps) {
               </a>
             </div>
             <p className="fs-5">
-              {footerDict.footer1.description}
+              {footerDict.footer1.text}
             </p>
             <div className="d-flex flex-row column-gap-3">
               <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="text-light">

@@ -17,7 +17,7 @@
   "footer": {
     "footer1": {
       "brand": "PPL Solutions VTC",
-      "description": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together."
+      "text": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together."
     },
     "footer2": {
       "title": "Pages",
@@ -40,7 +40,7 @@
       },
       "tab2": {
         "title": "Message",
-        "description": "Hello there traveler, my name is Simpelcity. Welcome to the website of the Virtual Trucking Company PPL Solutions. We stand for driver comfort, and the fun in doing great things together."
+        "text": "Hello there traveler, my name is Simpelcity. Welcome to the website of the Virtual Trucking Company PPL Solutions. We stand for driver comfort, and the fun in doing great things together."
       }
     },
     "bottom": {
@@ -59,26 +59,26 @@
     },
     "about-us": {
       "title": "about us",
-      "description": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+      "text": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
     },
     "offers": {
       "title": "what do we offer ?",
       "card1": {
         "title": "friendly staff",
-        "description": "We have a small but extremely friendly staff team that can help you with any problem you might face while driving for us."
+        "text": "We have a small but extremely friendly staff team that can help you with any problem you might face while driving for us."
       },
       "card2": {
         "title": "save-edits",
-        "description": "Our drivers have access to a wide variety of custom-made save-edits, including full-sets of trucks, custom parts, and much more."
+        "text": "Our drivers have access to a wide variety of custom-made save-edits, including full-sets of trucks, custom parts, and much more."
       },
       "card3": {
         "title": "custom mods",
-        "description": "We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode."
+        "text": "We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode."
       }
     },
     "apply": {
       "title": "apply today",
-      "description": "Apply through our discord server today, and start your amazing journey with PPL Solutions.",
+      "text": "Apply through our discord server today, and start your amazing journey with PPL Solutions.",
       "button": "apply now"
     }
   },
@@ -147,7 +147,7 @@
     },
     "title": "apply",
     "card": {
-      "description": "So you want to apply to become a driver for PPL Solutions? Please make a ticket in our Discord server, see you there!"
+      "text": "So you want to apply to become a driver for PPL Solutions? Please make a ticket in our Discord server, see you there!"
     }
   },
   "login": {
@@ -174,7 +174,7 @@
       }
     }
   },
-  "signup": {
+  "register": {
     "meta": {
       "title": "Sign up",
       "description": "Sign up for a PPL Solutions Drivershub account."
@@ -210,7 +210,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Forgot Password?",
-      "description": "Enter your email and we'll send you a link to reset your password.",
+      "text": "Enter your email and we'll send you a link to reset your password.",
       "email": "Email",
       "emailPlaceholder": "your@email.com",
       "submit": "send reset link",
@@ -356,8 +356,8 @@
       },
       "modal": {
         "title": "Confirm Action",
-        "descriptionmember": "Are you sure you want to delete this member",
-        "descriptionPicture": "Are you sure you want to delete this member's profile picture",
+        "textmember": "Are you sure you want to delete this member",
+        "textPicture": "Are you sure you want to delete this member's profile picture",
         "cancel": "cancel",
         "confirm": "confirm"
       }
@@ -383,7 +383,7 @@
       },
       "modal": {
         "title": "Confirm Action",
-        "description": "Are you sure you want to delete this gallery item",
+        "text": "Are you sure you want to delete this gallery item",
         "cancel": "cancel",
         "confirm": "confirm"
       }

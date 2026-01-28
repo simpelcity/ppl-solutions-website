@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/"
 import { AuthProvider, SidebarProvider } from "@/lib/"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
@@ -25,7 +24,7 @@ export default async function RootLayout({ children, params }: Props) {
           href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/assets/icons/favicon.ico" />
+        <link rel="icon" href="/assets/icons/favicon.png" />
       </head>
       <body>
         <AuthProvider>

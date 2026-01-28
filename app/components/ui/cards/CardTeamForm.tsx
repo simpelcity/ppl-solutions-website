@@ -31,8 +31,8 @@ type TeamDict = {
   };
   modal: {
     title: string;
-    descriptionmember: string;
-    descriptionPicture: string;
+    textmember: string;
+    textPicture: string;
     cancel: string;
     confirm: string;
   };
@@ -330,8 +330,8 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
           <Modal.Title>{dict?.modal?.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {confirmAction === "delete-member" && (dict?.modal?.descriptionmember || "Are you sure you want to delete this member?")}
-          {confirmAction === "delete-picture" && (dict?.modal?.descriptionPicture || "Are you sure you want to delete this member's profile picture?")}
+          {confirmAction === "delete-member" && (dict?.modal?.textmember || "Are you sure you want to delete this member?")}
+          {confirmAction === "delete-picture" && (dict?.modal?.textPicture || "Are you sure you want to delete this member's profile picture?")}
         </Modal.Body>
         <Modal.Footer>
           <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
