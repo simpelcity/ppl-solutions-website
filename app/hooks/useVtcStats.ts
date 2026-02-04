@@ -29,7 +29,6 @@ export function useVtcStats() {
       throw new Error("Failed to fetch statistics")
     }
     const data = await response.json()
-    console.log(data)
     return data.data
   }
 
@@ -134,7 +133,6 @@ export function useVtcStats() {
       try {
         const statistics = await getStatistics()
         setStats(statistics)
-        console.log(statistics)
       } catch (err: any) {
         setError(err.message || "Failed to load statistics")
       } finally {

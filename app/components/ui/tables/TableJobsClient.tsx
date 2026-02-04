@@ -98,8 +98,8 @@ type TableJobsClientProps = {
         },
         modal: {
           title: string,
-          descriptionmember: string,
-          descriptionPicture: string,
+          textmember: string,
+          textPicture: string,
           cancel: string,
           confirm: string
         }
@@ -121,7 +121,7 @@ type TableJobsClientProps = {
         },
         modal: {
           title: string,
-          description: string,
+          text: string,
           cancel: string,
           confirm: string
         }

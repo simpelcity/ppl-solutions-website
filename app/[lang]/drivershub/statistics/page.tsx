@@ -27,7 +27,7 @@ async function getSupabaseUser() {
               cookieStore.set(name, value, options)
             )
           } catch {
-            console.log('error')
+            // console.log('error')
           }
         },
       },
@@ -46,7 +46,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const driverUsername = user?.user_metadata?.username || user?.email || "Guest"
   const split = dict.drivershub.userStats.meta.title.split(' ');
   const splitDesc = dict.drivershub.userStats.meta.description.split(' ');
-  console.log(splitDesc);
 
   let titleText = '';
   let descriptionText = '';

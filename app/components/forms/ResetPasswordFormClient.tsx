@@ -51,14 +51,41 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
     const params = new URLSearchParams(hash);
     const accessToken = params.get("access_token");
     const type = params.get("type");
-    console.log("Reset token type:", params);
 
     if (type === "recovery" && accessToken) {
-      setTokenValid(true);
+      // Verify token with server
+      supabase.auth.getUser(accessToken)
+        .then(({ data, error }) => {
+          if (error || !data.user) {
+            setError("Invalid or expired reset token");
+            setTokenValid(false);
+          } else {
+            setTokenValid(true);
+          }
+        });
     } else {
-      setError("Invalid or missing reset token. Please request a new password reset.");
+      setError("Invalid or missing reset token.");
     }
   }, []);
+
+  const validatePassword = (password: string): string | null => {
+    if (password.length < 8) {
+      return "Password must be at least 8 characters";
+    }
+    if (!/[a-z]/.test(password)) {
+      return "Password must contain at least one lowercase letter";
+    }
+    if (!/[A-Z]/.test(password)) {
+      return "Password must contain at least one uppercase letter";
+    }
+    if (!/[0-9]/.test(password)) {
+      return "Password must contain at least one number";
+    }
+    if (!/[!@#$%^&*]/.test(password)) {
+      return "Password must contain at least one special character";
+    }
+    return null;
+  };
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,8 +97,9 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
       return;
     }
 
-    if (password.length < 6) {
-      setError("Password must be at least 8 characters and include uppercase, lowercase, and a number.");
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setError(passwordError);
       return;
     }
 

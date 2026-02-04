@@ -42,6 +42,7 @@ export function useUserStats() {
   const [error, setError] = useState<string | null>(null);
   const [allJobs, setAllJobs] = useState<Job[]>([]);
   const [stats, setStats] = useState<stats | null>(null)
+  const [loading, setLoading] = useState<boolean>(true);
   
 
   const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
@@ -56,9 +57,7 @@ export function useUserStats() {
   const ensureSteamID = async (): Promise<string> => {
     if (steamID) return steamID;
     const members = await fetchMembers();
-    console.log(driverUsername)
     const driver = members.find((d: any) => d.username === driverUsername);
-    console.log(driver)
     if (!driver) throw new Error(`Driver ${driverUsername} not found`);
     setSteamID(driver.steamID);
     return driver.steamID;
@@ -88,7 +87,7 @@ export function useUserStats() {
       throw new Error("Failed to fetch statistics")
     }
     const data = await response.json()
-    console.log(data)
+    console.log('raw statistics data:', data)
     return data.data
   }
 
@@ -179,19 +178,21 @@ export function useUserStats() {
     if (!session || !driverUsername) return
 
     const loadStats = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const statistics = await getStatistics()
         setStats(statistics)
         console.log(statistics)
       } catch (err: any) {
-        throw new Error(err.message)
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     }
 
     loadStats()
   }, [session])
 
-  return {
-    stats
-  }
+  return { stats, loading, error }
 }

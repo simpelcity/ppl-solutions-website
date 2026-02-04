@@ -15,8 +15,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    console.log(res);
-
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));
       return NextResponse.json({ error: "Failed to fetch scenarios", details: errorData }, { status: res.status });

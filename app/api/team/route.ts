@@ -54,8 +54,11 @@ export async function GET(request: Request) {
 
     return new Response(JSON.stringify({ data: itemsWithUrls }), { status: 200 });
   } catch (err: any) {
-    console.error("GET /api/team error:", err);
-    return new Response(JSON.stringify({ error: err.message || String(err) }), { status: 500 });
+    console.error("error:", err);
+    return new Response(
+      JSON.stringify({ error: "An unexpected error occurred" }), 
+      { status: 500 }
+    );
   }
 }
 

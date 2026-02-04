@@ -29,9 +29,7 @@ export function useUserJobs() {
   const ensureSteamID = async (): Promise<string> => {
     if (steamID) return steamID
     const members = await fetchMembers()
-    console.log(driverUsername)
     const driver = members.find((d: any) => d.username === driverUsername)
-    console.log(driver)
     if (!driver) throw new Error(`Driver ${driverUsername} not found`)
     setSteamID(driver.steamID)
     return driver.steamID
@@ -78,7 +76,6 @@ export function useUserJobs() {
       const payload = await fetchJobsPage(apiPage)
       setJobs(Array.isArray(payload.data) ? payload.data.reverse() : [])
       setCurrentPage(apiPage)
-      console.log('jobs data:', jobs)
     } catch (err: any) {
       setError(err.message)
     } finally {

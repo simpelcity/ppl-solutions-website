@@ -1,4 +1,6 @@
 import { supabaseAdmin } from "@/supabaseAdmin/";
+import { NextResponse } from "next/server"
+
 
 export type GalleryItem = {
   id: number;
@@ -50,6 +52,10 @@ export async function GET() {
   }
 }
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
@@ -64,10 +70,35 @@ export async function POST(req: Request) {
       return new Response(JSON.stringify({ error: "Image file is required" }), { status: 400 });
     }
 
-    const fileName = `${Date.now()}_${file.name}`;
+    // 1. Validate file size
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json({ error: "File too large (max 5MB)" }, { status: 400 });
+    }
+
+    // 2. Validate MIME type
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return NextResponse.json({ error: "Invalid file type" }, { status: 400 });
+    }
+
+    // 3. Validate file extension
+    const ext = file.name.toLowerCase().match(/\.[^.]+$/)?.[0];
+    if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
+      return NextResponse.json({ error: "Invalid file extension" }, { status: 400 });
+    }
+
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const fileName = `${Date.now()}_${sanitizedName}`;
+
+    const buffer = await file.arrayBuffer();
+    const uint8Array = new Uint8Array(buffer);
+
     const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
       .from("gallery")
-      .upload(fileName, file, { cacheControl: "3600", upsert: true });
+      .upload(fileName, buffer, { 
+        cacheControl: "3600", 
+        upsert: false, // Don't allow overwriting
+        contentType: file.type 
+      });
 
     if (uploadError) {
       return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });

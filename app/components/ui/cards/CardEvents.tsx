@@ -51,7 +51,6 @@ export default async function CardEvents({ params }: PageProps) {
   if (!response.ok) throw new Error(`Failed to fetch events: ${response.status}`);
   const data = await response.json();
   const events = Object.values(data.response);
-  console.log("Fetched events:", events);
 
   if (!events || events.length === 0) {
     return (
@@ -66,7 +65,6 @@ export default async function CardEvents({ params }: PageProps) {
   const formatDate = (dateString: Date) => {
     if (!dateString) return `${dict.events.error.na}`;
     const date = new Date(dateString);
-    console.log("Formatting date:", date);
     return date.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
   };
 
