@@ -1,7 +1,7 @@
 'use client'
 
 import { useUserStats } from '@/hooks/useUserStats'
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card, Row, Col, Spinner } from 'react-bootstrap'
 import { TableStats } from '@/components/'
 
 export default function UserStats() {
@@ -24,15 +24,22 @@ export default function UserStats() {
   }
 
   if (!stats) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className="loader w-auto d-flex justify-content-center align-items-center vh-100 text-light px-3">
+          <Spinner animation="border" className="me-2" />
+          <span className="fs-2">Loading...</span>
+        </div>
+      </>
+    )
   }
 
   return (
     <>
       <div className="w-100 d-flex flex-column">
-        <Row>
-          <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow my-3 px-0" data-bs-theme="dark">
+        <Row className="d-flex justify-content-center row-gap-3 my-3 my-lg-0">
+          <Col xs={12} md={6} lg={4} className="my-0 my-lg-3">
+            <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
               <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">TruckersHub Points</Card.Title>
               <Card.Body className="">
                 <Row>
@@ -64,8 +71,8 @@ export default function UserStats() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow my-3 px-0" data-bs-theme="dark">
+          <Col xs={12} md={6} lg={4} className="my-0 my-lg-3">
+            <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
               <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">Income Earned</Card.Title>
               <Card.Body className="">
                 <Row>
@@ -97,8 +104,8 @@ export default function UserStats() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow my-3 px-0" data-bs-theme="dark">
+          <Col xs={12} md={6} lg={4} className="my-0 my-lg-3">
+            <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
               <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">Delivery Distance</Card.Title>
               <Card.Body className="">
                 <Row>

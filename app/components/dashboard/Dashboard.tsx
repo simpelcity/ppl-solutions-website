@@ -39,7 +39,7 @@ export default function Dashboard({ children, isNavbarVisible = false, dict, ...
 
   return (
     <div
-      className={`d-flex flex-column flex-xl-row overflow-x-hidden`}
+      className={`d-flex flex-column flex-lg-row overflow-x-hidden`}
       style={{ position: "relative", width: "100vw", maxWidth: "100vw" }}>
       <Sidebar
         id="sidebar"

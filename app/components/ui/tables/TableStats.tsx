@@ -16,6 +16,10 @@ export default function TableStats() {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  const rounded = (value: any) => {
+    return value.toFixed(0);
+  }
+
   const tableItems = [
     { title: 'Job Statistics' },
     { title: 'Euro Truck Simulator 2' },
@@ -72,13 +76,13 @@ export default function TableStats() {
                   <div className="py-2">Mass Transported</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{Math.floor((stats?.ets2.mass ?? 0) / 1000)} t</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{Math.floor((stats?.ats.mass ?? 0) / 1000)} lbs</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{Math.floor((stats?.total.mass ?? 0) / 1000)} t</div>
                 </td>
               </tr>
               <tr>
@@ -86,13 +90,13 @@ export default function TableStats() {
                   <div className="py-2">Average Delivery Distance</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{rounded(stats?.ets2.distance.avg)} km</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{rounded(stats?.ats.distance.avg)} mi</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{rounded(stats?.total.distance.avg)} km</div>
                 </td>
               </tr>
               <tr>
@@ -100,13 +104,13 @@ export default function TableStats() {
                   <div className="py-2">Longest Job</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ets2.distance.max} km</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ats.distance.max} mi</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.total.distance.max} km</div>
                 </td>
               </tr>
               <tr>
@@ -156,13 +160,13 @@ export default function TableStats() {
                   <div className="py-2">Favorite Start City</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ets2.source?.city ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ats.source?.city ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.total.source?.city ?? "- (0)"}</div>
                 </td>
               </tr>
               <tr>
@@ -170,13 +174,13 @@ export default function TableStats() {
                   <div className="py-2">Favorite Start Company</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ets2.source?.company ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ats.source?.company ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.total.source?.company ?? "- (0)"}</div>
                 </td>
               </tr>
               <tr>
@@ -184,13 +188,13 @@ export default function TableStats() {
                   <div className="py-2">Favorite Destination City</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ets2.destination?.city ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ats.destination?.city ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.total.destination?.city ?? "- (0)"}</div>
                 </td>
               </tr>
               <tr>
@@ -198,13 +202,13 @@ export default function TableStats() {
                   <div className="py-2">Favorite Destination Company</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ets2.destination?.company ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.ats.destination?.company ?? "- (0)"}</div>
                 </td>
                 <td>
-                  <div className="border rounded py-2">{ }</div>
+                  <div className="border rounded py-2">{stats?.total.destination?.company ?? "- (0)"}</div>
                 </td>
               </tr>
             </tbody>

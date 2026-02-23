@@ -38,25 +38,13 @@ interface distance {
 }
 
 interface source {
-  city: {
-    id: string;
-    name: string;
-  };
-  company: {
-    id: string;
-    name: string;
-  };
+  city: string;
+  company: string;
 }
 
 interface destination {
-  city: {
-    id: string;
-    name: string;
-  };
-  company: {
-    id: string;
-    name: string;
-  };
+  city: string;
+  company: string;
 }
 
 interface job {
@@ -68,17 +56,18 @@ interface job {
 
 interface distanceStats {
   distance: number;
-  // avg: number;
+  avg: number;
+  max: number;
 }
 
 interface GameStats {
   jobs: number;
-  // mass: number;
+  mass: number;
   distance: distanceStats;
   truck: string;
   cargo: string;
-  // source: source;
-  // destination: destination;
+  source?: source;
+  destination?: destination;
 }
 
 export function useUserStats() {
@@ -116,6 +105,7 @@ export function useUserStats() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ steamID: sid }),
     });
+    stats?.ets2.source?.city;
     if (!res.ok) throw new Error(`Failed to fetch ${driverUsername}'s scenarios`);
     const data = await res.json();
     return data;
@@ -162,6 +152,25 @@ export function useUserStats() {
     return mostFreqItem + (maxFreq > 1 ? ` (${maxFreq})` : "");
   };
 
+  const mostFrequentItem = <T>(arr: T[], keyFn: (item: T) => string): { item: T | null; count: number } => {
+    const freq: { [key: string]: { item: T; count: number } } = {};
+    arr.forEach((item) => {
+      const key = keyFn(item);
+      if (!freq[key]) freq[key] = { item, count: 0 };
+      freq[key].count++;
+    });
+    let max = 0;
+    let most: T | null = null;
+    for (const k in freq) {
+      if (freq[k].count > max) {
+        max = freq[k].count;
+        most = freq[k].item;
+      }
+    }
+
+    return { item: most, count: max };
+  };
+
   const getStatistics = async () => {
     const jobs = await fetchStatistics();
     console.log(
@@ -178,28 +187,37 @@ export function useUserStats() {
     let distanceArray: any = [];
 
     let ets2Jobs = 0;
-    let ets2mass = 0;
+    let ets2Mass = 0;
     let ets2Distance = 0;
+    let ets2DistanceArray: any = [];
     let ets2Truck: any = null;
     let ets2Cargo: any = null;
-    let ets2Source: source | null = null;
-    let ets2Destination: destination | null = null;
+    let ets2Source: source | undefined = undefined;
+    let ets2Destination: destination | undefined = undefined;
+    let ets2Sources: any[] = [];
+    let ets2Destinations: any[] = [];
 
     let atsJobs = 0;
     let atsMass = 0;
     let atsDistance = 0;
+    let atsDistanceArray: any = [];
     let atsTruck: any = null;
     let atsCargo: any = null;
-    let atsSource: source | null = null;
-    let atsDestination: destination | null = null;
+    let atsSource: source | undefined = undefined;
+    let atsDestination: destination | undefined = undefined;
+    let atsSources: any[] = [];
+    let atsDestinations: any[] = [];
 
     let totalJobs = 0;
     let totalMass = 0;
     let totalDistance = 0;
+    let totalDistanceArray: any = [];
     let totalCargo: any = null;
     let totalTruck: any = null;
-    let totalSource: source | null = null;
-    let totalDestination: destination | null = null;
+    let totalSource: source | undefined = undefined;
+    let totalDestination: destination | undefined = undefined;
+    let totalSources: any[] = [];
+    let totalDestinations: any[] = [];
 
     for (const job of jobs) {
       if (job.realtime?.actualTimeDriven) {
@@ -241,11 +259,57 @@ export function useUserStats() {
         if (isATS) atsDistance += job.distanceDriven;
       }
 
+      if (job.distanceDriven) {
+        if (Array.isArray(totalDistanceArray)) {
+          totalDistanceArray.push(job.distanceDriven);
+        }
+
+        if (isETS2) {
+          if (Array.isArray(ets2DistanceArray)) {
+            ets2DistanceArray.push(job.distanceDriven);
+          }
+        }
+
+        if (isATS) {
+          if (Array.isArray(atsDistanceArray)) {
+            atsDistanceArray.push(job.distanceDriven);
+          }
+        }
+      }
+
       if (job.truck.name && job.truck.model.name) {
         const truckName = mostFrequent(jobs.map((job: any) => job.truck.name + " " + job.truck.model.name));
         if (isETS2) ets2Truck = truckName;
         if (isATS) atsTruck = truckName;
         totalTruck = truckName;
+      }
+
+      if (job.source) {
+        if (Array.isArray(totalSources)) {
+          totalSources.push(job.source);
+        }
+
+        if (Array.isArray(ets2Sources)) {
+          if (isETS2) ets2Sources.push(job.source);
+        }
+
+        if (Array.isArray(atsSources)) {
+          if (isATS) atsSources.push(job.source);
+        }
+      }
+
+      if (job.destination) {
+        if (Array.isArray(totalDestinations)) {
+          totalDestinations.push(job.destination);
+        }
+
+        if (Array.isArray(ets2Destinations)) {
+          if (isETS2) ets2Destinations.push(job.destination);
+        }
+
+        if (Array.isArray(atsDestinations)) {
+          if (isATS) atsDestinations.push(job.destination);
+        }
       }
 
       if (job.cargo.name) {
@@ -254,6 +318,49 @@ export function useUserStats() {
         if (isATS) atsCargo = cargoName;
         totalCargo = cargoName;
       }
+
+      if (job.cargo.mass) {
+        totalMass += job.cargo.mass;
+        if (isETS2) ets2Mass += job.cargo.mass;
+        if (isATS) atsMass += job.cargo.mass;
+      }
+    }
+
+    const ets2StartCity = mostFrequent(ets2Sources.map((item: any) => item.city.name));
+    console.log(ets2Sources);
+    const ets2StartCompany = mostFrequent(ets2Sources.map((item: any) => item.company.name));
+    if (ets2StartCity && ets2StartCompany) {
+      ets2Source = { city: ets2StartCity, company: ets2StartCompany };
+    }
+
+    const atsStartCity = mostFrequent(atsSources.map((item: any) => item.city.name));
+    const atsStartCompany = mostFrequent(atsSources.map((item: any) => item.company.name));
+    if (atsStartCity && atsStartCompany) {
+      atsSource = { city: atsStartCity, company: atsStartCompany };
+    }
+
+    const totalStartCity = mostFrequent(totalSources.map((item: any) => item.city.name));
+    const totalStartCompany = mostFrequent(totalSources.map((item: any) => item.company.name));
+    if (totalStartCity && totalStartCompany) {
+      totalSource = { city: totalStartCity, company: totalStartCompany };
+    }
+
+    const ets2DestinationCity = mostFrequent(ets2Destinations.map((s) => s.city.name));
+    const ets2DestinationCompany = mostFrequent(ets2Destinations.map((s) => s.company.name));
+    if (ets2DestinationCity && ets2DestinationCompany) {
+      ets2Destination = { city: ets2DestinationCity, company: ets2DestinationCompany };
+    }
+
+    const atsDestinationCity = mostFrequent(atsDestinations.map((s) => s.city.name));
+    const atsDestinationCompany = mostFrequent(atsDestinations.map((s) => s.company.name));
+    if (atsDestinationCity && atsDestinationCompany) {
+      atsDestination = { city: atsDestinationCity, company: atsDestinationCompany };
+    }
+
+    const totalDestinationCity = mostFrequent(totalDestinations.map((s) => s.city.name));
+    const totalDestinationCompany = mostFrequent(totalDestinations.map((s) => s.company.name));
+    if (totalDestinationCity && totalDestinationCompany) {
+      totalDestination = { city: totalDestinationCity, company: totalDestinationCompany };
     }
 
     const avgThp = thp / jobs.length;
@@ -267,6 +374,31 @@ export function useUserStats() {
     const avgDistance = distance / jobs.length;
     const minDistance = Math.min(...distanceArray);
     const maxDistance = Math.max(...distanceArray);
+
+    const totalAvgDistance = totalDistance / jobs.length;
+    const ets2AvgDistance = ets2Distance / jobs.length;
+    const atsAvgDistance = atsDistance / jobs.length;
+
+    let totalMaxDistance = Math.max(...totalDistanceArray);
+    if (totalMaxDistance === -Infinity) {
+      totalMaxDistance = 0;
+    } else {
+      totalMaxDistance;
+    }
+
+    let ets2MaxDistance = Math.max(...ets2DistanceArray);
+    if (ets2MaxDistance === -Infinity) {
+      ets2MaxDistance = 0;
+    } else {
+      ets2MaxDistance;
+    }
+
+    let atsMaxDistance = Math.max(...atsDistanceArray);
+    if (atsMaxDistance === -Infinity) {
+      atsMaxDistance = 0;
+    } else {
+      atsMaxDistance;
+    }
 
     const timeFormatted = convertTime(time);
 
@@ -295,25 +427,40 @@ export function useUserStats() {
         jobs: ets2Jobs,
         distance: {
           distance: ets2Distance,
+          avg: ets2AvgDistance,
+          max: ets2MaxDistance,
         },
         truck: ets2Truck,
         cargo: ets2Cargo,
+        mass: ets2Mass,
+        source: ets2Source,
+        destination: ets2Destination,
       },
       ats: {
         jobs: atsJobs,
         distance: {
           distance: kmToMiles(atsDistance),
+          avg: kmToMiles(atsAvgDistance),
+          max: kmToMiles(atsMaxDistance),
         },
         truck: atsTruck,
         cargo: atsCargo,
+        mass: atsMass,
+        source: atsSource,
+        destination: atsDestination,
       },
       total: {
         jobs: totalJobs,
         distance: {
           distance: totalDistance,
+          avg: totalAvgDistance,
+          max: totalMaxDistance,
         },
         truck: totalTruck,
         cargo: totalCargo,
+        mass: totalMass,
+        source: totalSource,
+        destination: totalDestination,
       },
     };
   };
