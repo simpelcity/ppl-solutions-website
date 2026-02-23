@@ -1,6 +1,6 @@
 {
-  "name": "ppl-solutions-website-react-typescript",
-  "version": "0.1.0",
+  "name": "ppl-solutions-website",
+  "version": "3.5.7",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
