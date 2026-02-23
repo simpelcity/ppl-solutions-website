@@ -8,7 +8,7 @@ import { BSButton } from "@/components/";
 
 type RegisterFormClientProps = {
   dict: {
-    signup: {
+    register: {
       form: {
         brand: string;
         title: string;
@@ -58,7 +58,7 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
       });
       const result = await response.json();
       if (!result.available) {
-        setError(`${dict.signup.form.error.usernameInUse}`);
+        setError(`${dict.register.form.error.usernameInUse}`);
       } else {
         setError(""); // Clear error if available
       }
@@ -89,7 +89,7 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
 
       if (!checkResult.available) {
         setLoading(false);
-        setError(`${dict.signup.form.error.usernameInUse}`);
+        setError(`${dict.register.form.error.usernameInUse}`);
         return;
       }
 
@@ -102,20 +102,20 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
       setLoading(false);
       if (error) {
         if (error.code?.includes('user_already_exists')) {
-          setError(`${dict.signup.form.error.emailInUse}`);
+          setError(`${dict.register.form.error.emailInUse}`);
         } else if (error.code?.includes('weak_password')) {
-          setError(`${dict.signup.form.error.passwordTooShort}`);
+          setError(`${dict.register.form.error.passwordTooShort}`);
         } else {
           setError(error.message);
         }
         return;
       }
 
-      setSuccess(`${dict.signup.form.error.success}`);
+      setSuccess(`${dict.register.form.error.success}`);
       setTimeout(() => router.push("/login"), 900);
     } catch (err: any) {
       setLoading(false);
-      setError(err?.message ?? `${dict.signup.form.error.unexpected}`);
+      setError(err?.message ?? `${dict.register.form.error.unexpected}`);
     }
   };
 
@@ -132,15 +132,15 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
               className=""
               roundedCircle
             />
-            <small className="ms-1 my-auto">{dict.signup.form.brand}</small>
+            <small className="ms-1 my-auto">{dict.register.form.brand}</small>
           </div>
-          <h2 className="mb-3">{dict.signup.form.title}</h2>
+          <h2 className="mb-3">{dict.register.form.title}</h2>
           <Form method="post" onSubmit={handleRegister} className="" data-bs-theme="dark">
             <Form.Group className="mb-3">
-              <Form.Label>{dict.signup.form.email}</Form.Label>
+              <Form.Label>{dict.register.form.email}</Form.Label>
               <Form.Control
                 type="email"
-                placeholder={dict.signup.form.emailPlaceholder}
+                placeholder={dict.register.form.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input rounded-0 border-0 shadow"
@@ -149,10 +149,10 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>{dict.signup.form.username}</Form.Label>
+              <Form.Label>{dict.register.form.username}</Form.Label>
               <Form.Control
                 type="text"
-                placeholder={dict.signup.form.usernamePlaceholder}
+                placeholder={dict.register.form.usernamePlaceholder}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onBlur={(e) => checkUsernameAvailability(e.target.value)}
@@ -160,13 +160,13 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
                 required
                 disabled={loading}
               />
-              <small className="text-muted">{dict.signup.form.allowedChars}</small>
+              <small className="text-muted">{dict.register.form.allowedChars}</small>
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>{dict.signup.form.password}</Form.Label>
+              <Form.Label>{dict.register.form.password}</Form.Label>
               <Form.Control
                 type="password"
-                placeholder={dict.signup.form.passwordPlaceholder}
+                placeholder={dict.register.form.passwordPlaceholder}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="input rounded-0 border-0 shadow"
@@ -178,14 +178,14 @@ export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
             {success && <p className="text-success mt-3">{success}</p>}
             <Form.Group className="mb-3">
               <BSButton variant="primary" type="submit" disabled={loading}>
-                {loading ? `${dict.signup.form.error.loading}` : `${dict.signup.form.submit}`}
+                {loading ? `${dict.register.form.error.loading}` : `${dict.register.form.submit}`}
               </BSButton>
             </Form.Group>
             <div className="text-center">
               <small>
-                {dict.signup.form.haveAccount}{" "}
+                {dict.register.form.haveAccount}{" "}
                 <a href="/login" className="text-light">
-                  {dict.signup.form.login}
+                  {dict.register.form.login}
                 </a>
               </small>
             </div>

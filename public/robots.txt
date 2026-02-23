@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_next/
+Disallow: /api/*
+Disallow: /admin/*
+Disallow: /_next/*
 Disallow: /*.json$
 Disallow: /*?*utm_*
 Disallow: /*?*fbclid=*
@@ -15,10 +15,6 @@ Allow: /gallery
 Allow: /contact
 Allow: /apply
 Allow: /login
-Allow: /register
-Allow: /drivershub
-Allow: /drivershub/dashboard
-Allow: /drivershub/profile
 
 # Sitemap location
 Sitemap: https://ppl-solutions.vercel.app/sitemap.xml

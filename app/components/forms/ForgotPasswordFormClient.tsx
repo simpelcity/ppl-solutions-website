@@ -16,7 +16,7 @@ type ForgotPasswordFormClientProps = {
       form: {
         brand: string,
         title: string,
-        description: string,
+        text: string,
         email: string,
         emailPlaceholder: string,
         submit: string,
@@ -79,7 +79,7 @@ export default function ForgotPasswordFormClient({ dict }: ForgotPasswordFormCli
         </div>
         <h2 className="mb-3">{dict.forgotPassword.form.title}</h2>
         <p className="text-light mb-4">
-          {dict.forgotPassword.form.description}
+          {dict.forgotPassword.form.text}
         </p>
 
         <Form onSubmit={handleForgotPassword} data-bs-theme="dark">

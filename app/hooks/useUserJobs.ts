@@ -16,7 +16,8 @@ export function useUserJobs() {
   const [showAll, setShowAll] = useState<boolean>(false)
   const [allJobs, setAllJobs] = useState<Job[]>([])
 
-  const driverUsername = session?.user?.user_metadata?.username || session?.user?.email
+  const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
+  const displayPage = lastPage - currentPage + 1;
 
   const fetchMembers = async () => {
     const res = await fetch("/api/members")
@@ -46,7 +47,6 @@ export function useUserJobs() {
       throw new Error(`Failed to fetch jobs: ${text}`)
     }
     const data = await res.json()
-    console.log(data)
     return data
   }
 
@@ -111,16 +111,11 @@ export function useUserJobs() {
       setError(null)
       try {
         const page1 = await fetchJobsPage(1)
-        console.log("page 1 payload:", page1)
         const lp = parseLastPage(page1.links?.last)
         
         if (!cancelled) {
           setLastPage(lp)
-        }
-
-        const lastPayload = await fetchJobsPage(lp)
-        console.log("last payload:", lastPayload)
-        if (!cancelled) {
+          const lastPayload = lp === 1 ? page1 : await fetchJobsPage(lp)
           setJobs(Array.isArray(lastPayload.data) ? lastPayload.data.reverse() : [])
           setCurrentPage(lp)
         }
@@ -134,8 +129,6 @@ export function useUserJobs() {
     init()
     return () => { cancelled = true }
   }, [session, driverUsername])
-
-  const displayPage = lastPage - currentPage + 1
 
   return {
     jobs: showAll ? allJobs : jobs,

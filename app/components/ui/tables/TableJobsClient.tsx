@@ -6,6 +6,7 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useUserJobs } from "@/hooks/useUserJobs";
 
 type TableJobsClientProps = {
+  lang: any;
   dict: {
     drivershub: {
       meta: {
@@ -97,8 +98,8 @@ type TableJobsClientProps = {
         },
         modal: {
           title: string,
-          descriptionmember: string,
-          descriptionPicture: string,
+          textmember: string,
+          textPicture: string,
           cancel: string,
           confirm: string
         }
@@ -120,7 +121,7 @@ type TableJobsClientProps = {
         },
         modal: {
           title: string,
-          description: string,
+          text: string,
           cancel: string,
           confirm: string
         }
@@ -129,7 +130,7 @@ type TableJobsClientProps = {
   }
 }
 
-export default function TableJobsClient({ dict }: TableJobsClientProps) {
+export default function TableJobsClient({ lang, dict }: TableJobsClientProps) {
   const {
     jobs,
     loading,
@@ -144,7 +145,18 @@ export default function TableJobsClient({ dict }: TableJobsClientProps) {
   } = useUserJobs();
 
   const split = dict.drivershub.jobs.table.navigation.showing.split(" ");
-  const showingText = `${split[0]} ${displayPage} ${split[2]} ${lastPage} ${split[4]} ${split[5]}`;
+
+  let showingText = '';
+  if (lang === 'en') {
+    showingText = `${split[0]} ${split[1]} ${displayPage} ${split[3]} ${lastPage}`;
+  } else if (lang === 'nl') {
+    showingText = `${split[0]} ${displayPage} ${split[2]} ${lastPage} ${split[4]} ${split[5]}`;
+  } else if (lang === 'cz') {
+    showingText = `${split[0]} ${split[1]} ${split[2]} ${displayPage} ${split[4]} ${lastPage}`;
+  } else if (lang === 'sk') {
+    showingText = `${split[0]} ${split[1]} ${split[2]} ${displayPage} ${split[4]} ${lastPage}`;
+  }
+
 
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
@@ -196,7 +208,7 @@ export default function TableJobsClient({ dict }: TableJobsClientProps) {
   return (
     <>
       <div className="table-card-scroll">
-        <Table variant="dark" className="table-nowrap table-minwidth text-start" borderless>
+        <Table variant="dark" className="table-nowrap table-minwidth text-start table-jobs" borderless>
           <thead className="">
             <tr className="text-uppercase">
               {tableItems.map((item) => (

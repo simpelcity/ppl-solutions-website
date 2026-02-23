@@ -3,9 +3,42 @@ import { Row, Col } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
+import { type Metadata } from "next"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const canonical = lang === 'en' ? '/drivershub/dashboard/gallery' : `/${lang}/drivershub/dashboard/gallery`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: `${dict.drivershub.gallery.meta.title} | PPL Solutions`,
+    description: dict.drivershub.gallery.meta.description,
+    openGraph: {
+      title: `${dict.drivershub.gallery.meta.title} | PPL Solutions`,
+      description: dict.drivershub.gallery.meta.description,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/drivershub/dashboard/gallery',
+        'nl-NL': '/nl/drivershub/dashboard/gallery',
+        'cs-CZ': '/cs/drivershub/dashboard/gallery',
+        'sk-SK': '/sk/drivershub/dashboard/gallery',
+      },
+    },
+  }
 }
 
 export default async function DashboardGalleryPage({ params }: PageProps) {

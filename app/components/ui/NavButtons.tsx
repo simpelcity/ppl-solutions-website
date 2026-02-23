@@ -20,14 +20,14 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
   const languageNames: Record<Locale, string> = {
     en: "EN",
     nl: "NL",
-    cz: "ČR",
+    cs: "ČR",
     sk: "SK",
   };
 
   const languageFlags: Record<Locale, string> = {
     en: "https://flagcdn.com/w320/gb.png",
     nl: "https://flagcdn.com/w320/nl.png",
-    cz: "https://flagcdn.com/w320/cz.png",
+    cs: "https://flagcdn.com/w320/cz.png",
     sk: "https://flagcdn.com/w320/sk.png",
   };
 

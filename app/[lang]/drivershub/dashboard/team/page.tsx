@@ -4,9 +4,42 @@ import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
 import "@/styles/roles.scss"
+import { type Metadata } from "next"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const canonical = lang === 'en' ? '/drivershub/dashboard/team' : `/${lang}/drivershub/dashboard/team`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: `${dict.drivershub.team.meta.title} | PPL Solutions`,
+    description: dict.drivershub.team.meta.description,
+    openGraph: {
+      title: `${dict.drivershub.team.meta.title} | PPL Solutions`,
+      description: dict.drivershub.team.meta.description,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/drivershub/dashboard/team',
+        'nl-NL': '/nl/drivershub/dashboard/team',
+        'cs-CZ': '/cs/drivershub/dashboard/team',
+        'sk-SK': '/sk/drivershub/dashboard/team',
+      },
+    },
+  }
 }
 
 export default async function DashboardTeamPage({ params }: PageProps) {
@@ -15,21 +48,6 @@ export default async function DashboardTeamPage({ params }: PageProps) {
 
   return (
     <>
-      <title>{`${dict.drivershub.team.meta.title} | PPL Solutions`}</title>
-      <meta
-        name="description"
-        content={dict.drivershub.team.meta.description}
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={`${dict.drivershub.team.meta.title} | PPL Solutions`} />
-      <meta
-        property="og:description"
-        content={dict.drivershub.team.meta.description}
-      />
-      <meta property="og:url" content="https://ppl-solutions.vercel.app/drivershub/dashboard" />
-      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
-      <link rel="canonical" href="https://ppl-solutions.vercel.app/drivershub/dashboard" />
-
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
           <Dashboard dict={dict.drivershub.sidebar}>

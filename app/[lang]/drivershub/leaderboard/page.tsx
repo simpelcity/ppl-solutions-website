@@ -2,9 +2,42 @@ import { Dashboard } from "@/components/"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
+import { type Metadata } from "next"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const canonical = lang === 'en' ? '/drivershub/leaderboard' : `/${lang}/drivershub/leaderboard`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: `${dict.drivershub.meta.title} | PPL Solutions`,
+    description: dict.drivershub.meta.description,
+    openGraph: {
+      title: `${dict.drivershub.meta.title} | PPL Solutions`,
+      description: dict.drivershub.meta.description,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/drivershub/leaderboard',
+        'nl-NL': '/nl/drivershub/leaderboard',
+        'cs-CZ': '/cs/drivershub/leaderboard',
+        'sk-SK': '/sk/drivershub/leaderboard',
+      },
+    },
+  }
 }
 
 export default async function LeaderboardPage({ params }: PageProps) {
@@ -13,22 +46,6 @@ export default async function LeaderboardPage({ params }: PageProps) {
 
   return (
     <>
-      <title>Leaderboard | PPL Solutions</title>
-      <meta
-        name="description"
-        content="PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="Leaderboard | PPL Solutions" />
-      <meta
-        property="og:description"
-        content="PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a
-              succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
-      />
-      <meta property="og:url" content="https://ppl-solutions.vercel.app/drivershub/leaderboard" />
-      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
-      <link rel="canonical" href="https://ppl-solutions.vercel.app/drivershub/leaderboard" />
-
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
           <Dashboard dict={dict.drivershub.sidebar}>

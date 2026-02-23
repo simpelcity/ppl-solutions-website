@@ -3,6 +3,7 @@ import { StartBanner, CardContact } from "@/components/"
 import "@/styles/Contact.scss"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { type Metadata } from "next"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
@@ -28,26 +29,43 @@ type DictionaryType = {
   }
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const canonical = lang === 'en' ? '/contact' : `/${lang}/contact`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: `${dict.contact.meta.title} | PPL Solutions`,
+    description: dict.contact.meta.description,
+    openGraph: {
+      title: `${dict.contact.meta.title} | PPL Solutions`,
+      description: dict.contact.meta.description,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/contact',
+        'nl-NL': '/nl/contact',
+        'cs-CZ': '/cs/contact',
+        'sk-SK': '/sk/contact',
+      },
+    },
+  }
+}
+
 export default async function ContactPage({ params }: PageProps) {
   const { lang } = await params
   const dict = await getDictionary(lang) as DictionaryType
   return (
     <>
-      <title>{`${dict.contact.meta.title} | PPL Solutions`}</title>
-      <meta
-        name="description"
-        content={dict.contact.meta.description}
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={`${dict.contact.meta.title} | PPL Solutions`} />
-      <meta
-        property="og:description"
-        content={dict.contact.meta.description}
-      />
-      <meta property="og:url" content="https://ppl-solutions.vercel.app/contact" />
-      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
-      <link rel="canonical" href="https://ppl-solutions.vercel.app/contact" />
-
       <main className="fs-5">
         <StartBanner>{dict.contact.title}</StartBanner>
         <section className="d-flex w-100 bg-dark-subtle text-center">

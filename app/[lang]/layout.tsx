@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/"
 import { AuthProvider, SidebarProvider } from "@/lib/"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"

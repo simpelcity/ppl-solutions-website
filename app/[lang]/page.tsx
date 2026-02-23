@@ -3,193 +3,42 @@ import { CardText, BSButton } from "@/components/index";
 import "@/styles/Home.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
-
-type DictionaryType = {
-  home: {
-    meta: {
-      title: string,
-      description: string
-    },
-    slogan: string;
-    buttons: {
-      apply: string;
-      discord: string;
-    },
-    "about-us": {
-      title: string,
-      description: string
-    },
-    offers: {
-      title: string,
-      card1: {
-        title: string,
-        description: string
-      },
-      card2: {
-        title: string,
-        description: string
-      },
-      card3: {
-        title: string,
-        description: string
-      }
-    },
-    apply: {
-      title: string,
-      description: string,
-      button: string
-    }
-  },
-  signup: {
-    form: {
-      title: string,
-      email: string,
-      emailPlaceholder: string,
-      username: string,
-      usernamePlaceholder: string,
-      allowedChars: string,
-      password: string,
-      passwordPlaceholder: string,
-      submit: string,
-      haveAccount: string
-    }
-  },
-  forgotPassword: {
-    form: {
-      title: string,
-      description: string,
-      email: string,
-      emailPlaceholder: string,
-      submit: string,
-      remember: string
-    }
-  },
-  "reset-password": {
-    form: {
-      title: string,
-      "new-password-below": string,
-      "new-password": string,
-      "new-password-placeholder": string,
-      "confirm-password": string,
-      "confirm-password-placeholder": string,
-      submit: string,
-      backToLogin: string
-    }
-  },
-  drivershub: {
-    sidebar: {
-      title: string,
-      drivershub: string,
-      userStats: string,
-      leaderboard: string,
-      dashboard: {
-        title: string,
-        vtcStats: string,
-        team: string,
-        gallery: string
-      },
-      profile: {
-        settings: string,
-        profile: string,
-        logout: string
-      }
-    },
-    jobs: {
-      title: string,
-      table: {
-        date: string,
-        username: string,
-        fromTo: string,
-        cargo: string,
-        truck: string,
-        distance: string,
-        income: string,
-        navigation: {
-          showing: string,
-          allJobs: string,
-          paginated: string
-        }
-      }
-    },
-    vtcStats: {
-      vtc: {
-        title: string,
-        totalDistance: string,
-        totalJobs: string,
-        totalIncome: string,
-        totalTimeDriven: string
-      },
-      ets2: {
-        title: string,
-        totalDistance: string,
-        totalJobs: string,
-        totalIncome: string,
-        totalTimeDriven: string
-      },
-      ats: {
-        title: string,
-        totalDistance: string,
-        totalJobs: string,
-        totalIncome: string,
-        totalTimeDriven: string
-      }
-    },
-    team: {
-      form: {
-        titleNewMember: string,
-        titleEditMember: string,
-        username: string,
-        usernamePlaceholder: string,
-        profilePicture: string,
-        submitNewMember: string,
-        submitEditMember: string,
-        calcelEditMember: string,
-        rolesDepartments: {
-          title: string,
-          currentRoles: string,
-          addRole: string,
-          department: string,
-          role: string
-        }
-      },
-      card: {
-        title: string
-      },
-      modal: {
-        title: string,
-        descriptionmember: string,
-        descriptionPicture: string,
-        cancel: string,
-        confirm: string
-      }
-    },
-    gallery: {
-      form: {
-        titleNewItem: string,
-        titleEditItem: string,
-        title: string,
-        titlePlaceholder: string,
-        image: string,
-        imageEdit: string,
-        submit: string,
-        submitEdit: string,
-        cancel: string
-      },
-      card: {
-        title: string
-      },
-      modal: {
-        title: string,
-        description: string,
-        cancel: string,
-        confirm: string
-      }
-    }
-  }
-}
+import { type Metadata } from "next"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const canonical = lang === 'en' ? '/' : `/${lang}`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: `PPL Solutions | ${dict.home.meta.title}`,
+    description: dict.home.meta.description,
+    openGraph: {
+      title: `PPL Solutions | ${dict.home.meta.title}`,
+      description: dict.home.meta.description,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/',
+        'nl-NL': '/nl',
+        'cs-CZ': '/cs',
+        'sk-SK': '/sk',
+      },
+    },
+  }
 }
 
 export default async function HomePage({ params }: PageProps) {
@@ -209,21 +58,6 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <>
-      <title>{`PPL Solutions | ${dict.home.meta.title}`}</title>
-      <meta
-        name="description"
-        content={dict.home.meta.description}
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={`PPL Solutions | ${dict.home.meta.title}`} />
-      <meta
-        property="og:description"
-        content={dict.home.meta.description}
-      />
-      <meta property="og:url" content="https://ppl-solutions.vercel.app/" />
-      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
-      <meta property="og:site_name" content="PPL Solutions VTC" />
-      <link rel="canonical" href="https://ppl-solutions.vercel.app/" />
       <script src="https://kit.fontawesome.com/555ef81382.js" crossOrigin="anonymous"></script>
 
       <main className="fs-5">
@@ -259,7 +93,7 @@ export default async function HomePage({ params }: PageProps) {
               <span>{aboutUs1}</span> <span className="text-primary">{aboutUs2}</span>
             </h1>
             <p className="m-0">
-              {dict.home["about-us"].description}
+              {dict.home["about-us"].text}
             </p>
           </Container>
         </section>
@@ -271,17 +105,17 @@ export default async function HomePage({ params }: PageProps) {
             <Row className="w-100 d-flex justify-content-center row-gap-4">
               <Col xs={12} md={6} xl={4}>
                 <CardText title={dict.home.offers.title} icon="FaUsers">
-                  {dict.home.offers.card1.description}
+                  {dict.home.offers.card1.text}
                 </CardText>
               </Col>
               <Col xs={12} md={6} xl={4}>
                 <CardText title={dict.home.offers.card2.title} icon="FaEdit">
-                  {dict.home.offers.card2.description}
+                  {dict.home.offers.card2.text}
                 </CardText>
               </Col>
               <Col xs={12} md={6} xl={4}>
                 <CardText title={dict.home.offers.card3.title} icon="FaGears">
-                  {dict.home.offers.card3.description}
+                  {dict.home.offers.card3.text}
                 </CardText>
               </Col>
             </Row>
@@ -292,7 +126,7 @@ export default async function HomePage({ params }: PageProps) {
             <h2 className="text-uppercase">
               <span>{apply1}</span> <span className="text-primary">{apply2} {apply3}</span>
             </h2>
-            <p>{dict.home.apply.description}</p>
+            <p>{dict.home.apply.text}</p>
             <div className="d-grid d-md-inline-block">
               <BSButton variant="outline" border="primary" text="primary">
                 {dict.home.apply.button}

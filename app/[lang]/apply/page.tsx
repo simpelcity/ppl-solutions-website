@@ -3,6 +3,7 @@ import { StartBanner } from "@/components/"
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { type Metadata } from "next"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
@@ -16,38 +17,55 @@ type DictionaryType = {
     },
     title: string,
     card: {
-      description: string
+      text: string
     }
   },
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const canonical = lang === 'en' ? '/apply' : `/${lang}/apply`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: `${dict.apply.meta.title} | PPL Solutions`,
+    description: dict.apply.meta.description,
+    openGraph: {
+      title: `${dict.apply.meta.title} | PPL Solutions`,
+      description: dict.apply.meta.description,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/apply',
+        'nl-NL': '/nl/apply',
+        'cs-CZ': '/cs/apply',
+        'sk-SK': '/sk/apply',
+      },
+    },
+  }
 }
 
 export default async function ApplyPage({ params }: PageProps) {
   const { lang } = await params
   const dict = await getDictionary(lang) as DictionaryType
 
-  const split = dict.apply.card.description.split(" ");
+  const split = dict.apply.card.text.split(" ");
   const apply1 = split.slice(0, split.indexOf("Discord")).join(" ") + " ";
-  const apply2 = dict.apply.card.description.match(/\bDiscord\b/);
-  const start = dict.apply.card.description.indexOf("Discord");
-  const apply3 = dict.apply.card.description.slice(start + "Discord".length);
+  const apply2 = dict.apply.card.text.match(/\bDiscord\b/);
+  const start = dict.apply.card.text.indexOf("Discord");
+  const apply3 = dict.apply.card.text.slice(start + "Discord".length);
 
   return (
     <>
-      <title>{`${dict.apply.meta.title} | PPL Solutions`}</title>
-      <meta
-        name="description"
-        content={dict.apply.meta.description}
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={`${dict.apply.meta.title} | PPL Solutions`} />
-      <meta
-        property="og:description"
-        content={dict.apply.meta.description}
-      />
-      <meta property="og:url" content="https://ppl-solutions.vercel.app/apply" />
-      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
-      <link rel="canonical" href="https://ppl-solutions.vercel.app/apply" />
-
       <main className="fs-5">
         <StartBanner>{dict.apply.title}</StartBanner>
         <section className="d-flex w-100 bg-dark-subtle text-center">
