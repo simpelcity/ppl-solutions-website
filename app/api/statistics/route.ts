@@ -1,39 +1,33 @@
-import { NextResponse } from "next/server"
-import { errorHandler } from "@/utils/errorHandler"
+import { NextResponse } from "next/server";
+import { errorHandler } from "@/utils/errorHandler";
+import axios from "axios";
+
+axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
+axios.defaults.headers.common["Content-Type"] = "application/json";
 
 export async function GET(request: Request) {
   try {
-    const firstRes = await fetch("https://api.truckershub.in/v1/jobs?page=1", {
-      headers: {
-        Authorization: `${process.env.TRUCKERSHUB_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    })
+    const firstRes = await axios.get("https://api.truckershub.in/v1/jobs?page=1");
 
-    if (!firstRes.ok) {
-      return errorHandler({ error: "Failed to fetch jobs" }, request, firstRes.status)
+    if (firstRes.status !== 200) {
+      return errorHandler({ error: "Failed to fetch jobs" }, request, firstRes.status);
     }
 
-    const firstData = await firstRes.json()
-    
-    const lastPageUrl = firstData.links?.last
-    const lastPageMatch = lastPageUrl?.match(/[?&]page=(\d+)/)
-    const totalPages = lastPageMatch ? parseInt(lastPageMatch[1], 10) : 1
+    const firstData = await firstRes.data;
 
-    const allJobs: any[] = []
+    const lastPageUrl = firstData.links?.last;
+    const lastPageMatch = lastPageUrl?.match(/[?&]page=(\d+)/);
+    const totalPages = lastPageMatch ? parseInt(lastPageMatch[1], 10) : 1;
+
+    const allJobs: any[] = [];
     for (let page = 1; page <= totalPages; page++) {
-      const res = await fetch(`https://api.truckershub.in/v1/jobs?page=${page}`, {
-        headers: {
-          Authorization: `${process.env.TRUCKERSHUB_API_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      })
+      const res = await axios.get(`https://api.truckershub.in/v1/jobs?page=${page}`);
 
-      if (!res.ok) continue
+      if (res.status !== 200) continue;
 
-      const payload = await res.json()
+      const payload = await res.data;
       if (Array.isArray(payload.data)) {
-        allJobs.push(...payload.data)
+        allJobs.push(...payload.data);
       }
     }
 
@@ -43,9 +37,9 @@ export async function GET(request: Request) {
         total: allJobs.length,
         pages: totalPages,
       },
-    })
+    });
   } catch (err) {
-    console.error(err)
-    return errorHandler(err, request)
+    console.error(err);
+    return errorHandler(err, request);
   }
 }

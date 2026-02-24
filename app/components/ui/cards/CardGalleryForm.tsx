@@ -51,7 +51,6 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
-  // Modal state
   const [showModal, setShowModal] = useState(false);
   const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
   const [targetId, setTargetId] = useState<number | null>(null);

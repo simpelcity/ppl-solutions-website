@@ -1,23 +1,18 @@
-import { NextResponse } from "next/server"
-import { errorHandler } from "@/utils/errorHandler"
+import { NextResponse } from "next/server";
+import { errorHandler } from "@/utils/errorHandler";
+import axios from "axios";
 
 export async function GET(request: Request) {
   try {
-    const response = await fetch(
-      "https://api.truckersmp.com/v2/vtc/74455/events/attending"
-    )
+    const res = await axios.get("https://api.truckersmp.com/v2/vtc/74455/events/attending");
 
-    if (!response.ok) {
-      return errorHandler(
-        { error: "Failed to fetch events" },
-        request,
-        response.status
-      )
+    if (res.status !== 200) {
+      return errorHandler({ error: "Failed to fetch events" }, request, res.status);
     }
-    
-    const data = await response.json()
-    return NextResponse.json(data)
+
+    const data = res.data;
+    return NextResponse.json(data);
   } catch (err) {
-    return errorHandler(err, request)
+    return errorHandler(err, request);
   }
 }

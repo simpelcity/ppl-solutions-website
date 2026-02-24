@@ -1,134 +1,134 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useAuth } from "@/lib/AuthContext"
+import { useState, useEffect } from "react";
+import { useAuth } from "@/lib/AuthContext";
+import axios from "axios";
 
-type Job = any
+type Job = any;
 
 export function useUserJobs() {
-  const { session } = useAuth()
-  const [steamID, setSteamID] = useState<string | null>(null)
-  const [jobs, setJobs] = useState<Job[]>([])
-  const [loading, setLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [lastPage, setLastPage] = useState<number>(1)
-  const [error, setError] = useState<string | null>(null)
-  const [showAll, setShowAll] = useState<boolean>(false)
-  const [allJobs, setAllJobs] = useState<Job[]>([])
+  const { session } = useAuth();
+  const [steamID, setSteamID] = useState<string | null>(null);
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [lastPage, setLastPage] = useState<number>(1);
+  const [error, setError] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState<boolean>(false);
+  const [allJobs, setAllJobs] = useState<Job[]>([]);
 
   const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
   const displayPage = lastPage - currentPage + 1;
 
   const fetchMembers = async () => {
-    const res = await fetch("/api/members")
-    if (!res.ok) throw new Error("Failed to fetch members")
-    const data = await res.json()
-    return data.data || data || []
-  }
+    const res = await axios.get("/api/members");
+    if (res.status !== 200) throw new Error("Failed to fetch members");
+    const data = await res.data;
+    return data.data || data || [];
+  };
 
   const ensureSteamID = async (): Promise<string> => {
-    if (steamID) return steamID
-    const members = await fetchMembers()
-    const driver = members.find((d: any) => d.username === driverUsername)
-    if (!driver) throw new Error(`Driver ${driverUsername} not found`)
-    setSteamID(driver.steamID)
-    return driver.steamID
-  }
+    if (steamID) return steamID;
+    const members = await fetchMembers();
+    const driver = members.find((d: any) => d.username === driverUsername);
+    if (!driver) throw new Error(`Driver ${driverUsername} not found`);
+    setSteamID(driver.steamID);
+    return driver.steamID;
+  };
 
   const fetchJobsPage = async (page: number) => {
-    const sid = await ensureSteamID()
-    const res = await fetch("/api/jobs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ steamID: sid, page }),
-    })
-    if (!res.ok) {
-      const text = await res.text().catch(() => "")
-      throw new Error(`Failed to fetch jobs: ${text}`)
+    const sid = await ensureSteamID();
+    try {
+      const res = await axios.post("/api/jobs", { steamID: sid, page });
+      if (res.status !== 200) throw new Error("Failed to fetch jobs");
+      return res.data;
+    } catch (err: any) {
+      const message = err?.response?.data?.error || err?.message || "Failed to fetch jobs";
+      throw new Error(message);
     }
-    const data = await res.json()
-    return data
-  }
+  };
 
   const parseLastPage = (lastUrl: string | undefined): number => {
-    if (!lastUrl) return 1
-    const m = lastUrl.match(/[?&]page=(\d+)/)
-    return m ? parseInt(m[1], 10) : 1
-  }
+    if (!lastUrl) return 1;
+    const m = lastUrl.match(/[?&]page=(\d+)/);
+    return m ? parseInt(m[1], 10) : 1;
+  };
 
   const fetchAllJobs = async (): Promise<Job[]> => {
-    const sid = await ensureSteamID()
-    const allJobs: Job[] = []
+    const sid = await ensureSteamID();
+    const allJobs: Job[] = [];
     for (let page = 1; page <= lastPage; page++) {
-      const payload = await fetchJobsPage(page)
+      const payload = await fetchJobsPage(page);
       if (Array.isArray(payload.data)) {
-        allJobs.push(...payload.data)
+        allJobs.push(...payload.data);
       }
     }
-    return allJobs.reverse()
-  }
+    return allJobs.reverse();
+  };
 
   const loadJobs = async (displayPage: number) => {
-    setLoading(true)
-    setError(null)
+    setLoading(true);
+    setError(null);
     try {
-      const apiPage = lastPage - displayPage + 1
-      const payload = await fetchJobsPage(apiPage)
-      setJobs(Array.isArray(payload.data) ? payload.data.reverse() : [])
-      setCurrentPage(apiPage)
+      const apiPage = lastPage - displayPage + 1;
+      const payload = await fetchJobsPage(apiPage);
+      setJobs(Array.isArray(payload.data) ? payload.data.reverse() : []);
+      setCurrentPage(apiPage);
     } catch (err: any) {
-      setError(err.message)
+      setError(err.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const toggleShowAll = async () => {
     if (!showAll) {
-      setLoading(true)
+      setLoading(true);
       try {
-        const all = await fetchAllJobs()
-        setAllJobs(all)
-        setShowAll(true)
+        const all = await fetchAllJobs();
+        setAllJobs(all);
+        setShowAll(true);
       } catch (err: any) {
-        setError(err.message)
+        setError(err.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     } else {
-      setShowAll(false)
-      await loadJobs(currentPage)
+      setShowAll(false);
+      await loadJobs(currentPage);
     }
-  }
+  };
 
   useEffect(() => {
-    if (!session || !driverUsername) return
+    if (!session || !driverUsername) return;
 
-    let cancelled = false
+    let cancelled = false;
 
     const init = async () => {
-      setLoading(true)
-      setError(null)
+      setLoading(true);
+      setError(null);
       try {
-        const page1 = await fetchJobsPage(1)
-        const lp = parseLastPage(page1.links?.last)
-        
+        const page1 = await fetchJobsPage(1);
+        const lp = parseLastPage(page1.links?.last);
+
         if (!cancelled) {
-          setLastPage(lp)
-          const lastPayload = lp === 1 ? page1 : await fetchJobsPage(lp)
-          setJobs(Array.isArray(lastPayload.data) ? lastPayload.data.reverse() : [])
-          setCurrentPage(lp)
+          setLastPage(lp);
+          const lastPayload = lp === 1 ? page1 : await fetchJobsPage(lp);
+          setJobs(Array.isArray(lastPayload.data) ? lastPayload.data.reverse() : []);
+          setCurrentPage(lp);
         }
       } catch (err: any) {
-        if (!cancelled) setError(err.message)
+        if (!cancelled) setError(err.message);
       } finally {
-        if (!cancelled) setLoading(false)
+        if (!cancelled) setLoading(false);
       }
-    }
+    };
 
-    init()
-    return () => { cancelled = true }
-  }, [session, driverUsername])
+    init();
+    return () => {
+      cancelled = true;
+    };
+  }, [session, driverUsername]);
 
   return {
     jobs: showAll ? allJobs : jobs,
@@ -142,5 +142,5 @@ export function useUserJobs() {
     goToPage: (page: number) => loadJobs(page),
     goToNextPage: () => loadJobs(displayPage + 1),
     goToPreviousPage: () => loadJobs(displayPage - 1),
-  }
+  };
 }

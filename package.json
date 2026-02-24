@@ -1,6 +1,6 @@
 {
   "name": "ppl-solutions-website",
-  "version": "3.5.7",
+  "version": "3.6.7",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
@@ -12,6 +12,7 @@
     "@supabase/auth-helpers-nextjs": "^0.15.0",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.86.0",
+    "axios": "^1.13.5",
     "bootstrap": "^5.3.8",
     "next": "^16.0.10",
     "react": "19.2.0",
@@ -29,8 +30,8 @@
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "baseline-browser-mapping": "^2.9.19",
-    "eslint": "^9",
-    "eslint-config-next": "16.0.6",
+    "eslint": "^10.0.2",
+    "eslint-config-next": "^0.2.4",
     "ts-node": "^10.9.2",
     "typescript": "^5"
   }

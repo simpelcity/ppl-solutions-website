@@ -1,6 +1,5 @@
 import { supabaseAdmin } from "@/supabaseAdmin/";
-import { NextResponse } from "next/server"
-
+import { NextResponse } from "next/server";
 
 export type GalleryItem = {
   id: number;
@@ -32,33 +31,31 @@ export async function GET() {
 
         if (!item.image_url && item.image_path) {
           try {
-            const { data: publicUrlData } = supabaseAdmin.storage
-              .from("gallery")
-              .getPublicUrl(item.image_path);
+            const { data: publicUrlData } = supabaseAdmin.storage.from("gallery").getPublicUrl(item.image_path);
 
             item.image_url = publicUrlData?.publicUrl ?? null;
-          } catch (err) {
-          }
+          } catch (err) {}
         }
 
         return item;
-      })
+      }),
     );
 
     return new Response(JSON.stringify({ data: items }), { status: 200 });
   } catch (err: any) {
-    console.error("GET /api/gallery error:", err);
+    console.error("gallery api error:", err);
     return new Response(JSON.stringify({ error: err.message ?? String(err) }), { status: 500 });
   }
 }
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
+    console.log(req);
     const title = formData.get("title") as string;
     const file = formData.get("file") as File | null;
 
@@ -70,43 +67,37 @@ export async function POST(req: Request) {
       return new Response(JSON.stringify({ error: "Image file is required" }), { status: 400 });
     }
 
-    // 1. Validate file size
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json({ error: "File too large (max 5MB)" }, { status: 400 });
     }
 
-    // 2. Validate MIME type
     if (!ALLOWED_TYPES.includes(file.type)) {
       return NextResponse.json({ error: "Invalid file type" }, { status: 400 });
     }
 
-    // 3. Validate file extension
     const ext = file.name.toLowerCase().match(/\.[^.]+$/)?.[0];
     if (!ext || !ALLOWED_EXTENSIONS.includes(ext)) {
       return NextResponse.json({ error: "Invalid file extension" }, { status: 400 });
     }
 
-    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
     const fileName = `${Date.now()}_${sanitizedName}`;
 
     const buffer = await file.arrayBuffer();
-    const uint8Array = new Uint8Array(buffer);
 
     const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
       .from("gallery")
-      .upload(fileName, buffer, { 
-        cacheControl: "3600", 
-        upsert: false, // Don't allow overwriting
-        contentType: file.type 
+      .upload(fileName, buffer, {
+        cacheControl: "3600",
+        upsert: false,
+        contentType: file.type,
       });
 
     if (uploadError) {
       return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
     }
 
-    const { data: publicUrlData } = supabaseAdmin.storage
-      .from("gallery")
-      .getPublicUrl(uploadData.path);
+    const { data: publicUrlData } = supabaseAdmin.storage.from("gallery").getPublicUrl(uploadData.path);
 
     const image_url = publicUrlData.publicUrl;
 
@@ -159,19 +150,13 @@ export async function PUT(req: Request) {
 
       if (uploadError) return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
 
-      const { data: publicUrlData } = supabaseAdmin.storage
-        .from("gallery")
-        .getPublicUrl(fileName);
+      const { data: publicUrlData } = supabaseAdmin.storage.from("gallery").getPublicUrl(fileName);
 
       updates.image_path = uploadData.path;
       updates.image_url = publicUrlData.publicUrl;
     }
 
-    const { data, error } = await supabaseAdmin
-      .from("gallery")
-      .update(updates)
-      .eq("id", id)
-      .select();
+    const { data, error } = await supabaseAdmin.from("gallery").update(updates).eq("id", id).select();
 
     if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
