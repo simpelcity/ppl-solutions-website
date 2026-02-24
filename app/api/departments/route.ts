@@ -1,17 +1,17 @@
-import { supabaseAdmin } from "@/supabaseAdmin/"
-import { NextResponse } from "next/server"
+import { supabaseAdmin } from "@/supabaseAdmin/";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
     const { data, error } = await supabaseAdmin
       .from("departments")
       .select("id, name")
-      .order("name", { ascending: true })
+      .order("name", { ascending: true });
 
-    if (error) throw error
+    if (error) throw error;
 
-    return NextResponse.json({ data })
+    return NextResponse.json({ data });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message || String(err) }, { status: 500 })
+    return NextResponse.json({ error: err.message || String(err) }, { status: 500 });
   }
 }

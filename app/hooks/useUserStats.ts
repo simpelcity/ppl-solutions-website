@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useAuth } from "@/lib/AuthContext";
+import axios from "axios";
 
 type Job = any;
 
@@ -83,10 +84,10 @@ export function useUserStats() {
   const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
 
   const fetchMembers = async () => {
-    const res = await fetch("/api/members");
-    if (!res.ok) throw new Error("Failed to fetch members");
-    const data = await res.json();
-    return data.data || data || [];
+    const res = await axios.get("/api/members");
+    if (res.status !== 200) throw new Error("Failed to fetch members");
+    const data = res.data;
+    return data?.data || data || [];
   };
 
   const ensureSteamID = async (): Promise<string> => {
@@ -100,30 +101,21 @@ export function useUserStats() {
 
   const fetchScenarios = async () => {
     const sid = await ensureSteamID();
-    const res = await fetch("/api/scenarios", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ steamID: sid }),
-    });
+    const res = await axios.post("/api/scenarios", { steamID: sid });
     stats?.ets2.source?.city;
-    if (!res.ok) throw new Error(`Failed to fetch ${driverUsername}'s scenarios`);
-    const data = await res.json();
-    return data;
+    if (res.status !== 200) throw new Error(`Failed to fetch ${driverUsername}'s scenarios`);
+    return res.data;
   };
 
   const fetchStatistics = async () => {
     const sid = await ensureSteamID();
-    const response = await fetch("/api/statistics/user", {
-      method: "POST",
-      body: JSON.stringify({ steamID: sid }),
-    });
+    const res = await axios.post("/api/statistics/user", { steamID: sid });
 
-    if (!response.ok) {
+    if (res.status !== 200) {
       throw new Error("Failed to fetch statistics");
     }
-    const data = await response.json();
-    console.log("raw statistics data:", data);
-    return data.data;
+    console.log("raw statistics data:", res.data);
+    return res.data?.data;
   };
 
   const convertTime = (ms: number) => {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface GameStats {
   distance: number;
@@ -23,13 +24,12 @@ export function useVtcStats() {
   const [error, setError] = useState<string | null>(null);
 
   const fetchStatistics = async () => {
-    const response = await fetch("/api/statistics");
+    const res = await axios.get("/api/statistics");
 
-    if (!response.ok) {
+    if (res.status !== 200) {
       throw new Error("Failed to fetch statistics");
     }
-    const data = await response.json();
-    return data.data;
+    return res.data?.data;
   };
 
   const convertTime = (ms: number) => {

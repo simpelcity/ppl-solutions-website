@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export interface GalleryItem {
   id: number;
@@ -24,9 +25,9 @@ export function useGallery() {
   const fetchItems = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/gallery");
-      const json = await res.json();
-      if (res.ok) setItems(json.data || []);
+      const res = await axios.get("/api/gallery");
+      const json = res.data;
+      if (res.status === 200) setItems(json.data || []);
     } finally {
       setLoading(false);
     }
@@ -40,12 +41,15 @@ export function useGallery() {
     setSubmitting(true);
     setError(null);
     try {
-      const res = await fetch("/api/gallery", { method: "POST", body: fd });
-      if (!res.ok) throw new Error("Failed to add item");
+      const res = await axios.post("/api/gallery", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (res.status !== 200) throw new Error("Failed to add item");
       setSuccess("Gallery item added");
       fetchItems();
     } catch (e: any) {
-      setError(e.message);
+      setError(e?.response?.data?.error || e.message);
+      console.log(e);
     } finally {
       setSubmitting(false);
     }
@@ -60,13 +64,15 @@ export function useGallery() {
     setSubmitting(true);
     setError(null);
     try {
-      const res = await fetch("/api/gallery", { method: "PUT", body: fd });
-      if (!res.ok) throw new Error("Failed to update");
+      const res = await axios.put("/api/gallery", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (res.status !== 200) throw new Error("Failed to update");
       setSuccess("Gallery item updated");
       setEditingId(null);
       fetchItems();
     } catch (e: any) {
-      setError(e.message);
+      setError(e?.response?.data?.error || e.message);
     } finally {
       setSubmitting(false);
     }
@@ -74,16 +80,12 @@ export function useGallery() {
 
   const deleteItem = async (id: number) => {
     try {
-      const res = await fetch("/api/gallery", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      if (!res.ok) throw new Error("Delete failed");
+      const res = await axios.delete("/api/gallery", { data: { id } });
+      if (res.status !== 200) throw new Error("Delete failed");
       setSuccess("Gallery item deleted");
       fetchItems();
     } catch (e: any) {
-      setError(e.message);
+      setError(e?.response?.data?.error || e.message);
     }
   };
 

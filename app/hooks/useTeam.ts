@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export interface TeamMember {
   id: number;
@@ -53,32 +54,32 @@ export function useTeam() {
   const fetchMembers = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/team/members");
-      const json = await res.json();
-      if (res.ok) setMembers(json.data || []);
+      const res = await axios.get("/api/team/members");
+      const json = await res.data;
+      if (res.status === 200) setMembers(json.data || []);
     } finally {
       setLoading(false);
     }
   };
 
   const fetchDepartments = async () => {
-    const res = await fetch("/api/departments");
-    const json = await res.json();
-    if (res.ok) setDepartments(json.data || []);
+    const res = await axios.get("/api/departments");
+    const json = await res.data;
+    if (res.status == 200) setDepartments(json.data || []);
   };
 
   const fetchRoles = async () => {
-    const res = await fetch("/api/roles");
-    const json = await res.json();
-    if (res.ok) setRoles(json.data || []);
+    const res = await axios.get("/api/roles");
+    const json = await res.data;
+    if (res.status === 200) setRoles(json.data || []);
   };
 
   const fetchMemberRoles = async (memberId: number) => {
     setLoadingRoles(true);
     try {
-      const res = await fetch(`/api/team/roles?memberId=${memberId}`);
-      const json = await res.json();
-      if (res.ok) setMemberRoles(json.data || []);
+      const res = await axios.get(`/api/team/roles?memberId=${memberId}`);
+      const json = await res.data;
+      if (res.status === 200) setMemberRoles(json.data || []);
     } finally {
       setLoadingRoles(false);
     }
@@ -93,8 +94,10 @@ export function useTeam() {
       fd.append("name", name);
       if (file) fd.append("file", file);
 
-      const res = await fetch("/api/team", { method: "POST", body: fd });
-      if (!res.ok) throw new Error("Failed to add member");
+      const res = await axios.post("/api/team", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (res.status !== 200) throw new Error("Failed to add member");
 
       setSuccess("Member added successfully");
       fetchMembers();
@@ -115,8 +118,10 @@ export function useTeam() {
       fd.append("name", name);
       if (file) fd.append("file", file);
 
-      const res = await fetch("/api/team", { method: "PUT", body: fd });
-      if (!res.ok) throw new Error("Failed to update member");
+      const res = await axios.put("/api/team", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (res.status !== 200) throw new Error("Failed to update member");
 
       setSuccess("Member updated successfully");
       setEditingId(null);
@@ -130,12 +135,8 @@ export function useTeam() {
 
   const deleteMember = async (id: number) => {
     try {
-      const res = await fetch("/api/team", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      if (!res.ok) throw new Error("Failed to delete member");
+      const res = await axios.delete("/api/team", { data: { id } });
+      if (res.status !== 200) throw new Error("Failed to delete member");
 
       setSuccess("Member deleted");
       fetchMembers();
@@ -146,12 +147,8 @@ export function useTeam() {
 
   const deleteProfilePicture = async (id: number) => {
     try {
-      const res = await fetch("/api/team", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-      if (!res.ok) throw new Error("Failed to delete picture");
+      const res = await axios.patch("/api/team", { data: { id } });
+      if (res.status !== 200) throw new Error("Failed to delete picture");
 
       setSuccess("Profile picture removed");
       fetchMembers();
@@ -160,23 +157,14 @@ export function useTeam() {
     }
   };
 
-  const addRole = async (
-    memberId: number,
-    departmentId: number,
-    roleId: number
-  ) => {
+  const addRole = async (memberId: number, departmentId: number, roleId: number) => {
     try {
-      const res = await fetch("/api/team/roles", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          team_member_id: memberId,
-          department_id: departmentId,
-          role_id: roleId,
-        }),
+      const res = await axios.post("/api/team/roles", {
+        team_member_id: memberId,
+        department_id: departmentId,
+        role_id: roleId,
       });
-
-      if (!res.ok) throw new Error("Failed to add role");
+      if (res.status !== 200) throw new Error("Failed to add role");
 
       setSuccess("Role added");
       fetchMemberRoles(memberId);
@@ -185,23 +173,16 @@ export function useTeam() {
     }
   };
 
-  const removeRole = async (
-    memberId: number,
-    departmentId: number,
-    roleId: number
-  ) => {
+  const removeRole = async (memberId: number, departmentId: number, roleId: number) => {
     try {
-      const res = await fetch("/api/team/roles", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const res = await axios.delete("/api/team/roles", {
+        data: {
           team_member_id: memberId,
           department_id: departmentId,
           role_id: roleId,
-        }),
+        },
       });
-
-      if (!res.ok) throw new Error("Failed to remove role");
+      if (res.status !== 200) throw new Error("Failed to remove role");
 
       setSuccess("Role removed");
       fetchMemberRoles(memberId);
