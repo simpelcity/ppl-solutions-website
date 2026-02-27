@@ -5,7 +5,7 @@ function NotFoundPage() {
 		<main className="main d-flex flex-column justify-content-center align-items-center bg-dark text-light">
 		    <p>Uh, oh</p>
 		    <h1>404</h1>
-			  <h3>Page not found</h3>
+			  <h3>Page niet gevonden</h3>
 		</main>
 	)
 }
