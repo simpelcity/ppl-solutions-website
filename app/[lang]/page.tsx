@@ -48,9 +48,39 @@ export default async function HomePage({ params }: PageProps) {
   const aboutUs1 = dict.home["about-us"].title.split(' ')[0];
   const aboutUs2 = dict.home["about-us"].title.split(' ')[1];
 
-  const offer1 = dict.home.offers.title.split(' ')[0];
-  const offer2 = dict.home.offers.title.split(' ')[1];
-  const offer3 = dict.home.offers.title.split(' ')[2];
+  // const split = dict.home.offers.title.split(' ');
+  // console.log(split)
+  // console.log(split[split.length - 1])
+  // console.log(split[split.length - 1].substring(0, split[split.length - 1].length - 1))
+  // const offer1 = dict.home.offers.title.split(' ')[0];
+  // const offer2 = dict.home.offers.title.split(' ')[1];
+  // const offer3 = dict.home.offers.title.split(' ')[2];
+  // const offer4Split = dict.home.offers.title.split(' ')[3] ? dict.home.offers.title.split(' ')[3] : '';
+  // const offer4 = offer4Split.substring(0, offer4Split.length - 1)
+
+  // let offerPart1 = '';
+  // let offerPart2 = '';
+  // if (lang === 'en') {
+  //   offerPart1 = `${offer1} ${offer2} ${offer3}`;
+  //   offerPart2 = offer4;
+  // } else if (lang === 'nl') {
+  //   offerPart1 = `${offer1} ${offer2}`;
+  //   offerPart2 = `${offer3}`;
+  // } else if (lang === 'cs' || lang === 'sk') {
+  //   offerPart1 = `${offer1} ${offer2}`;
+  // }
+
+  const splitLastWord = (text: string) => {
+    const words = text.trim().split(/\s+/);
+    const lastSplit = words.pop() ?? '';
+    const last = lastSplit.endsWith('?') ? lastSplit.slice(0, -1) : lastSplit;
+    return {
+      normal: words.join(' '),
+      primary: last,
+    };
+  };
+
+  const { normal, primary } = splitLastWord(dict.home.offers.title);
 
   const apply1 = dict.home.apply.title.split(' ')[0];
   const apply2 = dict.home.apply.title.split(' ')[1];
@@ -100,11 +130,12 @@ export default async function HomePage({ params }: PageProps) {
         <section className="offers d-flex justify-content-center text-center bg-dark">
           <Container className="my-5 d-flex flex-column align-items-center">
             <h2 className="text-uppercase mb-3 text-light mb-4">
-              <span>{offer1}</span> <span className="text-primary">{offer2}</span> <span>{offer3}?</span>
+              <span>{normal}</span>{" "}
+              <span className="text-primary">{primary}</span> ?
             </h2>
             <Row className="w-100 d-flex justify-content-center row-gap-4">
               <Col xs={12} md={6} xl={4}>
-                <CardText title={dict.home.offers.title} icon="FaUsers">
+                <CardText title={dict.home.offers.card1.title} icon="FaUsers">
                   {dict.home.offers.card1.text}
                 </CardText>
               </Col>
