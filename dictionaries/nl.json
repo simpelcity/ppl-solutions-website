@@ -47,6 +47,16 @@
       "copyright": "Copyright {year} PPL Solutions. Alle rechten voorbehouden | Ontwikkeld door Simpelcity"
     }
   },
+  "not-found": {
+    "meta": {
+      "title": "404 - Pagina niet gevonden",
+      "description": "De pagina die u zoekt bestaat niet."
+    },
+    "card": {
+      "title": "Oeps, pagina niet gevonden",
+      "text": "De pagina die u zoekt bestaat niet."
+    }
+  },
   "home": {
     "meta": {
       "title": "De toekomst van digitale logistiek vormgeven",

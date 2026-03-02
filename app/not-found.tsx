@@ -1,9 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Card404 from '@/components/ui/cards/Card404'
-import LayoutClient from '@/app/[lang]/LayoutClient'
 import { getDictionary } from '@/app/i18n'
 import { i18n, type Locale } from '@/i18n'
-import { AuthProvider, SidebarProvider } from '@/lib'
+import { cookies } from "next/headers"
 
 export const metadata = {
   title: '404 | Page Not Found',
@@ -11,26 +10,24 @@ export const metadata = {
 }
 
 export default async function NotFoundPage() {
-  const lang = i18n.defaultLocale
+  const cookieStore = await cookies()
+  const cookieLocale = cookieStore.get("NEXT_LOCALE")?.value
+  const lang = (cookieLocale && i18n.locales.includes(cookieLocale as Locale)
+    ? cookieLocale
+    : i18n.defaultLocale) as Locale
   const dict = await getDictionary(lang)
 
   return (
-    <AuthProvider>
-      <SidebarProvider>
-        <LayoutClient dict={dict} lang={lang as Locale} forceHideFooter>
-          <main className="main">
-            <section className="d-flex w-100 text-light">
-              <Container className="my-5 d-flex justify-content-center">
-                <Row className="w-100 d-flex justify-content-center align-items-center">
-                  <Col xs={12} md={10} xl={6}>
-                    <Card404 />
-                  </Col>
-                </Row>
-              </Container>
-            </section>
-          </main>
-        </LayoutClient>
-      </SidebarProvider>
-    </AuthProvider>
+    <main className="main">
+      <section className="d-flex w-100 text-light">
+        <Container className="my-5 d-flex justify-content-center">
+          <Row className="w-100 d-flex justify-content-center align-items-center">
+            <Col xs={12} md={10} xl={6}>
+              <Card404 dict={dict} lang={lang} />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </main>
   )
 }

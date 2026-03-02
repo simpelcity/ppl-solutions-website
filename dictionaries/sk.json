@@ -47,6 +47,16 @@
       "copyright": "Copyright {year} PPL Solutions. Všetky práva vyhradené | Vytvoril Simpelcity"
     }
   },
+  "not-found": {
+    "meta": {
+      "title": "404 - Stránka sa nenašla",
+      "description": "Stránka, ktorú hľadáte, neexistuje."
+    },
+    "card": {
+      "title": "Ups, stránka sa nenašla",
+      "text": "Stránka, ktorú hľadáte, neexistuje."
+    }
+  },
   "home": {
     "meta": {
       "title": "Riadenie budúcnosti digitálnej logistiky",

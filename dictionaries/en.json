@@ -47,6 +47,16 @@
       "copyright": "Copyright {year} PPL Solutions. All rights Reserved | Developed by Simpelcity"
     }
   },
+  "not-found": {
+    "meta": {
+      "title": "404 - Page not found",
+      "description": "The page you are looking for does not exist."
+    },
+    "card": {
+      "title": "Oops, page not found",
+      "text": "The page you are looking for does not exist."
+    }
+  },
   "home": {
     "meta": {
       "title": "Steering the future of Digital Logistics",

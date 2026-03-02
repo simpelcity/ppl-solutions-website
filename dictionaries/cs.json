@@ -47,6 +47,16 @@
       "copyright": "Copyright {year} PPL Solutions. Všechna práva vyhrazena | Vytvořil Simpelcity"
     }
   },
+  "not-found": {
+    "meta": {
+      "title": "404 - Stránka nenalezena",
+      "description": "Stránka, kterou hledáte, neexistuje."
+    },
+    "card": {
+      "title": "Jejda, stránka nenalezena",
+      "text": "Stránka, kterou hledáte, neexistuje."
+    }
+  },
   "home": {
     "meta": {
       "title": "Řídíme budoucnost digitální logistiky",
