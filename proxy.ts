@@ -1,99 +1,99 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { i18n } from './i18n'
-import { createServerClient } from '@supabase/ssr'
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { i18n } from "./i18n";
+import { createServerClient } from "@supabase/ssr";
 
 export async function proxy(request: NextRequest) {
-  const pathname = request.nextUrl.pathname
+  const pathname = request.nextUrl.pathname;
 
   // Exclude static files from rewrites/redirects
   const staticFiles = [
-    '/robots.txt',
-    '/sitemap.xml',
-    '/favicon.ico',
-    '/favicon.png',
-    '/assets',
-    '/_next/static',
-    '/_next/image'
+    "/robots.txt",
+    "/sitemap.xml",
+    "/favicon.ico",
+    "/favicon.png",
+    "/assets",
+    "/_next/static",
+    "/_next/image",
   ];
-  if (staticFiles.some((file) => pathname === file || pathname.startsWith(file + '/'))) {
+  if (staticFiles.some((file) => pathname === file || pathname.startsWith(file + "/"))) {
     return NextResponse.next();
   }
 
   let response = NextResponse.next({
     request: { headers: request.headers },
-  })
+  });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() { return request.cookies.getAll() },
+        getAll() {
+          return request.cookies.getAll();
+        },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
           response = NextResponse.next({
             request: { headers: request.headers },
-          })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
-          )
+          });
+          cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
         },
       },
-    }
-  )
+    },
+  );
 
-  await supabase.auth.getUser()
+  try {
+    await supabase.auth.getUser();
+  } catch (error) {
+    console.warn("Supabase auth check failed in proxy:", error);
+  }
 
-  const pathnameLocale = i18n.locales.find(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  )
+  const pathnameLocale = i18n.locales.find((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
 
   if (pathnameLocale) {
     if (pathnameLocale === i18n.defaultLocale) {
-      const newPathname = pathname.replace(`/${pathnameLocale}`, '') || '/'
-      return NextResponse.rewrite(new URL(`/${pathnameLocale}${newPathname}`, request.url))
+      const newPathname = pathname.replace(`/${pathnameLocale}`, "") || "/";
+      return NextResponse.rewrite(new URL(`/${pathnameLocale}${newPathname}`, request.url));
     }
-    return response
+    return response;
   }
 
-  const locale = getLocale(request)
+  const locale = getLocale(request);
 
   if (locale !== i18n.defaultLocale) {
-    return NextResponse.redirect(
-      new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
-    )
+    return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url));
   }
 
-  const finalUrl = new URL(`/${i18n.defaultLocale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
-  
-  const rewriteResponse = NextResponse.rewrite(finalUrl)
-  response.cookies.getAll().forEach(cookie => {
-    rewriteResponse.cookies.set(cookie.name, cookie.value)
-  })
+  const finalUrl = new URL(`/${i18n.defaultLocale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url);
 
-  return rewriteResponse
+  const rewriteResponse = NextResponse.rewrite(finalUrl);
+  response.cookies.getAll().forEach((cookie) => {
+    rewriteResponse.cookies.set(cookie.name, cookie.value);
+  });
+
+  return rewriteResponse;
 }
 
 function getLocale(request: NextRequest): string {
-  const localeCookie = request.cookies.get('NEXT_LOCALE')?.value
+  const localeCookie = request.cookies.get("NEXT_LOCALE")?.value;
   if (localeCookie && i18n.locales.includes(localeCookie as any)) {
-    return localeCookie
+    return localeCookie;
   }
 
-  const acceptLanguage = request.headers.get('accept-language')
+  const acceptLanguage = request.headers.get("accept-language");
   if (acceptLanguage) {
     const preferredLocale = acceptLanguage
-      .split(',')
-      .map((lang) => lang.split(';')[0].trim().split('-')[0])
-      .find((lang) => i18n.locales.includes(lang as any))
-    
-    if (preferredLocale) return preferredLocale
+      .split(",")
+      .map((lang) => lang.split(";")[0].trim().split("-")[0])
+      .find((lang) => i18n.locales.includes(lang as any));
+
+    if (preferredLocale) return preferredLocale;
   }
 
-  return i18n.defaultLocale
+  return i18n.defaultLocale;
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|robots.txt|sitemap.xml).*)'],
-}
+  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|robots.txt|sitemap.xml).*)"],
+};

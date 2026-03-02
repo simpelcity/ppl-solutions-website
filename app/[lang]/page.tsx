@@ -1,5 +1,5 @@
 import { Container, Image, Row, Col } from "react-bootstrap";
-import { CardText, BSButton } from "@/components/index";
+import { CardText, BSButton } from "@/components";
 import "@/styles/Home.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"

@@ -2,7 +2,7 @@
 
 import { useUserStats } from '@/hooks/useUserStats'
 import { Card, Row, Col, Spinner } from 'react-bootstrap'
-import { TableStats } from '@/components/'
+import { TableStats } from '@/components'
 
 export default function UserStats() {
   const { stats } = useUserStats();

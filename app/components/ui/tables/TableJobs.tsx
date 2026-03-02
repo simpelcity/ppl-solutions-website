@@ -1,6 +1,6 @@
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
-import { TableJobsClient } from "@/components/"
+import { TableJobsClient } from "@/components"
 
 type TableJobsProps = {
   params: Promise<{ lang: Locale }>;

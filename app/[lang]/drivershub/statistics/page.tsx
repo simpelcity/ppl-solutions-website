@@ -1,4 +1,4 @@
-import { Dashboard, UserStats } from "@/components/"
+import { Dashboard, UserStats } from "@/components"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"

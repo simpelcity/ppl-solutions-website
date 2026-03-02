@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "@/lib/";
+import { useAuth } from "@/lib";
 import { Dropdown, Image, Nav, Collapse, Spinner } from "react-bootstrap";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";

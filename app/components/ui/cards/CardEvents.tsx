@@ -6,7 +6,7 @@ import { FiMapPin } from "react-icons/fi";
 import { LuGamepad2 } from "react-icons/lu";
 import { BsHddStack } from "react-icons/bs";
 import { BsDownload } from "react-icons/bs";
-import { DivEvents, BSButton } from "@/components/";
+import { DivEvents, BSButton } from "@/components";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 

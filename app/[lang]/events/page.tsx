@@ -1,4 +1,4 @@
-import { StartBanner, CardEvents } from "@/components/index"
+import { StartBanner, CardEvents } from "@/components"
 import { Container, Row } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"

@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, Form, Col } from "react-bootstrap";
-import { BSButton } from "@/components/";
+import { BSButton } from "@/components";
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa";
 
 type DictionaryType = {

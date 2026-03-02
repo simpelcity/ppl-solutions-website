@@ -2,8 +2,8 @@
 
 import { Container, Row, Col, Card, Form, Image } from "react-bootstrap";
 import { useState } from "react";
-import { supabase } from "@/lib/";
-import { BSButton } from "@/components/";
+import { supabase } from "@/lib";
+import { BSButton } from "@/components";
 import "@/styles/AuthCards.scss";
 
 type ForgotPasswordFormClientProps = {

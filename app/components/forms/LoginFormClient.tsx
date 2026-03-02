@@ -2,9 +2,9 @@
 
 import { Card, Form, Image } from "react-bootstrap";
 import { useState } from "react";
-import { supabase } from "@/lib/";
+import { supabase } from "@/lib";
 import { useRouter } from "next/navigation";
-import { BSButton } from "@/components/";
+import { BSButton } from "@/components";
 
 type LoginFormClientProps = {
   dict: {

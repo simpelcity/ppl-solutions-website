@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useUserStats } from '@/hooks/useUserStats'
 import { Table, Placeholder } from 'react-bootstrap'
-import { PlaceholderTable } from '@/components/'
+import { PlaceholderTable } from '@/components'
 
 export default function TableStats() {
   const { stats, loading, error } = useUserStats();

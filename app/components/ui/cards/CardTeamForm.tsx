@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
-import { BSButton } from "@/components/";
+import { BSButton } from "@/components";
 import { useTeam, TeamMember } from "@/app/hooks/useTeam";
 
 type ConfirmAction = "delete-member" | "delete-picture" | null;

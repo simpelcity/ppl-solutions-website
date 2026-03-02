@@ -1,6 +1,6 @@
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
-import { ForgotPasswordFormClient } from "@/components/"
+import { ForgotPasswordFormClient } from "@/components"
 
 type ForgotPasswordFormProps = {
   params: Promise<{ lang: Locale }>;

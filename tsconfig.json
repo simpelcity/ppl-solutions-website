@@ -22,8 +22,10 @@
       "@/*": ["./*"],
       "@/app/*": ["./app/*"],
       "@/utils/*": ["./utils/*"],
-      "@/components/*": ["./app/components/index.ts"],
-      "@/lib/*": ["./app/lib/index.ts"],
+      "@/components/*": ["./app/components/*"],
+      "@/components": ["./app/components/index.ts"],
+      "@/lib": ["./app/lib/index.ts"],
+      "@/lib/*": ["./app/lib/*"],
       "@/hooks/*": ["./app/hooks/*"],
       "@/styles/*": ["./app/styles/*"],
       "@/supabaseAdmin/*": ["./app/lib/supabaseAdmin.ts"]

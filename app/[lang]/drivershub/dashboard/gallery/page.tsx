@@ -1,4 +1,4 @@
-import { CardGalleryForm, Dashboard } from "@/components/"
+import { CardGalleryForm, Dashboard } from "@/components"
 import { Row, Col } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"

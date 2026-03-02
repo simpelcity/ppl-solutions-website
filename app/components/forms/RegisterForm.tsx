@@ -1,6 +1,6 @@
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
-import { RegisterFormClient } from "@/components/"
+import { RegisterFormClient } from "@/components"
 
 type RegisterFormProps = {
   params: Promise<{ lang: Locale }>;

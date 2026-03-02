@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NavButtons } from "@/components/";
+import { NavButtons } from "@/components";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useSidebar } from "@/lib/";
+import { useSidebar } from "@/lib";
 import { i18n } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
 import "@/styles/Navbar.scss";

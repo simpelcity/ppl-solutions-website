@@ -1,4 +1,4 @@
-import { StartBanner, GalleryGrid } from "@/components/"
+import { StartBanner, GalleryGrid } from "@/components"
 import { Container } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"

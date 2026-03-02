@@ -1,7 +1,7 @@
 "use client";
 
 import { Table } from "react-bootstrap";
-import { PlaceholderTable, BSButton } from "@/components/";
+import { PlaceholderTable, BSButton } from "@/components";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useUserJobs } from "@/hooks/useUserJobs";
 

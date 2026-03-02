@@ -3,19 +3,25 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Nav, Dropdown, Image } from 'react-bootstrap'
-import { BSButton } from "@/components/";
+import { BSButton } from "@/components";
 import { i18n, type Locale } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
+import { useAuth } from '@/lib'
 
 export default function NavButtons({ dict, width }: { dict: Dictionary, width: number }) {
   const pathname = usePathname();
   const router = useRouter();
   const [expanded, setExpanded] = useState(false);
+  const { user } = useAuth();
 
   // Extract current locale from pathname
   const currentLocale = i18n.locales.find(
     (locale) => pathname?.startsWith(`/${locale}/`) || pathname === `/${locale}`
   ) || i18n.defaultLocale;
+
+  const drivershubHref = user
+    ? (currentLocale === i18n.defaultLocale ? "/drivershub" : `/${currentLocale}/drivershub`)
+    : (currentLocale === i18n.defaultLocale ? "/login" : `/${currentLocale}/login`);
 
   const languageNames: Record<Locale, string> = {
     en: "EN",
@@ -74,7 +80,7 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
         <BSButton
           variant="secondary"
           border="primary 2"
-          href={currentLocale === i18n.defaultLocale ? "/login" : `/${currentLocale}/login`}
+          href={drivershubHref}
 
           onClick={() => setExpanded(false)}>
           {dict.navbar.buttons.drivershub}

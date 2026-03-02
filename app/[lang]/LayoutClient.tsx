@@ -1,19 +1,21 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import { Navbar, Footer } from "@/components/"
+import { Navbar, Footer } from "@/components"
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 
 type Props = {
-  children: React.ReactNode
-  dict: Dictionary
-  lang: Locale
+  children: React.ReactNode;
+  dict: Dictionary;
+  lang: Locale;
+  forceHideFooter?: boolean;
 }
 
-export default function LayoutClient({ children, dict, lang }: Props) {
-  const pathname = usePathname()
-  const hideFooter = pathname?.includes("/login") || pathname?.includes("/register") || pathname?.includes("/reset-password") || pathname?.includes("/forgot-password") || pathname?.includes("/not-found")
+export default function LayoutClient({ children, dict, lang, forceHideFooter = false }: Props) {
+  const pathname = usePathname();
+  const hideFooterByPath = pathname?.includes("/login") || pathname?.includes("/register") || pathname?.includes("/reset-password") || pathname?.includes("/forgot-password");
+  const hideFooter = forceHideFooter || hideFooterByPath;
 
   return (
     <>
