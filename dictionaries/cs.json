@@ -54,7 +54,11 @@
     },
     "card": {
       "title": "Jejda, stránka nenalezena",
-      "text": "Stránka, kterou hledáte, neexistuje."
+      "text": "Stránka, kterou hledáte, neexistuje.",
+      "buttons": {
+        "home": "Domů",
+        "contact": "Kontaktujte nás"
+      }
     }
   },
   "home": {

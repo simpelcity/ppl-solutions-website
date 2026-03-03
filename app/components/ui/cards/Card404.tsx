@@ -24,8 +24,8 @@ export default function Card404({ dict, lang }: Card404Props) {
             <h1 className="">{dict["not-found"].card.title}</h1>
             <p className="">{dict["not-found"].card.text}</p>
             <div className="d-flex column-gap-2">
-              <BSButton variant="primary" href={homeHref}>home</BSButton>
-              <BSButton variant="outline" href={contactHref}>contact us</BSButton>
+              <BSButton variant="primary" href={homeHref}>{dict["not-found"].card.buttons.home}</BSButton>
+              <BSButton variant="outline" href={contactHref}>{dict["not-found"].card.buttons.contact}</BSButton>
             </div>
           </Col>
         </Row>

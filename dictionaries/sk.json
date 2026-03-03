@@ -54,7 +54,11 @@
     },
     "card": {
       "title": "Ups, stránka sa nenašla",
-      "text": "Stránka, ktorú hľadáte, neexistuje."
+      "text": "Stránka, ktorú hľadáte, neexistuje.",
+      "buttons": {
+        "home": "Domov",
+        "contact": "Kontaktujte nás"
+      }
     }
   },
   "home": {

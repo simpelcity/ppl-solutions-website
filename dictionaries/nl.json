@@ -54,7 +54,11 @@
     },
     "card": {
       "title": "Oeps, pagina niet gevonden",
-      "text": "De pagina die u zoekt bestaat niet."
+      "text": "De pagina die u zoekt bestaat niet.",
+      "buttons": {
+        "home": "Thuis",
+        "contact": "Contacteer ons"
+      }
     }
   },
   "home": {
