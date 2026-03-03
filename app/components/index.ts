@@ -23,6 +23,7 @@ export { default as CardContact } from "./ui/cards/CardContact";
 export { default as CardEvents } from "./ui/cards/CardEvents";
 export { default as CardGallery } from "./ui/cards/CardGallery";
 export { default as CardGalleryForm } from "./ui/cards/CardGalleryForm";
+export { default as CardLeaderboard } from "./ui/cards/CardLeaderboard";
 export { default as CardTeam } from "./ui/cards/CardTeam";
 export { default as CardTeamForm } from "./ui/cards/CardTeamForm";
 export { default as CardText } from "./ui/cards/CardText";
