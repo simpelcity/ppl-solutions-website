@@ -2,10 +2,17 @@
 
 import { useLeaderboard } from '@/hooks/useLeaderboard'
 import { Card, Row, Col, Spinner } from 'react-bootstrap'
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 export default function CardLeaderboard() {
+  const isAdmin = useIsAdmin();
   const { loading, error, topDistanceDriver, topThpDriver, topMassDriver } = useLeaderboard();
-  console.log({ loading, error, topDistanceDriver, topThpDriver, topMassDriver });
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
+  adminLog({ loading, error, topDistanceDriver, topThpDriver, topMassDriver });
 
   const rounded = (value: any) => {
     const valueNum = value.toFixed(1);

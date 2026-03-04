@@ -48,28 +48,6 @@ export default async function HomePage({ params }: PageProps) {
   const aboutUs1 = dict.home["about-us"].title.split(' ')[0];
   const aboutUs2 = dict.home["about-us"].title.split(' ')[1];
 
-  // const split = dict.home.offers.title.split(' ');
-  // console.log(split)
-  // console.log(split[split.length - 1])
-  // console.log(split[split.length - 1].substring(0, split[split.length - 1].length - 1))
-  // const offer1 = dict.home.offers.title.split(' ')[0];
-  // const offer2 = dict.home.offers.title.split(' ')[1];
-  // const offer3 = dict.home.offers.title.split(' ')[2];
-  // const offer4Split = dict.home.offers.title.split(' ')[3] ? dict.home.offers.title.split(' ')[3] : '';
-  // const offer4 = offer4Split.substring(0, offer4Split.length - 1)
-
-  // let offerPart1 = '';
-  // let offerPart2 = '';
-  // if (lang === 'en') {
-  //   offerPart1 = `${offer1} ${offer2} ${offer3}`;
-  //   offerPart2 = offer4;
-  // } else if (lang === 'nl') {
-  //   offerPart1 = `${offer1} ${offer2}`;
-  //   offerPart2 = `${offer3}`;
-  // } else if (lang === 'cs' || lang === 'sk') {
-  //   offerPart1 = `${offer1} ${offer2}`;
-  // }
-
   const splitLastWord = (text: string) => {
     const words = text.trim().split(/\s+/);
     const lastSplit = words.pop() ?? '';

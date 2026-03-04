@@ -49,7 +49,7 @@ export function useGallery() {
       fetchItems();
     } catch (e: any) {
       setError(e?.response?.data?.error || e.message);
-      console.log(e);
+      console.error(e);
     } finally {
       setSubmitting(false);
     }

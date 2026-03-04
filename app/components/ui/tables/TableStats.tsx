@@ -10,8 +10,6 @@ export default function TableStats() {
 
   if (error) return <div className="text-danger text-center py-3">{error}</div>
 
-  console.log('stats in TableStats:', stats);
-
   const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }

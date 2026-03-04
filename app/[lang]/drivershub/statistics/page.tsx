@@ -27,7 +27,7 @@ async function getSupabaseUser() {
               cookieStore.set(name, value, options)
             )
           } catch {
-            // console.log('error')
+            console.error('error')
           }
         },
       },

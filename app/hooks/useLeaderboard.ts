@@ -132,16 +132,12 @@ export function useLeaderboard() {
 
       try {
         const statistics = await fetchStatistics();
-        // console.log(statistics);
         const topDistance = getTopDistanceDriver(statistics ?? []);
         setTopDistanceDriver(topDistance);
-        // console.log(topDistance);
         const topThp = getTopThpDriver(statistics ?? []);
         setTopThpDriver(topThp);
-        // console.log(topThp);
         const topMass = getTopMassDriver(statistics ?? []);
         setTopMassDriver(topMass);
-        // console.log(topMass);
       } catch (err: any) {
         setError(err.message);
       } finally {

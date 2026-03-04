@@ -1,0 +1,35 @@
+
+  [2026-03-04T12:37:45.376Z]
+  URL: http://localhost:8000/api/statistics/user
+  Method: POST
+  Status: 500
+  Error Name: Internal Server Error
+  Message: SyntaxError: Unexpected end of JSON input
+SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5738:19)
+    at successSteps (node:internal/deps/undici/undici:5719:27)
+    at consumeBody (node:internal/deps/undici/undici:5725:9)
+    at NextRequest.json (node:internal/deps/undici/undici:5665:18)
+    at POST (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__3f433a45._.js:218:36)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:80:14)
+    at AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:37945)
+    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47941
+    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/trace/tracer.js:185:36
+    at NoopContextManager.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NoopTracer.startActiveSpan (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+    at ProxyTracer.startActiveSpan (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/trace/tracer.js:154:103
+    at NoopContextManager.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+    at ContextAPI.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+    at NextTracerImpl.trace (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/trace/tracer.js:154:28)
+    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47780
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:91:14)
+    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:45275
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:91:14)
+    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:45232
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:91:14)
+    at AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:45186)
+  -----------------------------
+  
