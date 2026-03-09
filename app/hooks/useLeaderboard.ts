@@ -2,127 +2,116 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
-interface topDistanceDriver {
+interface LeaderboardEntry {
   username: string;
-  distance: number;
+  value: number;
+  avatar?: string;
 }
 
-interface topThpDriver {
-  username: string;
-  thp: number;
-}
-
-interface topMassDriver {
-  username: string;
-  mass: number;
-}
-
-export function useLeaderboard() {
+export function useLeaderboard(
+  selectedPeriod: "all-time" | "monthly" = "all-time",
+  selectedYear?: number,
+  selectedMonth?: number,
+) {
+  const isAdmin = useIsAdmin();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [topDistanceDriver, setTopDistanceDriver] = useState<topDistanceDriver | null>(null);
-  const [topThpDriver, setTopThpDriver] = useState<topThpDriver | null>(null);
-  const [topMassDriver, setTopMassDriver] = useState<topMassDriver | null>(null);
+  const [allTimeDistanceLeaderboard, setAllTimeDistanceLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [monthlyDistanceLeaderboard, setMonthlyDistanceLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [allTimeThpLeaderboard, setAllTimeThpLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [monthlyThpLeaderboard, setMonthlyThpLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [allTimeMassLeaderboard, setAllTimeMassLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [monthlyMassLeaderboard, setMonthlyMassLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [currentLeaderboard, setCurrentLeaderboard] = useState<LeaderboardEntry[]>([]);
 
-  const fetchStatistics = async () => {
-    const res = await axios.get("/api/statistics");
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
+  const fetchStatistics = async (month?: number, year?: number) => {
+    let url = "/api/statistics";
+    if (month !== undefined && year !== undefined) {
+      url += `?month=${month}&year=${year}`;
+    }
+    const res = await axios.get(url);
     if (res.status !== 200) {
       throw new Error("Failed to fetch statistics");
     }
     return res.data?.data;
   };
 
-  const mostFrequent = (arr: string[]) => {
-    const frequency: { [key: string]: number } = {};
-    let maxFreq = 0;
-    let mostFreqItem = "";
-    arr.forEach((item) => {
-      frequency[item] = (frequency[item] || 0) + 1;
-      if (frequency[item] > maxFreq) {
-        maxFreq = frequency[item];
-        mostFreqItem = item;
-      }
-    });
-    return mostFreqItem + (maxFreq > 1 ? ` (${maxFreq})` : "");
-  };
-
-  const getTopDistanceDriver = (jobs: any[]) => {
-    const totals = new Map<string, number>();
+  const getDistanceLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
+    // Map username to total distance and optional avatar
+    const totals = new Map<string, { value: number; avatar?: string }>();
 
     for (const job of jobs) {
       const username = job?.driver?.username;
       const distance = job?.distanceDriven;
+      const avatar = job?.driver?.avatar;
 
       if (!username || typeof distance !== "number") continue;
-      totals.set(username, (totals.get(username) ?? 0) + distance);
+      const entry = totals.get(username) || { value: 0, avatar };
+      if (!entry.avatar && avatar) entry.avatar = avatar;
+      entry.value += distance;
+      totals.set(username, entry);
     }
 
-    if (totals.size === 0) return null;
-
-    let bestUsername = "";
-    let bestDistance = -Infinity;
-
-    for (const [username, distance] of totals.entries()) {
-      if (distance > bestDistance) {
-        bestDistance = distance;
-        bestUsername = username;
-      }
-    }
-
-    return { username: bestUsername, distance: bestDistance };
+    return Array.from(totals.entries())
+      .map(([username, { value, avatar }]) => ({ username, value, avatar }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, limit);
   };
 
-  const getTopThpDriver = (jobs: any[]) => {
-    const totals = new Map<string, number>();
+  const getThpLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
+    const totals = new Map<string, { value: number; avatar?: string }>();
 
     for (const job of jobs) {
       const username = job?.driver?.username;
       const thp = job?.THP;
+      const avatar = job?.driver?.avatar;
 
       if (!username || typeof thp !== "number") continue;
-      totals.set(username, (totals.get(username) ?? 0) + thp);
+      const entry = totals.get(username) || { value: 0, avatar };
+      if (!entry.avatar && avatar) entry.avatar = avatar;
+      entry.value += thp;
+      totals.set(username, entry);
     }
 
-    if (totals.size === 0) return null;
-
-    let bestUsername = "";
-    let bestThp = -Infinity;
-
-    for (const [username, thp] of totals.entries()) {
-      if (thp > bestThp) {
-        bestThp = thp;
-        bestUsername = username;
-      }
-    }
-
-    return { username: bestUsername, thp: bestThp };
+    return Array.from(totals.entries())
+      .map(([username, { value, avatar }]) => ({ username, value, avatar }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, limit);
   };
 
-  const getTopMassDriver = (jobs: any[]) => {
-    const totals = new Map<string, number>();
+  const getMassLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
+    const totals = new Map<string, { value: number; avatar?: string }>();
 
     for (const job of jobs) {
       const username = job?.driver?.username;
       const mass = job?.cargo?.mass;
+      const avatar = job?.driver?.avatar;
 
       if (!username || typeof mass !== "number") continue;
-      totals.set(username, (totals.get(username) ?? 0) + mass);
+      const entry = totals.get(username) || { value: 0, avatar };
+      if (!entry.avatar && avatar) entry.avatar = avatar;
+      entry.value += mass;
+      totals.set(username, entry);
     }
 
-    if (totals.size === 0) return null;
+    return Array.from(totals.entries())
+      .map(([username, { value, avatar }]) => ({ username, value, avatar }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, limit);
+  };
 
-    let bestUsername = "";
-    let bestMass = -Infinity;
-
-    for (const [username, mass] of totals.entries()) {
-      if (mass > bestMass) {
-        bestMass = mass;
-        bestUsername = username;
-      }
-    }
-
-    return { username: bestUsername, mass: bestMass };
+  const filterJobsByMonth = (jobs: any[], year: number, month: number) => {
+    return jobs.filter((job) => {
+      const jobDate = new Date(job?.createdAt);
+      adminLog("jobDate:", jobDate);
+      return jobDate.getFullYear() === year && jobDate.getMonth() === month;
+    });
   };
 
   useEffect(() => {
@@ -131,13 +120,55 @@ export function useLeaderboard() {
       setError(null);
 
       try {
-        const statistics = await fetchStatistics();
-        const topDistance = getTopDistanceDriver(statistics ?? []);
-        setTopDistanceDriver(topDistance);
-        const topThp = getTopThpDriver(statistics ?? []);
-        setTopThpDriver(topThp);
-        const topMass = getTopMassDriver(statistics ?? []);
-        setTopMassDriver(topMass);
+        // Fetch all-time data (always needed for the top drivers cards)
+        const allTimeStatistics = await fetchStatistics();
+
+        // All-time distance leaderboard
+        const allTimeLeaderboard = getDistanceLeaderboard(allTimeStatistics ?? []);
+        setAllTimeDistanceLeaderboard(allTimeLeaderboard);
+
+        // All-time THP leaderboard
+        const allTimeThpLeaderboard = getThpLeaderboard(allTimeStatistics ?? []);
+        setAllTimeThpLeaderboard(allTimeThpLeaderboard);
+
+        // All-time Mass leaderboard
+        const allTimeMassLeaderboard = getMassLeaderboard(allTimeStatistics ?? []);
+        setAllTimeMassLeaderboard(allTimeMassLeaderboard);
+
+        // Fetch monthly data if monthly period is selected
+        let monthlyStatistics = allTimeStatistics;
+        if (selectedPeriod === "monthly" && selectedYear !== undefined && selectedMonth !== undefined) {
+          monthlyStatistics = await fetchStatistics(selectedMonth, selectedYear);
+        }
+
+        // Monthly distance leaderboard
+        const monthlyJobs =
+          selectedPeriod === "monthly" && selectedYear !== undefined && selectedMonth !== undefined
+            ? (monthlyStatistics ?? [])
+            : filterJobsByMonth(
+                allTimeStatistics ?? [],
+                selectedYear ?? new Date().getFullYear(),
+                selectedMonth ?? new Date().getMonth(),
+              );
+        const monthlyLeaderboard = getDistanceLeaderboard(monthlyJobs);
+        setMonthlyDistanceLeaderboard(monthlyLeaderboard);
+
+        // Monthly THP leaderboard
+        const monthlyThpLeaderboard = getThpLeaderboard(monthlyJobs);
+        setMonthlyThpLeaderboard(monthlyThpLeaderboard);
+
+        // Monthly Mass leaderboard
+        const monthlyMassLeaderboard = getMassLeaderboard(monthlyJobs);
+        setMonthlyMassLeaderboard(monthlyMassLeaderboard);
+
+        adminLog("monthly jobs:", monthlyJobs);
+
+        // Set current leaderboard based on selected period
+        if (selectedPeriod === "all-time") {
+          setCurrentLeaderboard(allTimeLeaderboard);
+        } else {
+          setCurrentLeaderboard(monthlyLeaderboard);
+        }
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -146,7 +177,17 @@ export function useLeaderboard() {
     };
 
     load();
-  }, []);
+  }, [selectedPeriod, selectedYear, selectedMonth]);
 
-  return { loading, error, topDistanceDriver, topThpDriver, topMassDriver };
+  return {
+    loading,
+    error,
+    allTimeDistanceLeaderboard,
+    monthlyDistanceLeaderboard,
+    allTimeThpLeaderboard,
+    monthlyThpLeaderboard,
+    allTimeMassLeaderboard,
+    monthlyMassLeaderboard,
+    currentLeaderboard,
+  };
 }
