@@ -61,6 +61,12 @@
       }
     }
   },
+  "status": {
+    "loading": {
+      "loadingSpinner": "Načítání...",
+      "loader": "Načítání"
+    }
+  },
   "home": {
     "meta": {
       "title": "Řídíme budoucnost digitální logistiky",
@@ -303,7 +309,8 @@
         },
         "error": {
           "error": "Chyba:",
-          "noJobs": "Nenalezeny žádné zakázky"
+          "noJobs": "Nenalezeny žádné zakázky",
+          "driverNotFound": "Ovladač {driver} nebyl nalezen"
         }
       }
     },

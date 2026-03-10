@@ -61,6 +61,12 @@
       }
     }
   },
+  "status": {
+    "loading": {
+      "loadingSpinner": "Laden...",
+      "loader": "Laden"
+    }
+  },
   "home": {
     "meta": {
       "title": "De toekomst van digitale logistiek vormgeven",
@@ -286,7 +292,7 @@
       }
     },
     "jobs": {
-      "title": "gebruiker vrachten",
+      "title": "gebruikers vrachten",
       "table": {
         "date": "datum",
         "username": "gebruikersnaam",
@@ -303,7 +309,8 @@
         },
         "error": {
           "error": "Error:",
-          "noJobs": "Geen vrachten gevonden"
+          "noJobs": "Geen vrachten gevonden",
+          "driverNotFound": "Bestuurder {driver} niet gevonden"
         }
       }
     },

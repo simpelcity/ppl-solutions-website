@@ -61,6 +61,12 @@
       }
     }
   },
+  "status": {
+    "loading": {
+      "loadingSpinner": "Načítava sa...",
+      "loader": "Načítava sa"
+    }
+  },
   "home": {
     "meta": {
       "title": "Riadenie budúcnosti digitálnej logistiky",
@@ -307,7 +313,8 @@
         },
         "error": {
           "error": "Chyba:",
-          "noJobs": "Nenašli sa žiadne zákazky"
+          "noJobs": "Nenašli sa žiadne zákazky",
+          "driverNotFound": "Vodič {driver} sa nenašiel"
         }
       }
     },

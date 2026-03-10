@@ -48,8 +48,8 @@ export default async function LeaderboardPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-          <Dashboard dict={dict.drivershub.sidebar}>
-            <TableLeaderboard />
+          <Dashboard dict={dict}>
+            <TableLeaderboard dict={dict} />
           </Dashboard>
         </section>
       </main>

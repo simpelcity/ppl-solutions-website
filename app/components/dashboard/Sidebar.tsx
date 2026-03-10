@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
-import { Dropdown, Image, Nav, Collapse, Spinner } from "react-bootstrap";
+import { Dropdown, Image, Nav, Collapse } from "react-bootstrap";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
@@ -12,6 +12,8 @@ import { BiSolidDashboard } from "react-icons/bi";
 import { GoArrowSwitch } from "react-icons/go";
 import { FaUsers } from "react-icons/fa";
 import { MdPhotoLibrary } from "react-icons/md";
+import { LoaderSpinner } from '@/components'
+import type { Dictionary } from "@/app/i18n"
 
 interface NavItem {
   href: string;
@@ -24,23 +26,7 @@ interface SidebarProps {
   setIsSidebarCollapsed: (value: boolean) => void;
   isMobile: boolean;
   isNavbarVisible?: boolean;
-  dict?: {
-    title: string;
-    drivershub: string;
-    userStats: string;
-    leaderboard: string;
-    dashboard: {
-      title: string;
-      vtcStats: string;
-      team: string;
-      gallery: string;
-    };
-    profile: {
-      settings: string;
-      profile: string;
-      logout: string;
-    };
-  };
+  dict: Dictionary;
   [key: string]: any;
 }
 
@@ -63,17 +49,17 @@ export default function Sidebar({
     {
       href: "/drivershub",
       icon: <GoHomeFill />,
-      label: dict?.drivershub || "Drivershub",
+      label: dict.drivershub.sidebar.drivershub || "Drivershub",
     },
     {
       href: "/drivershub/statistics",
       icon: <FaChartLine />,
-      label: dict?.userStats || "User Statistics",
+      label: dict.drivershub.sidebar.userStats || "User Statistics",
     },
     {
       href: "/drivershub/leaderboard",
       icon: <MdLeaderboard />,
-      label: dict?.leaderboard || "Leaderboard",
+      label: dict.drivershub.sidebar.leaderboard || "Leaderboard",
     },
   ];
 
@@ -81,17 +67,17 @@ export default function Sidebar({
     {
       href: "/drivershub/dashboard",
       icon: <FaChartLine />,
-      label: dict?.dashboard?.vtcStats || "VTC Statistics",
+      label: dict.drivershub.sidebar.dashboard.vtcStats || "VTC Statistics",
     },
     {
       href: "/drivershub/dashboard/team",
       icon: <FaUsers />,
-      label: dict?.dashboard?.team || "Team",
+      label: dict.drivershub.sidebar.dashboard.team || "Team",
     },
     {
       href: "/drivershub/dashboard/gallery",
       icon: <MdPhotoLibrary />,
-      label: dict?.dashboard?.gallery || "Gallery",
+      label: dict.drivershub.sidebar.dashboard.gallery || "Gallery",
     },
   ];
 
@@ -154,16 +140,7 @@ export default function Sidebar({
     }
   }, [session, loading, router]);
 
-  if (loading) {
-    return (
-      <>
-        <div className="loader w-auto d-flex justify-content-center align-items-center vh-100 text-light px-3">
-          <Spinner animation="border" className="me-2" />
-          <span className="fs-2">Loading...</span>
-        </div>
-      </>
-    );
-  }
+  if (loading) return <LoaderSpinner dict={dict} />
 
   if (!session) {
     return null;
@@ -193,7 +170,7 @@ export default function Sidebar({
           }`}>
         <a href="#" className="text-light text-decoration-none column-gap-2">
           <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
-            {dict?.title || "Sidebar"}
+            {dict.drivershub.sidebar.title || "Sidebar"}
           </h3>
         </a>
         {!isMobile && (
@@ -283,10 +260,10 @@ export default function Sidebar({
             <strong>{username}</strong>
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-dark shadow mb-1" style={{ zIndex: 1050 }}>
-            <Dropdown.Item href="/drivershub/profile/settings">{dict?.profile?.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item href="/drivershub/profile">{dict?.profile?.profile || "Profile"}</Dropdown.Item>
+            <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
+            <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogout}>{dict?.profile?.logout || "Sign out"}</Dropdown.Item>
+            <Dropdown.Item onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       )}
@@ -304,10 +281,10 @@ export default function Sidebar({
             />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-dark shadow ms-3 mb-1" style={{ zIndex: 1050 }}>
-            <Dropdown.Item href="/drivershub/profile/settings">{dict?.profile?.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item href="/drivershub/profile">{dict?.profile?.profile || "Profile"}</Dropdown.Item>
+            <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
+            <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogout}>{dict?.profile?.logout || "Sign out"}</Dropdown.Item>
+            <Dropdown.Item onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       )}

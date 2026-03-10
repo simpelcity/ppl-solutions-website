@@ -3,6 +3,7 @@
 import { Container } from "react-bootstrap";
 import { Sidebar } from "@/components";
 import { useSidebar } from "@/lib";
+import type { Dictionary } from "@/app/i18n"
 
 interface TeamMember {
   name: string;
@@ -13,23 +14,7 @@ interface TeamMember {
 interface DashboardProps {
   children: React.ReactNode;
   isNavbarVisible?: boolean;
-  dict?: {
-    title: string;
-    drivershub: string;
-    userStats: string;
-    leaderboard: string;
-    dashboard: {
-      title: string;
-      vtcStats: string;
-      team: string;
-      gallery: string;
-    };
-    profile: {
-      settings: string;
-      profile: string;
-      logout: string;
-    };
-  };
+  dict: Dictionary;
 }
 
 export default function Dashboard({ children, isNavbarVisible = false, dict, ...props }: DashboardProps) {

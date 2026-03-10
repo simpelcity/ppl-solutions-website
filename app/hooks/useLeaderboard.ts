@@ -10,12 +10,22 @@ interface LeaderboardEntry {
   avatar?: string;
 }
 
+interface CurrentLeaderboard {
+  name: string; // descriptive key like 'allTimeDistanceLeaderboard'
+  entries: LeaderboardEntry[];
+}
+
 export function useLeaderboard(
   selectedPeriod: "all-time" | "monthly" = "all-time",
   selectedYear?: number,
   selectedMonth?: number,
 ) {
   const isAdmin = useIsAdmin();
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [allTimeDistanceLeaderboard, setAllTimeDistanceLeaderboard] = useState<LeaderboardEntry[]>([]);
@@ -24,11 +34,17 @@ export function useLeaderboard(
   const [monthlyThpLeaderboard, setMonthlyThpLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [allTimeMassLeaderboard, setAllTimeMassLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [monthlyMassLeaderboard, setMonthlyMassLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [currentLeaderboard, setCurrentLeaderboard] = useState<LeaderboardEntry[]>([]);
-
-  const adminLog = (...args: any[]) => {
-    if (isAdmin) console.log(...args);
-  };
+  const [allTimeMaxThpLeaderboard, setAllTimeMaxThpLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [monthlyMaxThpLeaderboard, setMonthlyMaxThpLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [allTimeMaxDistanceLeaderboard, setAllTimeMaxDistanceLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [monthlyMaxDistanceLeaderboard, setMonthlyMaxDistanceLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [allTimeMaxMassLeaderboard, setAllTimeMaxMassLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [monthlyMaxMassLeaderboard, setMonthlyMaxMassLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [currentLeaderboard, setCurrentLeaderboard] = useState<CurrentLeaderboard>({
+    name: "allTimeDistanceLeaderboard",
+    entries: [],
+  });
+  const [allTimeDataLoaded, setAllTimeDataLoaded] = useState<boolean>(false);
 
   const fetchStatistics = async (month?: number, year?: number) => {
     let url = "/api/statistics";
@@ -43,7 +59,6 @@ export function useLeaderboard(
   };
 
   const getDistanceLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
-    // Map username to total distance and optional avatar
     const totals = new Map<string, { value: number; avatar?: string }>();
 
     for (const job of jobs) {
@@ -106,68 +121,141 @@ export function useLeaderboard(
       .slice(0, limit);
   };
 
-  const filterJobsByMonth = (jobs: any[], year: number, month: number) => {
-    return jobs.filter((job) => {
-      const jobDate = new Date(job?.createdAt);
-      adminLog("jobDate:", jobDate);
-      return jobDate.getFullYear() === year && jobDate.getMonth() === month;
-    });
+  const getMaxThpLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
+    const maxes = new Map<string, { value: number; avatar?: string }>();
+
+    for (const job of jobs) {
+      const username = job?.driver?.username;
+      const thp = job?.THP;
+      const avatar = job?.driver?.avatar;
+
+      if (!username || typeof thp !== "number") continue;
+      const entry = maxes.get(username) || { value: 0, avatar };
+      if (!entry.avatar && avatar) entry.avatar = avatar;
+      if (thp > entry.value) entry.value = thp;
+      maxes.set(username, entry);
+    }
+
+    return Array.from(maxes.entries())
+      .map(([username, { value, avatar }]) => ({ username, value, avatar }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, limit);
+  };
+
+  const getMaxDistanceLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
+    const maxes = new Map<string, { value: number; avatar?: string }>();
+
+    for (const job of jobs) {
+      const username = job?.driver?.username;
+      const distance = job?.distanceDriven;
+      const avatar = job?.driver?.avatar;
+
+      if (!username || typeof distance !== "number") continue;
+      const entry = maxes.get(username) || { value: 0, avatar };
+      if (!entry.avatar && avatar) entry.avatar = avatar;
+      if (distance > entry.value) entry.value = distance;
+      maxes.set(username, entry);
+    }
+
+    return Array.from(maxes.entries())
+      .map(([username, { value, avatar }]) => ({ username, value, avatar }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, limit);
+  };
+
+  const getMaxMassLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
+    const maxes = new Map<string, { value: number; avatar?: string }>();
+
+    for (const job of jobs) {
+      const username = job?.driver?.username;
+      const mass = job?.cargo?.mass;
+      const avatar = job?.driver?.avatar;
+
+      if (!username || typeof mass !== "number") continue;
+      const entry = maxes.get(username) || { value: 0, avatar };
+      if (!entry.avatar && avatar) entry.avatar = avatar;
+      if (mass > entry.value) entry.value = mass;
+      maxes.set(username, entry);
+    }
+
+    return Array.from(maxes.entries())
+      .map(([username, { value, avatar }]) => ({ username, value, avatar }))
+      .sort((a, b) => b.value - a.value)
+      .slice(0, limit);
   };
 
   useEffect(() => {
-    const load = async () => {
+    if (allTimeDataLoaded) return;
+
+    const loadAllTimeData = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        // Fetch all-time data (always needed for the top drivers cards)
         const allTimeStatistics = await fetchStatistics();
 
-        // All-time distance leaderboard
         const allTimeLeaderboard = getDistanceLeaderboard(allTimeStatistics ?? []);
         setAllTimeDistanceLeaderboard(allTimeLeaderboard);
 
-        // All-time THP leaderboard
         const allTimeThpLeaderboard = getThpLeaderboard(allTimeStatistics ?? []);
         setAllTimeThpLeaderboard(allTimeThpLeaderboard);
 
-        // All-time Mass leaderboard
         const allTimeMassLeaderboard = getMassLeaderboard(allTimeStatistics ?? []);
         setAllTimeMassLeaderboard(allTimeMassLeaderboard);
 
-        // Fetch monthly data if monthly period is selected
-        let monthlyStatistics = allTimeStatistics;
+        const allTimeMaxThpLeaderboard = getMaxThpLeaderboard(allTimeStatistics ?? []);
+        setAllTimeMaxThpLeaderboard(allTimeMaxThpLeaderboard);
+
+        const allTimeMaxDistanceLeaderboard = getMaxDistanceLeaderboard(allTimeStatistics ?? []);
+        setAllTimeMaxDistanceLeaderboard(allTimeMaxDistanceLeaderboard);
+
+        const allTimeMaxMassLeaderboard = getMaxMassLeaderboard(allTimeStatistics ?? []);
+        setAllTimeMaxMassLeaderboard(allTimeMaxMassLeaderboard);
+
+        setCurrentLeaderboard({ name: "allTimeDistanceLeaderboard", entries: allTimeLeaderboard });
+        setAllTimeDataLoaded(true);
+        setLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    loadAllTimeData();
+  }, [allTimeDataLoaded]);
+
+  useEffect(() => {
+    if (!allTimeDataLoaded) return;
+
+    const loadMonthlyData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
         if (selectedPeriod === "monthly" && selectedYear !== undefined && selectedMonth !== undefined) {
-          monthlyStatistics = await fetchStatistics(selectedMonth, selectedYear);
-        }
+          const monthlyStatistics = await fetchStatistics(selectedMonth, selectedYear);
 
-        // Monthly distance leaderboard
-        const monthlyJobs =
-          selectedPeriod === "monthly" && selectedYear !== undefined && selectedMonth !== undefined
-            ? (monthlyStatistics ?? [])
-            : filterJobsByMonth(
-                allTimeStatistics ?? [],
-                selectedYear ?? new Date().getFullYear(),
-                selectedMonth ?? new Date().getMonth(),
-              );
-        const monthlyLeaderboard = getDistanceLeaderboard(monthlyJobs);
-        setMonthlyDistanceLeaderboard(monthlyLeaderboard);
+          const monthlyLeaderboard = getDistanceLeaderboard(monthlyStatistics ?? []);
+          setMonthlyDistanceLeaderboard(monthlyLeaderboard);
 
-        // Monthly THP leaderboard
-        const monthlyThpLeaderboard = getThpLeaderboard(monthlyJobs);
-        setMonthlyThpLeaderboard(monthlyThpLeaderboard);
+          const monthlyThpLeaderboard = getThpLeaderboard(monthlyStatistics ?? []);
+          setMonthlyThpLeaderboard(monthlyThpLeaderboard);
 
-        // Monthly Mass leaderboard
-        const monthlyMassLeaderboard = getMassLeaderboard(monthlyJobs);
-        setMonthlyMassLeaderboard(monthlyMassLeaderboard);
+          const monthlyMassLeaderboard = getMassLeaderboard(monthlyStatistics ?? []);
+          setMonthlyMassLeaderboard(monthlyMassLeaderboard);
 
-        adminLog("monthly jobs:", monthlyJobs);
+          const monthlyMaxThpLeaderboard = getMaxThpLeaderboard(monthlyStatistics ?? []);
+          setMonthlyMaxThpLeaderboard(monthlyMaxThpLeaderboard);
 
-        // Set current leaderboard based on selected period
-        if (selectedPeriod === "all-time") {
-          setCurrentLeaderboard(allTimeLeaderboard);
-        } else {
-          setCurrentLeaderboard(monthlyLeaderboard);
+          const monthlyMaxDistanceLeaderboard = getMaxDistanceLeaderboard(monthlyStatistics ?? []);
+          setMonthlyMaxDistanceLeaderboard(monthlyMaxDistanceLeaderboard);
+
+          const monthlyMaxMassLeaderboard = getMaxMassLeaderboard(monthlyStatistics ?? []);
+          setMonthlyMaxMassLeaderboard(monthlyMaxMassLeaderboard);
+
+          setCurrentLeaderboard({ name: "monthlyDistanceLeaderboard", entries: monthlyLeaderboard });
+        } else if (selectedPeriod === "all-time") {
+          // Already have all-time data, no need to refetch
         }
       } catch (err: any) {
         setError(err.message);
@@ -176,8 +264,23 @@ export function useLeaderboard(
       }
     };
 
-    load();
-  }, [selectedPeriod, selectedYear, selectedMonth]);
+    loadMonthlyData();
+  }, [selectedPeriod, selectedYear, selectedMonth, allTimeDataLoaded]);
+
+  // keep currentLeaderboard in sync when period or data arrays change
+  useEffect(() => {
+    if (selectedPeriod === "all-time") {
+      setCurrentLeaderboard({
+        name: "allTimeDistanceLeaderboard",
+        entries: allTimeDistanceLeaderboard,
+      });
+    } else {
+      setCurrentLeaderboard({
+        name: "monthlyDistanceLeaderboard",
+        entries: monthlyDistanceLeaderboard,
+      });
+    }
+  }, [selectedPeriod, allTimeDistanceLeaderboard, monthlyDistanceLeaderboard]);
 
   return {
     loading,
@@ -188,6 +291,12 @@ export function useLeaderboard(
     monthlyThpLeaderboard,
     allTimeMassLeaderboard,
     monthlyMassLeaderboard,
+    allTimeMaxThpLeaderboard,
+    monthlyMaxThpLeaderboard,
+    allTimeMaxDistanceLeaderboard,
+    monthlyMaxDistanceLeaderboard,
+    allTimeMaxMassLeaderboard,
+    monthlyMaxMassLeaderboard,
     currentLeaderboard,
   };
 }

@@ -11,7 +11,6 @@ export async function GET(request: Request) {
     const month = searchParams.get("month");
     const year = searchParams.get("year");
 
-    // Build the API URL with optional month and year parameters
     let apiUrl = "https://api.truckershub.in/v1/jobs?page=1";
     if (month && year) {
       apiUrl += `&month=${month}&year=${year}`;

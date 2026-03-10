@@ -61,6 +61,12 @@
       }
     }
   },
+  "status": {
+    "loading": {
+      "loadingSpinner": "Loading...",
+      "loader": "Loading"
+    }
+  },
   "home": {
     "meta": {
       "title": "Steering the future of Digital Logistics",
@@ -303,7 +309,8 @@
         },
         "error": {
           "error": "Error:",
-          "noJobs": "No jobs found"
+          "noJobs": "No jobs found",
+          "driverNotFound": "Driver {driver} not found"
         }
       }
     },

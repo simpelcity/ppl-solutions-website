@@ -4,6 +4,7 @@ import { Table } from "react-bootstrap";
 import { PlaceholderTable, BSButton } from "@/components";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useUserJobs } from "@/hooks/useUserJobs";
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 type TableJobsClientProps = {
   lang: any;
@@ -42,13 +43,14 @@ type TableJobsClientProps = {
           distance: string,
           income: string,
           navigation: {
-            showing: string,
-            allJobs: string,
-            paginated: string
+            showing: string;
+            allJobs: string;
+            paginated: string;
           },
           error: {
-            error: string,
-            noJobs: string
+            error: string;
+            noJobs: string;
+            driverNotFound: string;
           }
         }
       },
@@ -131,8 +133,16 @@ type TableJobsClientProps = {
 }
 
 export default function TableJobsClient({ lang, dict }: TableJobsClientProps) {
+  const isAdmin = useIsAdmin();
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
   const {
     jobs,
+    driver,
+    driverName,
     loading,
     error,
     displayPage,
@@ -201,9 +211,13 @@ export default function TableJobsClient({ lang, dict }: TableJobsClientProps) {
     { title: dict.drivershub.jobs.table.income },
   ];
 
+  const split1 = dict.drivershub.jobs.table.error.driverNotFound.split(' ')
+  const driverNotFoundError = `${split1[0]} ${driverName} ${split1[2]} ${split1[3]}`;
+
   if (loading) return <PlaceholderTable columns={8} rows={10} />;
-  if (error) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.error.error} {error}</div>;
-  if (jobs.length === 0) return <div className="text-center py-3">{dict.drivershub.jobs.table.error.noJobs}</div>;
+  if (error && driver) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.error.error} {error}</div>;
+  if (!driver) return <div className="text-danger text-center py-3">{driverNotFoundError}</div>;
+  if (jobs.length === 0) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.error.noJobs}</div>;
 
   return (
     <>
