@@ -77,8 +77,18 @@ export default function TableLeaderboard({ dict }: Props) {
   }
 
   const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.jan,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.feb,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.mar,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.apr,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.may,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.jun,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.jul,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.aug,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.sep,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.oct,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.nov,
+    dict.drivershub.leaderboard.card.btnGroupNavigation.monthNames.dec
   ];
 
   const handlePreviousMonth = () => {
@@ -109,14 +119,6 @@ export default function TableLeaderboard({ dict }: Props) {
     router.push(`?month=${newMonth}&year=${newYear}`);
   };
 
-  const getDateTitle = (selectedPeriod: string) => {
-    if (selectedPeriod === 'monthly') {
-      return `${selectedMonth} - ${selectedYear}`;
-    } else {
-      return 'All Time';
-    }
-  };
-
   useEffect(() => {
     const monthParam = searchParams.get('month');
     const yearParam = searchParams.get('year');
@@ -138,7 +140,7 @@ export default function TableLeaderboard({ dict }: Props) {
       <Container className="my-3 p-0" fluid>
         <Card className="border-0 rounded-0 shadow" data-bs-theme="dark">
           <Card.Header className="bg-dark d-flex justify-content-between align-items-center px-4 py-3">
-            <Card.Title className="m-0">Company Leaderboard</Card.Title>
+            <Card.Title className="m-0">{dict.drivershub.leaderboard.card.title}</Card.Title>
             {selectedPeriod === 'monthly' ? (
               <ButtonGroup className="btn-group-leaderboard">
                 <Button variant="primary" className="text-light" onClick={handlePreviousMonth} disabled={selectedYear === 2020 && selectedMonth === 0}><FaChevronLeft /></Button>
@@ -151,20 +153,20 @@ export default function TableLeaderboard({ dict }: Props) {
                     <Dropdown.Item onClick={() => {
                       setSelectedPeriod('monthly');
                       router.push(`?month=${selectedMonth}&year=${selectedYear}`);
-                    }}>Monthly</Dropdown.Item>
+                    }}>{dict.drivershub.leaderboard.card.btnGroupNavigation.monthly}</Dropdown.Item>
 
                     <Dropdown.Item onClick={() => {
                       setSelectedPeriod('all-time');
                       router.push(window.location.pathname);
                       window.history.replaceState(null, "", window.location.pathname);
-                    }}>All Time</Dropdown.Item>
+                    }}>{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
                 <Button variant="primary" className="text-light" onClick={handleNextMonth}><FaChevronRight /></Button>
               </ButtonGroup>
             ) : (
               <Dropdown as={ButtonGroup} className="btn-group-leaderboard" data-bs-theme="dark">
-                <Button variant="primary" className="text-light">{getDateTitle('all-time')}</Button>
+                <Button variant="primary" className="text-light">{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Button>
 
                 <Dropdown.Toggle split variant="primary" className="text-light px-3" id="dropdown-split-basic" />
 
@@ -172,14 +174,13 @@ export default function TableLeaderboard({ dict }: Props) {
                   <Dropdown.Item onClick={() => {
                     setSelectedPeriod('monthly');
                     router.push(`?month=${selectedMonth}&year=${selectedYear}`);
-                  }}>Monthly</Dropdown.Item>
+                  }}>{dict.drivershub.leaderboard.card.btnGroupNavigation.monthly}</Dropdown.Item>
 
                   <Dropdown.Item onClick={() => {
                     setSelectedPeriod('all-time');
-                    // navigate to same path without query parameters
                     router.push(window.location.pathname);
                     window.history.replaceState(null, "", window.location.pathname);
-                  }}>All Time</Dropdown.Item>
+                  }}>{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             )}
@@ -192,7 +193,7 @@ export default function TableLeaderboard({ dict }: Props) {
             ) : (
               <Row className="d-flex justify-content-center">
                 <Col xs={12} md={6} lg={4} className="my-3 mt-lg-0">
-                  <h4 className="border-bottom pb-2 mb-3">Total THP Earned</h4>
+                  <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.totalThp.title}</h4>
                   {thpLeaderboard.map((entry, index) => (
                     <div className="my-2 bg-dark-subtle shadow-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>
@@ -213,7 +214,7 @@ export default function TableLeaderboard({ dict }: Props) {
                   ))}
                 </Col>
                 <Col xs={12} md={6} lg={4} className="my-3 mt-lg-0">
-                  <h4 className="border-bottom pb-2 mb-3">Total Distance Driven</h4>
+                  <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.totalDistance.title}</h4>
                   {distanceLeaderboard.map((entry, index) => (
                     <div className="my-2 bg-dark-subtle shadow-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
                       <span className="me-2">{index + 1}</span>
@@ -234,7 +235,7 @@ export default function TableLeaderboard({ dict }: Props) {
                   ))}
                 </Col>
                 <Col xs={12} md={6} lg={4} className="my-3 mt-lg-0">
-                  <h4 className="border-bottom pb-2 mb-3">Total Weight Transported</h4>
+                  <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.totalWeight.title}</h4>
                   {massLeaderboard.map((entry, index) => (
                     <div className="my-2 bg-dark-subtle shadow-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
                       <span className="me-2">{index + 1}</span>
@@ -255,7 +256,7 @@ export default function TableLeaderboard({ dict }: Props) {
                   ))}
                 </Col>
                 <Col xs={12} md={6} lg={4} className="my-3 mb-lg-0">
-                  <h4 className="border-bottom pb-2 mb-3">Highest THP Earned</h4>
+                  <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.maxThp.title}</h4>
                   {maxThpLeaderboard.map((entry, index) => (
                     <div className="my-2 bg-dark-subtle shadow-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>
@@ -276,7 +277,7 @@ export default function TableLeaderboard({ dict }: Props) {
                   ))}
                 </Col>
                 <Col xs={12} md={6} lg={4} className="my-3 mb-lg-0">
-                  <h4 className="border-bottom pb-2 mb-3">Highest Distance Driven</h4>
+                  <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.maxDistance.title}</h4>
                   {maxDistanceLeaderboard.map((entry, index) => (
                     <div className="my-2 bg-dark-subtle shadow-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>
@@ -297,7 +298,7 @@ export default function TableLeaderboard({ dict }: Props) {
                   ))}
                 </Col>
                 <Col xs={12} md={6} lg={4} className="my-3 mb-lg-0">
-                  <h4 className="border-bottom pb-2 mb-3">Highest Weight Transported</h4>
+                  <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.maxWeight.title}</h4>
                   {maxMassLeaderboard.map((entry, index) => (
                     <div className="my-2 bg-dark-subtle shadow-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>

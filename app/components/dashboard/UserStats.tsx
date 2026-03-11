@@ -1,10 +1,15 @@
 'use client'
 
 import { useUserStats } from '@/hooks/useUserStats'
-import { Card, Row, Col, Spinner } from 'react-bootstrap'
-import { TableStats } from '@/components'
+import { Card, Row, Col } from 'react-bootstrap'
+import { TableStats, LoaderSpinner } from '@/components'
+import type { Dictionary } from "@/app/i18n"
 
-export default function UserStats() {
+type Props = {
+  dict: Dictionary;
+}
+
+export default function UserStats({ dict }: Props) {
   const { stats } = useUserStats();
 
   const rounded = (value: any) => {
@@ -23,16 +28,7 @@ export default function UserStats() {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  if (!stats) {
-    return (
-      <>
-        <div className="loader w-auto d-flex justify-content-center align-items-center vh-100 text-light px-3">
-          <Spinner animation="border" className="me-2" />
-          <span className="fs-2">Loading...</span>
-        </div>
-      </>
-    )
-  }
+  if (!stats) return <LoaderSpinner dict={dict} />
 
   return (
     <>
@@ -40,30 +36,30 @@ export default function UserStats() {
         <Row className="d-flex justify-content-center row-gap-3 my-3 my-lg-0">
           <Col xs={12} md={6} lg={4} className="my-0 my-lg-3">
             <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">TruckersHub Points</Card.Title>
+              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
               <Card.Body className="">
                 <Row>
                   <Col xs={6}>
                     <div>
-                      <h5>Total</h5>
+                      <h5>{dict.drivershub.userStats.cards.thp.total}</h5>
                       <p>{numberWithCommas(rounded(stats.thp.thp))} THP</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Average</h5>
+                      <h5>{dict.drivershub.userStats.cards.thp.avg}</h5>
                       <p>{rounded(stats.thp.avg)} THP</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Minimum</h5>
+                      <h5>{dict.drivershub.userStats.cards.thp.min}</h5>
                       <p>{rounded(stats.thp.min)} THP</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Maximum</h5>
+                      <h5>{dict.drivershub.userStats.cards.thp.max}</h5>
                       <p>{rounded(stats.thp.max)} THP</p>
                     </div>
                   </Col>
@@ -73,30 +69,30 @@ export default function UserStats() {
           </Col>
           <Col xs={12} md={6} lg={4} className="my-0 my-lg-3">
             <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">Income Earned</Card.Title>
+              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.income.title}</Card.Title>
               <Card.Body className="">
                 <Row>
                   <Col xs={6}>
                     <div>
-                      <h5>Total</h5>
+                      <h5>{dict.drivershub.userStats.cards.income.total}</h5>
                       <p>€ {numberWithCommas(rounded(stats.income.income))}</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Average</h5>
+                      <h5>{dict.drivershub.userStats.cards.income.avg}</h5>
                       <p>€ {numberWithCommas(rounded(stats.income.avg))}</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Minimum</h5>
+                      <h5>{dict.drivershub.userStats.cards.income.min}</h5>
                       <p>€ {numberWithCommas(rounded(stats.income.min))}</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Maximum</h5>
+                      <h5>{dict.drivershub.userStats.cards.income.max}</h5>
                       <p>€ {numberWithCommas(rounded(stats.income.max))}</p>
                     </div>
                   </Col>
@@ -106,30 +102,30 @@ export default function UserStats() {
           </Col>
           <Col xs={12} md={6} lg={4} className="my-0 my-lg-3">
             <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">Delivery Distance</Card.Title>
+              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
               <Card.Body className="">
                 <Row>
                   <Col xs={6}>
                     <div>
-                      <h5>Total</h5>
+                      <h5>{dict.drivershub.userStats.cards.distance.total}</h5>
                       <p>{numberWithCommas(rounded(stats.distance.distance))} km</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Average</h5>
+                      <h5>{dict.drivershub.userStats.cards.distance.avg}</h5>
                       <p>{rounded(stats.distance.avg)} km</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Minimum</h5>
+                      <h5>{dict.drivershub.userStats.cards.distance.min}</h5>
                       <p>{rounded(stats.distance.min)} km</p>
                     </div>
                   </Col>
                   <Col xs={6}>
                     <div>
-                      <h5>Maximum</h5>
+                      <h5>{dict.drivershub.userStats.cards.distance.max}</h5>
                       <p>{rounded(stats.distance.max)} km</p>
                     </div>
                   </Col>
@@ -142,10 +138,10 @@ export default function UserStats() {
           <Col>
             <Card className="rounded-0 border-0 shadow my-3 px-0" data-bs-theme="dark">
               <Card.Header className="bg-dark rounded-0">
-                <Card.Title className="text-uppercase fs-2 text-light my-1">Statistics</Card.Title>
+                <Card.Title className="text-uppercase fs-2 text-light my-1">{dict.drivershub.userStats.table.title}</Card.Title>
               </Card.Header>
               <Card.Body className="p-4">
-                <TableStats />
+                <TableStats dict={dict} />
               </Card.Body>
             </Card>
           </Col>

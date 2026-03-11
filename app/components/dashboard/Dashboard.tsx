@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { Sidebar } from "@/components";
 import { useSidebar } from "@/lib";
 import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
 
 interface TeamMember {
   name: string;
@@ -15,9 +16,10 @@ interface DashboardProps {
   children: React.ReactNode;
   isNavbarVisible?: boolean;
   dict: Dictionary;
+  lang: Locale;
 }
 
-export default function Dashboard({ children, isNavbarVisible = false, dict, ...props }: DashboardProps) {
+export default function Dashboard({ children, isNavbarVisible = false, dict, lang, ...props }: DashboardProps) {
   const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile } = useSidebar();
 
   const sidebarWidth = isSidebarCollapsed ? "4.5rem" : "280px";
@@ -33,6 +35,7 @@ export default function Dashboard({ children, isNavbarVisible = false, dict, ...
         isMobile={isMobile}
         isNavbarVisible={true}
         dict={dict}
+        lang={lang}
       />
       <Container
         className="content-wrapper d-flex justify-content-center px-3 mx-0"

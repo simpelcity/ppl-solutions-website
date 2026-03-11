@@ -14,37 +14,9 @@ type PageProps = {
   params: Promise<{ lang: Locale }>
 }
 
-type DictionaryType = {
-  events: {
-    meta: {
-      title: string,
-      description: string
-    }
-    title: string,
-    card: {
-      date: string,
-      meetupTime: string,
-      departureTime: string,
-      departureLocation: string,
-      destinationLocation: string,
-      game: string,
-      server: string,
-      dlc: string,
-      event: string,
-      more: string
-    },
-    error: {
-      noEvents: string
-      na: string,
-      noServer: string,
-      noDLC: string
-    }
-  }
-}
-
 export default async function CardEvents({ params }: PageProps) {
   const { lang } = await params
-  const dict = await getDictionary(lang) as DictionaryType
+  const dict = await getDictionary(lang)
 
   const baseUrl = process.env.BASE_URL || "http://localhost:3000";
   const response = await fetch(`${baseUrl}/api/events`, { next: { revalidate: 60 } });
@@ -56,7 +28,7 @@ export default async function CardEvents({ params }: PageProps) {
     return (
       <div className="text-center text-light my-5">
         <h2>
-          No upcoming events <BsCalendar3 />
+          {dict.events.error.noEvents} <BsCalendar3 />
         </h2>
       </div>
     );

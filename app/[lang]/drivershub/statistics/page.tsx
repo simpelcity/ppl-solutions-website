@@ -91,8 +91,8 @@ export default async function StatisticsPage({ params }: Props) {
   return (
     <main className="fs-5">
       <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-        <Dashboard dict={dict}>
-          <UserStats />
+        <Dashboard dict={dict} lang={lang}>
+          <UserStats dict={dict} />
         </Dashboard>
       </section>
     </main>

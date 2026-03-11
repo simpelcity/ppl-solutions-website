@@ -45,8 +45,8 @@ export default async function HomePage({ params }: PageProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
 
-  const aboutUs1 = dict.home["about-us"].title.split(' ')[0];
-  const aboutUs2 = dict.home["about-us"].title.split(' ')[1];
+  const aboutUs1 = dict.home.aboutUs.title.split(' ')[0];
+  const aboutUs2 = dict.home.aboutUs.title.split(' ')[1];
 
   const splitLastWord = (text: string) => {
     const words = text.trim().split(/\s+/);
@@ -101,7 +101,7 @@ export default async function HomePage({ params }: PageProps) {
               <span>{aboutUs1}</span> <span className="text-primary">{aboutUs2}</span>
             </h1>
             <p className="m-0">
-              {dict.home["about-us"].text}
+              {dict.home.aboutUs.text}
             </p>
           </Container>
         </section>

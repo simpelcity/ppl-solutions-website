@@ -9,26 +9,6 @@ type PageProps = {
   params: Promise<{ lang: Locale }>
 }
 
-type DictionaryType = {
-  contact: {
-    meta: {
-      title: string,
-      description: string
-    },
-    title: string,
-    form: {
-      required: string,
-      name: string,
-      namePlaceholder: string,
-      email: string,
-      emailPlaceholder: string,
-      message: string,
-      messagePlaceholder: string,
-      submit: string
-    }
-  }
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params
   const dict = await getDictionary(lang)
@@ -63,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ContactPage({ params }: PageProps) {
   const { lang } = await params
-  const dict = await getDictionary(lang) as DictionaryType
+  const dict = await getDictionary(lang)
   return (
     <>
       <main className="fs-5">

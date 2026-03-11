@@ -4,8 +4,13 @@ import { useState } from 'react'
 import { useUserStats } from '@/hooks/useUserStats'
 import { Table, Placeholder } from 'react-bootstrap'
 import { PlaceholderTable } from '@/components'
+import type { Dictionary } from "@/app/i18n"
 
-export default function TableStats() {
+type Props = {
+  dict: Dictionary;
+}
+
+export default function TableStats({ dict }: Props) {
   const { stats, loading, error } = useUserStats();
 
   if (error) return <div className="text-danger text-center py-3">{error}</div>
@@ -19,10 +24,10 @@ export default function TableStats() {
   }
 
   const tableItems = [
-    { title: 'Job Statistics' },
-    { title: 'Euro Truck Simulator 2' },
-    { title: 'American Truck Simulator' },
-    { title: 'Combined' },
+    { title: dict.drivershub.userStats.table.thead.stats },
+    { title: dict.drivershub.userStats.table.thead.ets2 },
+    { title: dict.drivershub.userStats.table.thead.ats },
+    { title: dict.drivershub.userStats.table.thead.combined },
   ];
 
   return (
@@ -57,7 +62,7 @@ export default function TableStats() {
             <tbody>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Jobs Delivered</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.jobsDelivered}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.jobs ?? 0}</div>
@@ -71,7 +76,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Mass Transported</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.weightTransported}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{Math.floor((stats?.ets2.mass ?? 0) / 1000)} t</div>
@@ -85,7 +90,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Average Delivery Distance</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.avgDistance}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{rounded(stats?.ets2.distance.avg)} km</div>
@@ -99,7 +104,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Longest Job</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.longestJob}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.distance.max} km</div>
@@ -113,7 +118,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Total Distance</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.totalDistance}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{numberWithCommas(stats?.ets2.distance.distance ?? 0)} km</div>
@@ -127,7 +132,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Most Used Trucks</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.favTrucks}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.truck ?? "- (0)"}</div>
@@ -141,7 +146,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Most Delivered Cargo</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.favCargo}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.cargo ?? "- (0)"}</div>
@@ -155,7 +160,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Favorite Start City</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.favStartCity}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.source?.city ?? "- (0)"}</div>
@@ -169,7 +174,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Favorite Start Company</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.favStartCompany}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.source?.company ?? "- (0)"}</div>
@@ -183,7 +188,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Favorite Destination City</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.favEndCity}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.destination?.city ?? "- (0)"}</div>
@@ -197,7 +202,7 @@ export default function TableStats() {
               </tr>
               <tr>
                 <td className="text-start px-4">
-                  <div className="py-2">Favorite Destination Company</div>
+                  <div className="py-2">{dict.drivershub.userStats.table.tbody.favEndCompany}</div>
                 </td>
                 <td>
                   <div className="border rounded py-2">{stats?.ets2.destination?.company ?? "- (0)"}</div>

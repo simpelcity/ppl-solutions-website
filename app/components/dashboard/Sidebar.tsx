@@ -14,6 +14,7 @@ import { FaUsers } from "react-icons/fa";
 import { MdPhotoLibrary } from "react-icons/md";
 import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
 
 interface NavItem {
   href: string;
@@ -27,6 +28,7 @@ interface SidebarProps {
   isMobile: boolean;
   isNavbarVisible?: boolean;
   dict: Dictionary;
+  lang: Locale;
   [key: string]: any;
 }
 
@@ -36,6 +38,7 @@ export default function Sidebar({
   isMobile,
   isNavbarVisible = false,
   dict,
+  lang,
   ...props
 }: SidebarProps) {
   const { user, logout, session, loading } = useAuth();
@@ -45,19 +48,21 @@ export default function Sidebar({
   const [isAdmin, setIsAdmin] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const currentLang = lang === 'en' ? '' : `/${lang}`
+
   const navItems: NavItem[] = [
     {
-      href: "/drivershub",
+      href: `${currentLang}/drivershub`,
       icon: <GoHomeFill />,
       label: dict.drivershub.sidebar.drivershub || "Drivershub",
     },
     {
-      href: "/drivershub/statistics",
+      href: `${currentLang}/drivershub/statistics`,
       icon: <FaChartLine />,
       label: dict.drivershub.sidebar.userStats || "User Statistics",
     },
     {
-      href: "/drivershub/leaderboard",
+      href: `${currentLang}/drivershub/leaderboard`,
       icon: <MdLeaderboard />,
       label: dict.drivershub.sidebar.leaderboard || "Leaderboard",
     },
@@ -65,17 +70,17 @@ export default function Sidebar({
 
   const collapseItems: NavItem[] = [
     {
-      href: "/drivershub/dashboard",
+      href: `${currentLang}/drivershub/dashboard`,
       icon: <FaChartLine />,
       label: dict.drivershub.sidebar.dashboard.vtcStats || "VTC Statistics",
     },
     {
-      href: "/drivershub/dashboard/team",
+      href: `${currentLang}/drivershub/dashboard/team`,
       icon: <FaUsers />,
       label: dict.drivershub.sidebar.dashboard.team || "Team",
     },
     {
-      href: "/drivershub/dashboard/gallery",
+      href: `${currentLang}/drivershub/dashboard/gallery`,
       icon: <MdPhotoLibrary />,
       label: dict.drivershub.sidebar.dashboard.gallery || "Gallery",
     },
@@ -198,7 +203,7 @@ export default function Sidebar({
                 onClick={() => setOpen(!open)}
                 aria-controls="dashboard-collapse-menu"
                 aria-expanded={open}
-                className={`d-flex align-items-center justify-content-between rounded-bottom-0 text-light ${pathname.startsWith("/drivershub/dashboard") ? "active" : ""
+                className={`d-flex align-items-center justify-content-between rounded-bottom-0 text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active" : ""
                   }`}>
                 <div className="d-flex">
                   <span className="me-2"><BiSolidDashboard /></span>

@@ -31,7 +31,7 @@ export default async function ProfilePage({ params }: PageProps) {
 
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-          <Dashboard dict={dict}>
+          <Dashboard dict={dict} lang={lang}>
             <h1>Profile</h1>
           </Dashboard>
         </section>

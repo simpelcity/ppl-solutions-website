@@ -47,7 +47,7 @@
       "copyright": "Copyright {year} PPL Solutions. Všechna práva vyhrazena | Vytvořil Simpelcity"
     }
   },
-  "not-found": {
+  "notFound": {
     "meta": {
       "title": "404 - Stránka nenalezena",
       "description": "Stránka, kterou hledáte, neexistuje."
@@ -77,7 +77,7 @@
       "apply": "přihlásit se",
       "discord": "discord"
     },
-    "about-us": {
+    "aboutUs": {
       "title": "o nás",
       "text": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
     },
@@ -134,14 +134,21 @@
     },
     "title": "tým",
     "loading": "Načítání týmu...",
-    "error": "Chyba při načítání týmu."
+    "errors": {
+      "error": "Chyba při načítání týmu.",
+      "noDepts": "Nenalezena žádná oddělení / členové."
+    }
   },
   "gallery": {
     "meta": {
       "title": "Galerie",
       "description": "Prohlédni si galerii s nejlepšími momenty a kamiony z PPL Solutions."
     },
-    "title": "galerie"
+    "title": "galerie",
+    "errors": {
+      "error": "Chyba při načítání galerie:",
+      "noImages": "Nebyly nalezeny žádné obrázky."
+    }
   },
   "contact": {
     "meta": {
@@ -260,13 +267,14 @@
       "backToLogin": "Zpět na přihlášení",
       "error": {
         "invalidToken": "Neplatný nebo chybějící resetovací token. Požádej o nový reset hesla.",
+        "expiredToken": "Neplatný nebo vypršelý token pro resetování hesla. Požádejte o nové resetování hesla.",
         "passwordMismatch": "Hesla se neshodují. Zkus to znovu.",
         "passwordTooShort": "Heslo musí mít alespoň 8 znaků a obsahovat velké, malé písmeno a číslo.",
         "success": "Heslo bylo úspěšně obnoveno! Přesměrování na přihlášení...",
         "unexpected": "Při obnově hesla došlo k neočekávané chybě",
-        "newPassword": "Požádat o nový reset hesla",
-        "loading": "Obnovování..."
-      }
+        "newPassword": "Požádat o nový reset hesla"
+      },
+      "loading": "Obnovování..."
     }
   },
   "drivershub": {
@@ -318,6 +326,98 @@
       "meta": {
         "title": "Statistiky",
         "description": "Statistiky {username} na PPL Solutions VTC"
+      },
+      "cards": {
+        "thp": {
+          "title": "TruckersHub body",
+          "total": "Celkem",
+          "avg": "Průměr",
+          "min": "Minimum",
+          "max": "Maximum"
+        },
+        "income": {
+          "title": "Získaný příjem",
+          "total": "Celkem",
+          "avg": "Průměr",
+          "min": "Minimum",
+          "max": "Maximum"
+        },
+        "distance": {
+          "title": "Přepravní vzdálenost",
+          "total": "Celkem",
+          "avg": "Průměr",
+          "min": "Minimum",
+          "max": "Maximum"
+        }
+      },
+      "table": {
+        "title": "Statistiky",
+        "thead": {
+          "stats": "Statistiky zakázek",
+          "ets2": "Euro Truck Simulator 2",
+          "ats": "American Truck Simulator",
+          "combined": "Kombinované"
+        },
+        "tbody": {
+          "jobsDelivered": "Doručené zakázky",
+          "weightTransported": "Přepravená hmotnost",
+          "avgDistance": "Průměrná délka zakázky",
+          "longestJob": "Nejdelší zakázka",
+          "totalDistance": "Celková vzdálenost",
+          "favTrucks": "Nejpoužívanější tahače",
+          "favCargo": "Nejčastější náklad",
+          "favStartCity": "Oblíbené výchozí město",
+          "favStartCompany": "Oblíbená výchozí firma",
+          "favEndCity": "Oblíbené cílové město",
+          "favEndCompany": "Oblíbená cílová firma"
+        }
+      }
+    },
+    "leaderboard": {
+      "meta": {
+        "title": "Žebříček",
+        "description": "Prohlédněte si žebříček společnosti, a to jak historické, tak i měsíční nejlepší výsledky."
+      },
+      "card": {
+        "title": "Firemní žebříček",
+        "btnGroupNavigation": {
+          "allTime": "Celkově",
+          "monthly": "Měsíčně",
+          "monthNames": {
+            "jan": "Leden",
+            "feb": "Únor",
+            "mar": "Březen",
+            "apr": "Duben",
+            "may": "Květen",
+            "jun": "Červen",
+            "jul": "Červenec",
+            "aug": "Srpen",
+            "sep": "Září",
+            "oct": "Říjen",
+            "nov": "Listopad",
+            "dec": "Prosinec"
+          }
+        },
+        "leaderboards": {
+          "totalThp": {
+            "title": "Celkem získaných THP"
+          },
+          "totalDistance": {
+            "title": "Celková ujetá vzdálenost"
+          },
+          "totalWeight": {
+            "title": "Celková přepravená hmotnost"
+          },
+          "maxThp": {
+            "title": "Nejvíce získaných THP"
+          },
+          "maxDistance": {
+            "title": "Nejdelší ujetá vzdálenost"
+          },
+          "maxWeight": {
+            "title": "Nejvyšší přepravená hmotnost"
+          }
+        }
       }
     },
     "vtcStats": {

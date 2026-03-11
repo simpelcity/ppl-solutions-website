@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.drivershub.meta.title} | PPL Solutions`,
-    description: dict.drivershub.meta.description,
+    title: `${dict.drivershub.leaderboard.meta.title} | PPL Solutions`,
+    description: dict.drivershub.leaderboard.meta.description,
     openGraph: {
-      title: `${dict.drivershub.meta.title} | PPL Solutions`,
-      description: dict.drivershub.meta.description,
+      title: `${dict.drivershub.leaderboard.meta.title} | PPL Solutions`,
+      description: dict.drivershub.leaderboard.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',
       images: '/assets/images/ppls-logo.png',
@@ -48,7 +48,7 @@ export default async function LeaderboardPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-          <Dashboard dict={dict}>
+          <Dashboard dict={dict} lang={lang}>
             <TableLeaderboard dict={dict} />
           </Dashboard>
         </section>

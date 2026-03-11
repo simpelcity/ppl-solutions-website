@@ -3,29 +3,13 @@
 import { Card, Form, Col } from "react-bootstrap";
 import { BSButton } from "@/components";
 import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa";
+import type { Dictionary } from "@/app/i18n"
 
-type DictionaryType = {
-  contact: {
-    meta: {
-      title: string,
-      description: string
-    },
-    title: string,
-    form: {
-      required: string,
-      name: string,
-      namePlaceholder: string,
-      email: string,
-      emailPlaceholder: string,
-      message: string,
-      messagePlaceholder: string,
-      submit: string
-    }
-  },
+type Props = {
+  dict: Dictionary
 }
 
-export default function CardContact({ dict }: { dict: DictionaryType }) {
-
+export default function CardContact({ dict }: Props) {
   return (
     <>
       <Card className="rounded-0 border-0 shadow bg-dark h-100">
