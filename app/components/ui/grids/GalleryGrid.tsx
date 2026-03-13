@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { Row, Col, Card, Spinner } from "react-bootstrap"
+import { LoaderSpinner } from '@/components'
+import type { Dictionary } from "@/app/i18n"
 
 type GalleryItem = {
   id: number
@@ -12,7 +14,11 @@ type GalleryItem = {
   created_at?: string | null
 }
 
-export default function GalleryGrid() {
+type Props = {
+  dict: Dictionary;
+}
+
+export default function GalleryGrid({ dict }: Props) {
   const [items, setItems] = useState<GalleryItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -40,20 +46,14 @@ export default function GalleryGrid() {
     }
   }, [])
 
-  if (loading) {
-    return (
-      <div className="text-center text-light p-4">
-        <Spinner animation="border" /> Loading gallery...
-      </div>
-    )
-  }
+  if (loading) return <LoaderSpinner dict={dict} />
 
   if (error) {
-    return <div className="text-danger">Error loading gallery: {error}</div>
+    return <div className="text-danger">{dict.gallery.errors.error} {error}</div>
   }
 
   if (items.length === 0) {
-    return <div>No images found.</div>
+    return <div>{dict.gallery.errors.noImages}</div>
   }
 
   return (

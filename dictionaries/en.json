@@ -47,7 +47,7 @@
       "copyright": "Copyright {year} PPL Solutions. All rights Reserved | Developed by Simpelcity"
     }
   },
-  "not-found": {
+  "notFound": {
     "meta": {
       "title": "404 - Page not found",
       "description": "The page you are looking for does not exist."
@@ -61,6 +61,12 @@
       }
     }
   },
+  "status": {
+    "loading": {
+      "loadingSpinner": "Loading...",
+      "loader": "Loading"
+    }
+  },
   "home": {
     "meta": {
       "title": "Steering the future of Digital Logistics",
@@ -71,7 +77,7 @@
       "apply": "apply",
       "discord": "discord"
     },
-    "about-us": {
+    "aboutUs": {
       "title": "about us",
       "text": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
     },
@@ -128,14 +134,21 @@
     },
     "title": "team",
     "loading": "Loading team...",
-    "error": "Error loading team."
+    "errors": {
+      "error": "Error loading team.",
+      "noDepts": "No departments / members found."
+    }
   },
   "gallery": {
     "meta": {
       "title": "Gallery",
       "description": "Browse through our gallery showcasing the best moments and trucks from PPL Solutions."
     },
-    "title": "gallery"
+    "title": "gallery",
+    "errors": {
+      "error": "Error loading gallery:",
+      "noImages": "No images found."
+    }
   },
   "contact": {
     "meta": {
@@ -219,7 +232,7 @@
   "forgotPassword": {
     "meta": {
       "title": "Forgot your password?",
-      "description": "Forgot your PPL Solutions Drivershub account password."
+      "description": "Forgot your PPL Solutions Drivershub account password?"
     },
     "form": {
       "brand": "PPL Solutions",
@@ -254,13 +267,22 @@
       "backToLogin": "Back to login",
       "error": {
         "invalidToken": "Invalid or missing reset token. Please request a new password reset.",
-        "passwordMismatch": "Passwords do not match. Please try again.",
-        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+        "expiredToken": "Invalid or expired reset token. Please request a new password reset.",
+        "expiredSession": "Your session has expired. Please request a new password reset.",
         "success": "Password reset successfully! Redirecting to login...",
         "unexpected": "An unexpected error occurred while resetting your password",
         "newPassword": "Request a new password reset",
-        "loading": "Resetting..."
-      }
+        "password": {
+          "passwordMismatch": "Passwords do not match. Please try again.",
+          "passwordTooShort": "Password must be at least 8 characters",
+          "passwordNoLowercase": "Password must contain at least one lowercase letter",
+          "passwordNoUppercase": "Password must contain at least one uppercase letter",
+          "passwordNoNumber": "Password must contain at least one number",
+          "passwordNoSpecial": "Password must contain at least one special character"
+        }
+      },
+      "loading": "Resetting...",
+      "validating": "Validating reset link..."
     }
   },
   "drivershub": {
@@ -303,7 +325,8 @@
         },
         "error": {
           "error": "Error:",
-          "noJobs": "No jobs found"
+          "noJobs": "No jobs found",
+          "driverNotFound": "Driver {driver} not found"
         }
       }
     },
@@ -311,6 +334,98 @@
       "meta": {
         "title": "'s Statistics",
         "description": "'s Statistics at PPL Solutions VTC"
+      },
+      "cards": {
+        "thp": {
+          "title": "TruckersHub Points",
+          "total": "Total",
+          "avg": "Average",
+          "min": "Minimum",
+          "max": "Maximum"
+        },
+        "income": {
+          "title": "Income Earned",
+          "total": "Total",
+          "avg": "Average",
+          "min": "Minimum",
+          "max": "Maximum"
+        },
+        "distance": {
+          "title": "Delivery Distance",
+          "total": "Total",
+          "avg": "Average",
+          "min": "Minimum",
+          "max": "Maximum"
+        }
+      },
+      "table": {
+        "title": "Statistics",
+        "thead": {
+          "stats": "Job Statistics",
+          "ets2": "Euro Truck Simulator 2",
+          "ats": "American Truck Simulator",
+          "combined": "Combined"
+        },
+        "tbody": {
+          "jobsDelivered": "Jobs Delivered",
+          "weightTransported": "Weight Transported",
+          "avgDistance": "Average Delivery Distance",
+          "longestJob": "Longest Job",
+          "totalDistance": "Total Distance",
+          "favTrucks": "Most Used Trucks",
+          "favCargo": "Most Delivered Cargo",
+          "favStartCity": "Favorite Start City",
+          "favStartCompany": "Favorite Start Company",
+          "favEndCity": "Favorite Destination City",
+          "favEndCompany": "Favorite Destination Company"
+        }
+      }
+    },
+    "leaderboard": {
+      "meta": {
+        "title": "Leaderboard",
+        "description": "View the company's rankings, both all-time and monthly best performers."
+      },
+      "card": {
+        "title": "Company Leaderboard",
+        "btnGroupNavigation": {
+          "allTime": "All Time",
+          "monthly": "Monthly",
+          "monthNames": {
+            "jan": "January",
+            "feb": "February",
+            "mar": "March",
+            "apr": "April",
+            "may": "May",
+            "jun": "June",
+            "jul": "July",
+            "aug": "August",
+            "sep": "September",
+            "oct": "October",
+            "nov": "November",
+            "dec": "December"
+          }
+        },
+        "leaderboards": {
+          "totalThp": {
+            "title": "Total THP Earned"
+          },
+          "totalDistance": {
+            "title": "Total Distance Driven"
+          },
+          "totalWeight": {
+            "title": "Total Weight Transported"
+          },
+          "maxThp": {
+            "title": "Highest THP Earned"
+          },
+          "maxDistance": {
+            "title": "Highest Distance Driven"
+          },
+          "maxWeight": {
+            "title": "Highest Weight Transported"
+          }
+        }
       }
     },
     "vtcStats": {

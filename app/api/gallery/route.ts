@@ -55,7 +55,6 @@ const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
-    console.log(req);
     const title = formData.get("title") as string;
     const file = formData.get("file") as File | null;
 

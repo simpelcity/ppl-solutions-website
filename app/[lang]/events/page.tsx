@@ -8,33 +8,6 @@ type PageProps = {
   params: Promise<{ lang: Locale }>
 }
 
-type DictionaryType = {
-  events: {
-    meta: {
-      title: string,
-      description: string
-    }
-    title: string,
-    card: {
-      date: string,
-      meetupTime: string,
-      departureTime: string,
-      departureLocation: string,
-      destinationLocation: string,
-      game: string,
-      server: string,
-      dlc: string,
-      event: string
-    },
-    error: {
-      noEvents: string
-      na: string,
-      noServer: string,
-      noDLC: string
-    }
-  }
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params
   const dict = await getDictionary(lang)
@@ -69,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function EventsPage({ params }: PageProps) {
   const { lang } = await params
-  const dict = await getDictionary(lang) as DictionaryType
+  const dict = await getDictionary(lang)
 
   return (
     <>

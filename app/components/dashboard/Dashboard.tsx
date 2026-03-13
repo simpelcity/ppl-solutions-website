@@ -3,36 +3,17 @@
 import { Container } from "react-bootstrap";
 import { Sidebar } from "@/components";
 import { useSidebar } from "@/lib";
-
-interface TeamMember {
-  name: string;
-  profile_url: string | null;
-  admin: boolean | null;
-}
+import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
 
 interface DashboardProps {
   children: React.ReactNode;
   isNavbarVisible?: boolean;
-  dict?: {
-    title: string;
-    drivershub: string;
-    userStats: string;
-    leaderboard: string;
-    dashboard: {
-      title: string;
-      vtcStats: string;
-      team: string;
-      gallery: string;
-    };
-    profile: {
-      settings: string;
-      profile: string;
-      logout: string;
-    };
-  };
+  dict: Dictionary;
+  lang: Locale;
 }
 
-export default function Dashboard({ children, isNavbarVisible = false, dict, ...props }: DashboardProps) {
+export default function Dashboard({ children, isNavbarVisible = false, dict, lang, ...props }: DashboardProps) {
   const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile } = useSidebar();
 
   const sidebarWidth = isSidebarCollapsed ? "4.5rem" : "280px";
@@ -48,6 +29,7 @@ export default function Dashboard({ children, isNavbarVisible = false, dict, ...
         isMobile={isMobile}
         isNavbarVisible={true}
         dict={dict}
+        lang={lang}
       />
       <Container
         className="content-wrapper d-flex justify-content-center px-3 mx-0"

@@ -5,37 +5,13 @@ import { useState } from "react";
 import { supabase } from "@/lib";
 import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
+import type { Dictionary } from "@/app/i18n"
 
-type LoginFormClientProps = {
-  dict: {
-    login: {
-      meta: {
-        title: string,
-        description: string
-      },
-      form: {
-        brand: string;
-        title: string;
-        email: string;
-        emailPlaceholder: string;
-        password: string;
-        passwordPlaceholder: string;
-        forgotPassword: string;
-        rememberMe: string;
-        submit: string;
-        noAccount: string;
-        signUp: string;
-        error: {
-          invalidCredentials: string,
-          unexpected: string,
-          loading: string
-        }
-      };
-    }
-  };
-};
+type Props = {
+  dict: Dictionary;
+}
 
-export default function LoginFormClient({ dict }: LoginFormClientProps) {
+export default function LoginFormClient({ dict }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

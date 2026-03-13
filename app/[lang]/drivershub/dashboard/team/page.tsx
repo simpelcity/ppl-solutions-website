@@ -50,9 +50,9 @@ export default async function DashboardTeamPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
-          <Dashboard dict={dict.drivershub.sidebar}>
+          <Dashboard dict={dict} lang={lang}>
             <Row className="w-100 justify-content-center">
-              <CardTeamForm dict={dict.drivershub.team} />
+              <CardTeamForm dict={dict} />
             </Row>
           </Dashboard>
         </section>

@@ -7,7 +7,16 @@ axios.defaults.headers.common["Content-Type"] = "application/json";
 
 export async function GET(request: Request) {
   try {
-    const firstRes = await axios.get("https://api.truckershub.in/v1/jobs?page=1");
+    const { searchParams } = new URL(request.url);
+    const month = searchParams.get("month");
+    const year = searchParams.get("year");
+
+    let apiUrl = "https://api.truckershub.in/v1/jobs?page=1";
+    if (month && year) {
+      apiUrl += `&month=${month}&year=${year}`;
+    }
+
+    const firstRes = await axios.get(apiUrl);
 
     if (firstRes.status !== 200) {
       return errorHandler({ error: "Failed to fetch jobs" }, request, firstRes.status);
@@ -21,7 +30,12 @@ export async function GET(request: Request) {
 
     const allJobs: any[] = [];
     for (let page = 1; page <= totalPages; page++) {
-      const res = await axios.get(`https://api.truckershub.in/v1/jobs?page=${page}`);
+      let pageUrl = `https://api.truckershub.in/v1/jobs?page=${page}`;
+      if (month && year) {
+        pageUrl += `&month=${month}&year=${year}`;
+      }
+
+      const res = await axios.get(pageUrl);
 
       if (res.status !== 200) continue;
 

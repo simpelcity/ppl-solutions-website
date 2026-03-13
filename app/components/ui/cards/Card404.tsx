@@ -21,11 +21,11 @@ export default function Card404({ dict, lang }: Card404Props) {
             <FaRegFaceFrown size={150} />
           </Col>
           <Col xs={12} md={7} className="d-flex flex-column align-items-center align-items-md-start text-center text-md-start">
-            <h1 className="">{dict["not-found"].card.title}</h1>
-            <p className="">{dict["not-found"].card.text}</p>
+            <h1 className="">{dict.notFound.card.title}</h1>
+            <p className="">{dict.notFound.card.text}</p>
             <div className="d-flex column-gap-2">
-              <BSButton variant="primary" href={homeHref}>{dict["not-found"].card.buttons.home}</BSButton>
-              <BSButton variant="outline" href={contactHref}>{dict["not-found"].card.buttons.contact}</BSButton>
+              <BSButton variant="primary" href={homeHref}>{dict.notFound.card.buttons.home}</BSButton>
+              <BSButton variant="outline" href={contactHref}>{dict.notFound.card.buttons.contact}</BSButton>
             </div>
           </Col>
         </Row>

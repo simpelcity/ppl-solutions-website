@@ -5,34 +5,12 @@ import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import { BSButton } from "@/components";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
+import type { Dictionary } from "@/app/i18n"
 
 type ConfirmAction = "delete-item" | null;
 
-type GalleryDict = {
-  form: {
-    titleNewItem: string;
-    titleEditItem: string;
-    title: string;
-    titlePlaceholder: string;
-    image: string;
-    imageEdit: string;
-    submit: string;
-    submitEdit: string;
-    cancel: string;
-  };
-  card: {
-    title: string;
-  };
-  modal: {
-    title: string;
-    text: string;
-    cancel: string;
-    confirm: string;
-  };
-};
-
 type CardGalleryFormProps = {
-  dict?: GalleryDict;
+  dict: Dictionary;
 };
 
 export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
@@ -100,14 +78,14 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     <>
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{editingId ? (dict?.form?.titleEditItem || "Edit Gallery Item") : (dict?.form?.titleNewItem || "Add Gallery Item")}</Card.Title>
+          <Card.Title className="fs-4">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>{dict?.form?.title || "Title"}</Form.Label>
+                <Form.Label>{dict.drivershub.gallery.form.title || "Title"}</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder={dict?.form?.titlePlaceholder || "Image title"}
+                  placeholder={dict.drivershub.gallery.form.titlePlaceholder || "Image title"}
                   className="rounded-0 border-0 shadow bg-dark-subtle"
                   required
                   value={title}
@@ -117,7 +95,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>{dict?.form?.image || "Image"} {editingId ? (dict?.form?.imageEdit || "(leave empty to keep current)") : ""}</Form.Label>
+                <Form.Label>{dict.drivershub.gallery.form.image || "Image"} {editingId ? (dict.drivershub.gallery.form.imageEdit || "(leave empty to keep current)") : ""}</Form.Label>
                 <Form.Control
                   id="gallery-file-input"
                   type="file"
@@ -145,9 +123,9 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
                   </>
                 ) : editingId ? (
-                  dict?.form?.submitEdit || "Update Item"
+                  dict.drivershub.gallery.form.submitEdit || "Update Item"
                 ) : (
-                  dict?.form?.submit || "Add Item"
+                  dict.drivershub.gallery.form.submit || "Add Item"
                 )}
               </BSButton>
 
@@ -163,7 +141,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     if (fileInput) fileInput.value = "";
                   }}
                   disabled={submitting}>
-                  {dict?.form?.cancel || "Cancel"}
+                  {dict.drivershub.gallery.form.cancel || "Cancel"}
                 </BSButton>
               )}
             </Form>
@@ -174,7 +152,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
       {/* Gallery Items List */}
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{dict?.card?.title || "Gallery Items"}</Card.Title>
+          <Card.Title className="fs-4">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
           <Card.Body className="p-1">
             {loading ? (
               <div className="d-flex justify-content-center align-items-center column-gap-2">
@@ -229,17 +207,17 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
       {/* Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">
         <Modal.Header closeButton>
-          <Modal.Title>{dict?.modal?.title || "Confirm Action"}</Modal.Title>
+          <Modal.Title>{dict.drivershub.gallery.modal.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {confirmAction === "delete-item" && (dict?.modal?.text || "Are you sure you want to delete this gallery item?")}
+          {confirmAction === "delete-item" && (dict.drivershub.gallery.modal.text || "Are you sure you want to delete this gallery item?")}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
-            {dict?.modal?.cancel || "Cancel"}
+            {dict.drivershub.gallery.modal.cancel || "Cancel"}
           </Button>
           <Button variant="danger" onClick={handleConfirm}>
-            {dict?.modal?.confirm || "Confirm"}
+            {dict.drivershub.gallery.modal.confirm || "Confirm"}
           </Button>
         </Modal.Footer>
       </Modal>

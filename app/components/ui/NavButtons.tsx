@@ -14,7 +14,6 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
   const [expanded, setExpanded] = useState(false);
   const { user } = useAuth();
 
-  // Extract current locale from pathname
   const currentLocale = i18n.locales.find(
     (locale) => pathname?.startsWith(`/${locale}/`) || pathname === `/${locale}`
   ) || i18n.defaultLocale;
@@ -38,10 +37,8 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
   };
 
   const switchLanguage = (locale: Locale) => {
-    // Get pathname without current locale prefix
     let newPathname = pathname || "/";
 
-    // Remove current locale from pathname if present
     i18n.locales.forEach((loc) => {
       if (newPathname.startsWith(`/${loc}/`)) {
         newPathname = newPathname.replace(`/${loc}`, "");
@@ -50,15 +47,12 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
       }
     });
 
-    // Add new locale prefix if not default
     const finalPath = locale === i18n.defaultLocale
       ? newPathname
       : `/${locale}${newPathname}`;
 
-    // Set cookie for locale preference
     document.cookie = `NEXT_LOCALE=${locale};path=/;max-age=31536000`;
 
-    // Navigate to new path
     router.push(finalPath);
     setExpanded(false);
   };

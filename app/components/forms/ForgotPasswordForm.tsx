@@ -10,5 +10,5 @@ export default async function ForgotPasswordForm({ params }: ForgotPasswordFormP
   const { lang } = await params
   const dict = await getDictionary(lang)
 
-  return <ForgotPasswordFormClient dict={dict} />
+  return <ForgotPasswordFormClient dict={dict} lang={lang} />
 }

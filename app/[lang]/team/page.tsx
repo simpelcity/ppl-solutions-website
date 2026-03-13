@@ -9,18 +9,6 @@ type PageProps = {
   params: Promise<{ lang: Locale }>
 }
 
-type DictionaryType = {
-  team: {
-    meta: {
-      title: string;
-      description: string;
-    };
-    title: string;
-    loading: string;
-    error: string;
-  };
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params
   const dict = await getDictionary(lang)
@@ -55,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function TeamPage({ params }: PageProps) {
   const { lang } = await params
-  const dict = await getDictionary(lang) as DictionaryType
+  const dict = await getDictionary(lang)
 
   return (
     <>
@@ -63,7 +51,7 @@ export default async function TeamPage({ params }: PageProps) {
         <StartBanner>{dict.team.title}</StartBanner>
         <section className="team d-flex w-100 bg-dark-subtle text-center">
           <Container className="d-flex flex-column align-items-center mt-4 mb-5">
-            <TeamGrid lang={lang} teamDict={dict.team} />
+            <TeamGrid lang={lang} dict={dict} />
           </Container>
         </section>
       </main>

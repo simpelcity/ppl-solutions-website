@@ -8,16 +8,6 @@ type PageProps = {
   params: Promise<{ lang: Locale }>
 }
 
-type DictionaryType = {
-  gallery: {
-    meta: {
-      title: string,
-      description: string
-    },
-    title: string
-  },
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params
   const dict = await getDictionary(lang)
@@ -52,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GalleryPage({ params }: PageProps) {
   const { lang } = await params
-  const dict = await getDictionary(lang) as DictionaryType
+  const dict = await getDictionary(lang)
 
   return (
     <>
@@ -60,7 +50,7 @@ export default async function GalleryPage({ params }: PageProps) {
         <StartBanner>{dict.gallery.title}</StartBanner>
         <section className="d-flex w-100 bg-dark-subtle text-center">
           <Container className="d-flex justify-content-center my-5">
-            <GalleryGrid />
+            <GalleryGrid dict={dict} />
           </Container>
         </section>
       </main>

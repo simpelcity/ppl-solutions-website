@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/lib";
 import axios from "axios";
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 type Job = any;
 
@@ -73,6 +74,7 @@ interface GameStats {
 
 export function useUserStats() {
   const { session } = useAuth();
+  const isAdmin = useIsAdmin();
   const [steamID, setSteamID] = useState<string | null>(null);
   const [scenarios, setScenarios] = useState();
   const [lastPage, setLastPage] = useState<number>(1);
@@ -82,6 +84,10 @@ export function useUserStats() {
   const [loading, setLoading] = useState<boolean>(true);
 
   const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
 
   const fetchMembers = async () => {
     const res = await axios.get("/api/members");
@@ -114,7 +120,7 @@ export function useUserStats() {
     if (res.status !== 200) {
       throw new Error("Failed to fetch statistics");
     }
-    console.log("raw statistics data:", res.data);
+    adminLog("raw statistics data:", res.data);
     return res.data?.data;
   };
 
@@ -165,10 +171,7 @@ export function useUserStats() {
 
   const getStatistics = async () => {
     const jobs = await fetchStatistics();
-    console.log(
-      "most frequent item:",
-      mostFrequent(jobs.map((job: any) => job.truck.name + " " + job.truck.model.name)),
-    );
+    adminLog("most frequent item:", mostFrequent(jobs.map((job: any) => job.truck.name + " " + job.truck.model.name)));
 
     let time = 0;
     let thp = 0;
@@ -319,7 +322,6 @@ export function useUserStats() {
     }
 
     const ets2StartCity = mostFrequent(ets2Sources.map((item: any) => item.city.name));
-    console.log(ets2Sources);
     const ets2StartCompany = mostFrequent(ets2Sources.map((item: any) => item.company.name));
     if (ets2StartCity && ets2StartCompany) {
       ets2Source = { city: ets2StartCity, company: ets2StartCompany };
@@ -466,7 +468,6 @@ export function useUserStats() {
       try {
         const statistics = await getStatistics();
         setStats(statistics);
-        console.log(statistics);
       } catch (err: any) {
         setError(err.message);
       } finally {

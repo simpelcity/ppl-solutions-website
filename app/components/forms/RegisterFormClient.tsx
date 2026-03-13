@@ -5,37 +5,13 @@ import { useState } from "react";
 import { supabase } from "@/lib";
 import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
+import type { Dictionary } from "@/app/i18n"
 
-type RegisterFormClientProps = {
-  dict: {
-    register: {
-      form: {
-        brand: string;
-        title: string;
-        email: string;
-        emailPlaceholder: string;
-        username: string;
-        usernamePlaceholder: string;
-        allowedChars: string;
-        password: string;
-        passwordPlaceholder: string;
-        submit: string;
-        haveAccount: string;
-        login: string;
-        error: {
-          emailInUse: string,
-          usernameInUse: string,
-          passwordTooShort: string,
-          unexpected: string,
-          success: string,
-          loading: string
-        }
-      };
-    };
-  };
-};
+type Props = {
+  dict: Dictionary;
+}
 
-export default function RegisterFormClient({ dict }: RegisterFormClientProps) {
+export default function RegisterFormClient({ dict }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");

@@ -51,9 +51,9 @@ export default async function DashboardPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
-          <Dashboard dict={dict.drivershub.sidebar}>
+          <Dashboard dict={dict} lang={lang}>
             <Row className="w-100 d-flex px-3">
-              <DashboardStats dict={dict.drivershub.vtcStats} />
+              <DashboardStats dict={dict} />
             </Row>
           </Dashboard>
         </section>

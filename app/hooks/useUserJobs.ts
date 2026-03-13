@@ -3,10 +3,17 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/lib";
 import axios from "axios";
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 type Job = any;
 
 export function useUserJobs() {
+  const isAdmin = useIsAdmin();
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
   const { session } = useAuth();
   const [steamID, setSteamID] = useState<string | null>(null);
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -16,6 +23,8 @@ export function useUserJobs() {
   const [error, setError] = useState<string | null>(null);
   const [showAll, setShowAll] = useState<boolean>(false);
   const [allJobs, setAllJobs] = useState<Job[]>([]);
+  const [driver, setDriver] = useState<string | null>(null);
+  const [driverName, setDriverName] = useState<string | null>(null);
 
   const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
   const displayPage = lastPage - currentPage + 1;
@@ -31,7 +40,12 @@ export function useUserJobs() {
     if (steamID) return steamID;
     const members = await fetchMembers();
     const driver = members.find((d: any) => d.username === driverUsername);
-    if (!driver) throw new Error(`Driver ${driverUsername} not found`);
+    setDriver(driver);
+    setDriverName(driverUsername);
+    if (!driver) {
+      setDriver(null);
+      throw new Error(`Driver ${driverUsername} not found`);
+    }
     setSteamID(driver.steamID);
     return driver.steamID;
   };
@@ -132,6 +146,8 @@ export function useUserJobs() {
 
   return {
     jobs: showAll ? allJobs : jobs,
+    driver,
+    driverName,
     loading,
     error,
     currentPage,

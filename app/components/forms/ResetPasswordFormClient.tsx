@@ -2,87 +2,63 @@
 
 import { Card, Form, Image } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib";
+import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
 import "@/styles/AuthCards.scss";
+import type { Dictionary } from "@/app/i18n"
 
-type ResetPasswordFormClientProps = {
-  dict: {
-    resetPassword: {
-      meta: {
-        title: string,
-        description: string
-      },
-      form: {
-        brand: string,
-        title: string,
-        newPassword: string,
-        newPasswordPlaceholder: string,
-        confirmPassword: string,
-        confirmPasswordPlaceholder: string,
-        submit: string,
-        backToLogin: string,
-        error: {
-          invalidToken: string,
-          passwordMismatch: string,
-          passwordTooShort: string,
-          success: string,
-          unexpected: string,
-          newPassword: string,
-          loading: string
-        }
-      }
-    }
-  }
+type Props = {
+  dict: Dictionary;
 }
 
-export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClientProps) {
+export default function ResetPasswordFormClient({ dict }: Props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [tokenValid, setTokenValid] = useState(false);
+  const [validating, setValidating] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    const accessToken = params.get("access_token");
-    const type = params.get("type");
-
-    if (type === "recovery" && accessToken) {
-      // Verify token with server
-      supabase.auth.getUser(accessToken)
-        .then(({ data, error }) => {
-          if (error || !data.user) {
-            setError("Invalid or expired reset token");
-            setTokenValid(false);
-          } else {
-            setTokenValid(true);
-          }
-        });
-    } else {
-      setError("Invalid or missing reset token.");
-    }
-  }, []);
+    supabase.auth.getSession()
+      .then(({ data, error }) => {
+        if (error) {
+          setError(dict.resetPassword.form.error.expiredToken);
+          setTokenValid(false);
+        } else if (!data.session) {
+          setError(dict.resetPassword.form.error.expiredSession)
+          setTokenValid(false)
+        } else {
+          setTokenValid(true);
+        }
+      })
+      .catch(() => {
+        setError(dict.resetPassword.form.error.invalidToken);
+        setTokenValid(false);
+      })
+      .finally(() => {
+        setValidating(false);
+      });
+  })
 
   const validatePassword = (password: string): string | null => {
     if (password.length < 8) {
-      return "Password must be at least 8 characters";
+      return dict.resetPassword.form.error.password.passwordTooShort;
     }
     if (!/[a-z]/.test(password)) {
-      return "Password must contain at least one lowercase letter";
+      return dict.resetPassword.form.error.password.passwordNoLowercase;
     }
     if (!/[A-Z]/.test(password)) {
-      return "Password must contain at least one uppercase letter";
+      return dict.resetPassword.form.error.password.passwordNoUppercase;
     }
     if (!/[0-9]/.test(password)) {
-      return "Password must contain at least one number";
+      return dict.resetPassword.form.error.password.passwordNoNumber;
     }
     if (!/[!@#$%^&*]/.test(password)) {
-      return "Password must contain at least one special character";
+      return dict.resetPassword.form.error.password.passwordNoSpecial;
     }
     return null;
   };
@@ -93,7 +69,7 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
     setSuccess("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(dict.resetPassword.form.error.password.passwordMismatch);
       return;
     }
 
@@ -115,16 +91,36 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
         return;
       }
 
-      setSuccess("Password reset successfully! Redirecting to login...");
+      setSuccess(dict.resetPassword.form.error.success);
       setTimeout(() => {
         router.push("/login");
       }, 2000);
     } catch (err: any) {
-      setError(err?.message ?? "An error occurred while resetting your password");
+      setError(err?.message ?? dict.resetPassword.form.error.unexpected);
     } finally {
       setLoading(false);
     }
   };
+
+  if (validating) {
+    return (
+      <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+        <Card.Body className="p-4">
+          <div className="d-flex mb-3">
+            <Image
+              src={"/assets/images/ppls-logo.png"}
+              alt="PPLS Logo"
+              width={20}
+              height={20}
+              roundedCircle
+            />
+            <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
+          </div>
+          <p className="text-muted">{dict.resetPassword.form.validating}</p>
+        </Card.Body>
+      </Card>
+    );
+  }
 
   if (!tokenValid) {
     return (
@@ -138,14 +134,12 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
               height={20}
               roundedCircle
             />
-            <small className="ms-1 my-auto">PPL Solutions</small>
+            <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
           </div>
           <p className="text-danger">{error}</p>
           <div className="text-center">
             <small>
-              <a href="/forgot-password" className="text-light">
-                Request a new password reset
-              </a>
+              <a href="/forgot-password" className="text-light">{dict.resetPassword.form.error.newPassword}</a>
             </small>
           </div>
         </Card.Body>
@@ -164,14 +158,14 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
             height={20}
             roundedCircle
           />
-          <small className="ms-1 my-auto">PPL Solutions</small>
+          <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
         </div>
-        <h2 className="mb-3">Reset Password</h2>
-        <p className="text-muted mb-4">Enter your new password below.</p>
+        <h2 className="mb-3">{dict.resetPassword.form.title}</h2>
+        <p className="text-muted mb-4">{dict.resetPassword.form.newPasswordBelow}</p>
 
         <Form onSubmit={handleResetPassword} data-bs-theme="dark">
           <Form.Group className="mb-3">
-            <Form.Label>New Password</Form.Label>
+            <Form.Label>{dict.resetPassword.form.newPassword}</Form.Label>
             <Form.Control
               type="password"
               placeholder="••••••"
@@ -184,7 +178,7 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>{dict.resetPassword.form.confirmPassword}</Form.Label>
             <Form.Control
               type="password"
               placeholder="••••••"
@@ -200,15 +194,13 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
 
           <Form.Group className="mb-3">
             <BSButton variant="primary" type="submit" disabled={loading}>
-              {loading ? "Resetting..." : "Reset Password"}
+              {loading ? dict.resetPassword.form.loading : dict.resetPassword.form.submit}
             </BSButton>
           </Form.Group>
 
           <div className="text-center">
             <small>
-              <a href="/login" className="text-light">
-                Back to login
-              </a>
+              <a href="/login" className="text-light">{dict.resetPassword.form.backToLogin}</a>
             </small>
           </div>
         </Form>

@@ -47,7 +47,7 @@
       "copyright": "Copyright {year} PPL Solutions. Alle rechten voorbehouden | Ontwikkeld door Simpelcity"
     }
   },
-  "not-found": {
+  "notFound": {
     "meta": {
       "title": "404 - Pagina niet gevonden",
       "description": "De pagina die u zoekt bestaat niet."
@@ -61,6 +61,12 @@
       }
     }
   },
+  "status": {
+    "loading": {
+      "loadingSpinner": "Laden...",
+      "loader": "Laden"
+    }
+  },
   "home": {
     "meta": {
       "title": "De toekomst van digitale logistiek vormgeven",
@@ -71,7 +77,7 @@
       "apply": "solliciteer",
       "discord": "discord"
     },
-    "about-us": {
+    "aboutUs": {
       "title": "over ons",
       "text": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
     },
@@ -128,14 +134,21 @@
     },
     "title": "team",
     "loading": "Team laden...",
-    "error": "Fout bij laden van het team."
+    "errors": {
+      "error": "Fout bij laden van het team.",
+      "noDepts": "Geen afdelingen / leden gevonden."
+    }
   },
   "gallery": {
     "meta": {
       "title": "Galerij",
       "description": "Blader door onze galerij met de mooiste momenten en vrachtwagens van PPL Solutions."
     },
-    "title": "galerij"
+    "title": "galerij",
+    "errors": {
+      "error": "Fout bij het laden van de galerij:",
+      "noImages": "Geen afbeeldingen gevonden."
+    }
   },
   "contact": {
     "meta": {
@@ -218,8 +231,8 @@
   },
   "forgotPassword": {
     "meta": {
-      "title": "",
-      "description": ""
+      "title": "Wachtwoord vergeten?",
+      "description": "Wachtwoord vergeten voor uw PPL Solutions Drivershub-account?"
     },
     "form": {
       "brand": "PPL Solutions",
@@ -239,8 +252,8 @@
   },
   "resetPassword": {
     "meta": {
-      "title": "",
-      "description": ""
+      "title": "Reset uw wachtwoord",
+      "description": "Stel het wachtwoord van uw PPL Solutions Drivershub-account opnieuw in."
     },
     "form": {
       "brand": "PPL Solutions",
@@ -254,13 +267,22 @@
       "backToLogin": "Terug naar inloggen",
       "error": {
         "invalidToken": "Ongeldig of ontbrekend resettoken. Vraag een nieuwe wachtwoordreset aan.",
-        "passwordMismatch": "De wachtwoorden komen niet overeen. Probeer het opnieuw.",
-        "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
+        "expiredToken": "Ongeldig of verlopen resettoken. Vraag een nieuwe wachtwoordreset aan.",
+        "expiredSession": "Uw sessie is verlopen. Vraag een nieuwe wachtwoordreset aan.",
         "success": "Wachtwoord succesvol gereset! U wordt doorgestuurd naar de inlogpagina...",
         "unexpected": "Er is een onverwachte fout opgetreden tijdens het opnieuw instellen van uw wachtwoord.",
         "newPassword": "Vraag een nieuwe wachtwoordreset aan",
-        "loading": "Resetten..."
-      }
+        "password": {
+          "passwordMismatch": "De wachtwoorden komen niet overeen. Probeer het opnieuw.",
+          "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn.",
+          "passwordNoLowercase": "Het wachtwoord moet ten minste één kleine letter bevatten.",
+          "passwordNoUppercase": "Het wachtwoord moet ten minste één hoofdletter bevatten.",
+          "passwordNoNumber": "Het wachtwoord moet ten minste één cijfer bevatten.",
+          "passwordNoSpecial": "Het wachtwoord moet ten minste één speciaal teken bevatten."
+        }
+      },
+      "loading": "Resetten...",
+      "validating": "De resetlink wordt gevalideerd..."
     }
   },
   "drivershub": {
@@ -272,7 +294,7 @@
       "title": "Zijbalk",
       "drivershub": "Bestuurdershub",
       "userStats": "Gebruikersstatistieken",
-      "leaderboard": "Ranglijst",
+      "leaderboard": "Klassement",
       "dashboard": {
         "title": "Dashboard",
         "vtcStats": "VTC-statistieken",
@@ -286,7 +308,7 @@
       }
     },
     "jobs": {
-      "title": "gebruiker vrachten",
+      "title": "gebruikers vrachten",
       "table": {
         "date": "datum",
         "username": "gebruikersnaam",
@@ -303,7 +325,8 @@
         },
         "error": {
           "error": "Error:",
-          "noJobs": "Geen vrachten gevonden"
+          "noJobs": "Geen vrachten gevonden",
+          "driverNotFound": "Bestuurder {driver} niet gevonden"
         }
       }
     },
@@ -311,6 +334,98 @@
       "meta": {
         "title": "'s Statistieken",
         "description": "'s Statistieken bij PPL Solutions VTC"
+      },
+      "cards": {
+        "thp": {
+          "title": "TruckersHub Punten",
+          "total": "Totaal",
+          "avg": "Gemiddeld",
+          "min": "Minimaal",
+          "max": "Maximaal"
+        },
+        "income": {
+          "title": "Verdiend inkomen",
+          "total": "Totaal",
+          "avg": "Gemiddeld",
+          "min": "Minimaal",
+          "max": "Maximaal"
+        },
+        "distance": {
+          "title": "Bezorgafstand",
+          "total": "Totaal",
+          "avg": "Gemiddeld",
+          "min": "Minimaal",
+          "max": "Maximaal"
+        }
+      },
+      "table": {
+        "title": "Statistieken",
+        "thead": {
+          "stats": "Vracht statistieken",
+          "ets2": "Euro Truck Simulator 2",
+          "ats": "American Truck Simulator",
+          "combined": "Gecombineerd"
+        },
+        "tbody": {
+          "jobsDelivered": "Geleverde vrachten",
+          "weightTransported": "Gewicht Vervoerd",
+          "avgDistance": "Gemiddelde leveringsafstand",
+          "longestJob": "Langste vracht",
+          "totalDistance": "Totale afstand",
+          "favTrucks": "Meest gebruikte vrachtwagens",
+          "favCargo": "Meest geleverde lading",
+          "favStartCity": "Favoriete Beginstad",
+          "favStartCompany": "Favoriete startbedrijf",
+          "favEndCity": "Favoriete bestemmingsstad",
+          "favEndCompany": "Favoriet bestemmingsbedrijf"
+        }
+      }
+    },
+    "leaderboard": {
+      "meta": {
+        "title": "Klassement",
+        "description": "Bekijk de ranglijsten van het bedrijf, zowel de beste prestaties aller tijden als de beste prestaties per maand."
+      },
+      "card": {
+        "title": "Bedrijf ranglijst",
+        "btnGroupNavigation": {
+          "allTime": "Altijd",
+          "monthly": "Maandelijks",
+          "monthNames": {
+            "jan": "januari",
+            "feb": "februari",
+            "mar": "maart",
+            "apr": "april",
+            "may": "mei",
+            "jun": "juni",
+            "jul": "juli",
+            "aug": "augustus",
+            "sep": "september",
+            "oct": "oktober",
+            "nov": "november",
+            "dec": "december"
+          }
+        },
+        "leaderboards": {
+          "totalThp": {
+            "title": "Totaal verdiende THP"
+          },
+          "totalDistance": {
+            "title": "Totale afstand gereden"
+          },
+          "totalWeight": {
+            "title": "Totaal vervoerd gewicht"
+          },
+          "maxThp": {
+            "title": "Hoogste THP Verdiend"
+          },
+          "maxDistance": {
+            "title": "Hoogste afstand gereden"
+          },
+          "maxWeight": {
+            "title": "Hoogste vervoerd gewicht"
+          }
+        }
       }
     },
     "vtcStats": {

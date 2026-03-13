@@ -33,11 +33,12 @@ export { default as TeamGrid } from "./ui/grids/TeamGrid";
 export { default as PlaceholderTable } from "./ui/tables/PlaceholderTable";
 export { default as TableJobs } from "./ui/tables/TableJobs";
 export { default as TableJobsClient } from "./ui/tables/TableJobsClient";
+export { default as TableLeaderboard } from "./ui/tables/TableLeaderboard";
 export { default as TableStats } from "./ui/tables/TableStats";
 // UI Components
 export { default as BSButton } from "./ui/Button";
 export { default as Loader } from "./ui/Loader";
+export { default as LoaderSpinner } from "./ui/LoaderSpinner";
 export { default as NavButtons } from "./ui/NavButtons";
 // Other
 export { default as DivEvents } from "./DivEvents";
-export { default as LanguageSwitcher } from "./LanguageSwitcher";

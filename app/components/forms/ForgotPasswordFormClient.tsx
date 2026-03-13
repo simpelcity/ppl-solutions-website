@@ -5,38 +5,20 @@ import { useState } from "react";
 import { supabase } from "@/lib";
 import { BSButton } from "@/components";
 import "@/styles/AuthCards.scss";
+import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
 
-type ForgotPasswordFormClientProps = {
-  dict: {
-    forgotPassword: {
-      meta: {
-        title: string,
-        description: string
-      },
-      form: {
-        brand: string,
-        title: string,
-        text: string,
-        email: string,
-        emailPlaceholder: string,
-        submit: string,
-        remember: string,
-        backToLogin: string,
-        error: {
-          error: string,
-          success: string,
-          loading: string
-        }
-      }
-    }
-  }
+type Props = {
+  dict: Dictionary;
+  lang: Locale;
 }
 
-export default function ForgotPasswordFormClient({ dict }: ForgotPasswordFormClientProps) {
+export default function ForgotPasswordFormClient({ dict, lang }: Props) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,13 +26,16 @@ export default function ForgotPasswordFormClient({ dict }: ForgotPasswordFormCli
     setSuccess("");
     setLoading(true);
 
+    const locale = lang === 'en' ? '' : `/${lang}`;
+
     try {
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ppl-solutions.vercel.app";
-      const { error } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
-        redirectTo: `${siteUrl}/reset-password`,
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${siteUrl}${locale}/reset-password`,
       });
 
       if (error) {
+        console.error(error)
         setError(error.message);
         return;
       }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Row, Col, Card, Image, Spinner } from "react-bootstrap"
 import { type Locale } from "@/i18n"
+import type { Dictionary } from "@/app/i18n"
 
 type Role = { id: number; name: string; code: string }
 type TeamMember = { id: number; name: string; profile_url?: string | null; profile_path?: string | null }
@@ -14,7 +15,12 @@ type ApiItem = {
   role: Role
 }
 
-export default function TeamGrid({ lang, teamDict }: { lang: Locale; teamDict: { loading: string; error: string } }) {
+type PageProps = {
+  lang: Locale;
+  dict: Dictionary;
+}
+
+export default function TeamGrid({ lang, dict }: PageProps) {
 
   const [items, setItems] = useState<ApiItem[] | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
@@ -47,13 +53,13 @@ export default function TeamGrid({ lang, teamDict }: { lang: Locale; teamDict: {
   if (loading) {
     return (
       <div className="text-center text-light p-3 d-flex align-items-center column-gap-2">
-        <Spinner animation="border" /> {teamDict.loading}
+        <Spinner animation="border" /> {dict.team.loading}
       </div>
     )
   }
 
   if (error) {
-    return <div className="text-danger">{teamDict.error} {error}</div>
+    return <div className="text-danger">{dict.team.errors.error} {error}</div>
   }
 
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}
@@ -70,7 +76,7 @@ export default function TeamGrid({ lang, teamDict }: { lang: Locale; teamDict: {
     <>
       {departments.map((dept, idx) => (
         <Row key={idx} className="w-100 d-flex justify-content-center row-gap-4">
-          {departments.length === 0 && <Col>No departments / members found.</Col>}
+          {departments.length === 0 && <Col>{dict.team.errors.noDepts}</Col>}
 
           <h2 className="text-primary my-4">{dept.name}</h2>
           <Row className="d-flex justify-content-center row-gap-4">

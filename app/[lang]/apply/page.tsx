@@ -9,19 +9,6 @@ type PageProps = {
   params: Promise<{ lang: Locale }>
 }
 
-type DictionaryType = {
-  apply: {
-    meta: {
-      title: string,
-      description: string
-    },
-    title: string,
-    card: {
-      text: string
-    }
-  },
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params
   const dict = await getDictionary(lang)
@@ -56,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ApplyPage({ params }: PageProps) {
   const { lang } = await params
-  const dict = await getDictionary(lang) as DictionaryType
+  const dict = await getDictionary(lang)
 
   const split = dict.apply.card.text.split(" ");
   const apply1 = split.slice(0, split.indexOf("Discord")).join(" ") + " ";
