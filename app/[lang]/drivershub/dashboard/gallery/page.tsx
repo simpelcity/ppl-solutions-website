@@ -66,7 +66,7 @@ export default async function DashboardGalleryPage({ params }: PageProps) {
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
           <Dashboard dict={dict} lang={lang}>
             <Row className="w-100 justify-content-center">
-              <CardGalleryForm dict={dict.drivershub.gallery} />
+              <CardGalleryForm dict={dict} />
             </Row>
           </Dashboard>
         </section>
