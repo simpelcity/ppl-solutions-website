@@ -268,13 +268,21 @@
       "error": {
         "invalidToken": "Invalid or missing reset token. Please request a new password reset.",
         "expiredToken": "Invalid or expired reset token. Please request a new password reset.",
-        "passwordMismatch": "Passwords do not match. Please try again.",
-        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+        "expiredSession": "Your session has expired. Please request a new password reset.",
         "success": "Password reset successfully! Redirecting to login...",
         "unexpected": "An unexpected error occurred while resetting your password",
-        "newPassword": "Request a new password reset"
+        "newPassword": "Request a new password reset",
+        "password": {
+          "passwordMismatch": "Passwords do not match. Please try again.",
+          "passwordTooShort": "Password must be at least 8 characters",
+          "passwordNoLowercase": "Password must contain at least one lowercase letter",
+          "passwordNoUppercase": "Password must contain at least one uppercase letter",
+          "passwordNoNumber": "Password must contain at least one number",
+          "passwordNoSpecial": "Password must contain at least one special character"
+        }
       },
-      "loading": "Resetting..."
+      "loading": "Resetting...",
+      "validating": "Validating reset link..."
     }
   },
   "drivershub": {

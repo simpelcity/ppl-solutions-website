@@ -268,13 +268,21 @@
       "error": {
         "invalidToken": "Ongeldig of ontbrekend resettoken. Vraag een nieuwe wachtwoordreset aan.",
         "expiredToken": "Ongeldig of verlopen resettoken. Vraag een nieuwe wachtwoordreset aan.",
-        "passwordMismatch": "De wachtwoorden komen niet overeen. Probeer het opnieuw.",
-        "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
+        "expiredSession": "Uw sessie is verlopen. Vraag een nieuwe wachtwoordreset aan.",
         "success": "Wachtwoord succesvol gereset! U wordt doorgestuurd naar de inlogpagina...",
         "unexpected": "Er is een onverwachte fout opgetreden tijdens het opnieuw instellen van uw wachtwoord.",
-        "newPassword": "Vraag een nieuwe wachtwoordreset aan"
+        "newPassword": "Vraag een nieuwe wachtwoordreset aan",
+        "password": {
+          "passwordMismatch": "De wachtwoorden komen niet overeen. Probeer het opnieuw.",
+          "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn.",
+          "passwordNoLowercase": "Het wachtwoord moet ten minste één kleine letter bevatten.",
+          "passwordNoUppercase": "Het wachtwoord moet ten minste één hoofdletter bevatten.",
+          "passwordNoNumber": "Het wachtwoord moet ten minste één cijfer bevatten.",
+          "passwordNoSpecial": "Het wachtwoord moet ten minste één speciaal teken bevatten."
+        }
       },
-      "loading": "Resetten..."
+      "loading": "Resetten...",
+      "validating": "De resetlink wordt gevalideerd..."
     }
   },
   "drivershub": {

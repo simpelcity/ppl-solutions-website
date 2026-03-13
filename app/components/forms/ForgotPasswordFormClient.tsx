@@ -6,16 +6,19 @@ import { supabase } from "@/lib";
 import { BSButton } from "@/components";
 import "@/styles/AuthCards.scss";
 import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
 
 type Props = {
   dict: Dictionary;
+  lang: Locale;
 }
 
-export default function ForgotPasswordFormClient({ dict }: Props) {
+export default function ForgotPasswordFormClient({ dict, lang }: Props) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,10 +26,12 @@ export default function ForgotPasswordFormClient({ dict }: Props) {
     setSuccess("");
     setLoading(true);
 
+    const locale = lang === 'en' ? '' : `/${lang}`;
+
     try {
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ppl-solutions.vercel.app";
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${siteUrl}/reset-password`,
+        redirectTo: `${siteUrl}${locale}/reset-password`,
       });
 
       if (error) {

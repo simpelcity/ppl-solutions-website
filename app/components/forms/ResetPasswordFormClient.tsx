@@ -3,7 +3,7 @@
 import { Card, Form, Image } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
 import "@/styles/AuthCards.scss";
 import type { Dictionary } from "@/app/i18n"
@@ -19,55 +19,46 @@ export default function ResetPasswordFormClient({ dict }: Props) {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [tokenValid, setTokenValid] = useState(false);
+  const [validating, setValidating] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log(data)
-      if (event === 'PASSWORD_RECOVERY') {
-        console.log('test')
-      }
-    })
-
-    // const params = new URLSearchParams(window.location.search);
-    // const accessToken = params.get("code") || params.get("token");
-    // const type = params.get("type");
-
-    // if (type === "recovery" && accessToken) {
-    //   supabase.auth.verifyOtp({
-    //     token_hash: accessToken,
-    //     type: "recovery",
-    //   })
-    //     .then(({ data, error }) => {
-    //       if (error || !data.session) {
-    //         console.error(error)
-    //         setError(dict.resetPassword.form.error.expiredToken);
-    //         setTokenValid(false);
-    //       } else {
-    //         setTokenValid(true);
-    //       }
-    //     });
-    // } else {
-    //   console.log(error)
-    //   setError(dict.resetPassword.form.error.invalidToken);
-    // }
-  }, [dict.resetPassword.form.error]);
+    supabase.auth.getSession()
+      .then(({ data, error }) => {
+        if (error) {
+          setError(dict.resetPassword.form.error.expiredToken);
+          setTokenValid(false);
+        } else if (!data.session) {
+          setError(dict.resetPassword.form.error.expiredSession)
+          setTokenValid(false)
+        } else {
+          setTokenValid(true);
+        }
+      })
+      .catch(() => {
+        setError(dict.resetPassword.form.error.invalidToken);
+        setTokenValid(false);
+      })
+      .finally(() => {
+        setValidating(false);
+      });
+  })
 
   const validatePassword = (password: string): string | null => {
     if (password.length < 8) {
-      return "Password must be at least 8 characters";
+      return dict.resetPassword.form.error.password.passwordTooShort;
     }
     if (!/[a-z]/.test(password)) {
-      return "Password must contain at least one lowercase letter";
+      return dict.resetPassword.form.error.password.passwordNoLowercase;
     }
     if (!/[A-Z]/.test(password)) {
-      return "Password must contain at least one uppercase letter";
+      return dict.resetPassword.form.error.password.passwordNoUppercase;
     }
     if (!/[0-9]/.test(password)) {
-      return "Password must contain at least one number";
+      return dict.resetPassword.form.error.password.passwordNoNumber;
     }
     if (!/[!@#$%^&*]/.test(password)) {
-      return "Password must contain at least one special character";
+      return dict.resetPassword.form.error.password.passwordNoSpecial;
     }
     return null;
   };
@@ -78,7 +69,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
     setSuccess("");
 
     if (password !== confirmPassword) {
-      setError(dict.resetPassword.form.error.passwordMismatch);
+      setError(dict.resetPassword.form.error.password.passwordMismatch);
       return;
     }
 
@@ -111,6 +102,26 @@ export default function ResetPasswordFormClient({ dict }: Props) {
     }
   };
 
+  if (validating) {
+    return (
+      <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+        <Card.Body className="p-4">
+          <div className="d-flex mb-3">
+            <Image
+              src={"/assets/images/ppls-logo.png"}
+              alt="PPLS Logo"
+              width={20}
+              height={20}
+              roundedCircle
+            />
+            <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
+          </div>
+          <p className="text-muted">{dict.resetPassword.form.validating}</p>
+        </Card.Body>
+      </Card>
+    );
+  }
+
   if (!tokenValid) {
     return (
       <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
@@ -123,7 +134,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
               height={20}
               roundedCircle
             />
-            <small className="ms-1 my-auto">PPL Solutions</small>
+            <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
           </div>
           <p className="text-danger">{error}</p>
           <div className="text-center">
@@ -183,7 +194,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
           <Form.Group className="mb-3">
             <BSButton variant="primary" type="submit" disabled={loading}>
-              {loading ? dict.resetPassword.form.loading : "Reset Password"}
+              {loading ? dict.resetPassword.form.loading : dict.resetPassword.form.submit}
             </BSButton>
           </Form.Group>
 

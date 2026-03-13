@@ -266,15 +266,23 @@
       "submit": "obnoviť heslo",
       "backToLogin": "Späť na prihlásenie",
       "error": {
-        "invalidToken": "Neplatný alebo chýbajúci token na obnovenie hesla. Požiadaj o nový reset.",
+        "invalidToken": "Neplatný alebo chýbajúci token na obnovenie hesla. Požiadajte o nové obnovenie hesla.",
         "expiredToken": "Neplatný alebo expirovaný token na obnovenie hesla. Požiadajte o nové obnovenie hesla.",
-        "passwordMismatch": "Heslá sa nezhodujú. Skús to znova.",
-        "passwordTooShort": "Heslo musí mať aspoň 8 znakov a obsahovať veľké, malé písmeno a číslo.",
+        "expiredSession": "Platnosť vašej relácie vypršala. Požiadajte o nové obnovenie hesla.",
         "success": "Heslo bolo úspešne obnovené! Presmerovanie na prihlásenie...",
         "unexpected": "Pri obnove hesla nastala neočakávaná chyba",
-        "newPassword": "Požiadať o nový reset hesla"
+        "newPassword": "Požiadať o nový reset hesla",
+        "password": {
+          "passwordMismatch": "Heslá sa nezhodujú. Skúste to znova.",
+          "passwordTooShort": "Heslo musí mať aspoň 8 znakov",
+          "passwordNoLowercase": "Heslo musí obsahovať aspoň jedno malé písmeno",
+          "passwordNoUppercase": "Heslo musí obsahovať aspoň jedno veľké písmeno",
+          "passwordNoNumber": "Heslo musí obsahovať aspoň jedno číslo",
+          "passwordNoSpecial": "Heslo musí obsahovať aspoň jeden špeciálny znak"
+        }
       },
-      "loading": "Obnovovanie..."
+      "loading": "Obnovovanie...",
+      "validating": "Overovanie odkazu na obnovenie..."
     }
   },
   "drivershub": {

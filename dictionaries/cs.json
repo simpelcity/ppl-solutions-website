@@ -266,15 +266,23 @@
       "submit": "obnovit heslo",
       "backToLogin": "Zpět na přihlášení",
       "error": {
-        "invalidToken": "Neplatný nebo chybějící resetovací token. Požádej o nový reset hesla.",
+        "invalidToken": "Neplatný nebo chybějící resetovací token. Požádejte o nové resetování hesla.",
         "expiredToken": "Neplatný nebo vypršelý token pro resetování hesla. Požádejte o nové resetování hesla.",
-        "passwordMismatch": "Hesla se neshodují. Zkus to znovu.",
-        "passwordTooShort": "Heslo musí mít alespoň 8 znaků a obsahovat velké, malé písmeno a číslo.",
+        "expiredSession": "Vaše relace vypršela. Požádejte o nové resetování hesla.",
         "success": "Heslo bylo úspěšně obnoveno! Přesměrování na přihlášení...",
         "unexpected": "Při obnově hesla došlo k neočekávané chybě",
-        "newPassword": "Požádat o nový reset hesla"
+        "newPassword": "Požádat o nový reset hesla",
+        "password": {
+          "passwordMismatch": "Hesla se neshodují. Zkuste to prosím znovu.",
+          "passwordTooShort": "Heslo musí mít alespoň 8 znaků",
+          "passwordNoLowercase": "Heslo musí obsahovat alespoň jedno malé písmeno",
+          "passwordNoUppercase": "Heslo musí obsahovat alespoň jedno velké písmeno",
+          "passwordNoNumber": "Heslo musí obsahovat alespoň jedno číslo",
+          "passwordNoSpecial": "Heslo musí obsahovat alespoň jeden speciální znak"
+        }
       },
-      "loading": "Obnovování..."
+      "loading": "Obnovování...",
+      "validating": "Ověřování odkazu pro resetování..."
     }
   },
   "drivershub": {
