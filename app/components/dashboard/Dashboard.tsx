@@ -6,12 +6,6 @@ import { useSidebar } from "@/lib";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 
-interface TeamMember {
-  name: string;
-  profile_url: string | null;
-  admin: boolean | null;
-}
-
 interface DashboardProps {
   children: React.ReactNode;
   isNavbarVisible?: boolean;

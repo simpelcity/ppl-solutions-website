@@ -5,134 +5,15 @@ import { PlaceholderTable, BSButton } from "@/components";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useUserJobs } from "@/hooks/useUserJobs";
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
 
-type TableJobsClientProps = {
-  lang: any;
-  dict: {
-    drivershub: {
-      meta: {
-        title: string,
-        description: string
-      },
-      sidebar: {
-        title: string,
-        drivershub: string,
-        userStats: string,
-        leaderboard: string,
-        dashboard: {
-          title: string,
-          vtcStats: string,
-          team: string,
-          gallery: string
-        },
-        profile: {
-          settings: string,
-          profile: string,
-          logout: string
-        }
-      },
-      jobs: {
-        title: string,
-        table: {
-          date: string,
-          username: string,
-          game: string,
-          fromTo: string,
-          cargo: string,
-          truck: string,
-          distance: string,
-          income: string,
-          navigation: {
-            showing: string;
-            allJobs: string;
-            paginated: string;
-          },
-          error: {
-            error: string;
-            noJobs: string;
-            driverNotFound: string;
-          }
-        }
-      },
-      vtcStats: {
-        vtc: {
-          title: string,
-          totalDistance: string,
-          totalJobs: string,
-          totalIncome: string,
-          totalTimeDriven: string
-        },
-        ets2: {
-          title: string,
-          totalDistance: string,
-          totalJobs: string,
-          totalIncome: string,
-          totalTimeDriven: string
-        },
-        ats: {
-          title: string,
-          totalDistance: string,
-          totalJobs: string,
-          totalIncome: string,
-          totalTimeDriven: string
-        }
-      },
-      team: {
-        form: {
-          titleNewMember: string,
-          titleEditMember: string,
-          username: string,
-          usernamePlaceholder: string,
-          profilePicture: string,
-          submitNewMember: string,
-          submitEditMember: string,
-          calcelEditMember: string,
-          rolesDepartments: {
-            title: string,
-            currentRoles: string,
-            addRole: string,
-            department: string,
-            role: string
-          }
-        },
-        card: {
-          title: string
-        },
-        modal: {
-          title: string,
-          textmember: string,
-          textPicture: string,
-          cancel: string,
-          confirm: string
-        }
-      },
-      gallery: {
-        form: {
-          titleNewItem: string,
-          titleEditItem: string,
-          title: string,
-          titlePlaceholder: string,
-          image: string,
-          imageEdit: string,
-          submit: string,
-          submitEdit: string,
-          cancel: string
-        },
-        card: {
-          title: string
-        },
-        modal: {
-          title: string,
-          text: string,
-          cancel: string,
-          confirm: string
-        }
-      }
-    }
-  }
+type Props = {
+  dict: Dictionary;
+  lang: Locale;
 }
 
-export default function TableJobsClient({ lang, dict }: TableJobsClientProps) {
+export default function TableJobsClient({ lang, dict }: Props) {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -161,7 +42,7 @@ export default function TableJobsClient({ lang, dict }: TableJobsClientProps) {
     showingText = `${split[0]} ${split[1]} ${displayPage} ${split[3]} ${lastPage}`;
   } else if (lang === 'nl') {
     showingText = `${split[0]} ${displayPage} ${split[2]} ${lastPage} ${split[4]} ${split[5]}`;
-  } else if (lang === 'cz') {
+  } else if (lang === 'cs') {
     showingText = `${split[0]} ${split[1]} ${split[2]} ${displayPage} ${split[4]} ${lastPage}`;
   } else if (lang === 'sk') {
     showingText = `${split[0]} ${split[1]} ${split[2]} ${displayPage} ${split[4]} ${lastPage}`;

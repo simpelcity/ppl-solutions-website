@@ -42,4 +42,3 @@ export { default as LoaderSpinner } from "./ui/LoaderSpinner";
 export { default as NavButtons } from "./ui/NavButtons";
 // Other
 export { default as DivEvents } from "./DivEvents";
-export { default as LanguageSwitcher } from "./LanguageSwitcher";

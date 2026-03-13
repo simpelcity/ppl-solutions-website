@@ -5,41 +5,12 @@ import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal
 import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
 import { BSButton } from "@/components";
 import { useTeam, TeamMember } from "@/app/hooks/useTeam";
+import type { Dictionary } from "@/app/i18n"
 
 type ConfirmAction = "delete-member" | "delete-picture" | null;
 
-type TeamDict = {
-  form: {
-    titleNewMember: string;
-    titleEditMember: string;
-    username: string;
-    usernamePlaceholder: string;
-    profilePicture: string;
-    submitNewMember: string;
-    submitEditMember: string;
-    calcelEditMember: string;
-    rolesDepartments: {
-      title: string;
-      currentRoles: string;
-      addRole: string;
-      department: string;
-      role: string;
-    };
-  };
-  card: {
-    title: string;
-  };
-  modal: {
-    title: string;
-    textmember: string;
-    textPicture: string;
-    cancel: string;
-    confirm: string;
-  };
-};
-
 type CardTeamFormProps = {
-  dict?: TeamDict;
+  dict: Dictionary;
 };
 
 export default function CardTeamForm({ dict }: CardTeamFormProps) {
@@ -123,14 +94,14 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
     <>
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{editingId ? (dict?.form?.titleEditMember || "Edit Member") : (dict?.form?.titleNewMember || "Add Member")}</Card.Title>
+          <Card.Title className="fs-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>{dict?.form?.username || "Member Name"}</Form.Label>
+                <Form.Label>{dict.drivershub.team.form.username || "Member Name"}</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder={dict?.form?.usernamePlaceholder || "Username"}
+                  placeholder={dict.drivershub.team.form.usernamePlaceholder || "Username"}
                   className="rounded-0 border-0 shadow bg-dark-subtle"
                   required
                   value={name}
@@ -140,7 +111,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>{dict?.form?.profilePicture || "Profile Picture (optional)"}</Form.Label>
+                <Form.Label>{dict.drivershub.team.form.profilePicture || "Profile Picture (optional)"}</Form.Label>
                 <Form.Control
                   id="team-file-input"
                   type="file"
@@ -154,7 +125,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
               {editingId && (
                 <>
                   <hr className="my-4" />
-                  <h5 className="mb-3">{dict?.form?.rolesDepartments?.title || "Manage Roles & Departments"}</h5>
+                  <h5 className="mb-3">{dict.drivershub.team.form.rolesDepartments?.title || "Manage Roles & Departments"}</h5>
 
                   {loadingRoles ? (
                     <div className="d-flex justify-content-center align-items-center column-gap-2 mb-3">
@@ -165,7 +136,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                     <>
                       {memberRoles.length > 0 && (
                         <div className="mb-3">
-                          <Form.Label>{dict?.form?.rolesDepartments?.currentRoles || "Current Roles:"}</Form.Label>
+                          <Form.Label>{dict.drivershub.team.form.rolesDepartments?.currentRoles || "Current Roles:"}</Form.Label>
                           <div className="d-flex flex-wrap gap-2">
                             {memberRoles.map((mr, idx) => (
                               <Badge key={idx} bg={mr.role.code} className="d-flex align-items-center gap-2 p-2">
@@ -182,13 +153,13 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                         </div>
                       )}
 
-                      <Form.Label>{dict?.form?.rolesDepartments?.addRole || "Add Role:"}</Form.Label>
+                      <Form.Label>{dict.drivershub.team.form.rolesDepartments?.addRole || "Add Role:"}</Form.Label>
                       <div className="d-flex gap-2 mb-3">
                         <Form.Select
                           value={selectedDepartment}
                           onChange={(e) => setSelectedDepartment(e.target.value)}
                           disabled={submitting}>
-                          <option value="">{dict?.form?.rolesDepartments?.department || "Select Department"}</option>
+                          <option value="">{dict.drivershub.team.form.rolesDepartments?.department || "Select Department"}</option>
                           {departments.map((dept) => (
                             <option key={dept.id} value={dept.id}>
                               {dept.name}
@@ -200,7 +171,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                           value={selectedRole}
                           onChange={(e) => setSelectedRole(e.target.value)}
                           disabled={submitting}>
-                          <option value="">{dict?.form?.rolesDepartments?.role || "Select Role"}</option>
+                          <option value="">{dict.drivershub.team.form.rolesDepartments?.role || "Select Role"}</option>
                           {roles.map((role) => (
                             <option key={role.id} value={role.id}>
                               {role.name}
@@ -241,9 +212,9 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                     <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
                   </>
                 ) : editingId ? (
-                  dict?.form?.submitEditMember || "Update Member"
+                  dict.drivershub.team.form.submitEditMember || "Update Member"
                 ) : (
-                  dict?.form?.submitNewMember || "Add Member"
+                  dict.drivershub.team.form.submitNewMember || "Add Member"
                 )}
               </BSButton>
 
@@ -253,7 +224,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                   classes="mt-2 ms-2 border-secondary"
                   onClick={resetForm}
                   disabled={submitting}>
-                  {dict?.form?.calcelEditMember || "Cancel"}
+                  {dict.drivershub.team.form.calcelEditMember || "Cancel"}
                 </BSButton>
               )}
             </Form>
@@ -263,7 +234,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
 
       <Col xs={12} md={10} xl={6}>
         <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{dict?.card?.title || "Team Members"}</Card.Title>
+          <Card.Title className="fs-4">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
           <Card.Body>
             {loading ? (
               <div className="d-flex justify-content-center align-items-center column-gap-2">
@@ -327,21 +298,21 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
 
       <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">
         <Modal.Header closeButton>
-          <Modal.Title>{dict?.modal?.title || "Confirm Action"}</Modal.Title>
+          <Modal.Title>{dict.drivershub.team.modal.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {confirmAction === "delete-member" && (dict?.modal?.textmember || "Are you sure you want to delete this member?")}
-          {confirmAction === "delete-picture" && (dict?.modal?.textPicture || "Are you sure you want to delete this member's profile picture?")}
+          {confirmAction === "delete-member" && (dict.drivershub.team.modal.textmember || "Are you sure you want to delete this member?")}
+          {confirmAction === "delete-picture" && (dict.drivershub.team.modal.textPicture || "Are you sure you want to delete this member's profile picture?")}
         </Modal.Body>
         <Modal.Footer>
           <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
-            {dict?.modal?.cancel || "Cancel"}
+            {dict.drivershub.team.modal.cancel || "Cancel"}
           </BSButton>
           <Button
             variant="danger"
             className="border border-2 border-danger text-uppercase fw-bold rounded-1"
             onClick={handleConfirm}>
-            {dict?.modal?.confirm || "Confirm"}
+            {dict.drivershub.team.modal.confirm || "Confirm"}
           </Button>
         </Modal.Footer>
       </Modal>

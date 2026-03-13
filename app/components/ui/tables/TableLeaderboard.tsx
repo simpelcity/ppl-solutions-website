@@ -6,7 +6,6 @@ import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { BSButton, LoaderSpinner } from '@/components'
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import type { Dictionary } from "@/app/i18n"
 
