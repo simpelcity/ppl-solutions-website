@@ -44,6 +44,7 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [tokenValid, setTokenValid] = useState(false);
+  const [validating, setValidating] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -57,14 +58,23 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
       supabase.auth.getUser(accessToken)
         .then(({ data, error }) => {
           if (error || !data.user) {
-            setError("Invalid or expired reset token");
+            setError("Invalid or expired reset token. Please request a new password reset.");
             setTokenValid(false);
           } else {
             setTokenValid(true);
           }
+        })
+        .catch((err) => {
+          console.error("Token validation error:", err);
+          setError("Unable to validate reset token due to a connection error. Please check your internet connection and try again.");
+          setTokenValid(false);
+        })
+        .finally(() => {
+          setValidating(false);
         });
     } else {
-      setError("Invalid or missing reset token.");
+      setError("Invalid or missing reset token. Please request a new password reset.");
+      setValidating(false);
     }
   }, []);
 
@@ -125,6 +135,26 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
       setLoading(false);
     }
   };
+
+  if (validating) {
+    return (
+      <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+        <Card.Body className="p-4">
+          <div className="d-flex mb-3">
+            <Image
+              src={"/assets/images/ppls-logo.png"}
+              alt="PPLS Logo"
+              width={20}
+              height={20}
+              roundedCircle
+            />
+            <small className="ms-1 my-auto">PPL Solutions</small>
+          </div>
+          <p className="text-muted">Validating reset token...</p>
+        </Card.Body>
+      </Card>
+    );
+  }
 
   if (!tokenValid) {
     return (
