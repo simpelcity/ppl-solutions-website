@@ -44,28 +44,26 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [tokenValid, setTokenValid] = useState(false);
+  const [validating, setValidating] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    const accessToken = params.get("access_token");
-    const type = params.get("type");
-
-    if (type === "recovery" && accessToken) {
-      // Verify token with server
-      supabase.auth.getUser(accessToken)
-        .then(({ data, error }) => {
-          if (error || !data.user) {
-            setError("Invalid or expired reset token");
-            setTokenValid(false);
-          } else {
-            setTokenValid(true);
-          }
-        });
-    } else {
-      setError("Invalid or missing reset token.");
-    }
+    supabase.auth.getSession()
+      .then(({ data, error }) => {
+        if (error || !data.session) {
+          setError("Invalid or missing reset token.");
+          setTokenValid(false);
+        } else {
+          setTokenValid(true);
+        }
+      })
+      .catch(() => {
+        setError("Invalid or missing reset token.");
+        setTokenValid(false);
+      })
+      .finally(() => {
+        setValidating(false);
+      });
   }, []);
 
   const validatePassword = (password: string): string | null => {
@@ -125,6 +123,26 @@ export default function ResetPasswordFormClient({ dict }: ResetPasswordFormClien
       setLoading(false);
     }
   };
+
+  if (validating) {
+    return (
+      <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+        <Card.Body className="p-4">
+          <div className="d-flex mb-3">
+            <Image
+              src={"/assets/images/ppls-logo.png"}
+              alt="PPLS Logo"
+              width={20}
+              height={20}
+              roundedCircle
+            />
+            <small className="ms-1 my-auto">PPL Solutions</small>
+          </div>
+          <p className="text-muted">Validating reset link...</p>
+        </Card.Body>
+      </Card>
+    );
+  }
 
   if (!tokenValid) {
     return (
