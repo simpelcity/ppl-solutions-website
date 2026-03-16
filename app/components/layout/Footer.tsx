@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from 'react'
 import { Container, Row, Col, Image, Tab, Tabs, ListGroup } from "react-bootstrap"
 import { FaDiscord, FaTiktok, FaTruck, FaRegCopyright } from "react-icons/fa"
 import { IconContext } from "react-icons"
@@ -13,13 +14,22 @@ type FooterProps = {
 }
 
 export default function Footer({ dict }: FooterProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null;
+
   const footerLinks = [
     { title: `${dict.footer.footer2.pages.home}`, href: "" },
     { title: `${dict.footer.footer2.pages.events}`, href: "events" },
     { title: `${dict.footer.footer2.pages.team}`, href: "team" },
     { title: `${dict.footer.footer2.pages.gallery}`, href: "gallery" },
     { title: `${dict.footer.footer2.pages.contact}`, href: "contact" },
-  ]
+  ];
+
   const currentYear = new Date().getFullYear()
 
   const split = dict.footer.footer3.tab2.text.split(" ");

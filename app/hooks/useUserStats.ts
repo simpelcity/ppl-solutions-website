@@ -99,6 +99,7 @@ export function useUserStats() {
   const ensureSteamID = async (): Promise<string> => {
     if (steamID) return steamID;
     const members = await fetchMembers();
+    adminLog("Members:", members);
     const driver = members.find((d: any) => d.username === driverUsername);
     if (!driver) throw new Error(`Driver ${driverUsername} not found`);
     setSteamID(driver.steamID);

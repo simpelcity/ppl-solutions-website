@@ -26,8 +26,8 @@ async function getSupabaseUser() {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
             )
-          } catch {
-            console.error('error')
+          } catch (err: any) {
+            console.error(err.message || err);
           }
         },
       },

@@ -15,6 +15,7 @@ import { MdPhotoLibrary } from "react-icons/md";
 import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 interface NavItem {
   href: string;
@@ -41,11 +42,17 @@ export default function Sidebar({
   lang,
   ...props
 }: SidebarProps) {
+  const isAdmin = useIsAdmin();
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
   const { user, logout, session, loading } = useAuth();
+  // adminLog("User:", user);
   const pathname = usePathname();
   const router = useRouter();
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [open, setOpen] = useState(false);
 
   const currentLang = lang === 'en' ? '' : `/${lang}`
@@ -97,27 +104,23 @@ export default function Sidebar({
         const json = await res.json();
         const payload = json.data ?? [];
 
-        let members: { name: string; profile_url?: string | null; admin?: boolean | string | null }[] = [];
+        let members: { name: string; profile_url?: string | null }[] = [];
 
         if (Array.isArray(payload) && payload.length > 0) {
           if (payload[0].team_member) {
             members = payload.map((item: any) => {
               const tm = item.team_member ?? {};
-              return { name: tm.name, profile_url: tm.profile_url ?? null, admin: tm.admin ?? null };
+              return { name: tm.name, profile_url: tm.profile_url ?? null };
             });
           } else {
             members = payload.map((m: any) => ({
               name: m.name,
               profile_url: m.profile_url ?? null,
-              admin: m.admin ?? null,
             }));
           }
         }
 
         const member = members.find((m) => m.name === user.user_metadata?.username);
-
-        const adminFlag = member?.admin === true || member?.admin === "true" || Boolean(member?.admin);
-        setIsAdmin(adminFlag);
 
         setProfileUrl(member?.profile_url ?? null);
       } catch (err) {
@@ -151,7 +154,11 @@ export default function Sidebar({
     return null;
   }
 
-  const username = (session as any).user?.user_metadata?.username || session.user.email;
+  if (!user) {
+    return null;
+  }
+
+  const username = user.user_metadata.display_name || user.email;
 
   return (
     <div
@@ -265,8 +272,8 @@ export default function Sidebar({
             <strong>{username}</strong>
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-dark shadow mb-1" style={{ zIndex: 1050 }}>
-            <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
+            <Dropdown.Item href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
+            <Dropdown.Item href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
           </Dropdown.Menu>

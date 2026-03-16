@@ -3,15 +3,17 @@ import { supabaseAdmin } from "@/supabaseAdmin/";
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
-    const lang = url.searchParams.get('lang') || 'en';
+    const lang = url.searchParams.get("lang") || "en";
 
     const { data: items, error } = await supabaseAdmin
       .from("department_team_member")
-      .select(`
+      .select(
+        `
         department:departments!inner(id, name, name_en, name_nl, name_cz, name_sk),
-        team_member:team_members!inner(id, name, profile_url, profile_path, admin),
+        team_member:team_members!inner(id, name, profile_url, profile_path),
         role:roles!inner(id, name, code, name_en, name_nl, name_cz, name_sk)
-      `)
+      `,
+      )
       .order("department_id", { ascending: true });
 
     if (error) throw error;
@@ -36,9 +38,7 @@ export async function GET(request: Request) {
 
         if (member.profile_path) {
           try {
-            const { data: publicUrlData } = supabaseAdmin.storage
-              .from("members")
-              .getPublicUrl(member.profile_path);
+            const { data: publicUrlData } = supabaseAdmin.storage.from("members").getPublicUrl(member.profile_path);
             return {
               ...item,
               team_member: { ...member, profile_url: publicUrlData?.publicUrl ?? null },
@@ -49,16 +49,13 @@ export async function GET(request: Request) {
         }
 
         return item;
-      })
+      }),
     );
 
     return new Response(JSON.stringify({ data: itemsWithUrls }), { status: 200 });
   } catch (err: any) {
     console.error("error:", err);
-    return new Response(
-      JSON.stringify({ error: "An unexpected error occurred" }), 
-      { status: 500 }
-    );
+    return new Response(JSON.stringify({ error: "An unexpected error occurred" }), { status: 500 });
   }
 }
 
@@ -85,9 +82,7 @@ export async function POST(req: Request) {
         return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
       }
 
-      const { data: publicUrlData } = supabaseAdmin.storage
-        .from("members")
-        .getPublicUrl(uploadData.path);
+      const { data: publicUrlData } = supabaseAdmin.storage.from("members").getPublicUrl(uploadData.path);
 
       profile_url = publicUrlData.publicUrl;
     }
@@ -96,10 +91,7 @@ export async function POST(req: Request) {
     if (functionTitle) payload.function = functionTitle;
     if (role) payload.role = role;
 
-    const { data, error } = await supabaseAdmin
-      .from("team_members")
-      .insert([payload])
-      .select();
+    const { data, error } = await supabaseAdmin.from("team_members").insert([payload]).select();
 
     if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
@@ -138,7 +130,7 @@ export async function PUT(req: Request) {
         try {
           const url = new URL(memberData.profile_url);
           const pathParts = url.pathname.split("/");
-          const bucketIndex = pathParts.findIndex(part => part === "members");
+          const bucketIndex = pathParts.findIndex((part) => part === "members");
           if (bucketIndex !== -1) {
             const oldFilePath = pathParts.slice(bucketIndex + 1).join("/");
             await supabaseAdmin.storage.from("members").remove([oldFilePath]);
@@ -155,18 +147,12 @@ export async function PUT(req: Request) {
 
       if (uploadError) return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
 
-      const { data: publicUrlData } = supabaseAdmin.storage
-        .from("members")
-        .getPublicUrl(`profiles/${fileName}`);
+      const { data: publicUrlData } = supabaseAdmin.storage.from("members").getPublicUrl(`profiles/${fileName}`);
 
       updates.profile_url = publicUrlData.publicUrl;
     }
 
-    const { data, error } = await supabaseAdmin
-      .from("team_members")
-      .update(updates)
-      .eq("id", id)
-      .select();
+    const { data, error } = await supabaseAdmin.from("team_members").update(updates).eq("id", id).select();
 
     if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
@@ -175,7 +161,6 @@ export async function PUT(req: Request) {
     return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }
-
 
 export async function DELETE(req: Request) {
   try {
