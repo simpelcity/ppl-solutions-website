@@ -58,3 +58,18 @@
 .bg-light-subtle {
   background-color: #303336 !important;
 }
+
+.pfp-position {
+  position: relative;
+  top: -70px;
+  left: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+@media (max-width: 576px) {
+  .pfp-position {
+    top: -40px;
+    left: 0;
+    justify-content: center;
+  }
+}

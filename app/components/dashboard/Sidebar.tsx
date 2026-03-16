@@ -122,13 +122,28 @@ export default function Sidebar({
 
         const member = members.find((m) => m.name === user.user_metadata?.username);
 
-        setProfileUrl(member?.profile_url ?? null);
       } catch (err) {
         console.error("Failed to fetch team profile:", err);
       }
     };
 
+    const fetchProfilePicture = async () => {
+      if (!user?.id) return;
+
+      try {
+        const res = await fetch(`/api/profile-picture?id=${encodeURIComponent(user.id)}`);
+        if (!res.ok) return;
+
+        const json = await res.json();
+        setProfileUrl(json.profile?.profile_url ?? null);
+        return json.profile?.profile_url ?? null;
+      } catch (err) {
+        console.error("Failed to fetch profile picture:", err);
+      }
+    }
+
     fetchProfileAndRole();
+    fetchProfilePicture();
 
     window.scrollTo({
       top: 0,

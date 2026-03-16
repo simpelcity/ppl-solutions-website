@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export interface Profile {
   id: string;
   name: string;
   profile_url?: string | null;
-  function?: string;
-  role?: string;
-  // Add other fields as needed
+  banner?: string | null;
 }
 
 export function useProfile(userId: string) {
@@ -18,6 +17,7 @@ export function useProfile(userId: string) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [fetchedProfile, setFetchedProfile] = useState<any | null>(null);
 
   useEffect(() => {
     if (!userId) {
@@ -26,6 +26,7 @@ export function useProfile(userId: string) {
       setLoading(false);
       return;
     }
+    fetchProfileById();
     fetchProfile();
     // eslint-disable-next-line
   }, [userId]);
@@ -41,6 +42,22 @@ export function useProfile(userId: string) {
     } catch (e: any) {
       setError(e.message);
       setProfile(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchProfileById = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}`);
+      const json = await data.data;
+      if (data.status === 200) setFetchedProfile(json.data || null);
+      console.log("fetchedProfile", json);
+    } catch (err: any) {
+      setError(err.message);
+      setFetchedProfile(null);
     } finally {
       setLoading(false);
     }
@@ -97,6 +114,6 @@ export function useProfile(userId: string) {
     submitting,
     updateProfile,
     createProfile,
-    fetchProfile,
+    fetchedProfile,
   };
 }

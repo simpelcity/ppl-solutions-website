@@ -28,8 +28,7 @@ export default function CardProfileSettingsForm({ params }: Props) {
     success,
     submitting,
     updateProfile,
-    createProfile,
-    fetchProfile
+    createProfile
   } = useProfile(userId ?? "");
   // console.log(profile)
 
