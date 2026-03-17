@@ -4,14 +4,23 @@ import { useState, useEffect } from "react";
 import { type Locale } from "@/i18n"
 import { useProfile } from "@/hooks/useProfile";
 import { Container, Card, Image, Row, Col } from 'react-bootstrap'
-import { BSButton } from '@/components'
+import { BSButton, LoaderSpinner } from '@/components'
 import { useAuth } from '@/lib/AuthContext'
+import type { Dictionary } from "@/app/i18n"
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 type Props = {
-  params: Promise<{ lang: Locale; userId: string }>
+  params: Promise<{ userId: string }>;
+  dict: Dictionary;
 }
 
-export default function CardProfile({ params }: Props) {
+export default function CardProfile({ params, dict }: Props) {
+  const isAdmin = useIsAdmin();
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
   const { user } = useAuth();
   const [userId, setUserId] = useState<string | null>(null);
 
@@ -27,13 +36,21 @@ export default function CardProfile({ params }: Props) {
     submitting,
     updateProfile,
     createProfile,
-    fetchedProfile
+    fetchedProfile,
+    steamID,
+    driver,
+    driverName,
   } = useProfile(userId ?? "");
 
-  console.log(profile)
-  console.log(fetchedProfile)
+  adminLog('profile:', profile)
+  adminLog('fetchedProfile:', fetchedProfile)
+  adminLog('driverName:', driverName)
+  adminLog('steamID:', steamID)
+  adminLog('driver:', driver)
 
-  if (!profile) return null;
+  if (loading) return <LoaderSpinner dict={dict} />
+
+  if (!profile) return <p className="text-danger fw-bold">No profile</p>;
 
   return (
     <>
@@ -50,10 +67,11 @@ export default function CardProfile({ params }: Props) {
             <div className="pfp-position d-flex">
               <Image src={profile.profile_url ?? "/assets/icons/profile-user.png"} className="border border-5 border-dark" roundedCircle width={120} height={120} alt="Profile Picture" />
             </div>
-            <Row className="mt-5">
-              <h3 className="m-0 p-0 h-50">{fetchedProfile?.user.user_metadata.display_name}</h3>
+            <Row className="ms-4 d-flex flex-column">
+              <h3 className="m-0 p-0">{fetchedProfile?.user.user_metadata.display_name}</h3>
             </Row>
           </Card.Body>
+          {error && <p className="text-danger fw-bold">{error}</p>}
         </Card>
       </Container>
     </>

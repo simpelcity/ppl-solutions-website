@@ -158,10 +158,9 @@ export default function Sidebar({
   };
 
   useEffect(() => {
-    if (!loading && !session) {
-      router.push("/login");
-    }
-  }, [session, loading, router]);
+    if (!loading && !session) router.push("/login");
+    if (!isAdmin && pathname.startsWith(`${currentLang}/drivershub/dashboard`)) router.push(`${currentLang}/drivershub`);
+  }, [session, loading, router, isAdmin]);
 
   if (loading) return <LoaderSpinner dict={dict} />
 
