@@ -49,7 +49,6 @@ export default function Sidebar({
   };
 
   const { user, logout, session, loading } = useAuth();
-  // adminLog("User:", user);
   const pathname = usePathname();
   const router = useRouter();
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
@@ -159,8 +158,15 @@ export default function Sidebar({
 
   useEffect(() => {
     if (!loading && !session) router.push("/login");
-    if (!isAdmin && pathname.startsWith(`${currentLang}/drivershub/dashboard`)) router.push(`${currentLang}/drivershub`);
-  }, [session, loading, router, isAdmin]);
+  }, [session, loading, router]);
+
+  useEffect(() => {
+    if (pathname.startsWith(`${currentLang}/drivershub/dashboard`)) {
+      if (isAdmin === false) {
+        router.push(`${currentLang}/drivershub`);
+      }
+    }
+  }, [isAdmin, pathname, router, currentLang]);
 
   if (loading) return <LoaderSpinner dict={dict} />
 
