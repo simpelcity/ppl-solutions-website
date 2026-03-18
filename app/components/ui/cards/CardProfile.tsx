@@ -1,11 +1,9 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { type Locale } from "@/i18n"
 import { useProfile } from "@/hooks/useProfile";
 import { Container, Card, Image, Row, Col } from 'react-bootstrap'
 import { BSButton, LoaderSpinner } from '@/components'
-import { useAuth } from '@/lib/AuthContext'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 
@@ -18,10 +16,9 @@ export default function CardProfile({ params, dict }: Props) {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
-    if (isAdmin) console.log(...args);
+    if (isAdmin) console.log("%c[ADMIN]", "color: #00fbff; font-weight: bold;", ...args);
   };
 
-  const { user } = useAuth();
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -39,36 +36,41 @@ export default function CardProfile({ params, dict }: Props) {
     fetchedProfile,
     steamID,
     driver,
-    driverName,
+    countryData,
   } = useProfile(userId ?? "");
 
-  adminLog('profile:', profile)
   adminLog('fetchedProfile:', fetchedProfile)
-  adminLog('driverName:', driverName)
-  adminLog('steamID:', steamID)
   adminLog('driver:', driver)
+  adminLog('countryData:', countryData)
 
-  if (loading) return <LoaderSpinner dict={dict} />
-
-  if (!profile) return <p className="text-danger fw-bold">No profile</p>;
+  if (loading) return <LoaderSpinner dict={dict} />;
+  if (!loading && (!profile || Object.keys(profile).length === 0)) {
+    return <p className="text-danger fw-bold">No profile</p>;
+  }
 
   return (
     <>
       <Container className="my-3 p-0" fluid>
         <Card className="border-0 rounded-0 shadow" data-bs-theme="dark">
           <Card.Header className="p-0">
-            {profile.banner ? (
-              <Image src={profile.banner} className="object-fit-cover" roundedCircle width={150} height={150} alt="Profile Picture" />
+            {profile?.banner_url ? (
+              <Image src={profile.banner_url} className="object-fit-cover" roundedCircle width={150} height={150} alt="Profile Picture" />
             ) : (
               <Image src="https://placehold.co/900x160" className="w-100" alt="Default banner" />
             )}
           </Card.Header>
           <Card.Body className="d-flex">
             <div className="pfp-position d-flex">
-              <Image src={profile.profile_url ?? "/assets/icons/profile-user.png"} className="border border-5 border-dark" roundedCircle width={120} height={120} alt="Profile Picture" />
+              <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className="border border-5 border-dark" roundedCircle width={120} height={120} alt="Profile Picture" />
             </div>
             <Row className="ms-4 d-flex flex-column">
               <h3 className="m-0 p-0">{fetchedProfile?.user.user_metadata.display_name}</h3>
+              <div className="d-flex align-items-center column-gap-2">
+                <Image src={countryData?.flags.png} alt={countryData?.flags.alt} height={25} />
+                <span>{driver?.country}</span>
+              </div>
+              <p className="m-0 p-0 text-muted">{fetchedProfile?.user.user_metadata.username}</p>
+              {/* <Image src={ } /> */}
             </Row>
           </Card.Body>
           {error && <p className="text-danger fw-bold">{error}</p>}

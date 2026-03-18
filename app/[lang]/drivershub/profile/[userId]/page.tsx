@@ -4,6 +4,7 @@ import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
 import { CardProfile } from '@/components'
+import { supabaseAdmin } from '@/lib/supabaseAdmin'
 
 type PageProps = {
   params: Promise<{ lang: Locale; userId: string }>
@@ -13,12 +14,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { lang } = await params
   const dict = await getDictionary(lang)
 
+  const { userId } = await params
+  const { data: { user } } = await supabaseAdmin.auth.admin.getUserById(userId)
+
+  const driverUsername = user?.user_metadata?.display_name || "Guest"
+
   const canonical = lang === 'en' ? '/drivershub/profile' : `/${lang}/drivershub/profile`;
   const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `Profile | PPL Solutions`,
+    title: `${driverUsername}'s Profile | PPL Solutions`,
     description: dict.drivershub.meta.description,
     openGraph: {
       title: `Profile | PPL Solutions`,

@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = await getDictionary(lang)
   const user = await getSupabaseUser()
 
-  const driverUsername = user?.user_metadata?.username || user?.email || "Guest"
+  const driverUsername = user?.user_metadata?.display_name || "Guest"
   const split = dict.drivershub.userStats.meta.title.split(' ');
   const splitDesc = dict.drivershub.userStats.meta.description.split(' ');
 
