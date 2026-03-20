@@ -37,11 +37,17 @@ export default function CardProfile({ params, dict }: Props) {
     steamID,
     driver,
     countryData,
+    members,
+    departments,
+    roles,
+    memberRoles,
+    loadingRoles,
   } = useProfile(userId ?? "");
 
   adminLog('fetchedProfile:', fetchedProfile)
   adminLog('driver:', driver)
   adminLog('countryData:', countryData)
+  adminLog('members:', members)
 
   if (loading) return <LoaderSpinner dict={dict} />;
   if (!loading && (!profile || Object.keys(profile).length === 0)) {
@@ -61,15 +67,19 @@ export default function CardProfile({ params, dict }: Props) {
           </Card.Header>
           <Card.Body className="d-flex">
             <div className="pfp-position d-flex">
-              <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className="border border-5 border-dark" roundedCircle width={120} height={120} alt="Profile Picture" />
+              <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle width={120} height={120} alt="Profile Picture" />
             </div>
-            <Row className="ms-4 d-flex flex-column">
+            <Row className="ms-4 d-flex flex-column text-start">
               <h3 className="m-0 p-0">{fetchedProfile?.user.user_metadata.display_name}</h3>
-              <div className="d-flex align-items-center column-gap-2">
-                <Image src={countryData?.flags.png} alt={countryData?.flags.alt} height={25} />
-                <span>{driver?.country}</span>
-              </div>
-              <p className="m-0 p-0 text-muted">{fetchedProfile?.user.user_metadata.username}</p>
+              {driver?.country ? (
+                <div className="d-flex align-items-center column-gap-1 p-0">
+                  <Image src={countryData?.flags.png} alt={countryData?.flags.alt} height={25} className="rounded-1" />
+                  <span>{driver?.country}</span>
+                </div>
+              ) : (
+                <span></span>
+              )}
+              <p className="m-0 p-0 text-muted">@{fetchedProfile?.user.user_metadata.username}</p>
               {/* <Image src={ } /> */}
             </Row>
           </Card.Body>

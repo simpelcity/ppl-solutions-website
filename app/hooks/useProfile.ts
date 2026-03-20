@@ -13,6 +13,29 @@ export interface Profile {
   banner_url?: string | null;
 }
 
+export interface TeamMember {
+  id: number;
+  name: string;
+  profile_url?: string | null;
+}
+
+export interface Department {
+  id: number;
+  name: string;
+}
+
+export interface Role {
+  id: number;
+  name: string;
+  code: string;
+}
+
+export interface MemberRole {
+  team_member_id: number;
+  department: Department;
+  role: Role;
+}
+
 export function useProfile(userId: string) {
   const isAdmin = useIsAdmin();
 
@@ -25,6 +48,7 @@ export function useProfile(userId: string) {
   const pathname = usePathname();
 
   const [loading, setLoading] = useState(true);
+  const [loadingRoles, setLoadingRoles] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -34,6 +58,11 @@ export function useProfile(userId: string) {
   const [steamID, setSteamID] = useState<string | null>(null);
   const [driver, setDriver] = useState<any | null>(null);
   const [countryData, setCountryData] = useState<any | null>(null);
+
+  const [members, setMembers] = useState<TeamMember[]>([]);
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [roles, setRoles] = useState<Role[]>([]);
+  const [memberRoles, setMemberRoles] = useState<MemberRole[]>([]);
 
   const fetchProfile = async () => {
     setError(null);
@@ -96,6 +125,15 @@ export function useProfile(userId: string) {
   const getCountryData = async (driver: any) => {
     setLoading(true);
     setError(null);
+    if (!driver) {
+      setCountryData(null);
+      setError("Driver not found");
+      return null;
+    } else if (!driver.country) {
+      setCountryData(null);
+      setError("Driver country not specified");
+      return null;
+    }
     try {
       if (driver.country === "World") {
         return {
@@ -110,7 +148,6 @@ export function useProfile(userId: string) {
       if (res.status !== 200) throw new Error("Failed to fetch country data");
       const data = await res.data;
       if (!data || data.length === 0) throw new Error("Country not found");
-      // adminLog("Country data:", data);
       return data[0];
     } catch (err: any) {
       console.error(err);
@@ -118,6 +155,40 @@ export function useProfile(userId: string) {
       return null;
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchMembers = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get("/api/team/members");
+      const json = await res.data;
+      if (res.status === 200) setMembers(json.data || []);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchDepartments = async () => {
+    const res = await axios.get("/api/departments");
+    const json = await res.data;
+    if (res.status == 200) setDepartments(json.data || []);
+  };
+
+  const fetchRoles = async () => {
+    const res = await axios.get("/api/roles");
+    const json = await res.data;
+    if (res.status === 200) setRoles(json.data || []);
+  };
+
+  const fetchMemberRoles = async (memberId: number) => {
+    setLoadingRoles(true);
+    try {
+      const res = await axios.get(`/api/team/roles?memberId=${memberId}`);
+      const json = await res.data;
+      if (res.status === 200) setMemberRoles(json.data || []);
+    } finally {
+      setLoadingRoles(false);
     }
   };
 
@@ -188,7 +259,6 @@ export function useProfile(userId: string) {
     }
 
     const init = async () => {
-      if (userId !== user?.id) router.push(`/drivershub/profile/${userId}`);
       if (isAdmin) adminLog("Init started for ID:", userId);
       setLoading(true);
       setError(null);
@@ -201,6 +271,7 @@ export function useProfile(userId: string) {
         setDriver(driverData);
         const countryData = await getCountryData(driverData);
         setCountryData(countryData);
+        await fetchMembers();
       } catch (err: any) {
         console.error(err);
         setError(err.message);
@@ -226,5 +297,10 @@ export function useProfile(userId: string) {
     steamID,
     driver,
     countryData,
+    members,
+    departments,
+    roles,
+    memberRoles,
+    loadingRoles,
   };
 }

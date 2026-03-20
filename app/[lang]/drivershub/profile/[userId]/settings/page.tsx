@@ -5,6 +5,37 @@ import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
 import { CardProfileSettingsForm } from '@/components'
 import { supabaseAdmin } from '@/lib/supabaseAdmin'
+import { redirect } from "next/navigation";
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+
+async function getSupabaseUser() {
+  const cookieStore = await cookies()
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            )
+          } catch (err: any) {
+            console.error(err.message || err);
+          }
+        },
+      },
+    }
+  )
+
+  const { data: { user } } = await supabase.auth.getUser()
+  return user
+}
 
 type PageProps = {
   params: Promise<{ lang: Locale; userId: string }>
@@ -48,8 +79,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ProfileSettingsPage({ params }: PageProps) {
-  const { lang } = await params
+  const { lang, userId } = await params
   const dict = await getDictionary(lang)
+
+  const user = await getSupabaseUser()
+  console.log("Current user:", user);
+
+  if (!user) {
+    // Redirect to the current user's own settings page
+    redirect(`/${lang}/drivershub/profile`);
+  }
+
+  if (user.id !== userId) {
+    // Redirect to the current user's own settings page
+    redirect(`/${lang}/drivershub/profile/${user.id}/settings`);
+  }
 
   return (
     <>

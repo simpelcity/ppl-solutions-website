@@ -19,6 +19,7 @@ export default function CardProfileSettingsForm({ params }: Props) {
 
   const { user, session, refreshSession } = useAuth();
 
+
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
