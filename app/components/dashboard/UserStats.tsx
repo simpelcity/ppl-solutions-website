@@ -10,7 +10,7 @@ type Props = {
 }
 
 export default function UserStats({ dict }: Props) {
-  const { stats } = useUserStats();
+  const { stats, loading, error } = useUserStats();
 
   const rounded = (value: any) => {
     const valueNum = value.toFixed(1);
@@ -28,7 +28,9 @@ export default function UserStats({ dict }: Props) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  if (!stats) return <LoaderSpinner dict={dict} />
+  if (loading) return <LoaderSpinner dict={dict} />
+  if (error) return <div className="text-danger text-center py-3">Error: {error}</div>
+  if (!stats) return null;
 
   return (
     <>

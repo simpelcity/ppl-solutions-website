@@ -1,16 +1,19 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { supabase } from '@/lib'
+import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useProfile } from "@/hooks/useProfile";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from "@/lib";
 
 type Props = {
-  params: Promise<{ lang: Locale; userId: string }>
+  params: Promise<{ userId: string }>
+  lang: Locale;
+  dict: Dictionary;
 }
 
-export default function CardProfileSettingsForm({ params }: Props) {
+export default function CardProfileSettingsForm({ params, lang, dict }: Props) {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -43,7 +46,7 @@ export default function CardProfileSettingsForm({ params }: Props) {
     updateProfile,
     createProfile,
     fetchedProfile,
-  } = useProfile(userId ?? "");
+  } = useProfile({ userId: userId ?? "", lang, dict });
 
   // adminLog("Fetched profile data:", fetchedProfile)
 

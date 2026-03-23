@@ -11,7 +11,7 @@ export function useUserJobs() {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
-    if (isAdmin) console.log(...args);
+    if (isAdmin) console.log("%c[ADMIN]", "color: #00ffdd; font-weight: bold;", ...args);
   };
 
   const { session } = useAuth();
@@ -39,7 +39,6 @@ export function useUserJobs() {
   const ensureSteamID = async (): Promise<string> => {
     if (steamID) return steamID;
     const members = await fetchMembers();
-    adminLog("Members:", members);
     const driver = members.find((d: any) => d.username === driverUsername);
     setDriver(driver);
     setDriverName(driverUsername);
@@ -113,8 +112,6 @@ export function useUserJobs() {
       await loadJobs(currentPage);
     }
   };
-
-  adminLog(allJobs);
 
   useEffect(() => {
     if (!session || !driverUsername) return;

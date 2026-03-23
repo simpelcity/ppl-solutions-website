@@ -27,6 +27,7 @@ interface SidebarProps {
   isSidebarCollapsed: boolean;
   setIsSidebarCollapsed: (value: boolean) => void;
   isMobile: boolean;
+  isTablet: boolean;
   isNavbarVisible?: boolean;
   dict: Dictionary;
   lang: Locale;
@@ -37,6 +38,7 @@ export default function Sidebar({
   isSidebarCollapsed,
   setIsSidebarCollapsed,
   isMobile,
+  isTablet,
   isNavbarVisible = false,
   dict,
   lang,
@@ -184,11 +186,11 @@ export default function Sidebar({
     <div
       className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
       style={{
-        width: isMobile ? "280px" : isSidebarCollapsed ? "4.5rem" : "280px",
+        width: isMobile ? "100%" : isSidebarCollapsed ? "4.5rem" : "280px",
         minWidth: isMobile ? "280px" : isSidebarCollapsed ? "4.5rem" : "280px",
-        height: isMobile ? (isNavbarVisible ? "calc(100vh - 4.5rem)" : "100vh") : "100%",
+        height: isMobile ? (isNavbarVisible ? "calc(100vh)" : "100vh") : "100%",
         position: isMobile ? "fixed" : "relative",
-        top: isMobile && isNavbarVisible ? "4.5rem" : isMobile ? 0 : "auto",
+        top: isMobile && isNavbarVisible ? 0 : isMobile ? 0 : "auto",
         left: isMobile ? 0 : "auto",
         zIndex: isMobile ? 1000 : 10,
         transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",
@@ -205,9 +207,7 @@ export default function Sidebar({
             {dict.drivershub.sidebar.title || "Sidebar"}
           </h3>
         </a>
-        {!isMobile && (
-          <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
-        )}
+        <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
       </div>
       <hr className={isSidebarCollapsed ? "d-none" : "d-block"} />
       <Nav variant="pills" className="flex-column mb-auto">

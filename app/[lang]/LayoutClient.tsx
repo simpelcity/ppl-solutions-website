@@ -19,7 +19,7 @@ export default function LayoutClient({ children, dict, lang, forceHideFooter = f
 
   return (
     <>
-      <Navbar dict={dict} />
+      <Navbar dict={dict} lang={lang} />
       {children}
       {!hideFooter && <Footer dict={dict} />}
     </>

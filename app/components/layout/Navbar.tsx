@@ -9,10 +9,12 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useSidebar } from "@/lib";
 import { i18n } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
+import { type Locale } from "@/i18n"
 import "@/styles/Navbar.scss";
 
 interface NavbarProps {
   dict: Dictionary;
+  lang: Locale;
 }
 
 function useWindowWidth() {
@@ -28,20 +30,19 @@ function useWindowWidth() {
   return width;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ dict }) => {
+const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const width = useWindowWidth();
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
   const { toggleSidebar, isMobile } = useSidebar();
-  const isDrivershub = pathname?.startsWith("/drivershub");
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const currentLocale = i18n.locales.find(
-    (locale) => pathname?.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  ) || i18n.defaultLocale;
+  const currentLocale = lang === "en" ? "" : `/${lang}`;
+
+  const isDrivershub = pathname?.startsWith(`${currentLocale}/drivershub`);
 
   useEffect(() => {
     setExpanded(false);

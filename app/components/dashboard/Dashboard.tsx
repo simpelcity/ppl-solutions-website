@@ -14,19 +14,20 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ children, isNavbarVisible = false, dict, lang, ...props }: DashboardProps) {
-  const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile } = useSidebar();
+  const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile, isTablet } = useSidebar();
 
   const sidebarWidth = isSidebarCollapsed ? "4.5rem" : "280px";
 
   return (
     <div
-      className={`d-flex flex-column flex-lg-row overflow-x-hidden`}
+      className={`d-flex flex-column flex-md-row overflow-x-hidden`}
       style={{ position: "relative", width: "100vw", maxWidth: "100vw" }}>
       <Sidebar
         id="sidebar"
         isSidebarCollapsed={isSidebarCollapsed}
         setIsSidebarCollapsed={setIsSidebarCollapsed}
         isMobile={isMobile}
+        isTablet={isTablet}
         isNavbarVisible={true}
         dict={dict}
         lang={lang}

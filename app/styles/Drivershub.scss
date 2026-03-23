@@ -73,3 +73,12 @@
     justify-content: center;
   }
 }
+
+.pfp-img {
+  max-width: 120px;
+  max-height: 120px;
+  @media (max-width: 576px) {
+    max-width: 90px;
+    max-height: 90px;
+  }
+}

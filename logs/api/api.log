@@ -1,0 +1,200 @@
+[20 Mar 2026, 20:33:28] - Response: {
+  "user": {
+    "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "wietse2007.3@gmail.com",
+    "email_confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "phone": "",
+    "confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "recovery_sent_at": "2026-03-13T18:59:43.529706Z",
+    "last_sign_in_at": "2026-03-20T10:16:31.185694Z",
+    "app_metadata": {
+      "provider": "email",
+      "providers": [
+        "email"
+      ]
+    },
+    "user_metadata": {
+      "display_name": "Simpelcity",
+      "email": "wietse2007.3@gmail.com",
+      "email_verified": true,
+      "phone_verified": false,
+      "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+      "username": "Simpelcity"
+    },
+    "identities": [
+      {
+        "identity_id": "3befa3ff-b06e-4bcf-a3de-3f59d2909b2c",
+        "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "user_id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "identity_data": {
+          "display_name": "Simpelcity",
+          "email": "wietse2007.3@gmail.com",
+          "email_verified": false,
+          "phone_verified": false,
+          "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+          "username": "Simpelcity"
+        },
+        "provider": "email",
+        "last_sign_in_at": "2026-03-04T14:02:22.701481Z",
+        "created_at": "2026-03-04T14:02:22.701525Z",
+        "updated_at": "2026-03-04T14:02:22.701525Z",
+        "email": "wietse2007.3@gmail.com"
+      }
+    ],
+    "created_at": "2026-03-04T14:02:22.696205Z",
+    "updated_at": "2026-03-20T19:05:58.952921Z",
+    "is_anonymous": false
+  }
+}
+[20 Mar 2026, 20:33:29] - Response: {
+  "user": {
+    "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "wietse2007.3@gmail.com",
+    "email_confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "phone": "",
+    "confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "recovery_sent_at": "2026-03-13T18:59:43.529706Z",
+    "last_sign_in_at": "2026-03-20T10:16:31.185694Z",
+    "app_metadata": {
+      "provider": "email",
+      "providers": [
+        "email"
+      ]
+    },
+    "user_metadata": {
+      "display_name": "Simpelcity",
+      "email": "wietse2007.3@gmail.com",
+      "email_verified": true,
+      "phone_verified": false,
+      "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+      "username": "Simpelcity"
+    },
+    "identities": [
+      {
+        "identity_id": "3befa3ff-b06e-4bcf-a3de-3f59d2909b2c",
+        "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "user_id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "identity_data": {
+          "display_name": "Simpelcity",
+          "email": "wietse2007.3@gmail.com",
+          "email_verified": false,
+          "phone_verified": false,
+          "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+          "username": "Simpelcity"
+        },
+        "provider": "email",
+        "last_sign_in_at": "2026-03-04T14:02:22.701481Z",
+        "created_at": "2026-03-04T14:02:22.701525Z",
+        "updated_at": "2026-03-04T14:02:22.701525Z",
+        "email": "wietse2007.3@gmail.com"
+      }
+    ],
+    "created_at": "2026-03-04T14:02:22.696205Z",
+    "updated_at": "2026-03-20T19:05:58.952921Z",
+    "is_anonymous": false
+  }
+}
+[20 Mar 2026, 20:33:29] - Response: {
+  "user": {
+    "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "wietse2007.3@gmail.com",
+    "email_confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "phone": "",
+    "confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "recovery_sent_at": "2026-03-13T18:59:43.529706Z",
+    "last_sign_in_at": "2026-03-20T10:16:31.185694Z",
+    "app_metadata": {
+      "provider": "email",
+      "providers": [
+        "email"
+      ]
+    },
+    "user_metadata": {
+      "display_name": "Simpelcity",
+      "email": "wietse2007.3@gmail.com",
+      "email_verified": true,
+      "phone_verified": false,
+      "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+      "username": "Simpelcity"
+    },
+    "identities": [
+      {
+        "identity_id": "3befa3ff-b06e-4bcf-a3de-3f59d2909b2c",
+        "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "user_id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "identity_data": {
+          "display_name": "Simpelcity",
+          "email": "wietse2007.3@gmail.com",
+          "email_verified": false,
+          "phone_verified": false,
+          "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+          "username": "Simpelcity"
+        },
+        "provider": "email",
+        "last_sign_in_at": "2026-03-04T14:02:22.701481Z",
+        "created_at": "2026-03-04T14:02:22.701525Z",
+        "updated_at": "2026-03-04T14:02:22.701525Z",
+        "email": "wietse2007.3@gmail.com"
+      }
+    ],
+    "created_at": "2026-03-04T14:02:22.696205Z",
+    "updated_at": "2026-03-20T19:05:58.952921Z",
+    "is_anonymous": false
+  }
+}
+[20 Mar 2026, 20:33:29] - Response: {
+  "user": {
+    "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+    "aud": "authenticated",
+    "role": "authenticated",
+    "email": "wietse2007.3@gmail.com",
+    "email_confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "phone": "",
+    "confirmed_at": "2026-03-04T14:02:22.704056Z",
+    "recovery_sent_at": "2026-03-13T18:59:43.529706Z",
+    "last_sign_in_at": "2026-03-20T10:16:31.185694Z",
+    "app_metadata": {
+      "provider": "email",
+      "providers": [
+        "email"
+      ]
+    },
+    "user_metadata": {
+      "display_name": "Simpelcity",
+      "email": "wietse2007.3@gmail.com",
+      "email_verified": true,
+      "phone_verified": false,
+      "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+      "username": "Simpelcity"
+    },
+    "identities": [
+      {
+        "identity_id": "3befa3ff-b06e-4bcf-a3de-3f59d2909b2c",
+        "id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "user_id": "33393c78-a551-4e94-b6e6-db97dba35305",
+        "identity_data": {
+          "display_name": "Simpelcity",
+          "email": "wietse2007.3@gmail.com",
+          "email_verified": false,
+          "phone_verified": false,
+          "sub": "33393c78-a551-4e94-b6e6-db97dba35305",
+          "username": "Simpelcity"
+        },
+        "provider": "email",
+        "last_sign_in_at": "2026-03-04T14:02:22.701481Z",
+        "created_at": "2026-03-04T14:02:22.701525Z",
+        "updated_at": "2026-03-04T14:02:22.701525Z",
+        "email": "wietse2007.3@gmail.com"
+      }
+    ],
+    "created_at": "2026-03-04T14:02:22.696205Z",
+    "updated_at": "2026-03-20T19:05:58.952921Z",
+    "is_anonymous": false
+  }
+}

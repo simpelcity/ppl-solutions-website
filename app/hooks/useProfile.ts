@@ -5,6 +5,8 @@ import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from "@/lib";
 import { usePathname, useRouter } from "next/navigation";
+import type { Dictionary } from "@/app/i18n";
+import { type Locale } from "@/i18n";
 
 export interface Profile {
   id: string;
@@ -36,7 +38,13 @@ export interface MemberRole {
   role: Role;
 }
 
-export function useProfile(userId: string) {
+type Props = {
+  userId: string;
+  lang: Locale;
+  dict: Dictionary;
+};
+
+export function useProfile({ userId, lang, dict }: Props) {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -48,7 +56,6 @@ export function useProfile(userId: string) {
   const pathname = usePathname();
 
   const [loading, setLoading] = useState(true);
-  const [loadingRoles, setLoadingRoles] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -63,6 +70,7 @@ export function useProfile(userId: string) {
   const [departments, setDepartments] = useState<Department[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);
   const [memberRoles, setMemberRoles] = useState<MemberRole[]>([]);
+  const [items, setItems] = useState<any[] | null>(null);
 
   const fetchProfile = async () => {
     setError(null);
@@ -75,13 +83,10 @@ export function useProfile(userId: string) {
       console.error(err);
       setError(err.message);
       setProfile(null);
-    } finally {
-      setLoading(false);
     }
   };
 
   const fetchProfileById = async () => {
-    setLoading(true);
     setError(null);
     try {
       const data = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}`);
@@ -91,8 +96,6 @@ export function useProfile(userId: string) {
       console.error(err);
       setError(err.message);
       setFetchedProfile(null);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -106,9 +109,14 @@ export function useProfile(userId: string) {
   const getDriverData = async () => {
     const drivers = await fetchDrivers();
     const fetchedProfileData = await fetchProfileById();
-    const driverUsername = fetchedProfileData.user.user_metadata.username || fetchedProfileData.user.email;
-    const driver = drivers.find((d: any) => d.username === driverUsername);
-    return driver;
+    if (fetchedProfileData) {
+      const driverUsername = fetchedProfileData.user.user_metadata.username || fetchedProfileData.user.email || "User";
+      const driver = drivers.find((d: any) => d.username === driverUsername);
+      return driver;
+    } else {
+      setError("Profile not found");
+      return null;
+    }
   };
 
   const ensureSteamID = async () => {
@@ -123,7 +131,6 @@ export function useProfile(userId: string) {
   };
 
   const getCountryData = async (driver: any) => {
-    setLoading(true);
     setError(null);
     if (!driver) {
       setCountryData(null);
@@ -153,44 +160,95 @@ export function useProfile(userId: string) {
       console.error(err);
       setError(err.message);
       return null;
-    } finally {
-      setLoading(false);
+    }
+  };
+
+  const fetchTeam = async (memberId: number) => {
+    try {
+      const res = await fetch(`/api/team?lang=${lang}`);
+      if (!res.ok) throw new Error(`API error ${res.status}`);
+      const json = await res.json();
+      const memberData = json.data.find((m: any) => m.team_member.id === memberId) || null;
+      adminLog("Fetched member data for current user:", memberData);
+      adminLog("Fetched team data:", json.data || []);
+      setItems(json.data ?? []);
+      setMemberRoles([memberData]);
+      return json.data || [];
+    } catch (err: any) {
+      console.error("Failed to fetch team data", err);
+      setError(err.message || String(err));
     }
   };
 
   const fetchMembers = async () => {
-    setLoading(true);
     try {
       const res = await axios.get("/api/team/members");
       const json = await res.data;
       if (res.status === 200) setMembers(json.data || []);
-    } finally {
-      setLoading(false);
+      adminLog("Database table 'team_members':", json.data || []);
+      return json.data || [];
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message);
     }
   };
 
   const fetchDepartments = async () => {
-    const res = await axios.get("/api/departments");
-    const json = await res.data;
-    if (res.status == 200) setDepartments(json.data || []);
+    try {
+      const res = await axios.get("/api/departments");
+      const json = await res.data;
+      if (res.status == 200) setDepartments(json.data || []);
+      adminLog("Database table 'departments':", json.data || []);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message);
+    }
   };
 
   const fetchRoles = async () => {
-    const res = await axios.get("/api/roles");
-    const json = await res.data;
-    if (res.status === 200) setRoles(json.data || []);
-  };
-
-  const fetchMemberRoles = async (memberId: number) => {
-    setLoadingRoles(true);
     try {
-      const res = await axios.get(`/api/team/roles?memberId=${memberId}`);
+      const res = await axios.get("/api/roles");
       const json = await res.data;
-      if (res.status === 200) setMemberRoles(json.data || []);
-    } finally {
-      setLoadingRoles(false);
+      if (res.status === 200) setRoles(json.data || []);
+      adminLog("Database table 'roles':", json.data || []);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message);
     }
   };
+
+  const getMemberId = async () => {
+    try {
+      const members = await fetchMembers();
+      const fetchedProfileRes = await fetchProfileById();
+      if (fetchedProfileRes) {
+        const member = members.find((m: any) => m.name === fetchedProfileRes.user.user_metadata.username);
+        if (member) {
+          return member.id;
+        } else {
+          return null;
+        }
+      } else {
+        setError("Profile not found");
+        return null;
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message);
+    }
+  };
+
+  // const fetchMemberRoles = async (memberId: number) => {
+  //   try {
+  //     const res = await axios.get(`/api/team/roles?memberId=${memberId}`);
+  //     const json = await res.data;
+  //     if (res.status === 200) setMemberRoles(json.data || []);
+  //     adminLog("Database table 'department_team_member':", json.data || []);
+  //   } catch (err: any) {
+  //     console.error(err);
+  //     setError(err.message);
+  //   }
+  // };
 
   const updateProfile = async (displayName: string, file?: File | null) => {
     setSubmitting(true);
@@ -272,6 +330,11 @@ export function useProfile(userId: string) {
         const countryData = await getCountryData(driverData);
         setCountryData(countryData);
         await fetchMembers();
+        await fetchDepartments();
+        await fetchRoles();
+        const id = await getMemberId();
+        // await fetchMemberRoles(id);
+        await fetchTeam(id);
       } catch (err: any) {
         console.error(err);
         setError(err.message);
@@ -301,6 +364,5 @@ export function useProfile(userId: string) {
     departments,
     roles,
     memberRoles,
-    loadingRoles,
   };
 }

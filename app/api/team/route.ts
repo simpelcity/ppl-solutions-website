@@ -9,9 +9,9 @@ export async function GET(request: Request) {
       .from("department_team_member")
       .select(
         `
-        department:departments!inner(id, name, name_en, name_nl, name_cz, name_sk),
+        department:departments!inner(id, name, name_en, name_nl, name_cs, name_sk),
         team_member:team_members!inner(id, name, profile_url, profile_path),
-        role:roles!inner(id, name, code, name_en, name_nl, name_cz, name_sk)
+        role:roles!inner(id, name, code, name_en, name_nl, name_cs, name_sk)
       `,
       )
       .order("department_id", { ascending: true });

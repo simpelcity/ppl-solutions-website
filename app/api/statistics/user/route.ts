@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import axios from "axios";
 
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { steamID } = body;
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     for (let page = 1; page <= totalPages; page++) {
       const res = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=${page}`);
 
-      if (res.status !== 200) continue;
+      if (res.status !== 200) return;
 
       const payload = await res.data;
       if (Array.isArray(payload.data)) {

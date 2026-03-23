@@ -1,5 +1,6 @@
 import { Dashboard } from '@/components'
 import "@/styles/Drivershub.scss";
+import "@/styles/roles.scss"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
@@ -56,7 +57,7 @@ export default async function ProfileSettingsPage({ params }: PageProps) {
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
           <Dashboard dict={dict} lang={lang}>
-            <CardProfile params={params} dict={dict} />
+            <CardProfile params={params} lang={lang} dict={dict} />
           </Dashboard>
         </section>
       </main>
