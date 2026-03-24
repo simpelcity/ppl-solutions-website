@@ -46,9 +46,8 @@ export default function CardProfile({ params, lang, dict }: Props) {
   } = useProfile({ userId: userId ?? "", lang, dict });
 
   // adminLog('Current user data:', fetchedProfile)
-  adminLog('TruckersHub driver data:', driver)
+  // adminLog('TruckersHub driver data:', driver)
   // adminLog('countryData:', countryData)
-  adminLog('Member roles:', memberRoles)
 
   if (loading) return <LoaderSpinner dict={dict} />;
   if (!loading && (!profile || Object.keys(profile).length === 0)) {

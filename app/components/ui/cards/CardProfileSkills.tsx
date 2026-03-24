@@ -55,8 +55,6 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
     memberRoles,
   } = useProfile({ userId: userId ?? "", lang, dict });
 
-  adminLog('TruckersHub driver data:', driver)
-
   const skills = driver?.skills || {};
 
   const skillsObject: SkillsObject = {
@@ -67,11 +65,6 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
     overweight: skills.overweight || 0,
     valuable: skills.valuable || 0,
   };
-
-  // useEffect(() => {
-  //   setUserAdr(skillsObject.adr);
-  // }, [skillsObject.adr]);
-  // adminLog('Updated user ADR skills state:', userAdr);
 
   const adrClasses = [1, 2, 3, 4, 6, 8];
 
@@ -95,12 +88,6 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
     { id: "Skill_Cost", name: "Cost per km", desc: "Upgrading this skill help you gain extra points & income per km.", value: skillsObject.cost },
   ];
 
-  const skillLevels = [1, 2, 3, 4, 5, 6];
-
-  adminLog('ADR Skills:', skillsObject.adr)
-  adminLog('Driver skills:', skillsObject)
-  adminLog('Formatted skills list:', skillsList)
-
   if (loading) return <LoaderSpinner dict={dict} />;
 
   return (
@@ -108,38 +95,44 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
       <Card className="border-0 rounded-0 shadow mt-3" data-bs-theme="dark">
         <Card.Body>
           <h3 className="">Skills</h3>
-          <Container className="m-0 p-0">
+          <Container className="m-0 p-0 d-flex flex-column row-gap-2 align-items-center">
             {skillsList.map((skill, index) => (
-              <Row key={index} className="">
+              <Row key={index} className={`w-100 row-gap-2 row-gap-md-0 ${index !== skillsList.length - 1 ? "border-bottom border-2 border-light border-opacity-25 pb-2" : ""}`}>
                 {skill.id === "Skill_ADR" ? (
                   <>
-                    <Col xs={12} md={4} className="d-flex align-items-center">
-                      <Image src={`/assets/images/skills/${skill.id}.webp`} alt={skill.name} className="me-2" width={60} height={60} />
+                    <Col xs={12} md={5} className="d-flex align-items-center column-gap-2">
+                      <Image src={`/assets/images/skills/${skill.id}.webp`} alt={skill.name} width={65} height={65} />
                       <div className="text-start">
                         <p className="m-0">{skill.name}</p>
                         <p className="m-0 fs-6 text-muted">{skill.desc}</p>
                       </div>
                     </Col>
-                    <Col xs={12} md={8} className="d-flex align-items-center column-gap-2">
-                      {adrClasses.map((adrClass) => (
-                        <div key={adrClass} className={`rounded-1 p-2 ${ownedClasses.includes(adrClass) ? 'bg-primary' : 'border border-primary'}`} title={adrClassNames[adrClass]}>
-                          <Image src={`/assets/images/skills/ADR_${adrClass}.webp`} alt={`ADR Skill ${adrClass}`} width={60} height={60} />
-                        </div>
-                      ))}
+                    <Col xs={12} md={7} className="d-flex align-items-center justify-content-center justify-content-md-start">
+                      <Row className="w-100">
+                        {adrClasses.map((adrClass) => (
+                          <Col xs={2} key={adrClass} className="px-1" title={adrClassNames[adrClass]}>
+                            <div className={`rounded-1 p-md-2 border border-primary adr-skill ${ownedClasses.includes(adrClass) ? 'bg-primary' : ''}`}>
+                              <Image src={`/assets/images/skills/ADR_${adrClass}.webp`} alt={`ADR Skill ${adrClass}`} className="adr-skill-level w-100 h-100" />
+                            </div>
+                          </Col>
+                        ))}
+                      </Row>
                     </Col>
                   </>
                 ) : (
                   <>
-                    <Col xs={12} md={4} className="d-flex align-items-center">
-                      <Image src={`/assets/images/skills/${skill.id}.webp`} alt={skill.name} className="me-2" width={60} height={60} />
+                    <Col xs={12} md={5} className="d-flex align-items-center column-gap-2">
+                      <Image src={`/assets/images/skills/${skill.id}.webp`} alt={skill.name} width={65} height={65} />
                       <div className="text-start">
                         <p className="m-0">{skill.name}</p>
                         <p className="m-0 fs-6 text-muted">{skill.desc}</p>
                       </div>
                     </Col>
-                    <Col xs={12} md={8} className="d-flex align-items-center column-gap-2">
+                    <Col xs={12} md={7} className="d-flex align-items-center column-gap-2 column-gap-md-7 justify-content-center justify-content-md-start">
                       {[...Array(6)].map((_, i) => (
-                        <div key={i} className={`rounded-1 p-2 ${i < (typeof skill.value === 'number' ? skill.value : 0) ? "bg-primary" : "border border-primary"}`} title={`${skill.name} Level: ${skill.value}`} style={{ width: 76, height: 76 }}></div>
+                        <div key={i} className={`rounded-1 p-1 p-md-2 border border-primary ${i < (typeof skill.value === 'number' ? skill.value : 0) ? "bg-primary" : ""}`} title={`${skill.name} Level ${skill.value}`}>
+                          <div className="skill-level"></div>
+                        </div>
                       ))}
                     </Col>
                   </>

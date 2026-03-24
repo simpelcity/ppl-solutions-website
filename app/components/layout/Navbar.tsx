@@ -34,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const width = useWindowWidth();
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
-  const { toggleSidebar, isMobile } = useSidebar();
+  const { toggleSidebar, isMobile, isTablet } = useSidebar();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

@@ -169,8 +169,6 @@ export function useProfile({ userId, lang, dict }: Props) {
       if (!res.ok) throw new Error(`API error ${res.status}`);
       const json = await res.json();
       const memberData = json.data.find((m: any) => m.team_member.id === memberId) || null;
-      adminLog("Fetched member data for current user:", memberData);
-      adminLog("Fetched team data:", json.data || []);
       setItems(json.data ?? []);
       setMemberRoles([memberData]);
       return json.data || [];
@@ -185,7 +183,6 @@ export function useProfile({ userId, lang, dict }: Props) {
       const res = await axios.get("/api/team/members");
       const json = await res.data;
       if (res.status === 200) setMembers(json.data || []);
-      adminLog("Database table 'team_members':", json.data || []);
       return json.data || [];
     } catch (err: any) {
       console.error(err);
@@ -198,7 +195,6 @@ export function useProfile({ userId, lang, dict }: Props) {
       const res = await axios.get("/api/departments");
       const json = await res.data;
       if (res.status == 200) setDepartments(json.data || []);
-      adminLog("Database table 'departments':", json.data || []);
     } catch (err: any) {
       console.error(err);
       setError(err.message);
@@ -210,7 +206,6 @@ export function useProfile({ userId, lang, dict }: Props) {
       const res = await axios.get("/api/roles");
       const json = await res.data;
       if (res.status === 200) setRoles(json.data || []);
-      adminLog("Database table 'roles':", json.data || []);
     } catch (err: any) {
       console.error(err);
       setError(err.message);
@@ -327,6 +322,7 @@ export function useProfile({ userId, lang, dict }: Props) {
         setFetchedProfile(fetchedProfileData);
         const driverData = await getDriverData();
         setDriver(driverData);
+        adminLog("TruckersHub driver data:", driverData);
         const countryData = await getCountryData(driverData);
         setCountryData(countryData);
         await fetchMembers();

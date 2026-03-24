@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
-import { Dropdown, Image, Nav, Collapse } from "react-bootstrap";
+import { Dropdown, Image, Nav, Collapse, Offcanvas } from "react-bootstrap";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
@@ -34,7 +34,7 @@ interface SidebarProps {
   [key: string]: any;
 }
 
-export default function Sidebar({
+function SidebarContent({
   isSidebarCollapsed,
   setIsSidebarCollapsed,
   isMobile,
@@ -171,45 +171,13 @@ export default function Sidebar({
   }, [isAdmin, pathname, router, currentLang]);
 
   if (loading) return <LoaderSpinner dict={dict} />
-
-  if (!session) {
-    return null;
-  }
-
-  if (!user) {
-    return null;
-  }
+  if (!session) return null;
+  if (!user) return null;
 
   const username = user.user_metadata.display_name || user.email;
 
   return (
-    <div
-      className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
-      style={{
-        width: isMobile ? "100%" : isSidebarCollapsed ? "4.5rem" : "280px",
-        minWidth: isMobile ? "280px" : isSidebarCollapsed ? "4.5rem" : "280px",
-        height: isMobile ? (isNavbarVisible ? "calc(100vh)" : "100vh") : "100%",
-        position: isMobile ? "fixed" : "relative",
-        top: isMobile && isNavbarVisible ? 0 : isMobile ? 0 : "auto",
-        left: isMobile ? 0 : "auto",
-        zIndex: isMobile ? 1000 : 10,
-        transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",
-        transition: "transform 0.3s ease, width 0.3s ease",
-        overflow: isSidebarCollapsed && !isMobile ? "visible" : "auto",
-        padding: isSidebarCollapsed && !isMobile ? "1rem 0" : "1rem",
-      }}
-      {...props}>
-      <div
-        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
-          }`}>
-        <a href="#" className="text-light text-decoration-none column-gap-2">
-          <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
-            {dict.drivershub.sidebar.title || "Sidebar"}
-          </h3>
-        </a>
-        <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
-      </div>
-      <hr className={isSidebarCollapsed ? "d-none" : "d-block"} />
+    <>
       <Nav variant="pills" className="flex-column mb-auto">
         {navItems.map((item) => (
           <Nav.Item key={item.href}>
@@ -320,6 +288,111 @@ export default function Sidebar({
           </Dropdown.Menu>
         </Dropdown>
       )}
+    </>
+  )
+}
+
+export default function Sidebar({
+  isSidebarCollapsed,
+  setIsSidebarCollapsed,
+  isMobile,
+  isTablet,
+  isNavbarVisible = false,
+  dict,
+  lang,
+  ...props
+}: SidebarProps) {
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
+
+  useEffect(() => {
+    if (isMobile && !isSidebarCollapsed) setShowOffcanvas(true);
+    else setShowOffcanvas(false);
+  }, [isMobile, isSidebarCollapsed]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMobile && !isSidebarCollapsed) {
+        setIsSidebarCollapsed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile, isSidebarCollapsed, setIsSidebarCollapsed]);
+
+  useEffect(() => {
+    const navbarHeight = 76; // Set your navbar height here
+    const handleScroll = () => {
+      if (window.scrollY >= 76) {
+        document.documentElement.style.setProperty('--sidebar-height', '100vh');
+      } else {
+        document.documentElement.style.setProperty('--sidebar-height', `calc(100vh - ${navbarHeight}px)`);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    // Set initial value
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return isMobile ? (
+    <Offcanvas show={showOffcanvas} onHide={() => setShowOffcanvas(false)} placement="start" scroll={true} backdrop={false} className="sidebar bg-light-subtle" data-bs-theme="dark">
+      <Offcanvas.Header closeButton>
+        <Offcanvas.Title>{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
+      </Offcanvas.Header>
+      <Offcanvas.Body className="d-flex flex-column">
+        <SidebarContent
+          isSidebarCollapsed={isSidebarCollapsed}
+          setIsSidebarCollapsed={setIsSidebarCollapsed}
+          isMobile={isMobile}
+          isTablet={isTablet}
+          isNavbarVisible={isNavbarVisible}
+          dict={dict}
+          lang={lang}
+        />
+      </Offcanvas.Body>
+    </Offcanvas>
+  ) : (
+    <div
+      className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
+      style={{
+        height: "var(--sidebar-height)",
+        width: isSidebarCollapsed ? "4.5rem" : "280px",
+        minWidth: isSidebarCollapsed ? "4.5rem" : "280px",
+        // position: isMobile ? "fixed" : "sticky",
+        // top: isNavbarVisible ? 0 : "auto",
+        position: "sticky",
+        top: 0,
+        left: isMobile ? 0 : "auto",
+        zIndex: 999,
+        transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",
+        transition: "transform 0.3s ease, width 0.3s ease",
+        overflow: isSidebarCollapsed && !isMobile ? "visible" : "hidden",
+        padding: isSidebarCollapsed && !isMobile ? "1rem 0" : "1rem",
+      }}
+      {...props}>
+      <div
+        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
+          }`}>
+        <a href="#" className="text-light text-decoration-none column-gap-2">
+          <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
+            {dict.drivershub.sidebar.title || "Sidebar"}
+          </h3>
+        </a>
+        <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
+      </div>
+      <hr className={isSidebarCollapsed ? "d-none" : "d-block"} />
+
+      <SidebarContent
+        isSidebarCollapsed={isSidebarCollapsed}
+        setIsSidebarCollapsed={setIsSidebarCollapsed}
+        isMobile={isMobile}
+        isTablet={isTablet}
+        isNavbarVisible={isNavbarVisible}
+        dict={dict}
+        lang={lang}
+      // ...other props
+      />
     </div>
   );
 }
