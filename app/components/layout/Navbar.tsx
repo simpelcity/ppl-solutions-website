@@ -56,11 +56,11 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const mobile = width < 992;
 
   const navLinks = [
-    { title: dict.navbar.navigation.home, href: currentLocale === i18n.defaultLocale ? "/" : `/${currentLocale}` },
-    { title: dict.navbar.navigation.events, href: currentLocale === i18n.defaultLocale ? "/events" : `/${currentLocale}/events` },
-    { title: dict.navbar.navigation.team, href: currentLocale === i18n.defaultLocale ? "/team" : `/${currentLocale}/team` },
-    { title: dict.navbar.navigation.gallery, href: currentLocale === i18n.defaultLocale ? "/gallery" : `/${currentLocale}/gallery` },
-    { title: dict.navbar.navigation.contact, href: currentLocale === i18n.defaultLocale ? "/contact" : `/${currentLocale}/contact` },
+    { title: dict.navbar.navigation.home, href: `${currentLocale}` },
+    { title: dict.navbar.navigation.events, href: `${currentLocale}/events` },
+    { title: dict.navbar.navigation.team, href: `${currentLocale}/team` },
+    { title: dict.navbar.navigation.gallery, href: `${currentLocale}/gallery` },
+    { title: dict.navbar.navigation.contact, href: `${currentLocale}/contact` },
   ];
 
   return (

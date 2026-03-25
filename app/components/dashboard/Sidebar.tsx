@@ -310,115 +310,11 @@ export default function Sidebar({
   ...props
 }: SidebarProps) {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-  const [allLoaded, setAllLoaded] = useState(false);
-
-  const { user, loading: userLoading } = useAuth();
-
-  const pathname = usePathname();
-  const segments = pathname.split("/").filter(Boolean);
-  // Example regex for UUID (adjust as needed for your userId format)
-  const userIdRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
-  const lastSegment = segments[segments.length - 1] || "";
-  const userId = userIdRegex.test(lastSegment) ? lastSegment : undefined;
-
-  const currentLocale = lang === "en" ? "" : `/${lang}`;
-
-  const isDrivershub = pathname === `${currentLocale}/drivershub`;
-  const isUserStats = pathname.startsWith(`${currentLocale}/drivershub/statistics`);
-  const isLeaderboard = pathname.startsWith(`${currentLocale}/drivershub/leaderboard`);
-  const isVtcStats = pathname.startsWith(`${currentLocale}/drivershub/dashboard`);
-  const isTeam = pathname.startsWith(`${currentLocale}/drivershub/dashboard/team`);
-  const isGallery = pathname.startsWith(`${currentLocale}/drivershub/dashboard/gallery`);
-  const isProfile = pathname.startsWith(`${currentLocale}/drivershub/profile`);
-
-  const { loading: jobsLoading } = isDrivershub ? useUserJobs() : { loading: false };
-  const { loading: galleryLoading } = isGallery ? useGallery() : { loading: false };
-  const { loading: leaderboardLoading } = isLeaderboard ? useLeaderboard() : { loading: false };
-  const { loading: profileLoading } = userId ? useProfile({ userId, lang, dict }) : { loading: false };
-  const { loading: teamLoading } = isTeam ? useTeam() : { loading: false };
-  const { loading: userStatsLoading } = isUserStats ? useUserStats() : { loading: false };
-  const { loading: vtcStatsLoading } = isVtcStats ? useVtcStats() : { loading: false };
-
-  // Example: use userId only if it matches the regex
-  // if (userId) {
-  //   // safe to use userId
-  // }
-
-  useEffect(() => {
-    if (!userLoading && !jobsLoading && !galleryLoading && !leaderboardLoading && !profileLoading && !teamLoading && !userStatsLoading && !vtcStatsLoading) {
-      setAllLoaded(true);
-    } else {
-      setAllLoaded(false);
-    }
-  })
 
   useEffect(() => {
     if (isMobile && !isSidebarCollapsed) setShowOffcanvas(true);
     else setShowOffcanvas(false);
   }, [isMobile, isSidebarCollapsed]);
-
-  useEffect(() => {
-    const navbarHeight = 76;
-    function handleScroll() {
-      const position = window.pageYOffset;
-
-      console.log("Scroll Y:", position);
-
-      const pageHeight = document.documentElement.offsetHeight
-      const contentHeight = document.querySelector(".content-wrapper")?.clientHeight ?? 0;
-      const footerHeight = pageHeight - contentHeight - navbarHeight;
-      const isFooterVisible = position + window.innerHeight - 3 >= pageHeight - footerHeight;
-      console.log("page height", pageHeight)
-      console.log("content height", contentHeight)
-      console.log("footer height", pageHeight - contentHeight - navbarHeight)
-      console.log("scroll + viewport height", position + window.innerHeight)
-      console.log("footer visible?", isFooterVisible)
-      console.log(pageHeight - contentHeight - navbarHeight)
-
-      if (position === 76) {
-        document.documentElement.style.setProperty('--sidebar-height', '100dvh');
-        document.documentElement.style.setProperty('--sidebar-position', 'relative');
-      } else if (position > 76) {
-        document.documentElement.style.setProperty('--sidebar-height', '100dvh');
-        document.documentElement.style.setProperty('--sidebar-position', 'fixed');
-      } else if (position <= 76) {
-        document.documentElement.style.setProperty('--sidebar-height', `calc(100dvh - (${navbarHeight}px - ${position}px))`);
-        document.documentElement.style.setProperty('--sidebar-position', 'relative');
-      } else if (isFooterVisible && position > 76) {
-        document.documentElement.style.setProperty('--sidebar-height', `calc(100dvh - ${navbarHeight}px)`);
-        document.documentElement.style.setProperty('--sidebar-position', 'relative');
-      } else if (isFooterVisible && position <= 76) {
-        document.documentElement.style.setProperty('--sidebar-height', `calc(100dvh - ${navbarHeight}px)`);
-        document.documentElement.style.setProperty('--sidebar-position', 'relative');
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (allLoaded) handleHeightChange();
-
-    function handleHeightChange() {
-      const navbarHeight = 76;
-      const position = window.pageYOffset;
-      const pageHeight = document.documentElement.offsetHeight
-      const contentHeight = document.querySelector(".content-wrapper")?.clientHeight ?? 0;
-      const footerHeight = pageHeight - contentHeight - navbarHeight;
-      const isFooterVisible = position + window.innerHeight - 3 >= pageHeight - footerHeight;
-
-      console.log("page height", pageHeight)
-      console.log("content height", contentHeight)
-      console.log("footer height", pageHeight - contentHeight - navbarHeight)
-      console.log("scroll + viewport height", position + window.innerHeight)
-      console.log("footer visible?", isFooterVisible)
-      console.log(pageHeight - contentHeight - navbarHeight)
-    }
-  }, [allLoaded])
 
   return isMobile ? (
     <Offcanvas
@@ -450,9 +346,9 @@ export default function Sidebar({
       id="sidebar"
       className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
       style={{
-        height: "var(--sidebar-height)",
-        width: isSidebarCollapsed ? "4.5rem" : "280px",
-        minWidth: isSidebarCollapsed ? "4.5rem" : "280px",
+        height: "calc(100dvh - 76px)",
+        width: isSidebarCollapsed ? "4.5rem" : "260px",
+        // maxWidth: isSidebarCollapsed ? "4.5rem" : "260px",
         position: "var(--sidebar-position, relative)" as any,
         top: isNavbarVisible ? 0 : "auto",
         left: isMobile ? 0 : "auto",

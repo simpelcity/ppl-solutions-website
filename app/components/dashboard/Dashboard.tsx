@@ -16,14 +16,12 @@ interface DashboardProps {
 export default function Dashboard({ children, isNavbarVisible = false, dict, lang, ...props }: DashboardProps) {
   const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile, isTablet } = useSidebar();
 
-  const sidebarWidth = isSidebarCollapsed ? "4.5rem" : "280px";
+  const sidebarWidth = isSidebarCollapsed ? "4.5rem" : "260px";
+  console.log(isTablet, isMobile)
 
   return (
-    <div
-      className={`d-flex flex-column flex-md-row overflow-x-hidden`}
-      style={{ position: "relative", width: "100vw", maxWidth: "100vw" }}>
+    <Container className="d-flex p-0 m-0" fluid>
       <Sidebar
-        id="sidebar"
         isSidebarCollapsed={isSidebarCollapsed}
         setIsSidebarCollapsed={setIsSidebarCollapsed}
         isMobile={isMobile}
@@ -33,17 +31,18 @@ export default function Dashboard({ children, isNavbarVisible = false, dict, lan
         lang={lang}
       />
       <Container
-        className="content-wrapper d-flex justify-content-center px-3"
+        className="content-footer-wrapper d-flex flex-column p-0 m-0"
         style={{
-          width: isMobile ? "100vw" : `calc(100vw - ${sidebarWidth})`,
-          maxWidth: isMobile ? "100vw" : `calc(100vw - ${sidebarWidth})`,
+          // width: isMobile ? "100vw" : `calc(100vw - ${sidebarWidth})`,
+          maxWidth: isMobile ? "100vw" : `calc(100% - ${sidebarWidth})`,
           transition: "width 0.3s ease, margin-top 0.3s ease",
-          overflowX: "hidden",
+          // overflowX: "hidden",
         }}
-        fluid>
+        fluid
+      >
         {children}
       </Container>
-    </div>
+    </Container>
   );
 }
 

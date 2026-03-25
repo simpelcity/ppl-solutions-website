@@ -33,7 +33,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const checkTablet = () => {
-      const tablet = window.innerWidth >= 576 && window.innerWidth < 992
+      const tablet = window.innerWidth >= 576 && window.innerWidth < 1200
       setIsTablet(tablet)
       if (tablet) {
         setIsSidebarCollapsed(true)
