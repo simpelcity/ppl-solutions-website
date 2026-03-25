@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
 import { Dropdown, Image, Nav, Collapse, Offcanvas } from "react-bootstrap";
@@ -16,6 +16,13 @@ import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import { useGallery } from '@/hooks/useGallery'
+import { useLeaderboard } from '@/hooks/useLeaderboard'
+import { useProfile } from '@/hooks/useProfile'
+import { useTeam } from '@/hooks/useTeam'
+import { useUserJobs } from "@/hooks/useUserJobs";
+import { useUserStats } from '@/hooks/useUserStats'
+import { useVtcStats } from '@/hooks/useVtcStats'
 
 interface NavItem {
   href: string;
@@ -160,7 +167,7 @@ function SidebarContent({
 
   useEffect(() => {
     if (!loading && !session) router.push("/login");
-  }, [session, loading, router]);
+  }, [session, loading]);
 
   useEffect(() => {
     if (pathname.startsWith(`${currentLang}/drivershub/dashboard`)) {
@@ -168,7 +175,7 @@ function SidebarContent({
         router.push(`${currentLang}/drivershub`);
       }
     }
-  }, [isAdmin, pathname, router, currentLang]);
+  }, [isAdmin, pathname, currentLang]);
 
   if (loading) return <LoaderSpinner dict={dict} />
   if (!session) return null;
@@ -303,6 +310,47 @@ export default function Sidebar({
   ...props
 }: SidebarProps) {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const [allLoaded, setAllLoaded] = useState(false);
+
+  const { user, loading: userLoading } = useAuth();
+
+  const pathname = usePathname();
+  const segments = pathname.split("/").filter(Boolean);
+  // Example regex for UUID (adjust as needed for your userId format)
+  const userIdRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+  const lastSegment = segments[segments.length - 1] || "";
+  const userId = userIdRegex.test(lastSegment) ? lastSegment : undefined;
+
+  const currentLocale = lang === "en" ? "" : `/${lang}`;
+
+  const isDrivershub = pathname === `${currentLocale}/drivershub`;
+  const isUserStats = pathname.startsWith(`${currentLocale}/drivershub/statistics`);
+  const isLeaderboard = pathname.startsWith(`${currentLocale}/drivershub/leaderboard`);
+  const isVtcStats = pathname.startsWith(`${currentLocale}/drivershub/dashboard`);
+  const isTeam = pathname.startsWith(`${currentLocale}/drivershub/dashboard/team`);
+  const isGallery = pathname.startsWith(`${currentLocale}/drivershub/dashboard/gallery`);
+  const isProfile = pathname.startsWith(`${currentLocale}/drivershub/profile`);
+
+  const { loading: jobsLoading } = isDrivershub ? useUserJobs() : { loading: false };
+  const { loading: galleryLoading } = isGallery ? useGallery() : { loading: false };
+  const { loading: leaderboardLoading } = isLeaderboard ? useLeaderboard() : { loading: false };
+  const { loading: profileLoading } = userId ? useProfile({ userId, lang, dict }) : { loading: false };
+  const { loading: teamLoading } = isTeam ? useTeam() : { loading: false };
+  const { loading: userStatsLoading } = isUserStats ? useUserStats() : { loading: false };
+  const { loading: vtcStatsLoading } = isVtcStats ? useVtcStats() : { loading: false };
+
+  // Example: use userId only if it matches the regex
+  // if (userId) {
+  //   // safe to use userId
+  // }
+
+  useEffect(() => {
+    if (!userLoading && !jobsLoading && !galleryLoading && !leaderboardLoading && !profileLoading && !teamLoading && !userStatsLoading && !vtcStatsLoading) {
+      setAllLoaded(true);
+    } else {
+      setAllLoaded(false);
+    }
+  })
 
   useEffect(() => {
     if (isMobile && !isSidebarCollapsed) setShowOffcanvas(true);
@@ -310,33 +358,78 @@ export default function Sidebar({
   }, [isMobile, isSidebarCollapsed]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (isMobile && !isSidebarCollapsed) {
-        setIsSidebarCollapsed(false);
+    const navbarHeight = 76;
+    function handleScroll() {
+      const position = window.pageYOffset;
+
+      console.log("Scroll Y:", position);
+
+      const pageHeight = document.documentElement.offsetHeight
+      const contentHeight = document.querySelector(".content-wrapper")?.clientHeight ?? 0;
+      const footerHeight = pageHeight - contentHeight - navbarHeight;
+      const isFooterVisible = position + window.innerHeight - 3 >= pageHeight - footerHeight;
+      console.log("page height", pageHeight)
+      console.log("content height", contentHeight)
+      console.log("footer height", pageHeight - contentHeight - navbarHeight)
+      console.log("scroll + viewport height", position + window.innerHeight)
+      console.log("footer visible?", isFooterVisible)
+      console.log(pageHeight - contentHeight - navbarHeight)
+
+      if (position === 76) {
+        document.documentElement.style.setProperty('--sidebar-height', '100dvh');
+        document.documentElement.style.setProperty('--sidebar-position', 'relative');
+      } else if (position > 76) {
+        document.documentElement.style.setProperty('--sidebar-height', '100dvh');
+        document.documentElement.style.setProperty('--sidebar-position', 'fixed');
+      } else if (position <= 76) {
+        document.documentElement.style.setProperty('--sidebar-height', `calc(100dvh - (${navbarHeight}px - ${position}px))`);
+        document.documentElement.style.setProperty('--sidebar-position', 'relative');
+      } else if (isFooterVisible && position > 76) {
+        document.documentElement.style.setProperty('--sidebar-height', `calc(100dvh - ${navbarHeight}px)`);
+        document.documentElement.style.setProperty('--sidebar-position', 'relative');
+      } else if (isFooterVisible && position <= 76) {
+        document.documentElement.style.setProperty('--sidebar-height', `calc(100dvh - ${navbarHeight}px)`);
+        document.documentElement.style.setProperty('--sidebar-position', 'relative');
       }
-    };
+    }
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMobile, isSidebarCollapsed, setIsSidebarCollapsed]);
 
-  useEffect(() => {
-    const navbarHeight = 76; // Set your navbar height here
-    const handleScroll = () => {
-      if (window.scrollY >= 76) {
-        document.documentElement.style.setProperty('--sidebar-height', '100vh');
-      } else {
-        document.documentElement.style.setProperty('--sidebar-height', `calc(100vh - ${navbarHeight}px)`);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    // Set initial value
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
+  useEffect(() => {
+    if (allLoaded) handleHeightChange();
+
+    function handleHeightChange() {
+      const navbarHeight = 76;
+      const position = window.pageYOffset;
+      const pageHeight = document.documentElement.offsetHeight
+      const contentHeight = document.querySelector(".content-wrapper")?.clientHeight ?? 0;
+      const footerHeight = pageHeight - contentHeight - navbarHeight;
+      const isFooterVisible = position + window.innerHeight - 3 >= pageHeight - footerHeight;
+
+      console.log("page height", pageHeight)
+      console.log("content height", contentHeight)
+      console.log("footer height", pageHeight - contentHeight - navbarHeight)
+      console.log("scroll + viewport height", position + window.innerHeight)
+      console.log("footer visible?", isFooterVisible)
+      console.log(pageHeight - contentHeight - navbarHeight)
+    }
+  }, [allLoaded])
+
   return isMobile ? (
-    <Offcanvas show={showOffcanvas} onHide={() => setShowOffcanvas(false)} placement="start" scroll={true} backdrop={false} className="sidebar bg-light-subtle" data-bs-theme="dark">
+    <Offcanvas
+      show={showOffcanvas}
+      onHide={() => setShowOffcanvas(false)}
+      placement="start"
+      scroll={true}
+      backdrop={false}
+      className="sidebar bg-light-subtle"
+      data-bs-theme="dark"
+    >
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
       </Offcanvas.Header>
@@ -354,15 +447,14 @@ export default function Sidebar({
     </Offcanvas>
   ) : (
     <div
+      id="sidebar"
       className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
       style={{
         height: "var(--sidebar-height)",
         width: isSidebarCollapsed ? "4.5rem" : "280px",
         minWidth: isSidebarCollapsed ? "4.5rem" : "280px",
-        // position: isMobile ? "fixed" : "sticky",
-        // top: isNavbarVisible ? 0 : "auto",
-        position: "sticky",
-        top: 0,
+        position: "var(--sidebar-position, relative)" as any,
+        top: isNavbarVisible ? 0 : "auto",
         left: isMobile ? 0 : "auto",
         zIndex: 999,
         transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",

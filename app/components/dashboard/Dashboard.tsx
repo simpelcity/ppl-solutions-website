@@ -33,7 +33,7 @@ export default function Dashboard({ children, isNavbarVisible = false, dict, lan
         lang={lang}
       />
       <Container
-        className="content-wrapper d-flex justify-content-center px-3 mx-0"
+        className="content-wrapper d-flex justify-content-center px-3"
         style={{
           width: isMobile ? "100vw" : `calc(100vw - ${sidebarWidth})`,
           maxWidth: isMobile ? "100vw" : `calc(100vw - ${sidebarWidth})`,

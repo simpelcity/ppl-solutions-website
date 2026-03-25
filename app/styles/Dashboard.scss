@@ -1,0 +1,34 @@
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+.sidebar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // Ensure it doesn't overlap on mobile
+  @media (max-width: 991.98px) {
+    width: 0 !important;
+    transform: translateX(-100%);
+  }
+}
+
+.content-main {
+  flex: 1;
+  width: 100%;
+  transition: margin-left 0.3s ease;
+  overflow-x: hidden;
+
+  @media (max-width: 991.98px) {
+    margin-left: 0;
+    width: 100%;
+  }
+}
