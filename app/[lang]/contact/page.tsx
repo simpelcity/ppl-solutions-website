@@ -57,7 +57,7 @@ export default async function ContactPage({ params }: PageProps) {
               </Col>
               <Col xs={12} md={8} xl={4} className="d-flex align-items-center justify-content-center">
                 <iframe
-                  className="shadow w-100"
+                  className="shadow-sm w-100"
                   src="https://discord.com/widget?id=1282025492354170972&theme=dark"
                   height="450"
                   sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>

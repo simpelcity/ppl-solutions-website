@@ -50,7 +50,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
   };
 
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
@@ -75,7 +75,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
               placeholder={dict.forgotPassword.form.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
               required
               disabled={loading}
             />

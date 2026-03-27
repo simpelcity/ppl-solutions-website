@@ -61,7 +61,7 @@ export default function GalleryGrid({ dict }: Props) {
       <Row className="w-100 row-gap-4 d-flex justify-content-center">
         {items.map((it) => (
           <Col key={it.id} xs={12} md={6} xl={3}>
-            <Card className="h-100 rounded-0 border-0 shadow" data-bs-theme="dark">
+            <Card className="h-100 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
               <Card.Img
                 variant="top"
                 src={it.image_url ?? "/assets/icons/image-missing.png"}

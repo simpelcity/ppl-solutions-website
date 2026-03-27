@@ -75,7 +75,7 @@ export default async function CardEvents({ params }: PageProps) {
       {events.map((event: any) => {
         return (
           <Col xs={12} md={6} xl={4} key={event.id}>
-            <Card className="bg-dark text-light rounded-0 border-0 shadow">
+            <Card className="bg-dark text-light rounded-0 border-0 shadow-sm">
               <CardImg
                 variant="top"
                 className="rounded-0"

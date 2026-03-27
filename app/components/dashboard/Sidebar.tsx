@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
-import { Dropdown, Image, Nav, Collapse, Offcanvas } from "react-bootstrap";
+import { Dropdown, Image, Nav, Collapse, Offcanvas, Placeholder } from "react-bootstrap";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
@@ -16,13 +16,6 @@ import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
-import { useGallery } from '@/hooks/useGallery'
-import { useLeaderboard } from '@/hooks/useLeaderboard'
-import { useProfile } from '@/hooks/useProfile'
-import { useTeam } from '@/hooks/useTeam'
-import { useUserJobs } from "@/hooks/useUserJobs";
-import { useUserStats } from '@/hooks/useUserStats'
-import { useVtcStats } from '@/hooks/useVtcStats'
 
 interface NavItem {
   href: string;
@@ -55,7 +48,7 @@ function SidebarContent({
     if (isAdmin) console.log(...args);
   };
 
-  const { user, logout, session, loading } = useAuth();
+  const { user, logout, loading, session } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
@@ -175,7 +168,6 @@ function SidebarContent({
     }
   }, [isAdmin, pathname, currentLang]);
 
-  if (loading) return <LoaderSpinner dict={dict} />
   if (!session) return null;
   if (!user) return null;
 
@@ -264,7 +256,7 @@ function SidebarContent({
             />
             <strong>{username}</strong>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow mb-1" style={{ zIndex: 1050 }}>
+          <Dropdown.Menu className="dropdown-menu-dark shadow-sm mb-1" style={{ zIndex: 1050 }}>
             <Dropdown.Item href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
             <Dropdown.Item href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
@@ -285,7 +277,7 @@ function SidebarContent({
               roundedCircle
             />
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow ms-3 mb-1" style={{ zIndex: 1050 }}>
+          <Dropdown.Menu className="dropdown-menu-dark shadow-sm ms-3 mb-1" style={{ zIndex: 1050 }}>
             <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
             <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
@@ -318,14 +310,16 @@ export default function Sidebar({
       onHide={() => setShowOffcanvas(false)}
       placement="start"
       scroll={false}
-      backdrop={false}
+      backdrop={true}
       className={`sidebar bg-light-subtle ${isSidebarCollapsed ? "" : "w-100"}`}
+      style={{ maxWidth: window.innerWidth < 576 ? "100%" : "16.25rem" }}
       data-bs-theme="dark"
     >
-      <Offcanvas.Header closeButton>
-        <Offcanvas.Title>{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
+      <Offcanvas.Header className="pb-0" closeButton>
+        <Offcanvas.Title className="fs-3">{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
       </Offcanvas.Header>
-      <Offcanvas.Body className="d-flex flex-column">
+      <hr className={isSidebarCollapsed ? "d-none" : "d-block mx-3"} />
+      <Offcanvas.Body className="d-flex flex-column pt-0">
         <SidebarContent
           isSidebarCollapsed={isSidebarCollapsed}
           setIsSidebarCollapsed={setIsSidebarCollapsed}
@@ -373,7 +367,6 @@ export default function Sidebar({
         isNavbarVisible={isNavbarVisible}
         dict={dict}
         lang={lang}
-      // ...other props
       />
     </div>
   );

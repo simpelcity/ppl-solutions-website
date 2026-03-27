@@ -45,7 +45,7 @@ export default function LoginFormClient({ dict }: Props) {
   };
 
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
@@ -67,7 +67,7 @@ export default function LoginFormClient({ dict }: Props) {
               placeholder={dict.login.form.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
             />
           </Form.Group>
           <Form.Group className="mb-2 d-flex justify-content-between align-items-center">
@@ -82,7 +82,7 @@ export default function LoginFormClient({ dict }: Props) {
               placeholder={dict.login.form.passwordPlaceholder}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">

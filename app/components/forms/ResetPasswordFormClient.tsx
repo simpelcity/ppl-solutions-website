@@ -104,7 +104,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
   if (validating) {
     return (
-      <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+      <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
         <Card.Body className="p-4">
           <div className="d-flex mb-3">
             <Image
@@ -124,7 +124,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
   if (!tokenValid) {
     return (
-      <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+      <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
         <Card.Body className="p-4">
           <div className="d-flex mb-3">
             <Image
@@ -148,7 +148,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
   }
 
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
@@ -171,7 +171,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
               placeholder="••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
               required
               disabled={loading}
             />
@@ -184,7 +184,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
               placeholder="••••••"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
               required
               disabled={loading}
             />

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { NavButtons } from "@/components";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { IoIosClose } from "react-icons/io";
 import { useSidebar } from "@/lib";
 import { i18n } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
@@ -76,11 +77,11 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
 
   return (
     <header className="position-sticky top-0" style={{ zIndex: 5 }}>
-      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark" className="px-3">
+      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark" className="px-lg-3">
         <Container className="m-0 p-0 d-flex align-items-center" fluid>
           {isMobile && isDrivershub && (
             <button
-              className="btn btn-link text-light border-0 ms-1"
+              className="btn btn-link text-light text-opacity-75 border-0 ms-1"
               style={{ padding: "0.25rem 0.75rem" }}
               onClick={toggleSidebar}>
               <RxHamburgerMenu size={30} />

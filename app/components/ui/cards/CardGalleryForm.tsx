@@ -77,7 +77,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
   return (
     <>
       <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
+        <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
           <Card.Title className="fs-4">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
@@ -86,7 +86,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                 <Form.Control
                   type="text"
                   placeholder={dict.drivershub.gallery.form.titlePlaceholder || "Image title"}
-                  className="rounded-0 border-0 shadow bg-dark-subtle"
+                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
                   required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -100,7 +100,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                   id="gallery-file-input"
                   type="file"
                   accept="image/*"
-                  className="rounded-0 border-0 shadow bg-dark-subtle"
+                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
                   onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)}
                   disabled={submitting}
                 />
@@ -151,7 +151,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
 
       {/* Gallery Items List */}
       <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
+        <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
           <Card.Title className="fs-4">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
           <Card.Body className="p-1">
             {loading ? (

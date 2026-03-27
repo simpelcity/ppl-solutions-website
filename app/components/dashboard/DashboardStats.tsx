@@ -19,7 +19,7 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
 
   if (loading) {
     return (
-      <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
+      <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
         <Card.Body className="d-flex justify-content-center">
           <Loader dict={dict}>
             <span className="word">{dict.drivershub.vtcStats.vtc.totalJobs}</span>
@@ -35,7 +35,7 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
 
   if (error) {
     return (
-      <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
+      <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
         <Card.Body>
           <p className="text-danger">{error}</p>
         </Card.Body>
@@ -45,7 +45,7 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
 
   if (!stats) {
     return (
-      <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
+      <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
         <Card.Body>
           <p className="text-muted">{dict.drivershub.vtcStats.error.noStats}</p>
         </Card.Body>
@@ -55,10 +55,10 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
 
   return (
     <>
-      <Card className="my-3 px-0 rounded-0 border-0 shadow" data-bs-theme="dark">
+      <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
         <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.vtc.title || "VTC Statistics"}</Card.Title>
-        <Card.Body className="d-flex flex-column align-items-center p-4">
-          <Row className="w-100 row-gap-3">
+        <Card.Body className="d-flex flex-column p-4 row-gap-4">
+          <Row className="row-gap-3">
             <Col xs={12} md={6} xl={3}>
               <div className="border border-1 border-primary border-custom rounded-3 h-100 p-2">
                 <p className="fs-2 fw-bold">{formatDistance(stats.total.distance, "km")}</p>
@@ -87,9 +87,9 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
             </Col>
           </Row>
 
-          <Row className="mt-4">
+          <Row className="row-gap-3">
             <Col xs={12} md={6}>
-              <Card className="rounded-0 border-0 shadow h-100 bg-dark-lighter">
+              <Card className="rounded-0 border-0 shadow-sm h-100 bg-dark-lighter">
                 <Card.Title className="fs-4 py-3 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.ets2.title || "ETS2 Statistics"}</Card.Title>
                 <Card.Body>
                   <Row className="row-gap-4">
@@ -124,7 +124,7 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
               </Card>
             </Col>
             <Col xs={12} md={6}>
-              <Card className="rounded-0 border-0 shadow h-100 bg-dark-lighter">
+              <Card className="rounded-0 border-0 shadow-sm h-100 bg-dark-lighter">
                 <Card.Title className="fs-4 py-3 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.ats.title || "ATS Statistics"}</Card.Title>
                 <Card.Body>
                   <Row className="row-gap-4">

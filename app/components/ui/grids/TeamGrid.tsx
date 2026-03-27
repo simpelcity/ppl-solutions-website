@@ -82,7 +82,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
           <Row className="d-flex justify-content-center row-gap-4">
             {dept.members.map((m, i) => (
               <Col key={i} xs={12} md={6} xl={3}>
-                <Card className="h-100 rounded-0 border-0 shadow" data-bs-theme="dark">
+                <Card className="h-100 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
                   <Card.Body className="p-4">
                     <Image
                       src={m.member.profile_url ?? "/assets/icons/profile-user.png"}

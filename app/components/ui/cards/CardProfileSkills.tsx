@@ -92,7 +92,7 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
 
   return (
     <>
-      <Card className="border-0 rounded-0 shadow mt-3" data-bs-theme="dark">
+      <Card className="border-0 rounded-0 shadow-sm mt-3" data-bs-theme="dark">
         <Card.Body>
           <h3 className="">Skills</h3>
           <Container className="m-0 p-0 d-flex flex-column row-gap-2 align-items-center">

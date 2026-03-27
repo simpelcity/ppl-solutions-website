@@ -19,7 +19,7 @@ export default function LayoutClient({ children, dict, lang, forceHideFooter = f
 
   const currentLang = lang === 'en' ? '' : `/${lang}`;
 
-  const showDashboardByPath = pathname?.startsWith(`${currentLang}/drivershub`);
+  const showDashboardByPath = pathname.startsWith(`${currentLang}/drivershub`);
   const drivershubPages = showDashboardByPath;
 
   return (

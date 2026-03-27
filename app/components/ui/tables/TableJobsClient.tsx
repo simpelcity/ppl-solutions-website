@@ -95,47 +95,52 @@ export default function TableJobsClient({ lang, dict }: Props) {
   const split1 = dict.drivershub.jobs.table.error.driverNotFound.split(' ')
   const driverNotFoundError = `${split1[0]} ${driverName} ${split1[2]} ${split1[3]}`;
 
-  if (loading) return <PlaceholderTable columns={8} rows={10} />;
-  if (error && driver) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.error.error} {error}</div>;
-  if (!driver) return <div className="text-danger text-center py-3">{driverNotFoundError}</div>;
-  if (jobs.length === 0) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.error.noJobs}</div>;
+  if (!loading) {
+    if (error && driver) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.error.error} {error}</div>;
+    if (!driver) return <div className="text-danger text-center py-3">{driverNotFoundError}</div>;
+    if (jobs.length === 0) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.error.noJobs}</div>;
+  }
 
   return (
     <>
-      <div className="table-card-scroll">
-        <Table variant="dark" className="text-start table-jobs" borderless>
-          <thead className="">
-            <tr className="text-uppercase">
-              {tableItems.map((item) => (
-                <th key={item.title} className="bg-primary px-4 py-2">
-                  {item.title}
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          <tbody>
-            {jobs.map((job) => (
-              <tr key={job.jobID} className="border-0">
-                <td className="px-4 py-2">{formatDate(job.realtime?.end ?? Date.now())}</td>
-                <td className="px-4 py-2">{job.driver?.username ?? "—"}</td>
-                <td className="text-uppercase px-4 py-2">{job.game?.id ?? "—"}</td>
-                <td className="px-4 py-2">
-                  {job.source?.city?.name ?? "—"} - {job.destination?.city?.name ?? "—"}
-                </td>
-                <td className="px-4 py-2">
-                  {job.cargo?.name ?? "—"} ({Math.floor((job.cargo?.mass ?? 0) / 1000)}t)
-                </td>
-                <td className="px-4 py-2">
-                  {job.truck?.name ?? "—"} {job.truck?.model?.name ?? ""}
-                </td>
-                <td className="px-4 py-2">{job.distanceDriven ?? "—"} km</td>
-                <td className="px-4 py-2">€ {job.income ?? "—"}</td>
+      {loading ? (
+        <PlaceholderTable columns={8} rows={10} />
+      ) : (
+        <div className="table-card-scroll">
+          <Table variant="dark" className="text-start table-jobs" borderless>
+            <thead className="">
+              <tr className="text-uppercase">
+                {tableItems.map((item) => (
+                  <th key={item.title} className="bg-primary px-4 py-2">
+                    {item.title}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
+            </thead>
+
+            <tbody>
+              {jobs.map((job) => (
+                <tr key={job.jobID} className="border-0">
+                  <td className="px-4 py-2">{formatDate(job.realtime?.end ?? Date.now())}</td>
+                  <td className="px-4 py-2">{job.driver?.username ?? "—"}</td>
+                  <td className="text-uppercase px-4 py-2">{job.game?.id ?? "—"}</td>
+                  <td className="px-4 py-2">
+                    {job.source?.city?.name ?? "—"} - {job.destination?.city?.name ?? "—"}
+                  </td>
+                  <td className="px-4 py-2">
+                    {job.cargo?.name ?? "—"} ({Math.floor((job.cargo?.mass ?? 0) / 1000)}t)
+                  </td>
+                  <td className="px-4 py-2">
+                    {job.truck?.name ?? "—"} {job.truck?.model?.name ?? ""}
+                  </td>
+                  <td className="px-4 py-2">{job.distanceDriven ?? "—"} km</td>
+                  <td className="px-4 py-2">€ {job.income ?? "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
       <div className="d-flex flex-column flex-md-row align-items-center justify-content-md-between mt-4 row-gap-4 ms-0 ms-md-4">
         {!showAll && (
           <div className="text-primary border border-light border-opacity-25 px-3 py-2 rounded-1 small">
@@ -172,7 +177,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                         <button
                           className={`page-link rounded-3 py-1 d-flex align-items-center ${displayPage === page
                             ? "bg-primary"
-                            : "bg-transparent border-0 shadow-none text-light text-opacity-50"
+                            : "bg-transparent border-0 shadow-sm-none text-light text-opacity-50"
                             }`}
                           onClick={() => goToPage(page as number)}
                           disabled={displayPage === page}>

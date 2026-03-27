@@ -14,7 +14,7 @@ export default function Card404({ dict, lang }: Card404Props) {
   const contactHref = lang === i18n.defaultLocale ? "/contact" : `/${lang}/contact`
 
   return (
-    <Card className="card-404 rounded-0 border-0 shadow text-light">
+    <Card className="card-404 rounded-0 border-0 shadow-sm text-light">
       <CardBody className="p-4 d-flex justify-content-center">
         <Row className="w-100">
           <Col xs={12} md={5} className="d-flex justify-content-center align-items-center">

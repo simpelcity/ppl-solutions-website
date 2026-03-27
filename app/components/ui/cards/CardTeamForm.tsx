@@ -93,7 +93,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
   return (
     <>
       <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
+        <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
           <Card.Title className="fs-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
@@ -102,7 +102,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                 <Form.Control
                   type="text"
                   placeholder={dict.drivershub.team.form.usernamePlaceholder || "Username"}
-                  className="rounded-0 border-0 shadow bg-dark-subtle"
+                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -116,7 +116,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                   id="team-file-input"
                   type="file"
                   accept="image/*"
-                  className="rounded-0 border-0 shadow bg-dark-subtle"
+                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
                   onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)}
                   disabled={submitting}
                 />
@@ -233,7 +233,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
       </Col>
 
       <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
+        <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
           <Card.Title className="fs-4">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
           <Card.Body>
             {loading ? (

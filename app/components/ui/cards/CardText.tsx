@@ -20,7 +20,7 @@ export default function CardText({ icon, title, children }: CardTextProps) {
   const Icon = typeof icon === 'string' ? ICONS[icon] : null;
 
   return (
-    <Card className="h-100 rounded-0 border-0 shadow bg-dark-subtle text-light">
+    <Card className="h-100 rounded-0 border-0 shadow-sm bg-dark-subtle text-light">
       <Card.Body>
         {Icon ? <Icon className="fs-1" /> : null}
 

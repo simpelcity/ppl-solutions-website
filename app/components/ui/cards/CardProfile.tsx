@@ -57,7 +57,7 @@ export default function CardProfile({ params, lang, dict }: Props) {
   return (
     <>
       <Container className="my-3 p-0" fluid>
-        <Card className="border-0 rounded-0 shadow" data-bs-theme="dark">
+        <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
           <Card.Header className="p-0">
             {profile?.banner_url ? (
               <Image src={profile.banner_url} className="object-fit-cover" roundedCircle width={150} height={150} alt="Profile Picture" />

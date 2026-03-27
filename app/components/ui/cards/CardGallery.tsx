@@ -10,7 +10,7 @@ interface CardGalleryProps {
 export default function CardGallery({ img, title }: CardGalleryProps) {
   return (
     <>
-      <Card className="h-100 rounded-0 border-0 shadow bg-dark text-light">
+      <Card className="h-100 rounded-0 border-0 shadow-sm bg-dark text-light">
         <Card.Img
           variant="top"
           src={`/assets/images/gallery/${img}`}

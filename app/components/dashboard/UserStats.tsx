@@ -34,10 +34,10 @@ export default function UserStats({ dict }: Props) {
 
   return (
     <>
-      <div className="w-100 d-flex flex-column p-3">
-        <Row className="d-flex justify-content-center row-gap-3">
+      <div className="w-100 d-flex flex-column p-3 row-gap-4">
+        <Row className="row-gap-3">
           <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
+            <Card className="rounded-0 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
               <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
               <Card.Body className="">
                 <Row>
@@ -70,7 +70,7 @@ export default function UserStats({ dict }: Props) {
             </Card>
           </Col>
           <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
+            <Card className="rounded-0 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
               <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.income.title}</Card.Title>
               <Card.Body className="">
                 <Row>
@@ -103,7 +103,7 @@ export default function UserStats({ dict }: Props) {
             </Card>
           </Col>
           <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow px-0 h-100" data-bs-theme="dark">
+            <Card className="rounded-0 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
               <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
               <Card.Body className="">
                 <Row>
@@ -136,9 +136,9 @@ export default function UserStats({ dict }: Props) {
             </Card>
           </Col>
         </Row>
-        <Row className="m-0">
+        <Row>
           <Col>
-            <Card className="rounded-0 border-0 shadow px-0" data-bs-theme="dark">
+            <Card className="rounded-0 border-0 shadow-sm-sm px-0" data-bs-theme="dark">
               <Card.Header className="bg-dark rounded-0">
                 <Card.Title className="text-uppercase fs-2 text-light my-1">{dict.drivershub.userStats.table.title}</Card.Title>
               </Card.Header>

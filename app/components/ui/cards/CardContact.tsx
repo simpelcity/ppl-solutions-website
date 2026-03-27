@@ -12,7 +12,7 @@ type Props = {
 export default function CardContact({ dict }: Props) {
   return (
     <>
-      <Card className="rounded-0 border-0 shadow bg-dark h-100">
+      <Card className="rounded-0 border-0 shadow-sm bg-dark h-100">
         <Card.Body className="p-4">
           <Form
             method="post"
@@ -26,7 +26,7 @@ export default function CardContact({ dict }: Props) {
                   type="text"
                   name="name"
                   placeholder={dict.contact.form.namePlaceholder}
-                  className="input rounded-0 border-0 shadow bg-dark-subtle"
+                  className="input rounded-0 border-0 shadow-sm bg-dark-subtle"
                   required
                 />
               </Form.Group>
@@ -36,7 +36,7 @@ export default function CardContact({ dict }: Props) {
                   type="email"
                   name="email"
                   placeholder={dict.contact.form.emailPlaceholder}
-                  className="input rounded-0 border-0 shadow bg-dark-subtle"
+                  className="input rounded-0 border-0 shadow-sm bg-dark-subtle"
                   required
                 />
               </Form.Group>
@@ -47,7 +47,7 @@ export default function CardContact({ dict }: Props) {
                   name="message"
                   placeholder={dict.contact.form.messagePlaceholder}
                   rows={5}
-                  className="input rounded-0 border-0 shadow bg-dark-subtle"
+                  className="input rounded-0 border-0 shadow-sm bg-dark-subtle"
                   required
                 />
               </Form.Group>
