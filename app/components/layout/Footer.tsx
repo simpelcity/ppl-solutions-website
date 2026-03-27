@@ -7,20 +7,14 @@ import { IconContext } from "react-icons"
 import { FooterLink } from "@/components"
 import "@/styles/Footer.scss"
 import type { Dictionary } from "@/app/i18n";
-
+import { useSidebar } from "@/lib";
 
 type FooterProps = {
   dict: Dictionary
 }
 
 export default function Footer({ dict }: FooterProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null;
+  const { isSidebarCollapsed, isMobile } = useSidebar();
 
   const footerLinks = [
     { title: `${dict.footer.footer2.pages.home}`, href: "" },
@@ -55,7 +49,7 @@ export default function Footer({ dict }: FooterProps) {
           <Col
             xs={12}
             md={12}
-            xl={6}
+            xl={isSidebarCollapsed ? 6 : 5}
             className="d-flex flex-column align-items-center text-center align-items-xl-start text-xl-start">
             <div className="d-flex align-items-center mb-3">
               <a href="/" className="d-flex flex-row text-decoration-none text-light column-gap-2">
@@ -91,7 +85,7 @@ export default function Footer({ dict }: FooterProps) {
               </a>
             </div>
           </Col>
-          <Col xs={12} md={12} xl={6}>
+          <Col xs={12} md={12} xl={isSidebarCollapsed ? 6 : 7}>
             <Row className="d-flex row-gap-4 w-100">
               <Col xs={12} md={3} lg={4}>
                 <h3>{dict.footer.footer2.title}</h3>

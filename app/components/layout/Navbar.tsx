@@ -31,10 +31,10 @@ function useWindowWidth() {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
-  const width = useWindowWidth();
+  const [width, setWidth] = useState(0);
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
-  const { toggleSidebar, isMobile, isTablet } = useSidebar();
+  const { toggleSidebar, isMobile } = useSidebar();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -42,7 +42,8 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
 
   const currentLocale = lang === "en" ? "" : `/${lang}`;
 
-  const isDrivershub = pathname?.startsWith(`${currentLocale}/drivershub`);
+  const isDrivershub = pathname.startsWith(`${currentLocale}/drivershub`);
+  // console.log(isMobile, isDrivershub)
 
   useEffect(() => {
     setExpanded(false);
@@ -52,8 +53,18 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
     });
   }, [pathname]);
 
-  const offCanvas = width > 992 && width < 1080;
-  const mobile = width < 992;
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    }
+  }, []);
+
+  const offCanvas = width >= 992 && width <= 1150;
 
   const navLinks = [
     { title: dict.navbar.navigation.home, href: `${currentLocale}` },
@@ -64,13 +75,13 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   ];
 
   return (
-    <header>
-      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark">
+    <header className="position-sticky top-0" style={{ zIndex: 5 }}>
+      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark" className="px-3">
         <Container className="m-0 p-0 d-flex align-items-center" fluid>
-          {isDrivershub && isMobile && (
+          {isMobile && isDrivershub && (
             <button
               className="btn btn-link text-light border-0 ms-1"
-              style={{ padding: "0 0.75rem" }}
+              style={{ padding: "0.25rem 0.75rem" }}
               onClick={toggleSidebar}>
               <RxHamburgerMenu size={30} />
             </button>
@@ -78,13 +89,13 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
           <BSNavbar.Brand
             as={Link}
             onClick={() => setExpanded(false)}
-            href="/"
-            className="d-flex align-items-center mx-0 ms-3 me-lg-0 column-gap-2">
+            href={currentLocale}
+            className="d-flex align-items-center mx-0 column-gap-2">
             <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
             <h5 className="my-auto">{dict.navbar.brand}</h5>
           </BSNavbar.Brand>
           <BSNavbar.Toggle className="me-1" aria-controls="main-navbar" />
-          <BSNavbar.Collapse className="pb-3 pt-2 py-lg-0 px-3 px-lg-0 me-lg-3" id="main-navbar">
+          <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
             <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
               {navLinks.map((link) => (
                 <Nav.Link
@@ -114,8 +125,6 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
                   </Offcanvas.Body>
                 </Offcanvas>
               </>
-            ) : mobile ? (
-              <NavButtons dict={dict} width={width} />
             ) : (
               <NavButtons dict={dict} width={width} />
             )}

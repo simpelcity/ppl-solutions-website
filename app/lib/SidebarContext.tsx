@@ -7,23 +7,19 @@ interface SidebarContextType {
   setIsSidebarCollapsed: (value: boolean) => void
   toggleSidebar: () => void
   isMobile: boolean;
-  isTablet: boolean;
 }
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined)
 
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const [isTablet, setIsTablet] = useState(false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 576
+      const mobile = window.innerWidth < 992
       setIsMobile(mobile)
-      if (mobile) {
-        setIsSidebarCollapsed(true)
-      }
+      setIsSidebarCollapsed(mobile)
     }
 
     checkMobile()
@@ -31,26 +27,12 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
-  useEffect(() => {
-    const checkTablet = () => {
-      const tablet = window.innerWidth >= 576 && window.innerWidth < 1200
-      setIsTablet(tablet)
-      if (tablet) {
-        setIsSidebarCollapsed(true)
-      }
-    }
-
-    checkTablet()
-    window.addEventListener("resize", checkTablet);
-    return () => window.removeEventListener("resize", checkTablet);
-  }, [])
-
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed)
   }
 
   return (
-    <SidebarContext.Provider value={{ isSidebarCollapsed, setIsSidebarCollapsed, toggleSidebar, isMobile, isTablet }}>
+    <SidebarContext.Provider value={{ isSidebarCollapsed, setIsSidebarCollapsed, toggleSidebar, isMobile }}>
       {children}
     </SidebarContext.Provider>
   )

@@ -103,7 +103,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
   return (
     <>
       <div className="table-card-scroll">
-        <Table variant="dark" className="table-nowrap table-minwidth text-start table-jobs" borderless>
+        <Table variant="dark" className="text-start table-jobs" borderless>
           <thead className="">
             <tr className="text-uppercase">
               {tableItems.map((item) => (

@@ -57,11 +57,10 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
     setExpanded(false);
   };
 
-  const offCanvas = width > 992 && width < 1080;
-  const mobile = width < 992;
+  const offCanvas = width >= 992 && width <= 1080;
 
   return (
-    <Nav className={`d-flex justify-content-center gap-2 ${offCanvas ? 'flex-column' : width <= 576 ? 'flex-column' : 'flex-row'}`}>
+    <Nav className={`d-flex justify-content-center gap-2 ${offCanvas ? 'flex-column' : width < 576 ? 'flex-column' : 'flex-row'}`}>
       <div className="d-flex justify-content-center column-gap-2">
         <BSButton
           variant="secondary"
@@ -80,10 +79,10 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
           {dict.navbar.buttons.drivershub}
         </BSButton>
       </div>
-      <div className={`vr text-white ${offCanvas ? 'd-none' : width <= 576 ? 'd-none' : 'd-block'}`}></div>
+      <div className={`vr text-white ${offCanvas ? 'd-none' : width < 576 ? 'd-none' : 'd-block'}`}></div>
       <div className="d-flex align-items-center justify-content-center">
-        <Dropdown align="end" data-bs-theme="dark" className="pe-3" style={{ width: 'min-content' }}>
-          <Dropdown.Toggle variant="dark" className="bg-transparent border-0 text-light d-flex align-items-center py-0 ps-0 fw-semibold" id="dropdown-lang">
+        <Dropdown align="end" className="pe-3" style={{ width: 'min-content' }}>
+          <Dropdown.Toggle variant="dark" className="bg-transparent border-0 d-flex align-items-center py-0 ps-0 fw-semibold" id="dropdown-lang">
             <Image
               src={languageFlags[currentLocale]}
               alt={languageNames[currentLocale]}

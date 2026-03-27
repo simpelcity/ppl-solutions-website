@@ -34,7 +34,6 @@ interface SidebarProps {
   isSidebarCollapsed: boolean;
   setIsSidebarCollapsed: (value: boolean) => void;
   isMobile: boolean;
-  isTablet: boolean;
   isNavbarVisible?: boolean;
   dict: Dictionary;
   lang: Locale;
@@ -45,7 +44,6 @@ function SidebarContent({
   isSidebarCollapsed,
   setIsSidebarCollapsed,
   isMobile,
-  isTablet,
   isNavbarVisible = false,
   dict,
   lang,
@@ -252,7 +250,7 @@ function SidebarContent({
       </Nav>
       <hr />
       {!isSidebarCollapsed && (
-        <Dropdown data-bs-theme="dark">
+        <Dropdown>
           <Dropdown.Toggle
             variant="dark"
             className="bg-transparent border-0 p-0 d-flex align-items-center text-light text-decoration-none w-100">
@@ -303,7 +301,6 @@ export default function Sidebar({
   isSidebarCollapsed,
   setIsSidebarCollapsed,
   isMobile,
-  isTablet,
   isNavbarVisible = false,
   dict,
   lang,
@@ -312,8 +309,7 @@ export default function Sidebar({
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   useEffect(() => {
-    if (isMobile && !isSidebarCollapsed) setShowOffcanvas(true);
-    else setShowOffcanvas(false);
+    setShowOffcanvas(isMobile && !isSidebarCollapsed)
   }, [isMobile, isSidebarCollapsed]);
 
   return isMobile ? (
@@ -321,9 +317,9 @@ export default function Sidebar({
       show={showOffcanvas}
       onHide={() => setShowOffcanvas(false)}
       placement="start"
-      scroll={true}
+      scroll={false}
       backdrop={false}
-      className="sidebar bg-light-subtle"
+      className={`sidebar bg-light-subtle ${isSidebarCollapsed ? "" : "w-100"}`}
       data-bs-theme="dark"
     >
       <Offcanvas.Header closeButton>
@@ -334,7 +330,6 @@ export default function Sidebar({
           isSidebarCollapsed={isSidebarCollapsed}
           setIsSidebarCollapsed={setIsSidebarCollapsed}
           isMobile={isMobile}
-          isTablet={isTablet}
           isNavbarVisible={isNavbarVisible}
           dict={dict}
           lang={lang}
@@ -344,15 +339,15 @@ export default function Sidebar({
   ) : (
     <div
       id="sidebar"
-      className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
+      className={`sidebar d-flex flex-column text-light bg-light-subtle text-start bg-danger ${isSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"}`}
       style={{
         height: "calc(100dvh - 76px)",
-        width: isSidebarCollapsed ? "4.5rem" : "260px",
+        // width: isSidebarCollapsed ? "4.5rem" : "260px",
         // maxWidth: isSidebarCollapsed ? "4.5rem" : "260px",
-        position: "var(--sidebar-position, relative)" as any,
-        top: isNavbarVisible ? 0 : "auto",
+        position: "sticky",
+        top: isNavbarVisible ? 76 : "auto",
         left: isMobile ? 0 : "auto",
-        zIndex: 999,
+        zIndex: 1,
         transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",
         transition: "transform 0.3s ease, width 0.3s ease",
         overflow: isSidebarCollapsed && !isMobile ? "visible" : "hidden",
@@ -375,7 +370,6 @@ export default function Sidebar({
         isSidebarCollapsed={isSidebarCollapsed}
         setIsSidebarCollapsed={setIsSidebarCollapsed}
         isMobile={isMobile}
-        isTablet={isTablet}
         isNavbarVisible={isNavbarVisible}
         dict={dict}
         lang={lang}
