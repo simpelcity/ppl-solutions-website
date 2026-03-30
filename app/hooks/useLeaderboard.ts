@@ -11,7 +11,7 @@ interface LeaderboardEntry {
 }
 
 interface CurrentLeaderboard {
-  name: string; // descriptive key like 'allTimeDistanceLeaderboard'
+  name: string;
   entries: LeaderboardEntry[];
 }
 
@@ -255,7 +255,6 @@ export function useLeaderboard(
 
           setCurrentLeaderboard({ name: "monthlyDistanceLeaderboard", entries: monthlyLeaderboard });
         } else if (selectedPeriod === "all-time") {
-          // Already have all-time data, no need to refetch
         }
       } catch (err: any) {
         setError(err.message);
@@ -267,7 +266,6 @@ export function useLeaderboard(
     loadMonthlyData();
   }, [selectedPeriod, selectedYear, selectedMonth, allTimeDataLoaded]);
 
-  // keep currentLeaderboard in sync when period or data arrays change
   useEffect(() => {
     if (selectedPeriod === "all-time") {
       setCurrentLeaderboard({

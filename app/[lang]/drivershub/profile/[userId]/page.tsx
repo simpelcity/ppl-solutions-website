@@ -55,7 +55,7 @@ export default async function ProfileSettingsPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
+        <section className="drivershub d-flex justify-content-center w-100 bg-dark-subtle text-center text-light">
           <CardProfile params={params} lang={lang} dict={dict} />
         </section>
       </main>

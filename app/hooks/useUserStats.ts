@@ -125,8 +125,7 @@ export function useUserStats() {
       adminLog("raw statistics data:", res.data);
       return res.data?.data;
     } catch (err: any) {
-      const message = err?.response?.data?.error || err?.message || "Failed to fetch statistics";
-      throw new Error(message);
+      throw new Error(err?.response?.data?.message);
     }
   };
 

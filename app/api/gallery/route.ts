@@ -1,5 +1,7 @@
 import { supabaseAdmin } from "@/supabaseAdmin/";
 import { NextResponse } from "next/server";
+import { errorHandler } from "@/utils/errorHandler";
+import type { Dictionary } from "@/app/i18n";
 
 export type GalleryItem = {
   id: number;

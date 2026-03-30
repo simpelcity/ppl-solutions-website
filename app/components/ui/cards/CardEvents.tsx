@@ -1,3 +1,5 @@
+'use client'
+
 import { Col, Card, CardImg, CardBody, CardTitle, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "react-bootstrap";
 import { BsCalendar3 } from "react-icons/bs";
 import { FaRegClock } from "react-icons/fa6";
@@ -7,22 +9,31 @@ import { LuGamepad2 } from "react-icons/lu";
 import { BsHddStack } from "react-icons/bs";
 import { BsDownload } from "react-icons/bs";
 import { DivEvents, BSButton } from "@/components";
-import { getDictionary } from "@/app/i18n"
+import type { Dictionary } from "@/app/i18n"
+
+// import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { useEvents } from "@/hooks/useEvents";
+
 
 type PageProps = {
-  params: Promise<{ lang: Locale }>
+  dict: Dictionary;
 }
 
-export default async function CardEvents({ params }: PageProps) {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
+export default function CardEvents({ dict }: PageProps) {
+  const { events, loading, error } = useEvents();
 
-  const baseUrl = process.env.BASE_URL || "http://localhost:3000";
-  const response = await fetch(`${baseUrl}/api/events`, { next: { revalidate: 60 } });
-  if (!response.ok) throw new Error(`Failed to fetch events: ${response.status}`);
-  const data = await response.json();
-  const events = Object.values(data.response);
+  if (loading) {
+    return <div className="text-center text-light my-5">Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-light my-5">
+        <div className="text-danger fw-bold">{error}</div>
+      </div>
+    );
+  }
 
   if (!events || events.length === 0) {
     return (

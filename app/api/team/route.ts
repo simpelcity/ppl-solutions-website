@@ -1,4 +1,7 @@
 import { supabaseAdmin } from "@/supabaseAdmin/";
+import { NextResponse } from "next/server";
+import { errorHandler } from "@/utils/errorHandler";
+import type { Dictionary } from "@/app/i18n";
 
 export async function GET(request: Request) {
   try {
@@ -52,10 +55,10 @@ export async function GET(request: Request) {
       }),
     );
 
-    return new Response(JSON.stringify({ data: itemsWithUrls }), { status: 200 });
+    return NextResponse.json(itemsWithUrls), { status: 200 };
   } catch (err: any) {
     console.error("error:", err);
-    return new Response(JSON.stringify({ error: "An unexpected error occurred" }), { status: 500 });
+    return errorHandler({ error: err.message }, request);
   }
 }
 
@@ -214,8 +217,8 @@ export async function PATCH(req: Request) {
           if (filePath) pathsToDelete.push(filePath);
         } else {
         }
-      } catch (e) {
-        console.warn("Could not parse profile_url:", e);
+      } catch (err) {
+        console.warn("Could not parse profile_url:", err);
       }
     }
 
@@ -223,7 +226,7 @@ export async function PATCH(req: Request) {
       const uniquePaths = Array.from(new Set(pathsToDelete));
       const { error: removeError } = await supabaseAdmin.storage.from("members").remove(uniquePaths);
       if (removeError) {
-        console.warn("Failed removing files:", removeError.message);
+        console.warn("Failed removing files", removeError.message);
       }
     }
 

@@ -1,16 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import axios from "axios";
+import type { Dictionary } from "@/app/i18n";
+import { type Locale } from "@/i18n";
+
+type Props = {
+  request: NextRequest;
+  dict: Dictionary;
+};
 
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, { dict }: Props) {
   try {
     const body = await request.json();
     const { steamID } = body;
 
-    if (!steamID) return NextResponse.json({ error: "steamID is required" }, { status: 400 });
+    if (!steamID) return errorHandler({ error: "steamID is required" }, request);
 
     const firstRes = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=1`);
 

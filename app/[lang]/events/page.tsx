@@ -51,7 +51,7 @@ export default async function EventsPage({ params }: PageProps) {
         <section className="d-flex w-100 bg-dark-subtle text-center">
           <Container className="d-flex justify-content-center my-5">
             <Row className="w-100 d-flex justify-content-center row-gap-4">
-              <CardEvents params={params} />
+              <CardEvents dict={dict} />
             </Row>
           </Container>
         </section>

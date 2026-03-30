@@ -340,8 +340,6 @@ export function useProfile({ userId, lang, dict }: Props) {
     };
 
     init();
-
-    // eslint-disable-next-line
   }, [userId, isAdmin]);
 
   return {

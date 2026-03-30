@@ -31,7 +31,6 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
   };
 
   const [userId, setUserId] = useState<string | null>(null);
-  const [userAdr, setUserAdr] = useState<{ [key: number]: number }>({});
 
   useEffect(() => {
     params.then(({ userId }) => setUserId(userId));
@@ -88,13 +87,29 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
     { id: "Skill_Cost", name: "Cost per km", desc: "Upgrading this skill help you gain extra points & income per km.", value: skillsObject.cost },
   ];
 
-  if (loading) return <LoaderSpinner dict={dict} />;
+  if (lang === 'en') {
+
+  } else if (lang === 'nl') {
+
+  } else if (lang === 'cs') {
+
+  } else if (lang === 'sk') {
+    
+  }
+
+  if (loading) {
+    return (
+      <LoaderSpinner dict={dict}>
+        <span>{dict.status.loading.loadingSpinner}</span>
+      </LoaderSpinner>
+    )
+  };
 
   return (
     <>
-      <Card className="border-0 rounded-0 shadow-sm mt-3" data-bs-theme="dark">
-        <Card.Body>
-          <h3 className="">Skills</h3>
+      <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
+        <Card.Body className="p-4">
+          <h3 className="mb-3">Skills</h3>
           <Container className="m-0 p-0 d-flex flex-column row-gap-2 align-items-center">
             {skillsList.map((skill, index) => (
               <Row key={index} className={`w-100 row-gap-2 row-gap-md-0 ${index !== skillsList.length - 1 ? "border-bottom border-2 border-light border-opacity-25 pb-2" : ""}`}>
@@ -111,8 +126,8 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
                       <Row className="w-100">
                         {adrClasses.map((adrClass) => (
                           <Col xs={2} key={adrClass} className="px-1" title={adrClassNames[adrClass]}>
-                            <div className={`rounded-1 p-md-2 border border-primary adr-skill ${ownedClasses.includes(adrClass) ? 'bg-primary' : ''}`}>
-                              <Image src={`/assets/images/skills/ADR_${adrClass}.webp`} alt={`ADR Skill ${adrClass}`} className="adr-skill-level w-100 h-100" />
+                            <div className={`rounded-1 p-md-2 border border-primary skill ${ownedClasses.includes(adrClass) ? 'bg-primary' : ''}`}>
+                              <Image src={`/assets/images/skills/ADR_${adrClass}.webp`} alt={`ADR Skill ${adrClass}`} className="skill-level w-100 h-100" />
                             </div>
                           </Col>
                         ))}
@@ -128,12 +143,16 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
                         <p className="m-0 fs-6 text-muted">{skill.desc}</p>
                       </div>
                     </Col>
-                    <Col xs={12} md={7} className="d-flex align-items-center column-gap-2 column-gap-md-7 justify-content-center justify-content-md-start">
-                      {[...Array(6)].map((_, i) => (
-                        <div key={i} className={`rounded-1 p-1 p-md-2 border border-primary ${i < (typeof skill.value === 'number' ? skill.value : 0) ? "bg-primary" : ""}`} title={`${skill.name} Level ${skill.value}`}>
-                          <div className="skill-level"></div>
-                        </div>
-                      ))}
+                    <Col xs={12} md={7} className="d-flex align-items-center justify-content-center justify-content-md-start">
+                      <Row className="w-100">
+                        {[...Array(6)].map((_, i) => (
+                          <Col xs={2} key={i} className="px-1" title={`${skill.name} Level ${skill.value}`}>
+                            <div className={`rounded-1 p-md-2 border border-primary skill ${i < (typeof skill.value === 'number' ? skill.value : 0) ? "bg-primary" : ""}`}>
+                              <div className="skill-level w-100 h-100"></div>
+                            </div>
+                          </Col>
+                        ))}
+                      </Row>
                     </Col>
                   </>
                 )}

@@ -63,7 +63,7 @@
   },
   "status": {
     "loading": {
-      "loadingSpinner": "Loading...",
+      "loadingSpinner": "Loading",
       "loader": "Loading"
     }
   },
@@ -124,7 +124,9 @@
       "noEvents": "No upcoming events",
       "na": "Not applicable",
       "noServer": "Event Server",
-      "noDLC": "None"
+      "noDLC": "None",
+      "failedFetch": "Failed to fetch events",
+      "unexpected": "An unexpected error occurred"
     }
   },
   "team": {
@@ -136,7 +138,27 @@
     "loading": "Loading team...",
     "errors": {
       "error": "Error loading team.",
-      "noDepts": "No departments / members found."
+      "noDepts": "No departments / members found.",
+      "noName": "Name is required",
+      "noID": "ID is required",
+      "failedToDeleteOldFile": "Failed to delete old file (non-fatal):",
+      "memberNotFound": "Member not found",
+      "faileToParsePfpUrl": "Could not parse profile_url",
+      "failedToRemoveFiles": "Failed removing files",
+      "failedToAddMember": "Failed to add team member",
+      "failedToUpdateMember": "Failed to update team member",
+      "failedToDeleteMember": "Failed to delete team member",
+      "failedToDeleteProfilePicture": "Failed to delete profile picture",
+      "failedToAddRole": "Failed to add role",
+      "failedToRemoveRole": "Failed to remove role"
+    },
+    "success": {
+      "memberAdded": "Team member added successfully!",
+      "memberUpdated": "Team member updated successfully!",
+      "memberDeleted": "Team member deleted successfully!",
+      "profilePictureDeleted": "Profile picture deleted successfully!",
+      "roleAdded": "Role added successfully!",
+      "roleRemoved": "Role removed successfully!"
     }
   },
   "gallery": {
@@ -147,7 +169,23 @@
     "title": "gallery",
     "errors": {
       "error": "Error loading gallery:",
-      "noImages": "No images found."
+      "noImages": "No images found.",
+      "noTitle": "Title is required",
+      "noImage": "Image file is required",
+      "fileTooLarge": "File size exceeds the 5MB limit",
+      "invalidFileType": "Invalid file type.",
+      "invalidFileExtension": "Invalid file extension.",
+      "noID":"ID is required",
+      "failedToDeleteOldFile":"Failed to delete old file (non-fatal)",
+      "failedToDeleteFile": "Failed to delete file (non-fatal)",
+      "failedToAddItem": "Failed to add gallery item",
+      "failedToUpdateItem": "Failed to update gallery item",
+      "failedToDeleteItem": "Failed to delete gallery item"
+    },
+    "success": {
+      "itemAdded": "Gallery item added successfully!",
+      "itemUpdated": "Gallery item updated successfully!",
+      "itemDeleted": "Gallery item deleted successfully!"
     }
   },
   "contact": {
@@ -326,7 +364,10 @@
         "error": {
           "error": "Error:",
           "noJobs": "No jobs found",
-          "driverNotFound": "Driver {driver} not found"
+          "driverNotFound": "Driver {driver} not found",
+          "failedFetch": "Failed to fetch jobs",
+          "failedToFetchMembers": "Failed to fetch members",
+          "noSteamID": "SteamID is required"
         }
       }
     },
@@ -379,6 +420,14 @@
           "favEndCity": "Favorite Destination City",
           "favEndCompany": "Favorite Destination Company"
         }
+      },
+      "error": {
+        "failedToFetchMembers":"Failed to fetch members",
+        "driverNotFound": "Driver {driver} not found",
+        "failedToFetchScenarios": "Failed to fetch scenarios",
+        "failedToFetchStats": "Failed to fetch statistics",
+        "failedToFetchJobs": "Failed to fetch jobs",
+        "noSteamID": "SteamID is required"
       }
     },
     "leaderboard": {
@@ -426,6 +475,9 @@
             "title": "Highest Weight Transported"
           }
         }
+      },
+      "error": {
+        "failedToFetchStats":"Failed to fetch statistics"
       }
     },
     "vtcStats": {

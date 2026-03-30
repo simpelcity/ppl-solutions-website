@@ -57,7 +57,7 @@ export function useUserJobs() {
       if (res.status !== 200) throw new Error("Failed to fetch jobs");
       return res.data;
     } catch (err: any) {
-      const message = err?.response?.data?.error || err?.message || "Failed to fetch jobs";
+      const message = err?.response?.data?.message || err?.message || "Failed to fetch jobs";
       throw new Error(message);
     }
   };

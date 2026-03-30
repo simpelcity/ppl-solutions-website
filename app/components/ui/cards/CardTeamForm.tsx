@@ -92,9 +92,9 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
 
   return (
     <>
-      <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-          <Card.Title className="fs-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
+      <Col xs={12} md={10} lg={6}>
+        <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
+          <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
               <Form.Group className="mb-3">
@@ -232,9 +232,9 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
         </Card>
       </Col>
 
-      <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-          <Card.Title className="fs-4">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
+      <Col xs={12} md={10} lg={6}>
+        <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
+          <Card.Title className="fs-4 border-bottom border-dark-subtle py-3 m-0">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
           <Card.Body>
             {loading ? (
               <div className="d-flex justify-content-center align-items-center column-gap-2">

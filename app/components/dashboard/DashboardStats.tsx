@@ -19,8 +19,8 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
 
   if (loading) {
     return (
-      <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-        <Card.Body className="d-flex justify-content-center">
+      <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
+        <Card.Body className="d-flex justify-content-center p-4">
           <Loader dict={dict}>
             <span className="word">{dict.drivershub.vtcStats.vtc.totalJobs}</span>
             <span className="word">{dict.drivershub.vtcStats.vtc.totalDistance}</span>
@@ -35,8 +35,8 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
 
   if (error) {
     return (
-      <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-        <Card.Body>
+      <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
+        <Card.Body className="p-4">
           <p className="text-danger">{error}</p>
         </Card.Body>
       </Card>
@@ -45,8 +45,8 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
 
   if (!stats) {
     return (
-      <Card className="p-3 my-3 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-        <Card.Body>
+      <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
+        <Card.Body className="p-4">
           <p className="text-muted">{dict.drivershub.vtcStats.error.noStats}</p>
         </Card.Body>
       </Card>
@@ -56,7 +56,7 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
   return (
     <>
       <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-        <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.vtc.title || "VTC Statistics"}</Card.Title>
+        <Card.Title className="fs-3 py-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.vtc.title || "VTC Statistics"}</Card.Title>
         <Card.Body className="d-flex flex-column p-4 row-gap-4">
           <Row className="row-gap-3">
             <Col xs={12} md={6} xl={3}>
