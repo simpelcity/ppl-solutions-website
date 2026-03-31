@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
 
       if (error) {
-      return errorHandler({ error: error }, request, langRequest, 500);
+      return errorHandler({ error: error }, request, lang, 500);
       // throw new Error(error.message, { cause: error });
     }
 
