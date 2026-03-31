@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLang } from "@/hooks/useLang";
 
 export interface TeamMember {
   id: number;
@@ -27,6 +28,7 @@ export interface MemberRole {
 }
 
 export function useTeam() {
+  const lang = useLang();
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);
@@ -54,7 +56,7 @@ export function useTeam() {
   const fetchMembers = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("/api/team/members");
+      const res = await axios.get(`/api/team/members?lang=${lang}`);
       const json = await res.data;
       if (res.status === 200) setMembers(json.data || []);
     } finally {
@@ -63,13 +65,13 @@ export function useTeam() {
   };
 
   const fetchDepartments = async () => {
-    const res = await axios.get("/api/departments");
+    const res = await axios.get(`/api/departments?lang=${lang}`);
     const json = await res.data;
     if (res.status == 200) setDepartments(json.data || []);
   };
 
   const fetchRoles = async () => {
-    const res = await axios.get("/api/roles");
+    const res = await axios.get(`/api/roles?lang=${lang}`);
     const json = await res.data;
     if (res.status === 200) setRoles(json.data || []);
   };
@@ -77,7 +79,7 @@ export function useTeam() {
   const fetchMemberRoles = async (memberId: number) => {
     setLoadingRoles(true);
     try {
-      const res = await axios.get(`/api/team/roles?memberId=${memberId}`);
+      const res = await axios.get(`/api/team/roles?memberId=${memberId}&lang=${lang}`);
       const json = await res.data;
       if (res.status === 200) setMemberRoles(json.data || []);
     } finally {
@@ -94,7 +96,7 @@ export function useTeam() {
       fd.append("name", name);
       if (file) fd.append("file", file);
 
-      const res = await axios.post("/api/team", fd, {
+      const res = await axios.post(`/api/team?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error("Failed to add member");
@@ -118,7 +120,7 @@ export function useTeam() {
       fd.append("name", name);
       if (file) fd.append("file", file);
 
-      const res = await axios.put("/api/team", fd, {
+      const res = await axios.put(`/api/team?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error("Failed to update member");
@@ -135,7 +137,7 @@ export function useTeam() {
 
   const deleteMember = async (id: number) => {
     try {
-      const res = await axios.delete("/api/team", { data: { id } });
+      const res = await axios.delete(`/api/team?lang=${lang}`, { data: { id } });
       if (res.status !== 200) throw new Error("Failed to delete member");
 
       setSuccess("Member deleted");
@@ -147,7 +149,7 @@ export function useTeam() {
 
   const deleteProfilePicture = async (id: number) => {
     try {
-      const res = await axios.patch("/api/team", { data: { id } });
+      const res = await axios.patch(`/api/team?lang=${lang}`, { data: { id } });
       if (res.status !== 200) throw new Error("Failed to delete picture");
 
       setSuccess("Profile picture removed");
@@ -159,7 +161,7 @@ export function useTeam() {
 
   const addRole = async (memberId: number, departmentId: number, roleId: number) => {
     try {
-      const res = await axios.post("/api/team/roles", {
+      const res = await axios.post(`/api/team/roles?lang=${lang}`, {
         team_member_id: memberId,
         department_id: departmentId,
         role_id: roleId,
@@ -175,7 +177,7 @@ export function useTeam() {
 
   const removeRole = async (memberId: number, departmentId: number, roleId: number) => {
     try {
-      const res = await axios.delete("/api/team/roles", {
+      const res = await axios.delete(`/api/team/roles?lang=${lang}`, {
         data: {
           team_member_id: memberId,
           department_id: departmentId,

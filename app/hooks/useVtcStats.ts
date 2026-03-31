@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLang } from "@/hooks/useLang";
 
 interface GameStats {
   distance: number;
@@ -19,12 +20,13 @@ interface VtcStats {
 }
 
 export function useVtcStats() {
+  const lang = useLang();
   const [stats, setStats] = useState<VtcStats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchStatistics = async () => {
-    const res = await axios.get("/api/statistics");
+    const res = await axios.get(`/api/statistics?lang=${lang}`);
 
     if (res.status !== 200) {
       throw new Error("Failed to fetch statistics");

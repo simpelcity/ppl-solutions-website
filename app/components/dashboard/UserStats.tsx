@@ -1,7 +1,7 @@
 'use client'
 
 import { useUserStats } from '@/hooks/useUserStats'
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card, Row, Col, Alert } from 'react-bootstrap'
 import { TableStats, LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export default function UserStats({ dict }: Props) {
-  const { stats, loading, error } = useUserStats();
+  const { stats, loading, error } = useUserStats(dict);
 
   const rounded = (value: any) => {
     const valueNum = value.toFixed(1);
@@ -29,7 +29,7 @@ export default function UserStats({ dict }: Props) {
   }
 
   if (loading) return <LoaderSpinner dict={dict} />
-  if (error) return <div className="text-danger text-center py-3">Error: {error}</div>
+  if (error) return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.GENERAL_ERROR}: {error}</div>
   if (!stats) return null;
 
   return (

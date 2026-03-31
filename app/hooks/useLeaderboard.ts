@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import { useLang } from "@/hooks/useLang";
 
 interface LeaderboardEntry {
   username: string;
@@ -20,6 +21,7 @@ export function useLeaderboard(
   selectedYear?: number,
   selectedMonth?: number,
 ) {
+  const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -47,9 +49,9 @@ export function useLeaderboard(
   const [allTimeDataLoaded, setAllTimeDataLoaded] = useState<boolean>(false);
 
   const fetchStatistics = async (month?: number, year?: number) => {
-    let url = "/api/statistics";
+    let url = `/api/statistics`;
     if (month !== undefined && year !== undefined) {
-      url += `?month=${month}&year=${year}`;
+      url += `?month=${month}&year=${year}&lang=${lang}`;
     }
     const res = await axios.get(url);
     if (res.status !== 200) {

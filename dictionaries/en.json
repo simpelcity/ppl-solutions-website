@@ -120,13 +120,13 @@
       "event": "event",
       "more": "more"
     },
-    "error": {
-      "noEvents": "No upcoming events",
-      "na": "Not applicable",
-      "noServer": "Event Server",
-      "noDLC": "None",
-      "failedFetch": "Failed to fetch events",
-      "unexpected": "An unexpected error occurred"
+    "errors": {
+      "NO_EVENTS": "No upcoming events",
+      "NA": "Not Applicable",
+      "NO_SERVER": "Event Server",
+      "NO_DLC": "None",
+      "FAILED_TO_FETCH_EVENTS": "Failed to fetch events",
+      "UNEXPECTED": "An unexpected error occurred while fetching events"
     }
   },
   "team": {
@@ -137,28 +137,28 @@
     "title": "team",
     "loading": "Loading team...",
     "errors": {
-      "error": "Error loading team.",
-      "noDepts": "No departments / members found.",
-      "noName": "Name is required",
-      "noID": "ID is required",
-      "failedToDeleteOldFile": "Failed to delete old file (non-fatal):",
-      "memberNotFound": "Member not found",
-      "faileToParsePfpUrl": "Could not parse profile_url",
-      "failedToRemoveFiles": "Failed removing files",
-      "failedToAddMember": "Failed to add team member",
-      "failedToUpdateMember": "Failed to update team member",
-      "failedToDeleteMember": "Failed to delete team member",
-      "failedToDeleteProfilePicture": "Failed to delete profile picture",
-      "failedToAddRole": "Failed to add role",
-      "failedToRemoveRole": "Failed to remove role"
+      "ERROR_LOADING": "Error loading team.",
+      "NO_DEPTS_OR_MEMBERS_FOUND": "No departments / members found.",
+      "NAME_REQUIRED": "Name is required",
+      "ID_REQUIRED": "ID is required",
+      "FAILED_TO_DELETE_OLD_FILE": "Failed to delete old file (non-fatal):",
+      "MEMBER_NOT_FOUND": "Member not found",
+      "FAILED_TO_PARSE_PFP_URL": "Could not parse profile_url",
+      "FAILED_TO_REMOVE_FILES": "Failed removing files",
+      "FAILED_TO_ADD_MEMBER": "Failed to add team member",
+      "FAILED_TO_UPDATE_MEMBER": "Failed to update team member",
+      "FAILED_TO_DELETE_MEMBER": "Failed to delete team member",
+      "FAILED_TO_DELETE_PROFILE_PICTURE": "Failed to delete profile picture",
+      "FAILED_TO_ADD_ROLE": "Failed to add role",
+      "FAILED_TO_REMOVE_ROLE": "Failed to remove role"
     },
     "success": {
-      "memberAdded": "Team member added successfully!",
-      "memberUpdated": "Team member updated successfully!",
-      "memberDeleted": "Team member deleted successfully!",
-      "profilePictureDeleted": "Profile picture deleted successfully!",
-      "roleAdded": "Role added successfully!",
-      "roleRemoved": "Role removed successfully!"
+      "MEMBER_ADDED": "Team member added successfully!",
+      "MEMBER_UPDATED": "Team member updated successfully!",
+      "MEMBER_DELETED": "Team member deleted successfully!",
+      "PROFILE_PICTURE_DELETED": "Profile picture deleted successfully!",
+      "ROLE_ADDED": "Role added successfully!",
+      "ROLE_REMOVED": "Role removed successfully!"
     }
   },
   "gallery": {
@@ -168,24 +168,24 @@
     },
     "title": "gallery",
     "errors": {
-      "error": "Error loading gallery:",
-      "noImages": "No images found.",
-      "noTitle": "Title is required",
-      "noImage": "Image file is required",
-      "fileTooLarge": "File size exceeds the 5MB limit",
-      "invalidFileType": "Invalid file type.",
-      "invalidFileExtension": "Invalid file extension.",
-      "noID":"ID is required",
-      "failedToDeleteOldFile":"Failed to delete old file (non-fatal)",
-      "failedToDeleteFile": "Failed to delete file (non-fatal)",
-      "failedToAddItem": "Failed to add gallery item",
-      "failedToUpdateItem": "Failed to update gallery item",
-      "failedToDeleteItem": "Failed to delete gallery item"
+      "ERROR_LOADING": "Error loading gallery:",
+      "NO_IMAGES_FOUND": "No images found.",
+      "TITLE_REQUIRED": "Title is required",
+      "IMAGE_FILE_REQUIRED": "Image file is required",
+      "FILE_TOO_LARGE": "File size exceeds the 5MB limit",
+      "INVALID_FILE_TYPE": "Invalid file type.",
+      "INVALID_FILE_EXTENSION": "Invalid file extension.",
+      "ID_REQUIRED":"ID is required",
+      "FAILED_TO_DELETE_OLD_FILE":"Failed to delete old file (non-fatal)",
+      "FAILED_TO_DELETE_FILE": "Failed to delete file (non-fatal)",
+      "FAILED_TO_ADD_ITEM": "Failed to add gallery item",
+      "FAILED_TO_UPDATE_ITEM": "Failed to update gallery item",
+      "FAILED_TO_DELETE_ITEM": "Failed to delete gallery item"
     },
     "success": {
-      "itemAdded": "Gallery item added successfully!",
-      "itemUpdated": "Gallery item updated successfully!",
-      "itemDeleted": "Gallery item deleted successfully!"
+      "ITEM_ADDED": "Gallery item added successfully!",
+      "ITEM_UPDATED": "Gallery item updated successfully!",
+      "ITEM_DELETED": "Gallery item deleted successfully!"
     }
   },
   "contact": {
@@ -226,15 +226,16 @@
       "email": "Email",
       "emailPlaceholder": "your@email.com",
       "password": "Password",
-      "passwordPlaceholder": "••••••",
       "forgotPassword": "forgot password?",
       "rememberMe": "Remember me",
       "submit": "sign in",
       "noAccount": "Don't have an account?",
       "signUp": " Sign up",
-      "error": {
-        "invalidCredentials": "Invalid email or password. Please try again.",
-        "unexpected": "An unexpected error occurred. Please try again.",
+      "errors": {
+        "INVALID_CREDENTIALS": "Invalid email or password. Please try again.",
+        "UNEXPECTED": "An unexpected error occurred while logging you in. Please try again."
+      },
+      "statuses": {
         "loading": "Logging in..."
       }
     }
@@ -253,15 +254,16 @@
       "usernamePlaceholder": "your_username",
       "allowedChars": "3-50 characters, letters, numbers, underscores, hyphens",
       "password": "Password",
-      "passwordPlaceholder": "••••••",
       "submit": "sign up",
       "haveAccount": "Already have an account?",
       "login": "Sign in",
-      "error": {
-        "emailInUse": "This email is already taken. Please use a different email.",
-        "usernameInUse": "This username is already taken. Please choose a different one.",
-        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
-        "unexpected": "An unexpected error occurred. Please try again.",
+      "errors": {
+        "EMAIL_ALREADY_IN_USE": "This email is already taken. Please use a different email.",
+        "USERNAME_ALREADY_IN_USE": "This username is already taken. Please choose a different one.",
+        "PASSWORD_TOO_SHORT": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+        "UNEXPECTED": "An unexpected error occurred while creating your account. Please try again."
+      },
+      "statuses": {
         "success": "Registration successful. Please check your email to confirm.",
         "loading": "Creating account..."
       }
@@ -281,8 +283,10 @@
       "submit": "send reset link",
       "remember": "Remember your password?",
       "backToLogin": "Back to login",
-      "error": {
-        "error": "An error occurred while sending the reset email",
+      "errors": {
+        "UNEXPECTED": "An unexpected error occurred while sending the reset email"
+      },
+      "statuses": {
         "success": "Password reset email sent! Check your inbox for a link to reset your password.",
         "loading": "Sending..."
       }
@@ -298,25 +302,23 @@
       "title": "Reset Password",
       "newPasswordBelow": "Enter your new password below.",
       "newPassword": "New Password",
-      "newPasswordPlaceholder": "••••••",
       "confirmPassword": "Confirm Password",
-      "confirmPasswordPlaceholder": "••••••",
       "submit": "reset password",
       "backToLogin": "Back to login",
-      "error": {
-        "invalidToken": "Invalid or missing reset token. Please request a new password reset.",
-        "expiredToken": "Invalid or expired reset token. Please request a new password reset.",
-        "expiredSession": "Your session has expired. Please request a new password reset.",
-        "success": "Password reset successfully! Redirecting to login...",
-        "unexpected": "An unexpected error occurred while resetting your password",
-        "newPassword": "Request a new password reset",
+      "success": "Password reset successfully! Redirecting to login...",
+      "requestNewPassword": "Request a new password reset",
+      "errors": {
+        "INVALID_TOKEN": "Invalid or missing reset token. Please request a new password reset.",
+        "EXPIRED_TOKEN": "Invalid or expired reset token. Please request a new password reset.",
+        "EXPIRED_SESSION": "Your session has expired. Please request a new password reset.",
+        "UNEXPECTED": "An unexpected error occurred while resetting your password",
         "password": {
-          "passwordMismatch": "Passwords do not match. Please try again.",
-          "passwordTooShort": "Password must be at least 8 characters",
-          "passwordNoLowercase": "Password must contain at least one lowercase letter",
-          "passwordNoUppercase": "Password must contain at least one uppercase letter",
-          "passwordNoNumber": "Password must contain at least one number",
-          "passwordNoSpecial": "Password must contain at least one special character"
+          "PASSWORDS_MISMATCH": "Passwords do not match. Please try again.",
+          "PASSWORD_TOO_SHORT": "Password must be at least 8 characters",
+          "PASSWORD_NO_LOWERCASE": "Password must contain at least one lowercase letter",
+          "PASSWORD_NO_UPPERCASE": "Password must contain at least one uppercase letter",
+          "PASSWORD_NO_NUMBER": "Password must contain at least one number",
+          "PASSWORD_NO_SPECIAL_CHARS": "Password must contain at least one special character"
         }
       },
       "loading": "Resetting...",
@@ -361,13 +363,12 @@
           "allJobs": "show all jobs",
           "paginated": "show paginated"
         },
-        "error": {
-          "error": "Error:",
-          "noJobs": "No jobs found",
-          "driverNotFound": "Driver {driver} not found",
-          "failedFetch": "Failed to fetch jobs",
-          "failedToFetchMembers": "Failed to fetch members",
-          "noSteamID": "SteamID is required"
+        "errors": {
+          "NO_JOBS": "No jobs found",
+          "DRIVER_NOT_FOUND": "Driver {driver} not found",
+          "FAILED_TO_FETCH_JOBS": "Failed to fetch jobs",
+          "FAILED_TO_FETCH_MEMBERS": "Failed to fetch members",
+          "STEAM_ID_REQUIRED": "SteamID is required"
         }
       }
     },
@@ -421,13 +422,14 @@
           "favEndCompany": "Favorite Destination Company"
         }
       },
-      "error": {
-        "failedToFetchMembers":"Failed to fetch members",
-        "driverNotFound": "Driver {driver} not found",
-        "failedToFetchScenarios": "Failed to fetch scenarios",
-        "failedToFetchStats": "Failed to fetch statistics",
-        "failedToFetchJobs": "Failed to fetch jobs",
-        "noSteamID": "SteamID is required"
+      "errors": {
+        "FAILED_TO_FETCH_MEMBERS":"Failed to fetch members",
+        "DRIVER_NOT_FOUND": "Driver {driver} not found",
+        "FAILED_TO_FETCH_SCENARIOS": "Failed to fetch scenarios",
+        "FAILED_TO_FETCH_STATS": "Failed to fetch statistics",
+        "FAILED_TO_FETCH_JOBS": "Failed to fetch jobs",
+        "STEAM_ID_REQUIRED": "SteamID is required",
+        "SERVER_ERROR": "Server error"
       }
     },
     "leaderboard": {
@@ -476,8 +478,8 @@
           }
         }
       },
-      "error": {
-        "failedToFetchStats":"Failed to fetch statistics"
+      "errors": {
+        "FAILED_TO_FETCH_STATS":"Failed to fetch statistics"
       }
     },
     "vtcStats": {
@@ -507,7 +509,7 @@
         "totalTimeDriven": "Total Time Driven"
       },
       "error": {
-        "noStats": "No statistics available"
+        "NO_STATS": "No statistics available"
       }
     },
     "team": {
@@ -569,5 +571,24 @@
         "confirm": "confirm"
       }
     }
+  },
+  "statusCodes": {
+    "BAD_REQUEST": "Bad Request",
+    "UNAUTHORIZED": "Unauthorized",
+    "FORBIDDEN": "Forbidden",
+    "NOT_FOUND": "Not Found",
+    "METHOD_NOT_ALLOWED": "Method Not Allowed",
+    "CONFLICT": "Conflict",
+    "UNPROCESSABLE_ENTITY": "Unprocessable Entity",
+    "TOO_MANY_REQUESTS": "Too Many Requests",
+    "INTERNAL_SERVER_ERROR": "Internal Server Error",
+    "BAD_GATEWAY": "Bad Gateway",
+    "SERVICE_UNAVAILABLE": "Service Unavailable",
+    "GATEWAY_TIMEOUT": "Gateway Timeout"
+  },
+  "errors": {
+    "GENERAL_ERROR": "Error",
+    "UNEXPECTED": "An unexpected error occurred",
+    "SERVER_ERROR":"Server error"
   }
 }

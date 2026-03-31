@@ -1,7 +1,8 @@
 import { supabaseAdmin } from "@/supabaseAdmin/";
 import { NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
-import type { Dictionary } from "@/app/i18n";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 export type GalleryItem = {
   id: number;
@@ -11,8 +12,11 @@ export type GalleryItem = {
   created_at?: string | null;
 };
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
     const { data: rows, error } = await supabaseAdmin
       .from("gallery")
       .select("id, title, image_path, image_url, created_at")
@@ -54,9 +58,12 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const formData = await req.formData();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const formData = await request.formData();
     const title = formData.get("title") as string;
     const file = formData.get("file") as File | null;
 
@@ -115,9 +122,12 @@ export async function POST(req: Request) {
   }
 }
 
-export async function PUT(req: Request) {
+export async function PUT(request: Request) {
   try {
-    const formData = await req.formData();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const formData = await request.formData();
     const id = formData.get("id") as string;
     const title = formData.get("title") as string | null;
     const file = formData.get("file") as File | null;
@@ -167,9 +177,12 @@ export async function PUT(req: Request) {
   }
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(request: Request) {
   try {
-    const { id } = await req.json();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const { id } = await request.json();
     if (!id) return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
 
     const { data: itemData, error: fetchError } = await supabaseAdmin

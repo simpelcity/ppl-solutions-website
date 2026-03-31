@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
     const res = await axios.get("https://api.truckershub.in/v1/drivers");
 
     if (res.status !== 200) {

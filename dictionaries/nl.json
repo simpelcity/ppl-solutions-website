@@ -63,7 +63,7 @@
   },
   "status": {
     "loading": {
-      "loadingSpinner": "Laden...",
+      "loadingSpinner": "Laden",
       "loader": "Laden"
     }
   },
@@ -120,11 +120,13 @@
       "event": "evenement",
       "more": "meer"
     },
-    "error": {
-      "noEvents": "Geen aankomende evenementen",
-      "na": "Niet van toepassing",
-      "noServer": "Evenementenserver",
-      "noDLC": "Geen"
+    "errors": {
+      "NO_EVENTS": "Geen aankomende evenementen",
+      "NA": "Niet van toepassing",
+      "NO_SERVER": "Evenementenserver",
+      "NO_DLC": "Geen",
+      "FAILED_TO_FETCH_EVENTS": "Het ophalen van evenementen is mislukt.",
+      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het ophalen van evenementen"
     }
   },
   "team": {
@@ -135,8 +137,28 @@
     "title": "team",
     "loading": "Team laden...",
     "errors": {
-      "error": "Fout bij laden van het team.",
-      "noDepts": "Geen afdelingen / leden gevonden."
+      "ERROR_LOADING": "Fout bij het laden van het team.",
+      "NO_DEPTS_OR_MEMBERS_FOUND": "Geen afdelingen / leden gevonden.",
+      "NAME_REQUIRED": "Naam is verplicht",
+      "ID_REQUIRED": "ID is verplicht",
+      "FAILED_TO_DELETE_OLD_FILE": "Kon oud bestand niet verwijderen (niet-kritiek):",
+      "MEMBER_NOT_FOUND": "Lid niet gevonden",
+      "FAILED_TO_PARSE_PFP_URL": "Kon profile_url niet verwerken",
+      "FAILED_TO_REMOVE_FILES": "Kon bestanden niet verwijderen",
+      "FAILED_TO_ADD_MEMBER": "Kon teamlid niet toevoegen",
+      "FAILED_TO_UPDATE_MEMBER": "Kon teamlid niet bijwerken",
+      "FAILED_TO_DELETE_MEMBER": "Kon teamlid niet verwijderen",
+      "FAILED_TO_DELETE_PROFILE_PICTURE": "Kon profielfoto niet verwijderen",
+      "FAILED_TO_ADD_ROLE": "Kon rol niet toevoegen",
+      "FAILED_TO_REMOVE_ROLE": "Kon rol niet verwijderen"
+    },
+    "success": {
+      "MEMBER_ADDED": "Teamlid succesvol toegevoegd!",
+      "MEMBER_UPDATED": "Teamlid succesvol bijgewerkt!",
+      "MEMBER_DELETED": "Teamlid succesvol verwijderd!",
+      "PROFILE_PICTURE_DELETED": "Profielfoto succesvol verwijderd!",
+      "ROLE_ADDED": "Rol succesvol toegevoegd!",
+      "ROLE_REMOVED": "Rol succesvol verwijderd!"
     }
   },
   "gallery": {
@@ -146,8 +168,24 @@
     },
     "title": "galerij",
     "errors": {
-      "error": "Fout bij het laden van de galerij:",
-      "noImages": "Geen afbeeldingen gevonden."
+      "ERROR_LOADING": "Fout bij het laden van de galerij:",
+      "NO_IMAGES_FOUND": "Geen afbeeldingen gevonden.",
+      "TITLE_REQUIRED": "Titel is verplicht",
+      "IMAGE_FILE_REQUIRED": "Afbeeldingsbestand is verplicht",
+      "FILE_TOO_LARGE": "Bestandsgrootte overschrijdt de limiet van 5 MB",
+      "INVALID_FILE_TYPE": "Ongeldig bestandstype.",
+      "INVALID_FILE_EXTENSION": "Ongeldige bestandsextensie.",
+      "ID_REQUIRED": "ID is verplicht",
+      "FAILED_TO_DELETE_OLD_FILE": "Kon oud bestand niet verwijderen (niet-kritiek)",
+      "FAILED_TO_DELETE_FILE": "Kon bestand niet verwijderen (niet-kritiek)",
+      "FAILED_TO_ADD_ITEM": "Kon galerij-item niet toevoegen",
+      "FAILED_TO_UPDATE_ITEM": "Kon galerij-item niet bijwerken",
+      "FAILED_TO_DELETE_ITEM": "Kon galerij-item niet verwijderen"
+    },
+    "success": {
+      "ITEM_ADDED": "Galerij-item succesvol toegevoegd!",
+      "ITEM_UPDATED": "Galerij-item succesvol bijgewerkt!",
+      "ITEM_DELETED": "Galerij-item succesvol verwijderd!"
     }
   },
   "contact": {
@@ -188,15 +226,16 @@
       "email": "E-mail",
       "emailPlaceholder": "jouw@e-mail.com",
       "password": "Wachtwoord",
-      "passwordPlaceholder": "••••••",
       "forgotPassword": "wachtwoord vergeten",
       "rememberMe": "Onthoud mij",
       "submit": "inloggen",
       "noAccount": "Heeft u geen account?",
       "signUp": "Schrijf je in",
-      "error": {
-        "invalidCredentials": "Ongeldig e-mailadres of wachtwoord. Probeer het opnieuw.",
-        "unexpected": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+      "errors": {
+        "INVALID_CREDENTIALS": "Ongeldig e-mailadres of wachtwoord. Probeer het opnieuw.",
+        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het inloggen. Probeer het opnieuw."
+      },
+      "statuses": {
         "loading": "Inloggen..."
       }
     }
@@ -215,15 +254,16 @@
       "usernamePlaceholder": "jouw_gebruikersnaam",
       "allowedChars": "3-50 tekens, letters, cijfers, onderstrepingstekens, koppeltekens",
       "password": "Wachtwoord",
-      "passwordPlaceholder": "••••••",
       "submit": "aanmelden",
       "haveAccount": "Heeft u al een account?",
       "login": "Inloggen",
-      "error": {
-        "emailInUse": "Dit e-mailadres is al in gebruik. Gebruik een ander e-mailadres.",
-        "usernameInUse": "Deze gebruikersnaam is al in gebruik. Kies een andere.",
-        "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
-        "unexpected": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+      "errors": {
+        "EMAIL_ALREADY_IN_USE": "Dit e-mailadres is al in gebruik. Gebruik een ander e-mailadres.",
+        "USERNAME_ALREADY_IN_USE": "Deze gebruikersnaam is al in gebruik. Kies een andere.",
+        "PASSWORD_TOO_SHORT": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
+        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het aanmaken van uw account. Probeer het opnieuw."
+      },
+      "statuses": {
         "success": "Registratie is gelukt. Controleer uw e-mail voor bevestiging.",
         "loading": "Account aanmaken..."
       }
@@ -243,8 +283,10 @@
       "submit": "resetlink sturen",
       "remember": "Onthoud uw wachtwoord?",
       "backToLogin": "Terug naar inloggen",
-      "error": {
-        "error": "Er is een fout opgetreden tijdens het verzenden van de reset-e-mail.",
+      "errors": {
+        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het verzenden van de reset-e-mail."
+      },
+      "statuses": {
         "success": "E-mail voor het opnieuw instellen van uw wachtwoord verzonden! Controleer uw inbox voor een link om uw wachtwoord opnieuw in te stellen.",
         "loading": "Versturen..."
       }
@@ -260,25 +302,23 @@
       "title": "Wachtwoord opnieuw instellen",
       "newPasswordBelow": "Voer hieronder uw nieuwe wachtwoord in.",
       "newPassword": "Nieuw wachtwoord",
-      "newPasswordPlaceholder": "••••••",
       "confirmPassword": "Bevestig wachtwoord",
-      "confirmPasswordPlaceholder": "••••••",
       "submit": "wachtwoord opnieuw instellen",
       "backToLogin": "Terug naar inloggen",
-      "error": {
-        "invalidToken": "Ongeldig of ontbrekend resettoken. Vraag een nieuwe wachtwoordreset aan.",
-        "expiredToken": "Ongeldig of verlopen resettoken. Vraag een nieuwe wachtwoordreset aan.",
-        "expiredSession": "Uw sessie is verlopen. Vraag een nieuwe wachtwoordreset aan.",
-        "success": "Wachtwoord succesvol gereset! U wordt doorgestuurd naar de inlogpagina...",
-        "unexpected": "Er is een onverwachte fout opgetreden tijdens het opnieuw instellen van uw wachtwoord.",
-        "newPassword": "Vraag een nieuwe wachtwoordreset aan",
+      "success": "Wachtwoord succesvol gereset! U wordt doorgestuurd naar de inlogpagina...",
+      "requestNewPassword": "Vraag een nieuwe wachtwoordreset aan",
+      "errors": {
+        "INVALID_TOKEN": "Ongeldig of ontbrekend resettoken. Vraag een nieuwe wachtwoordreset aan.",
+        "EXPIRED_TOKEN": "Ongeldig of verlopen resettoken. Vraag een nieuwe wachtwoordreset aan.",
+        "EXPIRED_SESSION": "Je sessie is verlopen. Vraag een nieuwe wachtwoordreset aan.",
+        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het opnieuw instellen van uw wachtwoord.",
         "password": {
-          "passwordMismatch": "De wachtwoorden komen niet overeen. Probeer het opnieuw.",
-          "passwordTooShort": "Het wachtwoord moet minimaal 8 tekens lang zijn.",
-          "passwordNoLowercase": "Het wachtwoord moet ten minste één kleine letter bevatten.",
-          "passwordNoUppercase": "Het wachtwoord moet ten minste één hoofdletter bevatten.",
-          "passwordNoNumber": "Het wachtwoord moet ten minste één cijfer bevatten.",
-          "passwordNoSpecial": "Het wachtwoord moet ten minste één speciaal teken bevatten."
+          "PASSWORDS_MISMATCH": "Wachtwoorden komen niet overeen. Probeer het opnieuw.",
+          "PASSWORD_TOO_SHORT": "Wachtwoord moet minimaal 8 tekens bevatten",
+          "PASSWORD_NO_LOWERCASE": "Wachtwoord moet minimaal één kleine letter bevatten",
+          "PASSWORD_NO_UPPERCASE": "Wachtwoord moet minimaal één hoofdletter bevatten",
+          "PASSWORD_NO_NUMBER": "Wachtwoord moet minimaal één cijfer bevatten",
+          "PASSWORD_NO_SPECIAL_CHARS": "Wachtwoord moet minimaal één speciaal teken bevatten"
         }
       },
       "loading": "Resetten...",
@@ -323,10 +363,12 @@
           "allJobs": "toon alle vrachten",
           "paginated": "toon gepagineerd"
         },
-        "error": {
-          "error": "Error:",
-          "noJobs": "Geen vrachten gevonden",
-          "driverNotFound": "Bestuurder {driver} niet gevonden"
+        "errors": {
+          "NO_JOBS": "Geen vrachten gevonden",
+          "DRIVER_NOT_FOUND": "Bestuurder {driver} niet gevonden",
+          "FAILED_TO_FETCH_JOBS": "Kon vrachten niet ophalen",
+          "FAILED_TO_FETCH_MEMBERS": "Kon leden niet ophalen",
+          "STEAM_ID_REQUIRED": "SteamID is verplicht"
         }
       }
     },
@@ -379,6 +421,15 @@
           "favEndCity": "Favoriete bestemmingsstad",
           "favEndCompany": "Favoriet bestemmingsbedrijf"
         }
+      },
+      "errors": {
+        "FAILED_TO_FETCH_MEMBERS": "Kon leden niet ophalen",
+        "DRIVER_NOT_FOUND": "Bestuurder {driver} niet gevonden",
+        "FAILED_TO_FETCH_SCENARIOS": "Kon scenario's niet ophalen",
+        "FAILED_TO_FETCH_STATS": "Kon statistieken niet ophalen",
+        "FAILED_TO_FETCH_JOBS": "Kon vrachten niet ophalen",
+        "STEAM_ID_REQUIRED": "SteamID is verplicht",
+        "SERVER_ERROR": "Serverfout"
       }
     },
     "leaderboard": {
@@ -426,6 +477,9 @@
             "title": "Hoogste vervoerd gewicht"
           }
         }
+      },
+      "errors": {
+        "FAILED_TO_FETCH_STATS": "Statistieken ophalen mislukt"
       }
     },
     "vtcStats": {
@@ -455,7 +509,7 @@
         "totalTimeDriven": "Totale rijtijd"
       },
       "error": {
-        "noStats": "Geen statistieken beschikbaar"
+        "NO_STATS": "Geen statistieken beschikbaar"
       }
     },
     "team": {
@@ -517,5 +571,24 @@
         "confirm": "bevestigen"
       }
     }
+  },
+  "statusCodes": {
+    "BAD_REQUEST": "Ongeldige aanvraag",
+    "UNAUTHORIZED": "Niet geautoriseerd",
+    "FORBIDDEN": "Verboden",
+    "NOT_FOUND": "Niet gevonden",
+    "METHOD_NOT_ALLOWED": "Methode niet toegestaan",
+    "CONFLICT": "Conflict",
+    "UNPROCESSABLE_ENTITY": "Niet-verwerkbare entiteit",
+    "TOO_MANY_REQUESTS": "Te veel verzoeken",
+    "INTERNAL_SERVER_ERROR": "Interne serverfout",
+    "BAD_GATEWAY": "Ongeldige gateway",
+    "SERVICE_UNAVAILABLE": "Service niet beschikbaar",
+    "GATEWAY_TIMEOUT": "Gateway time-out"
+  },
+  "errors": {
+    "GENERAL_ERROR": "Fout",
+    "UNEXPECTED": "Er is een onverwachte fout opgetreden.",
+    "SERVER_ERROR": "Serverfout"
   }
 }

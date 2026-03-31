@@ -1878,3 +1878,2443 @@ Message: {
   "error": "steamID is required"
 }
 -----------------------------
+
+[31-Mar-2026:09:39:00 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:39:00 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:39:01 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:39:01 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:39:40 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: SyntaxError: Unexpected end of JSON input
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:39:44 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:45:17 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:45:23 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:47:03 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:47:04 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:50:10 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:50:14 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:50:18 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=ss
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:09:50:22 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:09:50:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:54:44 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:54:51 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "steamID is required"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:59:01 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist."
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:09:59:10 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist."
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:24:29 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:46:59 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:47:03 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:47:05 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:47:05 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:47:20 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:47:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:53:22 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:53:22 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:53:23 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:53:23 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:53:32 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:54:17 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:54:19 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:54:23 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:54:24 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:54:25 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:54:25 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:55:40 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:10:55:44 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 500
+Error: internalServerError
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:10:58:38 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:11:01:42 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:01:43 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:01:44 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:01:44 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:01:45 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:01:45 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:03:11 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:03:20 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:03:21 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:03:21 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:03:37 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:03:37 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:04:14 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:04:14 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:04:15 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:14 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:15 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:15 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:40 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:41 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:54 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:54 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:05:54 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:07:09 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:07:10 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:07:26 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:07:26 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:07:27 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:08:51 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:09:08 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:09:08 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:09:08 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:09:09 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:09:56 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:09:56 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:09:57 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:10:15 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:10:16 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:10:32 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:10:32 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:10:32 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:11:13 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:11:14 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:11:14 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:17:48 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:22:39 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:22:39 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:23:19 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:23:19 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:23:19 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:24:12 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:24:12 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:24:12 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:25:09 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:25:10 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:25:10 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:26:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:26:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:26:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:28:01 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:28:02 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:28:02 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:28:02 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:29:07 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:29:07 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:29:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:29:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:29:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:31:19 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:31:19 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:31:19 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:34:30 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:34:30 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:34:30 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:34:51 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:34:51 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:34:51 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:34:51 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:35:25 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:35:25 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:35:25 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:40:53 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:40:53 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:40:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:40:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:42:11 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:42:12 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:45:16 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:45:17 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:45:17 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:45:17 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:45:45 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:11:45:46 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:12:03:50 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:12:03:51 +0200]
+URL: http://localhost:8000/api/statistics/user
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:12:06:15 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:06:20 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:06:20 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:06:20 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:07:01 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:07:01 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:07:01 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "STEAM_ID_REQUIRED"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:07:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:07:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:12:53:09 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:13:05:44 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: badRequest
+Message: {
+  "error": "Een SteamID is vereist"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:21:21 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:21:21 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:21:33 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:14:21:33 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:14:21:33 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:14:21:49 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:14:26:02 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:14:26:29 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:14:26:29 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=cs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: cs
+-----------------------------
+
+[31-Mar-2026:14:26:53 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:26:53 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:26:53 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:26:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=sk
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: sk
+-----------------------------
+
+[31-Mar-2026:14:26:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=sk
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: sk
+-----------------------------
+
+[31-Mar-2026:14:26:57 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=sk
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID je povinné"
+}
+Locale: sk
+-----------------------------
+
+[31-Mar-2026:14:26:58 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:26:59 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:26:59 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:28:35 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:28:35 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:30:05 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:30:05 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:30:45 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:30:45 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:30:50 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:30:51 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:30:51 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:31:46 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:31:46 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:31:46 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:32:37 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:32:38 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:45:21 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:45:21 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:46:55 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:46:55 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:46:55 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:47:01 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:47:01 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=en
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is required"
+}
+Locale: en
+-----------------------------
+
+[31-Mar-2026:14:47:14 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:47:14 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:47:14 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:47:26 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:52:43 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:52:43 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:52:43 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:53:08 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:55:25 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:55:25 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:14:55:25 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:33:13 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:33:13 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:33:14 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:34:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:34:57 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:34:57 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:35:37 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:35:38 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:35:38 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:36:58 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:36:58 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:36:58 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:37:19 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:37:25 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:37:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:37:56 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:38:09 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:38:09 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:38:10 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:38:10 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:39:20 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:39:21 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:39:21 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:39:21 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:39:53 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------
+
+[31-Mar-2026:15:39:54 +0200]
+URL: http://localhost:8000/api/statistics/user?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: {
+  "error": "SteamID is verplicht"
+}
+Locale: nl
+-----------------------------

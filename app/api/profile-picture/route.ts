@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
-export async function GET(req: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
     if (!id) {
       return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
@@ -18,9 +23,12 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const formData = await req.formData();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const formData = await request.formData();
     const file = formData.get("file") as File | null;
 
     let profile_url: string | null = null;
@@ -51,9 +59,12 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function PUT(req: Request) {
+export async function PUT(request: Request) {
   try {
-    const formData = await req.formData();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const formData = await request.formData();
     const id = formData.get("userId") as string;
     const file = formData.get("file") as File | null;
 

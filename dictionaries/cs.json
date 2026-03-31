@@ -63,7 +63,7 @@
   },
   "status": {
     "loading": {
-      "loadingSpinner": "Načítání...",
+      "loadingSpinner": "Načítání",
       "loader": "Načítání"
     }
   },
@@ -120,11 +120,13 @@
       "event": "událost",
       "more": "více"
     },
-    "error": {
-      "noEvents": "Žádné nadcházející události",
-      "na": "Není k dispozici",
-      "noServer": "Server události",
-      "noDLC": "Žádné"
+    "errors": {
+      "NO_EVENTS": "Žádné nadcházející události",
+      "NA": "Není k dispozici",
+      "NO_SERVER": "Server události",
+      "NO_DLC": "Žádné",
+      "FAILED_TO_FETCH_EVENTS": "Nepodařilo se načíst události",
+      "UNEXPECTED": "Při načítání událostí došlo k neočekávané chybě."
     }
   },
   "team": {
@@ -135,8 +137,28 @@
     "title": "tým",
     "loading": "Načítání týmu...",
     "errors": {
-      "error": "Chyba při načítání týmu.",
-      "noDepts": "Nenalezena žádná oddělení / členové."
+      "ERROR_LOADING": "Chyba při načítání týmu.",
+      "NO_DEPTS_OR_MEMBERS_FOUND": "Nebyly nalezeny žádné oddělení / členové.",
+      "NAME_REQUIRED": "Název je povinný",
+      "ID_REQUIRED": "ID je povinné",
+      "FAILED_TO_DELETE_OLD_FILE": "Nepodařilo se odstranit starý soubor (nekritické):",
+      "MEMBER_NOT_FOUND": "Člen nebyl nalezen",
+      "FAILED_TO_PARSE_PFP_URL": "Nepodařilo se zpracovat profile_url",
+      "FAILED_TO_REMOVE_FILES": "Nepodařilo se odstranit soubory",
+      "FAILED_TO_ADD_MEMBER": "Nepodařilo se přidat člena týmu",
+      "FAILED_TO_UPDATE_MEMBER": "Nepodařilo se aktualizovat člena týmu",
+      "FAILED_TO_DELETE_MEMBER": "Nepodařilo se odstranit člena týmu",
+      "FAILED_TO_DELETE_PROFILE_PICTURE": "Nepodařilo se odstranit profilový obrázek",
+      "FAILED_TO_ADD_ROLE": "Nepodařilo se přidat roli",
+      "FAILED_TO_REMOVE_ROLE": "Nepodařilo se odebrat roli"
+    },
+    "success": {
+      "MEMBER_ADDED": "Člen týmu byl úspěšně přidán!",
+      "MEMBER_UPDATED": "Člen týmu byl úspěšně aktualizován!",
+      "MEMBER_DELETED": "Člen týmu byl úspěšně odstraněn!",
+      "PROFILE_PICTURE_DELETED": "Profilový obrázek byl úspěšně odstraněn!",
+      "ROLE_ADDED": "Role byla úspěšně přidána!",
+      "ROLE_REMOVED": "Role byla úspěšně odebrána!"
     }
   },
   "gallery": {
@@ -146,9 +168,25 @@
     },
     "title": "galerie",
     "errors": {
-      "error": "Chyba při načítání galerie:",
-      "noImages": "Nebyly nalezeny žádné obrázky."
-    }
+    "ERROR_LOADING": "Chyba při načítání galerie:",
+    "NO_IMAGES_FOUND": "Nebyly nalezeny žádné obrázky.",
+    "TITLE_REQUIRED": "Název je povinný",
+    "IMAGE_FILE_REQUIRED": "Soubor obrázku je povinný",
+    "FILE_TOO_LARGE": "Velikost souboru překračuje limit 5 MB",
+    "INVALID_FILE_TYPE": "Neplatný typ souboru.",
+    "INVALID_FILE_EXTENSION": "Neplatná přípona souboru.",
+    "ID_REQUIRED": "ID je povinné",
+    "FAILED_TO_DELETE_OLD_FILE": "Nepodařilo se odstranit starý soubor (nekritické)",
+    "FAILED_TO_DELETE_FILE": "Nepodařilo se odstranit soubor (nekritické)",
+    "FAILED_TO_ADD_ITEM": "Nepodařilo se přidat položku galerie",
+    "FAILED_TO_UPDATE_ITEM": "Nepodařilo se aktualizovat položku galerie",
+    "FAILED_TO_DELETE_ITEM": "Nepodařilo se odstranit položku galerie"
+  },
+  "success": {
+    "ITEM_ADDED": "Položka galerie byla úspěšně přidána!",
+    "ITEM_UPDATED": "Položka galerie byla úspěšně aktualizována!",
+    "ITEM_DELETED": "Položka galerie byla úspěšně odstraněna!"
+  }
   },
   "contact": {
     "meta": {
@@ -188,15 +226,16 @@
       "email": "Email",
       "emailPlaceholder": "tvuj@email.cz",
       "password": "Heslo",
-      "passwordPlaceholder": "••••••",
       "forgotPassword": "zapomenuté heslo?",
       "rememberMe": "Zapamatovat si mě",
       "submit": "přihlásit se",
       "noAccount": "Nemáš účet?",
       "signUp": " Zaregistrovat se",
-      "error": {
-        "invalidCredentials": "Neplatný email nebo heslo. Zkus to znovu.",
-        "unexpected": "Došlo k neočekávané chybě. Zkus to prosím znovu.",
+      "errors": {
+        "INVALID_CREDENTIALS": "Neplatný email nebo heslo. Zkus to znovu.",
+        "UNEXPECTED": "Při přihlašování došlo k neočekávané chybě. Zkuste to prosím znovu."
+      },
+      "statuses": {
         "loading": "Přihlašování..."
       }
     }
@@ -215,15 +254,16 @@
       "usernamePlaceholder": "tvoje_uzivatelske_jmeno",
       "allowedChars": "3–50 znaků, písmena, čísla, podtržítka, pomlčky",
       "password": "Heslo",
-      "passwordPlaceholder": "••••••",
       "submit": "zaregistrovat se",
       "haveAccount": "Už máš účet?",
       "login": "Přihlásit se",
-      "error": {
-        "emailInUse": "Tento email je již zaregistrován. Použij jiný email.",
-        "usernameInUse": "Tento e-mail je již obsazený. Použijte prosím jiný e-mail.",
-        "passwordTooShort": "Heslo musí mít alespoň 8 znaků a obsahovat velké, malé písmeno a číslo.",
-        "unexpected": "Došlo k neočekávané chybě. Zkus to prosím znovu.",
+      "errors": {
+        "EMAIL_ALREADY_IN_USE": "Tento email je již zaregistrován. Použij jiný email.",
+        "USERNAME_ALREADY_IN_USE": "Tento e-mail je již obsazený. Použijte prosím jiný e-mail.",
+        "PASSWORD_TOO_SHORT": "Heslo musí mít alespoň 8 znaků a obsahovat velké, malé písmeno a číslo.",
+        "UNEXPECTED": "Při vytváření účtu došlo k neočekávané chybě. Zkuste to prosím znovu."
+      },
+      "statuses": {
         "success": "Registrace byla úspěšná. Zkontroluj svůj email pro potvrzení.",
         "loading": "Vytváření účtu..."
       }
@@ -243,9 +283,11 @@
       "submit": "odeslat odkaz",
       "remember": "Pamatuješ si heslo?",
       "backToLogin": "Zpět na přihlášení",
-      "error": {
-        "error": "Při odesílání emailu došlo k chybě",
-        "success": "Email pro reset hesla byl odeslán! Zkontroluj svou schránku.",
+      "errors": {
+        "UNEXPECTED": "Při odesílání e-mailu pro resetování došlo k neočekávané chybě."
+      },
+      "statuses": {
+        "success": "E-mail s žádostí o obnovení hesla byl odeslán! Zkontrolujte si doručenou poštu, kde najdete odkaz pro obnovení hesla.",
         "loading": "Odesílání..."
       }
     }
@@ -260,25 +302,23 @@
       "title": "Obnovení hesla",
       "newPasswordBelow": "Níže zadej své nové heslo.",
       "newPassword": "Nové heslo",
-      "newPasswordPlaceholder": "••••••",
       "confirmPassword": "Potvrdit heslo",
-      "confirmPasswordPlaceholder": "••••••",
       "submit": "obnovit heslo",
       "backToLogin": "Zpět na přihlášení",
-      "error": {
-        "invalidToken": "Neplatný nebo chybějící resetovací token. Požádejte o nové resetování hesla.",
-        "expiredToken": "Neplatný nebo vypršelý token pro resetování hesla. Požádejte o nové resetování hesla.",
-        "expiredSession": "Vaše relace vypršela. Požádejte o nové resetování hesla.",
-        "success": "Heslo bylo úspěšně obnoveno! Přesměrování na přihlášení...",
-        "unexpected": "Při obnově hesla došlo k neočekávané chybě",
-        "newPassword": "Požádat o nový reset hesla",
+      "success": "Heslo bylo úspěšně obnoveno! Přesměrování na přihlášení...",
+      "requestNewPassword": "Požádat o nový reset hesla",
+      "errors": {
+        "INVALID_TOKEN": "Neplatný nebo chybějící resetovací token. Požádejte o nové obnovení hesla.",
+        "EXPIRED_TOKEN": "Neplatný nebo expirovaný resetovací token. Požádejte o nové obnovení hesla.",
+        "EXPIRED_SESSION": "Vaše relace vypršela. Požádejte o nové obnovení hesla.",
+        "UNEXPECTED": "Při resetování hesla došlo k neočekávané chybě.",
         "password": {
-          "passwordMismatch": "Hesla se neshodují. Zkuste to prosím znovu.",
-          "passwordTooShort": "Heslo musí mít alespoň 8 znaků",
-          "passwordNoLowercase": "Heslo musí obsahovat alespoň jedno malé písmeno",
-          "passwordNoUppercase": "Heslo musí obsahovat alespoň jedno velké písmeno",
-          "passwordNoNumber": "Heslo musí obsahovat alespoň jedno číslo",
-          "passwordNoSpecial": "Heslo musí obsahovat alespoň jeden speciální znak"
+          "PASSWORDS_MISMATCH": "Hesla se neshodují. Zkuste to znovu.",
+          "PASSWORD_TOO_SHORT": "Heslo musí mít alespoň 8 znaků",
+          "PASSWORD_NO_LOWERCASE": "Heslo musí obsahovat alespoň jedno malé písmeno",
+          "PASSWORD_NO_UPPERCASE": "Heslo musí obsahovat alespoň jedno velké písmeno",
+          "PASSWORD_NO_NUMBER": "Heslo musí obsahovat alespoň jedno číslo",
+          "PASSWORD_NO_SPECIAL_CHARS": "Heslo musí obsahovat alespoň jeden speciální znak"
         }
       },
       "loading": "Obnovování...",
@@ -323,10 +363,12 @@
           "allJobs": "zobrazit všechny zakázky",
           "paginated": "zobrazit stránkování"
         },
-        "error": {
-          "error": "Chyba:",
-          "noJobs": "Nenalezeny žádné zakázky",
-          "driverNotFound": "Ovladač {driver} nebyl nalezen"
+        "errors": {
+          "NO_JOBS": "Nebyly nalezeny žádné úlohy",
+          "DRIVER_NOT_FOUND": "Řidič {driver} nebyl nalezen",
+          "FAILED_TO_FETCH_JOBS": "Nepodařilo se načíst úlohy",
+          "FAILED_TO_FETCH_MEMBERS": "Nepodařilo se načíst členy",
+          "STEAM_ID_REQUIRED": "SteamID je povinné"
         }
       }
     },
@@ -379,6 +421,15 @@
           "favEndCity": "Oblíbené cílové město",
           "favEndCompany": "Oblíbená cílová firma"
         }
+      },
+      "errors": {
+        "FAILED_TO_FETCH_MEMBERS": "Nepodařilo se načíst členy",
+        "DRIVER_NOT_FOUND": "Řidič {driver} nebyl nalezen",
+        "FAILED_TO_FETCH_SCENARIOS": "Nepodařilo se načíst scénáře",
+        "FAILED_TO_FETCH_STATS": "Nepodařilo se načíst statistiky",
+        "FAILED_TO_FETCH_JOBS": "Nepodařilo se načíst úlohy",
+        "STEAM_ID_REQUIRED": "SteamID je povinné",
+        "SERVER_ERROR": "Chyba serveru"
       }
     },
     "leaderboard": {
@@ -426,12 +477,15 @@
             "title": "Nejvyšší přepravená hmotnost"
           }
         }
+      },
+      "errors": {
+        "FAILED_TO_FETCH_STATS": "Nepodařilo se načíst statistiky"
       }
     },
     "vtcStats": {
       "meta": {
-        "title": "Přehled - Statistiky VTC",
-        "description": "Zobraz statistiky VTC a další informace."
+        "title": "Dashboard – Statistiky VTC",
+        "description": "Zobrazit statistiky VTC a další."
       },
       "vtc": {
         "title": "Statistiky VTC",
@@ -455,13 +509,13 @@
         "totalTimeDriven": "Celkový čas jízdy"
       },
       "error": {
-        "noStats": "Nejsou k dispozici žádné statistiky"
+        "NO_STATS": "Nejsou k dispozici žádné statistiky"
       }
     },
     "team": {
       "meta": {
-        "title": "Přehled - Správa týmu",
-        "description": "Spravuj členy týmu přidáváním, úpravami nebo jejich odebráním."
+        "title": "Řídicí panel – Správa týmu",
+        "description": "Spravujte členy svého týmu jejich přidáváním, úpravou nebo odebíráním."
       },
       "form": {
         "titleNewMember": "Přidat člena",
@@ -493,8 +547,8 @@
     },
     "gallery": {
       "meta": {
-        "title": "Přehled - Správa galerie",
-        "description": "Spravuj položky galerie přidáváním, úpravami nebo mazáním obrázků."
+        "title": "Ovládací panel – Správa galerie",
+        "description": "Spravujte položky galerie přidáváním, úpravou nebo odstraňováním obrázků."
       },
       "form": {
         "titleNewItem": "Přidat položku galerie",
@@ -517,5 +571,24 @@
         "confirm": "potvrdit"
       }
     }
+  },
+  "statusCodes": {
+    "BAD_REQUEST": "Chybný požadavek",
+    "UNAUTHORIZED": "Neoprávněný přístup",
+    "FORBIDDEN": "Zakázáno",
+    "NOT_FOUND": "Nenalezeno",
+    "METHOD_NOT_ALLOWED": "Metoda není povolena",
+    "CONFLICT": "Konflikt",
+    "UNPROCESSABLE_ENTITY": "Nezpracovatelná entita",
+    "TOO_MANY_REQUESTS": "Příliš mnoho požadavků",
+    "INTERNAL_SERVER_ERROR": "Interní chyba serveru",
+    "BAD_GATEWAY": "Chybná brána",
+    "SERVICE_UNAVAILABLE": "Služba není dostupná",
+    "GATEWAY_TIMEOUT": "Časový limit brány vypršel"
+  },
+  "errors": {
+    "GENERAL_ERROR": "Chyba",
+    "UNEXPECTED": "Došlo k neočekávané chybě",
+    "SERVER_ERROR": "Chyba serveru"
   }
 }

@@ -1,25 +1,32 @@
 import fs from "fs/promises";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";
+import type { Locale } from "@/i18n";
+import { getDictionary } from "@/app/i18n";
 
 const LOG_FILE = path.join(process.cwd(), "logs", "errors.log");
 
 const statusToErrorName: Record<number, string> = {
-  400: "Bad Request",
-  401: "Unauthorized",
-  403: "Forbidden",
-  404: "Not Found",
-  405: "Method Not Allowed",
-  409: "Conflict",
-  422: "Unprocessable Entity",
-  429: "Too Many Requests",
-  500: "Internal Server Error",
-  502: "Bad Gateway",
-  503: "Service Unavailable",
-  504: "Gateway Timeout",
+    400: "BAD_REQUEST",
+    401: "UNAUTHORIZED",
+    403: "FORBIDDEN",
+    404: "NOT_FOUND",
+    405: "METHOD_NOT_ALLOWED",
+    409: "CONFLICT",
+    422: "UNPROCESSABLE_ENTITY",
+    429: "TOO_MANY_REQUESTS",
+    500: "INTERNAL_SERVER_ERROR",
+    502: "BAD_GATEWAY",
+    503: "SERVICE_UNAVAILABLE",
+    504: "GATEWAY_TIMEOUT",
 };
 
-export async function errorHandler(error: unknown, request?: Request, statusCode: number = 500) {
+export async function errorHandler(
+  error: unknown,
+  request?: Request,
+  locale: Locale = "en",
+  statusCode: number = 500,
+) {
   let logMessage: string;
   let responseMessage: string;
   let errorName: string;
@@ -66,18 +73,28 @@ Method: ${request?.method ?? "UNKNOWN"}
 Status: ${statusCode}
 Error: ${errorName}
 Message: ${logMessage}
+Locale: ${locale}
 -----------------------------
 `;
 
   await fs.mkdir(path.dirname(LOG_FILE), { recursive: true });
   await fs.appendFile(LOG_FILE, logEntry, "utf8");
 
+  const dict = await getDictionary(locale);
+  const errorCodeKey = statusToErrorName[statusCode];
+  // const translatedErrorName = errorCodeKey ? dict.statusCodes[errorCodeKey] : "Error";
+  const translatedErrorName =
+      errorCodeKey && errorCodeKey in dict.statusCodes
+          ? dict.statusCodes[errorCodeKey as keyof typeof dict.statusCodes]
+          : "Error";
+
   return NextResponse.json(
     {
       method: request?.method ?? "UNKNOWN",
       status: statusCode,
-      error: errorName,
+      error: translatedErrorName,
       message: responseMessage,
+      lang: locale,
       // logMessage: logMessage,
     },
     { status: statusCode },

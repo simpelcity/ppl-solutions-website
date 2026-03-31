@@ -6,6 +6,7 @@ import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from "@/lib";
 import { usePathname, useRouter } from "next/navigation";
 import type { Dictionary } from "@/app/i18n";
+import { useLang } from "@/hooks/useLang";
 import { type Locale } from "@/i18n";
 
 export interface Profile {
@@ -45,6 +46,7 @@ type Props = {
 };
 
 export function useProfile({ userId, lang, dict }: Props) {
+  // const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -75,7 +77,7 @@ export function useProfile({ userId, lang, dict }: Props) {
   const fetchProfile = async () => {
     setError(null);
     try {
-      const res = await axios.get(`/api/profile-picture?id=${encodeURIComponent(userId)}`);
+      const res = await axios.get(`/api/profile-picture?id=${encodeURIComponent(userId)}&lang=${lang}`);
       const json = await res.data;
       if (res.status === 200) return json.profile;
       else throw new Error(json.error || "Failed to fetch profile");
@@ -89,7 +91,7 @@ export function useProfile({ userId, lang, dict }: Props) {
   const fetchProfileById = async () => {
     setError(null);
     try {
-      const data = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}`);
+      const data = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}&lang=${lang}`);
       const json = await data.data;
       if (data.status === 200) return json.data;
     } catch (err: any) {
@@ -100,7 +102,7 @@ export function useProfile({ userId, lang, dict }: Props) {
   };
 
   const fetchDrivers = async () => {
-    const res = await axios.get("/api/members");
+    const res = await axios.get(`/api/members?lang=${lang}`);
     if (res.status !== 200) throw new Error("Failed to fetch drivers");
     const data = await res.data;
     return data.data || data || [];
@@ -180,7 +182,7 @@ export function useProfile({ userId, lang, dict }: Props) {
 
   const fetchMembers = async () => {
     try {
-      const res = await axios.get("/api/team/members");
+      const res = await axios.get(`/api/team/members?lang=${lang}`);
       const json = await res.data;
       if (res.status === 200) setMembers(json.data || []);
       return json.data || [];
@@ -192,7 +194,7 @@ export function useProfile({ userId, lang, dict }: Props) {
 
   const fetchDepartments = async () => {
     try {
-      const res = await axios.get("/api/departments");
+      const res = await axios.get(`/api/departments?lang=${lang}`);
       const json = await res.data;
       if (res.status == 200) setDepartments(json.data || []);
     } catch (err: any) {
@@ -203,7 +205,7 @@ export function useProfile({ userId, lang, dict }: Props) {
 
   const fetchRoles = async () => {
     try {
-      const res = await axios.get("/api/roles");
+      const res = await axios.get(`/api/roles?lang=${lang}`);
       const json = await res.data;
       if (res.status === 200) setRoles(json.data || []);
     } catch (err: any) {
@@ -233,18 +235,6 @@ export function useProfile({ userId, lang, dict }: Props) {
     }
   };
 
-  // const fetchMemberRoles = async (memberId: number) => {
-  //   try {
-  //     const res = await axios.get(`/api/team/roles?memberId=${memberId}`);
-  //     const json = await res.data;
-  //     if (res.status === 200) setMemberRoles(json.data || []);
-  //     adminLog("Database table 'department_team_member':", json.data || []);
-  //   } catch (err: any) {
-  //     console.error(err);
-  //     setError(err.message);
-  //   }
-  // };
-
   const updateProfile = async (displayName: string, file?: File | null) => {
     setSubmitting(true);
     setError(null);
@@ -256,7 +246,7 @@ export function useProfile({ userId, lang, dict }: Props) {
         fd.append("userId", userId);
         fd.append("file", file);
 
-        const res = await axios.put("/api/profile-picture", fd, {
+        const res = await axios.put(`/api/profile-picture?lang=${lang}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         if (res.status !== 200) throw new Error("Failed to update profile");
@@ -268,7 +258,7 @@ export function useProfile({ userId, lang, dict }: Props) {
         fd.append("userId", userId);
         fd.append("displayName", displayName);
 
-        const res = await axios.put("/api/profile", fd, {
+        const res = await axios.put(`/api/profile?lang=${lang}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         if (res.status !== 200) throw new Error("Failed to update profile");
@@ -292,7 +282,7 @@ export function useProfile({ userId, lang, dict }: Props) {
       const fd = new FormData();
       fd.append("userId", userId);
       if (file) fd.append("file", file);
-      const res = await axios.post("/api/profile-picture", fd, {
+      const res = await axios.post(`/api/profile-picture?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error(res.data?.error || "Failed to create profile");

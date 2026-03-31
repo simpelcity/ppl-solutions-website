@@ -1,28 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import axios from "axios";
-import type { Dictionary } from "@/app/i18n";
-import { type Locale } from "@/i18n";
-
-type Props = {
-  request: NextRequest;
-  dict: Dictionary;
-};
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
-export async function POST(request: NextRequest, { dict }: Props) {
+export async function POST(request: NextRequest) {
   try {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
     const body = await request.json();
     const { steamID } = body;
 
-    if (!steamID) return errorHandler({ error: "steamID is required" }, request);
+    if (!steamID) return errorHandler({ error: dict.drivershub.userStats.errors.STEAM_ID_REQUIRED }, request, lang, 400);
 
     const firstRes = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=1`);
 
     if (firstRes.status !== 200) {
-      return errorHandler({ error: "Failed to fetch jobs" }, request, firstRes.status);
+      return errorHandler({ error: dict.drivershub.userStats.errors.FAILED_TO_FETCH_JOBS }, request, lang, firstRes.status);
     }
 
     const firstData = await firstRes.data;
@@ -49,9 +47,11 @@ export async function POST(request: NextRequest, { dict }: Props) {
         total: allJobs.length,
         pages: totalPages,
       },
+      lang
     });
   } catch (err) {
     console.error(err);
-    return errorHandler(err, request);
+    const lang = getLocaleFromRequest(request);
+    return errorHandler({ error: "SERVER_ERROR" }, request, lang, 500);
   }
 }

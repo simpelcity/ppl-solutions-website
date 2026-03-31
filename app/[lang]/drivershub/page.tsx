@@ -48,13 +48,8 @@ export default async function DriversHubPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-          <Card className="bg-dark rounded-0 border-0 shadow-sm m-3">
-            <CardBody className="p-4">
-              <CardTitle className="text-uppercase fs-2 text-light mb-3">{dict.drivershub.jobs.title}</CardTitle>
-              <TableJobs params={params} />
-            </CardBody>
-          </Card>
+        <section className="drivershub d-flex justify-content-center w-100 bg-dark-subtle text-center text-light">
+          <TableJobs params={params} />
         </section>
       </main>
     </>

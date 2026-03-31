@@ -1,12 +1,17 @@
 import { NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import axios from "axios";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
 export async function GET(request: Request) {
   try {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
     const { searchParams } = new URL(request.url);
     const month = searchParams.get("month");
     const year = searchParams.get("year");
@@ -19,7 +24,7 @@ export async function GET(request: Request) {
     const firstRes = await axios.get(apiUrl);
 
     if (firstRes.status !== 200) {
-      return errorHandler({ error: "Failed to fetch jobs" }, request, firstRes.status);
+      return errorHandler({ error: "Failed to fetch jobs" }, request, lang, firstRes.status);
     }
 
     const firstData = await firstRes.data;

@@ -1,8 +1,13 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
     const { data, error } = await supabaseAdmin
       .from("team_members")
       .select("id,name,profile_url")

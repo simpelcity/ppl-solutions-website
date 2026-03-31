@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLang } from "@/hooks/useLang";
 
 export interface GalleryItem {
   id: number;
@@ -11,6 +12,7 @@ export interface GalleryItem {
 }
 
 export function useGallery() {
+  const lang = useLang();
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -25,7 +27,7 @@ export function useGallery() {
   const fetchItems = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("/api/gallery");
+      const res = await axios.get(`/api/gallery?lang=${lang}`);
       const json = res.data;
       if (res.status === 200) setItems(json.data || []);
     } finally {
@@ -41,7 +43,7 @@ export function useGallery() {
     setSubmitting(true);
     setError(null);
     try {
-      const res = await axios.post("/api/gallery", fd, {
+      const res = await axios.post(`/api/gallery?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error("Failed to add item");
@@ -64,7 +66,7 @@ export function useGallery() {
     setSubmitting(true);
     setError(null);
     try {
-      const res = await axios.put("/api/gallery", fd, {
+      const res = await axios.put(`/api/gallery?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error("Failed to update");
@@ -80,7 +82,7 @@ export function useGallery() {
 
   const deleteItem = async (id: number) => {
     try {
-      const res = await axios.delete("/api/gallery", { data: { id } });
+      const res = await axios.delete(`/api/gallery?lang=${lang}`, { data: { id } });
       if (res.status !== 200) throw new Error("Delete failed");
       setSuccess("Gallery item deleted");
       fetchItems();

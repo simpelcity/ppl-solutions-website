@@ -1,12 +1,13 @@
 import { supabaseAdmin } from "@/supabaseAdmin/";
 import { NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
-import type { Dictionary } from "@/app/i18n";
+import { getDictionary } from "@/app/i18n";
 
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const lang = url.searchParams.get("lang") || "en";
+    const dict = await getDictionary(lang);
 
     const { data: items, error } = await supabaseAdmin
       .from("department_team_member")

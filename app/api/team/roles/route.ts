@@ -1,9 +1,14 @@
 import { supabaseAdmin } from "@/supabaseAdmin/";
 import { NextResponse } from "next/server";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
-export async function GET(req: Request) {
+export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(req.url);
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const { searchParams } = new URL(request.url);
     const memberId = searchParams.get("memberId");
 
     if (!memberId) {
@@ -29,9 +34,12 @@ export async function GET(req: Request) {
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const body = await req.json();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const body = await request.json();
     const { team_member_id, department_id, role_id } = body;
 
     if (!team_member_id || !department_id || !role_id) {
@@ -51,9 +59,12 @@ export async function POST(req: Request) {
   }
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(request: Request) {
   try {
-    const body = await req.json();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const body = await request.json();
     const { team_member_id, department_id, role_id } = body;
 
     if (!team_member_id || !department_id || !role_id) {
