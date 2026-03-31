@@ -6,10 +6,8 @@ import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 export async function GET(request: Request) {
   try {
-    const url = new URL(request.url);
-    const lang = url.searchParams.get("lang") || "en";
-    const dict = await getDictionary(lang);
     const langRequest = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
 
     const { data: items, error } = await supabaseAdmin
       .from("department_team_member")
