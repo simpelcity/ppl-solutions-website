@@ -19,8 +19,8 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <AuthProvider>
-      <SidebarProvider dict={dict} lang={lang}>
-        <LayoutClient dict={dict} lang={lang}>
+      <SidebarProvider dict={dict} lang={lang as Locale}>
+        <LayoutClient dict={dict} lang={lang as Locale}>
           {children}
         </LayoutClient>
       </SidebarProvider>
