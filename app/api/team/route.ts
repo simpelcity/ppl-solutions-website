@@ -62,7 +62,7 @@ export async function GET(request: Request) {
       }),
     );
 
-    return NextResponse.json(itemsWithUrls), { status: 200 };
+    return NextResponse.json(itemsWithUrls, { status: 200 });
   } catch (err: any) {
     console.error("error:", err);
     return errorHandler({ error: err.message }, request);
