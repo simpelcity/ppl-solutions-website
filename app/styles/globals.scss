@@ -1,7 +1,8 @@
-@import "./variables.scss";
-@import "./buttons.scss";
-@import "./icons.scss";
-@import "./animations.scss";
+@use "variables" as *;
+@use "buttons";
+@use "icons";
+@use "animations";
+// @import "bootstrap/scss/bootstrap";
 
 body {
   font-family: "Nunito" !important;
@@ -45,4 +46,8 @@ main {
 
 .main > section {
   min-height: calc(100vh - 76px);
+}
+
+.text-gray {
+  color: gray;
 }

@@ -31,22 +31,27 @@ export async function errorHandler(
   let responseMessage: string;
   let errorName: string;
 
-  if (error instanceof Error) {
+  if (error && typeof error === "object" && ("serverError" in error || "error" in error)) {
+    // error: message for user, serverError: for server log
+    const errorObj = error as Record<string, unknown>;
+    responseMessage = errorObj.error ? String(errorObj.error) : "An unexpected error occurred.";
+    logMessage = errorObj.serverError
+      ? `${errorObj.serverError}`
+      : errorObj.error
+        ? `${errorObj.error}`
+        : JSON.stringify(error);
+    errorName = statusToErrorName[statusCode] || (errorObj.name ? String(errorObj.name) : "Error");
+  } else if (error instanceof Error) {
+    responseMessage = "An unexpected error occurred.";
     logMessage = `${error.name}: ${error.message}`;
-    responseMessage = error.message;
     errorName = statusToErrorName[statusCode] || error.name;
   } else if (typeof error === "string") {
+    responseMessage = "An unexpected error occurred.";
     logMessage = error;
-    responseMessage = error;
     errorName = statusToErrorName[statusCode] || "Error";
-  } else if (error && typeof error === "object") {
-    const errorObj = error as Record<string, unknown>;
-    logMessage = JSON.stringify(error, null, 2);
-    responseMessage = errorObj.error ? String(errorObj.error) : JSON.stringify(error);
-    errorName = statusToErrorName[statusCode] || (errorObj.name ? String(errorObj.name) : "Error");
   } else {
+    responseMessage = "An unexpected error occurred.";
     logMessage = String(error);
-    responseMessage = String(error);
     errorName = statusToErrorName[statusCode] || "Error";
   }
 
@@ -73,7 +78,6 @@ Method: ${request?.method ?? "UNKNOWN"}
 Status: ${statusCode}
 Error: ${errorName}
 Message: ${logMessage}
-Locale: ${locale}
 -----------------------------
 `;
 
@@ -94,7 +98,6 @@ Locale: ${locale}
       status: statusCode,
       error: translatedErrorName,
       message: responseMessage,
-      lang: locale,
       // logMessage: logMessage,
     },
     { status: statusCode },

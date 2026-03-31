@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { useLang } from '@/hooks/useLang'
+import axios from "axios";
+import type { Dictionary } from "@/app/i18n";
 
 export interface Event {
   [key: string]: any;
 }
 
-export function useEvents() {
+export function useEvents(dict: Dictionary) {
   const lang = useLang();
   const [events, setEvents] = useState<Event[] | null>(null);
   const [loading, setLoading] = useState(true);
@@ -18,14 +20,15 @@ export function useEvents() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`/api/events?lang=${lang}`);
-        console.log(response)
-        if (!response.ok) throw new Error(`Failed to fetch events: ${response.status}`);
-        const data = await response.json();
-        setEvents(Object.values(data.response));
+        const res = await axios.get(`/api/events?lang=${lang}`);
+        if (res.status !== 200) throw new Error(dict.events.errors.FAILED_TO_FETCH_EVENTS, { cause: res.status });
+        const data = res.data;
+        console.log(data)
+        setEvents(data.response);
       } catch (err: any) {
-        setError(err.message || "Unknown error");
-        setEvents(null);
+        const message = err?.response?.data?.message || err?.message || dict.events.errors.FAILED_TO_FETCH_EVENTS;
+        setError(message);
+        throw new Error(message);
       } finally {
         setLoading(false);
       }

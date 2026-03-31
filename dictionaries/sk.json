@@ -108,6 +108,7 @@
       "description": "Nájdi tu všetky naše nadchádzajúce udalosti a pridaj sa k nám za nezabudnuteľným truckingovým zážitkom!"
     },
     "title": "udalosti",
+    "loading": "Načítávání událostí...",
     "card": {
       "date": "Dátum",
       "meetupTime": "Čas stretnutia",
@@ -150,7 +151,8 @@
       "FAILED_TO_DELETE_MEMBER": "Nepodarilo sa odstrániť člena tímu",
       "FAILED_TO_DELETE_PROFILE_PICTURE": "Nepodarilo sa odstrániť profilový obrázok",
       "FAILED_TO_ADD_ROLE": "Nepodarilo sa pridať rolu",
-      "FAILED_TO_REMOVE_ROLE": "Nepodarilo sa odstrániť rolu"
+      "FAILED_TO_REMOVE_ROLE": "Nepodarilo sa odstrániť rolu",
+      "FAILED_TO_FETCH_TEAM": "Nepodarilo sa načítať tím"
     },
     "success": {
       "MEMBER_ADDED": "Člen tímu bol úspešne pridaný!",
@@ -167,6 +169,7 @@
       "description": "Prehliadaj našu galériu s najlepšími momentmi a kamiónmi z PPL Solutions."
     },
     "title": "galéria",
+    "loading": "Načítavanie galerie...",
     "errors": {
     "ERROR_LOADING": "Chyba pri načítavaní galérie:",
     "NO_IMAGES_FOUND": "Neboli nájdené žiadne obrázky.",

@@ -108,6 +108,7 @@
       "description": "Najdeš zde všechny naše nadcházející události a můžeš se k nám připojit pro nezapomenutelný truckingový zážitek!"
     },
     "title": "události",
+    "loading": "Načítání událostí...",
     "card": {
       "date": "Datum",
       "meetupTime": "Čas srazu",
@@ -150,7 +151,8 @@
       "FAILED_TO_DELETE_MEMBER": "Nepodařilo se odstranit člena týmu",
       "FAILED_TO_DELETE_PROFILE_PICTURE": "Nepodařilo se odstranit profilový obrázek",
       "FAILED_TO_ADD_ROLE": "Nepodařilo se přidat roli",
-      "FAILED_TO_REMOVE_ROLE": "Nepodařilo se odebrat roli"
+      "FAILED_TO_REMOVE_ROLE": "Nepodařilo se odebrat roli",
+      "FAILED_TO_FETCH_TEAM": "Nepodařilo se načíst tým"
     },
     "success": {
       "MEMBER_ADDED": "Člen týmu byl úspěšně přidán!",
@@ -167,6 +169,7 @@
       "description": "Prohlédni si galerii s nejlepšími momenty a kamiony z PPL Solutions."
     },
     "title": "galerie",
+    "loading": "Načítání galerie...",
     "errors": {
     "ERROR_LOADING": "Chyba při načítání galerie:",
     "NO_IMAGES_FOUND": "Nebyly nalezeny žádné obrázky.",

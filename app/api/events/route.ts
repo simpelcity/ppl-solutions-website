@@ -18,7 +18,10 @@ export async function GET(request: Request) {
     const data = res.data;
     return NextResponse.json(data);
   } catch (err: any) {
-    console.error(err);
-    return errorHandler(err, request);
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.events.errors.FAILED_TO_FETCH_EVENTS;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

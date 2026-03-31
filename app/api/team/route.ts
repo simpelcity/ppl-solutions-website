@@ -2,12 +2,14 @@ import { supabaseAdmin } from "@/supabaseAdmin/";
 import { NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const lang = url.searchParams.get("lang") || "en";
     const dict = await getDictionary(lang);
+    const langRequest = getLocaleFromRequest(request);
 
     const { data: items, error } = await supabaseAdmin
       .from("department_team_member")
@@ -20,7 +22,11 @@ export async function GET(request: Request) {
       )
       .order("department_id", { ascending: true });
 
-    if (error) throw error;
+
+      if (error) {
+      return errorHandler({ error: error }, request, langRequest, 500);
+      // throw new Error(error.message, { cause: error });
+    }
 
     const translatedItems = (items || []).map((item: any) => {
       const dept = item.department || {};

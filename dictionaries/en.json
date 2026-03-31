@@ -108,6 +108,7 @@
       "description": "Find all our upcoming events here and join us for an unforgettable trucking experience!"
     },
     "title": "events",
+    "loading": "Loading events...",
     "card": {
       "date": "Date",
       "meetupTime": "Meetup Time",
@@ -150,7 +151,8 @@
       "FAILED_TO_DELETE_MEMBER": "Failed to delete team member",
       "FAILED_TO_DELETE_PROFILE_PICTURE": "Failed to delete profile picture",
       "FAILED_TO_ADD_ROLE": "Failed to add role",
-      "FAILED_TO_REMOVE_ROLE": "Failed to remove role"
+      "FAILED_TO_REMOVE_ROLE": "Failed to remove role",
+      "FAILED_TO_FETCH_TEAM": "Failed to fetch team"
     },
     "success": {
       "MEMBER_ADDED": "Team member added successfully!",
@@ -167,6 +169,7 @@
       "description": "Browse through our gallery showcasing the best moments and trucks from PPL Solutions."
     },
     "title": "gallery",
+    "loading": "Loading gallery...",
     "errors": {
       "ERROR_LOADING": "Error loading gallery:",
       "NO_IMAGES_FOUND": "No images found.",

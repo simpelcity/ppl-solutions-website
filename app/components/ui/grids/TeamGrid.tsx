@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { Row, Col, Card, Image, Spinner } from "react-bootstrap"
 import { type Locale } from "@/i18n"
 import type { Dictionary } from "@/app/i18n"
+import { LoaderSpinner } from '@/components'
+import axios from "axios";
 
 type Role = { id: number; name: string; code: string }
 type TeamMember = { id: number; name: string; profile_url?: string | null; profile_path?: string | null }
@@ -30,15 +32,20 @@ export default function TeamGrid({ lang, dict }: PageProps) {
     let mounted = true
     const fetchData = async () => {
       try {
-        const res = await fetch(`/api/team?lang=${lang}`)
-        if (!res.ok) throw new Error(`API error ${res.status}`)
-        const json = await res.json()
+        const res = await axios.get(`/api/team?lang=${lang}`)
+        console.log(res)
+        if (res.status !== 200) throw new Error(dict.team.errors.FAILED_TO_FETCH_TEAM, { cause: res.status })
+        // if (!res.ok) throw new Error(`API error ${res.status}`)
+        // const json = await res.json()
+        const data = res.data
         if (!mounted) return
-        setItems(json.data ?? [])
+        setItems(data ?? [])
       } catch (err: any) {
         console.error("Failed to fetch team data", err)
+        console.log(err?.response)
         if (!mounted) return
         setError(err.message || String(err))
+        throw new Error(err.message || dict.team.errors.FAILED_TO_FETCH_TEAM, { cause: err })
       } finally {
         if (mounted) setLoading(false)
       }
@@ -52,14 +59,12 @@ export default function TeamGrid({ lang, dict }: PageProps) {
 
   if (loading) {
     return (
-      <div className="text-center text-light p-3 d-flex align-items-center column-gap-2">
-        <Spinner animation="border" /> {dict.team.loading}
-      </div>
+      <LoaderSpinner dict={dict}>{dict.team.loading}</LoaderSpinner>
     )
   }
 
   if (error) {
-    return <div className="text-danger">{dict.team.errors.error} {error}</div>
+    return <div className="text-danger">{dict.team.errors.ERROR_LOADING} {error}</div>
   }
 
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}
@@ -76,7 +81,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
     <>
       {departments.map((dept, idx) => (
         <Row key={idx} className="w-100 d-flex justify-content-center row-gap-4">
-          {departments.length === 0 && <Col>{dict.team.errors.noDepts}</Col>}
+          {departments.length === 0 && <Col>{dict.team.errors.NO_DEPTS_OR_MEMBERS_FOUND}</Col>}
 
           <h2 className="text-primary my-4">{dept.name}</h2>
           <Row className="d-flex justify-content-center row-gap-4">

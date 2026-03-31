@@ -8,11 +8,8 @@ import { FiMapPin } from "react-icons/fi";
 import { LuGamepad2 } from "react-icons/lu";
 import { BsHddStack } from "react-icons/bs";
 import { BsDownload } from "react-icons/bs";
-import { DivEvents, BSButton } from "@/components";
+import { DivEvents, BSButton, LoaderSpinner } from "@/components";
 import type { Dictionary } from "@/app/i18n"
-
-// import { getDictionary } from "@/app/i18n"
-import { type Locale } from "@/i18n"
 import { useEvents } from "@/hooks/useEvents";
 
 
@@ -21,38 +18,41 @@ type PageProps = {
 }
 
 export default function CardEvents({ dict }: PageProps) {
-  const { events, loading, error } = useEvents();
+  const { events, loading, error } = useEvents(dict);
+  console.log(events, loading, error)
 
   if (loading) {
-    return <div className="text-center text-light my-5">Loading...</div>;
+    return (
+      <LoaderSpinner dict={dict}>{dict.events.loading}</LoaderSpinner>
+    );
   }
 
   if (error) {
     return (
-      <div className="text-center text-light my-5">
-        <div className="text-danger fw-bold">{error}</div>
+      <div className="text-center text-light">
+        <div className="text-danger fw-bold fs-4">{error}</div>
       </div>
     );
   }
 
-  if (!events || events.length === 0) {
+  if (events?.length === 0) {
     return (
-      <div className="text-center text-light my-5">
-        <h2>
-          {dict.events.error.noEvents} <BsCalendar3 />
-        </h2>
+      <div className="text-center text-light">
+        <div className="fw-bold fs-4 d-flex justify-content-center align-items-center column-gap-2">{dict.events.errors.NO_EVENTS} <BsCalendar3 /></div>
       </div>
     );
   }
+
+  if (!events) return null;
 
   const formatDate = (dateString: Date) => {
-    if (!dateString) return `${dict.events.error.na}`;
+    if (!dateString) return `${dict.events.errors.NA}`;
     const date = new Date(dateString);
     return date.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
   };
 
   const formatTime = (dateString: Date) => {
-    if (!dateString) return `${dict.events.error.na}`;
+    if (!dateString) return `${dict.events.errors.NA}`;
     const date = new Date(dateString);
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
@@ -60,7 +60,7 @@ export default function CardEvents({ dict }: PageProps) {
   };
 
   const dlcs = (dlcObject: object) => {
-    if (!dlcObject) return `${dict.events.error.noDLC}`;
+    if (!dlcObject) return `${dict.events.errors.NO_DLC}`;
     const arr = Object.values(dlcObject);
     return arr;
   }
@@ -115,25 +115,25 @@ export default function CardEvents({ dict }: PageProps) {
                 <DivEvents>
                   <div className="d-flex align-items-center gap-1">
                     <LuTruck /><strong>{dict.events.card.departureLocation}: </strong>
-                    {event.departure?.city ?? `${dict.events.error.na}`}
+                    {event.departure?.city ?? `${dict.events.errors.NA}`}
                   </div>
                   <div className="d-flex align-items-center gap-1">
                     <FiMapPin /><strong>{dict.events.card.destinationLocation}: </strong>
-                    {event.arrive?.city ?? `${dict.events.error.na}`}
+                    {event.arrive?.city ?? `${dict.events.errors.NA}`}
                   </div>
                 </DivEvents>
                 <DivEvents>
                   <div className="d-flex align-items-center gap-1">
                     <LuGamepad2 /><strong>{dict.events.card.game}: </strong>
-                    {event.game ?? `${dict.events.error.na}`}
+                    {event.game ?? `${dict.events.errors.NA}`}
                   </div>
                   <div className="d-flex align-items-center gap-1">
                     <BsHddStack /><strong>{dict.events.card.server}: </strong>
-                    {event.server?.name ?? `${dict.events.error.noServer}`}
+                    {event.server?.name ?? `${dict.events.errors.NO_SERVER}`}
                   </div>
                   <div className="d-flex align-items-center column-gap-1">
                     <BsDownload /><strong>{dict.events.card.dlc}: </strong>
-                    {dlcs(event.dlcs).length > 0 ? dlcs(event.dlcs)[0] : `${dict.events.error.noDLC}`}
+                    {dlcs(event.dlcs).length > 0 ? dlcs(event.dlcs)[0] : `${dict.events.errors.NO_DLC}`}
                     {dlcs(event.dlcs).length > 2 ? dlcDiv(event.dlcs) : null}
                   </div>
                 </DivEvents>

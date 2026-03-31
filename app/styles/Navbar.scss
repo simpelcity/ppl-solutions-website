@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "variables" as *;
 
 #main-navbar > .navbar-nav > .active {
   border-bottom: solid 2px $primary !important;

@@ -108,6 +108,7 @@
       "description": "Bekijk hier al onze aankomende evenementen en beleef samen met ons een onvergetelijke truckervaring!"
     },
     "title": "evenementen",
+    "loading": "Evenementen laden...",
     "card": {
       "date": "Datum",
       "meetupTime": "Ontmoetingstijd",
@@ -150,7 +151,8 @@
       "FAILED_TO_DELETE_MEMBER": "Kon teamlid niet verwijderen",
       "FAILED_TO_DELETE_PROFILE_PICTURE": "Kon profielfoto niet verwijderen",
       "FAILED_TO_ADD_ROLE": "Kon rol niet toevoegen",
-      "FAILED_TO_REMOVE_ROLE": "Kon rol niet verwijderen"
+      "FAILED_TO_REMOVE_ROLE": "Kon rol niet verwijderen",
+      "FAILED_TO_FETCH_TEAM": "Team ophalen mislukt"
     },
     "success": {
       "MEMBER_ADDED": "Teamlid succesvol toegevoegd!",
@@ -167,6 +169,7 @@
       "description": "Blader door onze galerij met de mooiste momenten en vrachtwagens van PPL Solutions."
     },
     "title": "galerij",
+    "loading": "Galerij laden...",
     "errors": {
       "ERROR_LOADING": "Fout bij het laden van de galerij:",
       "NO_IMAGES_FOUND": "Geen afbeeldingen gevonden.",

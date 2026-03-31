@@ -29,7 +29,7 @@ export default function UserStats({ dict }: Props) {
   }
 
   if (loading) return <LoaderSpinner dict={dict} />
-  if (error) return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.GENERAL_ERROR}: {error}</div>
+  if (error) return <div className="d-flex align-items-center text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
   if (!stats) return null;
 
   return (
