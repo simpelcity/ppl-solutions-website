@@ -1,6 +1,7 @@
 import { AuthProvider, SidebarProvider } from "@/lib"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { i18n } from "@/i18n"
 import LayoutClient from "../[lang]/LayoutClient"
 
 type Props = {
