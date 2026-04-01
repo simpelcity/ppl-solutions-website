@@ -9,11 +9,10 @@ import { useAuth } from "@/lib";
 
 type Props = {
   params: Promise<{ userId: string }>
-  lang: Locale;
   dict: Dictionary;
 }
 
-export default function CardProfileSettingsForm({ params, lang, dict }: Props) {
+export default function CardProfileSettingsForm({ params, dict }: Props) {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -46,7 +45,7 @@ export default function CardProfileSettingsForm({ params, lang, dict }: Props) {
     updateProfile,
     createProfile,
     fetchedProfile,
-  } = useProfile({ userId: userId ?? "", lang, dict });
+  } = useProfile({ userId: userId ?? "", dict });
 
   // adminLog("Fetched profile data:", fetchedProfile)
 

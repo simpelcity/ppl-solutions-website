@@ -593,5 +593,13 @@
     "GENERAL_ERROR": "Chyba",
     "UNEXPECTED": "Vyskytla sa neočakávaná chyba",
     "SERVER_ERROR": "Chyba servera"
+  },
+  "unavailable": {
+    "title": "Táto funkcia je dočasne nedostupná.",
+    "body": "Na našej strane sa niečo pokazilo, skúste to prosím neskôr znova.",
+    "buttons": {
+      "back": "vrátiť sa",
+      "contact": "Kontaktujte nás"
+    }
   }
 }

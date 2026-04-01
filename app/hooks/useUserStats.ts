@@ -94,9 +94,9 @@ export function useUserStats(dict: Dictionary) {
 
   const fetchMembers = async () => {
     const res = await axios.get(`/api/members?lang=${lang}`);
-    if (res.status !== 200) throw new Error(dict.drivershub.userStats.errors.FAILED_TO_FETCH_MEMBERS);
+    if (res.status !== 200) throw new Error(dict.drivershub.userStats.errors.FAILED_TO_FETCH_MEMBERS, { cause: res.status });
     const data = res.data;
-    return data?.data || data || [];
+    return data.data || data || [];
   };
 
   const ensureSteamID = async (): Promise<string> => {
@@ -104,7 +104,7 @@ export function useUserStats(dict: Dictionary) {
     const members = await fetchMembers();
     const driver = members.find((d: any) => d.username === driverUsername);
     const DRIVER_NOT_FOUND = dict?.drivershub.userStats.errors.DRIVER_NOT_FOUND.replace("{driver}", driverUsername);
-    if (!driver) throw new Error(DRIVER_NOT_FOUND);
+    if (!driver) throw new Error(DRIVER_NOT_FOUND, { cause: driver });
     setSteamID(driver.steamID);
     return driver.steamID;
   };
@@ -113,7 +113,7 @@ export function useUserStats(dict: Dictionary) {
     const sid = await ensureSteamID();
     const res = await axios.post(`/api/scenarios?lang=${lang}`, { steamID: sid });
     const SCENARIOS_ERROR = dict.drivershub.userStats.errors.FAILED_TO_FETCH_SCENARIOS.replace("{driver}", driverUsername);
-    if (res.status !== 200) throw new Error(SCENARIOS_ERROR);
+    if (res.status !== 200) throw new Error(SCENARIOS_ERROR, { cause: res.status });
     return res.data;
   };
 
@@ -121,13 +121,12 @@ export function useUserStats(dict: Dictionary) {
     const sid = await ensureSteamID();
     try {
       const res = await axios.post(`/api/statistics/user?lang=${lang}`, { steamID: sid });
-      if (res.status !== 200) {
-        throw new Error(dict.drivershub.userStats.errors.FAILED_TO_FETCH_STATS);
-      }
-      return res.data?.data;
+      if (res.status !== 200) throw new Error(dict.drivershub.userStats.errors.FAILED_TO_FETCH_STATS, { cause: res.status });
+      const data = res.data;
+      return data.data;
     } catch (err: any) {
-      const message =
-          err?.response?.data?.message || err?.message || dict.drivershub.userStats.errors.FAILED_TO_FETCH_STATS;
+      const message = err?.response?.data?.message || err?.message || dict.drivershub.userStats.errors.FAILED_TO_FETCH_STATS;
+      setError(message);
       throw new Error(message);
     }
   };
@@ -140,9 +139,7 @@ export function useUserStats(dict: Dictionary) {
     };
   };
 
-  const kmToMiles = (km: number) => {
-    return km * 0.621371;
-  };
+  const kmToMiles = (km: number) => { return km * 0.621371 };
 
   const mostFrequent = (arr: string[]) => {
     const frequency: { [key: string]: number } = {};

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
+import { errorHandler } from "@/utils/errorHandler";
 
 export async function GET(request: NextRequest) {
   try {

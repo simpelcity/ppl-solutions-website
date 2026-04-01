@@ -41,12 +41,11 @@ export interface MemberRole {
 
 type Props = {
   userId: string;
-  lang: Locale;
   dict: Dictionary;
 };
 
-export function useProfile({ userId, lang, dict }: Props) {
-  // const lang = useLang();
+export function useProfile({ userId, dict }: Props) {
+  const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -74,147 +73,180 @@ export function useProfile({ userId, lang, dict }: Props) {
   const [memberRoles, setMemberRoles] = useState<MemberRole[]>([]);
   const [items, setItems] = useState<any[] | null>(null);
 
-  const fetchProfile = async () => {
+  async function fetchProfile() {
     setError(null);
     try {
       const res = await axios.get(`/api/profile-picture?id=${encodeURIComponent(userId)}&lang=${lang}`);
-      const json = await res.data;
-      if (res.status === 200) return json.profile;
-      else throw new Error(json.error || "Failed to fetch profile");
+      if (res.status !== 200) throw new Error("Failed to fetch profile", { cause: res.status });
+      const data = res.data;
+      return data.profile;
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
-      setProfile(null);
+      const message = err?.response?.data?.message || err?.message || "Failed to fetch profile";
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const fetchProfileById = async () => {
+  async function fetchProfileById() {
     setError(null);
     try {
-      const data = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}&lang=${lang}`);
-      const json = await data.data;
-      if (data.status === 200) return json.data;
+      const res = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}&lang=${lang}`);
+      if (res.status !== 200) throw new Error("Failed to fetch profile by ID", { cause: res.status });
+      const data = res.data;
+      return data.data;
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
-      setFetchedProfile(null);
+      const message = err?.response?.data?.message || err?.message || "Failed to fetch profile by ID";
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const fetchDrivers = async () => {
-    const res = await axios.get(`/api/members?lang=${lang}`);
-    if (res.status !== 200) throw new Error("Failed to fetch drivers");
-    const data = await res.data;
-    return data.data || data || [];
-  };
-
-  const getDriverData = async () => {
-    const drivers = await fetchDrivers();
-    const fetchedProfileData = await fetchProfileById();
-    if (fetchedProfileData) {
-      const driverUsername = fetchedProfileData.user.user_metadata.username || fetchedProfileData.user.email || "User";
-      const driver = drivers.find((d: any) => d.username === driverUsername);
-      return driver;
-    } else {
-      setError("Profile not found");
-      return null;
-    }
-  };
-
-  const ensureSteamID = async () => {
-    if (steamID) return steamID;
-    const driverData = await getDriverData();
-    if (!driverData) {
-      setSteamID(null);
-      setError("Driver not found");
-      throw new Error("Driver not found");
-    }
-    setSteamID(driverData.steamID);
-  };
-
-  const getCountryData = async (driver: any) => {
-    setError(null);
-    if (!driver) {
-      setCountryData(null);
-      setError("Driver not found");
-      return null;
-    } else if (!driver.country) {
-      setCountryData(null);
-      setError("Driver country not specified");
-      return null;
-    }
+  async function fetchDrivers() {
     try {
-      if (driver.country === "World") {
-        return {
-          flags: {
-            alt: `The flag of the World is composed of the first stage to the flower of life (seven joined white rings of the same radius, with the six outer rings drawn around the first ring spaced exactly one radian apart). And is placed on a dark blue background, which represents water, the essential of the planet's life, and the oceans, which cover most of the surface of Earth.`,
-            png: "/assets/images/flags/world.png",
-            svg: "/assets/images/flags/world.svg",
-          },
-        };
+      const res = await axios.get(`/api/members?lang=${lang}`);
+      if (res.status !== 200) throw new Error("Failed to fetch drivers", { cause: res.status });
+      const data = res.data;
+      return data.data || data || [];
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || "Failed to fetch drivers";
+      setError(message);
+      throw new Error(message);
+    }
+  };
+
+  async function getDriverData() {
+    try {
+      const drivers = await fetchDrivers();
+      const fetchedProfileData = await fetchProfileById();
+      if (fetchedProfileData) {
+        const driverUsername = fetchedProfileData.user.user_metadata.username || fetchedProfileData.user.email || "User";
+        const driver = drivers.find((d: any) => d.username === driverUsername);
+        return driver;
+      } else {
+        setError("Profile not found");
+        return null;
       }
-      const res = await axios.get(`https://restcountries.com/v3.1/name/${driver.country}`);
-      if (res.status !== 200) throw new Error("Failed to fetch country data");
-      const data = await res.data;
-      if (!data || data.length === 0) throw new Error("Country not found");
-      return data[0];
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
-      return null;
+      const message = err?.response?.data?.message || err?.message || "Failed to get driver data";
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const fetchTeam = async (memberId: number) => {
+  async function ensureSteamID() {
     try {
-      const res = await fetch(`/api/team?lang=${lang}`);
-      if (!res.ok) throw new Error(`API error ${res.status}`);
-      const json = await res.json();
-      const memberData = json.data.find((m: any) => m.team_member.id === memberId) || null;
-      setItems(json.data ?? []);
-      setMemberRoles([memberData]);
-      return json.data || [];
+      if (steamID) return steamID;
+      const driverData = await getDriverData();
+      if (!driverData) {
+        setSteamID(null);
+        setError("Driver not found");
+        throw new Error("Driver not found");
+      }
+      setSteamID(driverData.steamID);
+      return driverData.steamID;
     } catch (err: any) {
-      console.error("Failed to fetch team data", err);
-      setError(err.message || String(err));
+      const message = err?.response?.data?.message || err?.message || "Failed to ensure SteamID";
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const fetchMembers = async () => {
+  async function getCountryData(driver: any) {
+    try {
+      setError(null);
+      if (!driver) {
+        setCountryData(null);
+        setError("Driver not found");
+        return null;
+      } else if (!driver.country) {
+        setCountryData(null);
+        setError("Driver country not specified");
+        return null;
+      }
+      try {
+        if (driver.country === "World") {
+          return {
+            flags: {
+              alt: `The flag of the World is composed of the first stage to the flower of life (seven joined white rings of the same radius, with the six outer rings drawn around the first ring spaced exactly one radian apart). And is placed on a dark blue background, which represents water, the essential of the planet's life, and the oceans, which cover most of the surface of Earth.`,
+              png: "/assets/images/flags/world.png",
+              svg: "/assets/images/flags/world.svg",
+            },
+          };
+        }
+        const res = await axios.get(`https://restcountries.com/v3.1/name/${driver.country}`);
+        if (res.status !== 200) throw new Error("Failed to fetch country data", { cause: res.status });
+        const data = await res.data;
+        if (!data || data.length === 0) throw new Error("Country not found");
+        return data[0];
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message);
+        return null;
+      }
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || "Failed to fetch country data";
+      setError(message);
+      throw new Error(message);
+    }
+  };
+
+  async function fetchTeam(memberId: number) {
+    try {
+      const res = await axios.get(`/api/team?lang=${lang}`);
+      if (res.status !== 200) throw new Error(dict.team.errors.FAILED_TO_FETCH_TEAM, { cause: res.status });
+      const data = res.data;
+      const memberData = data.find((m: any) => m.team_member.id === memberId) || null;
+      setItems(data ?? []);
+      setMemberRoles([memberData]);
+      return data || [];
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || dict.team.errors.FAILED_TO_FETCH_TEAM;
+      setError(message);
+      throw new Error(message);
+    }
+  };
+
+  async function fetchMembers() {
     try {
       const res = await axios.get(`/api/team/members?lang=${lang}`);
-      const json = await res.data;
-      if (res.status === 200) setMembers(json.data || []);
-      return json.data || [];
+      if (res.status !== 200) throw new Error(dict.drivershub.userStats.errors.FAILED_TO_FETCH_MEMBERS, { cause: res.status });
+      const data = res.data;
+      setMembers(data.data || []);
+      return data.data || [];
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      const message = err?.response?.data?.message || err?.message || dict.drivershub.userStats.errors.FAILED_TO_FETCH_MEMBERS;
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const fetchDepartments = async () => {
+  async function fetchDepartments() {
     try {
       const res = await axios.get(`/api/departments?lang=${lang}`);
-      const json = await res.data;
-      if (res.status == 200) setDepartments(json.data || []);
+      if (res.status !== 200) throw new Error("Failed to fetch departments", { cause: res.status });
+      const data = res.data;
+      setDepartments(data.data || []);
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      const message = err?.response?.data?.message || err?.message || "Failed to fetch departments";
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const fetchRoles = async () => {
+  async function fetchRoles() {
     try {
       const res = await axios.get(`/api/roles?lang=${lang}`);
-      const json = await res.data;
-      if (res.status === 200) setRoles(json.data || []);
+      if (res.status !== 200) throw new Error("Failed to fetch roles", { cause: res.status });
+      const data = res.data;
+      setRoles(data.data || []);
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      const message = err?.response?.data?.message || err?.message || "Failed to fetch roles";
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const getMemberId = async () => {
+  async function getMemberId() {
     try {
       const members = await fetchMembers();
       const fetchedProfileRes = await fetchProfileById();
@@ -230,12 +262,13 @@ export function useProfile({ userId, lang, dict }: Props) {
         return null;
       }
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      const message = err?.response?.data?.message || err?.message || "Failed to get member ID";
+      setError(message);
+      throw new Error(message);
     }
   };
 
-  const updateProfile = async (displayName: string, file?: File | null) => {
+  async function updateProfile(displayName: string, file?: File | null) {
     setSubmitting(true);
     setError(null);
     setSuccess(null);
@@ -249,7 +282,7 @@ export function useProfile({ userId, lang, dict }: Props) {
         const res = await axios.put(`/api/profile-picture?lang=${lang}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-        if (res.status !== 200) throw new Error("Failed to update profile");
+        if (res.status !== 200) throw new Error("Failed to update profile", { cause: res.status });
         setSuccess("Profile updated successfully");
         fetchProfile();
         fetchProfileById();
@@ -261,23 +294,25 @@ export function useProfile({ userId, lang, dict }: Props) {
         const res = await axios.put(`/api/profile?lang=${lang}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-        if (res.status !== 200) throw new Error("Failed to update profile");
+        if (res.status !== 200) throw new Error("Failed to update profile", { cause: res.status });
         setSuccess("Profile updated successfully");
         fetchProfile();
         fetchProfileById();
       }
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      const message = err?.response?.data?.message || err?.message || "Failed to update profile";
+      setError(message);
+      throw new Error(message);
     } finally {
       setSubmitting(false);
     }
   };
 
-  const createProfile = async (file?: File | null) => {
+  async function createProfile(file?: File | null) {
     setSubmitting(true);
     setError(null);
     setSuccess(null);
+
     try {
       const fd = new FormData();
       fd.append("userId", userId);
@@ -285,12 +320,13 @@ export function useProfile({ userId, lang, dict }: Props) {
       const res = await axios.post(`/api/profile-picture?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (res.status !== 200) throw new Error(res.data?.error || "Failed to create profile");
+      if (res.status !== 200) throw new Error("Failed to create profile", { cause: res.status });
       setSuccess("Profile created successfully");
       fetchProfile();
     } catch (err: any) {
-      console.error(err);
-      setError(err.message);
+      const message = err?.response?.data?.message || err?.message || "Failed to create profile";
+      setError(message);
+      throw new Error(message);
     } finally {
       setSubmitting(false);
     }
@@ -301,7 +337,7 @@ export function useProfile({ userId, lang, dict }: Props) {
       return;
     }
 
-    const init = async () => {
+    async function init() {
       if (isAdmin) adminLog("Init started for ID:", userId);
       setLoading(true);
       setError(null);
@@ -319,11 +355,11 @@ export function useProfile({ userId, lang, dict }: Props) {
         await fetchDepartments();
         await fetchRoles();
         const id = await getMemberId();
-        // await fetchMemberRoles(id);
         await fetchTeam(id);
       } catch (err: any) {
-        console.error(err);
-        setError(err.message);
+        const message = err?.response?.data?.message || err?.message || dict.errors.UNEXPECTED;
+        setError(message);
+        throw new Error(message);
       } finally {
         setLoading(false);
       }

@@ -1,5600 +1,5 @@
 
-[20-Mar-2026:15:20:30 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:21:38 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:22:05 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:22:40 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:23:42 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:23:46 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:23:47 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:23:51 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:24:37 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:24:42 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "Invalid JSON body"
-}
------------------------------
-
-[20-Mar-2026:15:24:49 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:24:54 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:24:55 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:24:55 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:26:27 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:26:27 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:26:27 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:27:27 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:31:06 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:31:06 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:31:24 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:31:24 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:31:24 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:34:56 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:34:56 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:36:47 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:36:48 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:39:16 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:39:16 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:39:16 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:39:58 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:39:58 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:42:16 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:42:16 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:44:13 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[20-Mar-2026:15:44:13 +0100]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: Bad Request
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:20:06:01 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:06:15 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:06:32 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:06:55 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:07:05 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:07:30 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:07:52 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:08:02 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:08:02 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:08:24 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:10:02 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:10:20 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:10:37 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:11:42 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:21:40 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:21:40 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:22:14 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:22:14 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:22:46 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:22:46 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:23:25 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:23:25 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:24:04 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:24:04 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:24:41 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:25:02 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:25:44 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:26:28 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:26:36 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:27:16 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:29:24 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:31:00 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 400
-Error: Bad Request
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:31:28 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 400
-Error: Bad Request
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:31:49 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 400
-Error: Bad Request
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:32:13 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:32:37 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "error"
-}
------------------------------
-
-[30-Mar-2026:20:32:46 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:33:29 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:34:06 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "Failed to fetch jobs"
-}
------------------------------
-
-[30-Mar-2026:20:34:20 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:34:56 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:34:57 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:34:58 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:34:58 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:34:59 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:34:59 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:35:00 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:35:00 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:35:41 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: SyntaxError: Unexpected end of JSON input
------------------------------
-
-[30-Mar-2026:20:36:36 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:36:48 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:36:48 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:36:49 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:36:52 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:36:52 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:36:52 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:36:53 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:37:04 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:37:05 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:37:16 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:20:37:20 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:39:40 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:39:41 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:41:34 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:41:54 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:42:38 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: AxiosError
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:43:19 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:43:46 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:44:00 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:44:11 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:44:33 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:44:35 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:44:35 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:46:24 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:46:24 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:46:44 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:48:43 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:48:53 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "error"
-}
------------------------------
-
-[30-Mar-2026:20:49:03 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:50:41 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 404
-Error: Not Found
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:51:05 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:53:22 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:54:06 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:54:23 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:54:24 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:54:40 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:54:48 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:55:03 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:55:08 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:55:18 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:56:12 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:56:12 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:20:56:24 +0200]
-URL: http://localhost:8000/api/events
-Method: GET
-Status: 500
-Error: Internal Server Error
-Message: AxiosError: Request failed with status code 404
------------------------------
-
-[30-Mar-2026:21:32:46 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:32:47 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:32:48 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:32:48 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:27 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:28 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:28 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:35 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:35 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:36 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:36 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:53 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:33:56 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:34:31 +0200]
-URL: NO URL
-Method: UNKNOWN
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'json')
------------------------------
-
-[30-Mar-2026:21:35:21 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:35:21 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:35:22 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:35:25 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:36:08 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'drivershub')
------------------------------
-
-[30-Mar-2026:21:36:16 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:36:35 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:36:35 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:36:35 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:36:45 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:36:46 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:37:44 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:37:45 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:37:45 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:38:41 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:38:42 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:39:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:39:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:39:29 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:39:30 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:39:40 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:39:40 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:01 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:02 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:02 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:19 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:19 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:31 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:31 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:55 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:40:55 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:41:11 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:41:11 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:42:15 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:42:15 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:42:15 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:43:01 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'drivershub')
------------------------------
-
-[30-Mar-2026:21:43:02 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: TypeError: Cannot read properties of undefined (reading 'drivershub')
------------------------------
-
-[30-Mar-2026:21:43:16 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:43:16 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:43:17 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:43:41 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:43:42 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {}
------------------------------
-
-[30-Mar-2026:21:44:31 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:44:32 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:45:07 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:45:07 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:45:08 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:45:08 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:45:58 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:45:59 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:45:59 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:46:19 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:46:20 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:47:42 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:47:42 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:48:28 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:48:28 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:50:18 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:50:19 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:51:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:51:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:51:23 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:51:23 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:51:24 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:51:24 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:55:31 +0200]
-URL: http://localhost:8000/api/jobs
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:55:32 +0200]
-URL: http://localhost:8000/api/jobs
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:55:32 +0200]
-URL: http://localhost:8000/api/jobs
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[30-Mar-2026:21:55:32 +0200]
-URL: http://localhost:8000/api/jobs
-Method: POST
-Status: 500
-Error: Internal Server Error
-Message: {
-  "error": "steamID is required"
-}
------------------------------
-
-[31-Mar-2026:09:39:00 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:39:00 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:39:01 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:39:01 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:39:40 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: SyntaxError: Unexpected end of JSON input
-Locale: en
------------------------------
-
-[31-Mar-2026:09:39:44 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:45:17 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:45:23 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:47:03 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:47:04 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:50:10 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:50:14 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:50:18 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=ss
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:09:50:22 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:09:50:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:54:44 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:54:51 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "steamID is required"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:59:01 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:09:59:10 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:24:29 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:46:59 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:47:03 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:47:05 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:47:05 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:47:20 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:47:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:53:22 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:53:22 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:53:23 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:53:23 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:53:32 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:54:17 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:54:19 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:54:23 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:54:24 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:54:25 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:54:25 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:55:40 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:10:55:44 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 500
-Error: internalServerError
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:10:58:38 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:11:01:42 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:01:43 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:01:44 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:01:44 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:01:45 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:01:45 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:03:11 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:03:20 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:03:21 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:03:21 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:03:37 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:03:37 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:04:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:04:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:04:15 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:15 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:15 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:40 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:41 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:54 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:54 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:05:54 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:07:09 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:07:10 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:07:26 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:07:26 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:07:27 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:08:51 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:09:08 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:09:08 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:09:08 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:09:09 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:09:56 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:09:56 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:09:57 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:10:15 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:10:16 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:10:32 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:10:32 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:10:32 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:11:13 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:11:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:11:14 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:17:48 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:22:39 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:22:39 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:23:19 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:23:19 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:23:19 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:24:12 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:24:12 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:24:12 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:25:09 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:25:10 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:25:10 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:26:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:26:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:26:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:28:01 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:28:02 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:28:02 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:28:02 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:29:07 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:29:07 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:29:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:29:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:29:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:31:19 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:31:19 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:31:19 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:34:30 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:34:30 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:34:30 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:34:51 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:34:51 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:34:51 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:34:51 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:35:25 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:35:25 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:35:25 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:40:53 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:40:53 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:40:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:40:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:42:11 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:42:12 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:45:16 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:45:17 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:45:17 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:45:17 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:45:45 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:11:45:46 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=%22undefined%22
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:12:03:50 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:12:03:51 +0200]
-URL: http://localhost:8000/api/statistics/user
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:12:06:15 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:06:20 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:06:20 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:06:20 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:07:01 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:07:01 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:07:01 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "STEAM_ID_REQUIRED"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:07:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:07:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:12:53:09 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:13:05:44 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: badRequest
-Message: {
-  "error": "Een SteamID is vereist"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:21:21 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:21:21 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:21:33 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:14:21:33 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:14:21:33 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:14:21:49 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:14:26:02 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:14:26:29 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:14:26:29 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=cs
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: cs
------------------------------
-
-[31-Mar-2026:14:26:53 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:26:53 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:26:53 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:26:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=sk
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: sk
------------------------------
-
-[31-Mar-2026:14:26:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=sk
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: sk
------------------------------
-
-[31-Mar-2026:14:26:57 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=sk
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID je povinné"
-}
-Locale: sk
------------------------------
-
-[31-Mar-2026:14:26:58 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:26:59 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:26:59 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:28:35 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:28:35 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:30:05 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:30:05 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:30:45 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:30:45 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:30:50 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:30:51 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:30:51 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:31:46 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:31:46 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:31:46 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:32:37 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:32:38 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:45:21 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:45:21 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:46:55 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:46:55 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:46:55 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:47:01 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:47:01 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=en
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is required"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:14:47:14 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:47:14 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:47:14 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:47:26 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:52:43 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:52:43 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:52:43 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:53:08 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:55:25 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:55:25 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:14:55:25 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:33:13 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:33:13 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:33:14 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:34:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:34:57 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:34:57 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:35:37 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:35:38 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:35:38 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:36:58 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:36:58 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:36:58 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:37:19 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:37:25 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:37:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:37:56 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:38:09 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:38:09 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:38:10 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:38:10 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:39:20 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:39:21 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:39:21 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:39:21 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:39:53 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:15:39:54 +0200]
-URL: http://localhost:8000/api/statistics/user?lang=nl
-Method: POST
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "SteamID is verplicht"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:52:44 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:52:44 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:53:00 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:53:00 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:53:19 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:53:19 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:53:38 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:53:38 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:53:59 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: AxiosError: Request failed with status code 404
-Locale: en
------------------------------
-
-[31-Mar-2026:19:54:00 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: AxiosError: Request failed with status code 404
-Locale: en
------------------------------
-
-[31-Mar-2026:19:54:43 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: AxiosError: Request failed with status code 404
-Locale: en
------------------------------
-
-[31-Mar-2026:19:54:58 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:55:59 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: AxiosError: Request failed with status code 404
-Locale: en
------------------------------
-
-[31-Mar-2026:19:56:21 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Server error"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:19:56:48 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Server error"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:19:56:49 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Server error"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:19:57:08 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Server error"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:19:57:08 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Server error"
-}
-Locale: en
------------------------------
-
-[31-Mar-2026:19:58:16 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Server error"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:58:16 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Server error"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:58:18 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Server error"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:58:30 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": {
-    "message": "Request failed with status code 404",
-    "name": "AxiosError",
-    "stack": "AxiosError: Request failed with status code 404\n    at settle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:2030:16)\n    at Unzip.handleStreamEnd (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:3313:181)\n    at Unzip.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:4482:49)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GET (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__0vu2c~y._.js:314:21)\n    at async AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)\n    at async AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47861)\n    at async responseGenerator (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16452:38)\n    at async AppRouteRouteModule.handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:227216)\n    at async handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16515:32)\n    at async Module.handler (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16569:13)\n    at async DevServer.renderToResponseWithComponentsImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1454:9)\n    at async DevServer.renderPageComponent (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1506:24)\n    at async DevServer.renderToResponseImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1556:32)\n    at async DevServer.pipeImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1043:25)\n    at async NextNodeServer.handleCatchallRenderRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/next-server.js:338:17)\n    at async DevServer.handleRequestImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:934:17)\n    at async /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:394:20\n    at async Span.traceAsyncFn (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/trace/trace.js:164:20)\n    at async DevServer.handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:390:24)\n    at async invokeRender (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:253:21)\n    at async handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:452:24)\n    at async requestHandlerImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:501:13)\n    at async Server.requestListener (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/start-server.js:225:13)",
-    "config": {
-      "transitional": {
-        "silentJSONParsing": true,
-        "forcedJSONParsing": true,
-        "clarifyTimeoutError": false,
-        "legacyInterceptorReqResOrdering": true
-      },
-      "adapter": [
-        "xhr",
-        "http",
-        "fetch"
-      ],
-      "transformRequest": [
-        null
-      ],
-      "transformResponse": [
-        null
-      ],
-      "timeout": 0,
-      "xsrfCookieName": "XSRF-TOKEN",
-      "xsrfHeaderName": "X-XSRF-TOKEN",
-      "maxContentLength": -1,
-      "maxBodyLength": -1,
-      "env": {},
-      "headers": {
-        "Accept": "application/json, text/plain, */*",
-        "User-Agent": "axios/1.13.6",
-        "Accept-Encoding": "gzip, compress, deflate, br"
-      },
-      "method": "get",
-      "url": "https://api.truckersmp.com/v2/vtc/74455/events/attendingg",
-      "allowAbsoluteUrls": true
-    },
-    "code": "ERR_BAD_REQUEST",
-    "status": 404
-  }
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:58:57 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:59:08 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:59:08 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:59:37 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": {
-    "message": "Request failed with status code 404",
-    "name": "AxiosError",
-    "stack": "AxiosError: Request failed with status code 404\n    at settle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:2030:16)\n    at Unzip.handleStreamEnd (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:3313:181)\n    at Unzip.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:4482:49)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GET (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__0vu2c~y._.js:314:21)\n    at async AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)\n    at async AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47861)\n    at async responseGenerator (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16452:38)\n    at async AppRouteRouteModule.handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:227216)\n    at async handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16515:32)\n    at async Module.handler (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16569:13)\n    at async DevServer.renderToResponseWithComponentsImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1454:9)\n    at async DevServer.renderPageComponent (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1506:24)\n    at async DevServer.renderToResponseImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1556:32)\n    at async DevServer.pipeImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1043:25)\n    at async NextNodeServer.handleCatchallRenderRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/next-server.js:338:17)\n    at async DevServer.handleRequestImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:934:17)\n    at async /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:394:20\n    at async Span.traceAsyncFn (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/trace/trace.js:164:20)\n    at async DevServer.handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:390:24)\n    at async invokeRender (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:253:21)\n    at async handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:452:24)\n    at async requestHandlerImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:501:13)\n    at async Server.requestListener (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/start-server.js:225:13)",
-    "config": {
-      "transitional": {
-        "silentJSONParsing": true,
-        "forcedJSONParsing": true,
-        "clarifyTimeoutError": false,
-        "legacyInterceptorReqResOrdering": true
-      },
-      "adapter": [
-        "xhr",
-        "http",
-        "fetch"
-      ],
-      "transformRequest": [
-        null
-      ],
-      "transformResponse": [
-        null
-      ],
-      "timeout": 0,
-      "xsrfCookieName": "XSRF-TOKEN",
-      "xsrfHeaderName": "X-XSRF-TOKEN",
-      "maxContentLength": -1,
-      "maxBodyLength": -1,
-      "env": {},
-      "headers": {
-        "Accept": "application/json, text/plain, */*",
-        "User-Agent": "axios/1.13.6",
-        "Accept-Encoding": "gzip, compress, deflate, br"
-      },
-      "method": "get",
-      "url": "https://api.truckersmp.com/v2/vtc/74455/events/attendingg",
-      "allowAbsoluteUrls": true
-    },
-    "code": "ERR_BAD_REQUEST",
-    "status": 404
-  }
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:19:59:37 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": {
-    "message": "Request failed with status code 404",
-    "name": "AxiosError",
-    "stack": "AxiosError: Request failed with status code 404\n    at settle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:2030:16)\n    at Unzip.handleStreamEnd (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:3313:181)\n    at Unzip.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:4482:49)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GET (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__0vu2c~y._.js:314:21)\n    at async AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)\n    at async AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47861)\n    at async responseGenerator (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16452:38)\n    at async AppRouteRouteModule.handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:227216)\n    at async handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16515:32)\n    at async Module.handler (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16569:13)\n    at async DevServer.renderToResponseWithComponentsImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1454:9)\n    at async DevServer.renderPageComponent (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1506:24)\n    at async DevServer.renderToResponseImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1556:32)\n    at async DevServer.pipeImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1043:25)\n    at async NextNodeServer.handleCatchallRenderRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/next-server.js:338:17)\n    at async DevServer.handleRequestImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:934:17)\n    at async /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:394:20\n    at async Span.traceAsyncFn (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/trace/trace.js:164:20)\n    at async DevServer.handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:390:24)\n    at async invokeRender (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:253:21)\n    at async handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:452:24)\n    at async requestHandlerImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:501:13)\n    at async Server.requestListener (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/start-server.js:225:13)",
-    "config": {
-      "transitional": {
-        "silentJSONParsing": true,
-        "forcedJSONParsing": true,
-        "clarifyTimeoutError": false,
-        "legacyInterceptorReqResOrdering": true
-      },
-      "adapter": [
-        "xhr",
-        "http",
-        "fetch"
-      ],
-      "transformRequest": [
-        null
-      ],
-      "transformResponse": [
-        null
-      ],
-      "timeout": 0,
-      "xsrfCookieName": "XSRF-TOKEN",
-      "xsrfHeaderName": "X-XSRF-TOKEN",
-      "maxContentLength": -1,
-      "maxBodyLength": -1,
-      "env": {},
-      "headers": {
-        "Accept": "application/json, text/plain, */*",
-        "User-Agent": "axios/1.13.6",
-        "Accept-Encoding": "gzip, compress, deflate, br"
-      },
-      "method": "get",
-      "url": "https://api.truckersmp.com/v2/vtc/74455/events/attendingg",
-      "allowAbsoluteUrls": true
-    },
-    "code": "ERR_BAD_REQUEST",
-    "status": 404
-  }
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:01:18 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:01:18 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:01:52 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": true
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:01:52 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": true
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:02:14 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:02:15 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:02:28 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": true
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:02:28 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": true
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:03:16 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": true
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:03:18 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": true
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:03:32 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:03:32 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:04:12 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:04:12 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:04:45 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:04:46 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:04:52 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:05:02 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": {
-    "message": "Request failed with status code 404",
-    "name": "AxiosError",
-    "stack": "AxiosError: Request failed with status code 404\n    at settle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:2030:16)\n    at Unzip.handleStreamEnd (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:3313:181)\n    at Unzip.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:4482:49)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GET (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__0vu2c~y._.js:314:21)\n    at async AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)\n    at async AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47861)\n    at async responseGenerator (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16452:38)\n    at async AppRouteRouteModule.handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:227216)\n    at async handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16515:32)\n    at async Module.handler (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16569:13)\n    at async DevServer.renderToResponseWithComponentsImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1454:9)\n    at async DevServer.renderPageComponent (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1506:24)\n    at async DevServer.renderToResponseImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1556:32)\n    at async DevServer.pipeImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1043:25)\n    at async NextNodeServer.handleCatchallRenderRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/next-server.js:338:17)\n    at async DevServer.handleRequestImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:934:17)\n    at async /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:394:20\n    at async Span.traceAsyncFn (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/trace/trace.js:164:20)\n    at async DevServer.handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:390:24)\n    at async invokeRender (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:253:21)\n    at async handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:452:24)\n    at async requestHandlerImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:501:13)\n    at async Server.requestListener (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/start-server.js:225:13)",
-    "config": {
-      "transitional": {
-        "silentJSONParsing": true,
-        "forcedJSONParsing": true,
-        "clarifyTimeoutError": false,
-        "legacyInterceptorReqResOrdering": true
-      },
-      "adapter": [
-        "xhr",
-        "http",
-        "fetch"
-      ],
-      "transformRequest": [
-        null
-      ],
-      "transformResponse": [
-        null
-      ],
-      "timeout": 0,
-      "xsrfCookieName": "XSRF-TOKEN",
-      "xsrfHeaderName": "X-XSRF-TOKEN",
-      "maxContentLength": -1,
-      "maxBodyLength": -1,
-      "env": {},
-      "headers": {
-        "Accept": "application/json, text/plain, */*",
-        "User-Agent": "axios/1.13.6",
-        "Accept-Encoding": "gzip, compress, deflate, br"
-      },
-      "method": "get",
-      "url": "https://api.truckersmp.com/v2/vtc/74455/events/attendingg",
-      "allowAbsoluteUrls": true
-    },
-    "code": "ERR_BAD_REQUEST",
-    "status": 404
-  }
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:05:47 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": {
-    "message": "Request failed with status code 404",
-    "name": "AxiosError",
-    "stack": "AxiosError: Request failed with status code 404\n    at settle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:2030:16)\n    at Unzip.handleStreamEnd (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:3313:181)\n    at Unzip.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:4482:49)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GET (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__0vu2c~y._.js:314:21)\n    at async AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)\n    at async AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47861)\n    at async responseGenerator (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16452:38)\n    at async AppRouteRouteModule.handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:227216)\n    at async handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16515:32)\n    at async Module.handler (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16569:13)\n    at async DevServer.renderToResponseWithComponentsImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1454:9)\n    at async DevServer.renderPageComponent (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1506:24)\n    at async DevServer.renderToResponseImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1556:32)\n    at async DevServer.pipeImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1043:25)\n    at async NextNodeServer.handleCatchallRenderRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/next-server.js:338:17)\n    at async DevServer.handleRequestImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:934:17)\n    at async /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:394:20\n    at async Span.traceAsyncFn (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/trace/trace.js:164:20)\n    at async DevServer.handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:390:24)\n    at async invokeRender (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:253:21)\n    at async handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:452:24)\n    at async requestHandlerImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:501:13)\n    at async Server.requestListener (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/start-server.js:225:13)",
-    "config": {
-      "transitional": {
-        "silentJSONParsing": true,
-        "forcedJSONParsing": true,
-        "clarifyTimeoutError": false,
-        "legacyInterceptorReqResOrdering": true
-      },
-      "adapter": [
-        "xhr",
-        "http",
-        "fetch"
-      ],
-      "transformRequest": [
-        null
-      ],
-      "transformResponse": [
-        null
-      ],
-      "timeout": 0,
-      "xsrfCookieName": "XSRF-TOKEN",
-      "xsrfHeaderName": "X-XSRF-TOKEN",
-      "maxContentLength": -1,
-      "maxBodyLength": -1,
-      "env": {},
-      "headers": {
-        "Accept": "application/json, text/plain, */*",
-        "User-Agent": "axios/1.13.6",
-        "Accept-Encoding": "gzip, compress, deflate, br"
-      },
-      "method": "get",
-      "url": "https://api.truckersmp.com/v2/vtc/74455/events/attendingg",
-      "allowAbsoluteUrls": true
-    },
-    "code": "ERR_BAD_REQUEST",
-    "status": 404
-  }
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:05:47 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": {
-    "message": "Request failed with status code 404",
-    "name": "AxiosError",
-    "stack": "AxiosError: Request failed with status code 404\n    at settle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:2030:16)\n    at Unzip.handleStreamEnd (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:3313:181)\n    at Unzip.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_axios_lib_0pxa8ah._.js:4482:49)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GET (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__0vu2c~y._.js:314:21)\n    at async AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)\n    at async AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47861)\n    at async responseGenerator (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16452:38)\n    at async AppRouteRouteModule.handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:227216)\n    at async handleResponse (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16515:32)\n    at async Module.handler (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/node_modules_next_122eos1._.js:16569:13)\n    at async DevServer.renderToResponseWithComponentsImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1454:9)\n    at async DevServer.renderPageComponent (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1506:24)\n    at async DevServer.renderToResponseImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1556:32)\n    at async DevServer.pipeImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:1043:25)\n    at async NextNodeServer.handleCatchallRenderRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/next-server.js:338:17)\n    at async DevServer.handleRequestImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/base-server.js:934:17)\n    at async /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:394:20\n    at async Span.traceAsyncFn (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/trace/trace.js:164:20)\n    at async DevServer.handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/dev/next-dev-server.js:390:24)\n    at async invokeRender (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:253:21)\n    at async handleRequest (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:452:24)\n    at async requestHandlerImpl (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/router-server.js:501:13)\n    at async Server.requestListener (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/start-server.js:225:13)",
-    "config": {
-      "transitional": {
-        "silentJSONParsing": true,
-        "forcedJSONParsing": true,
-        "clarifyTimeoutError": false,
-        "legacyInterceptorReqResOrdering": true
-      },
-      "adapter": [
-        "xhr",
-        "http",
-        "fetch"
-      ],
-      "transformRequest": [
-        null
-      ],
-      "transformResponse": [
-        null
-      ],
-      "timeout": 0,
-      "xsrfCookieName": "XSRF-TOKEN",
-      "xsrfHeaderName": "X-XSRF-TOKEN",
-      "maxContentLength": -1,
-      "maxBodyLength": -1,
-      "env": {},
-      "headers": {
-        "Accept": "application/json, text/plain, */*",
-        "User-Agent": "axios/1.13.6",
-        "Accept-Encoding": "gzip, compress, deflate, br"
-      },
-      "method": "get",
-      "url": "https://api.truckersmp.com/v2/vtc/74455/events/attendingg",
-      "allowAbsoluteUrls": true
-    },
-    "code": "ERR_BAD_REQUEST",
-    "status": 404
-  }
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:05:58 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:05:58 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:06:13 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:06:13 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
-Locale: nl
------------------------------
-
-[31-Mar-2026:20:07:06 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:07:48 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 404
-Error: NOT_FOUND
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:07:48 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 404
-Error: NOT_FOUND
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:08:21 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
------------------------------
-
-[31-Mar-2026:20:08:21 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
------------------------------
-
-[31-Mar-2026:20:08:32 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:08:32 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
------------------------------
-
-[31-Mar-2026:20:08:33 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:08:33 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
------------------------------
-
-[31-Mar-2026:20:09:47 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:09:47 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:14:06 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:16:44 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:16:50 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:22:03 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:23:11 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: {
-  "error": "Het ophalen van evenementen is mislukt."
-}
------------------------------
-
-[31-Mar-2026:20:28:35 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: {
-  "error": "Request failed with status code 404"
-}
------------------------------
-
-[31-Mar-2026:20:36:50 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:38:17 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:42:07 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:44:39 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:44:39 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:45:35 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:45:51 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:46:02 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:46:12 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:46:12 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:46:24 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:46:48 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:46:48 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:47:11 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:47:11 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:47:23 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:47:23 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:47:38 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:47:38 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:47:44 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:47:54 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:48:04 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 200
-Error: Error
-Message: Het ophalen van evenementen is mislukt.
------------------------------
-
-[31-Mar-2026:20:48:27 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:48:27 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:48:52 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:49:00 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:49:00 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:49:38 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:49:38 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:49:48 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:49:48 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:50:03 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:50:03 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:50:45 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:50:45 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:50:55 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:20:51:49 +0200]
-URL: http://localhost:8000/api/events?lang=nl
-Method: GET
-Status: 400
-Error: BAD_REQUEST
-Message: Request failed with status code 404
------------------------------
-
-[31-Mar-2026:21:34:33 +0200]
-URL: http://localhost:8000/api/team
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
------------------------------
-
-[31-Mar-2026:21:35:44 +0200]
-URL: http://localhost:8000/api/team?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
------------------------------
-
-[31-Mar-2026:21:35:44 +0200]
-URL: http://localhost:8000/api/team?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
------------------------------
-
-[31-Mar-2026:21:36:18 +0200]
-URL: http://localhost:8000/api/team?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
------------------------------
-
-[31-Mar-2026:21:36:18 +0200]
-URL: http://localhost:8000/api/team?lang=nl
-Method: GET
-Status: 500
-Error: INTERNAL_SERVER_ERROR
-Message: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
------------------------------
-
-[31-Mar-2026:21:36:46 +0200]
+[01-Apr-2026:15:33:00 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
@@ -5602,7 +7,15 @@ Error: INTERNAL_SERVER_ERROR
 Message: {"error":null}
 -----------------------------
 
-[31-Mar-2026:21:37:52 +0200]
+[01-Apr-2026:15:33:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:33:06 +0200]
 URL: http://localhost:8000/api/team?lang=nl
 Method: GET
 Status: 500
@@ -5610,106 +23,842 @@ Error: INTERNAL_SERVER_ERROR
 Message: {"error":null}
 -----------------------------
 
-[31-Mar-2026:21:38:13 +0200]
+[01-Apr-2026:15:33:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:33:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:36:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:36:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:36:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:16 +0200]
 URL: http://localhost:8000/api/team?lang=nl
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:38:23 +0200]
+[01-Apr-2026:15:36:16 +0200]
 URL: http://localhost:8000/api/team?lang=nl
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:38:23 +0200]
+[01-Apr-2026:15:36:16 +0200]
 URL: http://localhost:8000/api/team?lang=nl
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:39:05 +0200]
+[01-Apr-2026:15:36:45 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:39:05 +0200]
+[01-Apr-2026:15:36:45 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:39:07 +0200]
+[01-Apr-2026:15:37:14 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:39:07 +0200]
+[01-Apr-2026:15:37:14 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:39:17 +0200]
+[01-Apr-2026:15:37:44 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:39:18 +0200]
+[01-Apr-2026:15:37:45 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: Cannot read properties of null (reading 'message')
 -----------------------------
 
-[31-Mar-2026:21:39:18 +0200]
+[01-Apr-2026:15:37:58 +0200]
 URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: {"error":null}
 -----------------------------
 
-[31-Mar-2026:21:39:32 +0200]
-URL: http://localhost:8000/api/team?lang=nl
+[01-Apr-2026:15:37:59 +0200]
+URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: {"error":null}
 -----------------------------
 
-[31-Mar-2026:21:39:32 +0200]
-URL: http://localhost:8000/api/team?lang=nl
+[01-Apr-2026:15:37:59 +0200]
+URL: http://localhost:8000/api/team
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
-Message: {}
+Message: {"error":null}
 -----------------------------
 
-[31-Mar-2026:21:40:50 +0200]
+[01-Apr-2026:15:37:59 +0200]
 URL: http://localhost:8000/api/team?lang=nl
 Method: GET
 Status: 500
 Error: INTERNAL_SERVER_ERROR
 Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:00 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:00 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:14 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:14 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:15 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:15 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:16 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:28 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:28 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:29 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:29 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:29 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:30 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:45 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:57 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:06 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:06 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:06 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:07 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:41 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:42 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:42 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:43 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:43 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:43 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:11 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:11 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:14 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:41 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:41 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:54 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:44:54 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:44:54 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:44:55 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Team ophalen mislukt
+-----------------------------
+
+[01-Apr-2026:15:44:55 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Team ophalen mislukt
+-----------------------------
+
+[01-Apr-2026:15:44:55 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Team ophalen mislukt
+-----------------------------
+
+[01-Apr-2026:15:45:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:45:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:45:48 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:50 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:46:18 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:46:18 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
 -----------------------------

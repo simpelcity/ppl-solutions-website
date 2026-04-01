@@ -22,9 +22,10 @@ export async function GET(request: Request) {
 
 
       if (error) {
-      return errorHandler({ error: error }, request, lang, 500);
-      // throw new Error(error.message, { cause: error });
-    }
+        const message = dict.team.errors.FAILED_TO_FETCH_TEAM;
+        const serverMessage = error;
+        return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
+      }
 
     const translatedItems = (items || []).map((item: any) => {
       const dept = item.department || {};
@@ -62,8 +63,11 @@ export async function GET(request: Request) {
 
     return NextResponse.json(itemsWithUrls, { status: 200 });
   } catch (err: any) {
-    console.error("error:", err);
-    return errorHandler({ error: err.message }, request);
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const message = dict.team.errors.FAILED_TO_FETCH_TEAM;
+    const serverMessage = err.message || String(err);
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 

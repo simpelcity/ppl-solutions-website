@@ -23,7 +23,6 @@ export function useEvents(dict: Dictionary) {
         const res = await axios.get(`/api/events?lang=${lang}`);
         if (res.status !== 200) throw new Error(dict.events.errors.FAILED_TO_FETCH_EVENTS, { cause: res.status });
         const data = res.data;
-        console.log(data)
         setEvents(data.response);
       } catch (err: any) {
         const message = err?.response?.data?.message || err?.message || dict.events.errors.FAILED_TO_FETCH_EVENTS;

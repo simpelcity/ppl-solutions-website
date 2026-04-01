@@ -12,11 +12,10 @@ import { useSidebar } from '@/lib/SidebarContext'
 
 type Props = {
   params: Promise<{ userId: string }>;
-  lang: Locale;
   dict: Dictionary;
 }
 
-export default function CardProfile({ params, lang, dict }: Props) {
+export default function CardProfile({ params, dict }: Props) {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -61,7 +60,7 @@ export default function CardProfile({ params, lang, dict }: Props) {
     departments,
     roles,
     memberRoles,
-  } = useProfile({ userId: userId ?? "", lang, dict });
+  } = useProfile({ userId: userId ?? "", dict });
 
   // adminLog('Current user data:', fetchedProfile)
   // adminLog('TruckersHub driver data:', driver)
@@ -103,13 +102,11 @@ export default function CardProfile({ params, lang, dict }: Props) {
                     )}
                   </div>
 
-                  {driver?.country ? (
+                  {driver?.country && (
                     <div className="d-flex align-items-center column-gap-1 p-0">
                       <Image src={countryData?.flags.png} alt={countryData?.flags.alt} height={25} className="rounded-1" />
                       <span>{driver?.country}</span>
                     </div>
-                  ) : (
-                    <span></span>
                   )}
                   <p className="m-0 p-0 text-muted">@{fetchedProfile?.user.user_metadata.username}</p>
                 </div>
@@ -138,7 +135,7 @@ export default function CardProfile({ params, lang, dict }: Props) {
           {error && <p className="text-danger fw-bold">{error}</p>}
         </Card >
 
-        <CardProfileSkills params={params} lang={lang} dict={dict} />
+        <CardProfileSkills params={params} dict={dict} />
       </Container >
     </>
   )

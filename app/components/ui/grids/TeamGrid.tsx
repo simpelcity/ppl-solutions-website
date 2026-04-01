@@ -35,8 +35,6 @@ export default function TeamGrid({ lang, dict }: PageProps) {
         const res = await axios.get(`/api/team?lang=${lang}`)
         console.log(res)
         if (res.status !== 200) throw new Error(dict.team.errors.FAILED_TO_FETCH_TEAM, { cause: res.status })
-        // if (!res.ok) throw new Error(`API error ${res.status}`)
-        // const json = await res.json()
         const data = res.data
         if (!mounted) return
         setItems(data ?? [])
@@ -57,15 +55,8 @@ export default function TeamGrid({ lang, dict }: PageProps) {
     }
   }, [])
 
-  if (loading) {
-    return (
-      <LoaderSpinner dict={dict}>{dict.team.loading}</LoaderSpinner>
-    )
-  }
-
-  if (error) {
-    return <div className="text-danger">{dict.team.errors.ERROR_LOADING} {error}</div>
-  }
+  if (loading) return <LoaderSpinner dict={dict}>{dict.team.loading}</LoaderSpinner>;
+  if (error) return <div className="text-danger">{dict.team.errors.ERROR_LOADING} {error}</div>;
 
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}
     ; (items || []).forEach((it) => {
@@ -80,7 +71,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
   return (
     <>
       {departments.map((dept, idx) => (
-        <Row key={idx} className="w-100 d-flex justify-content-center row-gap-4">
+        <Row key={idx} className="w-100 d-flex justify-content-center">
           {departments.length === 0 && <Col>{dict.team.errors.NO_DEPTS_OR_MEMBERS_FOUND}</Col>}
 
           <h2 className="text-primary my-4">{dept.name}</h2>

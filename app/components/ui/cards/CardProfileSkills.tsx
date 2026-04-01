@@ -5,12 +5,10 @@ import { useProfile } from "@/hooks/useProfile";
 import { Card, Container, Row, Col, Image } from 'react-bootstrap'
 import { BSButton, LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
-import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 
 type Props = {
   params: Promise<{ userId: string }>;
-  lang: Locale;
   dict: Dictionary;
 }
 
@@ -23,7 +21,7 @@ type SkillsObject = {
   valuable: number;
 }
 
-export default function CardProfileSkills({ params, lang, dict }: Props) {
+export default function CardProfileSkills({ params, dict }: Props) {
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -52,7 +50,7 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
     departments,
     roles,
     memberRoles,
-  } = useProfile({ userId: userId ?? "", lang, dict });
+  } = useProfile({ userId: userId ?? "", dict });
 
   const skills = driver?.skills || {};
 
@@ -86,16 +84,6 @@ export default function CardProfileSkills({ params, lang, dict }: Props) {
     { id: "Skill_Overweight", name: "Overweight Cargo Bonus", desc: "Upgrading this skill help you gain bonus based on Overweight Cargo.", value: skillsObject.overweight },
     { id: "Skill_Cost", name: "Cost per km", desc: "Upgrading this skill help you gain extra points & income per km.", value: skillsObject.cost },
   ];
-
-  if (lang === 'en') {
-
-  } else if (lang === 'nl') {
-
-  } else if (lang === 'cs') {
-
-  } else if (lang === 'sk') {
-    
-  }
 
   if (loading) {
     return (
