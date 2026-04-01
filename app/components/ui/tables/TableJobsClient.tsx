@@ -94,7 +94,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
 
   if (!loading) {
     if (error) return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.GENERAL_ERROR}: {error}</div>;
-    if (jobs.length === 0) return <div className="text-danger text-center py-3">{dict.drivershub.jobs.table.errors.NO_JOBS}</div>;
+    if (jobs.length === 0) return <div className="text-danger text-center py-3">{dict.errors.jobs.NO_JOBS}</div>;
   }
 
   return (

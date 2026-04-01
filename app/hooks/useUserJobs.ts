@@ -34,7 +34,7 @@ export function useUserJobs(dict: Dictionary) {
 
   const fetchMembers = async () => {
     const res = await axios.get(`/api/members?lang=${lang}`);
-    if (res.status !== 200) throw new Error(dict.drivershub.jobs.table.errors.FAILED_TO_FETCH_MEMBERS);
+    if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS);
     const data = await res.data;
     return data.data || data || [];
   };
@@ -43,7 +43,7 @@ export function useUserJobs(dict: Dictionary) {
     if (steamID) return steamID;
     const members = await fetchMembers();
     const driver = members.find((d: any) => d.username === driverUsername);
-    const DRIVER_NOT_FOUND = dict.drivershub.userStats.errors.DRIVER_NOT_FOUND.replace("{driver}", driverUsername);
+    const DRIVER_NOT_FOUND = dict.errors.jobs.DRIVER_NOT_FOUND.replace("{driver}", driverUsername);
     if (!driver) {
       setDriver(null);
       throw new Error(DRIVER_NOT_FOUND);
@@ -57,10 +57,10 @@ export function useUserJobs(dict: Dictionary) {
     const sid = await ensureSteamID();
     try {
       const res = await axios.post(`/api/jobs?lang=${lang}`, { steamID: sid, page });
-      if (res.status !== 200) throw new Error(dict.drivershub.jobs.table.errors.FAILED_TO_FETCH_JOBS);
+      if (res.status !== 200) throw new Error(dict.errors.jobs.FAILED_TO_FETCH_JOBS);
       return res.data;
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.drivershub.jobs.table.errors.FAILED_TO_FETCH_JOBS;
+      const message = err?.response?.data?.message || err?.message || dict.errors.jobs.FAILED_TO_FETCH_JOBS;
       throw new Error(message);
     }
   };

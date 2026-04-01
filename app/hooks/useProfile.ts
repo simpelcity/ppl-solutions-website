@@ -77,11 +77,12 @@ export function useProfile({ userId, dict }: Props) {
     setError(null);
     try {
       const res = await axios.get(`/api/profile-picture?id=${encodeURIComponent(userId)}&lang=${lang}`);
-      if (res.status !== 200) throw new Error("Failed to fetch profile", { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE, { cause: res.status });
       const data = res.data;
       return data.profile;
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to fetch profile";
+      const message =
+          err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE;
       setError(message);
       throw new Error(message);
     }
@@ -91,11 +92,12 @@ export function useProfile({ userId, dict }: Props) {
     setError(null);
     try {
       const res = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}&lang=${lang}`);
-      if (res.status !== 200) throw new Error("Failed to fetch profile by ID", { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE_BY_ID, { cause: res.status });
       const data = res.data;
       return data.data;
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to fetch profile by ID";
+      const message =
+          err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE_BY_ID;
       setError(message);
       throw new Error(message);
     }
@@ -104,11 +106,11 @@ export function useProfile({ userId, dict }: Props) {
   async function fetchDrivers() {
     try {
       const res = await axios.get(`/api/members?lang=${lang}`);
-      if (res.status !== 200) throw new Error("Failed to fetch drivers", { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.drivers.FAILED_TO_FETCH_DRIVERS, { cause: res.status });
       const data = res.data;
       return data.data || data || [];
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to fetch drivers";
+      const message = err?.response?.data?.message || err?.message || dict.errors.drivers.FAILED_TO_FETCH_DRIVERS;
       setError(message);
       throw new Error(message);
     }
@@ -123,11 +125,11 @@ export function useProfile({ userId, dict }: Props) {
         const driver = drivers.find((d: any) => d.username === driverUsername);
         return driver;
       } else {
-        setError("Profile not found");
+        setError(dict.errors.drivers.DRIVER_NOT_FOUND);
         return null;
       }
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to get driver data";
+      const message = err?.response?.data?.message || err?.message || dict.errors.drivers.FAILED_TO_GET_DRIVER_DATA;
       setError(message);
       throw new Error(message);
     }
@@ -139,13 +141,13 @@ export function useProfile({ userId, dict }: Props) {
       const driverData = await getDriverData();
       if (!driverData) {
         setSteamID(null);
-        setError("Driver not found");
-        throw new Error("Driver not found");
+        setError(dict.errors.drivers.DRIVER_NOT_FOUND);
+        throw new Error(dict.errors.drivers.DRIVER_NOT_FOUND);
       }
       setSteamID(driverData.steamID);
       return driverData.steamID;
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to ensure SteamID";
+      const message = err?.response?.data?.message || err?.message || dict.errors.profile.FAILED_TO_ENSURE_STEAMID;
       setError(message);
       throw new Error(message);
     }
@@ -156,11 +158,11 @@ export function useProfile({ userId, dict }: Props) {
       setError(null);
       if (!driver) {
         setCountryData(null);
-        setError("Driver not found");
+        setError(dict.errors.drivers.DRIVER_NOT_FOUND);
         return null;
       } else if (!driver.country) {
         setCountryData(null);
-        setError("Driver country not specified");
+        setError(dict.errors.drivers.DRIVER_COUNTRY_NOT_SPECIFIED);
         return null;
       }
       try {
@@ -174,9 +176,9 @@ export function useProfile({ userId, dict }: Props) {
           };
         }
         const res = await axios.get(`https://restcountries.com/v3.1/name/${driver.country}`);
-        if (res.status !== 200) throw new Error("Failed to fetch country data", { cause: res.status });
+        if (res.status !== 200) throw new Error(dict.errors.country.FAILED_TO_FETCH_COUNTRY_DATA, { cause: res.status });
         const data = await res.data;
-        if (!data || data.length === 0) throw new Error("Country not found");
+        if (!data || data.length === 0) throw new Error(dict.errors.country.COUNTRY_NOT_FOUND);
         return data[0];
       } catch (err: any) {
         console.error(err);
@@ -184,7 +186,7 @@ export function useProfile({ userId, dict }: Props) {
         return null;
       }
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to fetch country data";
+      const message = err?.response?.data?.message || err?.message || dict.errors.country.FAILED_TO_FETCH_COUNTRY_DATA;
       setError(message);
       throw new Error(message);
     }
@@ -193,14 +195,14 @@ export function useProfile({ userId, dict }: Props) {
   async function fetchTeam(memberId: number) {
     try {
       const res = await axios.get(`/api/team?lang=${lang}`);
-      if (res.status !== 200) throw new Error(dict.team.errors.FAILED_TO_FETCH_TEAM, { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: res.status });
       const data = res.data;
       const memberData = data.find((m: any) => m.team_member.id === memberId) || null;
       setItems(data ?? []);
       setMemberRoles([memberData]);
       return data || [];
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.team.errors.FAILED_TO_FETCH_TEAM;
+      const message = err?.response?.data?.message || err?.message || dict.errors.team.FAILED_TO_FETCH_TEAM;
       setError(message);
       throw new Error(message);
     }
@@ -209,12 +211,12 @@ export function useProfile({ userId, dict }: Props) {
   async function fetchMembers() {
     try {
       const res = await axios.get(`/api/team/members?lang=${lang}`);
-      if (res.status !== 200) throw new Error(dict.drivershub.userStats.errors.FAILED_TO_FETCH_MEMBERS, { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS, { cause: res.status });
       const data = res.data;
       setMembers(data.data || []);
       return data.data || [];
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.drivershub.userStats.errors.FAILED_TO_FETCH_MEMBERS;
+      const message = err?.response?.data?.message || err?.message || dict.errors.members.FAILED_TO_FETCH_MEMBERS;
       setError(message);
       throw new Error(message);
     }
@@ -223,11 +225,11 @@ export function useProfile({ userId, dict }: Props) {
   async function fetchDepartments() {
     try {
       const res = await axios.get(`/api/departments?lang=${lang}`);
-      if (res.status !== 200) throw new Error("Failed to fetch departments", { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS, { cause: res.status });
       const data = res.data;
       setDepartments(data.data || []);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to fetch departments";
+      const message = err?.response?.data?.message || err?.message || dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS;
       setError(message);
       throw new Error(message);
     }
@@ -236,11 +238,11 @@ export function useProfile({ userId, dict }: Props) {
   async function fetchRoles() {
     try {
       const res = await axios.get(`/api/roles?lang=${lang}`);
-      if (res.status !== 200) throw new Error("Failed to fetch roles", { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.roles.FAILED_TO_FETCH_ROLES, { cause: res.status });
       const data = res.data;
       setRoles(data.data || []);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to fetch roles";
+      const message = err?.response?.data?.message || err?.message || dict.errors.roles.FAILED_TO_FETCH_ROLES;
       setError(message);
       throw new Error(message);
     }
@@ -258,11 +260,11 @@ export function useProfile({ userId, dict }: Props) {
           return null;
         }
       } else {
-        setError("Profile not found");
+        setError(dict.errors.profile.profile.PROFILE_NOT_FOUND);
         return null;
       }
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to get member ID";
+      const message = err?.response?.data?.message || err?.message || dict.errors.members.FAILED_TO_GET_MEMBER_ID;
       setError(message);
       throw new Error(message);
     }
@@ -282,8 +284,8 @@ export function useProfile({ userId, dict }: Props) {
         const res = await axios.put(`/api/profile-picture?lang=${lang}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-        if (res.status !== 200) throw new Error("Failed to update profile", { cause: res.status });
-        setSuccess("Profile updated successfully");
+        if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
+        setSuccess(dict.success.profile.PROFILE_UPDATED);
         fetchProfile();
         fetchProfileById();
       } else {
@@ -294,13 +296,13 @@ export function useProfile({ userId, dict }: Props) {
         const res = await axios.put(`/api/profile?lang=${lang}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-        if (res.status !== 200) throw new Error("Failed to update profile", { cause: res.status });
-        setSuccess("Profile updated successfully");
+        if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
+        setSuccess(dict.success.profile.PROFILE_UPDATED);
         fetchProfile();
         fetchProfileById();
       }
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to update profile";
+      const message = err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE;
       setError(message);
       throw new Error(message);
     } finally {
@@ -320,11 +322,11 @@ export function useProfile({ userId, dict }: Props) {
       const res = await axios.post(`/api/profile-picture?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (res.status !== 200) throw new Error("Failed to create profile", { cause: res.status });
-      setSuccess("Profile created successfully");
+      if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_CREATE_PROFILE, { cause: res.status });
+      setSuccess(dict.success.profile.PROFILE_CREATED);
       fetchProfile();
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || "Failed to create profile";
+      const message = err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_CREATE_PROFILE;
       setError(message);
       throw new Error(message);
     } finally {
@@ -348,7 +350,6 @@ export function useProfile({ userId, dict }: Props) {
         setFetchedProfile(fetchedProfileData);
         const driverData = await getDriverData();
         setDriver(driverData);
-        adminLog("TruckersHub driver data:", driverData);
         const countryData = await getCountryData(driverData);
         setCountryData(countryData);
         await fetchMembers();

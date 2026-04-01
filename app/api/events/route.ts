@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     const res = await axios.get("https://api.truckersmp.com/v2/vtc/74455/events/attending");
 
     if (res.status !== 200) {
-      return errorHandler({ error: dict.events.errors.FAILED_TO_FETCH_EVENTS }, request, lang, res.status);
+      return errorHandler({ error: dict.errors.events.FAILED_TO_FETCH_EVENTS }, request, lang, res.status);
     }
 
     const data = res.data;
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
     const serverMessage = err?.response?.data?.message || err?.message;
-    const message = dict.events.errors.FAILED_TO_FETCH_EVENTS;
+    const message = dict.errors.events.FAILED_TO_FETCH_EVENTS;
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

@@ -120,14 +120,6 @@
       "dlc": "DLC",
       "event": "evenement",
       "more": "meer"
-    },
-    "errors": {
-      "NO_EVENTS": "Geen aankomende evenementen",
-      "NA": "Niet van toepassing",
-      "NO_SERVER": "Evenementenserver",
-      "NO_DLC": "Geen",
-      "FAILED_TO_FETCH_EVENTS": "Het ophalen van evenementen is mislukt.",
-      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het ophalen van evenementen"
     }
   },
   "team": {
@@ -136,32 +128,7 @@
       "description": "Bekijk al onze geweldige teamleden die PPL Solutions mogelijk maken."
     },
     "title": "team",
-    "loading": "Team laden...",
-    "errors": {
-      "ERROR_LOADING": "Fout bij het laden van het team.",
-      "NO_DEPTS_OR_MEMBERS_FOUND": "Geen afdelingen / leden gevonden.",
-      "NAME_REQUIRED": "Naam is verplicht",
-      "ID_REQUIRED": "ID is verplicht",
-      "FAILED_TO_DELETE_OLD_FILE": "Kon oud bestand niet verwijderen (niet-kritiek):",
-      "MEMBER_NOT_FOUND": "Lid niet gevonden",
-      "FAILED_TO_PARSE_PFP_URL": "Kon profile_url niet verwerken",
-      "FAILED_TO_REMOVE_FILES": "Kon bestanden niet verwijderen",
-      "FAILED_TO_ADD_MEMBER": "Kon teamlid niet toevoegen",
-      "FAILED_TO_UPDATE_MEMBER": "Kon teamlid niet bijwerken",
-      "FAILED_TO_DELETE_MEMBER": "Kon teamlid niet verwijderen",
-      "FAILED_TO_DELETE_PROFILE_PICTURE": "Kon profielfoto niet verwijderen",
-      "FAILED_TO_ADD_ROLE": "Kon rol niet toevoegen",
-      "FAILED_TO_REMOVE_ROLE": "Kon rol niet verwijderen",
-      "FAILED_TO_FETCH_TEAM": "Team ophalen mislukt"
-    },
-    "success": {
-      "MEMBER_ADDED": "Teamlid succesvol toegevoegd!",
-      "MEMBER_UPDATED": "Teamlid succesvol bijgewerkt!",
-      "MEMBER_DELETED": "Teamlid succesvol verwijderd!",
-      "PROFILE_PICTURE_DELETED": "Profielfoto succesvol verwijderd!",
-      "ROLE_ADDED": "Rol succesvol toegevoegd!",
-      "ROLE_REMOVED": "Rol succesvol verwijderd!"
-    }
+    "loading": "Team laden..."
   },
   "gallery": {
     "meta": {
@@ -169,27 +136,7 @@
       "description": "Blader door onze galerij met de mooiste momenten en vrachtwagens van PPL Solutions."
     },
     "title": "galerij",
-    "loading": "Galerij laden...",
-    "errors": {
-      "ERROR_LOADING": "Fout bij het laden van de galerij:",
-      "NO_IMAGES_FOUND": "Geen afbeeldingen gevonden.",
-      "TITLE_REQUIRED": "Titel is verplicht",
-      "IMAGE_FILE_REQUIRED": "Afbeeldingsbestand is verplicht",
-      "FILE_TOO_LARGE": "Bestandsgrootte overschrijdt de limiet van 5 MB",
-      "INVALID_FILE_TYPE": "Ongeldig bestandstype.",
-      "INVALID_FILE_EXTENSION": "Ongeldige bestandsextensie.",
-      "ID_REQUIRED": "ID is verplicht",
-      "FAILED_TO_DELETE_OLD_FILE": "Kon oud bestand niet verwijderen (niet-kritiek)",
-      "FAILED_TO_DELETE_FILE": "Kon bestand niet verwijderen (niet-kritiek)",
-      "FAILED_TO_ADD_ITEM": "Kon galerij-item niet toevoegen",
-      "FAILED_TO_UPDATE_ITEM": "Kon galerij-item niet bijwerken",
-      "FAILED_TO_DELETE_ITEM": "Kon galerij-item niet verwijderen"
-    },
-    "success": {
-      "ITEM_ADDED": "Galerij-item succesvol toegevoegd!",
-      "ITEM_UPDATED": "Galerij-item succesvol bijgewerkt!",
-      "ITEM_DELETED": "Galerij-item succesvol verwijderd!"
-    }
+    "loading": "Galerij laden..."
   },
   "contact": {
     "meta": {
@@ -234,10 +181,6 @@
       "submit": "inloggen",
       "noAccount": "Heeft u geen account?",
       "signUp": "Schrijf je in",
-      "errors": {
-        "INVALID_CREDENTIALS": "Ongeldig e-mailadres of wachtwoord. Probeer het opnieuw.",
-        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het inloggen. Probeer het opnieuw."
-      },
       "statuses": {
         "loading": "Inloggen..."
       }
@@ -260,14 +203,7 @@
       "submit": "aanmelden",
       "haveAccount": "Heeft u al een account?",
       "login": "Inloggen",
-      "errors": {
-        "EMAIL_ALREADY_IN_USE": "Dit e-mailadres is al in gebruik. Gebruik een ander e-mailadres.",
-        "USERNAME_ALREADY_IN_USE": "Deze gebruikersnaam is al in gebruik. Kies een andere.",
-        "PASSWORD_TOO_SHORT": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
-        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het aanmaken van uw account. Probeer het opnieuw."
-      },
       "statuses": {
-        "success": "Registratie is gelukt. Controleer uw e-mail voor bevestiging.",
         "loading": "Account aanmaken..."
       }
     }
@@ -286,11 +222,7 @@
       "submit": "resetlink sturen",
       "remember": "Onthoud uw wachtwoord?",
       "backToLogin": "Terug naar inloggen",
-      "errors": {
-        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het verzenden van de reset-e-mail."
-      },
       "statuses": {
-        "success": "E-mail voor het opnieuw instellen van uw wachtwoord verzonden! Controleer uw inbox voor een link om uw wachtwoord opnieuw in te stellen.",
         "loading": "Versturen..."
       }
     }
@@ -310,20 +242,6 @@
       "backToLogin": "Terug naar inloggen",
       "success": "Wachtwoord succesvol gereset! U wordt doorgestuurd naar de inlogpagina...",
       "requestNewPassword": "Vraag een nieuwe wachtwoordreset aan",
-      "errors": {
-        "INVALID_TOKEN": "Ongeldig of ontbrekend resettoken. Vraag een nieuwe wachtwoordreset aan.",
-        "EXPIRED_TOKEN": "Ongeldig of verlopen resettoken. Vraag een nieuwe wachtwoordreset aan.",
-        "EXPIRED_SESSION": "Je sessie is verlopen. Vraag een nieuwe wachtwoordreset aan.",
-        "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het opnieuw instellen van uw wachtwoord.",
-        "password": {
-          "PASSWORDS_MISMATCH": "Wachtwoorden komen niet overeen. Probeer het opnieuw.",
-          "PASSWORD_TOO_SHORT": "Wachtwoord moet minimaal 8 tekens bevatten",
-          "PASSWORD_NO_LOWERCASE": "Wachtwoord moet minimaal één kleine letter bevatten",
-          "PASSWORD_NO_UPPERCASE": "Wachtwoord moet minimaal één hoofdletter bevatten",
-          "PASSWORD_NO_NUMBER": "Wachtwoord moet minimaal één cijfer bevatten",
-          "PASSWORD_NO_SPECIAL_CHARS": "Wachtwoord moet minimaal één speciaal teken bevatten"
-        }
-      },
       "loading": "Resetten...",
       "validating": "De resetlink wordt gevalideerd..."
     }
@@ -365,13 +283,6 @@
           "showing": "Pagina 1 van 1 wordt weergegeven",
           "allJobs": "toon alle vrachten",
           "paginated": "toon gepagineerd"
-        },
-        "errors": {
-          "NO_JOBS": "Geen vrachten gevonden",
-          "DRIVER_NOT_FOUND": "Bestuurder {driver} niet gevonden",
-          "FAILED_TO_FETCH_JOBS": "Kon vrachten niet ophalen",
-          "FAILED_TO_FETCH_MEMBERS": "Kon leden niet ophalen",
-          "STEAM_ID_REQUIRED": "SteamID is verplicht"
         }
       }
     },
@@ -424,15 +335,6 @@
           "favEndCity": "Favoriete bestemmingsstad",
           "favEndCompany": "Favoriet bestemmingsbedrijf"
         }
-      },
-      "errors": {
-        "FAILED_TO_FETCH_MEMBERS": "Kon leden niet ophalen",
-        "DRIVER_NOT_FOUND": "Bestuurder {driver} niet gevonden",
-        "FAILED_TO_FETCH_SCENARIOS": "Kon scenario's niet ophalen",
-        "FAILED_TO_FETCH_STATS": "Kon statistieken niet ophalen",
-        "FAILED_TO_FETCH_JOBS": "Kon vrachten niet ophalen",
-        "STEAM_ID_REQUIRED": "SteamID is verplicht",
-        "SERVER_ERROR": "Serverfout"
       }
     },
     "leaderboard": {
@@ -480,9 +382,6 @@
             "title": "Hoogste vervoerd gewicht"
           }
         }
-      },
-      "errors": {
-        "FAILED_TO_FETCH_STATS": "Statistieken ophalen mislukt"
       }
     },
     "vtcStats": {
@@ -510,9 +409,6 @@
         "totalJobs": "Totaal aantal vrachten",
         "totalIncome": "Totale omzet",
         "totalTimeDriven": "Totale rijtijd"
-      },
-      "error": {
-        "NO_STATS": "Geen statistieken beschikbaar"
       }
     },
     "team": {
@@ -573,6 +469,31 @@
         "cancel": "annuleren",
         "confirm": "bevestigen"
       }
+    },
+    "profile": {
+      "profilePage": {
+        "meta": {
+          "title": "",
+          "description": ""
+        },
+        "card": {
+          "bannerAlt": "{driver}'s profile banner",
+          "defaultBannerAlt": "Default profile banner",
+          "profilePictureAlt": "{driver}'s profile picture",
+          "defaultProfilePictureAlt": "Default profile picture",
+          "buttons": {
+            "settings": "Settings",
+            "changePassword": "Change Password"
+          }
+        },
+        "skillsCard": {}
+      },
+      "settingsPage": {
+        "meta": {
+          "title": "",
+          "description": ""
+        }
+      }
     }
   },
   "statusCodes": {
@@ -592,7 +513,159 @@
   "errors": {
     "GENERAL_ERROR": "Fout",
     "UNEXPECTED": "Er is een onverwachte fout opgetreden.",
-    "SERVER_ERROR": "Serverfout"
+    "SERVER_ERROR": "Serverfout",
+    "events": {
+      "NO_EVENTS": "Geen aankomende evenementen",
+      "NA": "Niet van toepassing",
+      "NO_SERVER": "Evenementenserver",
+      "NO_DLC": "Geen",
+      "FAILED_TO_FETCH_EVENTS": "Het ophalen van evenementen is mislukt.",
+      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het ophalen van evenementen"
+    },
+    "team": {
+      "ERROR_LOADING_TEAM": "Fout bij het laden van het team.",
+      "FAILED_TO_FETCH_TEAM": "Team ophalen mislukt",
+      "FAILED_TO_FETCH_TEAM_MEMBER": "Failed to fetch team member",
+      "FAILED_TO_FETCH_DEPARTMENTS": "Failed to fetch departments",
+      "NO_DEPTS_OR_MEMBERS_FOUND": "Geen afdelingen / leden gevonden.",
+      "FAILED_TO_ADD_TEAM_MEMBER": "Kon teamlid niet toevoegen",
+      "FAILED_TO_UPDATE_TEAM_MEMBER": "Kon teamlid niet bijwerken",
+      "FAILED_TO_DELETE_TEAM_MEMBER": "Kon teamlid niet verwijderen",
+      "NAME_REQUIRED": "Naam is verplicht",
+      "ID_REQUIRED": "ID is verplicht"
+    },
+    "members": {
+      "MEMBER_NOT_FOUND": "Lid niet gevonden",
+      "FAILED_TO_FETCH_MEMBERS": "Failed to fetch members",
+      "FAILED_TO_GET_MEMBER_ID": "Failed to get member ID"
+    },
+    "drivers": {
+      "FAILED_TO_FETCH_DRIVERS": "Failed to fetch drivers",
+      "FAILED_TO_GET_DRIVER_DATA": "Failed to get driver data",
+      "DRIVER_COUNTRY_NOT_SPECIFIED": "Driver country not specified",
+      "DRIVER_NOT_FOUND": "Driver not found"
+    },
+    "roles": {
+      "FAILED_TO_ADD_ROLE": "Kon rol niet toevoegen",
+      "FAILED_TO_REMOVE_ROLE": "Kon rol niet verwijderen",
+      "FAILED_TO_FETCH_ROLES": "Failed to fetch roles"
+    },
+    "gallery": {
+      "ERROR_LOADING_GALLERY": "Fout bij het laden van de galerij:",
+      "NO_IMAGES_FOUND": "Geen afbeeldingen gevonden.",
+      "FAILED_TO_ADD_ITEM": "Kon galerij-item niet toevoegen",
+      "FAILED_TO_UPDATE_ITEM": "Kon galerij-item niet bijwerken",
+      "FAILED_TO_DELETE_ITEM": "Kon galerij-item niet verwijderen",
+      "TITLE_REQUIRED": "Titel is verplicht"
+    },
+    "login": {
+      "INVALID_CREDENTIALS": "Ongeldig e-mailadres of wachtwoord. Probeer het opnieuw.",
+      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het inloggen. Probeer het opnieuw."
+    },
+    "register": {
+      "EMAIL_ALREADY_IN_USE": "Dit e-mailadres is al in gebruik. Gebruik een ander e-mailadres.",
+      "USERNAME_ALREADY_IN_USE": "Deze gebruikersnaam is al in gebruik. Kies een andere.",
+      "PASSWORD_TOO_SHORT": "Het wachtwoord moet minimaal 8 tekens lang zijn en hoofdletters, kleine letters en een cijfer bevatten.",
+      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het aanmaken van uw account. Probeer het opnieuw."
+    },
+    "forgotPassword": {
+      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het verzenden van de reset-e-mail."
+    },
+    "resetPassword": {
+      "INVALID_TOKEN": "Ongeldig of ontbrekend resettoken. Vraag een nieuwe wachtwoordreset aan.",
+      "EXPIRED_TOKEN": "Ongeldig of verlopen resettoken. Vraag een nieuwe wachtwoordreset aan.",
+      "EXPIRED_SESSION": "Je sessie is verlopen. Vraag een nieuwe wachtwoordreset aan.",
+      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het opnieuw instellen van uw wachtwoord.",
+      "password": {
+        "PASSWORDS_MISMATCH": "Wachtwoorden komen niet overeen. Probeer het opnieuw.",
+        "PASSWORD_TOO_SHORT": "Wachtwoord moet minimaal 8 tekens bevatten",
+        "PASSWORD_NO_LOWERCASE": "Wachtwoord moet minimaal één kleine letter bevatten",
+        "PASSWORD_NO_UPPERCASE": "Wachtwoord moet minimaal één hoofdletter bevatten",
+        "PASSWORD_NO_NUMBER": "Wachtwoord moet minimaal één cijfer bevatten",
+        "PASSWORD_NO_SPECIAL_CHARS": "Wachtwoord moet minimaal één speciaal teken bevatten"
+      }
+    },
+    "jobs": {
+      "NO_JOBS": "Geen vrachten gevonden",
+      "FAILED_TO_FETCH_JOBS": "Kon vrachten niet ophalen",
+      "STEAM_ID_REQUIRED": "SteamID is verplicht",
+      "DRIVER_NOT_FOUND": "Bestuurder {driver} niet gevonden"
+    },
+    "userStats": {
+      "FAILED_TO_FETCH_SCENARIOS": "Kon scenario's niet ophalen",
+      "FAILED_TO_FETCH_STATS": "Kon statistieken niet ophalen"
+    },
+    "leaderboard": {},
+    "vtcStats": {
+      "NO_STATS": "Geen statistieken beschikbaar"
+    },
+    "profile": {
+      "profile": {
+        "PROFILE_NOT_FOUND": "Profile not found",
+        "FAILED_TO_FETCH_PROFILE": "Failed to fetch profile",
+        "FAILED_TO_FETCH_PROFILE_BY_ID": "Failed to fetch profile by ID",
+        "FAILED_TO_UPDATE_PROFILE": "Failed to update profile",
+        "FAILED_TO_CREATE_PROFILE": "Failed to create profile"
+      },
+      "profilePicture": {
+        "FAILED_TO_DELETE_PROFILE_PICTURE": "Kon profielfoto niet verwijderen",
+        "FAILED_TO_PARSE_PFP_URL": "Kon profile_url niet verwerken",
+        "FAILED_TO_GET_PROFILE_PICTURE": "Failed to get profile picture",
+        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Failed to upload profile picture",
+        "FAILED_TO_ADD_PROFILE_PICTURE": "Failed to add profile picture",
+        "FAILED_TO_FETCH_PROFILE_PICTURE": "Failed to fetch profile picture",
+        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Failed to update profile picture"
+      },
+      "NO_ROLE": "No role",
+      "FAILED_TO_ENSURE_STEAMID": "Failed to ensure SteamID"
+    },
+    "files": {
+      "FAILED_TO_DELETE_OLD_FILE": "Kon oud bestand niet verwijderen (niet-kritiek):",
+      "FAILED_TO_DELETE_FILE": "Kon bestand niet verwijderen (niet-kritiek)",
+      "FAILED_TO_REMOVE_FILES": "Kon bestanden niet verwijderen",
+      "IMAGE_FILE_REQUIRED": "Afbeeldingsbestand is verplicht",
+      "FILE_TOO_LARGE": "Bestandsgrootte overschrijdt de limiet van 5 MB",
+      "INVALID_FILE_TYPE": "Ongeldig bestandstype.",
+      "INVALID_FILE_EXTENSION": "Ongeldige bestandsextensie."
+    },
+    "country": {
+      "FAILED_TO_FETCH_COUNTRY_DATA": "Failed to fetch country data",
+      "COUNTRY_NOT_FOUND": "Country not found"
+    }
+  },
+  "success": {
+    "team": {
+      "TEAM_MEMBER_ADDED": "Teamlid succesvol toegevoegd!",
+      "TEAM_MEMBER_UPDATED": "Teamlid succesvol bijgewerkt!",
+      "TEAM_MEMBER_DELETED": "Teamlid succesvol verwijderd!"
+    },
+    "members": {},
+    "roles": {
+      "ROLE_ADDED": "Rol succesvol toegevoegd!",
+      "ROLE_REMOVED": "Rol succesvol verwijderd!"
+    },
+    "gallery": {
+      "ITEM_ADDED": "Galerij-item succesvol toegevoegd!",
+      "ITEM_UPDATED": "Galerij-item succesvol bijgewerkt!",
+      "ITEM_DELETED": "Galerij-item succesvol verwijderd!"
+    },
+    "login": {},
+    "register": {
+      "ACCOUNT_CREATED": "Registration successful. Please check your email to confirm."
+    },
+    "forgotPassword": {
+      "RESET_EMAIL_SENT": "Password reset email sent! Check your inbox for a link to reset your password."
+    },
+    "resetPassword": {},
+    "jobs": {},
+    "userStats": {},
+    "leaderboard": {},
+    "vtcStats": {},
+    "profile": {
+      "PROFILE_PICTURE_DELETED": "Profielfoto succesvol verwijderd!",
+      "PROFILE_UPDATED": "Profile updated successfully!",
+      "PROFILE_CREATED": "Profile created successfully!"
+    }
   },
   "unavailable": {
     "title": "Deze functie is tijdelijk niet beschikbaar.",

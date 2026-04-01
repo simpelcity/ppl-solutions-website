@@ -11,16 +11,22 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
-    if (!id) {
-      return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
-    }
+
+    if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
     const { data, error } = await supabaseAdmin.from("profiles").select("*").eq("id", id).single();
-    if (error) {
-      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
-    }
+    if (error) return errorHandler(
+        { error: dict.errors.profile.profilePicture.FAILED_TO_FETCH_PROFILE_PICTURE },
+        request,
+        lang,
+        500,
+    );
     return new Response(JSON.stringify({ profile: data }), { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.profile.profilePicture.FAILED_TO_FETCH_PROFILE_PICTURE;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
@@ -39,9 +45,7 @@ export async function POST(request: NextRequest) {
         .from("profile-pictures")
         .upload(`profile-pictures/${fileName}`, file, { cacheControl: "3600", upsert: true });
 
-      if (uploadError) {
-        return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
-      }
+      if (uploadError) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_UPLOAD_PROFILE_PICTURE }, request, lang, 500);
 
       const { data: publicUrlData } = supabaseAdmin.storage.from("profile-pictures").getPublicUrl(uploadData.path);
 
@@ -52,11 +56,15 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await supabaseAdmin.from("profiles").insert([payload]).select();
 
-    if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    if (error) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_ADD_PROFILE_PICTURE }, request, lang, 500);
 
     return new Response(JSON.stringify({ data }), { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.profile.profilePicture.FAILED_TO_ADD_PROFILE_PICTURE;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
@@ -69,7 +77,7 @@ export async function PUT(request: Request) {
     const id = formData.get("userId") as string;
     const file = formData.get("file") as File | null;
 
-    if (!id) return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
+    if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
 
     const updates: any = {};
 
@@ -80,7 +88,12 @@ export async function PUT(request: Request) {
         .eq("id", id)
         .single();
 
-      if (fetchError) return new Response(JSON.stringify({ error: fetchError.message }), { status: 500 });
+      if (fetchError) return errorHandler(
+          { error: dict.errors.profile.profilePicture.FAILED_TO_FETCH_PROFILE_PICTURE },
+          request,
+          lang,
+          500,
+      );
 
       if (memberData?.profile_url) {
         try {
@@ -92,7 +105,7 @@ export async function PUT(request: Request) {
             await supabaseAdmin.storage.from("profile-pictures").remove([oldFilePath]);
           }
         } catch (e) {
-          console.warn("Failed to delete old file (non-fatal):", e);
+          console.warn(dict.errors.files.FAILED_TO_DELETE_OLD_FILE, e);
         }
       }
 
@@ -101,7 +114,7 @@ export async function PUT(request: Request) {
         .from("profile-pictures")
         .upload(`profile-pictures/${fileName}`, file, { cacheControl: "3600", upsert: true });
 
-      if (uploadError) return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
+      if (uploadError) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_UPLOAD_PROFILE_PICTURE }, request, lang, 500);
 
       const { data: publicUrlData } = supabaseAdmin.storage
         .from("profile-pictures")
@@ -112,10 +125,14 @@ export async function PUT(request: Request) {
 
     const { data, error } = await supabaseAdmin.from("profiles").update(updates).eq("id", id).select();
 
-    if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    if (error) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_UPDATE_PROFILE_PICTURE }, request, lang, 500);
 
     return new Response(JSON.stringify({ data }), { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.profile.profilePicture.FAILED_TO_UPDATE_PROFILE_PICTURE;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
