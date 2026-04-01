@@ -308,10 +308,6 @@
       }
     },
     "jobs": {
-      "meta": {
-        "title": "",
-        "description": ""
-      },
       "title": "používateľské zákazky",
       "table": {
         "date": "dátum",
@@ -520,6 +516,14 @@
         "cancel": "zrušiť",
         "confirm": "potvrdiť"
       }
+    }
+  },
+  "unavailable": {
+    "title": "Táto funkcia je dočasne nedostupná.",
+    "body": "Na našej strane sa niečo pokazilo, skúste to prosím neskôr znova.",
+    "buttons": {
+      "back": "vrátiť sa",
+      "contact": "Kontaktujte nás"
     }
   }
 }

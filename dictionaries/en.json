@@ -517,5 +517,13 @@
         "confirm": "confirm"
       }
     }
+  },
+  "unavailable": {
+    "title": "This feature is temporarily unavailable.",
+    "body": "Something went wrong on our end, please try again later.",
+    "buttons": {
+      "back": "Go back",
+      "contact": "Contact us"
+    }
   }
 }

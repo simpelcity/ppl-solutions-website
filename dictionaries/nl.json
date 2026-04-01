@@ -517,5 +517,13 @@
         "confirm": "bevestigen"
       }
     }
+  },
+  "unavailable": {
+    "title": "Deze functie is tijdelijk niet beschikbaar.",
+    "body": "Er is iets misgegaan aan onze kant, probeer het later opnieuw.",
+    "buttons": {
+      "back": "Ga terug",
+      "contact": "Contacteer ons"
+    }
   }
 }

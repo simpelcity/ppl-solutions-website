@@ -517,5 +517,13 @@
         "confirm": "potvrdit"
       }
     }
+  },
+  "unavailable": {
+    "title": "Tato funkce je dočasně nedostupná.",
+    "body": "Na naší straně se něco pokazilo, zkuste to prosím později znovu.",
+    "buttons": {
+      "back": "vrátit se",
+      "contact": "Kontaktujte nás"
+    }
   }
 }
