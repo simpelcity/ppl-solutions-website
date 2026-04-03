@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { useUserStats } from '@/hooks/useUserStats'
 import { Table, Placeholder } from 'react-bootstrap'
 import { PlaceholderTable } from '@/components'
@@ -11,9 +10,9 @@ type Props = {
 }
 
 export default function TableStats({ dict }: Props) {
-  const { stats, loading, error } = useUserStats();
+  const { stats, loading, error } = useUserStats(dict);
 
-  if (error) return <div className="text-danger text-center py-3">{error}</div>
+  if (error) return <div className="text-danger text-center fw-bold py-3">{dict.errors.GENERAL_ERROR}: {error}</div>
 
   const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");

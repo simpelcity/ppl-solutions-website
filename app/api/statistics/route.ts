@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import axios from "axios";
 import { getDictionary } from "@/app/i18n";
@@ -7,7 +7,7 @@ import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -23,9 +23,7 @@ export async function GET(request: Request) {
 
     const firstRes = await axios.get(apiUrl);
 
-    if (firstRes.status !== 200) {
-      return errorHandler({ error: "Failed to fetch jobs" }, request, lang, firstRes.status);
-    }
+    if (firstRes.status !== 200) return errorHandler({ error: dict.errors.jobs.FAILED_TO_FETCH_JOBS }, request, lang, firstRes.status);
 
     const firstData = await firstRes.data;
 
@@ -51,14 +49,17 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json({
-      data: allJobs.reverse(),
+      jobs: allJobs.reverse(),
       meta: {
         total: allJobs.length,
         pages: totalPages,
       },
-    });
-  } catch (err) {
-    console.error(err);
-    return errorHandler(err, request);
+    }, { status: 200 });
+  } catch (err: any) {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.userStats.FAILED_TO_FETCH_STATS;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

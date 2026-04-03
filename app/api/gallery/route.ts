@@ -12,7 +12,6 @@ export type GalleryItem = {
   created_at?: string | null;
 };
 
-export async function GET(request: Request) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -23,7 +22,7 @@ export async function GET(request: Request) {
       .order("created_at", { ascending: true })
       .limit(100);
 
-    if (error) throw error;
+    if (error) return errorHandler({ error: dict.errors.gallery.ERROR_LOADING_GALLERY }, request, lang, 500);
 
     const items = await Promise.all(
       (rows || []).map(async (r: any) => {
@@ -49,8 +48,11 @@ export async function GET(request: Request) {
 
     return new Response(JSON.stringify({ data: items }), { status: 200 });
   } catch (err: any) {
-    console.error("gallery api error:", err);
-    return new Response(JSON.stringify({ error: err.message ?? String(err) }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.gallery.ERROR_LOADING_GALLERY;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
@@ -58,7 +60,6 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
-export async function POST(request: Request) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -68,15 +69,15 @@ export async function POST(request: Request) {
     const file = formData.get("file") as File | null;
 
     if (!title) {
-      return new Response(JSON.stringify({ error: "Title is required" }), { status: 400 });
+      return errorHandler({ error: dict.errors.gallery.TITLE_REQUIRED }, request, lang, 400);
     }
 
     if (!file) {
-      return new Response(JSON.stringify({ error: "Image file is required" }), { status: 400 });
+      return errorHandler({ error: dict.errors.files.IMAGE_FILE_REQUIRED }, request, lang, 400);
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      return NextResponse.json({ error: "File too large (max 5MB)" }, { status: 400 });
+      return errorHandler({ error: dict.errors.files.FILE_TOO_LARGE }, request, lang, 400);
     }
 
     if (!ALLOWED_TYPES.includes(file.type)) {

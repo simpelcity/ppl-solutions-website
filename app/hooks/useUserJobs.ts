@@ -35,8 +35,8 @@ export function useUserJobs(dict: Dictionary) {
   const fetchMembers = async () => {
     const res = await axios.get(`/api/members?lang=${lang}`);
     if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS);
-    const data = await res.data;
-    return data.data || data || [];
+    const data = res.data;
+    return data.members || data || [];
   };
 
   const ensureSteamID = async (): Promise<string> => {
@@ -45,7 +45,7 @@ export function useUserJobs(dict: Dictionary) {
     const driver = members.find((d: any) => d.username === driverUsername);
     const DRIVER_NOT_FOUND = dict.errors.jobs.DRIVER_NOT_FOUND.replace("{driver}", driverUsername);
     if (!driver) {
-      setDriver(null);
+      setError(DRIVER_NOT_FOUND);
       throw new Error(DRIVER_NOT_FOUND);
     }
     setDriver(driver);
@@ -57,8 +57,9 @@ export function useUserJobs(dict: Dictionary) {
     const sid = await ensureSteamID();
     try {
       const res = await axios.post(`/api/jobs?lang=${lang}`, { steamID: sid, page });
-      if (res.status !== 200) throw new Error(dict.errors.jobs.FAILED_TO_FETCH_JOBS);
-      return res.data;
+      if (res.status !== 200) throw new Error(dict.errors.jobs.FAILED_TO_FETCH_JOBS, { cause: res.status });
+      const data = res.data;
+      return data;
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.jobs.FAILED_TO_FETCH_JOBS;
       throw new Error(message);
@@ -76,8 +77,8 @@ export function useUserJobs(dict: Dictionary) {
     const allJobs: Job[] = [];
     for (let page = 1; page <= lastPage; page++) {
       const payload = await fetchJobsPage(page);
-      if (Array.isArray(payload.data)) {
-        allJobs.push(...payload.data);
+      if (Array.isArray(payload.jobs.data)) {
+        allJobs.push(...payload.jobs.data);
       }
     }
     return allJobs.reverse();
@@ -89,7 +90,7 @@ export function useUserJobs(dict: Dictionary) {
     try {
       const apiPage = lastPage - displayPage + 1;
       const payload = await fetchJobsPage(apiPage);
-      setJobs(Array.isArray(payload.data) ? payload.data.reverse() : []);
+      setJobs(Array.isArray(payload.jobs.data) ? payload.jobs.data.reverse() : []);
       setCurrentPage(apiPage);
     } catch (err: any) {
       setError(err.message);
@@ -112,7 +113,7 @@ export function useUserJobs(dict: Dictionary) {
       }
     } else {
       setShowAll(false);
-      await loadJobs(currentPage);
+      await loadJobs(1);
     }
   };
 
@@ -126,12 +127,12 @@ export function useUserJobs(dict: Dictionary) {
       setError(null);
       try {
         const page1 = await fetchJobsPage(1);
-        const lp = parseLastPage(page1.links?.last);
+        const lp = parseLastPage(page1.jobs.links?.last);
 
         if (!cancelled) {
           setLastPage(lp);
           const lastPayload = lp === 1 ? page1 : await fetchJobsPage(lp);
-          setJobs(Array.isArray(lastPayload.data) ? lastPayload.data.reverse() : []);
+          setJobs(Array.isArray(lastPayload.jobs.data) ? lastPayload.jobs.data.reverse() : []);
           setCurrentPage(lp);
         }
       } catch (err: any) {

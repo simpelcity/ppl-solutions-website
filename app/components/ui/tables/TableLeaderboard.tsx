@@ -47,9 +47,7 @@ export default function TableLeaderboard({ dict }: Props) {
     allTimeMaxMassLeaderboard,
     monthlyMaxMassLeaderboard,
     currentLeaderboard
-  } = useLeaderboard(selectedPeriod, selectedYear, selectedMonth);
-
-  adminLog(`%cCurrent Leaderboard = ${currentLeaderboard.name}:`, 'color: white;', currentLeaderboard.entries)
+  } = useLeaderboard(dict, selectedPeriod, selectedYear, selectedMonth);
 
   const distanceLeaderboard = selectedPeriod === 'all-time' ? allTimeDistanceLeaderboard : monthlyDistanceLeaderboard;
   const thpLeaderboard = selectedPeriod === 'all-time' ? allTimeThpLeaderboard : monthlyThpLeaderboard;

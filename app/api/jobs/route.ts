@@ -15,18 +15,19 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { steamID, page } = body;
 
-    if (!steamID) return errorHandler({ error: "steamID is required" }, request);
+    if (!steamID) return errorHandler({ error: dict.errors.jobs.STEAM_ID_REQUIRED }, request, lang, 400);
 
     const res = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=${page}`);
 
-    if (res.status !== 200) {
-      return NextResponse.json({ error: "Failed to fetch jobs" }, { status: res.status });
-    }
+    if (res.status !== 200) return errorHandler({ error: dict.errors.jobs.FAILED_TO_FETCH_JOBS }, request, lang, res.status);
 
     const data = await res.data;
-    return NextResponse.json(data);
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return NextResponse.json({ jobs: data }, { status: 200 });
+  } catch (err: any) {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.jobs.FAILED_TO_FETCH_JOBS;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

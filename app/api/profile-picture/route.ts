@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
         lang,
         500,
     );
-    return new Response(JSON.stringify({ profile: data }), { status: 200 });
+    return NextResponse.json({ profile: data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
 
     if (error) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_ADD_PROFILE_PICTURE }, request, lang, 500);
 
-    return new Response(JSON.stringify({ data }), { status: 200 });
+    return NextResponse.json({ profile_picture: data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -127,7 +127,7 @@ export async function PUT(request: Request) {
 
     if (error) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_UPDATE_PROFILE_PICTURE }, request, lang, 500);
 
-    return new Response(JSON.stringify({ data }), { status: 200 });
+    return NextResponse.json({ profile_picture: data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);

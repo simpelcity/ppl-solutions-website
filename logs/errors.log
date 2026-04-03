@@ -862,3 +862,27 @@ Status: 500
 Error: INTERNAL_SERVER_ERROR
 Message: {"error":null,"serverError":null}
 -----------------------------
+
+[03-Apr-2026:13:10:51 +0200]
+URL: http://localhost:8000/api/jobs?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: SteamID is verplicht
+-----------------------------
+
+[03-Apr-2026:13:10:51 +0200]
+URL: http://localhost:8000/api/jobs?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: SteamID is verplicht
+-----------------------------
+
+[03-Apr-2026:13:10:51 +0200]
+URL: http://localhost:8000/api/jobs?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: SteamID is verplicht
+-----------------------------

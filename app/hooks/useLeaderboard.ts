@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useLang } from "@/hooks/useLang";
+import type { Dictionary } from "@/app/i18n";
 
 interface LeaderboardEntry {
   username: string;
@@ -17,9 +18,10 @@ interface CurrentLeaderboard {
 }
 
 export function useLeaderboard(
+  dict: Dictionary,
   selectedPeriod: "all-time" | "monthly" = "all-time",
   selectedYear?: number,
-  selectedMonth?: number,
+  selectedMonth?: number
 ) {
   const lang = useLang();
   const isAdmin = useIsAdmin();
@@ -54,10 +56,8 @@ export function useLeaderboard(
       url += `?month=${month}&year=${year}&lang=${lang}`;
     }
     const res = await axios.get(url);
-    if (res.status !== 200) {
-      throw new Error("Failed to fetch statistics");
-    }
-    return res.data?.data;
+    if (res.status !== 200) throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS, { cause: res.status });
+    return res.data?.jobs || res.data || [];
   };
 
   const getDistanceLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {

@@ -31,7 +31,6 @@ export function SidebarProvider({ children, dict }: Props) {
       setIsMobile(mobile)
       setIsSidebarCollapsed(mobile)
       setIsReady(true)
-      console.log(`Window width: ${window.innerWidth}px, isMobile: ${mobile}`)
     }
 
     checkMobile()

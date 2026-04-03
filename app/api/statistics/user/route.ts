@@ -15,13 +15,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { steamID } = body;
 
-    if (!steamID) return errorHandler({ error: dict.drivershub.userStats.errors.STEAM_ID_REQUIRED }, request, lang, 400);
+    if (!steamID) return errorHandler({ error: dict.errors.jobs.STEAM_ID_REQUIRED }, request, lang, 400);
 
     const firstRes = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=1`);
 
-    if (firstRes.status !== 200) {
-      return errorHandler({ error: dict.drivershub.userStats.errors.FAILED_TO_FETCH_JOBS }, request, lang, firstRes.status);
-    }
+    if (firstRes.status !== 200) return errorHandler({ error: dict.errors.jobs.FAILED_TO_FETCH_JOBS }, request, lang, firstRes.status);
 
     const firstData = await firstRes.data;
 
@@ -33,7 +31,7 @@ export async function POST(request: NextRequest) {
     for (let page = 1; page <= totalPages; page++) {
       const res = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=${page}`);
 
-      if (res.status !== 200) return;
+      if (res.status !== 200) return errorHandler({ error: dict.errors.jobs.FAILED_TO_FETCH_JOBS }, request, lang, res.status);
 
       const payload = await res.data;
       if (Array.isArray(payload.data)) {
@@ -42,16 +40,17 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({
-      data: allJobs.reverse(),
+      jobs: allJobs.reverse(),
       meta: {
         total: allJobs.length,
         pages: totalPages,
-      },
-      lang
-    });
-  } catch (err) {
-    console.error(err);
+      }
+    }, { status: 200 });
+  } catch (err: any) {
     const lang = getLocaleFromRequest(request);
-    return errorHandler({ error: "SERVER_ERROR" }, request, lang, 500);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.userStats.FAILED_TO_FETCH_STATS;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

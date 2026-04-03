@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import axios from "axios";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
