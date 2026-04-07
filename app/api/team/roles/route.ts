@@ -1,9 +1,10 @@
+import { NextResponse, NextRequest } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
-import { NextResponse } from "next/server";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 import { errorHandler } from "@/utils/errorHandler";
 
+export async function GET(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -28,7 +29,7 @@ import { errorHandler } from "@/utils/errorHandler";
 
     if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_FETCH_TEAM_MEMBER }, request, lang, 500);
 
-    return NextResponse.json({ data });
+    return NextResponse.json({ roles: data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -38,6 +39,7 @@ import { errorHandler } from "@/utils/errorHandler";
   }
 }
 
+export async function POST(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -56,7 +58,7 @@ import { errorHandler } from "@/utils/errorHandler";
 
     if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_ADD_TEAM_MEMBER }, request, lang, 500);
 
-    return NextResponse.json({ data });
+    return NextResponse.json({ roles: data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -66,6 +68,7 @@ import { errorHandler } from "@/utils/errorHandler";
   }
 }
 
+export async function DELETE(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -86,7 +89,7 @@ import { errorHandler } from "@/utils/errorHandler";
 
     if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER }, request, lang, 500);
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);

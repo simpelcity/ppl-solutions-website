@@ -32,7 +32,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
     deleteProfilePicture,
     addRole,
     removeRole,
-  } = useTeam();
+  } = useTeam(dict);
 
   const [name, setName] = useState("");
   const [file, setFile] = useState<File | null>(null);

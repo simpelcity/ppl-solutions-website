@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Row, Col, Card, Spinner } from "react-bootstrap"
 import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
+import axios from "axios";
 
 type GalleryItem = {
   id: number
@@ -28,11 +29,11 @@ export default function GalleryGrid({ dict }: Props) {
     const fetchGallery = async () => {
       try {
         setLoading(true)
-        const res = await fetch("/api/gallery")
-        if (!res.ok) throw new Error(`API error ${res.status}`)
-        const json = await res.json()
+        const res = await axios.get("/api/gallery")
+        if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status })
+        const data = res.data
         if (!mounted) return
-        setItems(json.data ?? [])
+        setItems(data.gallery ?? [])
       } catch (err: any) {
         console.error("Failed to fetch gallery:", err)
         if (mounted) setError(err.message ?? String(err))
@@ -49,11 +50,11 @@ export default function GalleryGrid({ dict }: Props) {
   if (loading) return <LoaderSpinner dict={dict} />
 
   if (error) {
-    return <div className="text-danger">{dict.gallery.errors.error} {error}</div>
+    return <div className="text-danger">{dict.errors.gallery.ERROR_LOADING_GALLERY} {error}</div>
   }
 
   if (items.length === 0) {
-    return <div>{dict.gallery.errors.noImages}</div>
+    return <div>{dict.errors.gallery.NO_IMAGES_FOUND}</div>
   }
 
   return (

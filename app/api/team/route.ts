@@ -1,5 +1,5 @@
-import { supabaseAdmin } from "@/supabaseAdmin/";
 import { NextRequest, NextResponse } from "next/server";
+import { supabaseAdmin } from "@/supabaseAdmin/";
 import { errorHandler } from "@/utils/errorHandler";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";

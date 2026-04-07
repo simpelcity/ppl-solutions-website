@@ -40,10 +40,10 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
         return;
       }
 
-      setSuccess(`${dict.forgotPassword.form.error.success}`);
+      setSuccess(`${dict.success.forgotPassword.RESET_EMAIL_SENT}`);
       setEmail("");
     } catch (err: any) {
-      setError(err?.message ?? `${dict.forgotPassword.form.error.error}`);
+      setError(err?.message ?? `${dict.errors.forgotPassword.UNEXPECTED}`);
     } finally {
       setLoading(false);
     }
@@ -86,7 +86,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
 
           <Form.Group className="mb-3">
             <BSButton variant="primary" type="submit" disabled={loading}>
-              {loading ? `${dict.forgotPassword.form.error.loading}` : `${dict.forgotPassword.form.submit}`}
+              {loading ? `${dict.forgotPassword.form.statuses.loading}` : `${dict.forgotPassword.form.submit}`}
             </BSButton>
           </Form.Group>
 

@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 import { errorHandler } from "@/utils/errorHandler";
 
+export async function GET(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -15,7 +16,7 @@ import { errorHandler } from "@/utils/errorHandler";
 
     if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_FETCH_TEAM }, request, lang, 500);
 
-    return NextResponse.json({ data: data ?? [] }, { status: 200 });
+    return NextResponse.json({ members: data }, { status: 200 });
   } catch (e: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);

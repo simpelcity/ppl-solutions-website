@@ -664,9 +664,13 @@
     "leaderboard": {},
     "vtcStats": {},
     "profile": {
-      "PROFILE_PICTURE_DELETED": "Profile picture deleted successfully!",
-      "PROFILE_UPDATED": "Profile updated successfully!",
-      "PROFILE_CREATED": "Profile created successfully!"
+      "profile": {
+        "PROFILE_UPDATED": "Profile updated successfully!",
+        "PROFILE_CREATED": "Profile created successfully!"
+      },
+      "profilePicture": {
+        "PROFILE_PICTURE_DELETED": "Profile picture deleted successfully!"
+      }
     }
   },
   "unavailable": {

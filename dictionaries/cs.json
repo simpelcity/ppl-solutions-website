@@ -662,9 +662,13 @@
     "leaderboard": {},
     "vtcStats": {},
     "profile": {
-      "PROFILE_PICTURE_DELETED": "Profilový obrázek byl úspěšně odstraněn!",
-      "PROFILE_UPDATED": "Profile updated successfully!",
-      "PROFILE_CREATED": "Profile created successfully!"
+      "profile": {
+        "PROFILE_UPDATED": "Profile updated successfully!",
+        "PROFILE_CREATED": "Profile created successfully!"
+      },
+      "profilePicture": {
+        "PROFILE_PICTURE_DELETED": "Profilový obrázek byl úspěšně odstraněn!"
+      }
     }
   },
   "unavailable": {

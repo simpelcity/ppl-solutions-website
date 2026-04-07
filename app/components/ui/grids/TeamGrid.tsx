@@ -33,17 +33,15 @@ export default function TeamGrid({ lang, dict }: PageProps) {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/api/team?lang=${lang}`)
-        console.log(res)
-        if (res.status !== 200) throw new Error(dict.team.errors.FAILED_TO_FETCH_TEAM, { cause: res.status })
+        if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: res.status })
         const data = res.data
         if (!mounted) return
-        setItems(data ?? [])
+        setItems(data.team ?? [])
       } catch (err: any) {
-        console.error("Failed to fetch team data", err)
         console.log(err?.response)
         if (!mounted) return
         setError(err.message || String(err))
-        throw new Error(err.message || dict.team.errors.FAILED_TO_FETCH_TEAM, { cause: err })
+        throw new Error(err.message || dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: err })
       } finally {
         if (mounted) setLoading(false)
       }
@@ -56,7 +54,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
   }, [])
 
   if (loading) return <LoaderSpinner dict={dict}>{dict.team.loading}</LoaderSpinner>;
-  if (error) return <div className="text-danger">{dict.team.errors.ERROR_LOADING} {error}</div>;
+  if (error) return <div className="text-danger">{dict.errors.team.ERROR_LOADING_TEAM} {error}</div>;
 
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}
     ; (items || []).forEach((it) => {
@@ -72,7 +70,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
     <>
       {departments.map((dept, idx) => (
         <Row key={idx} className="w-100 d-flex justify-content-center">
-          {departments.length === 0 && <Col>{dict.team.errors.NO_DEPTS_OR_MEMBERS_FOUND}</Col>}
+          {departments.length === 0 && <Col>{dict.errors.team.NO_DEPTS_OR_MEMBERS_FOUND}</Col>}
 
           <h2 className="text-primary my-4">{dept.name}</h2>
           <Row className="d-flex justify-content-center row-gap-4">

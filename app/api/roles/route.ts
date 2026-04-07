@@ -1,9 +1,10 @@
-
+import { NextResponse, NextRequest } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 import { errorHandler } from "@/utils/errorHandler";
 
+export async function GET(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -15,7 +16,7 @@ import { errorHandler } from "@/utils/errorHandler";
 
     if (error) return errorHandler({ error: dict.errors.roles.FAILED_TO_FETCH_ROLES }, request, lang, 500);
 
-    return new Response(JSON.stringify({ data }), { status: 200 });
+    return NextResponse.json({ roles: data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);

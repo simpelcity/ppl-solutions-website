@@ -285,7 +285,7 @@ export function useProfile({ userId, dict }: Props) {
           headers: { "Content-Type": "multipart/form-data" },
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
-        setSuccess(dict.success.profile.PROFILE_UPDATED);
+        setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
         fetchProfile();
         fetchProfileById();
       } else {
@@ -297,7 +297,7 @@ export function useProfile({ userId, dict }: Props) {
           headers: { "Content-Type": "multipart/form-data" },
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
-        setSuccess(dict.success.profile.PROFILE_UPDATED);
+        setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
         fetchProfile();
         fetchProfileById();
       }
@@ -323,7 +323,7 @@ export function useProfile({ userId, dict }: Props) {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_CREATE_PROFILE, { cause: res.status });
-      setSuccess(dict.success.profile.PROFILE_CREATED);
+      setSuccess(dict.success.profile.profile.PROFILE_CREATED);
       fetchProfile();
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_CREATE_PROFILE;

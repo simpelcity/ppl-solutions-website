@@ -1,6 +1,6 @@
 // Dashboard
 export { default as Dashboard } from "./dashboard/Dashboard";
-export { default as DashboardStats } from "./dashboard/DashboardStats";
+export { default as VtcStats } from "./dashboard/VtcStats";
 export { default as Sidebar } from "./dashboard/Sidebar";
 export { default as UserStats } from "./dashboard/UserStats";
 // Forms

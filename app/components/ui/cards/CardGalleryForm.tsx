@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { BSButton } from "@/components";
+import { BSButton, LoaderSpinner } from "@/components";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
 import type { Dictionary } from "@/app/i18n"
 
@@ -25,7 +25,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     createItem,
     updateItem,
     deleteItem,
-  } = useGallery();
+  } = useGallery(dict);
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
@@ -157,10 +157,10 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
             {loading ? (
               <div className="d-flex justify-content-center align-items-center column-gap-2">
                 <Spinner animation="border" />
-                <span className="fs-4">Loading gallery items</span>
+                <span className="fs-4">{dict.gallery.loading}</span>
               </div>
             ) : items.length === 0 ? (
-              <p className="text-muted">No items yet</p>
+              <p className="text-muted">{dict.errors.gallery.NO_IMAGES_FOUND}</p>
             ) : (
               <ListGroup variant="flush">
                 {items.map((item) => (

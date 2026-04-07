@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import type { Dictionary } from "@/app/i18n";
 import { useLang } from "@/hooks/useLang";
 
 export interface GalleryItem {
@@ -11,7 +12,7 @@ export interface GalleryItem {
   image_path: string | null;
 }
 
-export function useGallery() {
+export function useGallery(dict: Dictionary) {
   const lang = useLang();
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -25,13 +26,15 @@ export function useGallery() {
   }, []);
 
   const fetchItems = async () => {
-    setLoading(true);
     try {
       const res = await axios.get(`/api/gallery?lang=${lang}`);
-      const json = res.data;
-      if (res.status === 200) setItems(json.data || []);
-    } finally {
-      setLoading(false);
+      if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status });
+      const data = res.data;
+      setItems(data.gallery || []);
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.ERROR_LOADING_GALLERY;
+      setError(message);
+      throw new Error(message);
     }
   };
 
@@ -46,12 +49,13 @@ export function useGallery() {
       const res = await axios.post(`/api/gallery?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (res.status !== 200) throw new Error("Failed to add item");
-      setSuccess("Gallery item added");
+      if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_ADD_ITEM, { cause: res.status });
+      setSuccess(dict.success.gallery.ITEM_ADDED);
       fetchItems();
-    } catch (e: any) {
-      setError(e?.response?.data?.error || e.message);
-      console.error(e);
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.FAILED_TO_ADD_ITEM;
+      setError(message);
+      throw new Error(message);
     } finally {
       setSubmitting(false);
     }
@@ -69,12 +73,14 @@ export function useGallery() {
       const res = await axios.put(`/api/gallery?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      if (res.status !== 200) throw new Error("Failed to update");
-      setSuccess("Gallery item updated");
+      if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_UPDATE_ITEM, { cause: res.status });
+      setSuccess(dict.success.gallery.ITEM_UPDATED);
       setEditingId(null);
       fetchItems();
-    } catch (e: any) {
-      setError(e?.response?.data?.error || e.message);
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.FAILED_TO_UPDATE_ITEM;
+      setError(message);
+      throw new Error(message);
     } finally {
       setSubmitting(false);
     }
@@ -83,11 +89,13 @@ export function useGallery() {
   const deleteItem = async (id: number) => {
     try {
       const res = await axios.delete(`/api/gallery?lang=${lang}`, { data: { id } });
-      if (res.status !== 200) throw new Error("Delete failed");
-      setSuccess("Gallery item deleted");
+      if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_DELETE_ITEM, { cause: res.status });
+      setSuccess(dict.success.gallery.ITEM_DELETED);
       fetchItems();
-    } catch (e: any) {
-      setError(e?.response?.data?.error || e.message);
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.FAILED_TO_DELETE_ITEM;
+      setError(message);
+      throw new Error(message);
     }
   };
 

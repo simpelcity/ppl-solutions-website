@@ -26,17 +26,17 @@ export default function ResetPasswordFormClient({ dict }: Props) {
     supabase.auth.getSession()
       .then(({ data, error }) => {
         if (error) {
-          setError(dict.resetPassword.form.error.expiredToken);
+          setError(dict.errors.resetPassword.EXPIRED_TOKEN);
           setTokenValid(false);
         } else if (!data.session) {
-          setError(dict.resetPassword.form.error.expiredSession)
+          setError(dict.errors.resetPassword.EXPIRED_SESSION)
           setTokenValid(false)
         } else {
           setTokenValid(true);
         }
       })
       .catch(() => {
-        setError(dict.resetPassword.form.error.invalidToken);
+        setError(dict.errors.resetPassword.INVALID_TOKEN);
         setTokenValid(false);
       })
       .finally(() => {
@@ -46,19 +46,19 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
   const validatePassword = (password: string): string | null => {
     if (password.length < 8) {
-      return dict.resetPassword.form.error.password.passwordTooShort;
+      return dict.errors.resetPassword.password.PASSWORD_TOO_SHORT;
     }
     if (!/[a-z]/.test(password)) {
-      return dict.resetPassword.form.error.password.passwordNoLowercase;
+      return dict.errors.resetPassword.password.PASSWORD_NO_LOWERCASE;
     }
     if (!/[A-Z]/.test(password)) {
-      return dict.resetPassword.form.error.password.passwordNoUppercase;
+      return dict.errors.resetPassword.password.PASSWORD_NO_UPPERCASE;
     }
     if (!/[0-9]/.test(password)) {
-      return dict.resetPassword.form.error.password.passwordNoNumber;
+      return dict.errors.resetPassword.password.PASSWORD_NO_NUMBER;
     }
     if (!/[!@#$%^&*]/.test(password)) {
-      return dict.resetPassword.form.error.password.passwordNoSpecial;
+      return dict.errors.resetPassword.password.PASSWORD_NO_SPECIAL_CHARS;
     }
     return null;
   };
@@ -69,7 +69,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
     setSuccess("");
 
     if (password !== confirmPassword) {
-      setError(dict.resetPassword.form.error.password.passwordMismatch);
+      setError(dict.errors.resetPassword.password.PASSWORDS_MISMATCH);
       return;
     }
 
@@ -91,12 +91,12 @@ export default function ResetPasswordFormClient({ dict }: Props) {
         return;
       }
 
-      setSuccess(dict.resetPassword.form.error.success);
+      setSuccess(dict.resetPassword.form.success);
       setTimeout(() => {
         router.push("/login");
       }, 2000);
     } catch (err: any) {
-      setError(err?.message ?? dict.resetPassword.form.error.unexpected);
+      setError(err?.message ?? dict.errors.resetPassword.UNEXPECTED);
     } finally {
       setLoading(false);
     }
@@ -139,7 +139,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
           <p className="text-danger">{error}</p>
           <div className="text-center">
             <small>
-              <a href="/forgot-password" className="text-light">{dict.resetPassword.form.error.newPassword}</a>
+              <a href="/forgot-password" className="text-light">{dict.resetPassword.form.requestNewPassword}</a>
             </small>
           </div>
         </Card.Body>

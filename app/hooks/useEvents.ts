@@ -21,11 +21,11 @@ export function useEvents(dict: Dictionary) {
       setError(null);
       try {
         const res = await axios.get(`/api/events?lang=${lang}`);
-        if (res.status !== 200) throw new Error(dict.events.errors.FAILED_TO_FETCH_EVENTS, { cause: res.status });
+        if (res.status !== 200) throw new Error(dict.errors.events.FAILED_TO_FETCH_EVENTS, { cause: res.status });
         const data = res.data;
         setEvents(data.response);
       } catch (err: any) {
-        const message = err?.response?.data?.message || err?.message || dict.events.errors.FAILED_TO_FETCH_EVENTS;
+        const message = err?.response?.data?.message || err?.message || dict.errors.events.FAILED_TO_FETCH_EVENTS;
         setError(message);
         throw new Error(message);
       } finally {

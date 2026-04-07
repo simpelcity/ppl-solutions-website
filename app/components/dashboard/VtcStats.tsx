@@ -5,12 +5,12 @@ import { Loader } from "@/components"
 import { useVtcStats } from "@/hooks/useVtcStats"
 import type { Dictionary } from "@/app/i18n"
 
-interface DashboardStatsProps {
+interface VtcStatsProps {
   dict: Dictionary;
 }
 
-export default function DashboardStats({ dict }: DashboardStatsProps) {
-  const { stats, loading, error } = useVtcStats()
+export default function VtcStats({ dict }: VtcStatsProps) {
+  const { stats, loading, error } = useVtcStats(dict);
 
   const formatDistance = (distance: number, unit: string = "km"): string => {
     const value = distance / 1000
@@ -47,7 +47,7 @@ export default function DashboardStats({ dict }: DashboardStatsProps) {
     return (
       <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
         <Card.Body className="p-4">
-          <p className="text-muted">{dict.drivershub.vtcStats.error.noStats}</p>
+          <p className="text-muted">{dict.errors.vtcStats.NO_STATS}</p>
         </Card.Body>
       </Card>
     )

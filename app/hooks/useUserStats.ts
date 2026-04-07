@@ -51,13 +51,6 @@ interface destination {
   company: string;
 }
 
-interface job {
-  jobID: number;
-  game: {
-    id: string;
-  };
-}
-
 interface distanceStats {
   distance: number;
   avg: number;
@@ -74,19 +67,13 @@ interface GameStats {
   destination?: destination;
 }
 
-type Props = {
-  dict: Dictionary;
-};
-
 export function useUserStats(dict: Dictionary) {
   const lang = useLang();
   const { session } = useAuth();
   const isAdmin = useIsAdmin();
   const [steamID, setSteamID] = useState<string | null>(null);
   const [scenarios, setScenarios] = useState();
-  const [lastPage, setLastPage] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
-  const [allJobs, setAllJobs] = useState<Job[]>([]);
   const [stats, setStats] = useState<stats | null | undefined>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
