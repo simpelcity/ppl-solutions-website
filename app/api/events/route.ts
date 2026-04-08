@@ -11,9 +11,7 @@ export async function GET(request: NextRequest) {
 
     const res = await axios.get("https://api.truckersmp.com/v2/vtc/74455/events/attending");
 
-    if (res.status !== 200) {
-      return errorHandler({ error: dict.errors.events.FAILED_TO_FETCH_EVENTS }, request, lang, res.status);
-    }
+    if (res.status !== 200) return errorHandler({ error: dict.errors.events.FAILED_TO_FETCH_EVENTS }, request, lang, res.status);
 
     const data = res.data;
     return NextResponse.json(data);

@@ -1,5 +1,4 @@
-import { Card, CardBody, CardTitle } from "react-bootstrap";
-import { TableJobs, Dashboard } from "@/components";
+import { TableJobs } from "@/components";
 import "@/styles/Drivershub.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"

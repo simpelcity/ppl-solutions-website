@@ -14,7 +14,7 @@ type FooterProps = {
 }
 
 export default function Footer({ dict }: FooterProps) {
-  const { isSidebarCollapsed, isMobile } = useSidebar();
+  const { isSidebarCollapsed } = useSidebar();
 
   const footerLinks = [
     { title: `${dict.footer.footer2.pages.home}`, href: "" },
@@ -98,8 +98,8 @@ export default function Footer({ dict }: FooterProps) {
                 </ListGroup>
               </Col>
               <Col xs={12} md={9} lg={8} className="fs-5">
-                <Tabs defaultActiveKey="links" className="nav-fill mb-3 border-primary">
-                  <Tab eventKey="links" title={dict.footer.footer3.tab1.title} className="border-0">
+                <Tabs defaultActiveKey="links" className="mb-3" fill>
+                  <Tab eventKey="links" title={dict.footer.footer3.tab1.title} className="">
                     <ListGroup>
                       <FooterLink link="drivershub">{dict.footer.footer3.tab1.pages.drivershub}</FooterLink>
                       <FooterLink link="apply">{dict.footer.footer3.tab1.pages.apply}</FooterLink>
@@ -108,7 +108,7 @@ export default function Footer({ dict }: FooterProps) {
                       </FooterLink>
                     </ListGroup>
                   </Tab>
-                  <Tab eventKey="message" title={dict.footer.footer3.tab2.title} className="border-0">
+                  <Tab eventKey="message" title={dict.footer.footer3.tab2.title} className="">
                     <p className="text-center text-md-start">
                       {message1} <strong>{message2}</strong>{message3}<strong>{message4}</strong>{message5}
                     </p>
@@ -120,7 +120,7 @@ export default function Footer({ dict }: FooterProps) {
         </Row>
         <p className="border-top border-light pt-3 mt-4 mb-0 fs-5 text-center w-100">
           <FaRegCopyright className="fs-6" /> {bottom1} {currentYear} <strong>{brand}</strong>{bottom3}
-          <a className="text-decoration-none author fw-bold" href="https://simpelcity.github.io">
+          <a className="text-decoration-none author fw-bold text-primary" href="https://simpelcity.github.io">
             {developer}
           </a>
         </p>

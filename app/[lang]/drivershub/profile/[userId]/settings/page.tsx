@@ -1,4 +1,3 @@
-import { Dashboard } from '@/components'
 import "@/styles/Drivershub.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"

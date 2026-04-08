@@ -1,4 +1,4 @@
-import { Dashboard, TableLeaderboard } from "@/components"
+import { TableLeaderboard } from "@/components"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"

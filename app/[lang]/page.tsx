@@ -135,7 +135,7 @@ export default async function HomePage({ params }: PageProps) {
             </h2>
             <p>{dict.home.apply.text}</p>
             <div className="d-grid d-md-inline-block">
-              <BSButton variant="outline" border="primary" text="primary">
+              <BSButton variant="outline" border="primary" text="primary" href="/apply">
                 {dict.home.apply.button}
               </BSButton>
             </div>

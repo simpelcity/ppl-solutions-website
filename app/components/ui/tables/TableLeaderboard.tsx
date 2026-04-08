@@ -132,6 +132,10 @@ export default function TableLeaderboard({ dict }: Props) {
     }
   }, [searchParams]);
 
+  if (currentLeaderboard.entries.length === 0) return <p>No data</p>
+
+  console.log(currentLeaderboard)
+
   return (
     <>
       <Container className="p-3" fluid>

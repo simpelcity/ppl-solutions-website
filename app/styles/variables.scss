@@ -3,5 +3,9 @@ $secondary: #043b32;
 $light: whitesmoke;
 $dropdown-link-hover-bg: $primary;
 $dropdown-link-color: $light;
+$nav-tabs-link-active-color: $light;
+$nav-tabs-link-active-bg: #1a1d20;
+$nav-link-color: $primary;
+$nav-link-hover-color: $primary;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";

@@ -5,13 +5,10 @@ import { useLang } from '@/hooks/useLang'
 import axios from "axios";
 import type { Dictionary } from "@/app/i18n";
 
-export interface Event {
-  [key: string]: any;
-}
 
 export function useEvents(dict: Dictionary) {
   const lang = useLang();
-  const [events, setEvents] = useState<Event[] | null>(null);
+  const [events, setEvents] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

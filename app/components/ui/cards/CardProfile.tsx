@@ -2,13 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useProfile } from "@/hooks/useProfile";
-import { Container, Card, Image, Row, Col, ButtonGroup } from 'react-bootstrap'
+import { Container, Card, Image, ButtonGroup } from 'react-bootstrap'
 import { BSButton, LoaderSpinner, CardProfileSkills } from '@/components'
 import type { Dictionary } from "@/app/i18n"
-import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from '@/lib/AuthContext'
-import { useSidebar } from '@/lib/SidebarContext'
 
 type Props = {
   params: Promise<{ userId: string }>;

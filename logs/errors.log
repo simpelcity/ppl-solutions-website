@@ -886,3 +886,235 @@ Status: 400
 Error: BAD_REQUEST
 Message: SteamID is verplicht
 -----------------------------
+
+[08-Apr-2026:14:27:21 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:21 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:25 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:26 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:34 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:35 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:42 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:42 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:28:53 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:28:53 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:29:26 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:29:37 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:30:04 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:30:05 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:30:30 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:32:05 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:32:05 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:32:09 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:32:18 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:32:22 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:34:39 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:36:46 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:36:46 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:37:22 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:37:22 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:02 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:02 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:39 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:39 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------

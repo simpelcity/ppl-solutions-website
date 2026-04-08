@@ -63,7 +63,7 @@ export default async function ApplyPage({ params }: PageProps) {
                   <CardBody>
                     <CardTitle>
                       {apply1}
-                      <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="text-decoration-none fw-bold">
+                      <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="text-decoration-none fw-bold text-primary">
                         {apply2}
                       </a>{" "}
                       {apply3}
