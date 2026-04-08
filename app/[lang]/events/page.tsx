@@ -49,8 +49,8 @@ export default async function EventsPage({ params }: PageProps) {
       <main className="fs-5">
         <StartBanner>{dict.events.title}</StartBanner>
         <section className="d-flex w-100 bg-dark-subtle text-center">
-          <Container className="d-flex justify-content-center my-5">
-            <Row className="w-100 d-flex justify-content-center row-gap-4">
+          <Container className="d-flex justify-content-center p-3">
+            <Row className="d-flex justify-content-center row-gap-4">
               <CardEvents dict={dict} />
             </Row>
           </Container>

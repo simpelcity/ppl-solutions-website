@@ -595,7 +595,9 @@
       "FAILED_TO_FETCH_SCENARIOS": "Kon scenario's niet ophalen",
       "FAILED_TO_FETCH_STATS": "Kon statistieken niet ophalen"
     },
-    "leaderboard": {},
+    "leaderboard": {
+      "NO_DATA": "Nog geen gegevens beschikbaar"
+    },
     "vtcStats": {
       "NO_STATS": "Geen statistieken beschikbaar"
     },

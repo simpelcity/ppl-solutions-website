@@ -8,7 +8,16 @@ import { i18n, type Locale } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
 import { useAuth } from '@/lib'
 
-export default function NavButtons({ dict, width }: { dict: Dictionary, width: number }) {
+type LanguageNamesProps = {
+  [key in Locale]: {
+    long: string;
+    short: string;
+    url: string;
+    alt: string;
+  }
+}
+
+export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary, width: number, isMobile: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
   const [expanded, setExpanded] = useState(false);
@@ -22,18 +31,31 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
     ? (currentLocale === i18n.defaultLocale ? "/drivershub" : `/${currentLocale}/drivershub`)
     : (currentLocale === i18n.defaultLocale ? "/login" : `/${currentLocale}/login`);
 
-  const languageNames: Record<Locale, string> = {
-    en: "EN",
-    nl: "NL",
-    cs: "ČR",
-    sk: "SK",
-  };
-
-  const languageFlags: Record<Locale, string> = {
-    en: "https://flagcdn.com/w320/gb.png",
-    nl: "https://flagcdn.com/w320/nl.png",
-    cs: "https://flagcdn.com/w320/cz.png",
-    sk: "https://flagcdn.com/w320/sk.png",
+  const languageNames: LanguageNamesProps = {
+    en: {
+      long: "English",
+      short: "EN",
+      url: "https://flagcdn.com/w320/gb.png",
+      alt: "English Flag",
+    },
+    nl: {
+      long: "Nederlands",
+      short: "NL",
+      url: "https://flagcdn.com/w320/nl.png",
+      alt: "Nederlandse vlag",
+    },
+    cs: {
+      long: "čeština",
+      short: "ČR",
+      url: "https://flagcdn.com/w320/cz.png",
+      alt: "Česká vlajka",
+    },
+    sk: {
+      long: "Slovák",
+      short: "SK",
+      url: "https://flagcdn.com/w320/sk.png",
+      alt: "Vlajka Slovenska",
+    },
   };
 
   const switchLanguage = (locale: Locale) => {
@@ -81,15 +103,15 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
       </div>
       <div className={`vr text-white ${offCanvas ? 'd-none' : width < 576 ? 'd-none' : 'd-block'}`}></div>
       <div className="d-flex align-items-center justify-content-center">
-        <Dropdown align="end" className="pe-3" style={{ width: 'min-content' }}>
-          <Dropdown.Toggle variant="dark" className="bg-transparent border-0 d-flex align-items-center py-0 ps-0 fw-semibold" id="dropdown-lang">
+        <Dropdown align="end" style={{ width: 'min-content' }}>
+          <Dropdown.Toggle variant="dark" className="bg-transparent border-0 d-flex align-items-center py-0 px-0 fw-semibold" id="dropdown-lang">
             <Image
-              src={languageFlags[currentLocale]}
-              alt={languageNames[currentLocale]}
+              src={languageNames[currentLocale].url}
+              alt={languageNames[currentLocale].alt}
               className="me-1 text-white"
-              style={{ width: "65%", height: "65%" }}
+              style={{ width: "25px", height: "17px" }}
             />
-            {languageNames[currentLocale]}
+            {isMobile ? languageNames[currentLocale].long : languageNames[currentLocale].short}
           </Dropdown.Toggle>
           <Dropdown.Menu className="mt-3 position-absolute">
             {i18n.locales.map((locale) => (
@@ -99,11 +121,11 @@ export default function NavButtons({ dict, width }: { dict: Dictionary, width: n
                 active={currentLocale === locale}
                 onClick={() => switchLanguage(locale)}>
                 <Image
-                  src={languageFlags[locale]}
-                  alt={languageNames[locale]}
+                  src={languageNames[locale].url}
+                  alt={languageNames[locale].alt}
                   className="w-25 h-25 me-2"
                 />
-                {languageNames[locale]}
+                {languageNames[locale].long}
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>

@@ -113,12 +113,12 @@ export default function CardEvents({ dict }: PageProps) {
     const keys = Object.keys(dlcObject);
     return (
       <Dropdown>
-        <Dropdown.Toggle className="p-0 text-decoration-none ms-1 bg-transparent border-0 text-light">
+        <Dropdown.Toggle className="p-0 text-decoration-none ms-1 bg-transparent border-0 text-primary fw-bold my-auto">
           +{dlcArray.length - 1} {dict.events.card.more}
         </Dropdown.Toggle>
-        <Dropdown.Menu variant="dark">
-          {dlcArray.map((dlc: any, index: number) => (
-            <Dropdown.Item key={index} href={`https://store.steampowered.com/app/${keys[index]}`} target="_blank" rel="noopener noreferrer">{dlc}</Dropdown.Item>
+        <Dropdown.Menu variant="dark" className="bg-dark shadow-sm">
+          {dlcArray.slice(1).map((dlc: any, index: number) => (
+            <Dropdown.Item key={index} href={`https://store.steampowered.com/app/${keys[index]}`} target="_blank" rel="noopener noreferrer" className="text-primary fw-bold">{dlc}</Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
@@ -188,12 +188,15 @@ export default function CardEvents({ dict }: PageProps) {
                     {dlcs(event.dlcs).length > 2 ? (
                       <>
                         <BsDownload /><strong>{dict.events.card.dlc}: </strong>
+                        <a href={`https://store.steampowered.com/app/${dlcKeys(event.dlcs)}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
+                          <span className="text-primary fw-bold">{dlcs(event.dlcs)[0]}</span>
+                        </a>
                         {dlcDiv(event.dlcs)}
                       </>
                     ) : dlcs(event.dlcs).length > 0 ? (
                       <a href={`https://store.steampowered.com/app/${dlcKeys(event.dlcs)}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
                         <BsDownload /><strong>{dict.events.card.dlc}: </strong>
-                        <span className="text-primary">{dlcs(event.dlcs)}</span>
+                        <span className="text-primary fw-bold">{dlcs(event.dlcs)}</span>
                       </a>
                     ) : (
                       <>

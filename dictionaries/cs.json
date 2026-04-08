@@ -595,7 +595,9 @@
       "FAILED_TO_FETCH_SCENARIOS": "Nepodařilo se načíst scénáře",
       "FAILED_TO_FETCH_STATS": "Nepodařilo se načíst statistiky"
     },
-    "leaderboard": {},
+    "leaderboard": {
+      "NO_DATA": "Zatím nejsou k dispozici žádná data"
+    },
     "vtcStats": {
       "NO_STATS": "Nejsou k dispozici žádné statistiky"
     },

@@ -597,7 +597,9 @@
       "FAILED_TO_FETCH_SCENARIOS": "Failed to fetch scenarios",
       "FAILED_TO_FETCH_STATS": "Failed to fetch statistics"
     },
-    "leaderboard": {},
+    "leaderboard": {
+      "NO_DATA": "No data available yet"
+    },
     "vtcStats": {
       "NO_STATS": "No statistics available"
     },

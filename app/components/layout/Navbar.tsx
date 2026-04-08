@@ -6,9 +6,7 @@ import { usePathname } from "next/navigation";
 import { NavButtons } from "@/components";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoIosClose } from "react-icons/io";
 import { useSidebar } from "@/lib";
-import { i18n } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
 import { type Locale } from "@/i18n"
 import "@/styles/Navbar.scss";
@@ -44,7 +42,6 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const currentLocale = lang === "en" ? "" : `/${lang}`;
 
   const isDrivershub = pathname.startsWith(`${currentLocale}/drivershub`);
-  // console.log(isMobile, isDrivershub)
 
   useEffect(() => {
     setExpanded(false);
@@ -77,11 +74,11 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
 
   return (
     <header className="position-sticky top-0" style={{ zIndex: 5 }}>
-      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark" className="px-lg-3">
+      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark" className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
         <Container className="m-0 p-0 d-flex align-items-center" fluid>
           {isMobile && isDrivershub && (
             <button
-              className="btn btn-link text-light text-opacity-75 border-0 ms-1"
+              className="btn btn-link text-light text-opacity-75 border-0"
               style={{ padding: "0.25rem 0.75rem" }}
               onClick={toggleSidebar}>
               <RxHamburgerMenu size={30} />
@@ -95,7 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
             <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
             <h5 className="my-auto">{dict.navbar.brand}</h5>
           </BSNavbar.Brand>
-          <BSNavbar.Toggle className="me-1" aria-controls="main-navbar" />
+          <BSNavbar.Toggle aria-controls="main-navbar" />
           <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
             <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
               {navLinks.map((link) => (
@@ -122,12 +119,12 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
                     <Offcanvas.Title>{dict.navbar.navigation.title}</Offcanvas.Title>
                   </Offcanvas.Header>
                   <Offcanvas.Body>
-                    <NavButtons dict={dict} width={width} />
+                    <NavButtons dict={dict} width={width} isMobile={isMobile} />
                   </Offcanvas.Body>
                 </Offcanvas>
               </>
             ) : (
-              <NavButtons dict={dict} width={width} />
+              <NavButtons dict={dict} width={width} isMobile={isMobile} />
             )}
           </BSNavbar.Collapse>
         </Container>
