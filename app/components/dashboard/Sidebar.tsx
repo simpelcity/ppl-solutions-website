@@ -16,7 +16,7 @@ import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
-import { GoSidebarCollapse } from "react-icons/go";
+import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
 
 interface NavItem {
   href: string;
@@ -287,6 +287,8 @@ function SidebarContent({
   )
 }
 
+import { useSidebar } from "@/lib";
+
 export default function Sidebar({
   isSidebarCollapsed,
   setIsSidebarCollapsed,
@@ -296,12 +298,9 @@ export default function Sidebar({
   lang,
   ...props
 }: SidebarProps) {
-  const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const { showOffcanvas, setShowOffcanvas } = useSidebar();
 
-  useEffect(() => {
-    setShowOffcanvas(isMobile && !isSidebarCollapsed)
-  }, [isMobile, isSidebarCollapsed]);
-
+  const offcanvasSidebarCollapsed = false;
   return isMobile ? (
     <Offcanvas
       show={showOffcanvas}
@@ -309,20 +308,20 @@ export default function Sidebar({
       placement="start"
       scroll={false}
       backdrop={true}
-      className={`sidebar bg-light-subtle ${isSidebarCollapsed ? "" : "w-100"}`}
+      className={`sidebar bg-light-subtle w-100`}
       style={{ maxWidth: window.innerWidth < 576 ? "100%" : "16.25rem" }}
       data-bs-theme="dark"
     >
       <Offcanvas.Header className="pb-0">
         <Offcanvas.Title className="fs-3">{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
-        <button type="button" className="ms-auto p-0 btn btn-link text-light text-opacity-75" data-bs-dismiss="offcanvas" aria-label="Close" onClick={() => setShowOffcanvas(false)}>
-          <GoSidebarCollapse size={30} />
+        <button type="button" className="ms-auto p-0 btn btn-link text-light text-opacity-75" aria-label="Close" onClick={() => setShowOffcanvas(false)}>
+          <GoSidebarCollapse className="flip" size={30} />
         </button>
       </Offcanvas.Header>
-      <hr className={isSidebarCollapsed ? "d-none" : "d-block mx-3"} />
+      <hr className="d-block mx-3" />
       <Offcanvas.Body className="d-flex flex-column pt-0">
         <SidebarContent
-          isSidebarCollapsed={isSidebarCollapsed}
+          isSidebarCollapsed={offcanvasSidebarCollapsed}
           setIsSidebarCollapsed={setIsSidebarCollapsed}
           isMobile={isMobile}
           isNavbarVisible={isNavbarVisible}
@@ -337,8 +336,6 @@ export default function Sidebar({
       className={`sidebar d-flex flex-column text-light bg-light-subtle text-start bg-danger ${isSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"}`}
       style={{
         height: "calc(100dvh - 76px)",
-        // width: isSidebarCollapsed ? "4.5rem" : "260px",
-        // maxWidth: isSidebarCollapsed ? "4.5rem" : "260px",
         position: "sticky",
         top: isNavbarVisible ? 76 : "auto",
         left: isMobile ? 0 : "auto",
@@ -357,7 +354,12 @@ export default function Sidebar({
             {dict.drivershub.sidebar.title || "Sidebar"}
           </h3>
         </a>
-        <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
+        {isSidebarCollapsed ? (
+          <GoSidebarExpand className="fs-3 flip" role="button" onClick={() => setIsSidebarCollapsed(false)} />
+        ) : (
+          <GoSidebarCollapse className="fs-3 flip" role="button" onClick={() => setIsSidebarCollapsed(true)} />
+        )}
+        {/* <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} /> */}
       </div>
       <hr className={isSidebarCollapsed ? "d-none" : "d-block"} />
 

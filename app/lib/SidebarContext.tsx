@@ -6,10 +6,12 @@ import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 
 interface SidebarContextType {
-  isSidebarCollapsed: boolean
-  setIsSidebarCollapsed: (value: boolean) => void
-  toggleSidebar: () => void
+  isSidebarCollapsed: boolean;
+  setIsSidebarCollapsed: (value: boolean) => void;
+  toggleSidebar: () => void;
   isMobile: boolean;
+  showOffcanvas: boolean;
+  setShowOffcanvas: (value: boolean) => void;
 }
 
 interface Props {
@@ -24,6 +26,7 @@ export function SidebarProvider({ children, dict }: Props) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -41,13 +44,17 @@ export function SidebarProvider({ children, dict }: Props) {
   }, [])
 
   const toggleSidebar = () => {
-    setIsSidebarCollapsed(!isSidebarCollapsed)
+    if (isMobile) {
+      setShowOffcanvas(true);
+    } else {
+      setIsSidebarCollapsed(!isSidebarCollapsed);
+    }
   }
 
   if (!isReady) return <LoaderSpinner dict={dict} />;
 
   return (
-    <SidebarContext.Provider value={{ isSidebarCollapsed, setIsSidebarCollapsed, toggleSidebar, isMobile }}>
+    <SidebarContext.Provider value={{ isSidebarCollapsed, setIsSidebarCollapsed, toggleSidebar, isMobile, showOffcanvas, setShowOffcanvas }}>
       {children}
     </SidebarContext.Provider>
   )

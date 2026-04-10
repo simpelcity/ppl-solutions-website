@@ -18,3 +18,7 @@
 .dashboard-collapsed {
   width: calc(100% - var(--sidebar-expanded-width)) !important;
 }
+
+.flip {
+  transform: scaleX(-1)
+}

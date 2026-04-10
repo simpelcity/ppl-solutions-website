@@ -34,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const [width, setWidth] = useState(0);
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
-  const { toggleSidebar, isMobile } = useSidebar();
+  const { toggleSidebar, isMobile, setShowOffcanvas } = useSidebar();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -81,8 +81,8 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
             <button
               className="btn btn-link text-light text-opacity-75 border-0"
               style={{ padding: "0.25rem 0.75rem" }}
-              onClick={toggleSidebar}>
-              <GoSidebarExpand size={30} />
+              onClick={() => setShowOffcanvas(true)}>
+              <GoSidebarExpand className="flip" size={30} />
             </button>
           )}
           <BSNavbar.Brand
