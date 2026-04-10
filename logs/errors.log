@@ -1118,3 +1118,51 @@ Status: 200
 Error: Error
 Message: Het ophalen van evenementen is mislukt.
 -----------------------------
+
+[10-Apr-2026:17:43:48 +0200]
+URL: http://localhost:8000/api/profile-banner?lang=en
+Method: GET
+Status: 400
+Error: BAD_REQUEST
+Message: ID is required
+-----------------------------
+
+[10-Apr-2026:17:45:18 +0200]
+URL: http://localhost:8000/api/profile-banner?id=33393c78-a551-4e94-b6e6-db97dba35305&lang=nl
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:17:49:26 +0200]
+URL: http://localhost:8000/api/profile-banner?id=33393c78-a551-4e94-b6e6-db97dba35305&lang=nl
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:17:51:07 +0200]
+URL: http://localhost:8000/api/profile-banner?id=33393c78-a551-4e94-b6e6-db97dba35305&lang=nl
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:18:01:20 +0200]
+URL: http://localhost:8000/api/profile-banner?lang=nl
+Method: PUT
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:18:11:53 +0200]
+URL: http://localhost:8000/api/profile-banner?lang=nl
+Method: PUT
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------

@@ -148,7 +148,7 @@
       "required": "Polia označené * sú povinné",
       "name": "Meno / Discord používateľské meno",
       "namePlaceholder": "Tvoje (používateľské) meno",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvoj@email.com",
       "message": "Správa",
       "messagePlaceholder": "Tvoja správa",
@@ -173,7 +173,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Prihlásenie",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvoj@email.com",
       "password": "Heslo",
       "forgotPassword": "zabudnuté heslo?",
@@ -194,7 +194,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Registrácia",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvoj@email.com",
       "username": "Používateľské meno",
       "usernamePlaceholder": "tvoje_pouzivatelske_meno",
@@ -217,7 +217,7 @@
       "brand": "PPL Solutions",
       "title": "Zabudnuté heslo",
       "text": "Zadaj svoj email a pošleme ti odkaz na obnovenie hesla.",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvoj@email.com",
       "submit": "odoslať odkaz",
       "remember": "Pamätáš si heslo?",
@@ -256,9 +256,9 @@
       "drivershub": "Centrum vodičov",
       "userStats": "Štatistiky používateľa",
       "leaderboard": "Rebríček",
+      "vtcStats": "Štatistiky VTC",
       "dashboard": {
-        "title": "Prehľad",
-        "vtcStats": "Štatistiky VTC",
+        "title": "Spravovať",
         "team": "Tím",
         "gallery": "Galéria"
       },
@@ -288,30 +288,30 @@
     },
     "userStats": {
       "meta": {
-        "title": "Štatistiky",
-        "description": "Štatistiky {username} na PPL Solutions VTC"
+        "title": "Štatistiky {driver}",
+        "description": "Štatistiky {driver} na PPL Solutions VTC"
       },
       "cards": {
         "thp": {
           "title": "TruckersHub body",
           "total": "Celkovo",
-          "avg": "Priemer",
-          "min": "Minimum",
-          "max": "Maximum"
+          "avg": "Priemerný",
+          "min": "Najnižšia",
+          "max": "Najvyššia"
         },
         "income": {
           "title": "Získaný príjem",
           "total": "Celkovo",
-          "avg": "Priemer",
-          "min": "Minimum",
-          "max": "Maximum"
+          "avg": "Priemerný",
+          "min": "Najnižšia",
+          "max": "Najvyššia"
         },
         "distance": {
           "title": "Prepravná vzdialenosť",
           "total": "Celkovo",
-          "avg": "Priemer",
-          "min": "Minimum",
-          "max": "Maximum"
+          "avg": "Priemerný",
+          "min": "Najnižšia",
+          "max": "Najvyššia"
         }
       },
       "table": {
@@ -355,11 +355,11 @@
             "may": "Máj",
             "jun": "Jún",
             "jul": "Júl",
-            "aug": "August",
-            "sep": "September",
+            "aug": "august",
+            "sep": "september",
             "oct": "Október",
-            "nov": "November",
-            "dec": "December"
+            "nov": "november",
+            "dec": "december"
           }
         },
         "leaderboards": {
@@ -473,25 +473,61 @@
     "profile": {
       "profilePage": {
         "meta": {
-          "title": "",
-          "description": ""
+          "title": "Profil používateľa {driver}",
+          "description": "Profil používateľa {driver} na PPL Solutions Centrum vodičov"
         },
         "card": {
-          "bannerAlt": "{driver}'s profile banner",
-          "defaultBannerAlt": "Default profile banner",
-          "profilePictureAlt": "{driver}'s profile picture",
-          "defaultProfilePictureAlt": "Default profile picture",
+          "bannerAlt": "Profilový banner používateľa {driver}",
+          "defaultBannerAlt": "Predvolený profilový banner",
+          "profilePictureAlt": "Profilový obrázok používateľa {driver}",
+          "defaultProfilePictureAlt": "Predvolený profilový obrázok",
           "buttons": {
-            "settings": "Settings",
-            "changePassword": "Change Password"
+            "settings": "Nastavenia",
+            "changePassword": "Zmeniť heslo"
           }
         },
-        "skillsCard": {}
+        "skillsCard": {
+          "title": "Zručnosti",
+          "adr": {
+            "title": "ADR náklad",
+            "description": "Vylepšenie tejto zručnosti ti prinesie bonus za ADR náklad.",
+            "classes": {
+              "class1": "Trieda 1 - Výbušné látky",
+              "class2": "Trieda 2 - Plyny",
+              "class3": "Trieda 3 - Horľavé kvapaliny",
+              "class4": "Trieda 4 - Horľavé pevné látky",
+              "class6": "Trieda 6 - Toxické látky",
+              "class8": "Trieda 8 - Žieravé látky"
+            },
+            "alt": "Zručnosť ADR"
+          },
+          "longDistance": {
+            "title": "Bonus za dlhé vzdialenosti",
+            "description": "Vylepšenie tejto zručnosti ti prinesie bonus podľa vzdialenosti."
+          },
+          "highValue": {
+            "title": "Hodnotný náklad",
+            "description": "Vylepšenie tejto zručnosti ti prinesie bonus za hodnotný náklad."
+          },
+          "fragile": {
+            "title": "Bonus za krehký náklad",
+            "description": "Vylepšenie tejto zručnosti ti prinesie bonus podľa krehkosti nákladu."
+          },
+          "overweight": {
+            "title": "Bonus za nadmerne ťažký náklad",
+            "description": "Vylepšenie tejto zručnosti ti prinesie bonus za nadmerne ťažký náklad."
+          },
+          "cost": {
+            "title": "Cena za km",
+            "description": "Vylepšenie tejto zručnosti ti prinesie extra body a príjem za každý km."
+          },
+          "alt": "Úroveň"
+        }
       },
       "settingsPage": {
         "meta": {
-          "title": "",
-          "description": ""
+          "title": "Nastavenia {driver}",
+          "description": "Stránka nastavení {driver} na PPL Solutions Centrum vodičov"
         }
       }
     }
@@ -525,8 +561,8 @@
     "team": {
       "ERROR_LOADING_TEAM": "Chyba pri načítavaní tímu.",
       "FAILED_TO_FETCH_TEAM": "Nepodarilo sa načítať tím",
-      "FAILED_TO_FETCH_TEAM_MEMBER": "Failed to fetch team member",
-      "FAILED_TO_FETCH_DEPARTMENTS": "Failed to fetch departments",
+      "FAILED_TO_FETCH_TEAM_MEMBER": "Nepodarilo sa načítať člena tímu",
+      "FAILED_TO_FETCH_DEPARTMENTS": "Nepodarilo sa načítať oddelenia",
       "NO_DEPTS_OR_MEMBERS_FOUND": "Neboli nájdené žiadne oddelenia / členovia.",
       "FAILED_TO_ADD_TEAM_MEMBER": "Nepodarilo sa pridať člena tímu",
       "FAILED_TO_UPDATE_TEAM_MEMBER": "Nepodarilo sa aktualizovať člena tímu",
@@ -536,19 +572,19 @@
     },
     "members": {
       "MEMBER_NOT_FOUND": "Člen nebol nájdený",
-      "FAILED_TO_FETCH_MEMBERS": "Failed to fetch members",
-      "FAILED_TO_GET_MEMBER_ID": "Failed to get member ID"
+      "FAILED_TO_FETCH_MEMBERS": "Nepodarilo sa načítať členov",
+      "FAILED_TO_GET_MEMBER_ID": "Nepodarilo sa získať ID člena"
     },
     "drivers": {
-      "FAILED_TO_FETCH_DRIVERS": "Failed to fetch drivers",
-      "FAILED_TO_GET_DRIVER_DATA": "Failed to get driver data",
-      "DRIVER_COUNTRY_NOT_SPECIFIED": "Driver country not specified",
-      "DRIVER_NOT_FOUND": "Driver not found"
+      "FAILED_TO_FETCH_DRIVERS": "Nepodarilo sa načítať vodičov",
+      "FAILED_TO_GET_DRIVER_DATA": "Nepodarilo sa získať údaje vodiča",
+      "DRIVER_COUNTRY_NOT_SPECIFIED": "Krajina vodiča nie je špecifikovaná",
+      "DRIVER_NOT_FOUND": "Vodič nebol nájdený"
     },
     "roles": {
       "FAILED_TO_ADD_ROLE": "Nepodarilo sa pridať rolu",
       "FAILED_TO_REMOVE_ROLE": "Nepodarilo sa odstrániť rolu",
-      "FAILED_TO_FETCH_ROLES": "Failed to fetch roles"
+      "FAILED_TO_FETCH_ROLES": "Nepodarilo sa načítať roly"
     },
     "gallery": {
       "ERROR_LOADING_GALLERY": "Chyba pri načítavaní galérie:",
@@ -603,23 +639,23 @@
     },
     "profile": {
       "profile": {
-        "PROFILE_NOT_FOUND": "Profile not found",
-        "FAILED_TO_FETCH_PROFILE": "Failed to fetch profile",
-        "FAILED_TO_FETCH_PROFILE_BY_ID": "Failed to fetch profile by ID",
-        "FAILED_TO_UPDATE_PROFILE": "Failed to update profile",
-        "FAILED_TO_CREATE_PROFILE": "Failed to create profile"
+        "PROFILE_NOT_FOUND": "Profil nebol nájdený",
+        "FAILED_TO_FETCH_PROFILE": "Nepodarilo sa načítať profil",
+        "FAILED_TO_FETCH_PROFILE_BY_ID": "Nepodarilo sa načítať profil podľa ID",
+        "FAILED_TO_UPDATE_PROFILE": "Nepodarilo sa aktualizovať profil",
+        "FAILED_TO_CREATE_PROFILE": "Nepodarilo sa vytvoriť profil"
       },
       "profilePicture": {
         "FAILED_TO_DELETE_PROFILE_PICTURE": "Nepodarilo sa odstrániť profilový obrázok",
         "FAILED_TO_PARSE_PFP_URL": "Nepodarilo sa spracovať profile_url",
-        "FAILED_TO_GET_PROFILE_PICTURE": "Failed to get profile picture",
-        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Failed to upload profile picture",
-        "FAILED_TO_ADD_PROFILE_PICTURE": "Failed to add profile picture",
-        "FAILED_TO_FETCH_PROFILE_PICTURE": "Failed to fetch profile picture",
-        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Failed to update profile picture"
+        "FAILED_TO_GET_PROFILE_PICTURE": "Nepodarilo sa získať profilový obrázok",
+        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Nepodarilo sa nahrať profilový obrázok",
+        "FAILED_TO_ADD_PROFILE_PICTURE": "Nepodarilo sa pridať profilový obrázok",
+        "FAILED_TO_FETCH_PROFILE_PICTURE": "Nepodarilo sa načítať profilový obrázok",
+        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Nepodarilo sa aktualizovať profilový obrázok"
       },
-      "NO_ROLE": "No role",
-      "FAILED_TO_ENSURE_STEAMID": "Failed to ensure SteamID"
+      "NO_ROLE": "Žiadna rola",
+      "FAILED_TO_ENSURE_STEAMID": "Nepodarilo sa overiť SteamID"
     },
     "files": {
       "FAILED_TO_DELETE_OLD_FILE": "Nepodarilo sa odstrániť starý súbor (nekritické):",
@@ -631,8 +667,8 @@
       "INVALID_FILE_EXTENSION": "Neplatná prípona súboru."
     },
     "country": {
-      "FAILED_TO_FETCH_COUNTRY_DATA": "Failed to fetch country data",
-      "COUNTRY_NOT_FOUND": "Country not found"
+      "FAILED_TO_FETCH_COUNTRY_DATA": "Nepodarilo sa načítať údaje krajiny",
+      "COUNTRY_NOT_FOUND": "Krajina nebola nájdená"
     }
   },
   "success": {
@@ -653,10 +689,10 @@
     },
     "login": {},
     "register": {
-      "ACCOUNT_CREATED": "Registration successful. Please check your email to confirm."
+      "ACCOUNT_CREATED": "Registrácia bola úspešná. Skontroluj svoj e-mail na potvrdenie."
     },
     "forgotPassword": {
-      "RESET_EMAIL_SENT": "Password reset email sent! Check your inbox for a link to reset your password."
+      "RESET_EMAIL_SENT": "E-mail na obnovenie hesla bol odoslaný! Skontroluj schránku pre odkaz na obnovenie hesla."
     },
     "resetPassword": {},
     "jobs": {},
@@ -665,8 +701,8 @@
     "vtcStats": {},
     "profile": {
       "profile": {
-        "PROFILE_UPDATED": "Profile updated successfully!",
-        "PROFILE_CREATED": "Profile created successfully!"
+        "PROFILE_UPDATED": "Profil bol úspešne aktualizovaný!",
+        "PROFILE_CREATED": "Profil bol úspešne vytvorený!"
       },
       "profilePicture": {
         "PROFILE_PICTURE_DELETED": "Profilový obrázok bol úspešne odstránený!"

@@ -48,17 +48,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { data: { user } } = await supabaseAdmin.auth.admin.getUserById(userId)
 
   const driverUsername = user?.user_metadata?.display_name || "Guest"
+  const titleText = dict.drivershub.profile.settingsPage.meta.title.replace("{driver}", driverUsername);
+  const descriptionText = dict.drivershub.profile.settingsPage.meta.description.replace("{driver}", driverUsername);
 
   const canonical = lang === 'en' ? '/drivershub/profile' : `/${lang}/drivershub/profile`;
   const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${driverUsername}'s Profile Settings | PPL Solutions`,
-    description: dict.drivershub.meta.description,
+    title: titleText + " | PPL Solutions",
+    description: descriptionText,
     openGraph: {
-      title: `Profile | PPL Solutions`,
-      description: dict.drivershub.meta.description,
+      title: titleText + " | PPL Solutions",
+      description: descriptionText,
       url: canonical,
       siteName: 'PPL Solutions VTC',
       images: '/assets/images/ppls-logo.png',
@@ -82,15 +84,12 @@ export default async function ProfileSettingsPage({ params }: PageProps) {
   const dict = await getDictionary(lang)
 
   const user = await getSupabaseUser()
-  console.log("Current user:", user);
 
   if (!user) {
-    // Redirect to the current user's own settings page
     redirect(`/${lang}/drivershub/profile`);
   }
 
   if (user.id !== userId) {
-    // Redirect to the current user's own settings page
     redirect(`/${lang}/drivershub/profile/${user.id}/settings`);
   }
 

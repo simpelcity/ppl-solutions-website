@@ -256,9 +256,9 @@
       "drivershub": "Drivershub",
       "userStats": "User Statistics",
       "leaderboard": "Leaderboard",
+      "vtcStats": "VTC Statistics",
       "dashboard": {
-        "title": "Dashboard",
-        "vtcStats": "VTC Statistics",
+        "title": "Manage",
         "team": "Team",
         "gallery": "Gallery"
       },
@@ -296,22 +296,22 @@
           "title": "TruckersHub Points",
           "total": "Total",
           "avg": "Average",
-          "min": "Minimum",
-          "max": "Maximum"
+          "min": "Lowest",
+          "max": "Highest"
         },
         "income": {
           "title": "Income Earned",
           "total": "Total",
           "avg": "Average",
-          "min": "Minimum",
-          "max": "Maximum"
+          "min": "Lowest",
+          "max": "Highest"
         },
         "distance": {
           "title": "Delivery Distance",
           "total": "Total",
           "avg": "Average",
-          "min": "Minimum",
-          "max": "Maximum"
+          "min": "Lowest",
+          "max": "Highest"
         }
       },
       "table": {
@@ -473,8 +473,8 @@
     "profile": {
       "profilePage": {
         "meta": {
-          "title": "",
-          "description": ""
+          "title": "{driver}'s Profile",
+          "description": "{driver}'s profile on PPL Solutions Drivershub"
         },
         "card": {
           "bannerAlt": "{driver}'s profile banner",
@@ -487,13 +487,47 @@
           }
         },
         "skillsCard": {
-
+          "title": "Skills",
+          "adr": {
+            "title": "ADR Cargo",
+            "description": "Get trained to Drive Dangerous goods and gain extra points and income.",
+            "classes": {
+              "class1": "Class 1 - Explosives",
+              "class2": "Class 2 - Gases",
+              "class3": "Class 3 - Flammable liquids",
+              "class4": "Class 4: Flammable Solids",
+              "class6": "Class 6 - Toxic and infectious substances",
+              "class8": "Class 8 - Corrosive substances "
+            },
+            "alt": "ADR Skill"
+          },
+          "longDistance": {
+            "title": "Long Distance Bonus",
+            "description": "Upgrading this skill helps you gain bonus based on Distance."
+          },
+          "highValue": {
+            "title": "High Value Cargo",
+            "description": "Upgrading this skill helps you gain bonus based on Valuable Cargo."
+          },
+          "fragile": {
+            "title": "Fragile Cargo Bonus",
+            "description": "Upgrading this skill helps you gain bonus based on Cargo Fragility."
+          },
+          "overweight": {
+            "title": "Overweight Cargo Bonus",
+            "description": "Upgrading this skill helps you gain bonus based on Overweight Cargo."
+          },
+          "cost": {
+            "title": "Cost per km",
+            "description": "Upgrading this skill helps you gain extra points & income per km."
+          },
+          "alt": "Level"
         }
       },
       "settingsPage": {
         "meta": {
-          "title": "",
-          "description": ""
+          "title": "{driver}'s Settings",
+          "description": "{driver}'s settings page on PPL Solutions Drivershub"
         }
       }
     }

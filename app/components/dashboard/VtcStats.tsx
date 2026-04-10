@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, Row, Col } from "react-bootstrap"
+import { Card, Row, Col, Placeholder } from "react-bootstrap"
 import { Loader } from "@/components"
 import { useVtcStats } from "@/hooks/useVtcStats"
 import type { Dictionary } from "@/app/i18n"
@@ -20,14 +20,157 @@ export default function VtcStats({ dict }: VtcStatsProps) {
   if (loading) {
     return (
       <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-        <Card.Body className="d-flex justify-content-center p-4">
-          <Loader dict={dict}>
-            <span className="word">{dict.drivershub.vtcStats.vtc.totalJobs}</span>
-            <span className="word">{dict.drivershub.vtcStats.vtc.totalDistance}</span>
-            <span className="word">{dict.drivershub.vtcStats.vtc.totalIncome}</span>
-            <span className="word">{dict.drivershub.vtcStats.vtc.totalTimeDriven}</span>
-            <span className="word">{dict.drivershub.vtcStats.vtc.totalJobs}</span>
-          </Loader>
+        <Placeholder as={Card.Title} animation="glow" className="fs-3 py-4 mb-0 border-bottom border-dark-subtle">
+          <Placeholder xs={3} className="rounded-1" />
+        </Placeholder>
+        <Card.Body className="d-flex flex-column p-4 row-gap-4">
+          <Row className="row-gap-3">
+            <Col xs={12} md={6} xl={3}>
+              <div className="border border-1 border-primary border-custom rounded-3 h-100 p-2">
+                <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                  <Placeholder xs={9} className="rounded-1" />
+                </Placeholder>
+                <Placeholder as="h5" animation="glow">
+                  <Placeholder xs={9} className="rounded-1" />
+                </Placeholder>
+              </div>
+            </Col>
+            <Col xs={12} md={6} xl={3}>
+              <div className="border border-1 border-primary border-custom rounded-3 h-100 p-2">
+                <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                  <Placeholder xs={5} className="rounded-1" />
+                </Placeholder>
+                <Placeholder as="h5" animation="glow">
+                  <Placeholder xs={7} className="rounded-1" />
+                </Placeholder>
+              </div>
+            </Col>
+            <Col xs={12} md={6} xl={3}>
+              <div className="border border-1 border-primary border-custom rounded-3 h-100 p-2">
+                <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                  <Placeholder xs={8} className="rounded-1" />
+                </Placeholder>
+                <Placeholder as="h5" animation="glow">
+                  <Placeholder xs={9} className="rounded-1" />
+                </Placeholder>
+              </div>
+            </Col>
+            <Col xs={12} md={6} xl={3}>
+              <div className="border border-1 border-primary border-custom rounded-3 h-100 p-2">
+                <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                  <Placeholder xs={12} className="rounded-1" />
+                </Placeholder>
+                <Placeholder as="h5" animation="glow">
+                  <Placeholder xs={11} className="rounded-1" />
+                </Placeholder>
+              </div>
+            </Col>
+          </Row>
+
+          <Row className="row-gap-3">
+            <Col xs={12} md={6}>
+              <Card className="rounded-0 border-0 shadow-sm h-100 bg-dark-lighter">
+                <Placeholder as={Card.Title} animation="glow" className="fs-4 py-3 border-bottom border-dark-subtle">
+                  <Placeholder xs={5} className="rounded-1" />
+                </Placeholder>
+                <Card.Body>
+                  <Row className="row-gap-4">
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={10} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={9} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={5} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={7} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={7} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={9} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={12} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={11} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col xs={12} md={6}>
+              <Card className="rounded-0 border-0 shadow-sm h-100 bg-dark-lighter">
+                <Placeholder as={Card.Title} animation="glow" className="fs-4 py-3 border-bottom border-dark-subtle">
+                  <Placeholder xs={5} className="rounded-1" />
+                </Placeholder>
+                <Card.Body>
+                  <Row className="row-gap-4">
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={8} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={9} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={5} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={7} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={7} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={9} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                    <Col xs={6}>
+                      <div className="border border-1 border-primary border-custom rounded-3 p-2">
+                        <Placeholder as="p" animation="glow" className="fs-2 fw-bold">
+                          <Placeholder xs={12} className="rounded-1" />
+                        </Placeholder>
+                        <Placeholder as="h5" animation="glow">
+                          <Placeholder xs={11} className="rounded-1" />
+                        </Placeholder>
+                      </div>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
     )

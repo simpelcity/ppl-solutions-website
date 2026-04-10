@@ -65,7 +65,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const offCanvas = width >= 992 && width <= 1150;
 
   const navLinks = [
-    { title: dict.navbar.navigation.home, href: `${currentLocale}` },
+    { title: dict.navbar.navigation.home, href: `${currentLocale}/` },
     { title: dict.navbar.navigation.events, href: `${currentLocale}/events` },
     { title: dict.navbar.navigation.team, href: `${currentLocale}/team` },
     { title: dict.navbar.navigation.gallery, href: `${currentLocale}/gallery` },

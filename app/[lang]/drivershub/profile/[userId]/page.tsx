@@ -18,17 +18,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { data: { user } } = await supabaseAdmin.auth.admin.getUserById(userId)
 
   const driverUsername = user?.user_metadata?.display_name || "Guest"
+  const titleText = dict.drivershub.profile.profilePage.meta.title.replace("{driver}", driverUsername);
+  const descriptionText = dict.drivershub.profile.profilePage.meta.description.replace("{driver}", driverUsername);
 
   const canonical = lang === 'en' ? '/drivershub/profile' : `/${lang}/drivershub/profile`;
   const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${driverUsername}'s Profile | PPL Solutions`,
-    description: dict.drivershub.meta.description,
+    title: titleText + " | PPL Solutions",
+    description: descriptionText,
     openGraph: {
-      title: `Profile | PPL Solutions`,
-      description: dict.drivershub.meta.description,
+      title: titleText + " | PPL Solutions",
+      description: descriptionText,
       url: canonical,
       siteName: 'PPL Solutions VTC',
       images: '/assets/images/ppls-logo.png',

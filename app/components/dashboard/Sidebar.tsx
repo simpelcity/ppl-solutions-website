@@ -63,7 +63,7 @@ function SidebarContent({
       label: dict.drivershub.sidebar.drivershub || "Drivershub",
     },
     {
-      href: `${currentLang}/drivershub/statistics`,
+      href: `${currentLang}/drivershub/user-statistics`,
       icon: <FaChartLine />,
       label: dict.drivershub.sidebar.userStats || "User Statistics",
     },
@@ -72,14 +72,14 @@ function SidebarContent({
       icon: <MdLeaderboard />,
       label: dict.drivershub.sidebar.leaderboard || "Leaderboard",
     },
+    {
+      href: `${currentLang}/drivershub/statistics`,
+      icon: <FaChartLine />,
+      label: dict.drivershub.sidebar.vtcStats || "VTC Statistics",
+    }
   ];
 
   const collapseItems: NavItem[] = [
-    {
-      href: `${currentLang}/drivershub/dashboard`,
-      icon: <FaChartLine />,
-      label: dict.drivershub.sidebar.dashboard.vtcStats || "VTC Statistics",
-    },
     {
       href: `${currentLang}/drivershub/dashboard/team`,
       icon: <FaUsers />,
@@ -118,11 +118,8 @@ function SidebarContent({
             }));
           }
         }
-
-        const member = members.find((m) => m.name === user.user_metadata?.username);
-
-      } catch (err) {
-        console.error("Failed to fetch team profile:", err);
+      } catch (err: any) {
+        console.error(dict.errors.members.FAILED_TO_FETCH_MEMBERS, err.message);
       }
     };
 
@@ -136,8 +133,8 @@ function SidebarContent({
         const json = await res.json();
         setProfileUrl(json.profile?.profile_url ?? null);
         return json.profile?.profile_url ?? null;
-      } catch (err) {
-        console.error("Failed to fetch profile picture:", err);
+      } catch (err: any) {
+        console.error(`${dict.errors.profile.profilePicture.FAILED_TO_FETCH_PROFILE_PICTURE}:`, err.message);
       }
     }
 
@@ -195,11 +192,11 @@ function SidebarContent({
                 onClick={() => setOpen(!open)}
                 aria-controls="dashboard-collapse-menu"
                 aria-expanded={open}
-                className={`d-flex align-items-center justify-content-between rounded-bottom-0 text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active" : ""
-                  }`}>
+                className={`d-flex align-items-center justify-content-between text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active" : ""
+                  } ${open ? "rounded-bottom-0" : ""}`}>
                 <div className="d-flex">
                   <span className="me-2"><BiSolidDashboard /></span>
-                  Dashboard
+                  <span>{dict.drivershub.sidebar.dashboard.title}</span>
                 </div>
                 {open ? <FaAngleRight className="rotate-90-cw" /> : <FaAngleDown className="rotate-90-ccw" />}
               </Nav.Link>

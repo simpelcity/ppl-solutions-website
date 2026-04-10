@@ -2,7 +2,7 @@ import { Card, CardBody, Row, Col } from 'react-bootstrap'
 import { FaRegFaceFrown } from "react-icons/fa6";
 import { BSButton } from '@/components'
 import type { Dictionary } from "@/app/i18n"
-import { i18n, type Locale } from "@/i18n"
+import { type Locale } from "@/i18n"
 
 type Card404Props = {
   dict: Dictionary
@@ -10,8 +10,7 @@ type Card404Props = {
 }
 
 export default function Card404({ dict, lang }: Card404Props) {
-  const homeHref = lang === i18n.defaultLocale ? "/" : `/${lang}`
-  const contactHref = lang === i18n.defaultLocale ? "/contact" : `/${lang}/contact`
+  const currentLang = lang === 'en' ? '' : `/${lang}`
 
   return (
     <Card className="card-404 rounded-0 border-0 shadow-sm text-light">
@@ -24,8 +23,8 @@ export default function Card404({ dict, lang }: Card404Props) {
             <h1 className="">{dict.notFound.card.title}</h1>
             <p className="">{dict.notFound.card.text}</p>
             <div className="d-flex column-gap-2">
-              <BSButton variant="primary" href={homeHref}>{dict.notFound.card.buttons.home}</BSButton>
-              <BSButton variant="outline" href={contactHref}>{dict.notFound.card.buttons.contact}</BSButton>
+              <BSButton variant="primary" href={`${currentLang}/`}>{dict.notFound.card.buttons.home}</BSButton>
+              <BSButton variant="outline" href={`${currentLang}/contact`}>{dict.notFound.card.buttons.contact}</BSButton>
             </div>
           </Col>
         </Row>

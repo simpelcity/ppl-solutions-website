@@ -67,8 +67,11 @@ export default function CardProfile({ params, dict }: Props) {
 
   if (loading) return <LoaderSpinner dict={dict} />;
   if (!loading && (!profile || Object.keys(profile).length === 0)) {
-    return <p className="text-danger fw-bold">Profile not found</p>;
+    return <p className="text-danger fw-bold">{dict.errors.profile.profile.PROFILE_NOT_FOUND}</p>;
   }
+
+  const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
+  const bannerAlt = dict.drivershub.profile.profilePage.card.bannerAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
 
   return (
     <>
@@ -76,15 +79,15 @@ export default function CardProfile({ params, dict }: Props) {
         <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
           <Card.Header className="p-0">
             {profile?.banner_url ? (
-              <Image src={profile.banner_url} className="object-fit-cover" roundedCircle width={150} height={150} alt="Profile Picture" />
+              <Image src={profile.banner_url} className="object-fit-cover" roundedCircle width={150} height={150} alt={bannerAlt} />
             ) : (
-              <Image src="https://placehold.co/900x160" className="w-100 pfp-banner" alt="Default banner" />
+              <Image src="https://placehold.co/900x160" className="w-100 pfp-banner" alt={dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
             )}
           </Card.Header>
           <Card.Body className="d-flex flex-column pb-3 pb-md-0">
             <div className="d-flex pb-3 pb-md-0">
               <div className="pfp-position d-flex">
-                <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark pfp-img ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt="Profile Picture" />
+                <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark pfp-img ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.profilePictureAlt}`} />
               </div>
               <div className="ms-2 ms-md-4 d-flex flex-column flex-md-row text-start row-gap-4 column-gap-md-4">
                 <div className="m-0 p-0">
@@ -96,7 +99,7 @@ export default function CardProfile({ params, dict }: Props) {
                         <p className={`m-0 p-0 ${memberRoles[0]?.role.code}`}>{memberRoles[0]?.role.name}</p>
                       </>
                     ) : (
-                      <span className="text-muted">• No role</span>
+                      <span className="text-muted">• {dict.errors.profile.NO_ROLE}</span>
                     )}
                   </div>
 
@@ -112,9 +115,9 @@ export default function CardProfile({ params, dict }: Props) {
                 {userId === user?.id && notMobile && (
                   <>
                     <div className="m-0 p-0">
-                      <ButtonGroup className="">
-                        <BSButton variant="primary" classes="rounded-end-0" href={`/drivershub/profile/${user.id}/settings`}>Settings</BSButton>
-                        <BSButton variant="outline" classes="rounded-start-0" href={`/drivershub/profile/settings#change-password`}>Change Password</BSButton>
+                      <ButtonGroup>
+                        <BSButton variant="primary" classes="rounded-end-0 d-flex align-items-center" href={`/drivershub/profile/${user.id}/settings`}>{dict.drivershub.profile.profilePage.card.buttons.settings}</BSButton>
+                        <BSButton variant="outline" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
                       </ButtonGroup>
                     </div>
                   </>
@@ -123,9 +126,9 @@ export default function CardProfile({ params, dict }: Props) {
             </div>
             {!notMobile && (
               <div className="m-0 p-0">
-                <ButtonGroup className="">
-                  <BSButton variant="primary" classes="rounded-end-0" href={`/drivershub/profile/${user?.id}/settings`}>Settings</BSButton>
-                  <BSButton variant="outline" classes="rounded-start-0" href={`/drivershub/profile/settings#change-password`}>Change Password</BSButton>
+                <ButtonGroup>
+                  <BSButton variant="primary" classes="rounded-end-0 d-flex align-items-center" href={`/drivershub/profile/${user?.id}/settings`}>{dict.drivershub.profile.profilePage.card.buttons.settings}</BSButton>
+                  <BSButton variant="outline" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
                 </ButtonGroup>
               </div>
             )}

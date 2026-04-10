@@ -148,7 +148,7 @@
       "required": "Pole označená * jsou povinná",
       "name": "Jméno / Discord uživatelské jméno",
       "namePlaceholder": "Tvé (uživatelské) jméno",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvuj@email.cz",
       "message": "Zpráva",
       "messagePlaceholder": "Tvoje zpráva",
@@ -173,7 +173,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Přihlášení",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvuj@email.cz",
       "password": "Heslo",
       "forgotPassword": "zapomenuté heslo?",
@@ -194,7 +194,7 @@
     "form": {
       "brand": "PPL Solutions",
       "title": "Registrace",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvuj@email.cz",
       "username": "Uživatelské jméno",
       "usernamePlaceholder": "tvoje_uzivatelske_jmeno",
@@ -217,7 +217,7 @@
       "brand": "PPL Solutions",
       "title": "Zapomenuté heslo",
       "text": "Zadej svůj email a pošleme ti odkaz pro reset hesla.",
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "tvuj@email.cz",
       "submit": "odeslat odkaz",
       "remember": "Pamatuješ si heslo?",
@@ -256,9 +256,9 @@
       "drivershub": "Centrum řidičů",
       "userStats": "Statistiky uživatele",
       "leaderboard": "Žebříček",
+      "vtcStats": "Statistiky VTC",
       "dashboard": {
-        "title": "Přehled",
-        "vtcStats": "Statistiky VTC",
+        "title": "Spravovat",
         "team": "Tým",
         "gallery": "Galerie"
       },
@@ -288,30 +288,30 @@
     },
     "userStats": {
       "meta": {
-        "title": "Statistiky",
-        "description": "Statistiky {username} na PPL Solutions VTC"
+        "title": "Statistiky {driver}",
+        "description": "Statistiky {driver} na PPL Solutions VTC"
       },
       "cards": {
         "thp": {
           "title": "TruckersHub body",
           "total": "Celkem",
-          "avg": "Průměr",
-          "min": "Minimum",
-          "max": "Maximum"
+          "avg": "Průměrný",
+          "min": "Nejnižší",
+          "max": "Nejvyšší"
         },
         "income": {
           "title": "Získaný příjem",
           "total": "Celkem",
-          "avg": "Průměr",
-          "min": "Minimum",
-          "max": "Maximum"
+          "avg": "Průměrný",
+          "min": "Nejnižší",
+          "max": "Nejvyšší"
         },
         "distance": {
           "title": "Přepravní vzdálenost",
           "total": "Celkem",
-          "avg": "Průměr",
-          "min": "Minimum",
-          "max": "Maximum"
+          "avg": "Průměrný",
+          "min": "Nejnižší",
+          "max": "Nejvyšší"
         }
       },
       "table": {
@@ -473,25 +473,61 @@
     "profile": {
       "profilePage": {
         "meta": {
-          "title": "",
-          "description": ""
+          "title": "Profil uživatele {driver}",
+          "description": "Profil uživatele {driver} na PPL Solutions Centrum řidičů"
         },
         "card": {
-          "bannerAlt": "{driver}'s profile banner",
-          "defaultBannerAlt": "Default profile banner",
-          "profilePictureAlt": "{driver}'s profile picture",
-          "defaultProfilePictureAlt": "Default profile picture",
+          "bannerAlt": "Profilový banner uživatele {driver}",
+          "defaultBannerAlt": "Výchozí profilový banner",
+          "profilePictureAlt": "Profilový obrázek uživatele {driver}",
+          "defaultProfilePictureAlt": "Výchozí profilový obrázek",
           "buttons": {
-            "settings": "Settings",
-            "changePassword": "Change Password"
+            "settings": "Nastavení",
+            "changePassword": "Změnit heslo"
           }
         },
-        "skillsCard": {}
+        "skillsCard": {
+          "title": "Dovednosti",
+          "adr": {
+            "title": "ADR náklad",
+            "description": "Vylepšení této dovednosti ti přinese bonus za ADR náklad.",
+            "classes": {
+              "class1": "Třída 1 - Výbušné látky",
+              "class2": "Třída 2 - Plyny",
+              "class3": "Třída 3 - Hořlavé kapaliny",
+              "class4": "Třída 4 - Hořlavé pevné látky",
+              "class6": "Třída 6 - Toxické látky",
+              "class8": "Třída 8 - Žíravé látky"
+            },
+            "alt": "Dovednost ADR"
+          },
+          "longDistance": {
+            "title": "Bonus za dlouhé vzdálenosti",
+            "description": "Vylepšení této dovednosti ti přinese bonus podle vzdálenosti."
+          },
+          "highValue": {
+            "title": "Cenný náklad",
+            "description": "Vylepšení této dovednosti ti přinese bonus za cenný náklad."
+          },
+          "fragile": {
+            "title": "Bonus za křehký náklad",
+            "description": "Vylepšení této dovednosti ti přinese bonus podle křehkosti nákladu."
+          },
+          "overweight": {
+            "title": "Bonus za nadměrně těžký náklad",
+            "description": "Vylepšení této dovednosti ti přinese bonus za nadměrně těžký náklad."
+          },
+          "cost": {
+            "title": "Cena za km",
+            "description": "Vylepšení této dovednosti ti přinese extra body a příjem za každý km."
+          },
+          "alt": "Úroveň"
+        }
       },
       "settingsPage": {
         "meta": {
-          "title": "",
-          "description": ""
+          "title": "Nastavení uživatele {driver}",
+          "description": "Stránka nastavení {driver} na PPL Solutions Centrum řidičů"
         }
       }
     }
@@ -525,8 +561,8 @@
     "team": {
       "ERROR_LOADING_TEAM": "Chyba při načítání týmu.",
       "FAILED_TO_FETCH_TEAM": "Nepodařilo se načíst tým",
-      "FAILED_TO_FETCH_TEAM_MEMBER": "Failed to fetch team member",
-      "FAILED_TO_FETCH_DEPARTMENTS": "Failed to fetch departments",
+      "FAILED_TO_FETCH_TEAM_MEMBER": "Nepodařilo se načíst člena týmu",
+      "FAILED_TO_FETCH_DEPARTMENTS": "Nepodařilo se načíst oddělení",
       "NO_DEPTS_OR_MEMBERS_FOUND": "Nebyly nalezeny žádné oddělení / členové.",
       "FAILED_TO_ADD_TEAM_MEMBER": "Nepodařilo se přidat člena týmu",
       "FAILED_TO_UPDATE_TEAM_MEMBER": "Nepodařilo se aktualizovat člena týmu",
@@ -536,19 +572,19 @@
     },
     "members": {
       "MEMBER_NOT_FOUND": "Člen nebyl nalezen",
-      "FAILED_TO_FETCH_MEMBERS": "Failed to fetch members",
-      "FAILED_TO_GET_MEMBER_ID": "Failed to get member ID"
+      "FAILED_TO_FETCH_MEMBERS": "Nepodařilo se načíst členy",
+      "FAILED_TO_GET_MEMBER_ID": "Nepodařilo se získat ID člena"
     },
     "drivers": {
-      "FAILED_TO_FETCH_DRIVERS": "Failed to fetch drivers",
-      "FAILED_TO_GET_DRIVER_DATA": "Failed to get driver data",
-      "DRIVER_COUNTRY_NOT_SPECIFIED": "Driver country not specified",
-      "DRIVER_NOT_FOUND": "Driver not found"
+      "FAILED_TO_FETCH_DRIVERS": "Nepodařilo se načíst řidiče",
+      "FAILED_TO_GET_DRIVER_DATA": "Nepodařilo se získat data řidiče",
+      "DRIVER_COUNTRY_NOT_SPECIFIED": "Země řidiče není uvedena",
+      "DRIVER_NOT_FOUND": "Řidič nebyl nalezen"
     },
     "roles": {
       "FAILED_TO_ADD_ROLE": "Nepodařilo se přidat roli",
       "FAILED_TO_REMOVE_ROLE": "Nepodařilo se odebrat roli",
-      "FAILED_TO_FETCH_ROLES": "Failed to fetch roles"
+      "FAILED_TO_FETCH_ROLES": "Nepodařilo se načíst role"
     },
     "gallery": {
       "ERROR_LOADING_GALLERY": "Chyba při načítání galerie:",
@@ -603,23 +639,23 @@
     },
     "profile": {
       "profile": {
-        "PROFILE_NOT_FOUND": "Profile not found",
-        "FAILED_TO_FETCH_PROFILE": "Failed to fetch profile",
-        "FAILED_TO_FETCH_PROFILE_BY_ID": "Failed to fetch profile by ID",
-        "FAILED_TO_UPDATE_PROFILE": "Failed to update profile",
-        "FAILED_TO_CREATE_PROFILE": "Failed to create profile"
+        "PROFILE_NOT_FOUND": "Profil nebyl nalezen",
+        "FAILED_TO_FETCH_PROFILE": "Nepodařilo se načíst profil",
+        "FAILED_TO_FETCH_PROFILE_BY_ID": "Nepodařilo se načíst profil podle ID",
+        "FAILED_TO_UPDATE_PROFILE": "Nepodařilo se aktualizovat profil",
+        "FAILED_TO_CREATE_PROFILE": "Nepodařilo se vytvořit profil"
       },
       "profilePicture": {
         "FAILED_TO_DELETE_PROFILE_PICTURE": "Nepodařilo se odstranit profilový obrázek",
         "FAILED_TO_PARSE_PFP_URL": "Nepodařilo se zpracovat profile_url",
-        "FAILED_TO_GET_PROFILE_PICTURE": "Failed to get profile picture",
-        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Failed to upload profile picture",
-        "FAILED_TO_ADD_PROFILE_PICTURE": "Failed to add profile picture",
-        "FAILED_TO_FETCH_PROFILE_PICTURE": "Failed to fetch profile picture",
-        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Failed to update profile picture"
+        "FAILED_TO_GET_PROFILE_PICTURE": "Nepodařilo se získat profilový obrázek",
+        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Nepodařilo se nahrát profilový obrázek",
+        "FAILED_TO_ADD_PROFILE_PICTURE": "Nepodařilo se přidat profilový obrázek",
+        "FAILED_TO_FETCH_PROFILE_PICTURE": "Nepodařilo se načíst profilový obrázek",
+        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Nepodařilo se aktualizovat profilový obrázek"
       },
-      "NO_ROLE": "No role",
-      "FAILED_TO_ENSURE_STEAMID": "Failed to ensure SteamID"
+      "NO_ROLE": "Žádná role",
+      "FAILED_TO_ENSURE_STEAMID": "Nepodařilo se ověřit SteamID"
     },
     "files": {
       "FAILED_TO_DELETE_OLD_FILE": "Nepodařilo se odstranit starý soubor (nekritické):",
@@ -631,8 +667,8 @@
       "INVALID_FILE_EXTENSION": "Neplatná přípona souboru."
     },
     "country": {
-      "FAILED_TO_FETCH_COUNTRY_DATA": "Failed to fetch country data",
-      "COUNTRY_NOT_FOUND": "Country not found"
+      "FAILED_TO_FETCH_COUNTRY_DATA": "Nepodařilo se načíst data země",
+      "COUNTRY_NOT_FOUND": "Země nebyla nalezena"
     }
   },
   "success": {
@@ -653,10 +689,10 @@
     },
     "login": {},
     "register": {
-      "ACCOUNT_CREATED": "Registration successful. Please check your email to confirm."
+      "ACCOUNT_CREATED": "Registrace byla úspěšná. Zkontroluj svůj e-mail pro potvrzení."
     },
     "forgotPassword": {
-      "RESET_EMAIL_SENT": "Password reset email sent! Check your inbox for a link to reset your password."
+      "RESET_EMAIL_SENT": "E-mail pro reset hesla byl odeslán! Zkontroluj schránku pro odkaz na reset hesla."
     },
     "resetPassword": {},
     "jobs": {},
@@ -665,8 +701,8 @@
     "vtcStats": {},
     "profile": {
       "profile": {
-        "PROFILE_UPDATED": "Profile updated successfully!",
-        "PROFILE_CREATED": "Profile created successfully!"
+        "PROFILE_UPDATED": "Profil byl úspěšně aktualizován!",
+        "PROFILE_CREATED": "Profil byl úspěšně vytvořen!"
       },
       "profilePicture": {
         "PROFILE_PICTURE_DELETED": "Profilový obrázek byl úspěšně odstraněn!"

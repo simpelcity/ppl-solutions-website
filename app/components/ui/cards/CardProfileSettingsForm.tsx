@@ -46,32 +46,40 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     createProfile,
     fetchedProfile,
   } = useProfile({ userId: userId ?? "", dict });
+  adminLog(profile)
 
   // adminLog("Fetched profile data:", fetchedProfile)
 
   useEffect(() => {
-    if (profile) setProfileUrl(profile.profile_url || null);
+    // if (profile) setProfileUrl(profile.profile_url || null);
+    // if (profile) setBannerUrl(profile.banner_url || null);
     if (fetchedProfile?.user.user_metadata.display_name) setDisplayName(fetchedProfile?.user.user_metadata.display_name);
-  }, [profile, fetchedProfile]);
+  }, [profile, fetchedProfile, profileUrl, bannerUrl]);
 
   const [file, setFile] = useState<File | null>(null);
+  const [bannerFile, setBannerFile] = useState<File | null>(null);
 
   const resetForm = () => {
     setFile(null);
+    setBannerFile(null);
     setUploading(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setUploading(true);
-    await updateProfile(displayName, file ?? null);
+    await updateProfile(displayName, file ?? null, bannerFile ?? null);
+    if (typeof refreshSession === "function") {
+      refreshSession();
+    }
     resetForm();
   }
+
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setUploading(true);
-    await updateProfile(displayName, file ?? null);
+    await updateProfile(displayName, file ?? null, bannerFile ?? null);
     if (typeof refreshSession === "function") {
       refreshSession();
     }
@@ -95,7 +103,16 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
           {uploading ? "Updating..." : "Update Display Name"}
         </button>
       </form>
+      <form onSubmit={handleUpdate} style={{ marginTop: 24 }}>
+        <label htmlFor="profile-banner">Upload Banner:</label>
+        <input type="file" id="profile-banner" accept="image/*" onChange={(e) => setBannerFile((e.target as HTMLInputElement).files?.[0] ?? null)} />
+        <button type="submit" disabled={uploading} style={{ marginLeft: 8 }}>
+          {uploading ? "Uploading..." : "Upload Banner"}
+        </button>
+      </form>
+      {displayName && <p>Current Display Name: {displayName}</p>}
       {profileUrl && <img src={profileUrl} alt="Profile" style={{ width: 120, height: 120, borderRadius: '50%' }} />}
+      {bannerUrl && <img src={bannerUrl} alt="Banner" style={{ width: '100%', height: 200, objectFit: 'cover', marginTop: 16 }} />}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
     </div>
