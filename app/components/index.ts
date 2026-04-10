@@ -21,6 +21,7 @@ export { default as StartBanner } from "./sections/StartBanner";
 // Cards
 export { default as Card404 } from "./ui/cards/Card404";
 export { default as CardContact } from "./ui/cards/CardContact";
+export { default as CardEventDetail } from "./ui/cards/CardEventDetail";
 export { default as CardEvents } from "./ui/cards/CardEvents";
 export { default as CardGallery } from "./ui/cards/CardGallery";
 export { default as CardGalleryForm } from "./ui/cards/CardGalleryForm";

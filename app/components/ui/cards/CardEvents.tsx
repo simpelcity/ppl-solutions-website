@@ -133,7 +133,6 @@ export default function CardEvents({ dict }: PageProps) {
     return keys || null;
   }
 
-  console.log("Event data:", dlcKeys(events[0].dlcs));
   return (
     <>
       {events.map((event: any) => {
@@ -206,7 +205,7 @@ export default function CardEvents({ dict }: PageProps) {
                     )}
                   </div>
                 </DivEvents>
-                <BSButton variant="outline" size="lg" href={`https://truckersmp.com${event.url}`} target="_blank">
+                <BSButton variant="outline" size="lg" href={`/events/${event.id}`}>
                   {dict.events.card.event}
                 </BSButton>
               </Card.Body>
