@@ -654,6 +654,12 @@
         "FAILED_TO_FETCH_PROFILE_PICTURE": "Kan profielfoto niet laden",
         "FAILED_TO_UPDATE_PROFILE_PICTURE": "Kan profielfoto niet bijwerken"
       },
+      "profileBanner": {
+        "FAILED_TO_FETCH_PROFILE_BANNER": "Kan profielbanner niet laden",
+        "FAILED_TO_UPLOAD_PROFILE_BANNER": "Kan profielbanner niet uploaden",
+        "FAILED_TO_ADD_PROFILE_BANNER": "Kan profielbanner niet toevoegen",
+        "FAILED_TO_UPDATE_PROFILE_BANNER": "Kan profielbanner niet bijwerken"
+      },
       "NO_ROLE": "Geen rol",
       "FAILED_TO_ENSURE_STEAMID": "Kan SteamID niet verifiëren"
     },

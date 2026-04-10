@@ -46,13 +46,12 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     createProfile,
     fetchedProfile,
   } = useProfile({ userId: userId ?? "", dict });
-  adminLog(profile)
 
   // adminLog("Fetched profile data:", fetchedProfile)
 
   useEffect(() => {
-    // if (profile) setProfileUrl(profile.profile_url || null);
-    // if (profile) setBannerUrl(profile.banner_url || null);
+    if (profile) setProfileUrl(profile.profile_url || null);
+    if (profile) setBannerUrl(profile.banner_url || null);
     if (fetchedProfile?.user.user_metadata.display_name) setDisplayName(fetchedProfile?.user.user_metadata.display_name);
   }, [profile, fetchedProfile, profileUrl, bannerUrl]);
 
@@ -110,7 +109,6 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
           {uploading ? "Uploading..." : "Upload Banner"}
         </button>
       </form>
-      {displayName && <p>Current Display Name: {displayName}</p>}
       {profileUrl && <img src={profileUrl} alt="Profile" style={{ width: 120, height: 120, borderRadius: '50%' }} />}
       {bannerUrl && <img src={bannerUrl} alt="Banner" style={{ width: '100%', height: 200, objectFit: 'cover', marginTop: 16 }} />}
       {error && <p style={{ color: 'red' }}>{error}</p>}

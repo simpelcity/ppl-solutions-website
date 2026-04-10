@@ -654,6 +654,12 @@
         "FAILED_TO_FETCH_PROFILE_PICTURE": "Failed to fetch profile picture",
         "FAILED_TO_UPDATE_PROFILE_PICTURE": "Failed to update profile picture"
       },
+      "profileBanner": {
+        "FAILED_TO_FETCH_PROFILE_BANNER": "Failed to fetch profile banner",
+        "FAILED_TO_UPLOAD_PROFILE_BANNER": "Failed to upload profile banner",
+        "FAILED_TO_ADD_PROFILE_BANNER": "Failed to add profile banner",
+        "FAILED_TO_UPDATE_PROFILE_BANNER": "Failed to update profile banner"
+      },
       "NO_ROLE": "No role",
       "FAILED_TO_ENSURE_STEAMID": "Failed to ensure SteamID"
     },

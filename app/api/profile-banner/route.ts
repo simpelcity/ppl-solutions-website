@@ -15,8 +15,7 @@ export async function GET(request: NextRequest) {
     if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
     const { data, error } = await supabaseAdmin.from("profiles").select("*").eq("id", id).single();
     if (error) return errorHandler(
-        // { error: dict.errors.profile.profileBanner.FAILED_TO_FETCH_PROFILE_BANNER },
-        { error: "Failed to fetch profile banner" },
+        { error: dict.errors.profile.profileBanner.FAILED_TO_FETCH_PROFILE_BANNER },
         request,
         lang,
         500,
@@ -26,8 +25,7 @@ export async function GET(request: NextRequest) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
     const serverMessage = err?.response?.data?.message || err?.message;
-    // const message = dict.errors.profile.profileBanner.FAILED_TO_FETCH_PROFILE_BANNER;
-    const message = "Failed to fetch profile banner";
+    const message = dict.errors.profile.profileBanner.FAILED_TO_FETCH_PROFILE_BANNER;
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
@@ -49,14 +47,13 @@ export async function POST(request: NextRequest) {
 
       if (uploadError)
           return errorHandler(
-              // { error: dict.errors.profile.profileBanner.FAILED_TO_UPLOAD_PROFILE_BANNER },
-              { error: "Failed to upload profile banner" },
+              { error: dict.errors.profile.profileBanner.FAILED_TO_UPLOAD_PROFILE_BANNER },
               request,
               lang,
               500,
           );
 
-      const { data: publicUrlData } = await supabaseAdmin.storage.from("profile-banners").getPublicUrl(uploadData.path);
+      const { data: publicUrlData } = supabaseAdmin.storage.from("profile-banners").getPublicUrl(uploadData.path);
 
       banner_url = publicUrlData.publicUrl;
     }
@@ -67,27 +64,18 @@ export async function POST(request: NextRequest) {
 
     if (error)
         return errorHandler(
-            // { error: dict.errors.profile.profileBanner.FAILED_TO_ADD_PROFILE_BANNER },
-            { error: "Failed to add profile banner" },
+            { error: dict.errors.profile.profileBanner.FAILED_TO_ADD_PROFILE_BANNER },
             request,
             lang,
             500,
         );
 
-    // return NextResponse.json({ profile: data }, { status: 200 });
-    return errorHandler(
-        // { error: dict.errors.profile.profileBanner.FAILED_TO_ADD_PROFILE_BANNER },
-        { error: file },
-        request,
-        lang,
-        200,
-    );
+    return NextResponse.json({ profile: data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
     const serverMessage = err?.response?.data?.message || err?.message;
-    // const message = dict.errors.profile.profileBanner.FAILED_TO_FETCH_PROFILE_BANNER;
-    const message = "Failed to add profile banner";
+    const message = dict.errors.profile.profileBanner.FAILED_TO_FETCH_PROFILE_BANNER;
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
@@ -140,15 +128,13 @@ export async function PUT(request: NextRequest) {
 
       if (uploadError)
           return errorHandler(
-              // { error: dict.errors.profile.profileBanner.FAILED_TO_UPLOAD_PROFILE_BANNER },
-              { error: "Failed to upload profile banner" },
+              { error: dict.errors.profile.profileBanner.FAILED_TO_UPLOAD_PROFILE_BANNER },
               request,
               lang,
               500,
           );
 
-      // const { data: publicUrlData } = supabaseAdmin.storage.from("profile-banners").getPublicUrl(uploadData.path);
-      const { data: publicUrlData } = supabaseAdmin.storage.from("profile-banners").getPublicUrl(`profile-banners/${fileName}`);
+      const { data: publicUrlData } = supabaseAdmin.storage.from("profile-banners").getPublicUrl(uploadData.path);
 
       banner_url = publicUrlData.publicUrl;
     }
@@ -159,8 +145,7 @@ export async function PUT(request: NextRequest) {
 
     if (error)
         return errorHandler(
-            // { error: dict.errors.profile.profileBanner.FAILED_TO_UPDATE_PROFILE_BANNER },
-            { error: "Failed to update profile banner" },
+            { error: dict.errors.profile.profileBanner.FAILED_TO_UPDATE_PROFILE_BANNER },
             request,
             lang,
             500,
@@ -171,8 +156,7 @@ export async function PUT(request: NextRequest) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
     const serverMessage = err?.response?.data?.message || err?.message;
-    // const message = dict.errors.profile.profileBanner.FAILED_TO_UPDATE_PROFILE_BANNER;
-    const message = "Failed to update profile banner";
+    const message = dict.errors.profile.profileBanner.FAILED_TO_UPDATE_PROFILE_BANNER;
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

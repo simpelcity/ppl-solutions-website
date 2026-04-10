@@ -79,7 +79,7 @@ export default function CardProfile({ params, dict }: Props) {
         <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
           <Card.Header className="p-0">
             {profile?.banner_url ? (
-              <Image src={profile.banner_url} className="object-fit-cover" roundedCircle width={150} height={150} alt={bannerAlt} />
+              <Image src={profile.banner_url} className="object-fit-cover w-100" height={160} alt={bannerAlt} />
             ) : (
               <Image src="https://placehold.co/900x160" className="w-100 pfp-banner" alt={dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
             )}

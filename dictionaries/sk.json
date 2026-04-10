@@ -654,6 +654,12 @@
         "FAILED_TO_FETCH_PROFILE_PICTURE": "Nepodarilo sa načítať profilový obrázok",
         "FAILED_TO_UPDATE_PROFILE_PICTURE": "Nepodarilo sa aktualizovať profilový obrázok"
       },
+      "profileBanner": {
+        "FAILED_TO_FETCH_PROFILE_BANNER": "Nepodarilo se načíst profilový banner",
+        "FAILED_TO_UPLOAD_PROFILE_BANNER": "Nepodarilo se nahrát profilový banner",
+        "FAILED_TO_ADD_PROFILE_BANNER": "Nepodarilo se přidat profilový banner",
+        "FAILED_TO_UPDATE_PROFILE_BANNER": "Nepodarilo se aktualizovat profilový banner"
+      },
       "NO_ROLE": "Žiadna rola",
       "FAILED_TO_ENSURE_STEAMID": "Nepodarilo sa overiť SteamID"
     },

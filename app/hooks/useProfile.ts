@@ -286,8 +286,12 @@ export function useProfile({ userId, dict }: Props) {
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
         setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
-        fetchProfile();
-        fetchProfileById();
+        setProfile(null);
+        setFetchedProfile(null);
+        const profileData = await fetchProfile();
+        setProfile(profileData);
+        const fetchedProfileData = await fetchProfileById();
+        setFetchedProfile(fetchedProfileData);
       } else if (bannerFile) {
         const fd = new FormData();
         fd.append("userId", userId);
@@ -298,8 +302,12 @@ export function useProfile({ userId, dict }: Props) {
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
         setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
-        fetchProfile();
-        fetchProfileById();
+        setProfile(null);
+        setFetchedProfile(null);
+        const profileData = await fetchProfile();
+        setProfile(profileData);
+        const fetchedProfileData = await fetchProfileById();
+        setFetchedProfile(fetchedProfileData);
       } else {
         const fd = new FormData();
         fd.append("userId", userId);
@@ -310,8 +318,12 @@ export function useProfile({ userId, dict }: Props) {
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
         setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
-        fetchProfile();
-        fetchProfileById();
+        setProfile(null);
+        setFetchedProfile(null);
+        const profileData = await fetchProfile();
+        setProfile(profileData);
+        const fetchedProfileData = await fetchProfileById();
+        setFetchedProfile(fetchedProfileData);
       }
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE;
