@@ -49,22 +49,18 @@ export default async function NotFoundPage() {
   const dict = await getDictionary(lang)
 
   return (
-    <AuthProvider>
-      <SidebarProvider dict={dict} lang={lang as Locale}>
-        <LayoutClient dict={dict} lang={lang as Locale} forceHideFooter>
-          <main className="main">
-            <section className="d-flex w-100 text-light">
-              <Container className="my-5 d-flex justify-content-center">
-                <Row className="w-100 d-flex justify-content-center align-items-center">
-                  <Col xs={12} md={10} xl={6}>
-                    <Card404 dict={dict} lang={lang} />
-                  </Col>
-                </Row>
-              </Container>
-            </section>
-          </main>
-        </LayoutClient>
-      </SidebarProvider>
-    </AuthProvider>
+    <LayoutClient dict={dict} lang={lang as Locale} forceHideFooter forceHideDashboard>
+      <main className="main">
+        <section className="d-flex w-100 text-light">
+          <Container className="my-5 d-flex justify-content-center">
+            <Row className="w-100 d-flex justify-content-center align-items-center">
+              <Col xs={12} md={10} xl={6}>
+                <Card404 dict={dict} lang={lang} />
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      </main>
+    </LayoutClient>
   )
 }

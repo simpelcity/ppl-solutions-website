@@ -1,12 +1,18 @@
 import "@/styles/globals.scss"
+import { AuthProvider, SidebarProvider } from "@/lib"
+import { i18n } from "@/i18n"
+import { getDictionary } from "@/app/i18n"
+import React from "react"
 
 type Props = {
   children: React.ReactNode
 }
 
-export default function AppLayout({ children }: Props) {
+export default async function AppLayout({ children }: Props) {
+  const lang = i18n.defaultLocale
+  const dict = await getDictionary(lang)
   return (
-    <html lang="en" data-bs-theme="dark">
+    <html lang={lang} data-bs-theme="dark">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +24,13 @@ export default function AppLayout({ children }: Props) {
         />
         <link rel="icon" href="/assets/icons/favicon.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          <SidebarProvider dict={dict} lang={lang}>
+            {children}
+          </SidebarProvider>
+        </AuthProvider>
+      </body>
     </html>
   )
 }
