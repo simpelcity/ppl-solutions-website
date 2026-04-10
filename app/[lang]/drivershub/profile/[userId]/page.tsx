@@ -1,0 +1,65 @@
+import "@/styles/Drivershub.scss";
+import "@/styles/roles.scss"
+import { getDictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
+import { type Metadata } from "next"
+import { CardProfile } from '@/components'
+import { supabaseAdmin } from '@/lib/supabaseAdmin'
+
+type PageProps = {
+  params: Promise<{ lang: Locale; userId: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  const { userId } = await params
+  const { data: { user } } = await supabaseAdmin.auth.admin.getUserById(userId)
+
+  const driverUsername = user?.user_metadata?.display_name || "Guest"
+  const titleText = dict.drivershub.profile.profilePage.meta.title.replace("{driver}", driverUsername);
+  const descriptionText = dict.drivershub.profile.profilePage.meta.description.replace("{driver}", driverUsername);
+
+  const canonical = lang === 'en' ? '/drivershub/profile' : `/${lang}/drivershub/profile`;
+  const locale = lang === 'en' ? 'en-US' : lang === 'cs' ? 'cs-CZ' : `${lang}-${lang.toUpperCase()}`;
+
+  return {
+    metadataBase: new URL('https://ppl-solutions.vercel.app'),
+    title: titleText + " | PPL Solutions",
+    description: descriptionText,
+    openGraph: {
+      title: titleText + " | PPL Solutions",
+      description: descriptionText,
+      url: canonical,
+      siteName: 'PPL Solutions VTC',
+      images: '/assets/images/ppls-logo.png',
+      locale: locale,
+      type: 'website',
+    },
+    alternates: {
+      canonical,
+      languages: {
+        'en-US': '/drivershub/profile',
+        'nl-NL': '/nl/drivershub/profile',
+        'cs-CZ': '/cs/drivershub/profile',
+        'sk-SK': '/sk/drivershub/profile',
+      },
+    },
+  }
+}
+
+export default async function ProfileSettingsPage({ params }: PageProps) {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
+  return (
+    <>
+      <main className="fs-5">
+        <section className="drivershub d-flex justify-content-center w-100 bg-dark-subtle text-center text-light">
+          <CardProfile params={params} dict={dict} />
+        </section>
+      </main>
+    </>
+  )
+}

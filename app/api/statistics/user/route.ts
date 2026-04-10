@@ -1,22 +1,25 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import axios from "axios";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
     const body = await request.json();
     const { steamID } = body;
 
-    if (!steamID) return NextResponse.json({ error: "steamID is required" }, { status: 400 });
+    if (!steamID) return errorHandler({ error: dict.errors.jobs.STEAM_ID_REQUIRED }, request, lang, 400);
 
     const firstRes = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=1`);
 
-    if (firstRes.status !== 200) {
-      return errorHandler({ error: "Failed to fetch jobs" }, request, firstRes.status);
-    }
+    if (firstRes.status !== 200) return errorHandler({ error: dict.errors.jobs.FAILED_TO_FETCH_JOBS }, request, lang, firstRes.status);
 
     const firstData = await firstRes.data;
 
@@ -28,7 +31,7 @@ export async function POST(request: Request) {
     for (let page = 1; page <= totalPages; page++) {
       const res = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=${page}`);
 
-      if (res.status !== 200) continue;
+      if (res.status !== 200) return errorHandler({ error: dict.errors.jobs.FAILED_TO_FETCH_JOBS }, request, lang, res.status);
 
       const payload = await res.data;
       if (Array.isArray(payload.data)) {
@@ -37,14 +40,17 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      data: allJobs.reverse(),
+      jobs: allJobs.reverse(),
       meta: {
         total: allJobs.length,
         pages: totalPages,
-      },
-    });
-  } catch (err) {
-    console.error(err);
-    return errorHandler(err, request);
+      }
+    }, { status: 200 });
+  } catch (err: any) {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.userStats.FAILED_TO_FETCH_STATS;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

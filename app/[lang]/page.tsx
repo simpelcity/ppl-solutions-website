@@ -66,8 +66,6 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <>
-      <script src="https://kit.fontawesome.com/555ef81382.js" crossOrigin="anonymous"></script>
-
       <main className="fs-5">
         <section className="d-flex w-100 text-light">
           <Container className="px-0 position-relative d-flex justify-content-center" fluid>
@@ -137,7 +135,7 @@ export default async function HomePage({ params }: PageProps) {
             </h2>
             <p>{dict.home.apply.text}</p>
             <div className="d-grid d-md-inline-block">
-              <BSButton variant="outline" border="primary" text="primary">
+              <BSButton variant="outline" border="primary" text="primary" href="/apply">
                 {dict.home.apply.button}
               </BSButton>
             </div>

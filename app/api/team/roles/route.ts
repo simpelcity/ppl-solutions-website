@@ -1,13 +1,19 @@
+import { NextResponse, NextRequest } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
-import { NextResponse } from "next/server";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
+import { errorHandler } from "@/utils/errorHandler";
 
-export async function GET(req: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const { searchParams } = new URL(request.url);
     const memberId = searchParams.get("memberId");
 
     if (!memberId) {
-      return NextResponse.json({ error: "memberId is required" }, { status: 400 });
+      return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
     }
 
     const { data, error } = await supabaseAdmin
@@ -21,21 +27,28 @@ export async function GET(req: Request) {
       )
       .eq("team_member_id", memberId);
 
-    if (error) throw error;
+    if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_FETCH_TEAM_MEMBER }, request, lang, 500);
 
-    return NextResponse.json({ data });
+    return NextResponse.json({ roles: data }, { status: 200 });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message || String(err) }, { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.team.FAILED_TO_FETCH_TEAM_MEMBER;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const body = await req.json();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const body = await request.json();
     const { team_member_id, department_id, role_id } = body;
 
     if (!team_member_id || !department_id || !role_id) {
-      return NextResponse.json({ error: "team_member_id, department_id, and role_id are required" }, { status: 400 });
+      return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
     }
 
     const { data, error } = await supabaseAdmin
@@ -43,21 +56,28 @@ export async function POST(req: Request) {
       .insert({ team_member_id, department_id, role_id })
       .select();
 
-    if (error) throw error;
+    if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_ADD_TEAM_MEMBER }, request, lang, 500);
 
-    return NextResponse.json({ data });
+    return NextResponse.json({ roles: data }, { status: 200 });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message || String(err) }, { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.team.FAILED_TO_ADD_TEAM_MEMBER;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(request: NextRequest) {
   try {
-    const body = await req.json();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const body = await request.json();
     const { team_member_id, department_id, role_id } = body;
 
     if (!team_member_id || !department_id || !role_id) {
-      return NextResponse.json({ error: "team_member_id, department_id, and role_id are required" }, { status: 400 });
+      return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
     }
 
     const { error } = await supabaseAdmin
@@ -67,10 +87,14 @@ export async function DELETE(req: Request) {
       .eq("department_id", department_id)
       .eq("role_id", role_id);
 
-    if (error) throw error;
+    if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER }, request, lang, 500);
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message || String(err) }, { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

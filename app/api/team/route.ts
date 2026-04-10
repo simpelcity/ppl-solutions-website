@@ -1,20 +1,27 @@
+import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/supabaseAdmin/";
+import { errorHandler } from "@/utils/errorHandler";
+import { getDictionary } from "@/app/i18n";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const url = new URL(request.url);
-    const lang = url.searchParams.get('lang') || 'en';
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
 
     const { data: items, error } = await supabaseAdmin
       .from("department_team_member")
-      .select(`
-        department:departments!inner(id, name, name_en, name_nl, name_cz, name_sk),
-        team_member:team_members!inner(id, name, profile_url, profile_path, admin),
-        role:roles!inner(id, name, code, name_en, name_nl, name_cz, name_sk)
-      `)
+      .select(
+        `
+        department:departments!inner(id, name, name_en, name_nl, name_cs, name_sk),
+        team_member:team_members!inner(id, name, profile_url, profile_path),
+        role:roles!inner(id, name, code, name_en, name_nl, name_cs, name_sk)
+      `,
+      )
       .order("department_id", { ascending: true });
 
-    if (error) throw error;
+
+      if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_FETCH_TEAM, serverError: error.message }, request, lang, 500);
 
     const translatedItems = (items || []).map((item: any) => {
       const dept = item.department || {};
@@ -36,43 +43,42 @@ export async function GET(request: Request) {
 
         if (member.profile_path) {
           try {
-            const { data: publicUrlData } = supabaseAdmin.storage
-              .from("members")
-              .getPublicUrl(member.profile_path);
+            const { data: publicUrlData } = supabaseAdmin.storage.from("members").getPublicUrl(member.profile_path);
             return {
               ...item,
               team_member: { ...member, profile_url: publicUrlData?.publicUrl ?? null },
             };
-          } catch (e) {
-            return item;
+          } catch (err: any) {
+            console.warn(dict.errors.profile.profilePicture.FAILED_TO_GET_PROFILE_PICTURE, err.message);
           }
         }
 
         return item;
-      })
+      }),
     );
 
-    return new Response(JSON.stringify({ data: itemsWithUrls }), { status: 200 });
+    return NextResponse.json({ team: itemsWithUrls }, { status: 200 });
   } catch (err: any) {
-    console.error("error:", err);
-    return new Response(
-      JSON.stringify({ error: "An unexpected error occurred" }), 
-      { status: 500 }
-    );
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const message = dict.errors.team.FAILED_TO_FETCH_TEAM;
+    const serverMessage = err.message || String(err);
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const formData = await req.formData();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const formData = await request.formData();
     const name = formData.get("name") as string;
     const functionTitle = formData.get("function") as string | null;
     const role = formData.get("role") as string | null;
     const file = formData.get("file") as File | null;
 
-    if (!name) {
-      return new Response(JSON.stringify({ error: "Name is required" }), { status: 400 });
-    }
+    if (!name) return errorHandler({ error: dict.errors.team.NAME_REQUIRED }, request, lang, 400);
 
     let profile_url: string | null = null;
     if (file) {
@@ -81,13 +87,9 @@ export async function POST(req: Request) {
         .from("members")
         .upload(`profiles/${fileName}`, file, { cacheControl: "3600", upsert: true });
 
-      if (uploadError) {
-        return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
-      }
+      if (uploadError) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_UPLOAD_PROFILE_PICTURE, serverError: uploadError.message }, request, lang, 500);
 
-      const { data: publicUrlData } = supabaseAdmin.storage
-        .from("members")
-        .getPublicUrl(uploadData.path);
+      const { data: publicUrlData } = supabaseAdmin.storage.from("members").getPublicUrl(uploadData.path);
 
       profile_url = publicUrlData.publicUrl;
     }
@@ -96,29 +98,33 @@ export async function POST(req: Request) {
     if (functionTitle) payload.function = functionTitle;
     if (role) payload.role = role;
 
-    const { data, error } = await supabaseAdmin
-      .from("team_members")
-      .insert([payload])
-      .select();
+    const { data, error } = await supabaseAdmin.from("team_members").insert([payload]).select();
 
-    if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_ADD_TEAM_MEMBER, serverError: error.message }, request, lang, 500);
 
-    return new Response(JSON.stringify({ data }), { status: 200 });
+    return NextResponse.json({ team: data }, { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const message = dict.errors.team.FAILED_TO_ADD_TEAM_MEMBER;
+    const serverMessage = err.message || String(err);
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
-export async function PUT(req: Request) {
+export async function PUT(request: NextRequest) {
   try {
-    const formData = await req.formData();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const formData = await request.formData();
     const id = formData.get("id") as string;
     const name = formData.get("name") as string | null;
     const functionTitle = formData.get("function") as string | null;
     const role = formData.get("role") as string | null;
     const file = formData.get("file") as File | null;
 
-    if (!id) return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
+    if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
 
     const updates: any = {};
     if (name) updates.name = name;
@@ -132,19 +138,19 @@ export async function PUT(req: Request) {
         .eq("id", id)
         .single();
 
-      if (fetchError) return new Response(JSON.stringify({ error: fetchError.message }), { status: 500 });
+      if (fetchError) return errorHandler({ error: dict.errors.team.FAILED_TO_FETCH_TEAM_MEMBER, serverError: fetchError.message }, request, lang, 500);
 
       if (memberData?.profile_url) {
         try {
           const url = new URL(memberData.profile_url);
           const pathParts = url.pathname.split("/");
-          const bucketIndex = pathParts.findIndex(part => part === "members");
+          const bucketIndex = pathParts.findIndex((part) => part === "members");
           if (bucketIndex !== -1) {
             const oldFilePath = pathParts.slice(bucketIndex + 1).join("/");
             await supabaseAdmin.storage.from("members").remove([oldFilePath]);
           }
-        } catch (e) {
-          console.warn("Failed to delete old file (non-fatal):", e);
+        } catch (err: any) {
+          console.warn(dict.errors.files.FAILED_TO_DELETE_OLD_FILE, err.message);
         }
       }
 
@@ -153,51 +159,56 @@ export async function PUT(req: Request) {
         .from("members")
         .upload(`profiles/${fileName}`, file, { cacheControl: "3600", upsert: true });
 
-      if (uploadError) return new Response(JSON.stringify({ error: uploadError.message }), { status: 500 });
+      if (uploadError) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_UPLOAD_PROFILE_PICTURE, serverError: uploadError.message }, request, lang, 500);
 
-      const { data: publicUrlData } = supabaseAdmin.storage
-        .from("members")
-        .getPublicUrl(`profiles/${fileName}`);
+      const { data: publicUrlData } = supabaseAdmin.storage.from("members").getPublicUrl(`profiles/${fileName}`);
 
       updates.profile_url = publicUrlData.publicUrl;
     }
 
-    const { data, error } = await supabaseAdmin
-      .from("team_members")
-      .update(updates)
-      .eq("id", id)
-      .select();
+    const { data, error } = await supabaseAdmin.from("team_members").update(updates).eq("id", id).select();
 
-    if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_UPDATE_TEAM_MEMBER, serverError: error.message }, request, lang, 500);
 
-    return new Response(JSON.stringify({ data }), { status: 200 });
+    return NextResponse.json({ team: data }, { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const message = dict.errors.team.FAILED_TO_UPDATE_TEAM_MEMBER;
+    const serverMessage = err.message || String(err);
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
-
-export async function DELETE(req: Request) {
+export async function DELETE(request: NextRequest) {
   try {
-    const { id } = await req.json();
-    if (!id) return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const { id } = await request.json();
+    if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
 
     const { data, error } = await supabaseAdmin.from("team_members").delete().eq("id", id).select();
-    if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER, serverError: error.message }, request, lang, 500);
 
-    return new Response(JSON.stringify({ data }), { status: 200 });
+    return NextResponse.json({ team: data }, { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const message = dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER;
+    const serverMessage = err.message || String(err);
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
 
-export async function PATCH(req: Request) {
+export async function PATCH(request: NextRequest) {
   try {
-    const body = await req.json();
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const body = await request.json();
     const id = body?.id;
-    if (!id) {
-      return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
-    }
+    if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
 
     const { data: memberData, error: fetchError } = await supabaseAdmin
       .from("team_members")
@@ -205,13 +216,9 @@ export async function PATCH(req: Request) {
       .eq("id", id)
       .single();
 
-    if (fetchError) {
-      return new Response(JSON.stringify({ error: fetchError.message }), { status: 500 });
-    }
+    if (fetchError) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_FETCH_PROFILE_PICTURE, serverError: fetchError.message }, request, lang, 500);
 
-    if (!memberData) {
-      return new Response(JSON.stringify({ error: "Member not found" }), { status: 404 });
-    }
+    if (!memberData) return errorHandler({ error: dict.errors.members.MEMBER_NOT_FOUND }, request, lang, 404);
 
     const pathsToDelete: string[] = [];
 
@@ -229,8 +236,8 @@ export async function PATCH(req: Request) {
           if (filePath) pathsToDelete.push(filePath);
         } else {
         }
-      } catch (e) {
-        console.warn("Could not parse profile_url:", e);
+      } catch (err: any) {
+        console.warn(dict.errors.profile.profilePicture.FAILED_TO_PARSE_PFP_URL, err.message);
       }
     }
 
@@ -238,7 +245,7 @@ export async function PATCH(req: Request) {
       const uniquePaths = Array.from(new Set(pathsToDelete));
       const { error: removeError } = await supabaseAdmin.storage.from("members").remove(uniquePaths);
       if (removeError) {
-        console.warn("Failed removing files:", removeError.message);
+        console.warn(dict.errors.files.FAILED_TO_REMOVE_FILES, removeError.message);
       }
     }
 
@@ -249,12 +256,14 @@ export async function PATCH(req: Request) {
       .select()
       .single();
 
-    if (updateError) {
-      return new Response(JSON.stringify({ error: updateError.message }), { status: 500 });
-    }
+    if (updateError) return errorHandler({ error: dict.errors.team.FAILED_TO_UPDATE_TEAM_MEMBER, serverError: updateError.message }, request, lang, 500);
 
-    return new Response(JSON.stringify({ data: updated }), { status: 200 });
+    return NextResponse.json({ team: updated }, { status: 200 });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message || String(err) }), { status: 500 });
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const message = dict.errors.team.FAILED_TO_UPDATE_TEAM_MEMBER;
+    const serverMessage = err.message || String(err);
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

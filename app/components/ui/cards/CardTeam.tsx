@@ -12,7 +12,7 @@ interface CardTeamProps {
 export default function CardTeam({ img, member, role, children }: CardTeamProps) {
   return (
     <Col xs={12} md={6} lg={4} xl={3}>
-      <Card className="h-100 rounded-0 border-0 shadow bg-dark">
+      <Card className="h-100 rounded-0 border-0 shadow-sm bg-dark">
         <Card.Body className="p-4">
           <Image
             src={`/assets/images/team/${img}`}

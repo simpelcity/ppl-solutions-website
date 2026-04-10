@@ -32,7 +32,7 @@ export default function LoginFormClient({ dict }: Props) {
 
       setLoading(false);
       if (error) {
-        setError(`${dict.login.form.error.invalidCredentials}`);
+        setError(`${dict.errors.login.INVALID_CREDENTIALS}`);
         return;
       }
 
@@ -40,12 +40,12 @@ export default function LoginFormClient({ dict }: Props) {
     } catch (err: any) {
       setLoading(false);
       console.error(err);
-      setError(err?.message ?? `${dict.login.form.error.unexpected}`);
+      setError(err?.message ?? `${dict.errors.login.UNEXPECTED}`);
     }
   };
 
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
@@ -67,7 +67,7 @@ export default function LoginFormClient({ dict }: Props) {
               placeholder={dict.login.form.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
             />
           </Form.Group>
           <Form.Group className="mb-2 d-flex justify-content-between align-items-center">
@@ -79,10 +79,10 @@ export default function LoginFormClient({ dict }: Props) {
           <Form.Group className="mb-3">
             <Form.Control
               type="password"
-              placeholder={dict.login.form.passwordPlaceholder}
+              placeholder="••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
             />
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
@@ -99,7 +99,7 @@ export default function LoginFormClient({ dict }: Props) {
           {error && <p className="text-danger mt-3">{error}</p>}
           <Form.Group className="mb-3">
             <BSButton variant="primary" type="submit">
-              {loading ? `${dict.login.form.error.loading}` : `${dict.login.form.submit}`}
+              {loading ? `${dict.login.form.statuses.loading}` : `${dict.login.form.submit}`}
             </BSButton>
           </Form.Group>
           <div className="text-center">

@@ -7,12 +7,13 @@ import { NavButtons } from "@/components";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useSidebar } from "@/lib";
-import { i18n } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
+import { type Locale } from "@/i18n"
 import "@/styles/Navbar.scss";
 
 interface NavbarProps {
   dict: Dictionary;
+  lang: Locale;
 }
 
 function useWindowWidth() {
@@ -28,20 +29,19 @@ function useWindowWidth() {
   return width;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ dict }) => {
-  const width = useWindowWidth();
+const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
+  const [width, setWidth] = useState(0);
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
   const { toggleSidebar, isMobile } = useSidebar();
-  const isDrivershub = pathname?.startsWith("/drivershub");
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const currentLocale = i18n.locales.find(
-    (locale) => pathname?.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  ) || i18n.defaultLocale;
+  const currentLocale = lang === "en" ? "" : `/${lang}`;
+
+  const isDrivershub = pathname.startsWith(`${currentLocale}/drivershub`);
 
   useEffect(() => {
     setExpanded(false);
@@ -51,25 +51,35 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
     });
   }, [pathname]);
 
-  const offCanvas = width > 992 && width < 1080;
-  const mobile = width < 992;
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    }
+  }, []);
+
+  const offCanvas = width >= 992 && width <= 1150;
 
   const navLinks = [
-    { title: dict.navbar.navigation.home, href: currentLocale === i18n.defaultLocale ? "/" : `/${currentLocale}` },
-    { title: dict.navbar.navigation.events, href: currentLocale === i18n.defaultLocale ? "/events" : `/${currentLocale}/events` },
-    { title: dict.navbar.navigation.team, href: currentLocale === i18n.defaultLocale ? "/team" : `/${currentLocale}/team` },
-    { title: dict.navbar.navigation.gallery, href: currentLocale === i18n.defaultLocale ? "/gallery" : `/${currentLocale}/gallery` },
-    { title: dict.navbar.navigation.contact, href: currentLocale === i18n.defaultLocale ? "/contact" : `/${currentLocale}/contact` },
+    { title: dict.navbar.navigation.home, href: `${currentLocale}/` },
+    { title: dict.navbar.navigation.events, href: `${currentLocale}/events` },
+    { title: dict.navbar.navigation.team, href: `${currentLocale}/team` },
+    { title: dict.navbar.navigation.gallery, href: `${currentLocale}/gallery` },
+    { title: dict.navbar.navigation.contact, href: `${currentLocale}/contact` },
   ];
 
   return (
-    <header>
-      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark">
+    <header className="position-sticky top-0" style={{ zIndex: 5 }}>
+      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark" className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
         <Container className="m-0 p-0 d-flex align-items-center" fluid>
-          {isDrivershub && isMobile && (
+          {isMobile && isDrivershub && (
             <button
-              className="btn btn-link text-light border-0 ms-1"
-              style={{ padding: "0 0.75rem" }}
+              className="btn btn-link text-light text-opacity-75 border-0"
+              style={{ padding: "0.25rem 0.75rem" }}
               onClick={toggleSidebar}>
               <RxHamburgerMenu size={30} />
             </button>
@@ -77,13 +87,13 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
           <BSNavbar.Brand
             as={Link}
             onClick={() => setExpanded(false)}
-            href="/"
-            className="d-flex align-items-center mx-0 ms-3 me-lg-0 column-gap-2">
+            href={currentLocale}
+            className="d-flex align-items-center mx-0 column-gap-2">
             <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
             <h5 className="my-auto">{dict.navbar.brand}</h5>
           </BSNavbar.Brand>
-          <BSNavbar.Toggle className="me-1" aria-controls="main-navbar" />
-          <BSNavbar.Collapse className="pb-3 pt-2 py-lg-0 px-3 px-lg-0 me-lg-3" id="main-navbar">
+          <BSNavbar.Toggle aria-controls="main-navbar" />
+          <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
             <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
               {navLinks.map((link) => (
                 <Nav.Link
@@ -109,14 +119,12 @@ const Navbar: React.FC<NavbarProps> = ({ dict }) => {
                     <Offcanvas.Title>{dict.navbar.navigation.title}</Offcanvas.Title>
                   </Offcanvas.Header>
                   <Offcanvas.Body>
-                    <NavButtons dict={dict} width={width} />
+                    <NavButtons dict={dict} width={width} isMobile={isMobile} />
                   </Offcanvas.Body>
                 </Offcanvas>
               </>
-            ) : mobile ? (
-              <NavButtons dict={dict} width={width} />
             ) : (
-              <NavButtons dict={dict} width={width} />
+              <NavButtons dict={dict} width={width} isMobile={isMobile} />
             )}
           </BSNavbar.Collapse>
         </Container>

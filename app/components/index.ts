@@ -1,6 +1,6 @@
 // Dashboard
 export { default as Dashboard } from "./dashboard/Dashboard";
-export { default as DashboardStats } from "./dashboard/DashboardStats";
+export { default as VtcStats } from "./dashboard/VtcStats";
 export { default as Sidebar } from "./dashboard/Sidebar";
 export { default as UserStats } from "./dashboard/UserStats";
 // Forms
@@ -19,10 +19,14 @@ export { default as Navbar } from "./layout/Navbar";
 // Sections
 export { default as StartBanner } from "./sections/StartBanner";
 // Cards
+export { default as Card404 } from "./ui/cards/Card404";
 export { default as CardContact } from "./ui/cards/CardContact";
 export { default as CardEvents } from "./ui/cards/CardEvents";
 export { default as CardGallery } from "./ui/cards/CardGallery";
 export { default as CardGalleryForm } from "./ui/cards/CardGalleryForm";
+export { default as CardProfile } from "./ui/cards/CardProfile";
+export { default as CardProfileSettingsForm } from "./ui/cards/CardProfileSettingsForm";
+export { default as CardProfileSkills } from "./ui/cards/CardProfileSkills";
 export { default as CardTeam } from "./ui/cards/CardTeam";
 export { default as CardTeamForm } from "./ui/cards/CardTeamForm";
 export { default as CardText } from "./ui/cards/CardText";

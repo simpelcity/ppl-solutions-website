@@ -1,4 +1,4 @@
-import { StartBanner, TeamGrid, Unavailable } from "@/components"
+import { StartBanner, TeamGrid } from "@/components"
 import { Container } from "react-bootstrap"
 import "@/styles/roles.scss"
 import { getDictionary } from "@/app/i18n"
@@ -50,9 +50,8 @@ export default async function TeamPage({ params }: PageProps) {
       <main className="fs-5">
         <StartBanner>{dict.team.title}</StartBanner>
         <section className="team d-flex w-100 bg-dark-subtle text-center">
-          <Container className="d-flex flex-column align-items-center my-5">
-            {/* <TeamGrid lang={lang} dict={dict} /> */}
-            <Unavailable dict={dict} lang={lang} />
+          <Container className="d-flex flex-column align-items-center p-3">
+            <TeamGrid lang={lang} dict={dict} />
           </Container>
         </section>
       </main>

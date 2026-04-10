@@ -40,17 +40,17 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
         return;
       }
 
-      setSuccess(`${dict.forgotPassword.form.error.success}`);
+      setSuccess(`${dict.success.forgotPassword.RESET_EMAIL_SENT}`);
       setEmail("");
     } catch (err: any) {
-      setError(err?.message ?? `${dict.forgotPassword.form.error.error}`);
+      setError(err?.message ?? `${dict.errors.forgotPassword.UNEXPECTED}`);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
@@ -75,7 +75,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
               placeholder={dict.forgotPassword.form.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-0 border-0 shadow"
+              className="input rounded-0 border-0 shadow-sm"
               required
               disabled={loading}
             />
@@ -86,7 +86,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
 
           <Form.Group className="mb-3">
             <BSButton variant="primary" type="submit" disabled={loading}>
-              {loading ? `${dict.forgotPassword.form.error.loading}` : `${dict.forgotPassword.form.submit}`}
+              {loading ? `${dict.forgotPassword.form.statuses.loading}` : `${dict.forgotPassword.form.submit}`}
             </BSButton>
           </Form.Group>
 

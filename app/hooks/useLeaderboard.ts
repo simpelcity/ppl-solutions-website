@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import { useLang } from "@/hooks/useLang";
+import type { Dictionary } from "@/app/i18n";
 
 interface LeaderboardEntry {
   username: string;
@@ -11,15 +13,17 @@ interface LeaderboardEntry {
 }
 
 interface CurrentLeaderboard {
-  name: string; // descriptive key like 'allTimeDistanceLeaderboard'
+  name: string;
   entries: LeaderboardEntry[];
 }
 
 export function useLeaderboard(
+  dict: Dictionary,
   selectedPeriod: "all-time" | "monthly" = "all-time",
   selectedYear?: number,
-  selectedMonth?: number,
+  selectedMonth?: number
 ) {
+  const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -47,15 +51,13 @@ export function useLeaderboard(
   const [allTimeDataLoaded, setAllTimeDataLoaded] = useState<boolean>(false);
 
   const fetchStatistics = async (month?: number, year?: number) => {
-    let url = "/api/statistics";
+    let url = `/api/statistics`;
     if (month !== undefined && year !== undefined) {
-      url += `?month=${month}&year=${year}`;
+      url += `?month=${month}&year=${year}&lang=${lang}`;
     }
     const res = await axios.get(url);
-    if (res.status !== 200) {
-      throw new Error("Failed to fetch statistics");
-    }
-    return res.data?.data;
+    if (res.status !== 200) throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS, { cause: res.status });
+    return res.data?.jobs || res.data || [];
   };
 
   const getDistanceLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
@@ -255,7 +257,6 @@ export function useLeaderboard(
 
           setCurrentLeaderboard({ name: "monthlyDistanceLeaderboard", entries: monthlyLeaderboard });
         } else if (selectedPeriod === "all-time") {
-          // Already have all-time data, no need to refetch
         }
       } catch (err: any) {
         setError(err.message);
@@ -267,7 +268,6 @@ export function useLeaderboard(
     loadMonthlyData();
   }, [selectedPeriod, selectedYear, selectedMonth, allTimeDataLoaded]);
 
-  // keep currentLeaderboard in sync when period or data arrays change
   useEffect(() => {
     if (selectedPeriod === "all-time") {
       setCurrentLeaderboard({

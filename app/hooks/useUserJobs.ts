@@ -4,14 +4,17 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/lib";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import { useLang } from "@/hooks/useLang";
+import type { Dictionary } from "@/app/i18n";
 
 type Job = any;
 
-export function useUserJobs() {
+export function useUserJobs(dict: Dictionary) {
+  const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
-    if (isAdmin) console.log(...args);
+    if (isAdmin) console.log("%c[ADMIN]", "color: #00ffdd; font-weight: bold;", ...args);
   };
 
   const { session } = useAuth();
@@ -30,22 +33,22 @@ export function useUserJobs() {
   const displayPage = lastPage - currentPage + 1;
 
   const fetchMembers = async () => {
-    const res = await axios.get("/api/members");
-    if (res.status !== 200) throw new Error("Failed to fetch members");
-    const data = await res.data;
-    return data.data || data || [];
+    const res = await axios.get(`/api/members?lang=${lang}`);
+    if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS);
+    const data = res.data;
+    return data.members || data || [];
   };
 
   const ensureSteamID = async (): Promise<string> => {
     if (steamID) return steamID;
     const members = await fetchMembers();
     const driver = members.find((d: any) => d.username === driverUsername);
-    setDriver(driver);
-    setDriverName(driverUsername);
+    const DRIVER_NOT_FOUND = dict.errors.jobs.DRIVER_NOT_FOUND.replace("{driver}", driverUsername);
     if (!driver) {
-      setDriver(null);
-      throw new Error(`Driver ${driverUsername} not found`);
+      setError(DRIVER_NOT_FOUND);
+      throw new Error(DRIVER_NOT_FOUND);
     }
+    setDriver(driver);
     setSteamID(driver.steamID);
     return driver.steamID;
   };
@@ -53,11 +56,12 @@ export function useUserJobs() {
   const fetchJobsPage = async (page: number) => {
     const sid = await ensureSteamID();
     try {
-      const res = await axios.post("/api/jobs", { steamID: sid, page });
-      if (res.status !== 200) throw new Error("Failed to fetch jobs");
-      return res.data;
+      const res = await axios.post(`/api/jobs?lang=${lang}`, { steamID: sid, page });
+      if (res.status !== 200) throw new Error(dict.errors.jobs.FAILED_TO_FETCH_JOBS, { cause: res.status });
+      const data = res.data;
+      return data;
     } catch (err: any) {
-      const message = err?.response?.data?.error || err?.message || "Failed to fetch jobs";
+      const message = err?.response?.data?.message || err?.message || dict.errors.jobs.FAILED_TO_FETCH_JOBS;
       throw new Error(message);
     }
   };
@@ -73,8 +77,8 @@ export function useUserJobs() {
     const allJobs: Job[] = [];
     for (let page = 1; page <= lastPage; page++) {
       const payload = await fetchJobsPage(page);
-      if (Array.isArray(payload.data)) {
-        allJobs.push(...payload.data);
+      if (Array.isArray(payload.jobs.data)) {
+        allJobs.push(...payload.jobs.data);
       }
     }
     return allJobs.reverse();
@@ -86,7 +90,7 @@ export function useUserJobs() {
     try {
       const apiPage = lastPage - displayPage + 1;
       const payload = await fetchJobsPage(apiPage);
-      setJobs(Array.isArray(payload.data) ? payload.data.reverse() : []);
+      setJobs(Array.isArray(payload.jobs.data) ? payload.jobs.data.reverse() : []);
       setCurrentPage(apiPage);
     } catch (err: any) {
       setError(err.message);
@@ -109,7 +113,7 @@ export function useUserJobs() {
       }
     } else {
       setShowAll(false);
-      await loadJobs(currentPage);
+      await loadJobs(1);
     }
   };
 
@@ -123,12 +127,12 @@ export function useUserJobs() {
       setError(null);
       try {
         const page1 = await fetchJobsPage(1);
-        const lp = parseLastPage(page1.links?.last);
+        const lp = parseLastPage(page1.jobs.links?.last);
 
         if (!cancelled) {
           setLastPage(lp);
           const lastPayload = lp === 1 ? page1 : await fetchJobsPage(lp);
-          setJobs(Array.isArray(lastPayload.data) ? lastPayload.data.reverse() : []);
+          setJobs(Array.isArray(lastPayload.jobs.data) ? lastPayload.jobs.data.reverse() : []);
           setCurrentPage(lp);
         }
       } catch (err: any) {

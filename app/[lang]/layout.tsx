@@ -1,11 +1,16 @@
 import { AuthProvider, SidebarProvider } from "@/lib"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { i18n } from "@/i18n"
 import LayoutClient from "../[lang]/LayoutClient"
 
 type Props = {
   children: React.ReactNode
   params: Promise<{ lang: string }>
+}
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }))
 }
 
 export default async function RootLayout({ children, params }: Props) {
@@ -14,7 +19,7 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <AuthProvider>
-      <SidebarProvider>
+      <SidebarProvider dict={dict} lang={lang as Locale}>
         <LayoutClient dict={dict} lang={lang as Locale}>
           {children}
         </LayoutClient>

@@ -9,6 +9,7 @@ interface AuthContextType {
   session: Session | null
   loading: boolean
   logout: (() => Promise<void>) | null
+  refreshSession: (() => Promise<void>) | null
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -16,6 +17,7 @@ const AuthContext = createContext<AuthContextType>({
   session: null,
   loading: true,
   logout: null,
+  refreshSession: null,
 })
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -29,6 +31,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setSession(null)
   }
 
+  const refreshSession = async () => {
+    const { data } = await supabase.auth.refreshSession();
+    setSession(data.session);
+    setUser(data.session?.user ?? null);
+    setLoading(false);
+  }
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session)
@@ -36,16 +45,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false)
     })
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
       setUser(session?.user ?? null)
       setLoading(false)
     })
 
-    return () => listener.subscription.unsubscribe()
+    return () => subscription.unsubscribe()
   }, [])
 
-  return <AuthContext.Provider value={{ user, session, loading, logout }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, session, loading, logout, refreshSession }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => useContext(AuthContext)

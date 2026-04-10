@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
-import { Dropdown, Image, Nav, Collapse } from "react-bootstrap";
+import { Dropdown, Image, Nav, Collapse, Offcanvas, Placeholder } from "react-bootstrap";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
@@ -15,6 +15,7 @@ import { MdPhotoLibrary } from "react-icons/md";
 import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 interface NavItem {
   href: string;
@@ -32,7 +33,7 @@ interface SidebarProps {
   [key: string]: any;
 }
 
-export default function Sidebar({
+function SidebarContent({
   isSidebarCollapsed,
   setIsSidebarCollapsed,
   isMobile,
@@ -41,11 +42,16 @@ export default function Sidebar({
   lang,
   ...props
 }: SidebarProps) {
-  const { user, logout, session, loading } = useAuth();
+  const isAdmin = useIsAdmin();
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log(...args);
+  };
+
+  const { user, logout, loading, session } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [open, setOpen] = useState(false);
 
   const currentLang = lang === 'en' ? '' : `/${lang}`
@@ -57,7 +63,7 @@ export default function Sidebar({
       label: dict.drivershub.sidebar.drivershub || "Drivershub",
     },
     {
-      href: `${currentLang}/drivershub/statistics`,
+      href: `${currentLang}/drivershub/user-statistics`,
       icon: <FaChartLine />,
       label: dict.drivershub.sidebar.userStats || "User Statistics",
     },
@@ -66,14 +72,14 @@ export default function Sidebar({
       icon: <MdLeaderboard />,
       label: dict.drivershub.sidebar.leaderboard || "Leaderboard",
     },
+    {
+      href: `${currentLang}/drivershub/statistics`,
+      icon: <FaChartLine />,
+      label: dict.drivershub.sidebar.vtcStats || "VTC Statistics",
+    }
   ];
 
   const collapseItems: NavItem[] = [
-    {
-      href: `${currentLang}/drivershub/dashboard`,
-      icon: <FaChartLine />,
-      label: dict.drivershub.sidebar.dashboard.vtcStats || "VTC Statistics",
-    },
     {
       href: `${currentLang}/drivershub/dashboard/team`,
       icon: <FaUsers />,
@@ -97,35 +103,43 @@ export default function Sidebar({
         const json = await res.json();
         const payload = json.data ?? [];
 
-        let members: { name: string; profile_url?: string | null; admin?: boolean | string | null }[] = [];
+        let members: { name: string; profile_url?: string | null }[] = [];
 
         if (Array.isArray(payload) && payload.length > 0) {
           if (payload[0].team_member) {
             members = payload.map((item: any) => {
               const tm = item.team_member ?? {};
-              return { name: tm.name, profile_url: tm.profile_url ?? null, admin: tm.admin ?? null };
+              return { name: tm.name, profile_url: tm.profile_url ?? null };
             });
           } else {
             members = payload.map((m: any) => ({
               name: m.name,
               profile_url: m.profile_url ?? null,
-              admin: m.admin ?? null,
             }));
           }
         }
-
-        const member = members.find((m) => m.name === user.user_metadata?.username);
-
-        const adminFlag = member?.admin === true || member?.admin === "true" || Boolean(member?.admin);
-        setIsAdmin(adminFlag);
-
-        setProfileUrl(member?.profile_url ?? null);
-      } catch (err) {
-        console.error("Failed to fetch team profile:", err);
+      } catch (err: any) {
+        console.error(dict.errors.members.FAILED_TO_FETCH_MEMBERS, err.message);
       }
     };
 
+    const fetchProfilePicture = async () => {
+      if (!user?.id) return;
+
+      try {
+        const res = await fetch(`/api/profile-picture?id=${encodeURIComponent(user.id)}`);
+        if (!res.ok) return;
+
+        const json = await res.json();
+        setProfileUrl(json.profile?.profile_url ?? null);
+        return json.profile?.profile_url ?? null;
+      } catch (err: any) {
+        console.error(`${dict.errors.profile.profilePicture.FAILED_TO_FETCH_PROFILE_PICTURE}:`, err.message);
+      }
+    }
+
     fetchProfileAndRole();
+    fetchProfilePicture();
 
     window.scrollTo({
       top: 0,
@@ -140,49 +154,24 @@ export default function Sidebar({
   };
 
   useEffect(() => {
-    if (!loading && !session) {
-      router.push("/login");
+    if (!loading && !session) router.push("/login");
+  }, [session, loading]);
+
+  useEffect(() => {
+    if (pathname.startsWith(`${currentLang}/drivershub/dashboard`)) {
+      if (isAdmin === false) {
+        router.push(`${currentLang}/drivershub`);
+      }
     }
-  }, [session, loading, router]);
+  }, [isAdmin, pathname, currentLang]);
 
-  if (loading) return <LoaderSpinner dict={dict} />
+  if (!session) return null;
+  if (!user) return null;
 
-  if (!session) {
-    return null;
-  }
-
-  const username = (session as any).user?.user_metadata?.username || session.user.email;
+  const username = user.user_metadata.display_name || user.email;
 
   return (
-    <div
-      className="sidebar d-flex flex-column flex-shrink-0 text-light bg-light-subtle text-start"
-      style={{
-        width: isMobile ? "280px" : isSidebarCollapsed ? "4.5rem" : "280px",
-        minWidth: isMobile ? "280px" : isSidebarCollapsed ? "4.5rem" : "280px",
-        height: isMobile ? (isNavbarVisible ? "calc(100vh - 4.5rem)" : "100vh") : "100%",
-        position: isMobile ? "fixed" : "relative",
-        top: isMobile && isNavbarVisible ? "4.5rem" : isMobile ? 0 : "auto",
-        left: isMobile ? 0 : "auto",
-        zIndex: isMobile ? 1000 : 10,
-        transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",
-        transition: "transform 0.3s ease, width 0.3s ease",
-        overflow: isSidebarCollapsed && !isMobile ? "visible" : "auto",
-        padding: isSidebarCollapsed && !isMobile ? "1rem 0" : "1rem",
-      }}
-      {...props}>
-      <div
-        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
-          }`}>
-        <a href="#" className="text-light text-decoration-none column-gap-2">
-          <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
-            {dict.drivershub.sidebar.title || "Sidebar"}
-          </h3>
-        </a>
-        {!isMobile && (
-          <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
-        )}
-      </div>
-      <hr className={isSidebarCollapsed ? "d-none" : "d-block"} />
+    <>
       <Nav variant="pills" className="flex-column mb-auto">
         {navItems.map((item) => (
           <Nav.Item key={item.href}>
@@ -203,11 +192,11 @@ export default function Sidebar({
                 onClick={() => setOpen(!open)}
                 aria-controls="dashboard-collapse-menu"
                 aria-expanded={open}
-                className={`d-flex align-items-center justify-content-between rounded-bottom-0 text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active" : ""
-                  }`}>
+                className={`d-flex align-items-center justify-content-between text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active" : ""
+                  } ${open ? "rounded-bottom-0" : ""}`}>
                 <div className="d-flex">
                   <span className="me-2"><BiSolidDashboard /></span>
-                  Dashboard
+                  <span>{dict.drivershub.sidebar.dashboard.title}</span>
                 </div>
                 {open ? <FaAngleRight className="rotate-90-cw" /> : <FaAngleDown className="rotate-90-ccw" />}
               </Nav.Link>
@@ -250,7 +239,7 @@ export default function Sidebar({
       </Nav>
       <hr />
       {!isSidebarCollapsed && (
-        <Dropdown data-bs-theme="dark">
+        <Dropdown>
           <Dropdown.Toggle
             variant="dark"
             className="bg-transparent border-0 p-0 d-flex align-items-center text-light text-decoration-none w-100">
@@ -264,9 +253,9 @@ export default function Sidebar({
             />
             <strong>{username}</strong>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow mb-1" style={{ zIndex: 1050 }}>
-            <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
+          <Dropdown.Menu className="dropdown-menu-dark shadow-sm mb-1" style={{ zIndex: 1050 }}>
+            <Dropdown.Item href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
+            <Dropdown.Item href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
           </Dropdown.Menu>
@@ -285,7 +274,7 @@ export default function Sidebar({
               roundedCircle
             />
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow ms-3 mb-1" style={{ zIndex: 1050 }}>
+          <Dropdown.Menu className="dropdown-menu-dark shadow-sm ms-3 mb-1" style={{ zIndex: 1050 }}>
             <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
             <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
@@ -293,6 +282,89 @@ export default function Sidebar({
           </Dropdown.Menu>
         </Dropdown>
       )}
+    </>
+  )
+}
+
+export default function Sidebar({
+  isSidebarCollapsed,
+  setIsSidebarCollapsed,
+  isMobile,
+  isNavbarVisible = false,
+  dict,
+  lang,
+  ...props
+}: SidebarProps) {
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
+
+  useEffect(() => {
+    setShowOffcanvas(isMobile && !isSidebarCollapsed)
+  }, [isMobile, isSidebarCollapsed]);
+
+  return isMobile ? (
+    <Offcanvas
+      show={showOffcanvas}
+      onHide={() => setShowOffcanvas(false)}
+      placement="start"
+      scroll={false}
+      backdrop={true}
+      className={`sidebar bg-light-subtle ${isSidebarCollapsed ? "" : "w-100"}`}
+      style={{ maxWidth: window.innerWidth < 576 ? "100%" : "16.25rem" }}
+      data-bs-theme="dark"
+    >
+      <Offcanvas.Header className="pb-0" closeButton>
+        <Offcanvas.Title className="fs-3">{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
+      </Offcanvas.Header>
+      <hr className={isSidebarCollapsed ? "d-none" : "d-block mx-3"} />
+      <Offcanvas.Body className="d-flex flex-column pt-0">
+        <SidebarContent
+          isSidebarCollapsed={isSidebarCollapsed}
+          setIsSidebarCollapsed={setIsSidebarCollapsed}
+          isMobile={isMobile}
+          isNavbarVisible={isNavbarVisible}
+          dict={dict}
+          lang={lang}
+        />
+      </Offcanvas.Body>
+    </Offcanvas>
+  ) : (
+    <div
+      id="sidebar"
+      className={`sidebar d-flex flex-column text-light bg-light-subtle text-start bg-danger ${isSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"}`}
+      style={{
+        height: "calc(100dvh - 76px)",
+        // width: isSidebarCollapsed ? "4.5rem" : "260px",
+        // maxWidth: isSidebarCollapsed ? "4.5rem" : "260px",
+        position: "sticky",
+        top: isNavbarVisible ? 76 : "auto",
+        left: isMobile ? 0 : "auto",
+        zIndex: 1,
+        transform: isMobile && isSidebarCollapsed ? "translateX(-100%)" : "translateX(0)",
+        transition: "transform 0.3s ease, width 0.3s ease",
+        overflow: isSidebarCollapsed && !isMobile ? "visible" : "hidden",
+        padding: isSidebarCollapsed && !isMobile ? "1rem 0" : "1rem",
+      }}
+      {...props}>
+      <div
+        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
+          }`}>
+        <a href="#" className="text-light text-decoration-none column-gap-2">
+          <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
+            {dict.drivershub.sidebar.title || "Sidebar"}
+          </h3>
+        </a>
+        <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} />
+      </div>
+      <hr className={isSidebarCollapsed ? "d-none" : "d-block"} />
+
+      <SidebarContent
+        isSidebarCollapsed={isSidebarCollapsed}
+        setIsSidebarCollapsed={setIsSidebarCollapsed}
+        isMobile={isMobile}
+        isNavbarVisible={isNavbarVisible}
+        dict={dict}
+        lang={lang}
+      />
     </div>
   );
 }

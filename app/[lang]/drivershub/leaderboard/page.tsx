@@ -1,4 +1,4 @@
-import { Dashboard, TableLeaderboard } from "@/components"
+import { TableLeaderboard } from "@/components"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
@@ -48,9 +48,7 @@ export default async function LeaderboardPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
-          <Dashboard dict={dict} lang={lang}>
-            <TableLeaderboard dict={dict} />
-          </Dashboard>
+          <TableLeaderboard dict={dict} />
         </section>
       </main>
     </>

@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap"
 import { StartBanner, CardContact } from "@/components"
-import "@/styles/Contact.scss"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
@@ -57,7 +56,7 @@ export default async function ContactPage({ params }: PageProps) {
               </Col>
               <Col xs={12} md={8} xl={4} className="d-flex align-items-center justify-content-center">
                 <iframe
-                  className="shadow w-100"
+                  className="shadow-sm w-100"
                   src="https://discord.com/widget?id=1282025492354170972&theme=dark"
                   height="450"
                   sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>

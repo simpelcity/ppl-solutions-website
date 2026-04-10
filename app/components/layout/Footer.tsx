@@ -1,25 +1,29 @@
 "use client"
 
+import { useEffect, useState } from 'react'
 import { Container, Row, Col, Image, Tab, Tabs, ListGroup } from "react-bootstrap"
 import { FaDiscord, FaTiktok, FaTruck, FaRegCopyright } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { FooterLink } from "@/components"
 import "@/styles/Footer.scss"
 import type { Dictionary } from "@/app/i18n";
-
+import { useSidebar } from "@/lib";
 
 type FooterProps = {
   dict: Dictionary
 }
 
 export default function Footer({ dict }: FooterProps) {
+  const { isSidebarCollapsed } = useSidebar();
+
   const footerLinks = [
     { title: `${dict.footer.footer2.pages.home}`, href: "" },
     { title: `${dict.footer.footer2.pages.events}`, href: "events" },
     { title: `${dict.footer.footer2.pages.team}`, href: "team" },
     { title: `${dict.footer.footer2.pages.gallery}`, href: "gallery" },
     { title: `${dict.footer.footer2.pages.contact}`, href: "contact" },
-  ]
+  ];
+
   const currentYear = new Date().getFullYear()
 
   const split = dict.footer.footer3.tab2.text.split(" ");
@@ -45,7 +49,7 @@ export default function Footer({ dict }: FooterProps) {
           <Col
             xs={12}
             md={12}
-            xl={6}
+            xl={isSidebarCollapsed ? 6 : 5}
             className="d-flex flex-column align-items-center text-center align-items-xl-start text-xl-start">
             <div className="d-flex align-items-center mb-3">
               <a href="/" className="d-flex flex-row text-decoration-none text-light column-gap-2">
@@ -81,7 +85,7 @@ export default function Footer({ dict }: FooterProps) {
               </a>
             </div>
           </Col>
-          <Col xs={12} md={12} xl={6}>
+          <Col xs={12} md={12} xl={isSidebarCollapsed ? 6 : 7}>
             <Row className="d-flex row-gap-4 w-100">
               <Col xs={12} md={3} lg={4}>
                 <h3>{dict.footer.footer2.title}</h3>
@@ -94,8 +98,8 @@ export default function Footer({ dict }: FooterProps) {
                 </ListGroup>
               </Col>
               <Col xs={12} md={9} lg={8} className="fs-5">
-                <Tabs defaultActiveKey="links" className="nav-fill mb-3 border-primary">
-                  <Tab eventKey="links" title={dict.footer.footer3.tab1.title} className="border-0">
+                <Tabs defaultActiveKey="links" className="mb-3" fill>
+                  <Tab eventKey="links" title={dict.footer.footer3.tab1.title} className="">
                     <ListGroup>
                       <FooterLink link="drivershub">{dict.footer.footer3.tab1.pages.drivershub}</FooterLink>
                       <FooterLink link="apply">{dict.footer.footer3.tab1.pages.apply}</FooterLink>
@@ -104,7 +108,7 @@ export default function Footer({ dict }: FooterProps) {
                       </FooterLink>
                     </ListGroup>
                   </Tab>
-                  <Tab eventKey="message" title={dict.footer.footer3.tab2.title} className="border-0">
+                  <Tab eventKey="message" title={dict.footer.footer3.tab2.title} className="">
                     <p className="text-center text-md-start">
                       {message1} <strong>{message2}</strong>{message3}<strong>{message4}</strong>{message5}
                     </p>
@@ -116,7 +120,7 @@ export default function Footer({ dict }: FooterProps) {
         </Row>
         <p className="border-top border-light pt-3 mt-4 mb-0 fs-5 text-center w-100">
           <FaRegCopyright className="fs-6" /> {bottom1} {currentYear} <strong>{brand}</strong>{bottom3}
-          <a className="text-decoration-none author fw-bold" href="https://simpelcity.github.io">
+          <a className="text-decoration-none author fw-bold text-primary" href="https://simpelcity.github.io">
             {developer}
           </a>
         </p>

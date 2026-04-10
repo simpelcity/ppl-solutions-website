@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "variables" as *;
 
 .table-card-scroll {
   width: 100%;
@@ -21,7 +21,7 @@
 
 .table-jobs {
   white-space: nowrap;
-  min-width: 1595px;
+  min-width: 1300px;
 }
 
 .table-stats {
@@ -57,4 +57,45 @@
 
 .bg-light-subtle {
   background-color: #303336 !important;
+}
+
+.pfp-position {
+  position: relative;
+  top: -70px;
+  left: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+@media (max-width: 576px) {
+  .pfp-position {
+    top: -40px;
+    left: 0;
+    justify-content: center;
+  }
+}
+
+.pfp-img {
+  max-width: 120px;
+  max-height: 120px;
+  @media (max-width: 576px) {
+    max-width: 90px;
+    max-height: 90px;
+  }
+}
+
+.column-gap-md-7 {
+  @media (min-width: 768px) {
+    column-gap: 0.7rem !important;
+  }
+}
+
+.skill {
+  width: calc(100%);
+  height: calc(100%);
+  aspect-ratio: 1 / 1;
+}
+
+.skill-level {
+  max-width: 60px;
+  max-height: 60px;
 }

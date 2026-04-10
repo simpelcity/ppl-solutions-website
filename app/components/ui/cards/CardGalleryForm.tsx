@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { BSButton } from "@/components";
+import { BSButton, LoaderSpinner } from "@/components";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
 import type { Dictionary } from "@/app/i18n"
 
@@ -25,7 +25,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     createItem,
     updateItem,
     deleteItem,
-  } = useGallery();
+  } = useGallery(dict);
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
@@ -76,9 +76,9 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
 
   return (
     <>
-      <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
+      <Col xs={12} md={10} lg={6}>
+        <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
+          <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
           <Card.Body>
             <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
               <Form.Group className="mb-3">
@@ -86,7 +86,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                 <Form.Control
                   type="text"
                   placeholder={dict.drivershub.gallery.form.titlePlaceholder || "Image title"}
-                  className="rounded-0 border-0 shadow bg-dark-subtle"
+                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
                   required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -100,7 +100,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                   id="gallery-file-input"
                   type="file"
                   accept="image/*"
-                  className="rounded-0 border-0 shadow bg-dark-subtle"
+                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
                   onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)}
                   disabled={submitting}
                 />
@@ -150,17 +150,17 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
       </Col>
 
       {/* Gallery Items List */}
-      <Col xs={12} md={10} xl={6}>
-        <Card className="p-3 my-3 rounded-0 border-0 shadow" data-bs-theme="dark">
-          <Card.Title className="fs-4">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
-          <Card.Body className="p-1">
+      <Col xs={12} md={10} lg={6}>
+        <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
+          <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
+          <Card.Body>
             {loading ? (
               <div className="d-flex justify-content-center align-items-center column-gap-2">
                 <Spinner animation="border" />
-                <span className="fs-4">Loading gallery items</span>
+                <span className="fs-4">{dict.gallery.loading}</span>
               </div>
             ) : items.length === 0 ? (
-              <p className="text-muted">No items yet</p>
+              <p className="text-muted">{dict.errors.gallery.NO_IMAGES_FOUND}</p>
             ) : (
               <ListGroup variant="flush">
                 {items.map((item) => (

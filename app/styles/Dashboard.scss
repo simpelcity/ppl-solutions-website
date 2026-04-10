@@ -1,0 +1,20 @@
+:root {
+  --sidebar-collapsed-width: 4.5rem;
+  --sidebar-expanded-width: 16.25rem;
+}
+
+.sidebar-collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.sidebar-expanded {
+  width: var(--sidebar-expanded-width);
+}
+
+.dashboard-expanded {
+  width: calc(100% - var(--sidebar-collapsed-width)) !important;
+}
+
+.dashboard-collapsed {
+  width: calc(100% - var(--sidebar-expanded-width)) !important;
+}

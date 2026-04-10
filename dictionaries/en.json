@@ -63,7 +63,7 @@
   },
   "status": {
     "loading": {
-      "loadingSpinner": "Loading...",
+      "loadingSpinner": "Loading",
       "loader": "Loading"
     }
   },
@@ -108,6 +108,7 @@
       "description": "Find all our upcoming events here and join us for an unforgettable trucking experience!"
     },
     "title": "events",
+    "loading": "Loading events...",
     "card": {
       "date": "Date",
       "meetupTime": "Meetup Time",
@@ -119,12 +120,6 @@
       "dlc": "DLC",
       "event": "event",
       "more": "more"
-    },
-    "error": {
-      "noEvents": "No upcoming events",
-      "na": "Not applicable",
-      "noServer": "Event Server",
-      "noDLC": "None"
     }
   },
   "team": {
@@ -133,11 +128,7 @@
       "description": "See all of our amazing team members who make PPL Solutions possible."
     },
     "title": "team",
-    "loading": "Loading team...",
-    "errors": {
-      "error": "Error loading team.",
-      "noDepts": "No departments / members found."
-    }
+    "loading": "Loading team..."
   },
   "gallery": {
     "meta": {
@@ -145,10 +136,7 @@
       "description": "Browse through our gallery showcasing the best moments and trucks from PPL Solutions."
     },
     "title": "gallery",
-    "errors": {
-      "error": "Error loading gallery:",
-      "noImages": "No images found."
-    }
+    "loading": "Loading gallery..."
   },
   "contact": {
     "meta": {
@@ -188,15 +176,12 @@
       "email": "Email",
       "emailPlaceholder": "your@email.com",
       "password": "Password",
-      "passwordPlaceholder": "••••••",
       "forgotPassword": "forgot password?",
       "rememberMe": "Remember me",
       "submit": "sign in",
       "noAccount": "Don't have an account?",
       "signUp": " Sign up",
-      "error": {
-        "invalidCredentials": "Invalid email or password. Please try again.",
-        "unexpected": "An unexpected error occurred. Please try again.",
+      "statuses": {
         "loading": "Logging in..."
       }
     }
@@ -215,16 +200,10 @@
       "usernamePlaceholder": "your_username",
       "allowedChars": "3-50 characters, letters, numbers, underscores, hyphens",
       "password": "Password",
-      "passwordPlaceholder": "••••••",
       "submit": "sign up",
       "haveAccount": "Already have an account?",
       "login": "Sign in",
-      "error": {
-        "emailInUse": "This email is already taken. Please use a different email.",
-        "usernameInUse": "This username is already taken. Please choose a different one.",
-        "passwordTooShort": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
-        "unexpected": "An unexpected error occurred. Please try again.",
-        "success": "Registration successful. Please check your email to confirm.",
+      "statuses": {
         "loading": "Creating account..."
       }
     }
@@ -243,9 +222,7 @@
       "submit": "send reset link",
       "remember": "Remember your password?",
       "backToLogin": "Back to login",
-      "error": {
-        "error": "An error occurred while sending the reset email",
-        "success": "Password reset email sent! Check your inbox for a link to reset your password.",
+      "statuses": {
         "loading": "Sending..."
       }
     }
@@ -260,27 +237,11 @@
       "title": "Reset Password",
       "newPasswordBelow": "Enter your new password below.",
       "newPassword": "New Password",
-      "newPasswordPlaceholder": "••••••",
       "confirmPassword": "Confirm Password",
-      "confirmPasswordPlaceholder": "••••••",
       "submit": "reset password",
       "backToLogin": "Back to login",
-      "error": {
-        "invalidToken": "Invalid or missing reset token. Please request a new password reset.",
-        "expiredToken": "Invalid or expired reset token. Please request a new password reset.",
-        "expiredSession": "Your session has expired. Please request a new password reset.",
-        "success": "Password reset successfully! Redirecting to login...",
-        "unexpected": "An unexpected error occurred while resetting your password",
-        "newPassword": "Request a new password reset",
-        "password": {
-          "passwordMismatch": "Passwords do not match. Please try again.",
-          "passwordTooShort": "Password must be at least 8 characters",
-          "passwordNoLowercase": "Password must contain at least one lowercase letter",
-          "passwordNoUppercase": "Password must contain at least one uppercase letter",
-          "passwordNoNumber": "Password must contain at least one number",
-          "passwordNoSpecial": "Password must contain at least one special character"
-        }
-      },
+      "success": "Password reset successfully! Redirecting to login...",
+      "requestNewPassword": "Request a new password reset",
       "loading": "Resetting...",
       "validating": "Validating reset link..."
     }
@@ -295,9 +256,9 @@
       "drivershub": "Drivershub",
       "userStats": "User Statistics",
       "leaderboard": "Leaderboard",
+      "vtcStats": "VTC Statistics",
       "dashboard": {
-        "title": "Dashboard",
-        "vtcStats": "VTC Statistics",
+        "title": "Manage",
         "team": "Team",
         "gallery": "Gallery"
       },
@@ -322,40 +283,35 @@
           "showing": "Showing page 1 of 1",
           "allJobs": "show all jobs",
           "paginated": "show paginated"
-        },
-        "error": {
-          "error": "Error:",
-          "noJobs": "No jobs found",
-          "driverNotFound": "Driver {driver} not found"
         }
       }
     },
     "userStats": {
       "meta": {
-        "title": "'s Statistics",
-        "description": "'s Statistics at PPL Solutions VTC"
+        "title": "{driver}'s Statistics",
+        "description": "{driver}'s Statistics at PPL Solutions VTC"
       },
       "cards": {
         "thp": {
           "title": "TruckersHub Points",
           "total": "Total",
           "avg": "Average",
-          "min": "Minimum",
-          "max": "Maximum"
+          "min": "Lowest",
+          "max": "Highest"
         },
         "income": {
           "title": "Income Earned",
           "total": "Total",
           "avg": "Average",
-          "min": "Minimum",
-          "max": "Maximum"
+          "min": "Lowest",
+          "max": "Highest"
         },
         "distance": {
           "title": "Delivery Distance",
           "total": "Total",
           "avg": "Average",
-          "min": "Minimum",
-          "max": "Maximum"
+          "min": "Lowest",
+          "max": "Highest"
         }
       },
       "table": {
@@ -453,9 +409,6 @@
         "totalJobs": "Total Jobs",
         "totalIncome": "Total Revenue",
         "totalTimeDriven": "Total Time Driven"
-      },
-      "error": {
-        "noStats": "No statistics available"
       }
     },
     "team": {
@@ -468,7 +421,7 @@
         "titleEditMember": "Edit Member",
         "username": "Member Name",
         "usernamePlaceholder": "Username",
-        "profilePicture": "Profile Picture (optional",
+        "profilePicture": "Profile Picture (optional)",
         "submitNewMember": "add member",
         "submitEditMember": "update member",
         "calcelEditMember": "cancel",
@@ -481,14 +434,14 @@
         }
       },
       "card": {
-        "title": "team Members"
+        "title": "Team Members"
       },
       "modal": {
         "title": "Confirm Action",
         "textmember": "Are you sure you want to delete this member",
         "textPicture": "Are you sure you want to delete this member's profile picture",
-        "cancel": "cancel",
-        "confirm": "confirm"
+        "cancel": "Cancel",
+        "confirm": "Confirm"
       }
     },
     "gallery": {
@@ -515,6 +468,250 @@
         "text": "Are you sure you want to delete this gallery item",
         "cancel": "cancel",
         "confirm": "confirm"
+      }
+    },
+    "profile": {
+      "profilePage": {
+        "meta": {
+          "title": "{driver}'s Profile",
+          "description": "{driver}'s profile on PPL Solutions Drivershub"
+        },
+        "card": {
+          "bannerAlt": "{driver}'s profile banner",
+          "defaultBannerAlt": "Default profile banner",
+          "profilePictureAlt": "{driver}'s profile picture",
+          "defaultProfilePictureAlt": "Default profile picture",
+          "buttons": {
+            "settings": "Settings",
+            "changePassword": "Change Password"
+          }
+        },
+        "skillsCard": {
+          "title": "Skills",
+          "adr": {
+            "title": "ADR Cargo",
+            "description": "Get trained to Drive Dangerous goods and gain extra points and income.",
+            "classes": {
+              "class1": "Class 1 - Explosives",
+              "class2": "Class 2 - Gases",
+              "class3": "Class 3 - Flammable liquids",
+              "class4": "Class 4: Flammable Solids",
+              "class6": "Class 6 - Toxic and infectious substances",
+              "class8": "Class 8 - Corrosive substances "
+            },
+            "alt": "ADR Skill"
+          },
+          "longDistance": {
+            "title": "Long Distance Bonus",
+            "description": "Upgrading this skill helps you gain bonus based on Distance."
+          },
+          "highValue": {
+            "title": "High Value Cargo",
+            "description": "Upgrading this skill helps you gain bonus based on Valuable Cargo."
+          },
+          "fragile": {
+            "title": "Fragile Cargo Bonus",
+            "description": "Upgrading this skill helps you gain bonus based on Cargo Fragility."
+          },
+          "overweight": {
+            "title": "Overweight Cargo Bonus",
+            "description": "Upgrading this skill helps you gain bonus based on Overweight Cargo."
+          },
+          "cost": {
+            "title": "Cost per km",
+            "description": "Upgrading this skill helps you gain extra points & income per km."
+          },
+          "alt": "Level"
+        }
+      },
+      "settingsPage": {
+        "meta": {
+          "title": "{driver}'s Settings",
+          "description": "{driver}'s settings page on PPL Solutions Drivershub"
+        }
+      }
+    }
+  },
+  "statusCodes": {
+    "BAD_REQUEST": "Bad Request",
+    "UNAUTHORIZED": "Unauthorized",
+    "FORBIDDEN": "Forbidden",
+    "NOT_FOUND": "Not Found",
+    "METHOD_NOT_ALLOWED": "Method Not Allowed",
+    "CONFLICT": "Conflict",
+    "UNPROCESSABLE_ENTITY": "Unprocessable Entity",
+    "TOO_MANY_REQUESTS": "Too Many Requests",
+    "INTERNAL_SERVER_ERROR": "Internal Server Error",
+    "BAD_GATEWAY": "Bad Gateway",
+    "SERVICE_UNAVAILABLE": "Service Unavailable",
+    "GATEWAY_TIMEOUT": "Gateway Timeout"
+  },
+  "errors": {
+    "GENERAL_ERROR": "Error",
+    "UNEXPECTED": "An unexpected error occurred",
+    "SERVER_ERROR":"Server error",
+    "events": {
+      "NO_EVENTS": "No upcoming events",
+      "NA": "Not Applicable",
+      "NO_SERVER": "Event Server",
+      "NO_DLC": "None",
+      "FAILED_TO_FETCH_EVENTS": "Failed to fetch events",
+      "UNEXPECTED": "An unexpected error occurred while fetching events"
+    },
+    "team": {
+      "ERROR_LOADING_TEAM": "Error loading team.",
+      "FAILED_TO_FETCH_TEAM": "Failed to fetch team",
+      "FAILED_TO_FETCH_TEAM_MEMBER": "Failed to fetch team member",
+      "FAILED_TO_FETCH_DEPARTMENTS": "Failed to fetch departments",
+      "NO_DEPTS_OR_MEMBERS_FOUND": "No departments / members found.",
+      "FAILED_TO_ADD_TEAM_MEMBER": "Failed to add team member",
+      "FAILED_TO_UPDATE_TEAM_MEMBER": "Failed to update team member",
+      "FAILED_TO_DELETE_TEAM_MEMBER": "Failed to delete team member",
+      "NAME_REQUIRED": "Name is required",
+      "ID_REQUIRED": "ID is required"
+    },
+    "members": {
+      "MEMBER_NOT_FOUND": "Member not found",
+      "FAILED_TO_FETCH_MEMBERS": "Failed to fetch members",
+      "FAILED_TO_GET_MEMBER_ID": "Failed to get member ID"
+    },
+    "drivers": {
+      "FAILED_TO_FETCH_DRIVERS": "Failed to fetch drivers",
+      "FAILED_TO_GET_DRIVER_DATA": "Failed to get driver data",
+      "DRIVER_COUNTRY_NOT_SPECIFIED": "Driver country not specified",
+      "DRIVER_NOT_FOUND": "Driver not found"
+    },
+    "roles": {
+      "FAILED_TO_ADD_ROLE": "Failed to add role",
+      "FAILED_TO_REMOVE_ROLE": "Failed to remove role",
+      "FAILED_TO_FETCH_ROLES": "Failed to fetch roles"
+    },
+    "gallery": {
+      "ERROR_LOADING_GALLERY": "Error loading gallery:",
+      "NO_IMAGES_FOUND": "No images found.",
+      "FAILED_TO_ADD_ITEM": "Failed to add gallery item",
+      "FAILED_TO_UPDATE_ITEM": "Failed to update gallery item",
+      "FAILED_TO_DELETE_ITEM": "Failed to delete gallery item",
+      "TITLE_REQUIRED": "Title is required"
+    },
+    "login": {
+      "INVALID_CREDENTIALS": "Invalid email or password. Please try again.",
+      "UNEXPECTED": "An unexpected error occurred while logging you in. Please try again."
+    },
+    "register": {
+      "EMAIL_ALREADY_IN_USE": "This email is already taken. Please use a different email.",
+      "USERNAME_ALREADY_IN_USE": "This username is already taken. Please choose a different one.",
+      "PASSWORD_TOO_SHORT": "Password must be at least 8 characters and include uppercase, lowercase, and a number.",
+      "UNEXPECTED": "An unexpected error occurred while creating your account. Please try again."
+    },
+    "forgotPassword": {
+      "UNEXPECTED": "An unexpected error occurred while sending the reset email"
+    },
+    "resetPassword": {
+      "INVALID_TOKEN": "Invalid or missing reset token. Please request a new password reset.",
+      "EXPIRED_TOKEN": "Invalid or expired reset token. Please request a new password reset.",
+      "EXPIRED_SESSION": "Your session has expired. Please request a new password reset.",
+      "UNEXPECTED": "An unexpected error occurred while resetting your password",
+      "password": {
+        "PASSWORDS_MISMATCH": "Passwords do not match. Please try again.",
+        "PASSWORD_TOO_SHORT": "Password must be at least 8 characters",
+        "PASSWORD_NO_LOWERCASE": "Password must contain at least one lowercase letter",
+        "PASSWORD_NO_UPPERCASE": "Password must contain at least one uppercase letter",
+        "PASSWORD_NO_NUMBER": "Password must contain at least one number",
+        "PASSWORD_NO_SPECIAL_CHARS": "Password must contain at least one special character"
+      }
+    },
+    "jobs": {
+      "NO_JOBS": "No jobs found",
+      "FAILED_TO_FETCH_JOBS": "Failed to fetch jobs",
+      "STEAM_ID_REQUIRED": "SteamID is required",
+      "DRIVER_NOT_FOUND": "Driver {driver} not found"
+    },
+    "userStats": {
+      "FAILED_TO_FETCH_SCENARIOS": "Failed to fetch scenarios",
+      "FAILED_TO_FETCH_STATS": "Failed to fetch statistics"
+    },
+    "leaderboard": {
+      "NO_DATA": "No data available yet"
+    },
+    "vtcStats": {
+      "NO_STATS": "No statistics available"
+    },
+    "profile": {
+      "profile": {
+        "PROFILE_NOT_FOUND": "Profile not found",
+        "FAILED_TO_FETCH_PROFILE": "Failed to fetch profile",
+        "FAILED_TO_FETCH_PROFILE_BY_ID": "Failed to fetch profile by ID",
+        "FAILED_TO_UPDATE_PROFILE": "Failed to update profile",
+        "FAILED_TO_CREATE_PROFILE": "Failed to create profile"
+      },
+      "profilePicture": {
+        "FAILED_TO_DELETE_PROFILE_PICTURE": "Failed to delete profile picture",
+        "FAILED_TO_PARSE_PFP_URL": "Could not parse profile_url",
+        "FAILED_TO_GET_PROFILE_PICTURE": "Failed to get profile picture",
+        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Failed to upload profile picture",
+        "FAILED_TO_ADD_PROFILE_PICTURE": "Failed to add profile picture",
+        "FAILED_TO_FETCH_PROFILE_PICTURE": "Failed to fetch profile picture",
+        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Failed to update profile picture"
+      },
+      "profileBanner": {
+        "FAILED_TO_FETCH_PROFILE_BANNER": "Failed to fetch profile banner",
+        "FAILED_TO_UPLOAD_PROFILE_BANNER": "Failed to upload profile banner",
+        "FAILED_TO_ADD_PROFILE_BANNER": "Failed to add profile banner",
+        "FAILED_TO_UPDATE_PROFILE_BANNER": "Failed to update profile banner"
+      },
+      "NO_ROLE": "No role",
+      "FAILED_TO_ENSURE_STEAMID": "Failed to ensure SteamID"
+    },
+    "files": {
+      "FAILED_TO_DELETE_OLD_FILE": "Failed to delete old file (non-fatal):",
+      "FAILED_TO_DELETE_FILE": "Failed to delete file (non-fatal)",
+      "FAILED_TO_REMOVE_FILES": "Failed removing files",
+      "IMAGE_FILE_REQUIRED": "Image file is required",
+      "FILE_TOO_LARGE": "File size exceeds the 5MB limit",
+      "INVALID_FILE_TYPE": "Invalid file type.",
+      "INVALID_FILE_EXTENSION": "Invalid file extension."
+    },
+    "country": {
+      "FAILED_TO_FETCH_COUNTRY_DATA": "Failed to fetch country data",
+      "COUNTRY_NOT_FOUND": "Country not found"
+    }
+  },
+  "success": {
+    "team": {
+      "TEAM_MEMBER_ADDED": "Team member added successfully!",
+      "TEAM_MEMBER_UPDATED": "Team member updated successfully!",
+      "TEAM_MEMBER_DELETED": "Team member deleted successfully!"
+    },
+    "members": {},
+    "roles": {
+      "ROLE_ADDED": "Role added successfully!",
+      "ROLE_REMOVED": "Role removed successfully!"
+    },
+    "gallery": {
+      "ITEM_ADDED": "Gallery item added successfully!",
+      "ITEM_UPDATED": "Gallery item updated successfully!",
+      "ITEM_DELETED": "Gallery item deleted successfully!"
+    },
+    "login": {},
+    "register": {
+      "ACCOUNT_CREATED": "Registration successful. Please check your email to confirm."
+    },
+    "forgotPassword": {
+      "RESET_EMAIL_SENT": "Password reset email sent! Check your inbox for a link to reset your password."
+    },
+    "resetPassword": {},
+    "jobs": {},
+    "userStats": {},
+    "leaderboard": {},
+    "vtcStats": {},
+    "profile": {
+      "profile": {
+        "PROFILE_UPDATED": "Profile updated successfully!",
+        "PROFILE_CREATED": "Profile created successfully!"
+      },
+      "profilePicture": {
+        "PROFILE_PICTURE_DELETED": "Profile picture deleted successfully!"
       }
     }
   },

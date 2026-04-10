@@ -34,12 +34,11 @@ export default function RegisterFormClient({ dict }: Props) {
       });
       const result = await response.json();
       if (!result.available) {
-        setError(`${dict.register.form.error.usernameInUse}`);
+        setError(`${dict.errors.register.USERNAME_ALREADY_IN_USE}`);
       } else {
-        setError(""); // Clear error if available
+        setError("");
       }
     } catch (err) {
-      // Ignore errors during check
     } finally {
       setCheckingUsername(false);
     }
@@ -52,7 +51,6 @@ export default function RegisterFormClient({ dict }: Props) {
     setLoading(true);
 
     try {
-      // Check if display_name is available
       const checkResponse = await fetch('/api/check-display-name', {
         method: 'POST',
         headers: {
@@ -65,7 +63,7 @@ export default function RegisterFormClient({ dict }: Props) {
 
       if (!checkResult.available) {
         setLoading(false);
-        setError(`${dict.register.form.error.usernameInUse}`);
+        setError(`${dict.errors.register.USERNAME_ALREADY_IN_USE}`);
         return;
       }
 
@@ -78,26 +76,26 @@ export default function RegisterFormClient({ dict }: Props) {
       setLoading(false);
       if (error) {
         if (error.code?.includes('user_already_exists')) {
-          setError(`${dict.register.form.error.emailInUse}`);
+          setError(`${dict.errors.register.EMAIL_ALREADY_IN_USE}`);
         } else if (error.code?.includes('weak_password')) {
-          setError(`${dict.register.form.error.passwordTooShort}`);
+          setError(`${dict.errors.register.PASSWORD_TOO_SHORT}`);
         } else {
           setError(error.message);
         }
         return;
       }
 
-      setSuccess(`${dict.register.form.error.success}`);
+      setSuccess(`${dict.success.register.ACCOUNT_CREATED}`);
       setTimeout(() => router.push("/login"), 900);
     } catch (err: any) {
       setLoading(false);
-      setError(err?.message ?? `${dict.register.form.error.unexpected}`);
+      setError(err?.message ?? `${dict.errors.register.UNEXPECTED}`);
     }
   };
 
   return (
     <>
-      <Card className="login-card text-light rounded-0 border-0 shadow fs-6">
+      <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
         <Card.Body className="p-4">
           <div className="d-flex mb-3">
             <Image
@@ -119,7 +117,7 @@ export default function RegisterFormClient({ dict }: Props) {
                 placeholder={dict.register.form.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input rounded-0 border-0 shadow"
+                className="input rounded-0 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -132,7 +130,7 @@ export default function RegisterFormClient({ dict }: Props) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onBlur={(e) => checkUsernameAvailability(e.target.value)}
-                className="input rounded-0 border-0 shadow"
+                className="input rounded-0 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -142,10 +140,10 @@ export default function RegisterFormClient({ dict }: Props) {
               <Form.Label>{dict.register.form.password}</Form.Label>
               <Form.Control
                 type="password"
-                placeholder={dict.register.form.passwordPlaceholder}
+                placeholder="••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input rounded-0 border-0 shadow"
+                className="input rounded-0 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -154,7 +152,7 @@ export default function RegisterFormClient({ dict }: Props) {
             {success && <p className="text-success mt-3">{success}</p>}
             <Form.Group className="mb-3">
               <BSButton variant="primary" type="submit" disabled={loading}>
-                {loading ? `${dict.register.form.error.loading}` : `${dict.register.form.submit}`}
+                {loading ? `${dict.register.form.statuses.loading}` : `${dict.register.form.submit}`}
               </BSButton>
             </Form.Group>
             <div className="text-center">

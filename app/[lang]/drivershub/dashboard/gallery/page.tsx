@@ -1,5 +1,5 @@
-import { CardGalleryForm, Dashboard } from "@/components"
-import { Row, Col } from "react-bootstrap"
+import { CardGalleryForm } from "@/components"
+import { Row } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
@@ -64,11 +64,9 @@ export default async function DashboardGalleryPage({ params }: PageProps) {
 
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
-          <Dashboard dict={dict} lang={lang}>
-            <Row className="w-100 justify-content-center">
-              <CardGalleryForm dict={dict} />
-            </Row>
-          </Dashboard>
+          <Row className="w-100 justify-content-lg-center align-items-center align-items-lg-start py-3 px-1 d-flex flex-column flex-lg-row row-gap-4">
+            <CardGalleryForm dict={dict} />
+          </Row>
         </section>
       </main>
     </>

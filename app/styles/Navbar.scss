@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "variables" as *;
 
 #main-navbar > .navbar-nav > .active {
   border-bottom: solid 2px $primary !important;
@@ -45,7 +45,7 @@
     left: 0;
     width: 100%;
     background: #212529;
-    z-index: 9999;
+    // z-index: 9999;
   }
 
   .navbar-collapse.collapse:not(.show) {
@@ -63,4 +63,12 @@
 
 #dropdown-lang {
   background: transparent !important;
+}
+
+.shadow-bottom {
+  box-shadow: 0 2px 4px #00000013 !important;
+}
+
+.border-dark-subtle {
+  border-color: #2b3035 !important;
 }

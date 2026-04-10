@@ -1,35 +1,1168 @@
 
-  [2026-03-04T12:37:45.376Z]
-  URL: http://localhost:8000/api/statistics/user
-  Method: POST
-  Status: 500
-  Error Name: Internal Server Error
-  Message: SyntaxError: Unexpected end of JSON input
-SyntaxError: Unexpected end of JSON input
-    at JSON.parse (<anonymous>)
-    at parseJSONFromBytes (node:internal/deps/undici/undici:5738:19)
-    at successSteps (node:internal/deps/undici/undici:5719:27)
-    at consumeBody (node:internal/deps/undici/undici:5725:9)
-    at NextRequest.json (node:internal/deps/undici/undici:5665:18)
-    at POST (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/.next/dev/server/chunks/[root-of-the-server]__3f433a45._.js:218:36)
-    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:80:14)
-    at AppRouteRouteModule.do (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:37945)
-    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47941
-    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/trace/tracer.js:185:36
-    at NoopContextManager.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
-    at ContextAPI.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
-    at NoopTracer.startActiveSpan (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
-    at ProxyTracer.startActiveSpan (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
-    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/trace/tracer.js:154:103
-    at NoopContextManager.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
-    at ContextAPI.with (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
-    at NextTracerImpl.trace (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/server/lib/trace/tracer.js:154:28)
-    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47780
-    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:91:14)
-    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:45275
-    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:91:14)
-    at /home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:45232
-    at AsyncLocalStorage.run (node:internal/async_local_storage/async_hooks:91:14)
-    at AppRouteRouteModule.handle (/home/Simpelcity/Documents/dev/ppl-solutions/ppl-solutions-website/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:45186)
-  -----------------------------
-  
+[01-Apr-2026:15:33:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:33:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:33:06 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:33:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:33:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:34:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:35:30 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:36:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:36:00 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:36:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:16 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:16 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:16 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:45 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:36:45 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:37:14 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:37:14 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:37:44 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:37:45 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Cannot read properties of null (reading 'message')
+-----------------------------
+
+[01-Apr-2026:15:37:58 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:37:59 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:37:59 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:37:59 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:00 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:00 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:14 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:14 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:15 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:15 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:15 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:16 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:28 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:28 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:29 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:29 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:29 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:30 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:44 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:45 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:56 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:38:57 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:39:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:40:55 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:06 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:06 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:06 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:07 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:41:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:42:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:05 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:35 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null}
+-----------------------------
+
+[01-Apr-2026:15:43:41 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:42 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:42 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:43 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:43 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:43:43 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:11 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:11 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:14 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:41 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:41 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: null
+-----------------------------
+
+[01-Apr-2026:15:44:54 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:44:54 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:44:54 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:44:55 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Team ophalen mislukt
+-----------------------------
+
+[01-Apr-2026:15:44:55 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Team ophalen mislukt
+-----------------------------
+
+[01-Apr-2026:15:44:55 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Team ophalen mislukt
+-----------------------------
+
+[01-Apr-2026:15:45:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:45:25 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Failed to fetch team
+-----------------------------
+
+[01-Apr-2026:15:45:48 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:49 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:45:50 +0200]
+URL: http://localhost:8000/api/team?lang=nl
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:46:18 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[01-Apr-2026:15:46:18 +0200]
+URL: http://localhost:8000/api/team
+Method: GET
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: {"error":null,"serverError":null}
+-----------------------------
+
+[03-Apr-2026:13:10:51 +0200]
+URL: http://localhost:8000/api/jobs?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: SteamID is verplicht
+-----------------------------
+
+[03-Apr-2026:13:10:51 +0200]
+URL: http://localhost:8000/api/jobs?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: SteamID is verplicht
+-----------------------------
+
+[03-Apr-2026:13:10:51 +0200]
+URL: http://localhost:8000/api/jobs?lang=nl
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: SteamID is verplicht
+-----------------------------
+
+[08-Apr-2026:14:27:21 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:21 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:25 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:26 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:34 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:35 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:42 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:27:42 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:28:53 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:28:53 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:29:26 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:29:37 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:30:04 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:30:05 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:30:30 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:32:05 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:32:05 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:32:09 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:32:18 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:32:22 +0200]
+URL: http://localhost:8000/api/events
+Method: GET
+Status: 200
+Error: Error
+Message: Failed to fetch events
+-----------------------------
+
+[08-Apr-2026:14:34:39 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:36:46 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:36:46 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:37:22 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:37:22 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:02 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:02 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:39 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[08-Apr-2026:14:38:39 +0200]
+URL: http://localhost:8000/api/events?lang=nl
+Method: GET
+Status: 200
+Error: Error
+Message: Het ophalen van evenementen is mislukt.
+-----------------------------
+
+[10-Apr-2026:17:43:48 +0200]
+URL: http://localhost:8000/api/profile-banner?lang=en
+Method: GET
+Status: 400
+Error: BAD_REQUEST
+Message: ID is required
+-----------------------------
+
+[10-Apr-2026:17:45:18 +0200]
+URL: http://localhost:8000/api/profile-banner?id=33393c78-a551-4e94-b6e6-db97dba35305&lang=nl
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:17:49:26 +0200]
+URL: http://localhost:8000/api/profile-banner?id=33393c78-a551-4e94-b6e6-db97dba35305&lang=nl
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:17:51:07 +0200]
+URL: http://localhost:8000/api/profile-banner?id=33393c78-a551-4e94-b6e6-db97dba35305&lang=nl
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:18:01:20 +0200]
+URL: http://localhost:8000/api/profile-banner?lang=nl
+Method: PUT
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------
+
+[10-Apr-2026:18:11:53 +0200]
+URL: http://localhost:8000/api/profile-banner?lang=nl
+Method: PUT
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
+-----------------------------

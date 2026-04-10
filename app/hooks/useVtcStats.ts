@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useIsAdmin } from "@/lib/useIsAdmin";
+import type { Dictionary } from "@/app/i18n";
+import { useLang } from "@/hooks/useLang";
 
 interface GameStats {
   distance: number;
@@ -18,18 +21,25 @@ interface VtcStats {
   total: GameStats;
 }
 
-export function useVtcStats() {
+export function useVtcStats(dict: Dictionary) {
+  const lang = useLang();
+  const isAdmin = useIsAdmin();
   const [stats, setStats] = useState<VtcStats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log("%c[ADMIN]", "color: #ff00ee; font-weight: bold;", ...args);
+  };
+
   const fetchStatistics = async () => {
-    const res = await axios.get("/api/statistics");
+    const res = await axios.get(`/api/statistics?lang=${lang}`);
 
     if (res.status !== 200) {
       throw new Error("Failed to fetch statistics");
     }
-    return res.data?.data;
+
+    return res.data.jobs || [];
   };
 
   const convertTime = (ms: number) => {
