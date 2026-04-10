@@ -1166,3 +1166,27 @@ Status: 500
 Error: INTERNAL_SERVER_ERROR
 Message: Content-Type was not one of "multipart/form-data" or "application/x-www-form-urlencoded".
 -----------------------------
+
+[10-Apr-2026:20:58:22 +0200]
+URL: http://localhost:8000/api/jobs
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Unexpected end of JSON input
+-----------------------------
+
+[10-Apr-2026:20:58:28 +0200]
+URL: http://localhost:8000/api/jobs
+Method: POST
+Status: 500
+Error: INTERNAL_SERVER_ERROR
+Message: Unexpected end of JSON input
+-----------------------------
+
+[10-Apr-2026:20:59:05 +0200]
+URL: http://localhost:8000/api/jobs
+Method: POST
+Status: 400
+Error: BAD_REQUEST
+Message: SteamID is required
+-----------------------------

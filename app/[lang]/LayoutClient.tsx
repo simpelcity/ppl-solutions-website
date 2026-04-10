@@ -10,10 +10,9 @@ type Props = {
   dict: Dictionary;
   lang: Locale;
   forceHideFooter?: boolean;
-  forceHideDashboard?: boolean;
 }
 
-export default function LayoutClient({ children, dict, lang, forceHideFooter = false, forceHideDashboard = false }: Props) {
+export default function LayoutClient({ children, dict, lang, forceHideFooter = false }: Props) {
   const pathname = usePathname();
   const hideFooterByPath = pathname?.includes("/login") || pathname?.includes("/register") || pathname?.includes("/reset-password") || pathname?.includes("/forgot-password");
   const hideFooter = forceHideFooter || hideFooterByPath;
@@ -21,7 +20,7 @@ export default function LayoutClient({ children, dict, lang, forceHideFooter = f
   const currentLang = lang === 'en' ? '' : `/${lang}`;
 
   const showDashboardByPath = pathname.startsWith(`${currentLang}/drivershub`);
-  const drivershubPages = showDashboardByPath && !forceHideDashboard;
+  const drivershubPages = showDashboardByPath;
 
   return (
     <>

@@ -51,7 +51,7 @@ export default async function NotFoundPage() {
   return (
     <AuthProvider>
       <SidebarProvider dict={dict} lang={lang as Locale}>
-        <LayoutClient dict={dict} lang={lang as Locale} forceHideFooter forceHideDashboard>
+        <LayoutClient dict={dict} lang={lang as Locale} forceHideFooter>
           <main className="main">
             <section className="d-flex w-100 text-light">
               <Container className="my-5 d-flex justify-content-center">

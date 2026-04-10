@@ -1,6 +1,6 @@
 {
   "name": "ppl-solutions-website",
-  "version": "4.16.36",
+  "version": "4.16.37",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
