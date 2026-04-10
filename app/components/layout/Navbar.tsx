@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { NavButtons } from "@/components";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { GoSidebarExpand } from "react-icons/go";
 import { useSidebar } from "@/lib";
 import type { Dictionary } from "@/app/i18n";
 import { type Locale } from "@/i18n"
@@ -81,7 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
               className="btn btn-link text-light text-opacity-75 border-0"
               style={{ padding: "0.25rem 0.75rem" }}
               onClick={toggleSidebar}>
-              <RxHamburgerMenu size={30} />
+              <GoSidebarExpand size={30} />
             </button>
           )}
           <BSNavbar.Brand
@@ -92,7 +93,9 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
             <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
             <h5 className="my-auto">{dict.navbar.brand}</h5>
           </BSNavbar.Brand>
-          <BSNavbar.Toggle aria-controls="main-navbar" />
+          <BSNavbar.Toggle aria-controls="main-navbar" className="text-light text-opacity-75">
+            <RxHamburgerMenu size={30} />
+          </BSNavbar.Toggle>
           <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
             <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
               {navLinks.map((link) => (

@@ -16,6 +16,7 @@ import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import { GoSidebarCollapse } from "react-icons/go";
 
 interface NavItem {
   href: string;
@@ -312,8 +313,11 @@ export default function Sidebar({
       style={{ maxWidth: window.innerWidth < 576 ? "100%" : "16.25rem" }}
       data-bs-theme="dark"
     >
-      <Offcanvas.Header className="pb-0" closeButton>
+      <Offcanvas.Header className="pb-0">
         <Offcanvas.Title className="fs-3">{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
+        <button type="button" className="ms-auto p-0 btn btn-link text-light text-opacity-75" data-bs-dismiss="offcanvas" aria-label="Close" onClick={() => setShowOffcanvas(false)}>
+          <GoSidebarCollapse size={30} />
+        </button>
       </Offcanvas.Header>
       <hr className={isSidebarCollapsed ? "d-none" : "d-block mx-3"} />
       <Offcanvas.Body className="d-flex flex-column pt-0">
