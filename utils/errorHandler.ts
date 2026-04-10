@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import type { Locale } from "@/i18n";
 import { getDictionary } from "@/app/i18n";
 
-const LOG_FILE = path.join(process.cwd(), "logs", "errors.log");
+// const LOG_FILE = path.join(process.cwd(), "logs", "errors.log");
 
 const statusToErrorName: Record<number, string> = {
     400: "BAD_REQUEST",
@@ -81,8 +81,9 @@ Message: ${logMessage}
 -----------------------------
 `;
 
-  await fs.mkdir(path.dirname(LOG_FILE), { recursive: true });
-  await fs.appendFile(LOG_FILE, logEntry, "utf8");
+  // await fs.mkdir(path.dirname(LOG_FILE), { recursive: true });
+  // await fs.appendFile(LOG_FILE, logEntry, "utf8");
+  console.error(logEntry);
 
   const dict = await getDictionary(locale);
   const errorCodeKey = statusToErrorName[statusCode];
