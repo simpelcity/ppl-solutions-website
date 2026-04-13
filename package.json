@@ -1,6 +1,6 @@
 {
   "name": "ppl-solutions-website",
-  "version": "4.16.39",
+  "version": "4.16.40",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
@@ -21,6 +21,7 @@
     "react-bootstrap": "^2.10.10",
     "react-dom": "19.2.0",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "sass": "^1.94.2",
     "server-only": "^0.0.1",
     "upstash": "^0.0.1",
