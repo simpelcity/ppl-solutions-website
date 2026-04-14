@@ -1,6 +1,6 @@
 {
   "name": "ppl-solutions-website",
-  "version": "4.16.41",
+  "version": "4.16.42",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
@@ -15,7 +15,6 @@
     "axios": "^1.13.6",
     "bootstrap": "^5.3.8",
     "fs": "^0.0.1-security",
-    "holderjs": "^2.9.9",
     "next": "^16.0.10",
     "react": "19.2.0",
     "react-bootstrap": "^2.10.10",

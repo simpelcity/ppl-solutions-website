@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Dictionary } from "@/app/i18n"
 import { useEventDetails } from '@/hooks/useEventDetails'
-import { Card, Col, Row, Collapse } from 'react-bootstrap'
+import { Card, Col, Row, Collapse, Placeholder } from 'react-bootstrap'
 import { BsHddStackFill } from "react-icons/bs";
 import { FaUser, FaAngleRight, FaAngleDown, FaTruck, FaClock } from "react-icons/fa6";
 import { FaMapMarkerAlt } from 'react-icons/fa'
@@ -39,7 +39,137 @@ export default function CardEventDetail({ eventId, dict }: Props) {
 
   adminLog(event)
 
-  if (loading) return <div>Loading...</div>
+  if (loading) {
+    return (
+      <Col xs={12} md={11} xl={10} className="px-3">
+        <Card className="bg-dark text-light rounded-0 border-0 shadow-sm">
+          <Card.Body className="d-flex flex-column align-items-center">
+            <div className="mb-3">
+              <div>
+                <Placeholder animation="glow" className="d-flex gap-1">
+                  <Placeholder className="rounded-1" style={{ width: 80, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 130, height: 20 }} />
+                </Placeholder>
+              </div>
+            </div>
+
+            <Row className="mb-4 row-gap-3 w-100">
+              <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-end gap-3">
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
+                  <div >
+                    <Placeholder animation="glow" className="d-flex gap-1">
+                      <Placeholder className="rounded-1" style={{ width: 160, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 60, height: 20 }} />
+                    </Placeholder>
+                  </div>
+                </div>
+                <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
+                  <div>
+                    <Placeholder animation="glow" className="d-flex gap-1">
+                      <Placeholder className="rounded-1" style={{ width: 170, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 60, height: 20 }} />
+                    </Placeholder>
+                  </div>
+                </div>
+              </Col>
+              <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-start gap-3">
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
+                  <div>
+                    <Placeholder animation="glow" className="d-flex gap-1">
+                      <Placeholder className="rounded-1" style={{ width: 200, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 60, height: 20 }} />
+                    </Placeholder>
+                  </div>
+                </div>
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
+                  <div>
+                    <Placeholder animation="glow" className="d-flex gap-1">
+                      <Placeholder className="rounded-1" style={{ width: 210, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 60, height: 20 }} />
+                    </Placeholder>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+            <Row className="mb-4 w-100">
+              <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-end">
+                <div>
+                  <Placeholder animation="glow" className="d-flex gap-1">
+                    <Placeholder className="rounded-1" style={{ width: 150, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 60, height: 20 }} />
+                  </Placeholder>
+                </div>
+              </Col>
+              <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-start">
+                <div>
+                  <Placeholder animation="glow" className="d-flex gap-1">
+                    <Placeholder className="rounded-1" style={{ width: 180, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 60, height: 20 }} />
+                  </Placeholder>
+                </div>
+              </Col>
+            </Row>
+            <div className="mb-4 d-flex flex-column gap-3">
+              <div>
+                <Placeholder animation="glow" className="d-flex gap-1">
+                  <Placeholder className="rounded-1 ms-auto" style={{ width: 170, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 70, height: 20 }} />
+                </Placeholder>
+              </div>
+              <div className="d-flex justify-content-center">
+                <Placeholder animation="glow" className="d-flex gap-1">
+                  <Placeholder className="rounded-1" style={{ width: 170, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 200, height: 20 }} />
+                </Placeholder>
+              </div>
+              <div className="d-flex justify-content-center">
+                <Placeholder animation="glow" className="d-flex gap-1">
+                  <Placeholder className="rounded-1" style={{ width: 150, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 200, height: 20 }} />
+                </Placeholder>
+              </div>
+            </div>
+            <div className="mb-4 d-flex flex-column gap-3">
+              <div>
+                <Placeholder animation="glow" className="d-flex gap-1">
+                  <Placeholder className="rounded-1 ms-auto" style={{ width: 80, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 50, height: 20 }} />
+                </Placeholder>
+              </div>
+              <div>
+                <Placeholder animation="glow" className="d-flex gap-1">
+                  <Placeholder className="rounded-1 ms-auto" style={{ width: 90, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 110, height: 20 }} />
+                </Placeholder>
+              </div>
+            </div>
+            <div className="mb-4">
+              <div className="d-flex flex-column align-items-center text-start">
+                <Placeholder animation="glow" className="d-flex gap-1 fs-2">
+                  <Placeholder className="rounded-1 ms-auto" style={{ width: 90, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 90, height: 20 }} />
+                </Placeholder>
+              </div>
+            </div>
+            <div className="mb-4 w-100">
+              <Placeholder animation="glow" className="d-flex gap-1 fs-2 mb-3">
+                <Placeholder className="rounded-1 ms-auto" style={{ width: 120, height: 20 }} /><Placeholder className="rounded-1" style={{ width: 160, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 60, height: 20 }} />
+              </Placeholder>
+              <Placeholder.Button variant="primary" className="rounded-1" xs={2} />
+            </div>
+            <div className="mb-4 w-100">
+              <Placeholder animation="glow" className="d-flex gap-1 fs-2 mb-3">
+                <Placeholder className="rounded-1 ms-auto" style={{ width: 190, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 60, height: 20 }} />
+              </Placeholder>
+              <Placeholder.Button variant="primary" className="rounded-1" xs={2} />
+            </div>
+            <div className="mb-4 w-100">
+              <Placeholder animation="glow" className="d-flex gap-1 fs-2 mb-3">
+                <Placeholder className="rounded-1 ms-auto" style={{ width: 120, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 90, height: 20 }} />
+              </Placeholder>
+              <Col xs={12} md={6} lg={4} className="mx-auto">
+                <div className="bg-dark-lighter shadow-sm py-0 p-lg-2 h-100 d-flex align-items-center justify-content-center">
+                  <Placeholder animation="glow" className="d-flex gap-1 w-100 px-5 py-1">
+                    <Placeholder className="rounded-1 ms-auto" style={{ width: 100, height: 20 }} /><Placeholder className="rounded-1 me-auto" style={{ width: 60, height: 20 }} />
+                  </Placeholder>
+                </div>
+              </Col>
+            </div>
+            <div>
+              <Placeholder.Button variant="primary" className="rounded-1" style={{ width: 240 }} />
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
+    )
+  }
   if (error) return <div>Error: {error}</div>
   if (!event) return <div>No event data found.</div>
 
