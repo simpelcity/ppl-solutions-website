@@ -1,17 +1,18 @@
 'use client'
 
+import { useEffect, useState } from "react";
 import type { Dictionary } from "@/app/i18n"
 import { useEventDetails } from '@/hooks/useEventDetails'
-import { Card, Col, Row, Image, Container, Table } from 'react-bootstrap'
-import { BsCalendar3, BsHddStack, BsDownload } from "react-icons/bs";
-import { FaRegClock, FaRegUser } from "react-icons/fa6";
-import { LuTruck, LuGamepad2 } from "react-icons/lu";
-import { FiMapPin, FiExternalLink } from "react-icons/fi";
-import { IoLanguage } from "react-icons/io5";
-import { MdOutlineKeyboardVoice } from "react-icons/md";
-import { DivEvents, BSButton, LoaderSpinner } from "@/components";
+import { Card, Col, Row, Collapse } from 'react-bootstrap'
+import { BsHddStackFill } from "react-icons/bs";
+import { FaUser, FaAngleRight, FaAngleDown, FaTruck, FaClock } from "react-icons/fa6";
+import { FaMapMarkerAlt } from 'react-icons/fa'
+import { FiExternalLink, FiDownload } from "react-icons/fi";
+import { IoLanguage, IoCalendar, IoGameController } from "react-icons/io5";
+import { MdKeyboardVoice } from "react-icons/md";
+import { BSButton } from "@/components";
 import ReactMarkdown from 'react-markdown';
-import axios from "axios";
+import { useIsAdmin } from "@/lib/useIsAdmin";
 
 type Props = {
   eventId: string;
@@ -19,8 +20,24 @@ type Props = {
 }
 
 export default function CardEventDetail({ eventId, dict }: Props) {
+  const isAdmin = useIsAdmin();
+
+  const adminLog = (...args: any[]) => {
+    if (isAdmin) console.log("%c[ADMIN]", "color: #00fbff; font-weight: bold;", ...args);
+  };
+
   const { event, loading, error } = useEventDetails(dict, eventId);
-  console.log(event)
+  const [vtcsOpen, setVtcsOpen] = useState(false);
+  const [usersOpen, setUsersOpen] = useState(false);
+  
+  const detailDict = dict.events.details.card;
+  const detailErrorDict = dict.errors.events.details;
+
+  const serverName = event?.server.name;
+  if (serverName === "To be determined") event.server.name = dict.events.card.toBeDetermined;
+  else if (serverName === "Event Server") event.server.name = dict.events.card.eventServer;
+
+  adminLog(event)
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error}</div>
@@ -52,149 +69,282 @@ export default function CardEventDetail({ eventId, dict }: Props) {
     return `${hours}:${minutes}`;
   };
 
+  function timeAgo(dateString: Date) {
+    if (!dateString) return `${dict.errors.events.NA}`;
+    const utcString = dateString.toString()
+    const isoString = utcString.replace(" ", "T") + "Z";
+    const date: any = new Date(isoString);
+    const today: any = new Date();
+    const seconds = Math.round((today - date) / 1000);
+    const minutes = Math.round(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    const months = Math.floor(days / 30);
+
+    
+    if (seconds < 60) {
+      const value = seconds;
+      const unit = "second";
+      const text = `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
+      return text;
+    } else if (minutes < 60) {
+      const value = minutes;
+      const unit = "minute";
+      const text = `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
+      return text;
+    } else if (hours < 24) {
+      const value = hours;
+      const unit = "hour";
+      const text = `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
+      return text;
+    } else if (days < 7) {
+      const value = days;
+      const unit = "day";
+      const text = `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
+      return text;
+    } else if (weeks < 5) {
+      const value = weeks;
+      const unit = "week";
+      const text = `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
+      return text;
+    } else if (months < 12) {
+      const value = months;
+      const unit = "month";
+      const text = `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
+      return text;
+    } else return formatFullDate(dateString);
+  }
+
+  function dlcs(dlcObject: object) {
+    if (!dlcObject) return `${dict.errors.events.NO_DLC}`;
+    const arr = Object.values(dlcObject);
+    return arr;
+  }
+
+  function dlcKeys(dlcObject: object) {
+    if (!dlcObject) return `${dict.errors.events.NO_DLC}`;
+    const entries = Object.entries(dlcObject);
+    return (
+      <Row className="mb-3 row-gap-4 d-flex justify-content-center">
+        {entries.map(([id, name]) => (
+          <Col key={id} xs={12} md={6} lg={4}>
+            <div className="bg-dark-lighter shadow-sm py-0 p-lg-2 h-100 d-flex align-items-center justify-content-center">
+              <a href={`https://store.steampowered.com/app/${id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link px-5 py-2 p-lg-0 fw-bold">
+                {name}
+              </a>
+            </div>
+          </Col>
+        ))}
+      </Row>
+    )
+  }
+
   return (
     <>
       <Col xs={12} md={11} xl={10}>
         <Card className="bg-dark text-light rounded-0 border-0 shadow-sm">
-          <Card.Img variant="top" src={event.banner || "https://placehold.co/1920x500?text=No+Banner"} alt={event.name} className="rounded-0" loading="lazy" />
           <Card.Body className="d-flex flex-column align-items-center">
-            <Card.Title className="fs-1 mb-3">{event.name}</Card.Title>
             <div className="mb-3">
               <div className="d-flex align-items-center gap-1">
-                <BsCalendar3 /><strong>{dict.events.card.date}: </strong>
+                <IoCalendar /><strong>{dict.events.card.date}: </strong>
                 <span>{formatDate(event.meetup_at)}</span>
               </div>
             </div>
 
-            <Row className="w-100 mb-3 row-gap-3">
+            <Row className="mb-3 row-gap-3 w-100">
               <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-end">
-                <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
                   <div className="d-flex align-items-center gap-1">
-                    <LuTruck /><strong>Departure city: </strong>
+                    <FaTruck /><strong>{detailDict.departureCity}: </strong>
                   </div>
                   {event.departure.city ?? `${dict.errors.events.NA}`}
                 </div>
                 <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
-                  <div className="d-flex align-items-center gap-1">
-                    <FiMapPin /><strong>Destination city: </strong>
+                  <div className="d-flex flex-wrap align-items-center gap-1">
+                    <FaMapMarkerAlt /><strong>{detailDict.destinationCity}: </strong>
                   </div>
                   {event.arrive.city ?? `${dict.errors.events.NA}`}
                 </div>
               </Col>
               <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-start">
-                <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
                   <div className="d-flex align-items-center gap-1">
-                    <LuTruck /><strong>Departure location: </strong>
+                    <FaTruck /><strong>{detailDict.departureLocation}: </strong>
                   </div>
-                    {event.departure.location ?? `${dict.errors.events.NA}`}
+                  {event.departure.location ?? `${dict.errors.events.NA}`}
                 </div>
-                <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
                   <div className="d-flex align-items-center gap-1">
-                    <FiMapPin /><strong>Destination location: </strong>
+                    <FaMapMarkerAlt /><strong>{detailDict.destinationLocation}: </strong>
                   </div>
-                  {event.arrive.location ?? `${dict.errors.events.NA}`}
+                  <span>{event.arrive.location ?? `${dict.errors.events.NA}`}</span>
                 </div>
               </Col>
             </Row>
-            <Row className="w-100 mb-3">
+            <Row className="mb-3 w-100">
               <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-end">
                 <div className="d-flex align-items-center gap-1">
-                  <FaRegClock /><strong>{dict.events.card.meetupTime}: </strong>
+                  <FaClock /><strong>{dict.events.card.meetupTime}: </strong>
                   {formatTime(event.meetup_at)}
                 </div>
               </Col>
               <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-start">
                 <div className="d-flex align-items-center gap-1">
-                  <FaRegClock /><strong>{dict.events.card.departureTime}: </strong>
+                  <FaClock /><strong>{dict.events.card.departureTime}: </strong>
                   {formatTime(event.start_at)}
                 </div>
               </Col>
             </Row>
             <div className="mb-3">
               <div className="d-flex align-items-center justify-content-center gap-1">
-                <IoLanguage /><strong>Main language: </strong>
+                <IoLanguage /><strong>{detailDict.mainLanguage}: </strong>
                 {event.language ?? `${dict.errors.events.NA}`}
               </div>
               <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
-                <span className="d-flex align-items-center gap-1"><MdOutlineKeyboardVoice /><strong>Communication: </strong></span>
+                <span className="d-flex align-items-center gap-1"><MdKeyboardVoice /><strong>{detailDict.communication}: </strong></span>
                 {event.voice_link ? (
                   <a href={event.voice_link} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link">
                     {event.voice_link}
                   </a>
                 ) : (
-                  <span>No communication</span>
+                  <span>{detailErrorDict.NO_COMMUNICATION_LINK}</span>
                 )}
               </div>
               <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
-                <span className="d-flex align-items-center gap-1"><FiExternalLink /><strong>External link: </strong></span>
+                <span className="d-flex align-items-center gap-1"><FiExternalLink /><strong>{detailDict.externalLink}: </strong></span>
                 {event.external_link ? (
                   <a href={event.external_link} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link">
                     {event.external_link}
                   </a>
                 ) : (
-                  <span>No external link</span>
+                  <span>{detailErrorDict.NO_EXTERNAL_LINK}</span>
                 )}
               </div>
             </div>
             <div className="mb-3">
               <div className="d-flex align-items-center justify-content-center gap-1">
-                <LuGamepad2 /><strong>{dict.events.card.game}: </strong>
+                <IoGameController /><strong>{dict.events.card.game}: </strong>
                 {event.game ?? `${dict.errors.events.NA}`}
               </div>
               <div className="d-flex align-items-center justify-content-center gap-1">
-                <BsHddStack /><strong>{dict.events.card.server}: </strong>
-                {event.server?.name ?? `${dict.errors.events.NO_SERVER}`}
+                <BsHddStackFill /><strong>{dict.events.card.server}: </strong>
+                {event.server.name ?? `${dict.errors.events.NO_SERVER}`}
               </div>
             </div>
             <div className="mb-3">
               <div className="d-flex flex-column align-items-center text-start">
-                <h2>Event Rules</h2>
+                <h2>{detailDict.eventRules}</h2>
                 <ReactMarkdown>{event.rule}</ReactMarkdown>
               </div>
             </div>
-            <div className="mb-3">
+            <div className="mb-3 w-100">
               <h2 className="d-flex align-items-center justify-content-center gap-1">
-                <LuTruck /><span>VTCs Attending ({event.attendances.confirmed_vtcs.length})</span>
+                <FaTruck /><span>{detailDict.vtcsAttending} ({event.attendances.confirmed_vtcs.length})</span>
               </h2>
               {event.attendances.confirmed_vtcs.length > 0 ? (
-                <Row className="mb-3 row-gap-4">
-                  {event.attendances.confirmed_vtcs.map((vtc: any) => (
-                    <Col key={vtc.id} xs={12} md={6} lg={4}>
-                      <div className="bg-dark-subtle shadow-sm p-2 h-100 d-flex align-items-center justify-content-center">
-                        <a href={`https://truckersmp.com/vtc/${vtc.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link">
-                          {vtc.name}
-                        </a>
-                      </div>
-                    </Col>
-                  ))}
-                </Row>
+                <>
+                  <BSButton
+                    variant="outline"
+                    onClick={() => setVtcsOpen(!vtcsOpen)}
+                    aria-controls="vtcs-collapse-menu"
+                    aria-expanded={vtcsOpen}
+                    classes={vtcsOpen ? "mb-3" : ""}>
+                    {vtcsOpen ? (
+                      <>
+                        <div className="d-flex align-items-center gap-1">
+                          <span>{detailDict.hideVTCs}</span><FaAngleRight className="rotate-90-cw" />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="d-flex align-items-center gap-1">
+                          <span>{detailDict.showVTCs}</span><FaAngleDown className="rotate-90-ccw" />
+                        </div>
+                      </>
+                    )}
+                  </BSButton>
+                  <Collapse in={vtcsOpen}>
+                    <Row id="vtcs-collapse-menu" className={`mb-3 row-gap-4 ${vtcsOpen ? "d-flex justify-content-center" : "justify-content-center"}`}>
+                      {event.attendances.confirmed_vtcs.map((vtc: any) => (
+                        <Col key={vtc.id} xs={12} md={6} lg={4}>
+                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center">
+                            <a href={`https://truckersmp.com/vtc/${vtc.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link fw-bold">
+                              {vtc.name}
+                            </a>
+                            <small className="text-gray">{timeAgo(vtc.updated_at)}</small>
+                          </div>
+                        </Col>
+                      ))}
+                    </Row>
+                  </Collapse>
+                </>
               ) : (
-                <div>No VTCs have confirmed attendance yet.</div>
+                <p className="text-warning">{detailErrorDict.NO_CONFIRMED_VTCS}</p>
               )}
             </div>
-            <div className="mb-3">
+            <div className="mb-3 w-100">
               <h2 className="d-flex align-items-center justify-content-center gap-1">
-                <FaRegUser /><span>Attending ({event.attendances.confirmed_users.length})</span>
+                <FaUser /><span>{detailDict.usersAttending} ({event.attendances.confirmed_users.length})</span>
               </h2>
               {event.attendances.confirmed_users.length > 0 ? (
-                <Row className="mb-3 row-gap-4">
-                  {event.attendances.confirmed_users.map((user: any) => (
-                    <>
-                      <Col key={user.id} xs={12} md={6} lg={4}>
-                        <div className="bg-dark-subtle shadow-sm p-2 h-100 d-flex align-items-center justify-content-center">
-                          <a href={`https://truckersmp.com/user/${user.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link">
-                            {user.username}
-                          </a>
+                <>
+                  <BSButton
+                    variant="outline"
+                    onClick={() => setUsersOpen(!usersOpen)}
+                    aria-controls="users-collapse-menu"
+                    aria-expanded={usersOpen}
+                    classes={usersOpen ? "mb-3" : ""}>
+                    {usersOpen ? (
+                      <>
+                        <div className="d-flex align-items-center gap-1">
+                          <span>{detailDict.hideUsers}</span><FaAngleRight className="rotate-90-cw" />
                         </div>
-                      </Col>
-                    </>
-                  ))}
-                </Row>
+                      </>
+                    ) : (
+                      <>
+                        <div className="d-flex align-items-center gap-1">
+                          <span>{detailDict.showUsers}</span><FaAngleDown className="rotate-90-ccw" />
+                        </div>
+                      </>
+                    )}
+                  </BSButton>
+                  <Collapse in={usersOpen}>
+                    <Row id="users-collapse-menu" className={`mb-3 row-gap-4 ${usersOpen ? "d-flex justify-content-center": "justify-content-center"}`}>
+                      {event.attendances.confirmed_users.map((user: any) => (
+                        <Col key={user.id} xs={12} md={6} lg={4}>
+                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center">
+                            <a href={`https://truckersmp.com/user/${user.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link fw-bold">
+                              {user.username}
+                            </a>
+                            <small className="text-gray">{timeAgo(user.updated_at)}</small>
+                          </div>
+                        </Col>
+                      ))}
+                    </Row>
+                  </Collapse>
+                </>
               ) : (
-                <div>No Users have confirmed attendance yet.</div>
+                <p className="text-warning">{detailErrorDict.NO_CONFIRMED_USERS}</p>
               )}
             </div>
-            {/* <img src={getPfp("2718433")} /> */}
+            <div className="mb-3 w-100">
+              <h2 className="d-flex align-items-center justify-content-center gap-1">
+                <FiDownload /><span>{detailDict.eventDLCs}</span>
+              </h2>
+              {dlcs(event.dlcs).length > 0 ? (
+                <>
+                  {dlcKeys(event.dlcs)}
+                </>
+              ) : (
+                <p className="text-warning">{detailErrorDict.NO_DLCS}</p>
+              )}
+            </div>
+            <div>
+              <BSButton variant="primary" href={`https://truckersmp.com/events/${event.slug}`} target="_blank" rel="noopener noreferrer" classes="d-flex gap-1">
+                <span>{detailDict.viewOnTruckersmp}</span> <FiExternalLink className="fs-5" />
+              </BSButton>
+            </div>
           </Card.Body>
         </Card>
       </Col>

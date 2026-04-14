@@ -18,11 +18,11 @@ export function useEventDetails(dict: Dictionary, eventId: string) {
       setError(null);
       try {
         const res = await axios.get(`/api/events/detail?eventId=${eventId}&lang=${lang}`);
-        if (res.status !== 200) throw new Error(dict.errors.events.FAILED_TO_FETCH_EVENTS, { cause: res.status });
+        if (res.status !== 200) throw new Error(dict.errors.events.details.FAILED_TO_FETCH_EVENT_DETAILS, { cause: res.status });
         const data = res.data;
         setEvent(data.response);
       } catch (err: any) {
-        const message = err?.response?.data?.message || err?.message || dict.errors.events.FAILED_TO_FETCH_EVENTS;
+        const message = err?.response?.data?.message || err?.message || dict.errors.events.details.FAILED_TO_FETCH_EVENT_DETAILS;
         setError(message);
         throw new Error(message);
       } finally {

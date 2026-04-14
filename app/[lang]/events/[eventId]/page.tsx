@@ -1,5 +1,5 @@
 import { StartBanner, CardEventDetail } from "@/components"
-import { Container, Row } from "react-bootstrap"
+import { Container, Row, Image } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
@@ -61,7 +61,20 @@ export default async function EventDetailPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <StartBanner>{event.name}</StartBanner>
+        {/* <StartBanner>{event.name}</StartBanner> */}
+        <section className="d-flex w-100">
+          <Container className="px-0 position-relative d-flex justify-content-center" fluid>
+            <Image
+              src={event.banner}
+              alt={event.name}
+              className="w-100 object-fit-cover"
+              style={{ height: '500px' }}
+            />
+            <div className="position-absolute top-0 w-100 h-100 d-flex justify-content-center align-items-end">
+              <h1 className="text-uppercase px-3 mb-3 text-center">{event.name}</h1>
+            </div>
+          </Container>
+        </section>
         <section className="d-flex w-100 bg-dark-subtle text-center">
           <Container className="d-flex justify-content-center p-3">
             <Row className="d-flex justify-content-center row-gap-4">
