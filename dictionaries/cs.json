@@ -119,7 +119,33 @@
       "server": "Server",
       "dlc": "DLC",
       "event": "událost",
-      "more": "více"
+      "more": "více",
+      "eventServer": "Server událostí",
+      "toBeDetermined": "Bude určeno"
+    },
+    "details": {
+      "meta": {
+        "title": "{event} - Detaily události",
+        "description": "Zde najdeš všechny podrobnosti o události {event} od {vtc}."
+      },
+      "card": {
+        "departureCity": "Město odjezdu",
+        "departureLocation": "Místo odjezdu",
+        "destinationCity": "Cílové město",
+        "destinationLocation": "Cílové místo",
+        "mainLanguage": "Hlavní jazyk",
+        "communication": "Komunikace",
+        "externalLink": "Externí odkaz",
+        "eventRules": "Pravidla události",
+        "vtcsAttending": "Zúčastněné VTC",
+        "showVTCs": "zobrazit VTC",
+        "hideVTCs": "skrýt VTC",
+        "usersAttending": "Účastníci",
+        "showUsers": "Zobrazit uživatele",
+        "hideUsers": "Skrýt uživatele",
+        "eventDLCs": "DLC události",
+        "viewOnTruckersmp": "Zobrazit na TruckersMP"
+      }
     }
   },
   "team": {
@@ -553,10 +579,18 @@
     "events": {
       "NO_EVENTS": "Žádné nadcházející události",
       "NA": "Není k dispozici",
-      "NO_SERVER": "Server události",
+      "NO_SERVER": "Není zadán žádný server",
       "NO_DLC": "Žádné",
       "FAILED_TO_FETCH_EVENTS": "Nepodařilo se načíst události",
-      "UNEXPECTED": "Při načítání událostí došlo k neočekávané chybě."
+      "UNEXPECTED": "Při načítání událostí došlo k neočekávané chybě.",
+      "details": {
+        "FAILED_TO_FETCH_EVENT_DETAILS": "Nepodařilo se načíst detaily události",
+        "NO_COMMUNICATION_LINK": "Žádný komunikační odkaz",
+        "NO_EXTERNAL_LINK": "Žádný externí odkaz",
+        "NO_CONFIRMED_VTCS": "Žádné VTC zatím nepotvrdilo účast.",
+        "NO_CONFIRMED_USERS": "Žádní uživatelé zatím nepotvrdili účast.",
+        "NO_DLCS": "K účasti na této události nejsou potřeba žádná DLC."
+      }
     },
     "team": {
       "ERROR_LOADING_TEAM": "Chyba při načítání týmu.",

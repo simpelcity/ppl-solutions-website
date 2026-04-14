@@ -119,7 +119,33 @@
       "server": "Server",
       "dlc": "DLC",
       "event": "evenement",
-      "more": "meer"
+      "more": "meer",
+      "eventServer": "Evenementenserver",
+      "toBeDetermined": "Nog te bepalen"
+    },
+    "details": {
+      "meta": {
+        "title": "{event} - Evenementdetails",
+        "description": "Vind hier alle details over het evenement {event} van {vtc}."
+      },
+      "card": {
+        "departureCity": "Vertrekstad",
+        "departureLocation": "Vertreklocatie",
+        "destinationCity": "Bestemmingsstad",
+        "destinationLocation": "Bestemmingslocatie",
+        "mainLanguage": "Hoofdtaal",
+        "communication": "Communicatie",
+        "externalLink": "Externe link",
+        "eventRules": "Evenementregels",
+        "vtcsAttending": "Aanwezige VTC's",
+        "showVTCs": "toon VTC's",
+        "hideVTCs": "verberg VTC's",
+        "usersAttending": "Aanwezig",
+        "showUsers": "Toon gebruikers",
+        "hideUsers": "Verberg gebruikers",
+        "eventDLCs": "Evenement-DLC's",
+        "viewOnTruckersmp": "Bekijk op TruckersMP"
+      }
     }
   },
   "team": {
@@ -553,10 +579,18 @@
     "events": {
       "NO_EVENTS": "Geen aankomende evenementen",
       "NA": "Niet van toepassing",
-      "NO_SERVER": "Evenementenserver",
+      "NO_SERVER": "Geen server opgegeven",
       "NO_DLC": "Geen",
       "FAILED_TO_FETCH_EVENTS": "Het ophalen van evenementen is mislukt.",
-      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het ophalen van evenementen"
+      "UNEXPECTED": "Er is een onverwachte fout opgetreden tijdens het ophalen van evenementen",
+      "details": {
+        "FAILED_TO_FETCH_EVENT_DETAILS": "Het ophalen van evenementdetails is mislukt",
+        "NO_COMMUNICATION_LINK": "Geen communicatielink",
+        "NO_EXTERNAL_LINK": "Geen externe link",
+        "NO_CONFIRMED_VTCS": "Er hebben nog geen VTC's hun deelname bevestigd.",
+        "NO_CONFIRMED_USERS": "Er hebben nog geen gebruikers hun deelname bevestigd.",
+        "NO_DLCS": "Er zijn geen DLC's nodig om deel te nemen aan dit evenement."
+      }
     },
     "team": {
       "ERROR_LOADING_TEAM": "Fout bij het laden van het team.",

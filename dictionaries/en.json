@@ -119,7 +119,33 @@
       "server": "Server",
       "dlc": "DLC",
       "event": "event",
-      "more": "more"
+      "more": "more",
+      "eventServer": "Event Server",
+      "toBeDetermined": "To be determined"
+    },
+    "details": {
+      "meta": {
+        "title": "{event} - Event Details",
+        "description": "Find all details about the {event} event from {vtc} here."
+      },
+      "card": {
+        "departureCity": "Departure city",
+        "departureLocation": "Departure location",
+        "destinationCity": "Destination city",
+        "destinationLocation": "Destination location",
+        "mainLanguage": "Main language",
+        "communication": "Communication",
+        "externalLink": "External link",
+        "eventRules": "Event Rules",
+        "vtcsAttending": "VTCs Attending",
+        "showVTCs": "show VTCs",
+        "hideVTCs": "hide VTCs",
+        "usersAttending": "Attending",
+        "showUsers": "Show Users",
+        "hideUsers": "Hide Users",
+        "eventDLCs": "Event DLCs",
+        "viewOnTruckersmp": "View on TruckersMP"
+      }
     }
   },
   "team": {
@@ -553,10 +579,18 @@
     "events": {
       "NO_EVENTS": "No upcoming events",
       "NA": "Not Applicable",
-      "NO_SERVER": "Event Server",
+      "NO_SERVER": "No server specified",
       "NO_DLC": "None",
       "FAILED_TO_FETCH_EVENTS": "Failed to fetch events",
-      "UNEXPECTED": "An unexpected error occurred while fetching events"
+      "UNEXPECTED": "An unexpected error occurred while fetching events",
+      "details": {
+        "FAILED_TO_FETCH_EVENT_DETAILS": "Failed to fetch event details",
+        "NO_COMMUNICATION_LINK": "No communication link",
+        "NO_EXTERNAL_LINK": "No external link",
+        "NO_CONFIRMED_VTCS": "No VTCs have confirmed attendance yet.",
+        "NO_CONFIRMED_USERS": "No Users have confirmed attendance yet.",
+        "NO_DLCS": "No DLCs needed to participate in this event."
+      }
     },
     "team": {
       "ERROR_LOADING_TEAM": "Error loading team.",

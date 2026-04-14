@@ -119,7 +119,33 @@
       "server": "Server",
       "dlc": "DLC",
       "event": "udalosť",
-      "more": "viac"
+      "more": "viac",
+      "eventServer": "Server udalostí",
+      "toBeDetermined": "Bude určené"
+    },
+    "details": {
+      "meta": {
+        "title": "{event} - Detaily udalosti",
+        "description": "Tu nájdeš všetky podrobnosti o udalosti {event} od {vtc}."
+      },
+      "card": {
+        "departureCity": "Mesto odchodu",
+        "departureLocation": "Miesto odchodu",
+        "destinationCity": "Cieľové mesto",
+        "destinationLocation": "Cieľové miesto",
+        "mainLanguage": "Hlavný jazyk",
+        "communication": "Komunikácia",
+        "externalLink": "Externý odkaz",
+        "eventRules": "Pravidlá udalosti",
+        "vtcsAttending": "Zúčastnené VTC",
+        "showVTCs": "zobraziť VTC",
+        "hideVTCs": "skryť VTC",
+        "usersAttending": "Účastníci",
+        "showUsers": "Zobraziť používateľov",
+        "hideUsers": "Skryť používateľov",
+        "eventDLCs": "DLC udalosti",
+        "viewOnTruckersmp": "Zobrazit na TruckersMP"
+      }
     }
   },
   "team": {
@@ -553,10 +579,18 @@
     "events": {
       "NO_EVENTS": "Žiadne nadchádzajúce udalosti",
       "NA": "Nie je k dispozícii",
-      "NO_SERVER": "Server udalosti",
+      "NO_SERVER": "Nie je zadaný žiadny server",
       "NO_DLC": "Žiadne",
       "FAILED_TO_FETCH_EVENTS": "Nepodarilo sa načítať udalosti",
-      "UNEXPECTED": "Pri načítavaní udalostí sa vyskytla neočakávaná chyba"
+      "UNEXPECTED": "Pri načítavaní udalostí sa vyskytla neočakávaná chyba",
+      "details": {
+        "FAILED_TO_FETCH_EVENT_DETAILS": "Nepodarilo sa načítať detaily udalosti",
+        "NO_COMMUNICATION_LINK": "Žiadny komunikačný odkaz",
+        "NO_EXTERNAL_LINK": "Žiadny externý odkaz",
+        "NO_CONFIRMED_VTCS": "Žiadne VTC zatiaľ nepotvrdilo účasť.",
+        "NO_CONFIRMED_USERS": "Žiadni používatelia zatiaľ nepotvrdili účasť.",
+        "NO_DLCS": "Na účasť na tejto udalosti nie sú potrebné žiadne DLC."
+      }
     },
     "team": {
       "ERROR_LOADING_TEAM": "Chyba pri načítavaní tímu.",
