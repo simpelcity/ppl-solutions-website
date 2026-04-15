@@ -3,6 +3,7 @@ import { AuthProvider, SidebarProvider } from "@/lib"
 import { i18n } from "@/i18n"
 import { getDictionary } from "@/app/i18n"
 import React from "react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 type Props = {
   children: React.ReactNode
@@ -28,6 +29,7 @@ export default async function AppLayout({ children }: Props) {
         <AuthProvider>
           <SidebarProvider dict={dict} lang={lang}>
             {children}
+            <SpeedInsights/>
           </SidebarProvider>
         </AuthProvider>
       </body>
