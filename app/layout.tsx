@@ -4,6 +4,7 @@ import { i18n } from "@/i18n"
 import { getDictionary } from "@/app/i18n"
 import React from "react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 type Props = {
   children: React.ReactNode
@@ -30,6 +31,7 @@ export default async function AppLayout({ children }: Props) {
           <SidebarProvider dict={dict} lang={lang}>
             {children}
             <SpeedInsights/>
+            <Analytics/>
           </SidebarProvider>
         </AuthProvider>
       </body>
