@@ -12,6 +12,7 @@
     "@supabase/auth-helpers-nextjs": "^0.15.0",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.86.0",
+    "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.13.6",
     "bootstrap": "^5.3.8",
     "fs": "^0.0.1-security",
