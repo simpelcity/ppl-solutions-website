@@ -32,21 +32,24 @@ export async function GET(request: NextRequest) {
     const totalPages = lastPageMatch ? parseInt(lastPageMatch[1], 10) : 1;
 
     const allJobs: any[] = [];
+
+    // Fetch all pages in parallel
+    const pageRequests = [];
     for (let page = 1; page <= totalPages; page++) {
       let pageUrl = `https://api.truckershub.in/v1/jobs?page=${page}`;
       if (month && year) {
         pageUrl += `&month=${month}&year=${year}`;
       }
-
-      const res = await axios.get(pageUrl);
-
-      if (res.status !== 200) continue;
-
-      const payload = await res.data;
-      if (Array.isArray(payload.data)) {
-        allJobs.push(...payload.data);
-      }
+      pageRequests.push(axios.get(pageUrl));
     }
+
+    const responses = await Promise.all(pageRequests);
+
+    responses.forEach((res) => {
+      if (res.status === 200 && Array.isArray(res.data?.data)) {
+        allJobs.push(...res.data.data);
+      }
+    });
 
     return NextResponse.json({
       jobs: allJobs.reverse(),

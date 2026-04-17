@@ -28,16 +28,22 @@ export async function POST(request: NextRequest) {
     const totalPages = lastPageMatch ? parseInt(lastPageMatch[1], 10) : 1;
 
     const allJobs: any[] = [];
+
+    // Fetch all pages in parallel
+    const pageRequests = [];
     for (let page = 1; page <= totalPages; page++) {
-      const res = await axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=${page}`);
-
-      if (res.status !== 200) return errorHandler({ error: dict.errors.jobs.FAILED_TO_FETCH_JOBS }, request, lang, res.status);
-
-      const payload = await res.data;
-      if (Array.isArray(payload.data)) {
-        allJobs.push(...payload.data);
-      }
+      pageRequests.push(
+        axios.get(`https://api.truckershub.in/v1/drivers/${steamID}/jobs?page=${page}`)
+      );
     }
+
+    const responses = await Promise.all(pageRequests);
+
+    responses.forEach((res) => {
+      if (res.status === 200 && Array.isArray(res.data?.data)) {
+        allJobs.push(...res.data.data);
+      }
+    });
 
     return NextResponse.json({
       jobs: allJobs.reverse(),
