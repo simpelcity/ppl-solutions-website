@@ -1,0 +1,6 @@
+@use "variables" as *;
+
+input::file-selector-button {
+  background-color: $primary !important;
+  border-color: $primary !important;
+}

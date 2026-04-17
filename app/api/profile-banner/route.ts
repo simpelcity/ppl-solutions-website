@@ -30,6 +30,32 @@ export async function GET(request: NextRequest) {
   }
 }
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+
+async function validateImageFile(
+  file: File,
+  request: NextRequest,
+  lang: ReturnType<typeof getLocaleFromRequest>,
+  dict: any,
+) {
+  if (file.size > MAX_FILE_SIZE) {
+    return errorHandler({ error: dict.errors.files.FILE_TOO_LARGE }, request, lang, 400);
+  }
+
+  if (!ALLOWED_TYPES.includes(file.type)) {
+    return errorHandler({ error: dict.errors.files.INVALID_FILE_TYPE }, request, lang, 400);
+  }
+
+  const extension = `.${file.name.split(".").pop()?.toLowerCase() ?? ""}`;
+  if (!ALLOWED_EXTENSIONS.includes(extension)) {
+    return errorHandler({ error: dict.errors.files.INVALID_FILE_EXTENSION }, request, lang, 400);
+  }
+
+  return null;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
@@ -40,6 +66,9 @@ export async function POST(request: NextRequest) {
 
     let banner_url: string | null = null;
     if (file) {
+      const validationError = await validateImageFile(file, request, lang, dict);
+      if (validationError) return validationError;
+
       const fileName = `${Date.now()}_${file.name}`;
       const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
         .from("profile-banners")
@@ -94,6 +123,9 @@ export async function PUT(request: NextRequest) {
     let banner_url: string | null = null;
 
     if (file) {
+      const validationError = await validateImageFile(file, request, lang, dict);
+      if (validationError) return validationError;
+
       const { data: memberData, error: fetchError } = await supabaseAdmin
         .from("profiles")
         .select("banner_url")

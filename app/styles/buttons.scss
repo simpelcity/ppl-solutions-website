@@ -11,6 +11,15 @@
   border-color: $primary !important;
 }
 
+.btn:disabled {
+  pointer-events: all !important;
+  color: black !important;
+  cursor: not-allowed !important;
+  &:active {
+    color: black !important;
+  }
+}
+
 .navbar .btn-link:hover {
   background-color: transparent !important;
   border: none !important;

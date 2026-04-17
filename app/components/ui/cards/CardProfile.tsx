@@ -49,7 +49,6 @@ export default function CardProfile({ params, dict }: Props) {
     success,
     submitting,
     updateProfile,
-    createProfile,
     fetchedProfile,
     steamID,
     driver,
@@ -78,16 +77,12 @@ export default function CardProfile({ params, dict }: Props) {
       <Container className="p-3 d-flex flex-column row-gap-3" fluid>
         <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
           <Card.Header className="p-0">
-            {profile?.banner_url ? (
-              <Image src={profile.banner_url} className="object-fit-cover w-100" height={160} alt={bannerAlt} />
-            ) : (
-              <Image src="https://placehold.co/900x160" className="w-100 pfp-banner" alt={dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
-            )}
+            <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`${profile?.banner_url ? "object-fit-cover w-100" : "w-100 pfp-banner"}`} height={160} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
           </Card.Header>
           <Card.Body className="d-flex flex-column pb-3 pb-md-0">
             <div className="d-flex pb-3 pb-md-0">
               <div className="pfp-position d-flex">
-                <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark pfp-img ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.profilePictureAlt}`} />
+                <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.profilePictureAlt}`} />
               </div>
               <div className="ms-2 ms-md-4 d-flex flex-column flex-md-row text-start row-gap-4 column-gap-md-4">
                 <div className="m-0 p-0">
