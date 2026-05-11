@@ -71,7 +71,7 @@ export function useProfile({ userId, dict }: Props) {
   const [departments, setDepartments] = useState<Department[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);
   const [memberRoles, setMemberRoles] = useState<MemberRole[]>([]);
-  const [items, setItems] = useState<any[] | null>(null);
+  const [team, setTeam] = useState<any[] | null>(null);
 
   async function fetchProfile() {
     setError(null);
@@ -198,7 +198,7 @@ export function useProfile({ userId, dict }: Props) {
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: res.status });
       const data = res.data;
       const memberData = data.team.find((m: any) => m.team_member.id === memberId) || null;
-      setItems(data.team ?? []);
+      setTeam(data.team ?? []);
       setMemberRoles([memberData]);
       return data.team || [];
     } catch (err: any) {
@@ -334,30 +334,6 @@ export function useProfile({ userId, dict }: Props) {
     }
   };
 
-  async function createProfile(file?: File | null) {
-    setSubmitting(true);
-    setError(null);
-    setSuccess(null);
-
-    try {
-      const fd = new FormData();
-      fd.append("userId", userId);
-      if (file) fd.append("file", file);
-      const res = await axios.post(`/api/profile-picture?lang=${lang}`, fd, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_CREATE_PROFILE, { cause: res.status });
-      setSuccess(dict.success.profile.profile.PROFILE_CREATED);
-      fetchProfile();
-    } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_CREATE_PROFILE;
-      setError(message);
-      throw new Error(message);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   useEffect(() => {
     if (!userId || userId.trim() === "") {
       return;
@@ -400,7 +376,6 @@ export function useProfile({ userId, dict }: Props) {
     success,
     submitting,
     updateProfile,
-    createProfile,
     fetchedProfile,
     steamID,
     driver,
@@ -408,6 +383,7 @@ export function useProfile({ userId, dict }: Props) {
     members,
     departments,
     roles,
+    team,
     memberRoles,
   };
 }

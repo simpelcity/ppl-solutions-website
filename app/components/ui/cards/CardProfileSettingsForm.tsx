@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ChangeEvent } from "react";
 import type { Dictionary } from "@/app/i18n"
 import { useProfile } from "@/hooks/useProfile";
 import { useIsAdmin } from "@/lib/useIsAdmin";
@@ -12,6 +12,10 @@ type Props = {
   dict: Dictionary;
 }
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+
 export default function CardProfileSettingsForm({ params, dict }: Props) {
   const isAdmin = useIsAdmin();
 
@@ -23,6 +27,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
 
   const [displayName, setDisplayName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
@@ -31,6 +36,25 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
   const [uploading, setUploading] = useState(false);
 
   const [userId, setUserId] = useState<string | null>(null);
+
+  const [file, setFile] = useState<File | null>(null);
+  const [bannerFile, setBannerFile] = useState<File | null>(null);
+  const [profilePictureFileError, setProfilePictureFileError] = useState<string | null>(null);
+  const [bannerInputError, setBannerInputError] = useState<string | null>(null);
+  const [profileFileName, setProfileFileName] = useState<string>("");
+  const [bannerFileName, setBannerFileName] = useState<string>("");
+
+  const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
+  const [showBannerModal, setShowBannerModal] = useState(false);
+
+  const [pfpPreviewUrl, setPfpPreviewUrl] = useState<string | null>(null);
+  const [bannerPreviewUrl, setBannerPreviewUrl] = useState<string | null>(null);
+
+  const handleCloseProfilePictureModal = () => setShowProfilePictureModal(false);
+  const handleShowProfilePictureModal = () => setShowProfilePictureModal(true);
+  
+  const handleCloseBannerModal = () => setShowBannerModal(false);
+  const handleShowBannerModal = () => setShowBannerModal(true);
 
   useEffect(() => {
     params.then(({ userId }) => setUserId(userId));
@@ -43,7 +67,6 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     success,
     submitting,
     updateProfile,
-    createProfile,
     fetchedProfile,
     driver,
     countryData,
@@ -56,36 +79,112 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     if (profile) setProfileUrl(profile.profile_url || null);
     if (profile) setBannerUrl(profile.banner_url || null);
     if (fetchedProfile?.user.user_metadata.display_name) setDisplayName(fetchedProfile?.user.user_metadata.display_name);
+    if (fetchedProfile?.user.user_metadata.username) setUsername(fetchedProfile?.user.user_metadata.username);
+    if (fetchedProfile?.user.email) setEmail(fetchedProfile?.user.email);
+    if (fetchedProfile?.bio) setBio(fetchedProfile?.bio);
   }, [profile, fetchedProfile, profileUrl, bannerUrl]);
 
-  const [file, setFile] = useState<File | null>(null);
-  const [bannerFile, setBannerFile] = useState<File | null>(null);
+  function validateImageFile(file: File) {
+    if (file.size > MAX_FILE_SIZE) {
+      return dict.errors.files.FILE_TOO_LARGE;
+    }
+  
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return dict.errors.files.INVALID_FILE_TYPE;
+    }
+  
+    const extension = `.${file.name.split(".").pop()?.toLowerCase() ?? ""}`;
+    if (!ALLOWED_EXTENSIONS.includes(extension)) {
+      return dict.errors.files.INVALID_FILE_EXTENSION;
+    }
+  
+    return null;
+  }
 
-  const resetForm = () => {
+  function handleProfilePictureChange(e: ChangeEvent<HTMLInputElement>) {
+    const selectedFile = e.target.files?.[0] ?? null;
+
+    if (!selectedFile) {
+      setFile(null);
+      setProfilePictureFileError(null);
+      return;
+    }
+
+    const validationError = validateImageFile(selectedFile);
+    if (validationError) {
+      setFile(null);
+      setProfilePictureFileError(validationError);
+      return;
+    }
+
+    const preview = URL.createObjectURL(selectedFile);
+    setPfpPreviewUrl(preview);
+
+    setProfilePictureFileError(null);
+    setFile(selectedFile);
+    setProfileFileName(selectedFile.name);
+  };
+
+  function handleBannerChange(e: ChangeEvent<HTMLInputElement>) {
+    const selectedFile = e.target.files?.[0] ?? null;
+
+    if (!selectedFile) {
+      setBannerFile(null);
+      setBannerInputError(null);
+      return;
+    }
+
+    const validationError = validateImageFile(selectedFile);
+    if (validationError) {
+      setBannerFile(null);
+      setBannerInputError(validationError);
+      return;
+    }
+
+    const preview = URL.createObjectURL(selectedFile);
+    setBannerPreviewUrl(preview);
+
+    setBannerInputError(null);
+    setBannerFile(selectedFile);
+    setBannerFileName(selectedFile.name);
+  };
+
+  function resetForm() {
     setFile(null);
     setBannerFile(null);
+    setProfileFileName("");
+    setBannerFileName("");
+    setProfilePictureFileError(null);
+    setBannerInputError(null);
     setUploading(false);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleUpdate(e: React.FormEvent) {
     e.preventDefault();
     setUploading(true);
-    await updateProfile(displayName, file ?? null, bannerFile ?? null);
-    if (typeof refreshSession === "function") {
-      refreshSession();
-    }
-    resetForm();
-  }
+    setProfilePictureFileError(null);
+    setBannerInputError(null);
 
+    try {
+      await updateProfile(displayName, file ?? null, bannerFile ?? null);
+      if (typeof refreshSession === "function") {
+        refreshSession();
+      }
 
-  const handleUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setUploading(true);
-    await updateProfile(displayName, file ?? null, bannerFile ?? null);
-    if (typeof refreshSession === "function") {
-      refreshSession();
+      handleCloseProfilePictureModal();
+      handleCloseBannerModal();
+      resetForm();
+    } catch (err: any) {
+      const message = err?.message || dict.errors.UNEXPECTED;
+
+      if (bannerFile) {
+        setBannerInputError(message);
+      } else if (file) {
+        setProfilePictureFileError(message);
+      }
+    } finally {
+      setUploading(false);
     }
-    resetForm();
   }
 
   const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
@@ -93,111 +192,105 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
   return (
     <>
-      <Container className="p-3 d-flex flex-column row-gap-3" fluid>
-        <Row>
-          <Col xs={12} md={6}>
-            <Card className="border-0 rounded-0 shadow-sm h-100" data-bs-theme="dark">
-              <Card.Header>
-                <h4 className="m-0 p-0">Profile Settings</h4>
-              </Card.Header>
-              <Card.Body>
-                <Form onSubmit={handleUpdate} className="d-flex flex-column row-gap-3">
-                  <Form.Group controlId="displayName">
-                    <Form.Label>Display Name:</Form.Label>
-                    <Form.Control type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder={`Your_display_name`} />
-                  </Form.Group>
-                  <Form.Group controlId="profilePicture">
-                    <Form.Label>Upload Profile Picture:</Form.Label>
-                    <Form.Control type="file" accept="image/*" onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)} />
-                  </Form.Group>
-                  <Form.Group controlId="profileBanner">
-                    <Form.Label>Upload Banner:</Form.Label>
-                    <Form.Control type="file" accept="image/*" onChange={(e) => setBannerFile((e.target as HTMLInputElement).files?.[0] ?? null)} />
-                  </Form.Group>
-                  <BSButton type="submit" variant="primary" disabled={uploading} className="align-self-start">
-                    {uploading ? "Uploading..." : "Update Profile"}
-                  </BSButton>
-                </Form>
-              </Card.Body>
-              {error && <p className="text-danger fw-bold">{error}</p>}
-              {success && <p className="text-success fw-bold">{success}</p>}
-            </Card>
-          </Col>
-          
-          <Col xs={12} md={6}>
-            <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
-              <Card.Header className="p-0">
-                <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`${profile?.banner_url ? "object-fit-cover w-100" : "w-100 pfp-banner"}`} height={160} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
-              </Card.Header>
-              <Card.Body className="d-flex flex-column pb-3 pb-md-0">
-                <div className="d-flex pb-3 pb-md-0">
-                  <div className="pfp-position d-flex">
-                    <Image src={profileUrl ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark pfp-img ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.profilePictureAlt}`} />
-                  </div>
-                  <div className="ms-2 ms-md-4 d-flex flex-column flex-md-row text-start row-gap-4 column-gap-md-4">
-                    <div className="m-0 p-0">
-                      <div className="d-flex column-gap-2 align-items-center">
-                        <h3 className="m-0 p-0">{fetchedProfile?.user.user_metadata.display_name}</h3>
-                        {memberRoles[0] ? (
-                          <>
-                            <span className="text-muted">•</span>
-                            <p className={`m-0 p-0 ${memberRoles[0]?.role.code}`}>{memberRoles[0]?.role.name}</p>
-                          </>
-                        ) : (
-                          <span className="text-muted">• {dict.errors.profile.NO_ROLE}</span>
-                        )}
-                      </div>
+      <Container className="p-3" fluid>
+        <Card className="border-0 rounded-0 shadow-sm p-4" data-bs-theme="dark">
+          <Card.Header className="bg-dark border-0 p-0 pb-3">
+            <h4 className="m-0 p-0">Account Info</h4>
+          </Card.Header>
+          <Card.Body className="p-0">
+            <Form onSubmit={handleUpdate} className="d-flex flex-column row-gap-3">
+              <Row>
+                {/* <Form.Group as={Col} controlId="profilePicture">
+                  <Form.Label>Profile Picture</Form.Label>
+                  <Form.Control type="file" className="border-0 rounded-0 bg-dark-subtle shadow-sm" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} isInvalid={!!profilePictureFileError} />
+                  {profilePictureFileError && <p className="text-danger fw-bold m-0 fs-6">{profilePictureFileError}</p>}
+                </Form.Group>
+                <Form.Group as={Col} controlId="profileBanner">
+                  <Form.Label>Profile Banner</Form.Label>
+                  <Form.Control type="file" className="border-0 rounded-0 bg-dark-subtle shadow-sm" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleBannerChange} isInvalid={!!bannerInputError} />
+                  {bannerInputError && <p className="text-danger fw-bold m-0">{bannerInputError}</p>}
+                </Form.Group> */}
+                <Col xs={12} md={5} xl={4}>
+                  <Card className="bg-dark-subtle border-0 rounded-0 shadow-sm h-100">
+                    <Card.Body className="d-flex flex-column align-items-center row-gap-3">
+                      <Image src={profileUrl ?? "/assets/icons/profile-user.png"} className={`pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-dark'}`} height={95} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.profilePictureAlt}`} />
+                      <BSButton variant="primary" onClick={handleShowProfilePictureModal}>Change photo</BSButton>
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col xs={12} md={7} xl={8}>
+                  <Card className="bg-dark-subtle border-0 rounded-0 shadow-sm h-100">
+                    <Card.Body className="d-flex flex-column align-items-center row-gap-3">
+                      <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`pfp-banner w-100 ${profile?.banner_url ? "object-fit-cover" : ""}`} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
+                      <BSButton variant="primary" onClick={handleShowBannerModal}>Change banner</BSButton>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+              <Form.Group controlId="displayName">
+                <Form.Label>Display Name</Form.Label>
+                <Form.Control type="text" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
+              </Form.Group>
+              <Form.Group controlId="username">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" className="border-0 rounded-0 bg-dark-subtle shadow-sm"  />
+              </Form.Group>
+              <BSButton type="submit" variant="primary" disabled={uploading || profilePictureFileError || bannerInputError} className="align-self-start">
+                {uploading ? "Uploading..." : "Update Profile"}
+              </BSButton>
+            </Form>
+          </Card.Body>
+          {error && <p className="text-danger fw-bold">{error}</p>}
+          {success && <p className="text-success fw-bold">{success}</p>}
+        </Card>
 
-                      {driver?.country && (
-                        <div className="d-flex align-items-center column-gap-1 p-0">
-                          <Image src={countryData?.flags.png} alt={countryData?.flags.alt} height={25} className="rounded-1" />
-                          <span>{driver?.country}</span>
-                        </div>
-                      )}
-                      <p className="m-0 p-0 text-muted">@{fetchedProfile?.user.user_metadata.username}</p>
-                    </div>
-                  </div>
-                </div>
-              </Card.Body>
-              {error && <p className="text-danger fw-bold">{error}</p>}
-            </Card >
-          </Col>
-        </Row>
+        <Modal show={showProfilePictureModal} onHide={handleCloseProfilePictureModal}>
+          <Form onSubmit={handleUpdate}>
+            <Modal.Header closeButton>
+              <Modal.Title>Change Profile Picture</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="p-0">
+              <div className="d-flex justify-content-center p-3">
+                <Image src={pfpPreviewUrl || ""} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={dict.drivershub.profile.profilePage.card.profilePictureAlt} />
+              </div>
+              <Form.Group controlId="profilePicture" className="border-bottom p-3">
+                <Form.Label>Upload Picture</Form.Label>
+                <Form.Control type="file" className="border-0 rounded-0 bg-dark-subtle shadow-sm" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} isInvalid={!!profilePictureFileError} />
+                {profilePictureFileError && <p className="text-danger fw-bold m-0 fs-6">{profilePictureFileError}</p>}
+              </Form.Group>
+              <div className="d-flex justify-content-center p-3 border-bottom">
+                <button type="button" className="text-danger fw-bold bg-transparent p-0 border-0 fs-5">Remove Current Photo</button>
+              </div>
+              <div className="d-flex justify-content-end column-gap-2 p-3">
+                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseProfilePictureModal}>Cancel</button>
+                <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || profilePictureFileError}>Save changes</BSButton>
+              </div>
+            </Modal.Body>
+          </Form>
+        </Modal>
+
+        <Modal show={showBannerModal} onHide={handleCloseBannerModal}>
+          <Form onSubmit={handleUpdate}>
+            <Modal.Header closeButton>
+              <Modal.Title>Change Profile Banner</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="p-0">
+              <Form.Group controlId="profileBanner" className="border-bottom p-3">
+                <Form.Label>Upload Banner</Form.Label>
+                <Form.Control type="file" className="border-0 rounded-0 bg-dark-subtle shadow-sm" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleBannerChange} isInvalid={!!bannerInputError} />
+                {bannerInputError && <p className="text-danger fw-bold m-0 fs-6">{bannerInputError}</p>}
+              </Form.Group>
+              <div className="d-flex justify-content-center p-3 border-bottom">
+                <button type="button" className="text-danger fw-bold bg-transparent p-0 border-0 fs-5">Remove Current Banner</button>
+              </div>
+              <div className="d-flex justify-content-end column-gap-2 p-3">
+                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseBannerModal}>Cancel</button>
+                <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || bannerInputError}>Save changes</BSButton>
+              </div>
+            </Modal.Body>
+          </Form>
+        </Modal>
       </Container>
-      {/* <div className="">
-        <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark pfp-img ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.profilePictureAlt} />
-      </div>
-      <div className="">
-        <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`${profile?.banner_url ? "object-fit-cover w-100" : "w-100 pfp-banner"}`} height={160} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
-      </div> */}
-      {/* <div className="d-flex flex-column align-items-center">
-        <h1>Profile Settings</h1>
-        <form onSubmit={handleUpdate} style={{ marginBottom: 24 }}>
-          <label htmlFor="profile-picture">Upload Profile Picture:</label>
-          <input type="file" id="profile-picture" accept="image/*" onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)} />
-          <button type="submit" disabled={uploading} style={{ marginLeft: 8 }}>
-            {uploading ? "Uploading..." : "Upload"}
-          </button>
-        </form>
-        <form onSubmit={handleUpdate}>
-          <label htmlFor="display-name">Display Name:</label>
-          <input type="text" id="display-name" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
-          <button type="submit" disabled={uploading} style={{ marginLeft: 8 }}>
-            {uploading ? "Updating..." : "Update Display Name"}
-          </button>
-        </form>
-        <form onSubmit={handleUpdate} style={{ marginTop: 24 }}>
-          <label htmlFor="profile-banner">Upload Banner:</label>
-          <input type="file" id="profile-banner" accept="image/*" onChange={(e) => setBannerFile((e.target as HTMLInputElement).files?.[0] ?? null)} />
-          <button type="submit" disabled={uploading} style={{ marginLeft: 8 }}>
-            {uploading ? "Uploading..." : "Upload Banner"}
-          </button>
-        </form>
-        {profileUrl && <img src={profileUrl} alt="Profile" style={{ width: 120, height: 120, borderRadius: '50%' }} />}
-        {bannerUrl && <img src={bannerUrl} alt="Banner" style={{ width: '100%', height: 200, objectFit: 'cover', marginTop: 16 }} />}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
-      </div> */}
     </>
   );
 }

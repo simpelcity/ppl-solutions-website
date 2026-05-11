@@ -250,7 +250,7 @@ function SidebarContent({
               width={32}
               height={32}
               roundedCircle
-              className="me-2"
+              className="me-2 object-fit-cover"
             />
             <strong>{username}</strong>
           </Dropdown.Toggle>

@@ -81,6 +81,11 @@
     max-width: 90px;
     max-height: 90px;
   }
+  aspect-ratio: 1 / 1;
+}
+
+.pfp-banner {
+  aspect-ratio: 31 / 5 !important;
 }
 
 .column-gap-md-7 {
