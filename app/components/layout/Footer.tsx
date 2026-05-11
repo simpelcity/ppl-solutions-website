@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Container, Row, Col, Image, Tab, Tabs, ListGroup } from "react-bootstrap"
 import { FaDiscord, FaTiktok, FaTruck, FaRegCopyright } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { FooterLink } from "@/components"
+import { FooterLink, BSLink } from "@/components"
 import "@/styles/Footer.scss"
 import type { Dictionary } from "@/app/i18n";
 import { useSidebar } from "@/lib";
@@ -120,9 +120,9 @@ export default function Footer({ dict }: FooterProps) {
         </Row>
         <p className="border-top border-light pt-3 mt-4 mb-0 fs-5 text-center w-100">
           <FaRegCopyright className="fs-6" /> {bottom1} {currentYear} <strong>{brand}</strong>{bottom3}
-          <a className="text-decoration-none author fw-bold text-primary" href="https://simpelcity.github.io">
+          <BSLink href="https://simpelcity.github.io" variant="primary" target="_blank" classes="author fw-bold">
             {developer}
-          </a>
+          </BSLink>
         </p>
       </Container>
     </footer>

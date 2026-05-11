@@ -77,7 +77,7 @@ export default function CardProfile({ params, dict }: Props) {
       <Container className="p-3 d-flex flex-column row-gap-3" fluid>
         <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
           <Card.Header className="p-0">
-            <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`${profile?.banner_url ? "object-fit-cover w-100" : "w-100 pfp-banner"}`} height={160} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
+            <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`pfp-banner ${profile?.banner_url ? "object-fit-cover w-100" : "w-100"}`}  alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
           </Card.Header>
           <Card.Body className="d-flex flex-column pb-3 pb-md-0">
             <div className="d-flex pb-3 pb-md-0">
@@ -112,7 +112,7 @@ export default function CardProfile({ params, dict }: Props) {
                     <div className="m-0 p-0">
                       <ButtonGroup>
                         <BSButton variant="primary" classes="rounded-end-0 d-flex align-items-center" href={`/drivershub/profile/${user.id}/settings`}>{dict.drivershub.profile.profilePage.card.buttons.settings}</BSButton>
-                        <BSButton variant="outline" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
+                        <BSButton variant="outline" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/${user.id}/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
                       </ButtonGroup>
                     </div>
                   </>

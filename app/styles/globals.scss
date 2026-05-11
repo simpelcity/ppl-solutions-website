@@ -55,5 +55,13 @@ main {
 }
 
 .text-gray {
-  color: gray;
+  color: gray !important;
+}
+
+.text-primary-emphasis {
+  color: #66c2b6 !important;
+}
+
+.text-secondary-emphasis {
+  color: #688984 !important;
 }

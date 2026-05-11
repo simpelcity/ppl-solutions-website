@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
 import { Dropdown, Image, Nav, Collapse, Offcanvas, Placeholder } from "react-bootstrap";
@@ -9,10 +9,8 @@ import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
 import { FaChartLine } from "react-icons/fa6";
 import { BiSolidDashboard } from "react-icons/bi";
-import { GoArrowSwitch } from "react-icons/go";
 import { FaUsers } from "react-icons/fa";
 import { MdPhotoLibrary } from "react-icons/md";
-import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";

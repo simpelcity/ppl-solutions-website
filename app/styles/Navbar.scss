@@ -10,7 +10,6 @@
 .navbar-nav:first-child .nav-link {
   @media (min-width: 1200px) {
     padding: 0 0 2px 0;
-
     &:hover {
       border-bottom: solid 2px $light;
       padding: 0;

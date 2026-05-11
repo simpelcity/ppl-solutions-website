@@ -42,6 +42,7 @@ export { default as TableLeaderboard } from "./ui/tables/TableLeaderboard";
 export { default as TableStats } from "./ui/tables/TableStats";
 // UI Components
 export { default as BSButton } from "./ui/Button";
+export { default as BSLink } from "./ui/Link";
 export { default as Loader } from "./ui/Loader";
 export { default as LoaderSpinner } from "./ui/LoaderSpinner";
 export { default as NavButtons } from "./ui/NavButtons";

@@ -168,3 +168,54 @@ export async function PUT(request: NextRequest) {
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+
+    const { searchParams } = new URL(request.url);
+    const userId = searchParams.get("userId");
+
+    if (!userId) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
+
+    const { data: memberData, error: fetchError } = await supabaseAdmin
+      .from("profiles")
+      .select("profile_url")
+      .eq("id", userId)
+      .single();
+
+    if (fetchError) return errorHandler(
+        { error: dict.errors.profile.profilePicture.FAILED_TO_FETCH_PROFILE_PICTURE },
+        request,
+        lang,
+        500,
+    );
+
+    if (memberData?.profile_url) {
+      try {
+        const url = new URL(memberData.profile_url);
+        const pathParts = url.pathname.split("/");
+        const bucketIndex = pathParts.findIndex((part) => part === "profile-pictures");
+        if (bucketIndex !== -1) {
+          const oldFilePath = pathParts.slice(bucketIndex + 1).join("/");
+          await supabaseAdmin.storage.from("profile-pictures").remove([oldFilePath]);
+        }
+      } catch (e) {
+        console.warn(dict.errors.files.FAILED_TO_DELETE_OLD_FILE, e);
+      }
+    }
+
+    const { data, error } = await supabaseAdmin.from("profiles").update({ profile_url: null }).eq("id", userId).select();
+
+    if (error) return errorHandler({ error: dict.errors.profile.profilePicture.FAILED_TO_DELETE_PROFILE_PICTURE }, request, lang, 500);
+
+    return NextResponse.json({ profile_picture: data }, { status: 200 });
+  } catch (err: any) {
+    const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
+    const serverMessage = err?.response?.data?.message || err?.message;
+    const message = dict.errors.profile.profilePicture.FAILED_TO_DELETE_PROFILE_PICTURE;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
+  }
+}

@@ -270,7 +270,7 @@ export function useProfile({ userId, dict }: Props) {
     }
   };
 
-  async function updateProfile(displayName: string, file?: File | null, bannerFile?: File | null) {
+  async function updateProfile(displayName: string, file?: File | null, bannerFile?: File | null, removeProfilePicture?: boolean) {
     setSubmitting(true);
     setError(null);
     setSuccess(null);
@@ -300,6 +300,16 @@ export function useProfile({ userId, dict }: Props) {
         const res = await axios.put(`/api/profile-banner?lang=${lang}`, fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
+        if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
+        setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
+        setProfile(null);
+        setFetchedProfile(null);
+        const profileData = await fetchProfile();
+        setProfile(profileData);
+        const fetchedProfileData = await fetchProfileById();
+        setFetchedProfile(fetchedProfileData);
+      } else if (removeProfilePicture) {
+        const res = await axios.delete(`/api/profile-picture?lang=${lang}&userId=${encodeURIComponent(userId)}`);
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
         setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
         setProfile(null);
