@@ -554,6 +554,51 @@
         "meta": {
           "title": "Nastavení uživatele {driver}",
           "description": "Stránka nastavení {driver} na PPL Solutions Centrum řidičů"
+        },
+        "form": {
+          "accountInfo": {
+            "title": "Informace o účtu",
+            "pfpButton": "Změnit fotku",
+            "bannerButton": "Změnit banner",
+            "displayName": "Zobrazované jméno",
+            "displayNamePlaceholder": "Tvé zobrazované jméno",
+            "username": "Uživatelské jméno",
+            "usernamePlaceholder": "tvoje_uzivatelske_jmeno",
+            "email": "Email",
+            "bio": "Bio",
+            "bioPlaceholder": "Krátké bio o tobě...",
+            "submit": "Aktualizovat profil",
+            "uploading": "Aktualizace profilu..."
+          },
+          "changePassword": {
+            "title": "Změnit heslo",
+            "newPassword": "Nové heslo",
+            "newPasswordPlaceholder": "Zadej nové heslo",
+            "confirmNewPassword": "Potvrdit nové heslo",
+            "confirmNewPasswordPlaceholder": "Potvrď nové heslo",
+            "submit": "Aktualizovat heslo",
+            "updating": "Aktualizace hesla..."
+          }
+        },
+        "modal": {
+          "profilePicture": {
+            "title": "Změnit profilový obrázek",
+            "label": "Nahrát obrázek",
+            "placeholder": "Vyberte soubor...",
+            "browse": "Prohlížet",
+            "remove": "Odstranit aktuální fotku",
+            "cancel": "Zrušit",
+            "submit": "Uložit změny",
+            "warning": "Opravdu chceš odstranit svůj aktuální profilový obrázek?"
+          },
+          "banner": {
+            "title": "Změnit profilový banner",
+            "label": "Nahrát banner",
+            "remove": "Odstranit aktuální banner",
+            "cancel": "Zrušit",
+            "submit": "Uložit změny",
+            "warning": "Opravdu chceš odstranit svůj aktuální profilový banner?"
+          }
         }
       }
     }
@@ -734,7 +779,9 @@
     "forgotPassword": {
       "RESET_EMAIL_SENT": "E-mail pro reset hesla byl odeslán! Zkontroluj schránku pro odkaz na reset hesla."
     },
-    "resetPassword": {},
+    "updatePassword": {
+      "PASSWORD_UPDATED": "Heslo bylo úspěšně aktualizováno!"
+    },
     "jobs": {},
     "userStats": {},
     "leaderboard": {},

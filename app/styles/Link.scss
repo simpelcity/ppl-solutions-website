@@ -1,0 +1,47 @@
+@use "variables" as *;
+
+.primary-link {
+  color: $primary;
+  transition: color 0.2s ease;
+  &:hover {
+    color: #66c2b6;
+  }
+  &:focus {
+    color: #66c2b6;
+  }
+}
+
+.navbar-link {
+  color: $light;
+  transition: color 0.2s ease;
+  @media (min-width: 1200px) {
+    padding: 0 0 2px 0;
+    &:hover {
+      border-bottom: solid 2px $light;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 992px) {
+    padding: 1rem 0;
+  }
+}
+
+.transparent-link {
+  color: transparent;
+  transition: color 0.2s ease;
+}
+
+.light-link {
+  color: $light;
+  transition: color 0.2s ease;
+}
+
+.sidebar-link {
+  color: $light !important;
+  transition: color 0.2s ease;
+  &:hover {
+    color: $light;
+    background-color: rgba($light, 0.1);
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
 import { Dropdown, Image, Nav, Collapse, Offcanvas, Placeholder } from "react-bootstrap";
@@ -9,10 +9,8 @@ import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
 import { FaChartLine } from "react-icons/fa6";
 import { BiSolidDashboard } from "react-icons/bi";
-import { GoArrowSwitch } from "react-icons/go";
 import { FaUsers } from "react-icons/fa";
 import { MdPhotoLibrary } from "react-icons/md";
-import { LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
@@ -179,13 +177,14 @@ function SidebarContent({
             <Nav.Link
               href={item.href}
               className={`text-light d-flex align-items-center ${isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : ""
-                } ${pathname === item.href ? "active" : ""}`}
+                } ${pathname === item.href ? "active fw-bold" : "fw-semibold"}`}
               title={item.label}>
-              <span className={isSidebarCollapsed ? "me-0" : "me-2"}>{item.icon}</span>
-              {!isSidebarCollapsed && item.label}
+              <span className={`fs-5 ${isSidebarCollapsed ? "me-0" : "me-2"}`}>{item.icon}</span>
+              <span>{!isSidebarCollapsed && item.label}</span>
             </Nav.Link>
           </Nav.Item>
         ))}
+
         {isAdmin && !isSidebarCollapsed && (
           <>
             <Nav.Item className={open ? "bg-light bg-opacity-10 rounded-2" : ""}>
@@ -193,14 +192,15 @@ function SidebarContent({
                 onClick={() => setOpen(!open)}
                 aria-controls="dashboard-collapse-menu"
                 aria-expanded={open}
-                className={`d-flex align-items-center justify-content-between text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active" : ""
+                className={`d-flex align-items-center justify-content-between text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active fw-bold" : "fw-semibold"
                   } ${open ? "rounded-bottom-0" : ""}`}>
-                <div className="d-flex">
-                  <span className="me-2"><BiSolidDashboard /></span>
+                <div className="d-flex align-items-center">
+                  <span className="me-2 fs-5"><BiSolidDashboard /></span>
                   <span>{dict.drivershub.sidebar.dashboard.title}</span>
                 </div>
                 {open ? <FaAngleRight className="rotate-90-cw" /> : <FaAngleDown className="rotate-90-ccw" />}
               </Nav.Link>
+
               <Collapse in={open}>
                 <div id="dashboard-collapse-menu">
                   <ul className="list-unstyled m-0">
@@ -208,8 +208,8 @@ function SidebarContent({
                       <li key={item.href}>
                         <a
                           href={item.href}
-                          className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${pathname === item.href ? "bg-light bg-opacity-10" : ""
-                            } ${index === collapseItems.length - 1 ? "rounded-bottom-2" : ""}`}
+                          className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${pathname === item.href ? "bg-light bg-opacity-10 fw-bold" : "fw-semibold"
+                            } ${index === collapseItems.length - 1 && "rounded-bottom-2"}`}
                           title={item.label}>
                           <span className="me-2">{item.icon}</span>
                           {item.label}
@@ -250,7 +250,7 @@ function SidebarContent({
               width={32}
               height={32}
               roundedCircle
-              className="me-2"
+              className="me-2 object-fit-cover"
             />
             <strong>{username}</strong>
           </Dropdown.Toggle>

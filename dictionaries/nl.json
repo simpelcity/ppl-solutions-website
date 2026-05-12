@@ -554,6 +554,51 @@
         "meta": {
           "title": "{driver}'s Instellingen",
           "description": "{driver}'s instellingenpagina op PPL Solutions Bestuurdershub"
+        },
+        "form": {
+          "accountInfo": {
+            "title": "Accountgegevens",
+            "pfpButton": "Foto wijzigen",
+            "bannerButton": "Banner wijzigen",
+            "displayName": "Weergavenaam",
+            "displayNamePlaceholder": "Uw weergavenaam",
+            "username": "Gebruikersnaam",
+            "usernamePlaceholder": "Jouw_gebruikersnaam",
+            "email": "E-mail",
+            "bio": "Bio",
+            "bioPlaceholder": "Een korte bio over jezelf...",
+            "submit": "Profiel bijwerken",
+            "uploading": "Profiel wordt bijgewerkt..."
+          },
+          "changePassword": {
+            "title": "Wachtwoord wijzigen",
+            "newPassword": "Nieuw wachtwoord",
+            "newPasswordPlaceholder": "Voer nieuw wachtwoord in",
+            "confirmNewPassword": "Bevestig nieuw wachtwoord",
+            "confirmNewPasswordPlaceholder": "Bevestig nieuw wachtwoord",
+            "submit": "Wachtwoord bijwerken",
+            "updating": "Wachtwoord wordt bijgewerkt..."
+          }
+        },
+        "modal": {
+          "profilePicture": {
+            "title": "Profielfoto wijzigen",
+            "label": "Foto uploaden",
+            "placeholder": "Kies een bestand...",
+            "browse": "Blader",
+            "remove": "Huidige foto verwijderen",
+            "cancel": "Annuleren",
+            "submit": "Wijzigingen opslaan",
+            "warning": "Weet u zeker dat u uw huidige profielfoto wilt verwijderen?"
+          },
+          "banner": {
+            "title": "Profielbanner wijzigen",
+            "label": "Banner uploaden",
+            "remove": "Huidige banner verwijderen",
+            "cancel": "Annuleren",
+            "submit": "Wijzigingen opslaan",
+            "warning": "Weet u zeker dat u uw huidige profielbanner wilt verwijderen?"
+          }
         }
       }
     }
@@ -734,7 +779,9 @@
     "forgotPassword": {
       "RESET_EMAIL_SENT": "E-mail voor wachtwoordreset verzonden! Controleer je inbox voor de resetlink."
     },
-    "resetPassword": {},
+    "updatePassword": {
+      "PASSWORD_UPDATED": "Wachtwoord succesvol bijgewerkt!"
+    },
     "jobs": {},
     "userStats": {},
     "leaderboard": {},

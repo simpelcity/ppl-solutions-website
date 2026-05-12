@@ -1,13 +1,12 @@
 'use client'
 
-import { Col, Card, CardImg, CardBody, CardTitle, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Placeholder } from "react-bootstrap";
+import { Col, Card, Dropdown, Placeholder } from "react-bootstrap";
 import { BsHddStackFill } from "react-icons/bs";
-import { FaClock, FaTruck } from "react-icons/fa6";
+import { FaClock, FaTruck, FaGamepad } from "react-icons/fa6";
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { FiDownload } from "react-icons/fi";
-import { LuGamepad2 } from "react-icons/lu";
-import { IoCalendar, IoGameController } from "react-icons/io5";
-import { DivEvents, BSButton, LoaderSpinner } from "@/components";
+import { IoCalendar } from "react-icons/io5";
+import { DivEvents, BSButton } from "@/components";
 import type { Dictionary } from "@/app/i18n"
 import { useEvents } from "@/hooks/useEvents";
 import { useIsAdmin } from "@/lib/useIsAdmin";
@@ -25,6 +24,7 @@ export default function CardEvents({ dict }: PageProps) {
   };
   
   const { events, loading, error } = useEvents(dict);
+  console.log("Events data:", events);
 
   if (loading) {
     return (
@@ -155,44 +155,44 @@ export default function CardEvents({ dict }: PageProps) {
               <Card.Body className="d-flex flex-column align-items-stretch align-items-md-start">
                 <Card.Title className="fs-4 mb-3 text-start">{event.name}</Card.Title>
                 <DivEvents>
-                  <div className="d-flex align-items-center gap-1">
-                    <IoCalendar /><strong>{dict.events.card.date}: </strong>
+                  <div className="d-flex gap-1">
+                    <IoCalendar size={25} /><strong>{dict.events.card.date}: </strong>
                     {formatDate(event.meetup_at)}
                   </div>
                 </DivEvents>
                 <DivEvents>
                   <div className="d-flex align-items-center gap-1">
-                    <FaClock /><strong>{dict.events.card.meetupTime}: </strong>
+                    <FaClock size={25} /><strong>{dict.events.card.meetupTime}: </strong>
                     {formatTime(event.meetup_at)}
                   </div>
                   <div className="d-flex align-items-center gap-1">
-                    <FaClock /><strong>{dict.events.card.departureTime}: </strong>
+                    <FaClock size={25} /><strong>{dict.events.card.departureTime}: </strong>
                     {formatTime(event.start_at)}
                   </div>
                 </DivEvents>
                 <DivEvents>
                   <div className="d-flex align-items-center gap-1">
-                    <FaTruck /><strong>{dict.events.card.departureLocation}: </strong>
+                    <FaTruck size={25} /><strong>{dict.events.card.departureLocation}: </strong>
                     {event.departure?.city ?? `${dict.errors.events.NA}`}
                   </div>
                   <div className="d-flex align-items-center gap-1">
-                    <FaMapMarkerAlt /><strong>{dict.events.card.destinationLocation}: </strong>
+                    <FaMapMarkerAlt size={25} /><strong>{dict.events.card.destinationLocation}: </strong>
                     {event.arrive?.city ?? `${dict.errors.events.NA}`}
                   </div>
                 </DivEvents>
                 <DivEvents>
                   <div className="d-flex align-items-center gap-1">
-                    <LuGamepad2 /><strong>{dict.events.card.game}: </strong>
+                    <FaGamepad size={25} /><strong>{dict.events.card.game}: </strong>
                     {event.game ?? `${dict.errors.events.NA}`}
                   </div>
                   <div className="d-flex align-items-center gap-1">
-                    <BsHddStackFill /><strong>{dict.events.card.server}: </strong>
-                    {event.server.name ? event.server.name === "To be determined" ? `${dict.errors.events.NO_SERVER}` : event.server.name : `${dict.errors.events.NO_SERVER}`}
+                    <BsHddStackFill size={25} /><strong>{dict.events.card.server}: </strong>
+                    {event.server.name ? event.server.name === "To be determined" ? `${dict.events.card.toBeDetermined}` : event.server.name : `${dict.errors.events.NO_SERVER}`}
                   </div>
-                  <div className="d-flex align-items-center column-gap-1">
+                  <div className="d-flex column-gap-1">
                     {dlcs(event.dlcs).length > 2 ? (
                       <>
-                        <FiDownload /><strong>{dict.events.card.dlc}: </strong>
+                        <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
                         <a href={`https://store.steampowered.com/app/${dlcKeys(event.dlcs)}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
                           <span className="text-primary fw-bold">{dlcs(event.dlcs)[0]}</span>
                         </a>
@@ -201,12 +201,12 @@ export default function CardEvents({ dict }: PageProps) {
                       </>
                     ) : dlcs(event.dlcs).length > 0 ? (
                       <a href={`https://store.steampowered.com/app/${dlcKeys(event.dlcs)}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
-                        <FiDownload /><strong>{dict.events.card.dlc}: </strong>
+                        <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
                         <span className="text-primary fw-bold">{dlcs(event.dlcs)}</span>
                       </a>
                     ) : (
                       <>
-                        <FiDownload /><strong>{dict.events.card.dlc}: </strong>
+                        <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
                         {dict.errors.events.NO_DLC}
                       </>
                     )}

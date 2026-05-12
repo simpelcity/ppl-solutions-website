@@ -1,4 +1,5 @@
-import "@/styles/Drivershub.scss";
+import "@/styles/Drivershub.scss"
+import "@/styles/roles.scss"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
@@ -96,7 +97,7 @@ export default async function ProfileSettingsPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
+        <section className="drivershub d-flex bg-dark-subtle">
           <CardProfileSettingsForm params={params} dict={dict} />
         </section>
       </main>

@@ -554,6 +554,51 @@
         "meta": {
           "title": "{driver}'s Settings",
           "description": "{driver}'s settings page on PPL Solutions Drivershub"
+        },
+        "form": {
+          "accountInfo": {
+            "title": "Account Info",
+            "pfpButton": "Change Photo",
+            "bannerButton": "Change Banner",
+            "displayName": "Display Name",
+            "displayNamePlaceholder": "Your Display Name",
+            "username": "Username",
+            "usernamePlaceholder": "Your_username",
+            "email": "Email",
+            "bio": "Bio",
+            "bioPlaceholder": "A short bio about you...",
+            "submit": "Update Profile",
+            "uploading": "Updating profile..."
+          },
+          "changePassword": {
+            "title": "Change Password",
+            "newPassword": "New Password",
+            "newPasswordPlaceholder": "Enter new password",
+            "confirmNewPassword": "Confirm New Password",
+            "confirmNewPasswordPlaceholder": "Confirm new password",
+            "submit": "Update Password",
+            "updating": "Updating password..."
+          }
+        },
+        "modal": {
+          "profilePicture": {
+            "title": "Change Profile Picture",
+            "label": "Upload Picture",
+            "placeholder": "Choose file...",
+            "browse": "Browse",
+            "remove": "Remove Current Photo",
+            "cancel": "Cancel",
+            "submit": "Save Changes",
+            "warning": "Are you sure you want to remove your current profile picture?"
+          },
+          "banner": {
+            "title": "Change Profile Banner",
+            "label": "Upload Banner",
+            "remove":"Remove Current Banner",
+            "cancel": "Cancel",
+            "submit": "Save Changes",
+            "warning": "Are you sure you want to remove your current profile banner?"
+          }
         }
       }
     }
@@ -734,7 +779,9 @@
     "forgotPassword": {
       "RESET_EMAIL_SENT": "Password reset email sent! Check your inbox for a link to reset your password."
     },
-    "resetPassword": {},
+    "updatePassword": {
+      "PASSWORD_UPDATED": "Password updated successfully!"
+    },
     "jobs": {},
     "userStats": {},
     "leaderboard": {},

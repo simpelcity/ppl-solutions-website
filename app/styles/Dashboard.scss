@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 :root {
   --sidebar-collapsed-width: 4.5rem;
   --sidebar-expanded-width: 16.25rem;
@@ -21,4 +23,13 @@
 
 .flip {
   transform: scaleX(-1)
+}
+
+.sidebar .nav-item .nav-link:hover,
+.sidebar .nav-item #dashboard-collapse-menu li:hover {
+  background-color: #5a5a5a;
+}
+
+.sidebar .nav-item .nav-link.active {
+  background-color: $primary;
 }
