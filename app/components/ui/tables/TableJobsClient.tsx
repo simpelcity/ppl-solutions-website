@@ -99,10 +99,11 @@ export default function TableJobsClient({ lang, dict }: Props) {
 
   return (
     <>
-      <Container className="p-3" fluid>
+      <Container className="p-3 p-md-4" fluid>
         <Card className="bg-dark rounded-0 border-0 shadow-sm">
-          <CardBody className="p-4">
-            <CardTitle className="text-uppercase fs-2 text-light mb-3">{dict.drivershub.jobs.title}</CardTitle>
+          <CardBody className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4">
+            <CardTitle className="text-uppercase fs-2 text-light m-0">{dict.drivershub.jobs.title}</CardTitle>
+
             {loading ? (
               <PlaceholderTable columns={8} rows={10} />
             ) : (
@@ -141,14 +142,15 @@ export default function TableJobsClient({ lang, dict }: Props) {
                 </Table>
               </div>
             )}
-            <div className="d-flex flex-column flex-md-row align-items-center justify-content-md-between mt-4 row-gap-4 ms-0 ms-md-4">
+
+            <div className="d-flex flex-column flex-xl-row align-items-center justify-content-md-between row-gap-3 row-gap-md-4">
               {!showAll && (
                 <div className="text-primary border border-light border-opacity-25 px-3 py-2 rounded-1 small">
                   {showingText}
                 </div>
               )}
 
-              <div className="pagination-div d-flex flex-column flex-md-row justify-content-center align-items-center row-gap-4 column-gap-3">
+              <div className="pagination-div d-flex flex-column flex-md-row justify-content-center align-items-center row-gap-3 row-gap-md-4 column-gap-4">
                 <BSButton variant="primary" onClick={toggleShowAll}>
                   {showAll ? `${dict.drivershub.jobs.table.navigation.paginated}` : `${dict.drivershub.jobs.table.navigation.allJobs}`}
                 </BSButton>
@@ -158,7 +160,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                       className="p-1 btn btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
                       onClick={goToPreviousPage}
                       disabled={displayPage === 1}>
-                      <MdNavigateBefore className="fs-4" />
+                      <MdNavigateBefore className="fs-4 text-light" />
                     </button>
 
                     <nav aria-label="Job pages">
@@ -193,7 +195,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                       className="p-1 btn btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
                       onClick={goToNextPage}
                       disabled={displayPage === lastPage}>
-                      <MdNavigateNext className="fs-4" />
+                      <MdNavigateNext className="fs-4 text-light" />
                         </button>
                       </div>
                     )}
