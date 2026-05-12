@@ -7,6 +7,7 @@ import { useAuth } from "@/lib";
 import { Container, Card, Image, Form, Modal, Row, Col, Alert } from 'react-bootstrap'
 import { BSButton, BSLink } from '@/components'
 import { supabase } from "@/lib";
+import { FileInput } from "lucide-react";
 
 type Props = {
   params: Promise<{ userId: string }>
@@ -25,6 +26,8 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
   };
 
   const { user, session, refreshSession } = useAuth();
+
+  const settingsDict = dict.drivershub.profile.settingsPage;
 
 
   const [displayName, setDisplayName] = useState("");
@@ -163,7 +166,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     setProfileFileName("");
     setPfpPreviewUrl(null);
     
-    if (confirm("Are you sure you want to remove your current profile picture?")) {
+    if (confirm(dict.drivershub.profile.settingsPage.modal.profilePicture.warning)) {
       try {
         await updateProfile(displayName, null, null, true);
         if (typeof refreshSession === "function") {
@@ -183,7 +186,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     setBannerFileName("");
     setBannerPreviewUrl(null);
     
-    if (confirm("Are you sure you want to remove your current profile banner?")) {
+    if (confirm(dict.drivershub.profile.settingsPage.modal.banner.warning)) {
       try {
         await updateProfile(displayName, null, null, true);
         if (typeof refreshSession === "function") {
@@ -279,7 +282,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
       if (error) throw error;
       
-      setPasswordSuccess("Password updated successfully.");
+      setPasswordSuccess(dict.success.updatePassword.PASSWORD_UPDATED);
       setNewPassword("");
       setConfirmNewPassword("");
     } catch (err: any) {
@@ -293,21 +296,23 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
   const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
   const bannerAlt = dict.drivershub.profile.profilePage.card.bannerAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
 
+
+
   return (
     <>
-      <Container className="p-3 d-flex flex-column row-gap-4" fluid>
+      <Container className="p-3 d-flex flex-column row-gap-3" fluid>
         <Card className="border-0 rounded-0 shadow-sm p-4" data-bs-theme="dark">
           <Card.Header className="bg-dark border-0 p-0 pb-3">
-            <h4 className="m-0 p-0">Account Info</h4>
+            <h4 className="m-0 p-0">{settingsDict.form.accountInfo.title}</h4>
           </Card.Header>
           <Card.Body className="p-0">
             <Form onSubmit={handleUpdate} className="d-flex flex-column row-gap-3">
-              <Row className="row-gap-4">
+              <Row className="row-gap-3">
                 <Col xs={12} md={5} xl={4}>
                   <Card className="bg-dark-subtle border-0 rounded-0 shadow-sm h-100">
                     <Card.Body className="d-flex flex-column align-items-center row-gap-3">
                       <Image src={profileUrl ?? "/assets/icons/profile-user.png"} className={`pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
-                      <BSButton variant="secondary" border="primary" onClick={handleShowProfilePictureModal}>Change photo</BSButton>
+                      <BSButton variant="secondary" border="primary" onClick={handleShowProfilePictureModal}>{settingsDict.form.accountInfo.pfpButton}</BSButton>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -315,31 +320,31 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                   <Card className="bg-dark-subtle border-0 rounded-0 shadow-sm h-100">
                     <Card.Body className="d-flex flex-column align-items-center row-gap-3">
                       <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`pfp-banner w-100 ${profile?.banner_url ? "object-fit-cover" : ""}`} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
-                      <BSButton variant="secondary" border="primary" onClick={handleShowBannerModal}>Change banner</BSButton>
+                      <BSButton variant="secondary" border="primary" onClick={handleShowBannerModal}>{settingsDict.form.accountInfo.bannerButton}</BSButton>
                     </Card.Body>
                   </Card>
                 </Col>
               </Row>
-              <Row className="row-gap-4">
+              <Row className="row-gap-3">
                 <Form.Group as={Col} xs={12} md={6} controlId="displayName">
-                  <Form.Label>Display Name</Form.Label>
-                  <Form.Control type="text" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="Your Display Name" />
+                  <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.displayName}</Form.Label>
+                  <Form.Control type="text" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder={settingsDict.form.accountInfo.displayNamePlaceholder} />
                 </Form.Group>
                 <Form.Group as={Col} xs={12} md={6} controlId="username">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" className="border-0 rounded-0 bg-dark-subtle shadow-sm text-gray" value={username} disabled placeholder="Your_username" />
+                  <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.username}</Form.Label>
+                  <Form.Control type="text" className="border-0 rounded-0 bg-dark-subtle shadow-sm text-gray" value={username} disabled placeholder={settingsDict.form.accountInfo.usernamePlaceholder} />
                 </Form.Group>
               </Row>
               <Form.Group controlId="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.email}</Form.Label>
                 <Form.Control type="email" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={dict.contact.form.emailPlaceholder} />
               </Form.Group>
               <Form.Group controlId="bio">
-                <Form.Label>Bio</Form.Label>
-                <Form.Control as="textarea" rows={3} className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={bio} onChange={(e) => setBio(e.target.value)} placeholder="A short bio about you..." />
+                <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.bio}</Form.Label>
+                <Form.Control as="textarea" rows={3} className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={bio} onChange={(e) => setBio(e.target.value)} placeholder={settingsDict.form.accountInfo.bioPlaceholder} />
               </Form.Group>
               <BSButton type="submit" variant="primary" disabled={uploading || profilePictureFileError || bannerInputError} classes="align-self-start">
-                {uploading ? "Uploading..." : "Update Profile"}
+                {uploading ? settingsDict.form.accountInfo.uploading : settingsDict.form.accountInfo.submit}
               </BSButton>
             </Form>
           </Card.Body>
@@ -349,23 +354,23 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
         <Card className="border-0 rounded-0 shadow-sm p-4" id="change-password" data-bs-theme="dark">
           <Card.Header className="bg-dark border-0 p-0 pb-3">
-            <h4 className="m-0 p-0">Change Password</h4>
+            <h4 className="m-0 p-0">{settingsDict.form.changePassword.title}</h4>
           </Card.Header>
           <Card.Body className="p-0">
             <Form onSubmit={handlePasswordChange} className="d-flex flex-column row-gap-3">
               <Form.Group controlId="newPassword">
-                <Form.Label>New Password</Form.Label>
-                <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="Enter new password" required />
+                <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
+                <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.newPasswordPlaceholder} required />
               </Form.Group>
               <Form.Group controlId="confirmNewPassword">
-                <Form.Label>Confirm New Password</Form.Label>
-                <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} placeholder="Confirm new password" required />
+                <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
+                <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.confirmNewPasswordPlaceholder} required />
               </Form.Group>
               <BSButton type="submit" variant="primary" disabled={passwordChanging} classes="align-self-start">
-                {passwordChanging ? "Updating..." : "Update Password"}
+                {passwordChanging ? settingsDict.form.changePassword.updating : settingsDict.form.changePassword.submit}
               </BSButton>
-              {passwordError && <Alert variant="danger" className="fw-bold" dismissible>{passwordError}</Alert>}
-              {passwordSuccess && <Alert variant="success" className="fw-bold" dismissible>{passwordSuccess}</Alert>}
+              {passwordError && <Alert variant="danger" className="fw-bold m-0" dismissible onClose={() => setPasswordError(null)}>{passwordError}</Alert>}
+              {passwordSuccess && <Alert variant="success" className="fw-bold m-0" dismissible onClose={() => setPasswordSuccess(null)}>{passwordSuccess}</Alert>}
             </Form>
           </Card.Body>
         </Card>
@@ -373,7 +378,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
         <Modal show={showProfilePictureModal} onHide={handleCloseProfilePictureModal}>
           <Form onSubmit={handleUpdate}>
             <Modal.Header closeButton>
-              <Modal.Title>Change Profile Picture</Modal.Title>
+              <Modal.Title>{settingsDict.modal.profilePicture.title}</Modal.Title>
             </Modal.Header>
             <Modal.Body className="p-0">
               <div className="d-flex justify-content-center p-3 pb-0">
@@ -383,17 +388,25 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                   <Image src={profileUrl ?? "/assets/icons/profile-user.png"} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={pfpAlt} />
                 )}
               </div>
+
               <Form.Group controlId="profilePicture" className="border-bottom p-3">
-                <Form.Label>Upload Picture</Form.Label>
-                <Form.Control type="file" className="border-0 rounded-0 bg-dark-subtle shadow-sm" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} isInvalid={!!profilePictureFileError} />
+                <Form.Label className="fw-bold fs-5">{settingsDict.modal.profilePicture.label}</Form.Label>
+                <Form.Label className="rounded-0 d-flex position-relative m-0">
+                  <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1" style={{ padding: "6px 12px" }}>
+                    <Form.Control className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} title={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
+                  </button>
+                  <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 rounded-end-0 fw-semibold" type="text" readOnly value={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!profilePictureFileError} />
+                </Form.Label>
                 {profilePictureFileError && <p className="text-danger fw-bold m-0 fs-6">{profilePictureFileError}</p>}
               </Form.Group>
+
               <div className="d-flex justify-content-center p-3 border-bottom">
-                <button type="button" className="text-danger fw-bold bg-transparent p-0 border-0 fs-5" onClick={handleRemoveCurrentProfilePicture}>Remove Current Photo</button>
+                <button type="button" className="text-danger fw-bold bg-transparent p-0 border-0 fs-5" onClick={handleRemoveCurrentProfilePicture}>{settingsDict.modal.profilePicture.remove}</button>
               </div>
+
               <div className="d-flex justify-content-end column-gap-2 p-3">
-                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseProfilePictureModal}>Cancel</button>
-                <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || profilePictureFileError}>Save changes</BSButton>
+                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseProfilePictureModal}>{settingsDict.modal.profilePicture.cancel}</button>
+                <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || profilePictureFileError}>{settingsDict.modal.profilePicture.submit}</BSButton>
               </div>
             </Modal.Body>
           </Form>
@@ -402,7 +415,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
         <Modal show={showBannerModal} onHide={handleCloseBannerModal}>
           <Form onSubmit={handleUpdate}>
             <Modal.Header closeButton>
-              <Modal.Title>Change Profile Banner</Modal.Title>
+              <Modal.Title>{settingsDict.modal.banner.title}</Modal.Title>
             </Modal.Header>
             <Modal.Body className="p-0">
               <div className="d-flex justify-content-center p-3 pb-0">
@@ -412,17 +425,25 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                   <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`pfp-banner w-100 ${profile?.banner_url ? "object-fit-cover" : ""}`} alt={bannerAlt} />
                 )}
               </div>
+
               <Form.Group controlId="profileBanner" className="border-bottom p-3">
-                <Form.Label>Upload Banner</Form.Label>
-                <Form.Control type="file" className="border-0 rounded-0 bg-dark-subtle shadow-sm" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleBannerChange} isInvalid={!!bannerInputError} />
+                <Form.Label className="fw-bold fs-5">{settingsDict.modal.banner.label}</Form.Label>
+                <Form.Label className="rounded-0 d-flex position-relative m-0">
+                  <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-0" style={{ padding: "6px 12px" }}>
+                    <Form.Control className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleBannerChange} title={bannerFileName ? bannerFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
+                  </button>
+                  <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-0 fw-semibold" type="text" readOnly value={bannerFileName ? bannerFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!bannerInputError} />
+                </Form.Label>
                 {bannerInputError && <p className="text-danger fw-bold m-0 fs-6">{bannerInputError}</p>}
               </Form.Group>
+
               <div className="d-flex justify-content-center p-3 border-bottom">
-                <button type="button" className="text-danger fw-bold bg-transparent p-0 border-0 fs-5" onClick={handleRemoveCurrentBanner}>Remove Current Banner</button>
+                <button type="button" className="text-danger fw-bold bg-transparent p-0 border-0 fs-5" onClick={handleRemoveCurrentBanner}>{settingsDict.modal.banner.remove}</button>
               </div>
+
               <div className="d-flex justify-content-end column-gap-2 p-3">
-                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseBannerModal}>Cancel</button>
-                <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || bannerInputError}>Save changes</BSButton>
+                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseBannerModal}>{settingsDict.modal.banner.cancel}</button>
+                <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || bannerInputError}>{settingsDict.modal.banner.submit}</BSButton>
               </div>
             </Modal.Body>
           </Form>

@@ -584,6 +584,8 @@
           "profilePicture": {
             "title": "Change Profile Picture",
             "label": "Upload Picture",
+            "placeholder": "Choose file...",
+            "browse": "Browse",
             "remove": "Remove Current Photo",
             "cancel": "Cancel",
             "submit": "Save Changes",
