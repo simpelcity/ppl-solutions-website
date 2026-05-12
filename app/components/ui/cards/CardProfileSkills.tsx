@@ -41,7 +41,6 @@ export default function CardProfileSkills({ params, dict }: Props) {
     success,
     submitting,
     updateProfile,
-    createProfile,
     fetchedProfile,
     steamID,
     driver,
