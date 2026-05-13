@@ -29,7 +29,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
     const locale = lang === 'en' ? '' : `/${lang}`;
 
     try {
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ppl-solutions.vercel.app";
+      const siteUrl = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_SITE_URL : "http://localhost:8000";
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${siteUrl}${locale}/reset-password`,
       });

@@ -100,16 +100,16 @@ export default function TableJobsClient({ lang, dict }: Props) {
   return (
     <>
       <Container className="p-3 p-md-4" fluid>
-        <Card className="bg-dark rounded-0 border-0 shadow-sm">
+        <Card className="bg-dark rounded-1 border-0 shadow-sm">
           <CardBody className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4">
-            <CardTitle className="text-uppercase fs-2 text-light m-0">{dict.drivershub.jobs.title}</CardTitle>
+            <CardTitle className="text-uppercase fs-3 m-0">{dict.drivershub.jobs.title}</CardTitle>
 
             {loading ? (
               <PlaceholderTable columns={8} rows={10} />
             ) : (
               <div className="table-card-scroll">
                 <Table variant="dark" className="text-start table-jobs" borderless>
-                  <thead className="">
+                  <thead>
                     <tr className="text-uppercase">
                       {tableItems.map((item) => (
                         <th key={item.title} className="bg-primary px-4 py-2">

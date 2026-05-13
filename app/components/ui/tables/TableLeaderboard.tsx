@@ -134,10 +134,10 @@ export default function TableLeaderboard({ dict }: Props) {
 
   return (
     <>
-      <Container className="p-3" fluid>
-        <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
-          <Card.Header className="bg-dark d-flex justify-content-between align-items-center px-4 py-3">
-            <Card.Title className="m-0">{dict.drivershub.leaderboard.card.title}</Card.Title>
+      <Container className="p-3 p-md-4" fluid>
+        <Card className="rounded-1 border-0 shadow-sm" data-bs-theme="dark">
+          <Card.Header className="bg-dark d-flex justify-content-between align-items-center p-3 p-md-4 border-bottom">
+            <Card.Title className="m-0 fs-3">{dict.drivershub.leaderboard.card.title}</Card.Title>
             {selectedPeriod === 'monthly' ? (
               <ButtonGroup className="btn-group-leaderboard">
                 <Button variant="primary" className="text-light" onClick={handlePreviousMonth} disabled={selectedYear === 2020 && selectedMonth === 0}><FaChevronLeft /></Button>
@@ -182,7 +182,7 @@ export default function TableLeaderboard({ dict }: Props) {
               </Dropdown>
             )}
           </Card.Header>
-          <Card.Body className="p-4">
+          <Card.Body className="p-3 p-md-4">
             {error ? (
               <div className="text-danger text-center fw-bold py-3">{error}</div>
             ) : loading ? (
