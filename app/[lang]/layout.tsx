@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }))
 }
 
-export default async function RootLayout({ children, params }: Props) {
+export default async function AppLayout({ children, params }: Props) {
   const { lang } = await params
   const dict = await getDictionary(lang as Locale)
 
