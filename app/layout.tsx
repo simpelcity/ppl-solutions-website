@@ -5,12 +5,13 @@ import { getDictionary } from "@/app/i18n"
 import React from "react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react'
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 
 type Props = {
   children: React.ReactNode
 }
 
-export default async function AppLayout({ children }: Props) {
+export default async function RootLayout({ children }: Props) {
   const lang = i18n.defaultLocale
   const dict = await getDictionary(lang)
   return (
@@ -32,6 +33,8 @@ export default async function AppLayout({ children }: Props) {
             {children}
             <SpeedInsights/>
             <Analytics/>
+            {process.env.NODE_ENV === "production" && <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID!} />}
+            {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} />}
           </SidebarProvider>
         </AuthProvider>
       </body>
