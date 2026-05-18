@@ -76,7 +76,7 @@ export default async function UserStatisticsPage({ params }: Props) {
 
   return (
     <main className="fs-5">
-      <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light d-flex justify-content-center">
+      <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
         <UserStats dict={dict} />
       </section>
     </main>

@@ -74,10 +74,10 @@ export default function CardProfile({ params, dict }: Props) {
 
   return (
     <>
-      <Container className="p-3 d-flex flex-column row-gap-3" fluid>
-        <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
+      <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
+        <Card className="border-0 rounded-1 shadow-sm" data-bs-theme="dark">
           <Card.Header className="p-0">
-            <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`pfp-banner ${profile?.banner_url ? "object-fit-cover w-100" : "w-100"}`}  alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
+            <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`pfp-banner rounded-top-1 ${profile?.banner_url ? "object-fit-cover w-100" : "w-100"}`}  alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
           </Card.Header>
           <Card.Body className="d-flex flex-column pb-3 pb-md-0">
             <div className="d-flex pb-3 pb-md-0">

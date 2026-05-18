@@ -88,9 +88,9 @@ export default function CardProfileSkills({ params, dict }: Props) {
 
   return (
     <>
-      <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
-        <Card.Body className="p-4">
-          <h3 className="mb-3">{dict.drivershub.profile.profilePage.skillsCard.title}</h3>
+      <Card className="border-0 rounded-1 shadow-sm" data-bs-theme="dark">
+        <Card.Body className="p-3 p-md-4">
+          <h3 className="mb-3 mb-md-4">{dict.drivershub.profile.profilePage.skillsCard.title}</h3>
           <Container className="m-0 p-0 d-flex flex-column row-gap-2 align-items-center">
             {skillsList.map((skill, index) => (
               <Row key={index} className={`w-100 row-gap-2 row-gap-md-0 ${index !== skillsList.length - 1 ? "border-bottom border-2 border-light border-opacity-25 pb-2" : ""}`}>

@@ -450,7 +450,9 @@
         "profilePicture": "Profielfoto (optioneel)",
         "submitNewMember": "lid toevoegen",
         "submitEditMember": "lid bijwerken",
-        "calcelEditMember": "annuleren",
+        "cancelEditMember": "annuleren",
+        "updating": "Lid bijwerken...",
+        "saving": "Lid opslaan...",
         "rolesDepartments": {
           "title": "Beheer rollen en afdelingen",
           "currentRoles": "Huidige Rollen",

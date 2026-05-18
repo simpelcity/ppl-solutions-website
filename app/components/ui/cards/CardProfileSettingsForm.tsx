@@ -300,13 +300,13 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
   return (
     <>
-      <Container className="p-3 d-flex flex-column row-gap-3" fluid>
-        <Card className="border-0 rounded-0 shadow-sm p-4" data-bs-theme="dark">
-          <Card.Header className="bg-dark border-0 p-0 pb-3">
+      <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
+        <Card className="border-0 rounded-1 shadow-sm p-3 p-md-4" data-bs-theme="dark">
+          <Card.Header className="bg-dark border-0 p-0 mb-3 mb-md-4">
             <h4 className="m-0 p-0">{settingsDict.form.accountInfo.title}</h4>
           </Card.Header>
           <Card.Body className="p-0">
-            <Form onSubmit={handleUpdate} className="d-flex flex-column row-gap-3">
+            <Form onSubmit={handleUpdate} className="d-flex flex-column row-gap-3 row-gap-md-4">
               <Row className="row-gap-3">
                 <Col xs={12} md={5} xl={4}>
                   <Card className="bg-dark-subtle border-0 rounded-0 shadow-sm h-100">
@@ -334,15 +334,15 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                   <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.username}</Form.Label>
                   <Form.Control type="text" className="border-0 rounded-0 bg-dark-subtle shadow-sm text-gray" value={username} disabled placeholder={settingsDict.form.accountInfo.usernamePlaceholder} />
                 </Form.Group>
+                <Form.Group controlId="email">
+                  <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.email}</Form.Label>
+                  <Form.Control type="email" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={dict.contact.form.emailPlaceholder} />
+                </Form.Group>
+                <Form.Group controlId="bio">
+                  <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.bio}</Form.Label>
+                  <Form.Control as="textarea" rows={3} className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={bio} onChange={(e) => setBio(e.target.value)} placeholder={settingsDict.form.accountInfo.bioPlaceholder} />
+                </Form.Group>
               </Row>
-              <Form.Group controlId="email">
-                <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.email}</Form.Label>
-                <Form.Control type="email" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={dict.contact.form.emailPlaceholder} />
-              </Form.Group>
-              <Form.Group controlId="bio">
-                <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.bio}</Form.Label>
-                <Form.Control as="textarea" rows={3} className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={bio} onChange={(e) => setBio(e.target.value)} placeholder={settingsDict.form.accountInfo.bioPlaceholder} />
-              </Form.Group>
               <BSButton type="submit" variant="primary" disabled={uploading || profilePictureFileError || bannerInputError} classes="align-self-start">
                 {uploading ? settingsDict.form.accountInfo.uploading : settingsDict.form.accountInfo.submit}
               </BSButton>
@@ -352,20 +352,22 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
           {success && <Alert variant="success" className="mt-3 mb-0 fw-bold" dismissible>{success}</Alert>}
         </Card>
 
-        <Card className="border-0 rounded-0 shadow-sm p-4" id="change-password" data-bs-theme="dark">
-          <Card.Header className="bg-dark border-0 p-0 pb-3">
+        <Card className="border-0 rounded-1 shadow-sm p-3 p-md-4" id="change-password" data-bs-theme="dark">
+          <Card.Header className="bg-dark border-0 p-0 mb-3 mb-md-4">
             <h4 className="m-0 p-0">{settingsDict.form.changePassword.title}</h4>
           </Card.Header>
           <Card.Body className="p-0">
-            <Form onSubmit={handlePasswordChange} className="d-flex flex-column row-gap-3">
-              <Form.Group controlId="newPassword">
-                <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
-                <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.newPasswordPlaceholder} required />
-              </Form.Group>
-              <Form.Group controlId="confirmNewPassword">
-                <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
-                <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.confirmNewPasswordPlaceholder} required />
-              </Form.Group>
+            <Form onSubmit={handlePasswordChange} className="d-flex flex-column row-gap-3 row-gap-md-4">
+              <Row className="row-gap-3">
+                <Form.Group controlId="newPassword">
+                  <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
+                  <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.newPasswordPlaceholder} required />
+                </Form.Group>
+                <Form.Group controlId="confirmNewPassword">
+                  <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
+                  <Form.Control type="password" className="border-0 rounded-0 bg-dark-subtle shadow-sm" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.confirmNewPasswordPlaceholder} required />
+                </Form.Group>
+              </Row>
               <BSButton type="submit" variant="primary" disabled={passwordChanging} classes="align-self-start">
                 {passwordChanging ? settingsDict.form.changePassword.updating : settingsDict.form.changePassword.submit}
               </BSButton>

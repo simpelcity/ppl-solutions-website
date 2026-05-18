@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal } from "react-bootstrap";
+import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal, Row, Container } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import { BSButton, LoaderSpinner } from "@/components";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
@@ -14,6 +14,9 @@ type CardGalleryFormProps = {
 };
 
 export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
+  const galleryDict = dict.drivershub.gallery;
+  const settingsDict = dict.drivershub.profile.settingsPage;
+
   const {
     items,
     loading,
@@ -76,133 +79,148 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
 
   return (
     <>
-      <Col xs={12} md={10} lg={6}>
-        <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-          <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
-          <Card.Body>
-            <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>{dict.drivershub.gallery.form.title || "Title"}</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder={dict.drivershub.gallery.form.titlePlaceholder || "Image title"}
-                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
-                  required
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  disabled={submitting}
-                />
-              </Form.Group>
+      <Container className="p-3 p-md-4" fluid>
+        <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
+          <Col xs={12} md={10} lg={6}>
+            <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
+              <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3 py-md-4">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
+              <Card.Body className="p-3 p-md-4 text-start">
+                <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label className="fw-bold fs-5">{dict.drivershub.gallery.form.title || "Title"}</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder={dict.drivershub.gallery.form.titlePlaceholder || "Image title"}
+                      className="rounded-0 border-0 shadow-sm bg-dark-subtle"
+                      required
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      disabled={submitting}
+                    />
+                  </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>{dict.drivershub.gallery.form.image || "Image"} {editingId ? (dict.drivershub.gallery.form.imageEdit || "(leave empty to keep current)") : ""}</Form.Label>
-                <Form.Control
-                  id="gallery-file-input"
-                  type="file"
-                  accept="image/*"
-                  className="rounded-0 border-0 shadow-sm bg-dark-subtle"
-                  onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)}
-                  disabled={submitting}
-                />
-              </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label className="fw-bold fs-5">{dict.drivershub.gallery.form.image || "Image"} {editingId ? (dict.drivershub.gallery.form.imageEdit || "(leave empty to keep current)") : ""}</Form.Label>
+                    <Form.Control
+                      id="gallery-file-input"
+                      type="file"
+                      accept="image/*"
+                      className="rounded-0 border-0 shadow-sm bg-dark-subtle"
+                      onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)}
+                      disabled={submitting}
+                    />
+                  </Form.Group>
 
-              {error && (
-                <Alert variant="danger" className="py-2" dismissible>
-                  {error}
-                </Alert>
-              )}
-              {success && (
-                <Alert variant="success" className="py-2" dismissible>
-                  {success}
-                </Alert>
-              )}
+                  {/* <Form.Group controlId="profilePicture" className="mb-3">
+                    <Form.Label className="fw-bold fs-5">{teamDict.form.profilePicture}</Form.Label>
+                    <Form.Label className="rounded-0 d-flex position-relative m-0">
+                      <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1 fs-6" style={{ padding: "6px 12px" }}>
+                        <Form.Control className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} title={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
+                      </button>
+                      <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 rounded-end-0 fw-semibold" type="text" readOnly value={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!profilePictureFileError} />
+                    </Form.Label>
+                    {profilePictureFileError && <p className="text-danger fw-bold m-0 fs-6">{profilePictureFileError}</p>}
+                  </Form.Group> */}
 
-              <BSButton variant="primary" size="lg" type="submit" disabled={submitting} classes="mt-2">
-                {submitting ? (
-                  <>
-                    <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
-                  </>
-                ) : editingId ? (
-                  dict.drivershub.gallery.form.submitEdit || "Update Item"
+                  {error && (
+                    <Alert variant="danger" className="py-2" dismissible>
+                      {error}
+                    </Alert>
+                  )}
+                  {success && (
+                    <Alert variant="success" className="py-2" dismissible>
+                      {success}
+                    </Alert>
+                  )}
+
+                  <BSButton variant="primary" size="lg" type="submit" disabled={submitting} classes="mt-2">
+                    {submitting ? (
+                      <>
+                        <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
+                      </>
+                    ) : editingId ? (
+                      dict.drivershub.gallery.form.submitEdit || "Update Item"
+                    ) : (
+                      dict.drivershub.gallery.form.submit || "Add Item"
+                    )}
+                  </BSButton>
+
+                  {editingId && (
+                    <BSButton
+                      variant="secondary"
+                      classes="mt-2 ms-2 border-secondary"
+                      onClick={() => {
+                        setEditingId(null);
+                        setTitle("");
+                        setFile(null);
+                        const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
+                        if (fileInput) fileInput.value = "";
+                      }}
+                      disabled={submitting}>
+                      {dict.drivershub.gallery.form.cancel || "Cancel"}
+                    </BSButton>
+                  )}
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          {/* Gallery Items List */}
+          <Col xs={12} md={10} lg={6}>
+            <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
+              <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3 py-md-4">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
+              <Card.Body className="p-3 p-md-4">
+                {loading ? (
+                  <div className="d-flex justify-content-center align-items-center column-gap-2">
+                    <Spinner animation="border" />
+                    <span className="fs-4">{dict.gallery.loading}</span>
+                  </div>
+                ) : items.length === 0 ? (
+                  <p className="text-muted">{dict.errors.gallery.NO_IMAGES_FOUND}</p>
                 ) : (
-                  dict.drivershub.gallery.form.submit || "Add Item"
+                  <ListGroup variant="flush">
+                    {items.map((item) => (
+                      <ListGroup.Item
+                        key={item.id}
+                        className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle flex-wrap row-gap-2">
+                        <div className="d-flex align-items-center">
+                          <Image
+                            src={item.image_url || "/assets/icons/image-placeholder.png"}
+                            alt={item.title || "Gallery image"}
+                            width={60}
+                            height={60}
+                            className="me-3"
+                            style={{ objectFit: "cover" }}
+                          />
+                          <span>{item.title}</span>
+                        </div>
+                        <div className="d-flex column-gap-2">
+                          <Button
+                            variant="outline-primary"
+                            size="sm"
+                            className="d-flex align-items-center justify-content-center p-2 rounded-1"
+                            onClick={() => handleEdit(item)}
+                            title="Edit item">
+                            <FaEdit className="fs-6" />
+                          </Button>
+                          <Button
+                            variant="outline-danger"
+                            size="sm"
+                            className="d-flex align-items-center justify-content-center p-2 rounded-1"
+                            onClick={() => openConfirmModal(item.id)}
+                            title="Delete item">
+                            <FaTrash className="fs-6" />
+                          </Button>
+                        </div>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
                 )}
-              </BSButton>
-
-              {editingId && (
-                <BSButton
-                  variant="secondary"
-                  classes="mt-2 ms-2 border-secondary"
-                  onClick={() => {
-                    setEditingId(null);
-                    setTitle("");
-                    setFile(null);
-                    const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
-                    if (fileInput) fileInput.value = "";
-                  }}
-                  disabled={submitting}>
-                  {dict.drivershub.gallery.form.cancel || "Cancel"}
-                </BSButton>
-              )}
-            </Form>
-          </Card.Body>
-        </Card>
-      </Col>
-
-      {/* Gallery Items List */}
-      <Col xs={12} md={10} lg={6}>
-        <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-          <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
-          <Card.Body>
-            {loading ? (
-              <div className="d-flex justify-content-center align-items-center column-gap-2">
-                <Spinner animation="border" />
-                <span className="fs-4">{dict.gallery.loading}</span>
-              </div>
-            ) : items.length === 0 ? (
-              <p className="text-muted">{dict.errors.gallery.NO_IMAGES_FOUND}</p>
-            ) : (
-              <ListGroup variant="flush">
-                {items.map((item) => (
-                  <ListGroup.Item
-                    key={item.id}
-                    className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle flex-wrap row-gap-2">
-                    <div className="d-flex align-items-center">
-                      <Image
-                        src={item.image_url || "/assets/icons/image-placeholder.png"}
-                        alt={item.title || "Gallery image"}
-                        width={60}
-                        height={60}
-                        className="me-3"
-                        style={{ objectFit: "cover" }}
-                      />
-                      <span>{item.title}</span>
-                    </div>
-                    <div className="d-flex column-gap-2">
-                      <Button
-                        variant="outline-primary"
-                        size="sm"
-                        className="d-flex align-items-center justify-content-center p-2"
-                        onClick={() => handleEdit(item)}
-                        title="Edit item">
-                        <FaEdit className="fs-6" />
-                      </Button>
-                      <Button
-                        variant="outline-danger"
-                        size="sm"
-                        className="d-flex align-items-center justify-content-center p-2"
-                        onClick={() => openConfirmModal(item.id)}
-                        title="Delete item">
-                        <FaTrash className="fs-6" />
-                      </Button>
-                    </div>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            )}
-          </Card.Body>
-        </Card>
-      </Col>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
 
       {/* Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">

@@ -51,7 +51,7 @@ export default async function VtcStatisticsPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
-          <Row className="w-100 d-flex p-3">
+          <Row className="w-100 d-flex p-3 p-md-4">
             <VtcStats dict={dict} />
           </Row>
         </section>

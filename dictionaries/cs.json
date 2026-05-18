@@ -450,7 +450,9 @@
         "profilePicture": "Profilový obrázek (volitelné)",
         "submitNewMember": "přidat člena",
         "submitEditMember": "aktualizovat člena",
-        "calcelEditMember": "zrušit",
+        "cancelEditMember": "zrušit",
+        "updating": "Aktualizace člena...",
+        "saving": "Ukládání člena...",
         "rolesDepartments": {
           "title": "Správa rolí a oddělení",
           "currentRoles": "Aktuální role",
