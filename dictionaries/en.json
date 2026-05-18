@@ -454,13 +454,16 @@
         "updating": "Updating Member...",
         "saving": "Saving Member...",
         "loading": "Loading Team Members...",
+        "editMember": "Edit Member",
+        "deletePfp": "Delete Profile Picture",
+        "deleteMember": "Delete Member",
         "rolesDepartments": {
           "title": "Manage Roles & Departments",
           "currentRoles": "Current Roles",
           "addRole": "Add Role",
           "department": "Select Department",
           "role": "Select Role",
-          "loading": "Loading Roles"
+          "loading": "Loading Roles..."
         }
       },
       "card": {
@@ -488,7 +491,11 @@
         "imageEdit": "Image (leave empty to keep current)",
         "submit": "add item",
         "submitEdit": "update item",
-        "cancel": "cancel"
+        "cancel": "cancel",
+        "editGalleryItem": "Edit Gallery Item",
+        "deleteGalleryItem": "Delete Gallery Item",
+        "updating": "Updating Gallery Item...",
+        "saving": "Saving Gallery Item..."
       },
       "card": {
         "title": "Gallery Items"

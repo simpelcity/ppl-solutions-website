@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
 import { Dropdown, Image, Nav, Collapse, Offcanvas, Placeholder } from "react-bootstrap";
-import { FaAngleRight, FaAngleDown } from "react-icons/fa6";
+import { FaAngleRight, FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
 import { FaChartLine } from "react-icons/fa6";
@@ -52,6 +52,7 @@ function SidebarContent({
   const router = useRouter();
   const [profileUrl, setProfileUrl] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   const currentLang = lang === 'en' ? '' : `/${lang}`
 
@@ -176,7 +177,7 @@ function SidebarContent({
           <Nav.Item key={item.href}>
             <Nav.Link
               href={item.href}
-              className={`text-light d-flex align-items-center ${isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : ""
+              className={`text-light d-flex align-items-center ${isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : "rounded-1"
                 } ${pathname === item.href ? "active fw-bold" : "fw-semibold"}`}
               title={item.label}>
               <span className={`fs-5 ${isSidebarCollapsed ? "me-0" : "me-2"}`}>{item.icon}</span>
@@ -187,12 +188,12 @@ function SidebarContent({
 
         {isAdmin && !isSidebarCollapsed && (
           <>
-            <Nav.Item className={open ? "bg-light bg-opacity-10 rounded-2" : ""}>
+            <Nav.Item className={open ? "bg-light bg-opacity-10 rounded-1" : ""}>
               <Nav.Link
                 onClick={() => setOpen(!open)}
                 aria-controls="dashboard-collapse-menu"
                 aria-expanded={open}
-                className={`d-flex align-items-center justify-content-between text-light ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active fw-bold" : "fw-semibold"
+                className={`d-flex align-items-center justify-content-between text-light rounded-1 ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active fw-bold" : "fw-semibold"
                   } ${open ? "rounded-bottom-0" : ""}`}>
                 <div className="d-flex align-items-center">
                   <span className="me-2 fs-5"><BiSolidDashboard /></span>
@@ -205,11 +206,11 @@ function SidebarContent({
                 <div id="dashboard-collapse-menu">
                   <ul className="list-unstyled m-0">
                     {collapseItems.map((item, index) => (
-                      <li key={item.href}>
+                      <li key={item.href} className={`${index === collapseItems.length - 1 && "rounded-bottom-1"}`}>
                         <a
                           href={item.href}
                           className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${pathname === item.href ? "bg-light bg-opacity-10 fw-bold" : "fw-semibold"
-                            } ${index === collapseItems.length - 1 && "rounded-bottom-2"}`}
+                            }`}
                           title={item.label}>
                           <span className="me-2">{item.icon}</span>
                           {item.label}
@@ -231,7 +232,7 @@ function SidebarContent({
                   className={`text-light d-flex align-items-center justify-content-center p-3 rounded-0 ${pathname === item.href ? "active" : ""
                     }`}
                   title={item.label}>
-                  {item.icon}
+                  <span className="fs-5">{item.icon}</span>
                 </Nav.Link>
               </Nav.Item>
             ))}
@@ -240,7 +241,7 @@ function SidebarContent({
       </Nav>
       <hr />
       {!isSidebarCollapsed && (
-        <Dropdown>
+        <Dropdown className="profile-dropdown" onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle
             variant="dark"
             className="bg-transparent border-0 p-0 d-flex align-items-center text-light text-decoration-none w-100">
@@ -253,8 +254,9 @@ function SidebarContent({
               className="me-2 object-fit-cover"
             />
             <strong>{username}</strong>
+            {isProfileDropdownOpen ? <FaAngleDown className="ms-1 rotate-180-cw" /> : <FaAngleUp className="ms-1 rotate-180-ccw" />}
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow-sm mb-1" style={{ zIndex: 1050 }}>
+          <Dropdown.Menu className="dropdown-menu-dark shadow-sm mb-1 bg-dark-subtle border-0 rounded-1" style={{ zIndex: 1050 }}>
             <Dropdown.Item href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
             <Dropdown.Item href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
@@ -263,7 +265,10 @@ function SidebarContent({
         </Dropdown>
       )}
       {isSidebarCollapsed && (
-        <Dropdown data-bs-theme="dark">
+        <Dropdown
+          data-bs-theme="dark"
+          className="profile-dropdown"
+          onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle
             variant="dark"
             className="bg-transparent border-0 p-0 d-flex align-items-center justify-content-center text-light text-decoration-none w-100">
@@ -274,8 +279,9 @@ function SidebarContent({
               height={32}
               roundedCircle
             />
+            <span>{isProfileDropdownOpen ? <FaAngleUp className="ms-1" /> : <FaAngleDown className="ms-1" />}</span>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow-sm ms-3 mb-1" style={{ zIndex: 1050 }}>
+          <Dropdown.Menu className="dropdown-menu-dark shadow-sm ms-3 mb-1 bg-dark-subtle border-0 rounded-1" style={{ zIndex: 1050 }}>
             <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
             <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
@@ -355,9 +361,9 @@ export default function Sidebar({
           </h3>
         </a>
         {isSidebarCollapsed ? (
-          <GoSidebarExpand className="fs-3 flip" role="button" onClick={() => setIsSidebarCollapsed(false)} />
+          <GoSidebarExpand className="fs-3 flip rotate-180-cw" role="button" onClick={() => setIsSidebarCollapsed(false)} />
         ) : (
-          <GoSidebarCollapse className="fs-3 flip" role="button" onClick={() => setIsSidebarCollapsed(true)} />
+          <GoSidebarCollapse className="fs-3 flip rotate-180-cw" role="button" onClick={() => setIsSidebarCollapsed(true)} />
         )}
         {/* <GoArrowSwitch className="fs-3" role="button" onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} /> */}
       </div>

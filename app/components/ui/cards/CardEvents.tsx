@@ -24,13 +24,12 @@ export default function CardEvents({ dict }: PageProps) {
   };
   
   const { events, loading, error } = useEvents(dict);
-  console.log("Events data:", events);
 
   if (loading) {
     return (
       <Col xs={12} md={6} xl={4}>
-        <Card className="bg-dark text-light rounded-0 border-0 shadow-sm text-start">
-          <Card.Img as={Placeholder} variant="top" className="rounded-0" animation="glow">
+        <Card className="bg-dark text-light rounded-1 border-0 shadow-sm text-start">
+          <Card.Img as={Placeholder} variant="top" className="rounded-top-1" animation="glow">
             <Placeholder xs={12} style={{ height: "91px" }} />
           </Card.Img>
           <Card.Body>
@@ -144,10 +143,10 @@ export default function CardEvents({ dict }: PageProps) {
       {events.map((event: any) => {
         return (
           <Col xs={12} md={6} xl={4} key={event.id}>
-            <Card className="bg-dark text-light rounded-0 border-0 shadow-sm">
+            <Card className="bg-dark text-light rounded-1 border-0 shadow-sm">
               <Card.Img
                 variant="top"
-                className="rounded-0"
+                className="rounded-top-1"
                 src={event.banner || "https://placehold.co/1920x500?text=No+Banner"}
                 alt={event.name}
                 loading="lazy"

@@ -33,3 +33,12 @@
 .sidebar .nav-item .nav-link.active {
   background-color: $primary;
 }
+
+.profile-dropdown .dropdown-item:hover {
+  background-color: $primary;
+}
+
+.profile-dropdown .dropdown-toggle::after,
+#lang-dropdown .dropdown-toggle::after {
+  content: none;
+}

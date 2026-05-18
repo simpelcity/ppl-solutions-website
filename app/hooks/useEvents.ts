@@ -196,7 +196,7 @@ export function useEvents(dict: Dictionary) {
         if (res.status !== 200) throw new Error(dict.errors.events.FAILED_TO_FETCH_EVENTS, { cause: res.status });
         const data = res.data;
         // setEvents(data.response);
-        setEvents(eventData.response)
+        setEvents(data.response)
       } catch (err: any) {
         const message = err?.response?.data?.message || err?.message || dict.errors.events.FAILED_TO_FETCH_EVENTS;
         setError(message);

@@ -26,6 +26,8 @@ export function useGallery(dict: Dictionary) {
   }, []);
 
   const fetchItems = async () => {
+    setError(null);
+
     try {
       const res = await axios.get(`/api/gallery?lang=${lang}`);
       if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status });
@@ -45,6 +47,8 @@ export function useGallery(dict: Dictionary) {
 
     setSubmitting(true);
     setError(null);
+    setSuccess(null);
+
     try {
       const res = await axios.post(`/api/gallery?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -69,6 +73,8 @@ export function useGallery(dict: Dictionary) {
 
     setSubmitting(true);
     setError(null);
+    setSuccess(null);
+
     try {
       const res = await axios.put(`/api/gallery?lang=${lang}`, fd, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -87,6 +93,9 @@ export function useGallery(dict: Dictionary) {
   };
 
   const deleteItem = async (id: number) => {
+    setError(null);
+    setSuccess(null);
+
     try {
       const res = await axios.delete(`/api/gallery?lang=${lang}`, { data: { id } });
       if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_DELETE_ITEM, { cause: res.status });

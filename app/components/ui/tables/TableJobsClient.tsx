@@ -3,6 +3,7 @@
 import { Table, Card, CardBody, CardTitle, Container } from "react-bootstrap";
 import { PlaceholderTable, BSButton } from "@/components";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useUserJobs } from "@/hooks/useUserJobs";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import type { Dictionary } from "@/app/i18n"
@@ -157,10 +158,10 @@ export default function TableJobsClient({ lang, dict }: Props) {
                 {!showAll && lastPage > 1 && (
                   <div className="d-flex justify-content-center align-items-center column-gap-1">
                     <button
-                      className="p-1 btn btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
+                      className="p-2 btn btn-pagination d-flex align-items-center text-light border-0 rounded-1 bg-light bg-opacity-25"
                       onClick={goToPreviousPage}
                       disabled={displayPage === 1}>
-                      <MdNavigateBefore className="fs-4 text-light" />
+                      <FaAngleLeft className="fs-6 text-light" />
                     </button>
 
                     <nav aria-label="Job pages">
@@ -177,7 +178,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                               key={`page-${page}`}
                               className={`page-item d-flex align-items-center ${displayPage === page ? "active" : ""}`}>
                               <button
-                                className={`page-link rounded-3 py-1 d-flex align-items-center ${displayPage === page
+                                className={`page-link rounded-1 py-1 d-flex align-items-center ${displayPage === page
                                   ? "bg-primary"
                                   : "bg-transparent border-0 shadow-sm-none text-light text-opacity-50"
                                   }`}
@@ -192,10 +193,10 @@ export default function TableJobsClient({ lang, dict }: Props) {
                     </nav>
 
                     <button
-                      className="p-1 btn btn-pagination d-flex align-items-center text-light border-0 rounded-3 bg-light bg-opacity-25"
+                      className="p-2 btn btn-pagination d-flex align-items-center text-light border-0 rounded-1 bg-light bg-opacity-25"
                       onClick={goToNextPage}
                       disabled={displayPage === lastPage}>
-                      <MdNavigateNext className="fs-4 text-light" />
+                      <FaAngleRight className="fs-6 text-light" />
                         </button>
                       </div>
                     )}

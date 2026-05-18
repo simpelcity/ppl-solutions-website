@@ -42,7 +42,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
   if (loading) {
     return (
       <Col xs={12} md={11} xl={10} className="px-3">
-        <Card className="bg-dark text-light rounded-0 border-0 shadow-sm">
+        <Card className="bg-dark text-light rounded-1 border-0 shadow-sm">
           <Card.Body className="d-flex flex-column align-items-center">
             <div className="mb-3">
               <div>
@@ -273,7 +273,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
   return (
     <>
       <Col xs={12} md={11} xl={10}>
-        <Card className="bg-dark text-light rounded-0 border-0 shadow-sm">
+        <Card className="bg-dark text-light rounded-1 border-0 shadow-sm">
           <Card.Body className="d-flex flex-column align-items-center">
             <div className="mb-3">
               <div className="d-flex align-items-center gap-1">
@@ -395,10 +395,10 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                     )}
                   </BSButton>
                   <Collapse in={vtcsOpen}>
-                    <Row id="vtcs-collapse-menu" className={`mb-3 row-gap-4 ${vtcsOpen ? "d-flex justify-content-center" : "justify-content-center"}`}>
+                    <Row id="vtcs-collapse-menu" className={`mb-3 row-gap-3 row-gap-md-4 ${vtcsOpen ? "d-flex justify-content-center" : "justify-content-center"}`}>
                       {event.attendances.confirmed_vtcs.map((vtc: any) => (
                         <Col key={vtc.id} xs={12} md={6} lg={4}>
-                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center">
+                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center rounded-1">
                             <a href={`https://truckersmp.com/vtc/${vtc.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link fw-bold">
                               {vtc.name}
                             </a>
@@ -440,10 +440,10 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                     )}
                   </BSButton>
                   <Collapse in={usersOpen}>
-                    <Row id="users-collapse-menu" className={`mb-3 row-gap-4 ${usersOpen ? "d-flex justify-content-center": "justify-content-center"}`}>
+                    <Row id="users-collapse-menu" className={`mb-3 row-gap-3 row-gap-md-4 ${usersOpen ? "d-flex justify-content-center": "justify-content-center"}`}>
                       {event.attendances.confirmed_users.map((user: any) => (
                         <Col key={user.id} xs={12} md={6} lg={4}>
-                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center">
+                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center rounded-1">
                             <a href={`https://truckersmp.com/user/${user.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link fw-bold">
                               {user.username}
                             </a>

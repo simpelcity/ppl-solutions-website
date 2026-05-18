@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Nav, Dropdown, Image } from 'react-bootstrap'
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { BSButton } from "@/components";
 import { i18n, type Locale } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
@@ -21,6 +22,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
   const pathname = usePathname();
   const router = useRouter();
   const [expanded, setExpanded] = useState(false);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const { user } = useAuth();
 
   const currentLocale = i18n.locales.find(
@@ -103,7 +105,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
       </div>
       <div className={`vr text-white ${offCanvas ? 'd-none' : width < 576 ? 'd-none' : 'd-block'}`}></div>
       <div className="d-flex align-items-center justify-content-center">
-        <Dropdown align="end" style={{ width: 'min-content' }}>
+        <Dropdown align="end" id="lang-dropdown" style={{ width: 'min-content' }} onToggle={(nextShow) => setIsLangDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle variant="dark" className="bg-transparent border-0 d-flex align-items-center py-0 px-0 fw-semibold" id="dropdown-lang">
             <Image
               src={languageNames[currentLocale].url}
@@ -112,8 +114,9 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
               style={{ width: "25px", height: "17px" }}
             />
             {isMobile ? languageNames[currentLocale].long : languageNames[currentLocale].short}
+            <span className="ms-1">{isLangDropdownOpen ? <FaAngleDown className="rotate-180-cw" /> : <FaAngleUp className="rotate-180-ccw" />}</span>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="mt-3 position-absolute">
+          <Dropdown.Menu className="mt-3 position-absolute rounded-1 border-0 shadow-sm bg-dark-subtle py-0">
             {i18n.locales.map((locale) => (
               <Dropdown.Item
                 className="d-flex align-items-center fw-semibold"

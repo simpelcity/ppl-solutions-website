@@ -94,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
             <h5 className="my-auto">{dict.navbar.brand}</h5>
           </BSNavbar.Brand>
           <BSNavbar.Toggle aria-controls="main-navbar" className="text-light text-opacity-75">
-            <RxHamburgerMenu size={30} />
+            {expanded ? <RxHamburgerMenu className="" size={30} /> : <RxHamburgerMenu className="" size={30} />}
           </BSNavbar.Toggle>
           <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
             <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
@@ -104,7 +104,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
                   as={Link}
                   onClick={() => setExpanded(false)}
                   href={link.href}
-                  className={`${pathname === link.href ? "active" : ""
+                  className={`${(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? "active" : ""
                     } text-light fs-5 px-xl-0 pt-xl-0 text-center mx-xl-2`}>
                   {link.title}
                 </Nav.Link>

@@ -64,10 +64,24 @@
   background: transparent !important;
 }
 
-.shadow-bottom {
-  box-shadow: 0 2px 4px #00000013 !important;
-}
-
 .border-dark-subtle {
   border-color: #2b3035 !important;
+}
+
+#lang-dropdown .dropdown-item:first-child {
+  border-top-left-radius: var(--bs-border-radius-sm) !important;
+  border-top-right-radius: var(--bs-border-radius-sm) !important;
+}
+
+#lang-dropdown .dropdown-item:last-child {
+  border-bottom-left-radius: var(--bs-border-radius-sm) !important;
+  border-bottom-right-radius: var(--bs-border-radius-sm) !important;
+}
+
+#lang-dropdown .dropdown-item.active {
+  font-weight: bold !important;
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
 }

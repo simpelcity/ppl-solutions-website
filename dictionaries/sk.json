@@ -452,13 +452,18 @@
         "submitEditMember": "aktualizovať člena",
         "cancelEditMember": "zrušiť",
         "updating": "Aktualizácia člena...",
-        "saving": "Ukládání člena...",
+        "saving": "Ukladanie člena...",
+        "loading": "Načítavanie členov tímu...",
+        "editMember": "Upraviť člena",
+        "deletePfp": "Odstrániť profilový obrázok",
+        "deleteMember": "Odstrániť člena",
         "rolesDepartments": {
           "title": "Správa rolí a oddelení",
           "currentRoles": "Aktuálne roly",
           "addRole": "Pridať rolu",
           "department": "Vybrať oddelenie",
-          "role": "Vybrať rolu"
+          "role": "Vybrať rolu",
+          "loading": "Načítavanie rolí..."
         }
       },
       "card": {
@@ -486,7 +491,11 @@
         "imageEdit": "Obrázok (ponechaj prázdne pre zachovanie aktuálneho)",
         "submit": "pridať položku",
         "submitEdit": "aktualizovať položku",
-        "cancel": "zrušiť"
+        "cancel": "zrušiť",
+        "editGalleryItem": "Upraviť položku galérie",
+        "deleteGalleryItem": "Odstrániť položku galérie",
+        "updating": "Aktualizácia položky galérie...",
+        "saving": "Ukladanie položky galérie..."
       },
       "card": {
         "title": "Položky galérie"
@@ -654,7 +663,8 @@
     "members": {
       "MEMBER_NOT_FOUND": "Člen nebol nájdený",
       "FAILED_TO_FETCH_MEMBERS": "Nepodarilo sa načítať členov",
-      "FAILED_TO_GET_MEMBER_ID": "Nepodarilo sa získať ID člena"
+      "FAILED_TO_GET_MEMBER_ID": "Nepodarilo sa získať ID člena",
+      "NO_MEMBERS_FOUND": "Neboli nájdení žiadni členovia"
     },
     "drivers": {
       "FAILED_TO_FETCH_DRIVERS": "Nepodarilo sa načítať vodičov",

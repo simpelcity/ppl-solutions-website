@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal, Row, Container } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import { BSButton, LoaderSpinner } from "@/components";
@@ -12,6 +12,10 @@ type ConfirmAction = "delete-item" | null;
 type CardGalleryFormProps = {
   dict: Dictionary;
 };
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
 export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
   const galleryDict = dict.drivershub.gallery;
@@ -29,33 +33,92 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     updateItem,
     deleteItem,
   } = useGallery(dict);
+
   const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
+
+  const [galleryPictureFileError, setGalleryPictureFileError] = useState<string | null>(null);
+  const [galleryFileName, setGalleryFileName] = useState<string>("");
 
   const [showModal, setShowModal] = useState(false);
   const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
   const [targetId, setTargetId] = useState<number | null>(null);
 
+  function validateImageFile(file: File) {
+      if (file.size > MAX_FILE_SIZE) {
+        return dict.errors.files.FILE_TOO_LARGE;
+      }
+  
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        return dict.errors.files.INVALID_FILE_TYPE;
+      }
+  
+      const extension = `.${file.name.split(".").pop()?.toLowerCase() ?? ""}`;
+      if (!ALLOWED_EXTENSIONS.includes(extension)) {
+        return dict.errors.files.INVALID_FILE_EXTENSION;
+      }
+  
+      return null;
+    }
+  
+    function handleGalleryPictureChange(e: ChangeEvent<HTMLInputElement>) {
+      const selectedFile = e.target.files?.[0] ?? null;
+  
+      if (!selectedFile) {
+        setFile(null);
+        setGalleryPictureFileError(null);
+        return;
+      }
+  
+      const validationError = validateImageFile(selectedFile);
+      if (validationError) {
+        setFile(null);
+        setGalleryPictureFileError(validationError);
+        return;
+      }
+  
+      setGalleryPictureFileError(null);
+      setFile(selectedFile);
+      setGalleryFileName(selectedFile.name);
+    };
+
   const resetForm = () => {
     setTitle("");
     setFile(null);
+    setGalleryFileName("");
+    setGalleryPictureFileError(null);
     setEditingId(null);
+
     const input = document.getElementById("gallery-file-input") as HTMLInputElement | null;
     if (input) input.value = "";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim() || !file) return;
-    await createItem(title.trim(), file);
-    resetForm();
+
+    try {
+      if (!title.trim() || !file) return;
+      await createItem(title.trim(), file);
+
+      resetForm();
+    } catch (err: any) {
+      const message = err?.message || dict.errors.UNEXPECTED;
+      setGalleryPictureFileError(message);
+    }
   };
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!editingId || !title.trim()) return;
-    await updateItem(editingId, title.trim(), file);
-    resetForm();
+
+    try {
+      if (!editingId || !title.trim()) return;
+      await updateItem(editingId, title.trim(), file);
+
+      resetForm();
+    } catch (err: any) {
+      const message = err?.message || dict.errors.UNEXPECTED;
+      setGalleryPictureFileError(message);
+    }
   };
 
   const handleEdit = (item: GalleryItem) => {
@@ -91,7 +154,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     <Form.Control
                       type="text"
                       placeholder={dict.drivershub.gallery.form.titlePlaceholder || "Image title"}
-                      className="rounded-0 border-0 shadow-sm bg-dark-subtle"
+                      className="rounded-1 border-0 shadow-sm bg-dark-subtle"
                       required
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -99,44 +162,21 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     />
                   </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label className="fw-bold fs-5">{dict.drivershub.gallery.form.image || "Image"} {editingId ? (dict.drivershub.gallery.form.imageEdit || "(leave empty to keep current)") : ""}</Form.Label>
-                    <Form.Control
-                      id="gallery-file-input"
-                      type="file"
-                      accept="image/*"
-                      className="rounded-0 border-0 shadow-sm bg-dark-subtle"
-                      onChange={(e) => setFile((e.target as HTMLInputElement).files?.[0] ?? null)}
-                      disabled={submitting}
-                    />
-                  </Form.Group>
-
-                  {/* <Form.Group controlId="profilePicture" className="mb-3">
-                    <Form.Label className="fw-bold fs-5">{teamDict.form.profilePicture}</Form.Label>
+                  <Form.Group controlId="galleryPicture" className="mb-3">
+                    <Form.Label className="fw-bold fs-5">{}</Form.Label>
                     <Form.Label className="rounded-0 d-flex position-relative m-0">
                       <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1 fs-6" style={{ padding: "6px 12px" }}>
-                        <Form.Control className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} title={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
+                        <Form.Control id="gallery-file-input" className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleGalleryPictureChange} title={galleryFileName ? galleryFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
                       </button>
-                      <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 rounded-end-0 fw-semibold" type="text" readOnly value={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!profilePictureFileError} />
+                      <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 rounded-end-0 fw-semibold" type="text" readOnly value={galleryFileName ? galleryFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!galleryPictureFileError} />
                     </Form.Label>
-                    {profilePictureFileError && <p className="text-danger fw-bold m-0 fs-6">{profilePictureFileError}</p>}
-                  </Form.Group> */}
+                    {galleryPictureFileError && <p className="text-danger fw-bold m-0 fs-6">{galleryPictureFileError}</p>}
+                  </Form.Group>
 
-                  {error && (
-                    <Alert variant="danger" className="py-2" dismissible>
-                      {error}
-                    </Alert>
-                  )}
-                  {success && (
-                    <Alert variant="success" className="py-2" dismissible>
-                      {success}
-                    </Alert>
-                  )}
-
-                  <BSButton variant="primary" size="lg" type="submit" disabled={submitting} classes="mt-2">
+                  <BSButton variant="primary" type="submit" disabled={submitting} classes="mt-2">
                     {submitting ? (
                       <>
-                        <Spinner animation="border" size="sm" className="me-2" /> {editingId ? "Updating..." : "Saving..."}
+                        <Spinner animation="border" size="sm" className="me-2" /> {editingId ? galleryDict.form.updating : galleryDict.form.saving}
                       </>
                     ) : editingId ? (
                       dict.drivershub.gallery.form.submitEdit || "Update Item"
@@ -149,18 +189,23 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     <BSButton
                       variant="secondary"
                       classes="mt-2 ms-2 border-secondary"
-                      onClick={() => {
-                        setEditingId(null);
-                        setTitle("");
-                        setFile(null);
-                        const fileInput = document.getElementById("gallery-file-input") as HTMLInputElement | null;
-                        if (fileInput) fileInput.value = "";
-                      }}
+                      onClick={resetForm}
                       disabled={submitting}>
                       {dict.drivershub.gallery.form.cancel || "Cancel"}
                     </BSButton>
                   )}
                 </Form>
+
+                {error && (
+                  <Alert variant="danger" className="py-2 mt-3 mb-0" dismissible>
+                    {error}
+                  </Alert>
+                )}
+                {success && (
+                  <Alert variant="success" className="py-2 mt-3 mb-0" dismissible>
+                    {success}
+                  </Alert>
+                )}
               </Card.Body>
             </Card>
           </Col>
@@ -189,8 +234,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                             alt={item.title || "Gallery image"}
                             width={60}
                             height={60}
-                            className="me-3"
-                            style={{ objectFit: "cover" }}
+                            className="me-3 object-fit-cover rounded-1"
                           />
                           <span>{item.title}</span>
                         </div>
@@ -200,7 +244,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                             size="sm"
                             className="d-flex align-items-center justify-content-center p-2 rounded-1"
                             onClick={() => handleEdit(item)}
-                            title="Edit item">
+                            title={galleryDict.form.editGalleryItem || "Edit item"}>
                             <FaEdit className="fs-6" />
                           </Button>
                           <Button
@@ -208,7 +252,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                             size="sm"
                             className="d-flex align-items-center justify-content-center p-2 rounded-1"
                             onClick={() => openConfirmModal(item.id)}
-                            title="Delete item">
+                            title={galleryDict.form.deleteGalleryItem || "Delete item"}>
                             <FaTrash className="fs-6" />
                           </Button>
                         </div>
@@ -231,10 +275,10 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
           {confirmAction === "delete-item" && (dict.drivershub.gallery.modal.text || "Are you sure you want to delete this gallery item?")}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
             {dict.drivershub.gallery.modal.cancel || "Cancel"}
-          </Button>
-          <Button variant="danger" onClick={handleConfirm}>
+          </BSButton>
+          <Button variant="danger" className="border border-1 border-danger text-uppercase fw-bold rounded-1" style={{ padding: "10px 20px" }} onClick={handleConfirm}>
             {dict.drivershub.gallery.modal.confirm || "Confirm"}
           </Button>
         </Modal.Footer>
