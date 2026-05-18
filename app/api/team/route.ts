@@ -205,7 +205,7 @@ export async function PATCH(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
-
+    
     const body = await request.json();
     const id = body?.id;
     if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);

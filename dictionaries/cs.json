@@ -450,13 +450,20 @@
         "profilePicture": "Profilový obrázek (volitelné)",
         "submitNewMember": "přidat člena",
         "submitEditMember": "aktualizovat člena",
-        "calcelEditMember": "zrušit",
+        "cancelEditMember": "zrušit",
+        "updating": "Aktualizace člena...",
+        "saving": "Ukládání člena...",
+        "loading": "Načítání členů týmu...",
+        "editMember": "Upravit člena",
+        "deletePfp": "Smazat profilový obrázek",
+        "deleteMember": "Smazat člena",
         "rolesDepartments": {
           "title": "Správa rolí a oddělení",
           "currentRoles": "Aktuální role",
           "addRole": "Přidat roli",
           "department": "Vybrat oddělení",
-          "role": "Vybrat roli"
+          "role": "Vybrat roli",
+          "loading": "Načítání rolí..."
         }
       },
       "card": {
@@ -484,7 +491,11 @@
         "imageEdit": "Obrázek (ponech prázdné pro zachování aktuálního)",
         "submit": "přidat položku",
         "submitEdit": "aktualizovat položku",
-        "cancel": "zrušit"
+        "cancel": "zrušit",
+        "editGalleryItem": "Upravit položku galerie",
+        "deleteGalleryItem": "Smazat položku galerie",
+        "updating": "Aktualizace položky galerie...",
+        "saving": "Ukládání položky galerie..."
       },
       "card": {
         "title": "Položky galerie"
@@ -652,7 +663,8 @@
     "members": {
       "MEMBER_NOT_FOUND": "Člen nebyl nalezen",
       "FAILED_TO_FETCH_MEMBERS": "Nepodařilo se načíst členy",
-      "FAILED_TO_GET_MEMBER_ID": "Nepodařilo se získat ID člena"
+      "FAILED_TO_GET_MEMBER_ID": "Nepodařilo se získat ID člena",
+      "NO_MEMBERS_FOUND": "Nebyli nalezeni žádní členové"
     },
     "drivers": {
       "FAILED_TO_FETCH_DRIVERS": "Nepodařilo se načíst řidiče",

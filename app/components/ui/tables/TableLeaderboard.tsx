@@ -134,19 +134,19 @@ export default function TableLeaderboard({ dict }: Props) {
 
   return (
     <>
-      <Container className="p-3" fluid>
-        <Card className="border-0 rounded-0 shadow-sm" data-bs-theme="dark">
-          <Card.Header className="bg-dark d-flex justify-content-between align-items-center px-4 py-3">
-            <Card.Title className="m-0">{dict.drivershub.leaderboard.card.title}</Card.Title>
+      <Container className="p-3 p-md-4" fluid>
+        <Card className="rounded-1 border-0 shadow-sm" data-bs-theme="dark">
+          <Card.Header className="bg-dark d-flex justify-content-between align-items-center p-3 p-md-4 border-bottom">
+            <Card.Title className="m-0 fs-3">{dict.drivershub.leaderboard.card.title}</Card.Title>
             {selectedPeriod === 'monthly' ? (
               <ButtonGroup className="btn-group-leaderboard">
-                <Button variant="primary" className="text-light" onClick={handlePreviousMonth} disabled={selectedYear === 2020 && selectedMonth === 0}><FaChevronLeft /></Button>
+                <Button variant="primary" className="text-light rounded-start-1" onClick={handlePreviousMonth} disabled={selectedYear === 2020 && selectedMonth === 0}><FaChevronLeft /></Button>
                 <Dropdown as={ButtonGroup} data-bs-theme="dark">
                   <Button variant="primary" className="text-light">{monthNames[selectedMonth - 1]} {selectedYear}</Button>
 
                   <Dropdown.Toggle split variant="primary" className="text-light px-3" id="dropdown-split-basic" />
 
-                  <Dropdown.Menu>
+                  <Dropdown.Menu className="rounded-1 border-0 shadow-sm bg-dark-subtle">
                     <Dropdown.Item onClick={() => {
                       setSelectedPeriod('monthly');
                       router.push(`?month=${selectedMonth}&year=${selectedYear}`);
@@ -159,13 +159,13 @@ export default function TableLeaderboard({ dict }: Props) {
                     }}>{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-                <Button variant="primary" className="text-light" onClick={handleNextMonth}><FaChevronRight /></Button>
+                <Button variant="primary" className="text-light rounded-end-1" onClick={handleNextMonth}><FaChevronRight /></Button>
               </ButtonGroup>
             ) : (
               <Dropdown as={ButtonGroup} className="btn-group-leaderboard" data-bs-theme="dark">
-                <Button variant="primary" className="text-light">{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Button>
+                <Button variant="primary" className="text-light rounded-start-1">{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Button>
 
-                <Dropdown.Toggle split variant="primary" className="text-light px-3" id="dropdown-split-basic" />
+                <Dropdown.Toggle split variant="primary" className="text-light px-3 rounded-end-1" id="dropdown-split-basic" />
 
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => {
@@ -182,18 +182,18 @@ export default function TableLeaderboard({ dict }: Props) {
               </Dropdown>
             )}
           </Card.Header>
-          <Card.Body className="p-4">
+          <Card.Body className="p-3 p-md-4">
             {error ? (
               <div className="text-danger text-center fw-bold py-3">{error}</div>
             ) : loading ? (
               <LoaderSpinner dict={dict} />
             ) : (
-              <Row className="d-flex justify-content-center">
-                <Col xs={12} md={6} lg={4} className="my-3 mt-lg-0">
+              <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4">
+                <Col xs={12} md={6} lg={4} className="m-0">
                   <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.totalThp.title}</h4>
                   {thpLeaderboard.length === 0 && <p className="text-warning fw-semibold fs-4">{dict.errors.leaderboard.NO_DATA}</p>}
                   {thpLeaderboard.map((entry, index) => (
-                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
+                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>
                       {entry.avatar ? (
                         <img
@@ -211,11 +211,11 @@ export default function TableLeaderboard({ dict }: Props) {
                     </div>
                   ))}
                 </Col>
-                <Col xs={12} md={6} lg={4} className="my-3 mt-lg-0">
+                <Col xs={12} md={6} lg={4} className="m-0">
                   <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.totalDistance.title}</h4>
                   {distanceLeaderboard.length === 0 && <p className="text-warning fw-semibold fs-4">{dict.errors.leaderboard.NO_DATA}</p>}
                   {distanceLeaderboard.map((entry, index) => (
-                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
+                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={entry.username ?? "Guest"}>
                       <span className="me-2">{index + 1}</span>
                       {entry.avatar ? (
                         <img
@@ -233,11 +233,11 @@ export default function TableLeaderboard({ dict }: Props) {
                     </div>
                   ))}
                 </Col>
-                <Col xs={12} md={6} lg={4} className="my-3 mt-lg-0">
+                <Col xs={12} md={6} lg={4} className="m-0">
                   <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.totalWeight.title}</h4>
                   {massLeaderboard.length === 0 && <p className="text-warning fw-semibold fs-4">{dict.errors.leaderboard.NO_DATA}</p>}
                   {massLeaderboard.map((entry, index) => (
-                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
+                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={entry.username ?? "Guest"}>
                       <span className="me-2">{index + 1}</span>
                       {entry.avatar ? (
                         <img
@@ -255,11 +255,11 @@ export default function TableLeaderboard({ dict }: Props) {
                     </div>
                   ))}
                 </Col>
-                <Col xs={12} md={6} lg={4} className="my-3 mb-lg-0">
+                <Col xs={12} md={6} lg={4} className="m-0">
                   <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.maxThp.title}</h4>
                   {maxThpLeaderboard.length === 0 && <p className="text-warning fw-semibold fs-4">{dict.errors.leaderboard.NO_DATA}</p>}
                   {maxThpLeaderboard.map((entry, index) => (
-                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
+                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>
                       {entry.avatar ? (
                         <img
@@ -277,11 +277,11 @@ export default function TableLeaderboard({ dict }: Props) {
                     </div>
                   ))}
                 </Col>
-                <Col xs={12} md={6} lg={4} className="my-3 mb-lg-0">
+                <Col xs={12} md={6} lg={4} className="m-0">
                   <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.maxDistance.title}</h4>
                   {maxDistanceLeaderboard.length === 0 && <p className="text-warning fw-semibold fs-4">{dict.errors.leaderboard.NO_DATA}</p>}
                   {maxDistanceLeaderboard.map((entry, index) => (
-                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
+                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>
                       {entry.avatar ? (
                         <img
@@ -299,11 +299,11 @@ export default function TableLeaderboard({ dict }: Props) {
                     </div>
                   ))}
                 </Col>
-                <Col xs={12} md={6} lg={4} className="my-3 mb-lg-0">
+                <Col xs={12} md={6} lg={4} className="m-0">
                   <h4 className="border-bottom pb-2 mb-3">{dict.drivershub.leaderboard.card.leaderboards.maxWeight.title}</h4>
                   {maxMassLeaderboard.length === 0 && <p className="text-warning fw-semibold fs-4">{dict.errors.leaderboard.NO_DATA}</p>}
                   {maxMassLeaderboard.map((entry, index) => (
-                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2" key={entry.username ?? "Guest"}>
+                    <div className="my-2 bg-dark-subtle shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={entry.username ?? "Guest"}>
                       <span>{index + 1}</span>
                       {entry.avatar ? (
                         <img

@@ -450,13 +450,20 @@
         "profilePicture": "Profile Picture (optional)",
         "submitNewMember": "add member",
         "submitEditMember": "update member",
-        "calcelEditMember": "cancel",
+        "cancelEditMember": "cancel",
+        "updating": "Updating Member...",
+        "saving": "Saving Member...",
+        "loading": "Loading Team Members...",
+        "editMember": "Edit Member",
+        "deletePfp": "Delete Profile Picture",
+        "deleteMember": "Delete Member",
         "rolesDepartments": {
           "title": "Manage Roles & Departments",
           "currentRoles": "Current Roles",
           "addRole": "Add Role",
           "department": "Select Department",
-          "role": "Select Role"
+          "role": "Select Role",
+          "loading": "Loading Roles..."
         }
       },
       "card": {
@@ -484,7 +491,11 @@
         "imageEdit": "Image (leave empty to keep current)",
         "submit": "add item",
         "submitEdit": "update item",
-        "cancel": "cancel"
+        "cancel": "cancel",
+        "editGalleryItem": "Edit Gallery Item",
+        "deleteGalleryItem": "Delete Gallery Item",
+        "updating": "Updating Gallery Item...",
+        "saving": "Saving Gallery Item..."
       },
       "card": {
         "title": "Gallery Items"
@@ -652,7 +663,8 @@
     "members": {
       "MEMBER_NOT_FOUND": "Member not found",
       "FAILED_TO_FETCH_MEMBERS": "Failed to fetch members",
-      "FAILED_TO_GET_MEMBER_ID": "Failed to get member ID"
+      "FAILED_TO_GET_MEMBER_ID": "Failed to get member ID",
+      "NO_MEMBERS_FOUND": "No members found"
     },
     "drivers": {
       "FAILED_TO_FETCH_DRIVERS": "Failed to fetch drivers",

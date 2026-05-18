@@ -76,8 +76,8 @@ export default async function EventDetailPage({ params }: PageProps) {
           </Container>
         </section>
         <section className="d-flex w-100 bg-dark-subtle text-center">
-          <Container className="d-flex justify-content-center p-3">
-            <Row className="d-flex justify-content-center row-gap-4">
+          <Container className="d-flex justify-content-center p-3 p-md-4">
+            <Row className="d-flex justify-content-center">
               <CardEventDetail eventId={eventId} dict={dict} />
             </Row>
           </Container>

@@ -99,7 +99,7 @@ export default function Footer({ dict }: FooterProps) {
               </Col>
               <Col xs={12} md={9} lg={8} className="fs-5">
                 <Tabs defaultActiveKey="links" className="mb-3" fill>
-                  <Tab eventKey="links" title={dict.footer.footer3.tab1.title} className="">
+                  <Tab eventKey="links" title={dict.footer.footer3.tab1.title}>
                     <ListGroup>
                       <FooterLink link="drivershub">{dict.footer.footer3.tab1.pages.drivershub}</FooterLink>
                       <FooterLink link="apply">{dict.footer.footer3.tab1.pages.apply}</FooterLink>

@@ -55,6 +55,8 @@ export function useTeam(dict: Dictionary) {
   }, [editingId]);
 
   async function fetchMembers() {
+    setError(null);
+
     try {
       const res = await axios.get(`/api/team/members?lang=${lang}`);
       if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS, { cause: res.status });
@@ -68,6 +70,8 @@ export function useTeam(dict: Dictionary) {
   };
 
   async function fetchDepartments() {
+    setError(null);
+
     try {
       const res = await axios.get(`/api/departments?lang=${lang}`);
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS, { cause: res.status });
@@ -87,6 +91,8 @@ export function useTeam(dict: Dictionary) {
   };
 
   async function fetchMemberRoles(memberId: number) {
+    setError(null);
+
     try {
       const res = await axios.get(`/api/team/roles?memberId=${memberId}&lang=${lang}`);
       const data = res.data;
@@ -101,6 +107,7 @@ export function useTeam(dict: Dictionary) {
   const createMember = async (name: string, file?: File | null) => {
     setSubmitting(true);
     setError(null);
+    setSuccess(null);
 
     try {
       const fd = new FormData();
@@ -124,6 +131,7 @@ export function useTeam(dict: Dictionary) {
   const updateMember = async (id: number, name: string, file?: File | null) => {
     setSubmitting(true);
     setError(null);
+    setSuccess(null);
 
     try {
       const fd = new FormData();
@@ -147,6 +155,9 @@ export function useTeam(dict: Dictionary) {
   };
 
   const deleteMember = async (id: number) => {
+    setError(null);
+    setSuccess(null);
+
     try {
       const res = await axios.delete(`/api/team?lang=${lang}`, { data: { id } });
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER, { cause: res.status });
@@ -159,18 +170,25 @@ export function useTeam(dict: Dictionary) {
   };
 
   const deleteProfilePicture = async (id: number) => {
+    setError(null);
+    setSuccess(null);
+
     try {
-      const res = await axios.patch(`/api/team?lang=${lang}`, { data: { id } });
+      const res = await axios.patch(`/api/team?lang=${lang}`, { id });
       if (res.status !== 200) throw new Error(dict.errors.profile.profilePicture.FAILED_TO_DELETE_PROFILE_PICTURE, { cause: res.status });
 
       setSuccess(dict.success.profile.profilePicture.PROFILE_PICTURE_DELETED);
       fetchMembers();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (err: any) {
+      const message = err?.response?.data?.message || err?.message || dict.errors.profile.profilePicture.FAILED_TO_DELETE_PROFILE_PICTURE;
+      setError(message);
     }
   };
 
   const addRole = async (memberId: number, departmentId: number, roleId: number) => {
+    setError(null);
+    setSuccess(null);
+
     try {
       const res = await axios.post(`/api/team/roles?lang=${lang}`, {
         team_member_id: memberId,
@@ -187,6 +205,9 @@ export function useTeam(dict: Dictionary) {
   };
 
   const removeRole = async (memberId: number, departmentId: number, roleId: number) => {
+    setError(null);
+    setSuccess(null);
+
     try {
       const res = await axios.delete(`/api/team/roles?lang=${lang}`, {
         data: {

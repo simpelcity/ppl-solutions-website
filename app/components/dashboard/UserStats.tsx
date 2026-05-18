@@ -1,7 +1,7 @@
 'use client'
 
 import { useUserStats } from '@/hooks/useUserStats'
-import { Card, Row, Col, Alert } from 'react-bootstrap'
+import { Card, Row, Col } from 'react-bootstrap'
 import { TableStats, LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
@@ -34,12 +34,12 @@ export default function UserStats({ dict }: Props) {
 
   return (
     <>
-      <div className="w-100 d-flex flex-column p-3 row-gap-4">
-        <Row className="row-gap-3">
+      <div className="w-100 d-flex flex-column p-3 p-md-4 row-gap-3 row-gap-md-4">
+        <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
-              <Card.Body className="">
+            <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
+              <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
                     <div>
@@ -70,9 +70,9 @@ export default function UserStats({ dict }: Props) {
             </Card>
           </Col>
           <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.income.title}</Card.Title>
-              <Card.Body className="">
+            <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.income.title}</Card.Title>
+              <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
                     <div>
@@ -103,9 +103,9 @@ export default function UserStats({ dict }: Props) {
             </Card>
           </Col>
           <Col xs={12} md={6} lg={4}>
-            <Card className="rounded-0 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 py-3 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
-              <Card.Body className="">
+            <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
+              <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
                     <div>
@@ -138,11 +138,11 @@ export default function UserStats({ dict }: Props) {
         </Row>
         <Row>
           <Col>
-            <Card className="rounded-0 border-0 shadow-sm-sm px-0" data-bs-theme="dark">
-              <Card.Header className="bg-dark rounded-0">
-                <Card.Title className="text-uppercase fs-2 text-light my-1">{dict.drivershub.userStats.table.title}</Card.Title>
+            <Card className="rounded-1 border-0 shadow-sm" data-bs-theme="dark">
+              <Card.Header className="bg-dark p-3 p-md-4 border-bottom">
+                <Card.Title className="m-0 fs-3">{dict.drivershub.userStats.table.title}</Card.Title>
               </Card.Header>
-              <Card.Body className="p-4">
+              <Card.Body className="p-3 p-md-4">
                 <TableStats dict={dict} />
               </Card.Body>
             </Card>

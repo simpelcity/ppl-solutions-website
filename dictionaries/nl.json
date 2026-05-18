@@ -450,13 +450,20 @@
         "profilePicture": "Profielfoto (optioneel)",
         "submitNewMember": "lid toevoegen",
         "submitEditMember": "lid bijwerken",
-        "calcelEditMember": "annuleren",
+        "cancelEditMember": "annuleren",
+        "updating": "Lid bijwerken...",
+        "saving": "Lid opslaan...",
+        "loading": "Teamleden laden...",
+        "editMember": "Lid bewerken",
+        "deletePfp": "Profielfoto verwijderen",
+        "deleteMember": "Lid verwijderen",
         "rolesDepartments": {
           "title": "Beheer rollen en afdelingen",
           "currentRoles": "Huidige Rollen",
           "addRole": "Rol Toevoegen",
           "department": "Selecteer Afdeling",
-          "role": "Selecteer Rol"
+          "role": "Selecteer Rol",
+          "loading": "Rollen laden..."
         }
       },
       "card": {
@@ -484,7 +491,11 @@
         "imageEdit": "Afbeelding (leeg laten om huidige te behouden)",
         "submit": "item toevoegen",
         "submitEdit": "item bijwerken",
-        "cancel": "annuleren"
+        "cancel": "annuleren",
+        "editGalleryItem": "Galerij-item bewerken",
+        "deleteGalleryItem": "Galerij-item verwijderen",
+        "updating": "Galerij-item bijwerken...",
+        "saving": "Galerij-item opslaan..."
       },
       "card": {
         "title": "Galerij Items"
@@ -652,7 +663,8 @@
     "members": {
       "MEMBER_NOT_FOUND": "Lid niet gevonden",
       "FAILED_TO_FETCH_MEMBERS": "Kan leden niet ophalen",
-      "FAILED_TO_GET_MEMBER_ID": "Kan lid-ID niet ophalen"
+      "FAILED_TO_GET_MEMBER_ID": "Kan lid-ID niet ophalen",
+      "NO_MEMBERS_FOUND": "Geen leden gevonden"
     },
     "drivers": {
       "FAILED_TO_FETCH_DRIVERS": "Kan chauffeurs niet ophalen",

@@ -16,7 +16,6 @@
 
 .table-card-scroll::-webkit-scrollbar-thumb {
   background: $primary;
-  border-radius: 0;
 }
 
 .table-jobs {
@@ -24,9 +23,25 @@
   min-width: 1300px;
 }
 
+.table-jobs thead th:first-child {
+  border-radius: var(--bs-border-radius-sm) 0 0 var(--bs-border-radius-sm);
+}
+
+.table-jobs thead th:last-child {
+  border-radius: 0 var(--bs-border-radius-sm) var(--bs-border-radius-sm) 0;
+}
+
 .table-stats {
   white-space: nowrap;
   min-width: 1300px;
+}
+
+.table-stats thead th:first-child {
+  border-radius: var(--bs-border-radius-sm) 0 0 var(--bs-border-radius-sm);
+}
+
+.table-stats thead th:last-child {
+  border-radius: 0 var(--bs-border-radius-sm) var(--bs-border-radius-sm) 0;
 }
 
 .pagination-div .btn-pagination:disabled {
@@ -51,7 +66,7 @@
   box-shadow: none !important;
 }
 
-.border-custom {
+.border-dashed {
   border-style: dashed !important;
 }
 
