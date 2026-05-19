@@ -2,9 +2,22 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { i18n } from "./i18n";
 import { createServerClient } from "@supabase/ssr";
+import { checkRateLimit, createRateLimitResponse } from "@/utils/rateLimit";
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+
+  if (pathname.startsWith("/api")) {
+    const rateLimit = checkRateLimit(request, {
+      timeWindowInMs: 60000,
+      maxRequests: 3,
+      keyPrefix: "api-global",
+    });
+
+    if (!rateLimit.success) return createRateLimitResponse(rateLimit, request);
+
+    return NextResponse.next();
+  }
 
   // Exclude static files from rewrites/redirects
   const staticFiles = [
@@ -95,5 +108,5 @@ function getLocale(request: NextRequest): string {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|robots.txt|sitemap.xml).*)"],
+  matcher: ["/((?!_next/static|_next/image|assets|favicon.ico|robots.txt|sitemap.xml).*)"],
 };

@@ -46,6 +46,7 @@ export { default as BSLink } from "./ui/Link";
 export { default as Loader } from "./ui/Loader";
 export { default as LoaderSpinner } from "./ui/LoaderSpinner";
 export { default as NavButtons } from "./ui/NavButtons";
+export { default as RateLimitError } from "./ui/RateLimitError";
 export { default as Unavailable } from "./ui/Unavailable";
 // Other
 export { default as DivEvents } from "./DivEvents";

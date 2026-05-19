@@ -218,7 +218,8 @@ export function useLeaderboard(
         setAllTimeDataLoaded(true);
         setLoading(false);
       } catch (err: any) {
-        setError(err.message);
+        const message = err?.response?.data?.message || err?.message || dict.errors.UNEXPECTED;
+        setError(message);
         setLoading(false);
       }
     };
@@ -259,7 +260,8 @@ export function useLeaderboard(
         } else if (selectedPeriod === "all-time") {
         }
       } catch (err: any) {
-        setError(err.message);
+        const message = err?.response?.data?.message || err?.message || dict.errors.UNEXPECTED;
+        setError(message);
       } finally {
         setLoading(false);
       }

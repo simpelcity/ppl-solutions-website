@@ -2,7 +2,7 @@
 
 import { useUserStats } from '@/hooks/useUserStats'
 import { Card, Row, Col } from 'react-bootstrap'
-import { TableStats, LoaderSpinner } from '@/components'
+import { TableStats, LoaderSpinner, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export default function UserStats({ dict }: Props) {
-  const { stats, loading, error } = useUserStats(dict);
+  const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryStats } = useUserStats(dict);
 
   const rounded = (value: any) => {
     const valueNum = value.toFixed(1);
@@ -29,7 +29,20 @@ export default function UserStats({ dict }: Props) {
   }
 
   if (loading) return <LoaderSpinner dict={dict} />
-  if (error) return <div className="d-flex align-items-center text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+  if (error) {
+    if (isRateLimited) {
+      return (
+        <RateLimitError
+          dict={dict}
+          secondsRemaining={rateLimitSecondsRemaining ?? 0}
+          onRetry={retryStats}
+          retryLoading={loading}
+        />
+      );
+    }
+
+    return <div className="d-flex align-items-center text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+  }
   if (!stats) return null;
 
   return (

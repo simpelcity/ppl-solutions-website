@@ -632,6 +632,10 @@
     "GENERAL_ERROR": "Fout",
     "UNEXPECTED": "Er is een onverwachte fout opgetreden.",
     "SERVER_ERROR": "Serverfout",
+    "rateLimit": {
+      "TOO_MANY_REQUESTS": "Aanvraaglimiet overschreden. Probeer het opnieuw over {seconds} seconden.",
+      "TRY_AGAIN": "Probeer opnieuw"
+    },
     "events": {
       "NO_EVENTS": "Geen aankomende evenementen",
       "NA": "Niet van toepassing",
@@ -645,7 +649,9 @@
         "NO_EXTERNAL_LINK": "Geen externe link",
         "NO_CONFIRMED_VTCS": "Er hebben nog geen VTC's hun deelname bevestigd.",
         "NO_CONFIRMED_USERS": "Er hebben nog geen gebruikers hun deelname bevestigd.",
-        "NO_DLCS": "Er zijn geen DLC's nodig om deel te nemen aan dit evenement."
+        "NO_DLCS": "Er zijn geen DLC's nodig om deel te nemen aan dit evenement.",
+        "EVENT_NOT_FOUND": "Evenement niet gevonden",
+        "NO_BANNER": "Geen Banner"
       }
     },
     "team": {

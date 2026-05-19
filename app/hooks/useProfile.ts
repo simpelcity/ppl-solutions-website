@@ -182,7 +182,8 @@ export function useProfile({ userId, dict }: Props) {
         return data[0];
       } catch (err: any) {
         console.error(err);
-        setError(err.message);
+        const message = err?.response?.data?.message || err?.message || dict.errors.country.FAILED_TO_FETCH_COUNTRY_DATA;
+        setError(message);
         return null;
       }
     } catch (err: any) {

@@ -632,6 +632,10 @@
     "GENERAL_ERROR": "Error",
     "UNEXPECTED": "An unexpected error occurred",
     "SERVER_ERROR":"Server error",
+    "rateLimit": {
+      "TOO_MANY_REQUESTS": "Request limit exceeded. Please try again after {seconds} seconds.",
+      "TRY_AGAIN": "Try again"
+    },
     "events": {
       "NO_EVENTS": "No upcoming events",
       "NA": "Not Applicable",
@@ -645,7 +649,9 @@
         "NO_EXTERNAL_LINK": "No external link",
         "NO_CONFIRMED_VTCS": "No VTCs have confirmed attendance yet.",
         "NO_CONFIRMED_USERS": "No Users have confirmed attendance yet.",
-        "NO_DLCS": "No DLCs needed to participate in this event."
+        "NO_DLCS": "No DLCs needed to participate in this event.",
+        "EVENT_NOT_FOUND": "Event not found",
+        "NO_BANNER": "No Banner"
       }
     },
     "team": {

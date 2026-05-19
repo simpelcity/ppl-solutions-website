@@ -17,7 +17,7 @@ export function useEventDetails(dict: Dictionary, eventId: string) {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(`/api/events/detail?eventId=${eventId}&lang=${lang}`);
+        const res = await axios.get(`/api/events/detail/${eventId}?lang=${lang}`);
         if (res.status !== 200) throw new Error(dict.errors.events.details.FAILED_TO_FETCH_EVENT_DETAILS, { cause: res.status });
         const data = res.data;
         setEvent(data.response);

@@ -23,9 +23,12 @@ const statusToErrorName: Record<number, string> = {
 
 export async function errorHandler(
   error: unknown,
-  request?: Request,
+  request: Request,
   locale: Locale = "en",
   statusCode: number = 500,
+  options?: {
+    [key: string]: any;
+  }
 ) {
   let logMessage: string;
   let responseMessage: string;
@@ -95,11 +98,11 @@ Message: ${logMessage}
 
   return NextResponse.json(
     {
-      method: request?.method ?? "UNKNOWN",
-      status: statusCode,
-      error: translatedErrorName,
+
+      error: true,
       message: responseMessage,
-      // logMessage: logMessage,
+      // method: request?.method ?? "UNKNOWN",
+      // status: statusCode,
     },
     { status: statusCode },
   );

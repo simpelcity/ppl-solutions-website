@@ -40,8 +40,9 @@ export default function TeamGrid({ lang, dict }: PageProps) {
       } catch (err: any) {
         console.log(err?.response)
         if (!mounted) return
-        setError(err.message || String(err))
-        throw new Error(err.message || dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: err })
+        const message = err?.response?.data?.message || err?.message || dict.errors.team.FAILED_TO_FETCH_TEAM
+        setError(message)
+        throw new Error(message, { cause: err })
       } finally {
         if (mounted) setLoading(false)
       }

@@ -1,19 +1,23 @@
 import "@/styles/globals.scss"
 import { AuthProvider, SidebarProvider } from "@/lib"
-import { i18n } from "@/i18n"
+import { i18n, type Locale } from "@/i18n"
 import { getDictionary } from "@/app/i18n"
 import React from "react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react'
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
+import { cookies } from 'next/headers'
 
 type Props = {
   children: React.ReactNode
 }
 
 export default async function RootLayout({ children }: Props) {
-  const lang = i18n.defaultLocale
+  const cookieStore = cookies();
+  const cookieLocale = (await cookieStore).get("NEXT_LOCALE")?.value as Locale;
+  const lang = cookieLocale && i18n.locales.includes(cookieLocale) ? cookieLocale : i18n.defaultLocale;
   const dict = await getDictionary(lang)
+
   return (
     <html lang={lang} data-bs-theme="dark">
       <head>
@@ -31,10 +35,14 @@ export default async function RootLayout({ children }: Props) {
         <AuthProvider>
           <SidebarProvider dict={dict} lang={lang}>
             {children}
-            <SpeedInsights/>
-            <Analytics/>
-            {process.env.NODE_ENV === "production" && <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID!} />}
-            {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} />}
+            {process.env.NODE_ENV === "production" || process.env.NODE_ENV === "test" && (
+              <>
+                <SpeedInsights />
+                <Analytics />
+                <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID!} />
+                <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} />
+              </>
+            )}
           </SidebarProvider>
         </AuthProvider>
       </body>
