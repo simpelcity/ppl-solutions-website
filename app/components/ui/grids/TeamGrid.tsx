@@ -4,8 +4,9 @@ import { useEffect, useState } from "react"
 import { Row, Col, Card, Image, Spinner } from "react-bootstrap"
 import { type Locale } from "@/i18n"
 import type { Dictionary } from "@/app/i18n"
-import { LoaderSpinner } from '@/components'
+import { LoaderSpinner, RateLimitError } from '@/components'
 import axios from "axios";
+import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 type Role = { id: number; name: string; code: string }
 type TeamMember = { id: number; name: string; profile_url?: string | null; profile_path?: string | null }
@@ -27,35 +28,43 @@ export default function TeamGrid({ lang, dict }: PageProps) {
   const [items, setItems] = useState<ApiItem[] | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
+  const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState()
+
+  const fetchData = async (mounted: boolean) => {
+    try {
+      setError(null)
+      clearRateLimitCountdown()
+      const res = await axios.get(`/api/team?lang=${lang}`)
+      if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: res.status })
+      const data = res.data
+      if (!mounted) return
+      setItems(data.team ?? [])
+    } catch (err: any) {
+      if (!mounted) return
+      const parsed = parseApiError(err, dict.errors.team.FAILED_TO_FETCH_TEAM)
+      setError(parsed.message)
+      applyRateLimit(parsed.rateLimit)
+    } finally {
+      if (mounted) setLoading(false)
+    }
+  }
 
   useEffect(() => {
     let mounted = true
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/api/team?lang=${lang}`)
-        if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: res.status })
-        const data = res.data
-        if (!mounted) return
-        setItems(data.team ?? [])
-      } catch (err: any) {
-        console.log(err?.response)
-        if (!mounted) return
-        const message = err?.response?.data?.message || err?.message || dict.errors.team.FAILED_TO_FETCH_TEAM
-        setError(message)
-        throw new Error(message, { cause: err })
-      } finally {
-        if (mounted) setLoading(false)
-      }
-    }
-
-    fetchData()
+    fetchData(mounted)
     return () => {
       mounted = false
     }
   }, [])
 
   if (loading) return <LoaderSpinner dict={dict}>{dict.team.loading}</LoaderSpinner>;
-  if (error) return <div className="text-danger">{dict.errors.team.ERROR_LOADING_TEAM} {error}</div>;
+  if (error) {
+    if (isRateLimited) {
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={() => fetchData(true)} retryLoading={loading} />;
+    }
+
+    return <div className="text-danger">{dict.errors.team.ERROR_LOADING_TEAM} {error}</div>;
+  }
 
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}
     ; (items || []).forEach((it) => {

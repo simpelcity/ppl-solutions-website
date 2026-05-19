@@ -3,7 +3,7 @@
 import { useState, type ChangeEvent } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal, Row, Container } from "react-bootstrap";
 import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
-import { BSButton } from "@/components";
+import { BSButton, RateLimitError } from "@/components";
 import { useTeam, TeamMember } from "@/hooks/useTeam";
 import type { Dictionary } from "@/app/i18n"
 
@@ -31,6 +31,8 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
     submitting,
     editingId,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     success,
     setEditingId,
     createMember,
@@ -39,6 +41,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
     deleteProfilePicture,
     addRole,
     removeRole,
+    retryTeamData,
   } = useTeam(dict);
 
   const [name, setName] = useState("");
@@ -285,11 +288,15 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                     </BSButton>
                   )}
                 </Form>
-                {error && (
+                {error && (isRateLimited ? (
+                  <div className="mt-3">
+                    <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryTeamData} retryLoading={loading || submitting} />
+                  </div>
+                ) : (
                   <Alert variant="danger" className="py-2 mt-3 mb-0" dismissible>
                     {error}
                   </Alert>
-                )}
+                ))}
                 {success && (
                   <Alert
                     variant="success"

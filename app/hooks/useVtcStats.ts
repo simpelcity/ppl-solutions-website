@@ -5,6 +5,7 @@ import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import type { Dictionary } from "@/app/i18n";
 import { useLang } from "@/hooks/useLang";
+import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 interface GameStats {
   distance: number;
@@ -27,19 +28,24 @@ export function useVtcStats(dict: Dictionary) {
   const [stats, setStats] = useState<VtcStats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
   const adminLog = (...args: any[]) => {
     if (isAdmin) console.log("%c[ADMIN]", "color: #ff00ee; font-weight: bold;", ...args);
   };
 
   const fetchStatistics = async () => {
-    const res = await axios.get(`/api/statistics?lang=${lang}`);
+    try {
+      const res = await axios.get(`/api/statistics?lang=${lang}`);
 
-    if (res.status !== 200) {
-      throw new Error("Failed to fetch statistics");
+      if (res.status !== 200) {
+        throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS);
+      }
+
+      return res.data.jobs || [];
+    } catch (err: any) {
+      throw parseApiError(err, dict.errors.userStats.FAILED_TO_FETCH_STATS);
     }
-
-    return res.data.jobs || [];
   };
 
   const convertTime = (ms: number) => {
@@ -136,22 +142,25 @@ export function useVtcStats(dict: Dictionary) {
     };
   };
 
-  useEffect(() => {
-    const loadStats = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const statistics = await getStatistics();
-        setStats(statistics);
-      } catch (err: any) {
-        setError(err.message || "Failed to load statistics");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const loadStats = async () => {
+    setLoading(true);
+    setError(null);
+    clearRateLimitCountdown();
+    try {
+      const statistics = await getStatistics();
+      setStats(statistics);
+    } catch (err: any) {
+      const parsed = parseApiError(err, dict.errors.userStats.FAILED_TO_FETCH_STATS);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     loadStats();
   }, []);
 
-  return { stats, loading, error };
+  return { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryVtcStats: loadStats };
 }

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useLang } from "@/hooks/useLang";
 import type { Dictionary } from "@/app/i18n";
+import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 interface LeaderboardEntry {
   username: string;
@@ -49,15 +50,21 @@ export function useLeaderboard(
     entries: [],
   });
   const [allTimeDataLoaded, setAllTimeDataLoaded] = useState<boolean>(false);
+  const [retryNonce, setRetryNonce] = useState(0);
+  const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
   const fetchStatistics = async (month?: number, year?: number) => {
     let url = `/api/statistics`;
     if (month !== undefined && year !== undefined) {
       url += `?month=${month}&year=${year}&lang=${lang}`;
     }
-    const res = await axios.get(url);
-    if (res.status !== 200) throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS, { cause: res.status });
-    return res.data?.jobs || res.data || [];
+    try {
+      const res = await axios.get(url);
+      if (res.status !== 200) throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS, { cause: res.status });
+      return res.data?.jobs || res.data || [];
+    } catch (err: any) {
+      throw parseApiError(err, dict.errors.userStats.FAILED_TO_FETCH_STATS);
+    }
   };
 
   const getDistanceLeaderboard = (jobs: any[], limit: number = 10): LeaderboardEntry[] => {
@@ -192,6 +199,7 @@ export function useLeaderboard(
     const loadAllTimeData = async () => {
       setLoading(true);
       setError(null);
+      clearRateLimitCountdown();
 
       try {
         const allTimeStatistics = await fetchStatistics();
@@ -218,14 +226,15 @@ export function useLeaderboard(
         setAllTimeDataLoaded(true);
         setLoading(false);
       } catch (err: any) {
-        const message = err?.response?.data?.message || err?.message || dict.errors.UNEXPECTED;
-        setError(message);
+        const parsed = parseApiError(err, dict.errors.UNEXPECTED);
+        setError(parsed.message);
+        applyRateLimit(parsed.rateLimit);
         setLoading(false);
       }
     };
 
     loadAllTimeData();
-  }, [allTimeDataLoaded]);
+  }, [allTimeDataLoaded, retryNonce]);
 
   useEffect(() => {
     if (!allTimeDataLoaded) return;
@@ -233,6 +242,7 @@ export function useLeaderboard(
     const loadMonthlyData = async () => {
       setLoading(true);
       setError(null);
+      clearRateLimitCountdown();
 
       try {
         if (selectedPeriod === "monthly" && selectedYear !== undefined && selectedMonth !== undefined) {
@@ -260,15 +270,16 @@ export function useLeaderboard(
         } else if (selectedPeriod === "all-time") {
         }
       } catch (err: any) {
-        const message = err?.response?.data?.message || err?.message || dict.errors.UNEXPECTED;
-        setError(message);
+        const parsed = parseApiError(err, dict.errors.UNEXPECTED);
+        setError(parsed.message);
+        applyRateLimit(parsed.rateLimit);
       } finally {
         setLoading(false);
       }
     };
 
     loadMonthlyData();
-  }, [selectedPeriod, selectedYear, selectedMonth, allTimeDataLoaded]);
+  }, [selectedPeriod, selectedYear, selectedMonth, allTimeDataLoaded, retryNonce]);
 
   useEffect(() => {
     if (selectedPeriod === "all-time") {
@@ -287,6 +298,8 @@ export function useLeaderboard(
   return {
     loading,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     allTimeDistanceLeaderboard,
     monthlyDistanceLeaderboard,
     allTimeThpLeaderboard,
@@ -300,5 +313,6 @@ export function useLeaderboard(
     allTimeMaxMassLeaderboard,
     monthlyMaxMassLeaderboard,
     currentLeaderboard,
+    retryLeaderboard: () => setRetryNonce((value) => value + 1),
   };
 }

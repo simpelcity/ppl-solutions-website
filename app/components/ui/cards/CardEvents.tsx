@@ -6,7 +6,7 @@ import { FaClock, FaTruck, FaGamepad } from "react-icons/fa6";
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { FiDownload } from "react-icons/fi";
 import { IoCalendar } from "react-icons/io5";
-import { DivEvents, BSButton } from "@/components";
+import { DivEvents, BSButton, RateLimitError } from "@/components";
 import type { Dictionary } from "@/app/i18n"
 import { useEvents } from "@/hooks/useEvents";
 import { useIsAdmin } from "@/lib/useIsAdmin";
@@ -23,7 +23,7 @@ export default function CardEvents({ dict }: PageProps) {
     if (isAdmin) console.log("%c[ADMIN]", "color: #00fbff; font-weight: bold;", ...args);
   };
   
-  const { events, loading, error } = useEvents(dict);
+  const { events, loading, error, isRateLimited, rateLimitSecondsRemaining, retryEvents } = useEvents(dict);
 
   if (loading) {
     return (
@@ -76,6 +76,10 @@ export default function CardEvents({ dict }: PageProps) {
   }
 
   if (error) {
+    if (isRateLimited) {
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryEvents} retryLoading={loading} />;
+    }
+
     return (
       <div className="text-center text-light">
         <div className="text-danger fw-bold fs-4">{error}</div>

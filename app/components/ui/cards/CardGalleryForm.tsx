@@ -3,7 +3,7 @@
 import { useState, type ChangeEvent } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal, Row, Container } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { BSButton, LoaderSpinner } from "@/components";
+import { BSButton, LoaderSpinner, RateLimitError } from "@/components";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
 import type { Dictionary } from "@/app/i18n"
 
@@ -27,11 +27,14 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     submitting,
     editingId,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     success,
     setEditingId,
     createItem,
     updateItem,
     deleteItem,
+    retryGallery,
   } = useGallery(dict);
 
   const [title, setTitle] = useState("");
@@ -196,11 +199,15 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                   )}
                 </Form>
 
-                {error && (
+                {error && (isRateLimited ? (
+                  <div className="mt-3">
+                    <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryGallery} retryLoading={loading || submitting} />
+                  </div>
+                ) : (
                   <Alert variant="danger" className="py-2 mt-3 mb-0" dismissible>
                     {error}
                   </Alert>
-                )}
+                ))}
                 {success && (
                   <Alert variant="success" className="py-2 mt-3 mb-0" dismissible>
                     {success}

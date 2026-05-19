@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, Row, Col, Placeholder } from "react-bootstrap"
-import { Loader } from "@/components"
+import { Loader, RateLimitError } from "@/components"
 import { useVtcStats } from "@/hooks/useVtcStats"
 import type { Dictionary } from "@/app/i18n"
 
@@ -10,7 +10,7 @@ interface VtcStatsProps {
 }
 
 export default function VtcStats({ dict }: VtcStatsProps) {
-  const { stats, loading, error } = useVtcStats(dict);
+  const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryVtcStats } = useVtcStats(dict);
 
   const formatDistance = (distance: number, unit: string = "km"): string => {
     const value = distance / 1000
@@ -177,6 +177,10 @@ export default function VtcStats({ dict }: VtcStatsProps) {
   }
 
   if (error) {
+    if (isRateLimited) {
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryVtcStats} retryLoading={loading} />;
+    }
+
     return (
       <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
         <Card.Body className="p-4">

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLang } from '@/hooks/useLang'
 import axios from "axios";
 import type { Dictionary } from "@/app/i18n";
+import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 
 export function useEvents(dict: Dictionary) {
@@ -11,6 +12,7 @@ export function useEvents(dict: Dictionary) {
   const [events, setEvents] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
   const eventData = 
   {
@@ -191,16 +193,16 @@ export function useEvents(dict: Dictionary) {
     async function fetchEvents() {
       setLoading(true);
       setError(null);
+      clearRateLimitCountdown();
       try {
         const res = await axios.get(`/api/events?lang=${lang}`);
         if (res.status !== 200) throw new Error(dict.errors.events.FAILED_TO_FETCH_EVENTS, { cause: res.status });
         const data = res.data;
-        // setEvents(data.response);
         setEvents(data.response)
       } catch (err: any) {
-        const message = err?.response?.data?.message || err?.message || dict.errors.events.FAILED_TO_FETCH_EVENTS;
-        setError(message);
-        throw new Error(message);
+        const parsed = parseApiError(err, dict.errors.events.FAILED_TO_FETCH_EVENTS);
+        setError(parsed.message);
+        applyRateLimit(parsed.rateLimit);
       } finally {
         setLoading(false);
       }
@@ -208,5 +210,27 @@ export function useEvents(dict: Dictionary) {
     fetchEvents();
   }, []);
 
-  return { events, loading, error };
+  return {
+    events,
+    loading,
+    error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
+    retryEvents: async () => {
+      setLoading(true);
+      setError(null);
+      clearRateLimitCountdown();
+      try {
+        const res = await axios.get(`/api/events?lang=${lang}`);
+        if (res.status !== 200) throw new Error(dict.errors.events.FAILED_TO_FETCH_EVENTS, { cause: res.status });
+        setEvents(res.data.response);
+      } catch (err: any) {
+        const parsed = parseApiError(err, dict.errors.events.FAILED_TO_FETCH_EVENTS);
+        setError(parsed.message);
+        applyRateLimit(parsed.rateLimit);
+      } finally {
+        setLoading(false);
+      }
+    },
+  };
 }

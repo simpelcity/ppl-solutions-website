@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Dictionary } from "@/app/i18n";
 import { useLang } from "@/hooks/useLang";
+import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 export interface TeamMember {
   id: number;
@@ -42,6 +43,7 @@ export function useTeam(dict: Dictionary) {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
   useEffect(() => {
     fetchMembers();
@@ -56,6 +58,7 @@ export function useTeam(dict: Dictionary) {
 
   async function fetchMembers() {
     setError(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.get(`/api/team/members?lang=${lang}`);
@@ -63,14 +66,16 @@ export function useTeam(dict: Dictionary) {
       const data = res.data;
       setMembers(data.members || []);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.members.FAILED_TO_FETCH_MEMBERS;
-      setError(message);
-      throw new Error(message);
+      const parsed = parseApiError(err, dict.errors.members.FAILED_TO_FETCH_MEMBERS);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
   async function fetchDepartments() {
     setError(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.get(`/api/departments?lang=${lang}`);
@@ -78,29 +83,39 @@ export function useTeam(dict: Dictionary) {
       const data = res.data;
       setDepartments(data.departments || []);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS;
-      setError(message);
-      throw new Error(message);
+      const parsed = parseApiError(err, dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
   async function fetchRoles() {
-    const res = await axios.get(`/api/roles?lang=${lang}`);
-    const data = res.data;
-    if (res.status === 200) setRoles(data.roles || []);
+    try {
+      const res = await axios.get(`/api/roles?lang=${lang}`);
+      const data = res.data;
+      if (res.status === 200) setRoles(data.roles || []);
+    } catch (err: any) {
+      const parsed = parseApiError(err, dict.errors.roles.FAILED_TO_FETCH_ROLES);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
+    }
   };
 
   async function fetchMemberRoles(memberId: number) {
     setError(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.get(`/api/team/roles?memberId=${memberId}&lang=${lang}`);
       const data = res.data;
       if (res.status === 200) setMemberRoles(data.roles || []);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.roles.FAILED_TO_FETCH_ROLES;
-      setError(message);
-      throw new Error(message);
+      const parsed = parseApiError(err, dict.errors.roles.FAILED_TO_FETCH_ROLES);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
@@ -108,6 +123,7 @@ export function useTeam(dict: Dictionary) {
     setSubmitting(true);
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const fd = new FormData();
@@ -122,7 +138,10 @@ export function useTeam(dict: Dictionary) {
       setSuccess(dict.success.team.TEAM_MEMBER_ADDED);
       fetchMembers();
     } catch (e: any) {
-      setError(e.message);
+      const parsed = parseApiError(e, dict.errors.team.FAILED_TO_ADD_TEAM_MEMBER);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     } finally {
       setSubmitting(false);
     }
@@ -132,6 +151,7 @@ export function useTeam(dict: Dictionary) {
     setSubmitting(true);
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const fd = new FormData();
@@ -148,7 +168,10 @@ export function useTeam(dict: Dictionary) {
       setEditingId(null);
       fetchMembers();
     } catch (e: any) {
-      setError(e.message);
+      const parsed = parseApiError(e, dict.errors.team.FAILED_TO_UPDATE_TEAM_MEMBER);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     } finally {
       setSubmitting(false);
     }
@@ -157,6 +180,7 @@ export function useTeam(dict: Dictionary) {
   const deleteMember = async (id: number) => {
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.delete(`/api/team?lang=${lang}`, { data: { id } });
@@ -165,13 +189,17 @@ export function useTeam(dict: Dictionary) {
       setSuccess(dict.success.team.TEAM_MEMBER_DELETED);
       fetchMembers();
     } catch (e: any) {
-      setError(e.message);
+      const parsed = parseApiError(e, dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
   const deleteProfilePicture = async (id: number) => {
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.patch(`/api/team?lang=${lang}`, { id });
@@ -180,14 +208,16 @@ export function useTeam(dict: Dictionary) {
       setSuccess(dict.success.profile.profilePicture.PROFILE_PICTURE_DELETED);
       fetchMembers();
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.profile.profilePicture.FAILED_TO_DELETE_PROFILE_PICTURE;
-      setError(message);
+      const parsed = parseApiError(err, dict.errors.profile.profilePicture.FAILED_TO_DELETE_PROFILE_PICTURE);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
     }
   };
 
   const addRole = async (memberId: number, departmentId: number, roleId: number) => {
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.post(`/api/team/roles?lang=${lang}`, {
@@ -200,13 +230,17 @@ export function useTeam(dict: Dictionary) {
       setSuccess(dict.success.roles.ROLE_ADDED);
       fetchMemberRoles(memberId);
     } catch (e: any) {
-      setError(e.message);
+      const parsed = parseApiError(e, dict.errors.roles.FAILED_TO_ADD_ROLE);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
   const removeRole = async (memberId: number, departmentId: number, roleId: number) => {
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.delete(`/api/team/roles?lang=${lang}`, {
@@ -221,7 +255,10 @@ export function useTeam(dict: Dictionary) {
       setSuccess(dict.success.roles.ROLE_REMOVED);
       fetchMemberRoles(memberId);
     } catch (e: any) {
-      setError(e.message);
+      const parsed = parseApiError(e, dict.errors.roles.FAILED_TO_REMOVE_ROLE);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
@@ -235,6 +272,8 @@ export function useTeam(dict: Dictionary) {
     submitting,
     editingId,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     success,
     setEditingId,
     createMember,
@@ -243,5 +282,11 @@ export function useTeam(dict: Dictionary) {
     deleteProfilePicture,
     addRole,
     removeRole,
+    retryTeamData: async () => {
+      await Promise.all([fetchMembers(), fetchDepartments(), fetchRoles()]);
+      if (editingId) {
+        await fetchMemberRoles(editingId);
+      }
+    },
   };
 }
