@@ -8,6 +8,11 @@ import { useLang } from "@/hooks/useLang";
 import type { Dictionary } from "@/app/i18n";
 
 type Job = any;
+type RateLimitPayload = {
+  retryAfterSeconds?: number;
+  resetAt?: number;
+  serverTime?: number;
+};
 
 export function useUserJobs(dict: Dictionary) {
   const lang = useLang();
@@ -28,6 +33,9 @@ export function useUserJobs(dict: Dictionary) {
   const [allJobs, setAllJobs] = useState<Job[]>([]);
   const [driver, setDriver] = useState<string | null>(null);
   const [driverName, setDriverName] = useState<string | null>(null);
+  const [isRateLimited, setIsRateLimited] = useState(false);
+  const [rateLimitResetAt, setRateLimitResetAt] = useState<number | null>(null);
+  const [rateLimitSecondsRemaining, setRateLimitSecondsRemaining] = useState<number | null>(null);
 
   const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
   const displayPage = lastPage - currentPage + 1;
@@ -62,8 +70,35 @@ export function useUserJobs(dict: Dictionary) {
       return data;
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.jobs.FAILED_TO_FETCH_JOBS;
-      throw new Error(message);
+      const rateLimit = err?.response?.data?.rateLimit as RateLimitPayload | undefined;
+
+      throw {
+        message,
+        rateLimit,
+      };
     }
+  };
+
+  const clearRateLimitCountdown = () => {
+    setIsRateLimited(false);
+    setRateLimitResetAt(null);
+    setRateLimitSecondsRemaining(null);
+  };
+
+  const handleJobsError = (err: any) => {
+    const message = err?.message || dict.errors.jobs.FAILED_TO_FETCH_JOBS;
+    setError(message);
+
+    const rateLimit = err?.rateLimit as RateLimitPayload | undefined;
+    if (rateLimit?.resetAt) {
+      const initialSeconds = Math.max(1, Math.ceil((rateLimit.resetAt - Date.now()) / 1000));
+      setIsRateLimited(true);
+      setRateLimitResetAt(rateLimit.resetAt);
+      setRateLimitSecondsRemaining(initialSeconds);
+      return;
+    }
+
+    clearRateLimitCountdown();
   };
 
   const parseLastPage = (lastUrl: string | undefined): number => {
@@ -87,13 +122,14 @@ export function useUserJobs(dict: Dictionary) {
   const loadJobs = async (displayPage: number) => {
     setLoading(true);
     setError(null);
+    clearRateLimitCountdown();
     try {
       const apiPage = lastPage - displayPage + 1;
       const payload = await fetchJobsPage(apiPage);
       setJobs(Array.isArray(payload.jobs.data) ? payload.jobs.data.reverse() : []);
       setCurrentPage(apiPage);
     } catch (err: any) {
-      setError(err.message);
+      handleJobsError(err);
     } finally {
       setLoading(false);
     }
@@ -107,7 +143,7 @@ export function useUserJobs(dict: Dictionary) {
         setAllJobs(all);
         setShowAll(true);
       } catch (err: any) {
-        setError(err.message);
+        handleJobsError(err);
       } finally {
         setLoading(false);
       }
@@ -125,6 +161,7 @@ export function useUserJobs(dict: Dictionary) {
     const init = async () => {
       setLoading(true);
       setError(null);
+      clearRateLimitCountdown();
       try {
         const page1 = await fetchJobsPage(1);
         const lp = parseLastPage(page1.jobs.links?.last);
@@ -136,7 +173,7 @@ export function useUserJobs(dict: Dictionary) {
           setCurrentPage(lp);
         }
       } catch (err: any) {
-        if (!cancelled) setError(err.message);
+        if (!cancelled) handleJobsError(err);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -148,12 +185,40 @@ export function useUserJobs(dict: Dictionary) {
     };
   }, [session, driverUsername]);
 
+  useEffect(() => {
+    if (!rateLimitResetAt) return;
+
+    let intervalId: number;
+
+    const tick = () => {
+      const seconds = Math.max(0, Math.ceil((rateLimitResetAt - Date.now()) / 1000));
+      setRateLimitSecondsRemaining(seconds);
+
+      if (seconds <= 0) {
+        window.clearInterval(intervalId);
+      }
+    };
+
+    tick();
+    intervalId = window.setInterval(tick, 1000);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [rateLimitResetAt]);
+
+  const retryJobs = () => {
+    loadJobs(displayPage);
+  };
+
   return {
     jobs: showAll ? allJobs : jobs,
     driver,
     driverName,
     loading,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     currentPage,
     displayPage,
     lastPage,
@@ -162,5 +227,6 @@ export function useUserJobs(dict: Dictionary) {
     goToPage: (page: number) => loadJobs(page),
     goToNextPage: () => loadJobs(displayPage + 1),
     goToPreviousPage: () => loadJobs(displayPage - 1),
+    retryJobs,
   };
 }

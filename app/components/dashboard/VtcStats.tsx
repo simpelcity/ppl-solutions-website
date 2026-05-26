@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, Row, Col, Placeholder } from "react-bootstrap"
-import { Loader } from "@/components"
+import { Loader, RateLimitError } from "@/components"
 import { useVtcStats } from "@/hooks/useVtcStats"
 import type { Dictionary } from "@/app/i18n"
 
@@ -10,7 +10,7 @@ interface VtcStatsProps {
 }
 
 export default function VtcStats({ dict }: VtcStatsProps) {
-  const { stats, loading, error } = useVtcStats(dict);
+  const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryVtcStats } = useVtcStats(dict);
 
   const formatDistance = (distance: number, unit: string = "km"): string => {
     const value = distance / 1000
@@ -20,7 +20,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
   if (loading) {
     return (
       <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
-        <Placeholder as={Card.Title} animation="glow" className="fs-3 py-4 mb-0 border-bottom border-dark-subtle">
+        <Placeholder as={Card.Title} animation="glow" className="fs-3 py-4 mb-0 border-bottom border-dark-darker">
           <Placeholder xs={3} className="rounded-1" />
         </Placeholder>
         <Card.Body className="d-flex flex-column p-4 row-gap-4">
@@ -70,7 +70,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
           <Row className="row-gap-3">
             <Col xs={12} md={6}>
               <Card className="rounded-0 border-0 shadow-sm h-100 bg-dark-lighter">
-                <Placeholder as={Card.Title} animation="glow" className="fs-4 py-3 border-bottom border-dark-subtle">
+                <Placeholder as={Card.Title} animation="glow" className="fs-4 py-3 border-bottom border-dark-darker">
                   <Placeholder xs={5} className="rounded-1" />
                 </Placeholder>
                 <Card.Body>
@@ -121,7 +121,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
             </Col>
             <Col xs={12} md={6}>
               <Card className="rounded-0 border-0 shadow-sm h-100 bg-dark-lighter">
-                <Placeholder as={Card.Title} animation="glow" className="fs-4 py-3 border-bottom border-dark-subtle">
+                <Placeholder as={Card.Title} animation="glow" className="fs-4 py-3 border-bottom border-dark-darker">
                   <Placeholder xs={5} className="rounded-1" />
                 </Placeholder>
                 <Card.Body>
@@ -177,6 +177,10 @@ export default function VtcStats({ dict }: VtcStatsProps) {
   }
 
   if (error) {
+    if (isRateLimited) {
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryVtcStats} retryLoading={loading} />;
+    }
+
     return (
       <Card className="px-0 rounded-0 border-0 shadow-sm" data-bs-theme="dark">
         <Card.Body className="p-4">
@@ -199,7 +203,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
   return (
     <>
       <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-        <Card.Title className="fs-3 py-3 py-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.vtc.title || "VTC Statistics"}</Card.Title>
+        <Card.Title className="fs-3 py-3 py-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.vtcStats.vtc.title || "VTC Statistics"}</Card.Title>
         <Card.Body className="d-flex flex-column p-3 p-md-4 row-gap-3 row-gap-md-4">
           <Row className="row-gap-3 row-gap-md-4">
             <Col xs={12} md={6} xl={3}>
@@ -235,7 +239,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
           <Row className="row-gap-3 row-gap-md-4">
             <Col xs={12} md={6}>
               <Card className="rounded-1 border-0 shadow-sm h-100 bg-dark-lighter">
-                <Card.Title className="fs-4 py-3 py-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.ets2.title || "ETS2 Statistics"}</Card.Title>
+                <Card.Title className="fs-4 py-3 py-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.vtcStats.ets2.title || "ETS2 Statistics"}</Card.Title>
                 <Card.Body className="p-3 p-md-4">
                   <Row className="row-gap-3 row-gap-md-4">
                     <Col xs={12} md={6}>
@@ -270,7 +274,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
             </Col>
             <Col xs={12} md={6}>
               <Card className="rounded-1 border-0 shadow-sm h-100 bg-dark-lighter">
-                <Card.Title className="fs-4 py-3 py-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.vtcStats.ats.title || "ATS Statistics"}</Card.Title>
+                <Card.Title className="fs-4 py-3 py-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.vtcStats.ats.title || "ATS Statistics"}</Card.Title>
                 <Card.Body className="p-3 p-md-4">
                   <Row className="row-gap-3 row-gap-md-4">
                     <Col xs={12} md={6}>

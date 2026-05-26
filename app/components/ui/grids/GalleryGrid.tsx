@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react"
 import { Row, Col, Card, Spinner } from "react-bootstrap"
-import { LoaderSpinner } from '@/components'
+import { LoaderSpinner, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import axios from "axios";
+import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 type GalleryItem = {
   id: number
@@ -23,25 +24,33 @@ export default function GalleryGrid({ dict }: Props) {
   const [items, setItems] = useState<GalleryItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState()
+
+  const fetchGallery = async (mounted: boolean) => {
+    try {
+      setLoading(true)
+      setError(null)
+      clearRateLimitCountdown()
+      const res = await axios.get("/api/gallery")
+      if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status })
+      const data = res.data
+      if (!mounted) return
+      setItems(data.gallery ?? [])
+    } catch (err: any) {
+      console.error("Failed to fetch gallery:", err)
+      const parsed = parseApiError(err, dict.errors.gallery.ERROR_LOADING_GALLERY)
+      if (mounted) {
+        setError(parsed.message)
+        applyRateLimit(parsed.rateLimit)
+      }
+    } finally {
+      if (mounted) setLoading(false)
+    }
+  }
 
   useEffect(() => {
     let mounted = true
-    const fetchGallery = async () => {
-      try {
-        setLoading(true)
-        const res = await axios.get("/api/gallery")
-        if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status })
-        const data = res.data
-        if (!mounted) return
-        setItems(data.gallery ?? [])
-      } catch (err: any) {
-        console.error("Failed to fetch gallery:", err)
-        if (mounted) setError(err.message ?? String(err))
-      } finally {
-        if (mounted) setLoading(false)
-      }
-    }
-    fetchGallery()
+    fetchGallery(mounted)
     return () => {
       mounted = false
     }
@@ -50,6 +59,10 @@ export default function GalleryGrid({ dict }: Props) {
   if (loading) return <LoaderSpinner dict={dict} />
 
   if (error) {
+    if (isRateLimited) {
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={() => fetchGallery(true)} retryLoading={loading} />
+    }
+
     return <div className="text-danger">{dict.errors.gallery.ERROR_LOADING_GALLERY} {error}</div>
   }
 

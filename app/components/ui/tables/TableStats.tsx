@@ -2,7 +2,7 @@
 
 import { useUserStats } from '@/hooks/useUserStats'
 import { Table, Placeholder } from 'react-bootstrap'
-import { PlaceholderTable } from '@/components'
+import { PlaceholderTable, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
@@ -10,9 +10,15 @@ type Props = {
 }
 
 export default function TableStats({ dict }: Props) {
-  const { stats, loading, error } = useUserStats(dict);
+  const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryStats } = useUserStats(dict);
 
-  if (error) return <div className="text-danger text-center fw-bold py-3">{dict.errors.GENERAL_ERROR}: {error}</div>
+  if (error) {
+    if (isRateLimited) {
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryStats} retryLoading={loading} />;
+    }
+
+    return <div className="text-danger text-center fw-bold py-3">{dict.errors.GENERAL_ERROR}: {error}</div>
+  }
 
   const numberWithCommas = (x: number) => {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");

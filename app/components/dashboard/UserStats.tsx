@@ -2,7 +2,7 @@
 
 import { useUserStats } from '@/hooks/useUserStats'
 import { Card, Row, Col } from 'react-bootstrap'
-import { TableStats, LoaderSpinner } from '@/components'
+import { TableStats, LoaderSpinner, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export default function UserStats({ dict }: Props) {
-  const { stats, loading, error } = useUserStats(dict);
+  const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryStats } = useUserStats(dict);
 
   const rounded = (value: any) => {
     const valueNum = value.toFixed(1);
@@ -29,7 +29,20 @@ export default function UserStats({ dict }: Props) {
   }
 
   if (loading) return <LoaderSpinner dict={dict} />
-  if (error) return <div className="d-flex align-items-center text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+  if (error) {
+    if (isRateLimited) {
+      return (
+        <RateLimitError
+          dict={dict}
+          secondsRemaining={rateLimitSecondsRemaining ?? 0}
+          onRetry={retryStats}
+          retryLoading={loading}
+        />
+      );
+    }
+
+    return <div className="d-flex align-items-center text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+  }
   if (!stats) return null;
 
   return (
@@ -38,7 +51,7 @@ export default function UserStats({ dict }: Props) {
         <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={6} lg={4}>
             <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
@@ -71,7 +84,7 @@ export default function UserStats({ dict }: Props) {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.income.title}</Card.Title>
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.userStats.cards.income.title}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
@@ -104,7 +117,7 @@ export default function UserStats({ dict }: Props) {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>

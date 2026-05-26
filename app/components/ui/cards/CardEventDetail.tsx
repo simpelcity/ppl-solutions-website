@@ -10,7 +10,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import { FiExternalLink, FiDownload } from "react-icons/fi";
 import { IoLanguage, IoCalendar, IoGameController } from "react-icons/io5";
 import { MdKeyboardVoice } from "react-icons/md";
-import { BSButton } from "@/components";
+import { BSButton, RateLimitError } from "@/components";
 import ReactMarkdown from 'react-markdown';
 import { useIsAdmin } from "@/lib/useIsAdmin";
 
@@ -26,7 +26,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
     if (isAdmin) console.log("%c[ADMIN]", "color: #00fbff; font-weight: bold;", ...args);
   };
 
-  const { event, loading, error } = useEventDetails(dict, eventId);
+  const { event, loading, error, isRateLimited, rateLimitSecondsRemaining, retryEventDetails } = useEventDetails(dict, eventId);
   const [vtcsOpen, setVtcsOpen] = useState(false);
   const [usersOpen, setUsersOpen] = useState(false);
   
@@ -170,7 +170,13 @@ export default function CardEventDetail({ eventId, dict }: Props) {
       </Col>
     )
   }
-  if (error) return <div>Error: {error}</div>
+  if (error) {
+    if (isRateLimited) {
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryEventDetails} retryLoading={loading} />;
+    }
+
+    return <div>Error: {error}</div>
+  }
   if (!event) return <div>No event data found.</div>
 
   function formatDate(dateString: Date) {

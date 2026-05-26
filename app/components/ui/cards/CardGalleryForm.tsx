@@ -3,7 +3,7 @@
 import { useState, type ChangeEvent } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal, Row, Container } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { BSButton, LoaderSpinner } from "@/components";
+import { BSButton, LoaderSpinner, RateLimitError } from "@/components";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
 import type { Dictionary } from "@/app/i18n"
 
@@ -27,11 +27,14 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     submitting,
     editingId,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     success,
     setEditingId,
     createItem,
     updateItem,
     deleteItem,
+    retryGallery,
   } = useGallery(dict);
 
   const [title, setTitle] = useState("");
@@ -146,7 +149,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
         <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={10} lg={6}>
             <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-              <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3 py-md-4">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
+              <Card.Title className="fs-4 border-bottom border-dark-darker m-0 py-3 py-md-4">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
               <Card.Body className="p-3 p-md-4 text-start">
                 <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
                   <Form.Group className="mb-3">
@@ -196,11 +199,15 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                   )}
                 </Form>
 
-                {error && (
+                {error && (isRateLimited ? (
+                  <div className="mt-3">
+                    <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryGallery} retryLoading={loading || submitting} />
+                  </div>
+                ) : (
                   <Alert variant="danger" className="py-2 mt-3 mb-0" dismissible>
                     {error}
                   </Alert>
-                )}
+                ))}
                 {success && (
                   <Alert variant="success" className="py-2 mt-3 mb-0" dismissible>
                     {success}
@@ -213,7 +220,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
           {/* Gallery Items List */}
           <Col xs={12} md={10} lg={6}>
             <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-              <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3 py-md-4">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
+              <Card.Title className="fs-4 border-bottom border-dark-darker m-0 py-3 py-md-4">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 {loading ? (
                   <div className="d-flex justify-content-center align-items-center column-gap-2">
@@ -227,7 +234,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     {items.map((item) => (
                       <ListGroup.Item
                         key={item.id}
-                        className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle flex-wrap row-gap-2">
+                        className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-darker flex-wrap row-gap-2">
                         <div className="d-flex align-items-center">
                           <Image
                             src={item.image_url || "/assets/icons/image-placeholder.png"}

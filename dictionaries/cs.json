@@ -632,6 +632,10 @@
     "GENERAL_ERROR": "Chyba",
     "UNEXPECTED": "Došlo k neočekávané chybě",
     "SERVER_ERROR": "Chyba serveru",
+    "rateLimit": {
+      "TOO_MANY_REQUESTS": "Limit požadavků překročen. Zkuste to prosím znovu za {seconds} sekund.",
+      "TRY_AGAIN": "Zkusit znovu"
+    },
     "events": {
       "NO_EVENTS": "Žádné nadcházející události",
       "NA": "Není k dispozici",
@@ -645,7 +649,9 @@
         "NO_EXTERNAL_LINK": "Žádný externí odkaz",
         "NO_CONFIRMED_VTCS": "Žádné VTC zatím nepotvrdilo účast.",
         "NO_CONFIRMED_USERS": "Žádní uživatelé zatím nepotvrdili účast.",
-        "NO_DLCS": "K účasti na této události nejsou potřeba žádná DLC."
+        "NO_DLCS": "K účasti na této události nejsou potřeba žádná DLC.",
+        "EVENT_NOT_FOUND": "Událost nebyla nalezena",
+        "NO_BANNER": "Žádný Banner"
       }
     },
     "team": {

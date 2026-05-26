@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Dictionary } from "@/app/i18n";
 import { useLang } from "@/hooks/useLang";
+import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 export interface GalleryItem {
   id: number;
@@ -20,6 +21,7 @@ export function useGallery(dict: Dictionary) {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
   useEffect(() => {
     fetchItems();
@@ -27,6 +29,7 @@ export function useGallery(dict: Dictionary) {
 
   const fetchItems = async () => {
     setError(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.get(`/api/gallery?lang=${lang}`);
@@ -34,9 +37,10 @@ export function useGallery(dict: Dictionary) {
       const data = res.data;
       setItems(data.gallery || []);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.ERROR_LOADING_GALLERY;
-      setError(message);
-      throw new Error(message);
+      const parsed = parseApiError(err, dict.errors.gallery.ERROR_LOADING_GALLERY);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
@@ -48,6 +52,7 @@ export function useGallery(dict: Dictionary) {
     setSubmitting(true);
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.post(`/api/gallery?lang=${lang}`, fd, {
@@ -57,9 +62,10 @@ export function useGallery(dict: Dictionary) {
       setSuccess(dict.success.gallery.ITEM_ADDED);
       fetchItems();
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.FAILED_TO_ADD_ITEM;
-      setError(message);
-      throw new Error(message);
+      const parsed = parseApiError(err, dict.errors.gallery.FAILED_TO_ADD_ITEM);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     } finally {
       setSubmitting(false);
     }
@@ -74,6 +80,7 @@ export function useGallery(dict: Dictionary) {
     setSubmitting(true);
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.put(`/api/gallery?lang=${lang}`, fd, {
@@ -84,9 +91,10 @@ export function useGallery(dict: Dictionary) {
       setEditingId(null);
       fetchItems();
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.FAILED_TO_UPDATE_ITEM;
-      setError(message);
-      throw new Error(message);
+      const parsed = parseApiError(err, dict.errors.gallery.FAILED_TO_UPDATE_ITEM);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     } finally {
       setSubmitting(false);
     }
@@ -95,6 +103,7 @@ export function useGallery(dict: Dictionary) {
   const deleteItem = async (id: number) => {
     setError(null);
     setSuccess(null);
+    clearRateLimitCountdown();
 
     try {
       const res = await axios.delete(`/api/gallery?lang=${lang}`, { data: { id } });
@@ -102,9 +111,10 @@ export function useGallery(dict: Dictionary) {
       setSuccess(dict.success.gallery.ITEM_DELETED);
       fetchItems();
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || dict.errors.gallery.FAILED_TO_DELETE_ITEM;
-      setError(message);
-      throw new Error(message);
+      const parsed = parseApiError(err, dict.errors.gallery.FAILED_TO_DELETE_ITEM);
+      setError(parsed.message);
+      applyRateLimit(parsed.rateLimit);
+      throw new Error(parsed.message);
     }
   };
 
@@ -114,10 +124,13 @@ export function useGallery(dict: Dictionary) {
     submitting,
     editingId,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     success,
     setEditingId,
     createItem,
     updateItem,
     deleteItem,
+    retryGallery: fetchItems,
   };
 }

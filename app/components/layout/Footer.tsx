@@ -7,21 +7,25 @@ import { IconContext } from "react-icons"
 import { FooterLink, BSLink } from "@/components"
 import "@/styles/Footer.scss"
 import type { Dictionary } from "@/app/i18n";
+import { type Locale } from "@/i18n"
 import { useSidebar } from "@/lib";
 
 type FooterProps = {
   dict: Dictionary
+  lang: Locale
 }
 
-export default function Footer({ dict }: FooterProps) {
+export default function Footer({ dict, lang }: FooterProps) {
   const { isSidebarCollapsed } = useSidebar();
 
+  const currentLocale = lang === "en" ? "" : `/${lang}`;
+
   const footerLinks = [
-    { title: `${dict.footer.footer2.pages.home}`, href: "" },
-    { title: `${dict.footer.footer2.pages.events}`, href: "events" },
-    { title: `${dict.footer.footer2.pages.team}`, href: "team" },
-    { title: `${dict.footer.footer2.pages.gallery}`, href: "gallery" },
-    { title: `${dict.footer.footer2.pages.contact}`, href: "contact" },
+    { title: `${dict.footer.footer2.pages.home}`, href: `${currentLocale}/` },
+    { title: `${dict.footer.footer2.pages.events}`, href: `${currentLocale}/events` },
+    { title: `${dict.footer.footer2.pages.team}`, href: `${currentLocale}/team` },
+    { title: `${dict.footer.footer2.pages.gallery}`, href: `${currentLocale}/gallery` },
+    { title: `${dict.footer.footer2.pages.contact}`, href: `${currentLocale}/contact` },
   ];
 
   const currentYear = new Date().getFullYear()
@@ -43,7 +47,7 @@ export default function Footer({ dict }: FooterProps) {
   const developer = dict.footer.bottom.copyright.slice(end2);
 
   return (
-    <footer className="bg-dark text-light py-4">
+    <footer className="bg-surface text-theme py-4">
       <Container className="px-3 d-flex flex-column align-items-center" fluid>
         <Row className="w-100 d-flex row-gap-4">
           <Col
@@ -52,7 +56,7 @@ export default function Footer({ dict }: FooterProps) {
             xl={isSidebarCollapsed ? 6 : 5}
             className="d-flex flex-column align-items-center text-center align-items-xl-start text-xl-start">
             <div className="d-flex align-items-center mb-3">
-              <a href="/" className="d-flex flex-row text-decoration-none text-light column-gap-2">
+              <a href="/" className="d-flex flex-row text-decoration-none text-theme column-gap-2">
                 <Image
                   src={"/assets/images/ppls-logo.png"}
                   alt="PPLS Logo"
@@ -101,8 +105,8 @@ export default function Footer({ dict }: FooterProps) {
                 <Tabs defaultActiveKey="links" className="mb-3" fill>
                   <Tab eventKey="links" title={dict.footer.footer3.tab1.title}>
                     <ListGroup>
-                      <FooterLink link="drivershub">{dict.footer.footer3.tab1.pages.drivershub}</FooterLink>
-                      <FooterLink link="apply">{dict.footer.footer3.tab1.pages.apply}</FooterLink>
+                      <FooterLink link={`${currentLocale}/drivershub`}>{dict.footer.footer3.tab1.pages.drivershub}</FooterLink>
+                      <FooterLink link={`${currentLocale}/apply`}>{dict.footer.footer3.tab1.pages.apply}</FooterLink>
                       <FooterLink href="https://truckersmp.com/vtc/74455" target="_blank">
                         {dict.footer.footer3.tab1.pages.vtc}
                       </FooterLink>

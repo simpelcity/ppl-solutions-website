@@ -1,16 +1,5 @@
 @use "variables" as *;
 
-.btn:hover {
-  &:active {
-    color: $light !important;
-    background-color: $primary !important;
-    border-color: $primary !important;
-  }
-  color: $light !important;
-  background-color: $primary !important;
-  border-color: $primary !important;
-}
-
 .btn:disabled {
   pointer-events: all !important;
   color: black !important;
@@ -47,4 +36,47 @@
 
 .btn-file {
   max-height: 36px;
+}
+
+.primary-btn {
+  &:hover {
+    background-color: $primary-hover !important;
+    border-color: $primary-hover !important;
+  }
+  &:active {
+    background-color: $primary-active !important;
+    border-color: $primary-active !important;
+  }
+}
+
+.secondary-btn {
+  &:hover {
+    background-color: $secondary-hover !important;
+    border-color: $secondary-hover !important;
+  }
+  &:active {
+    background-color: $secondary-active !important;
+    border-color: $secondary-active !important;
+  }
+}
+
+.outline-btn {
+  &:hover {
+    background-color: $primary !important;
+    border-color: $primary !important;
+    color: $light !important;
+  }
+}
+
+.transparent-btn {
+  background-color: transparent !important;
+  border: none !important;
+  &:hover {
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
+  &:active {
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
 }

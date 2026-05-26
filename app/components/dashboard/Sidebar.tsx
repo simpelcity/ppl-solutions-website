@@ -199,7 +199,9 @@ function SidebarContent({
                   <span className="me-2 fs-5"><BiSolidDashboard /></span>
                   <span>{dict.drivershub.sidebar.dashboard.title}</span>
                 </div>
-                {open ? <FaAngleRight className="rotate-90-cw" /> : <FaAngleDown className="rotate-90-ccw" />}
+                <span className={`chevron-rotate-90 ${open ? 'is-open' : ''}`}>
+                  <FaAngleRight />
+                </span>
               </Nav.Link>
 
               <Collapse in={open}>
@@ -254,7 +256,9 @@ function SidebarContent({
               className="me-2 object-fit-cover"
             />
             <strong>{username}</strong>
-            {isProfileDropdownOpen ? <FaAngleDown className="ms-1 rotate-180-cw" /> : <FaAngleUp className="ms-1 rotate-180-ccw" />}
+            <span className={`ms-1 chevron-rotate-180 ${isProfileDropdownOpen ? 'is-open' : ''}`}>
+              <FaAngleDown />
+            </span>
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-dark shadow-sm mb-1 bg-dark-subtle border-0 rounded-1" style={{ zIndex: 1050 }}>
             <Dropdown.Item href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
@@ -279,7 +283,9 @@ function SidebarContent({
               height={32}
               roundedCircle
             />
-            <span>{isProfileDropdownOpen ? <FaAngleUp className="ms-1" /> : <FaAngleDown className="ms-1" />}</span>
+            <span className={`ms-1 chevron-rotate-180 ${isProfileDropdownOpen ? 'is-open' : ''}`}>
+              <FaAngleDown />
+            </span>
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-dark shadow-sm ms-3 mb-1 bg-dark-subtle border-0 rounded-1" style={{ zIndex: 1050 }}>
             <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>

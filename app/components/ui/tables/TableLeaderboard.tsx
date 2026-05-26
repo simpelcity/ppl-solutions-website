@@ -5,7 +5,7 @@ import { useLeaderboard } from '@/hooks/useLeaderboard'
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { BSButton, LoaderSpinner } from '@/components'
+import { BSButton, LoaderSpinner, RateLimitError } from '@/components'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import type { Dictionary } from "@/app/i18n"
 
@@ -46,7 +46,10 @@ export default function TableLeaderboard({ dict }: Props) {
     monthlyMaxDistanceLeaderboard,
     allTimeMaxMassLeaderboard,
     monthlyMaxMassLeaderboard,
-    currentLeaderboard
+    currentLeaderboard,
+    isRateLimited,
+    rateLimitSecondsRemaining,
+    retryLeaderboard,
   } = useLeaderboard(dict, selectedPeriod, selectedYear, selectedMonth);
 
   const distanceLeaderboard = selectedPeriod === 'all-time' ? allTimeDistanceLeaderboard : monthlyDistanceLeaderboard;
@@ -184,7 +187,16 @@ export default function TableLeaderboard({ dict }: Props) {
           </Card.Header>
           <Card.Body className="p-3 p-md-4">
             {error ? (
-              <div className="text-danger text-center fw-bold py-3">{error}</div>
+              isRateLimited ? (
+                <RateLimitError
+                  dict={dict}
+                  secondsRemaining={rateLimitSecondsRemaining ?? 0}
+                  onRetry={retryLeaderboard}
+                  retryLoading={loading}
+                />
+              ) : (
+                <div className="text-danger text-center fw-bold py-3">{error}</div>
+              )
             ) : loading ? (
               <LoaderSpinner dict={dict} />
             ) : (

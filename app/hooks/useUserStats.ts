@@ -8,6 +8,11 @@ import type { Dictionary } from "@/app/i18n";
 import { useLang } from '@/hooks/useLang'
 
 type Job = any;
+type RateLimitPayload = {
+  retryAfterSeconds?: number;
+  resetAt?: number;
+  serverTime?: number;
+};
 
 interface stats {
   hours: number;
@@ -76,6 +81,9 @@ export function useUserStats(dict: Dictionary) {
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<stats | null | undefined>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isRateLimited, setIsRateLimited] = useState(false);
+  const [rateLimitResetAt, setRateLimitResetAt] = useState<number | null>(null);
+  const [rateLimitSecondsRemaining, setRateLimitSecondsRemaining] = useState<number | null>(null);
 
   const driverUsername = session?.user?.user_metadata?.username || session?.user?.email;
 
@@ -116,9 +124,64 @@ export function useUserStats(dict: Dictionary) {
       return data.jobs;
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.userStats.FAILED_TO_FETCH_STATS;
-      setError(message);
-      throw new Error(message);
+      const payloadRateLimit = err?.response?.data?.rateLimit as RateLimitPayload | undefined;
+
+      const headerReset = Number(err?.response?.headers?.["x-ratelimit-reset"]);
+      const headerRetryAfter = Number(err?.response?.headers?.["retry-after"]);
+
+      const rateLimit: RateLimitPayload | undefined = payloadRateLimit ?? (
+        Number.isFinite(headerReset) || Number.isFinite(headerRetryAfter)
+          ? {
+            resetAt: Number.isFinite(headerReset) ? headerReset : Date.now() + (headerRetryAfter * 1000),
+            retryAfterSeconds: Number.isFinite(headerRetryAfter) ? headerRetryAfter : undefined,
+            serverTime: Date.now(),
+          }
+          : undefined
+      );
+
+      throw {
+        message,
+        rateLimit,
+      };
     }
+  };
+
+  const clearRateLimitCountdown = () => {
+    setIsRateLimited(false);
+    setRateLimitResetAt(null);
+    setRateLimitSecondsRemaining(null);
+  };
+
+  const handleStatsError = (err: any) => {
+    const message = err?.response?.data?.message || err?.message || dict.errors.userStats.FAILED_TO_FETCH_STATS;
+    setError(message);
+
+    const payloadRateLimit = err?.rateLimit || err?.response?.data?.rateLimit;
+    const headerReset = Number(err?.response?.headers?.["x-ratelimit-reset"]);
+    const headerRetryAfter = Number(err?.response?.headers?.["retry-after"]);
+
+    const rateLimit = (payloadRateLimit ?? (
+      Number.isFinite(headerReset) || Number.isFinite(headerRetryAfter)
+        ? {
+          resetAt: Number.isFinite(headerReset) ? headerReset : Date.now() + (headerRetryAfter * 1000),
+          retryAfterSeconds: Number.isFinite(headerRetryAfter) ? headerRetryAfter : undefined,
+          serverTime: Date.now(),
+        }
+        : undefined
+    )) as RateLimitPayload | undefined;
+
+    const resetAt = rateLimit?.resetAt
+      ?? (rateLimit?.retryAfterSeconds ? Date.now() + rateLimit.retryAfterSeconds * 1000 : undefined);
+
+    if (resetAt) {
+      const initialSeconds = Math.max(1, Math.ceil((resetAt - Date.now()) / 1000));
+      setIsRateLimited(true);
+      setRateLimitResetAt(resetAt);
+      setRateLimitSecondsRemaining(initialSeconds);
+      return;
+    }
+
+    clearRateLimitCountdown();
   };
 
   const convertTime = (ms: number) => {
@@ -455,7 +518,21 @@ export function useUserStats(dict: Dictionary) {
         },
       };
     } catch (err: any) {
-      setError(err.message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadStats = async () => {
+    setLoading(true);
+    setError(null);
+    clearRateLimitCountdown();
+    try {
+      const statistics = await getStatistics();
+      setStats(statistics);
+    } catch (err: any) {
+      handleStatsError(err);
     } finally {
       setLoading(false);
     }
@@ -464,21 +541,37 @@ export function useUserStats(dict: Dictionary) {
   useEffect(() => {
     if (!session || !driverUsername) return;
 
-    const loadStats = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const statistics = await getStatistics();
-        setStats(statistics);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+    loadStats();
+  }, [session, driverUsername]);
+
+  useEffect(() => {
+    if (!rateLimitResetAt) return;
+
+    let intervalId: number;
+
+    const tick = () => {
+      const seconds = Math.max(0, Math.ceil((rateLimitResetAt - Date.now()) / 1000));
+      setRateLimitSecondsRemaining(seconds);
+
+      if (seconds <= 0) {
+        window.clearInterval(intervalId);
       }
     };
 
-    loadStats();
-  }, [session]);
+    tick();
+    intervalId = window.setInterval(tick, 1000);
 
-  return { stats, loading, error };
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [rateLimitResetAt]);
+
+  return {
+    stats,
+    loading,
+    error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
+    retryStats: loadStats,
+  };
 }

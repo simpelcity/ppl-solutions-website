@@ -1,7 +1,7 @@
 "use client";
 
 import { Table, Card, CardBody, CardTitle, Container } from "react-bootstrap";
-import { PlaceholderTable, BSButton } from "@/components";
+import { PlaceholderTable, BSButton, RateLimitError } from "@/components";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useUserJobs } from "@/hooks/useUserJobs";
@@ -27,6 +27,8 @@ export default function TableJobsClient({ lang, dict }: Props) {
     driverName,
     loading,
     error,
+    isRateLimited,
+    rateLimitSecondsRemaining,
     displayPage,
     lastPage,
     showAll,
@@ -34,6 +36,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
     goToPage,
     goToNextPage,
     goToPreviousPage,
+    retryJobs,
   } = useUserJobs(dict);
 
   const split = dict.drivershub.jobs.table.navigation.showing.split(" ");
@@ -94,7 +97,20 @@ export default function TableJobsClient({ lang, dict }: Props) {
   ];
 
   if (!loading) {
-    if (error) return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.GENERAL_ERROR}: {error}</div>;
+    if (error) {
+      if (isRateLimited) {
+        return (
+          <RateLimitError
+            dict={dict}
+            secondsRemaining={rateLimitSecondsRemaining ?? 0}
+            onRetry={retryJobs}
+            retryLoading={loading}
+          />
+        );
+      }
+
+      return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.GENERAL_ERROR}: {error}</div>;
+    }
     if (jobs.length === 0) return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.jobs.NO_JOBS}</div>;
   }
 
