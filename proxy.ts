@@ -3,20 +3,45 @@ import type { NextRequest } from "next/server";
 import { i18n } from "./i18n";
 import { createServerClient } from "@supabase/ssr";
 import { checkRateLimit, createRateLimitResponse } from "@/utils/rateLimit";
+import { applyCorsHeaders, getCorsContext } from "@/utils/cors";
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (pathname.startsWith("/api")) {
+    const { isAllowedOrigin, headers } = getCorsContext(request);
+
+    if (request.method === "OPTIONS") {
+      if (!isAllowedOrigin) {
+        return new NextResponse(
+          JSON.stringify({ error: "Forbidden", message: "Origin not allowed." }),
+          { status: 403, headers: { "Content-Type": "application/json", ...headers } },
+        );
+      }
+
+      return new NextResponse(null, { status: 204, headers });
+    }
+
+    if (!isAllowedOrigin) {
+      return new NextResponse(
+        JSON.stringify({ error: "Forbidden", message: "Origin not allowed." }),
+        { status: 403, headers: { "Content-Type": "application/json", ...headers } },
+      );
+    }
+
     const rateLimit = checkRateLimit(request, {
       timeWindowInMs: 60000,
       maxRequests: 3,
       keyPrefix: "api-global",
     });
 
-    if (!rateLimit.success) return createRateLimitResponse(rateLimit, request);
+    if (!rateLimit.success) {
+      const rateLimitedResponse = await createRateLimitResponse(rateLimit, request);
+      return applyCorsHeaders(rateLimitedResponse, headers);
+    }
 
-    return NextResponse.next();
+    const response = NextResponse.next();
+    return applyCorsHeaders(response, headers);
   }
 
   // Exclude static files from rewrites/redirects
