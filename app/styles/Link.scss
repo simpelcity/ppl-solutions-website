@@ -4,10 +4,10 @@
   color: $primary;
   transition: color 0.2s ease;
   &:hover {
-    color: #66c2b6;
+    color: $primary-hover;
   }
   &:focus {
-    color: #66c2b6;
+    color: $primary-active;
   }
 }
 

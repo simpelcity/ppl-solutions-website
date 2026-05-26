@@ -29,12 +29,12 @@ export default function LayoutClient({ children, dict, lang, forceHideFooter = f
       {drivershubPages ? (
         <Dashboard dict={dict} lang={lang}>
           {children}
-          {!hideFooter && <Footer dict={dict} />}
+          {!hideFooter && <Footer dict={dict} lang={lang} />}
         </Dashboard>
       ) : (
         <>
           {children}
-          {!hideFooter && <Footer dict={dict} />}
+          {!hideFooter && <Footer dict={dict} lang={lang} />}
         </>
       )}
     </>

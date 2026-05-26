@@ -45,6 +45,8 @@ export default async function HomePage({ params }: PageProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
 
+  const currentLang = lang === 'en' ? '' : `/${lang}`;
+
   const aboutUs1 = dict.home.aboutUs.title.split(' ')[0];
   const aboutUs2 = dict.home.aboutUs.title.split(' ')[1];
 
@@ -78,7 +80,7 @@ export default async function HomePage({ params }: PageProps) {
             <div className="overlay position-absolute top-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
               <h4 className="text-center">"{dict.home.slogan}"</h4>
               <div className="mt-3 d-flex justify-content-center column-gap-3">
-                <BSButton variant="outline" size="lg" border="light" href="/apply">
+                <BSButton variant="outline" size="lg" border="light" href={`${currentLang}/apply`}>
                   {dict.home.buttons.apply}
                 </BSButton>
                 <BSButton
@@ -93,7 +95,7 @@ export default async function HomePage({ params }: PageProps) {
             </div>
           </Container>
         </section>
-        <section className="short-about text-center text-light bg-dark-subtle d-flex justify-content-center">
+        <section className="short-about text-center d-flex justify-content-center bg-surface-darker text-theme">
           <Container className="my-5">
             <h1 className="text-uppercase">
               <span>{aboutUs1}</span> <span className="text-primary">{aboutUs2}</span>
@@ -103,9 +105,9 @@ export default async function HomePage({ params }: PageProps) {
             </p>
           </Container>
         </section>
-        <section className="offers d-flex justify-content-center text-center bg-dark">
+        <section className="offers d-flex justify-content-center text-center bg-surface text-theme">
           <Container className="my-5 d-flex flex-column align-items-center">
-            <h2 className="text-uppercase mb-3 text-light mb-4">
+            <h2 className="text-uppercase mb-3 mb-4">
               <span>{normal}</span>{" "}
               <span className="text-primary">{primary}</span> ?
             </h2>
@@ -128,14 +130,14 @@ export default async function HomePage({ params }: PageProps) {
             </Row>
           </Container>
         </section>
-        <section className="apply-today d-flex justify-conetent-center text-center bg-dark-subtle text-light">
+        <section className="apply-today d-flex justify-conetent-center text-center bg-surface-darker">
           <Container className="my-5">
             <h2 className="text-uppercase">
               <span>{apply1}</span> <span className="text-primary">{apply2} {apply3}</span>
             </h2>
             <p>{dict.home.apply.text}</p>
             <div className="d-grid d-md-inline-block">
-              <BSButton variant="outline" border="primary" text="primary" href="/apply">
+              <BSButton variant="outline" border="primary" text="primary" href={`${currentLang}/apply`}>
                 {dict.home.apply.button}
               </BSButton>
             </div>

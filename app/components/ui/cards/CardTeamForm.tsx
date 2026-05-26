@@ -166,7 +166,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
         <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={10} lg={6}>
             <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-              <Card.Title className="fs-4 border-bottom border-dark-subtle m-0 py-3 py-md-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
+              <Card.Title className="fs-4 border-bottom border-dark-darker m-0 py-3 py-md-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
               <Card.Body className="p-3 p-md-4 text-start">
                 <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
                   <Form.Group className="mb-3">
@@ -311,7 +311,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
 
           <Col xs={12} md={10} lg={6}>
             <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-              <Card.Title className="fs-4 border-bottom border-dark-subtle py-3 py-md-4 m-0">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
+              <Card.Title className="fs-4 border-bottom border-dark-darker py-3 py-md-4 m-0">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 {loading ? (
                   <div className="d-flex justify-content-center align-items-center column-gap-2">
@@ -325,7 +325,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                     {members.map((member) => (
                       <ListGroup.Item
                         key={member.id}
-                        className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-subtle flex-wrap row-gap-2">
+                        className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-darker flex-wrap row-gap-2">
                         <div className="d-flex align-items-center">
                           <Image
                             src={member.profile_url || "/assets/icons/profile-user.png"}

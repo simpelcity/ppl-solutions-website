@@ -38,7 +38,6 @@
   background-color: $primary;
 }
 
-.profile-dropdown .dropdown-toggle::after,
-#lang-dropdown .dropdown-toggle::after {
+.profile-dropdown .dropdown-toggle::after {
   content: none;
 }

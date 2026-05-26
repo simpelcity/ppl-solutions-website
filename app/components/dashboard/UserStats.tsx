@@ -51,7 +51,7 @@ export default function UserStats({ dict }: Props) {
         <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={6} lg={4}>
             <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.userStats.cards.thp.title}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
@@ -84,7 +84,7 @@ export default function UserStats({ dict }: Props) {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.income.title}</Card.Title>
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.userStats.cards.income.title}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
@@ -117,7 +117,7 @@ export default function UserStats({ dict }: Props) {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100" data-bs-theme="dark">
-              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-subtle">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
+              <Card.Title className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">{dict.drivershub.userStats.cards.distance.title}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>

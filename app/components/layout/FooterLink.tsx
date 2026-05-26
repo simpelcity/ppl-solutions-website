@@ -10,10 +10,10 @@ interface FooterLinkProps {
 
 export default function FooterLink({ children, link = "", ...props }: FooterLinkProps) {
   return (
-    <ListGroup.Item className="border-0 p-0 bg-dark">
+    <ListGroup.Item className="border-0 p-0 bg-surface">
       <Link
-        href={`/${link}`}
-        className="text-decoration-none text-light d-flex align-items-center column-gap-1 footer-link"
+        href={`${link}`}
+        className="text-decoration-none text-theme d-flex align-items-center column-gap-1 footer-link"
         {...props}>
         <FaAngleRight />
         <span>{children}</span>

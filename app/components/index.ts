@@ -50,3 +50,4 @@ export { default as RateLimitError } from "./ui/RateLimitError";
 export { default as Unavailable } from "./ui/Unavailable";
 // Other
 export { default as DivEvents } from "./DivEvents";
+export { default as ThemeSwitcher } from "./ThemeSwitcher";

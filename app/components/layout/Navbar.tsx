@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from 'next-themes'
 import { NavButtons } from "@/components";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -41,6 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const handleShow = () => setShow(true);
 
   const currentLocale = lang === "en" ? "" : `/${lang}`;
+  const { theme, resolvedTheme } = useTheme();
 
   const isDrivershub = pathname.startsWith(`${currentLocale}/drivershub`);
 
@@ -66,20 +68,22 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const offCanvas = width >= 992 && width <= 1150;
 
   const navLinks = [
-    { title: dict.navbar.navigation.home, href: `${currentLocale}` },
+    { title: dict.navbar.navigation.home, href: `${lang === 'en' ? '/' : currentLocale}` },
     { title: dict.navbar.navigation.events, href: `${currentLocale}/events` },
     { title: dict.navbar.navigation.team, href: `${currentLocale}/team` },
     { title: dict.navbar.navigation.gallery, href: `${currentLocale}/gallery` },
     { title: dict.navbar.navigation.contact, href: `${currentLocale}/contact` },
   ];
 
+  const activeTheme = theme === 'system' ? resolvedTheme : theme;
+
   return (
     <header className="position-sticky top-0" style={{ zIndex: 5 }}>
-      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg="dark" variant="dark" className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
+      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg={activeTheme} variant={theme}  className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
         <Container className="m-0 p-0 d-flex align-items-center" fluid>
           {isMobile && isDrivershub && (
             <button
-              className="btn btn-link text-light text-opacity-75 border-0"
+              className="btn btn-link text-theme text-opacity-75 border-0"
               style={{ padding: "0.25rem 0.75rem" }}
               onClick={() => setShowOffcanvas(true)}>
               <GoSidebarExpand className="flip" size={30} />
@@ -93,7 +97,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
             <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
             <h5 className="my-auto">{dict.navbar.brand}</h5>
           </BSNavbar.Brand>
-          <BSNavbar.Toggle aria-controls="main-navbar" className="text-light text-opacity-75">
+          <BSNavbar.Toggle aria-controls="main-navbar" className="text-theme text-opacity-75">
             {expanded ? <RxHamburgerMenu className="" size={30} /> : <RxHamburgerMenu className="" size={30} />}
           </BSNavbar.Toggle>
           <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
@@ -105,19 +109,19 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
                   onClick={() => setExpanded(false)}
                   href={link.href}
                   className={`${(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? "active" : ""
-                    } text-light fs-5 px-xl-0 pt-xl-0 text-center mx-xl-2`}>
+                    } text-theme fs-5 px-xl-0 pt-xl-0 text-center mx-xl-2`}>
                   {link.title}
                 </Nav.Link>
               ))}
             </Nav>
-            <hr className="text-light" />
+            <hr className="text-theme" />
             {offCanvas ? (
               <>
-                <button onClick={handleShow} className="btn btn-link text-light border-0">
+                <button onClick={handleShow} className="btn btn-link text-theme border-0">
                   <RxHamburgerMenu size={30} />
                 </button>
 
-                <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-dark text-white">
+                <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-surface text-theme">
                   <Offcanvas.Header closeButton closeVariant="white">
                     <Offcanvas.Title>{dict.navbar.navigation.title}</Offcanvas.Title>
                   </Offcanvas.Header>
