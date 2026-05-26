@@ -79,15 +79,15 @@ export default function TeamGrid({ lang, dict }: PageProps) {
   return (
     <>
       {departments.map((dept, idx) => (
-        <Row key={idx} className="w-100 d-flex justify-content-center">
+        <Row key={idx} className="d-flex justify-content-center w-100">
           {departments.length === 0 && <Col>{dict.errors.team.NO_DEPTS_OR_MEMBERS_FOUND}</Col>}
 
           <h2 className="text-primary my-4">{dept.name}</h2>
-          <Row className="d-flex justify-content-center row-gap-4">
+          <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4 p-0">
             {dept.members.map((m, i) => (
               <Col key={i} xs={12} md={6} xl={3}>
-                <Card className="h-100 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-                  <Card.Body className="p-4">
+                <Card className="h-100 rounded-1 border-0 shadow-sm bg-surface">
+                  <Card.Body className="p-3 p-md-4">
                     <Image
                       src={m.member.profile_url ?? "/assets/icons/profile-user.png"}
                       alt={m.member.name}

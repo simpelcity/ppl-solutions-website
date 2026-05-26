@@ -50,6 +50,7 @@
 }
 
 .secondary-btn {
+  background-color: var(--color-secondary) !important;
   &:hover {
     background-color: $secondary-hover !important;
     border-color: $secondary-hover !important;
@@ -64,6 +65,11 @@
   &:hover {
     background-color: $primary !important;
     border-color: $primary !important;
+    color: $light !important;
+  }
+  &:active {
+    background-color: $primary-active !important;
+    border-color: $primary-active !important;
     color: $light !important;
   }
 }

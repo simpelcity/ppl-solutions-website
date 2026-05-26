@@ -5,6 +5,18 @@
 @use "input";
 @use "theme";
 
+@font-face {
+  font-family: "Freestyle Script";
+  src: url("../../public/assets/fonts/freestyle-script/FREESCPT.TTF") format("truetype");
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+}
+
+.font-freestyle {
+  font-family: "Freestyle Script" !important;
+}
+
 body {
   font-family: "Nunito" !important;
   transition: background-color 0.3s, color 0.3s;

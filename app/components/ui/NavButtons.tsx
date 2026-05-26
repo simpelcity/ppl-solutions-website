@@ -123,7 +123,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
           <Dropdown.Menu className="mt-3 position-absolute rounded-1 border-0 shadow-sm bg-surface-darker py-0">
             {i18n.locales.map((locale) => (
               <Dropdown.Item
-                className={`d-flex align-items-center fw-semibold text-theme ${theme === 'light' && currentLocale === locale ? 'text-light' : ''}`}
+                className={`d-flex align-items-center fw-semibold text-theme ${currentLocale === locale ? 'text-light' : ''}`}
                 key={locale}
                 active={currentLocale === locale}
                 onClick={() => switchLanguage(locale)}>

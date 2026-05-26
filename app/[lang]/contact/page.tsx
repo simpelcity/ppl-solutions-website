@@ -3,6 +3,7 @@ import { StartBanner, CardContact } from "@/components"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
+import DiscordWidget from "./DiscordWidget"
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
@@ -43,23 +44,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ContactPage({ params }: PageProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
+
   return (
     <>
       <main className="fs-5">
         <StartBanner>{dict.contact.title}</StartBanner>
-        <section className="d-flex w-100 bg-dark-subtle text-center">
-          <Container className="d-flex justify-content-center flex-column align-items-center my-5">
-            <p className="text-gray">{dict.contact.form.required}</p>
-            <Row className="w-100 d-flex justify-content-center align-items-start g-4">
+        <section className="d-flex w-100 bg-surface-darker text-center">
+          <Container className="d-flex justify-content-center flex-column align-items-center p-3 p-md-4">
+            <p className="text-gray mb-3 mb-md-4">{dict.contact.form.required}</p>
+            <Row className="w-100 d-flex justify-content-center align-items-start row-gap-3 row-gap-md-4">
               <Col xs={12} md={12} xl={8}>
                 <CardContact dict={dict} />
               </Col>
               <Col xs={12} md={8} xl={4} className="d-flex align-items-center justify-content-center">
-                <iframe
-                  className="shadow-sm w-100 rounded-1"
-                  src="https://discord.com/widget?id=1282025492354170972&theme=dark"
-                  height="450"
-                  sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                <DiscordWidget />
               </Col>
             </Row>
           </Container>

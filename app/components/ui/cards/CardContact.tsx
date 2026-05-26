@@ -12,13 +12,13 @@ type Props = {
 export default function CardContact({ dict }: Props) {
   return (
     <>
-      <Card className="rounded-1 border-0 shadow-sm bg-dark h-100">
+      <Card className="rounded-1 border-0 shadow-sm bg-surface h-100">
         <Card.Body className="p-4">
           <Form
             method="post"
             action="https://formspree.io/f/mqapoajo"
-            className="text-light text-start d-flex flex-column flex-md-row column-gap-2 row-gap-3"
-            data-bs-theme="dark">
+            className="text-start d-flex flex-column flex-md-row column-gap-2 row-gap-3"
+          >
             <Col xs={12} md={10} xl={10}>
               <Form.Group className="mb-2">
                 <Form.Label>{`${dict.contact.form.name} *`}</Form.Label>
@@ -26,7 +26,7 @@ export default function CardContact({ dict }: Props) {
                   type="text"
                   name="name"
                   placeholder={dict.contact.form.namePlaceholder}
-                  className="input rounded-1 border-0 shadow-sm bg-dark-subtle"
+                  className="input rounded-1 border-0 shadow-sm bg-surface-darker"
                   required
                 />
               </Form.Group>
@@ -36,7 +36,7 @@ export default function CardContact({ dict }: Props) {
                   type="email"
                   name="email"
                   placeholder={dict.contact.form.emailPlaceholder}
-                  className="input rounded-1 border-0 shadow-sm bg-dark-subtle"
+                  className="input rounded-1 border-0 shadow-sm bg-surface-darker"
                   required
                 />
               </Form.Group>
@@ -47,7 +47,7 @@ export default function CardContact({ dict }: Props) {
                   name="message"
                   placeholder={dict.contact.form.messagePlaceholder}
                   rows={5}
-                  className="input rounded-1 border-0 shadow-sm bg-dark-subtle"
+                  className="input rounded-1 border-0 shadow-sm bg-surface-darker"
                   required
                 />
               </Form.Group>

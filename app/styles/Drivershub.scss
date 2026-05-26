@@ -11,7 +11,7 @@
 }
 
 .table-card-scroll::-webkit-scrollbar-track {
-  background: rgba($light, 0.3);
+  background: var(--color-gray);
 }
 
 .table-card-scroll::-webkit-scrollbar-thumb {
@@ -55,6 +55,8 @@
 
 .page-link:hover {
   color: $light !important;
+  background-color: $muted !important;
+  border-color: $muted !important;
 }
 
 .drivershub {

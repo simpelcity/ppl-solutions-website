@@ -42,7 +42,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
   if (loading) {
     return (
       <Col xs={12} md={11} xl={10} className="px-3">
-        <Card className="bg-dark text-light rounded-1 border-0 shadow-sm">
+        <Card className="bg-surface text-theme rounded-1 border-0 shadow-sm">
           <Card.Body className="d-flex flex-column align-items-center">
             <div className="mb-3">
               <div>
@@ -265,7 +265,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
       <Row className="mb-3 row-gap-4 d-flex justify-content-center">
         {entries.map(([id, name]) => (
           <Col key={id} xs={12} md={6} lg={4}>
-            <div className="bg-dark-lighter shadow-sm py-0 p-lg-2 h-100 d-flex align-items-center justify-content-center">
+            <div className="bg-surface-lighter shadow-sm py-0 p-lg-2 h-100 d-flex align-items-center justify-content-center rounded-1">
               <a href={`https://store.steampowered.com/app/${id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link px-5 py-2 p-lg-0 fw-bold">
                 {name}
               </a>
@@ -279,8 +279,8 @@ export default function CardEventDetail({ eventId, dict }: Props) {
   return (
     <>
       <Col xs={12} md={11} xl={10}>
-        <Card className="bg-dark text-light rounded-1 border-0 shadow-sm">
-          <Card.Body className="d-flex flex-column align-items-center">
+        <Card className="bg-surface text-theme rounded-1 border-0 shadow-sm">
+          <Card.Body className="d-flex flex-column align-items-center p-3 p-md-4">
             <div className="mb-3">
               <div className="d-flex align-items-center gap-1">
                 <IoCalendar /><strong>{dict.events.card.date}: </strong>
@@ -289,15 +289,15 @@ export default function CardEventDetail({ eventId, dict }: Props) {
             </div>
 
             <Row className="mb-3 row-gap-3 w-100">
-              <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-end">
-                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
+              <Col xs={12} md={6} className="d-flex flex-column align-items-center align-items-md-center">
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center justify-content-end column-gap-1">
                   <div className="d-flex align-items-center gap-1">
                     <FaTruck /><strong>{detailDict.departureCity}: </strong>
                   </div>
                   {event.departure.city ?? `${dict.errors.events.NA}`}
                 </div>
-                <div className="d-flex flex-column flex-md-row align-items-center column-gap-1">
-                  <div className="d-flex flex-wrap align-items-center gap-1">
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center justify-content-end column-gap-1">
+                  <div className="d-flex align-items-center gap-1">
                     <FaMapMarkerAlt /><strong>{detailDict.destinationCity}: </strong>
                   </div>
                   {event.arrive.city ?? `${dict.errors.events.NA}`}
@@ -314,20 +314,24 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                   <div className="d-flex align-items-center gap-1">
                     <FaMapMarkerAlt /><strong>{detailDict.destinationLocation}: </strong>
                   </div>
-                  <span>{event.arrive.location ?? `${dict.errors.events.NA}`}</span>
+                  {event.arrive.location ?? `${dict.errors.events.NA}`}
                 </div>
               </Col>
             </Row>
             <Row className="mb-3 w-100">
               <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-end">
-                <div className="d-flex align-items-center gap-1">
-                  <FaClock /><strong>{dict.events.card.meetupTime}: </strong>
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center justify-content-end column-gap-1">
+                  <div className="d-flex align-items-center gap-1">
+                    <FaClock /><strong>{dict.events.card.meetupTime}: </strong>
+                  </div>
                   {formatTime(event.meetup_at)}
                 </div>
               </Col>
               <Col xs={12} md={6} className="d-flex justify-content-center justify-content-md-start">
-                <div className="d-flex align-items-center gap-1">
-                  <FaClock /><strong>{dict.events.card.departureTime}: </strong>
+                <div className="d-flex flex-wrap flex-column flex-md-row align-items-center column-gap-1">
+                  <div className="d-flex align-items-center gap-1">
+                    <FaClock /><strong>{dict.events.card.departureTime}: </strong>
+                  </div>
                   {formatTime(event.start_at)}
                 </div>
               </Col>
@@ -382,6 +386,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                 <>
                   <BSButton
                     variant="outline"
+                    text="theme"
                     onClick={() => setVtcsOpen(!vtcsOpen)}
                     aria-controls="vtcs-collapse-menu"
                     aria-expanded={vtcsOpen}
@@ -389,13 +394,19 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                     {vtcsOpen ? (
                       <>
                         <div className="d-flex align-items-center gap-1">
-                          <span>{detailDict.hideVTCs}</span><FaAngleRight className="rotate-90-cw" />
+                          <span>{detailDict.hideVTCs}</span>
+                          <span className={`chevron-rotate-90 ${vtcsOpen ? 'is-open' : ''}`}>
+                            <FaAngleRight />
+                          </span>
                         </div>
                       </>
                     ) : (
                       <>
                         <div className="d-flex align-items-center gap-1">
-                          <span>{detailDict.showVTCs}</span><FaAngleDown className="rotate-90-ccw" />
+                          <span>{detailDict.showVTCs}</span>
+                          <span className={`chevron-rotate-90 ${vtcsOpen ? 'is-open' : ''}`}>
+                            <FaAngleRight />
+                          </span>
                         </div>
                       </>
                     )}
@@ -404,7 +415,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                     <Row id="vtcs-collapse-menu" className={`mb-3 row-gap-3 row-gap-md-4 ${vtcsOpen ? "d-flex justify-content-center" : "justify-content-center"}`}>
                       {event.attendances.confirmed_vtcs.map((vtc: any) => (
                         <Col key={vtc.id} xs={12} md={6} lg={4}>
-                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center rounded-1">
+                          <div className="bg-surface-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center rounded-1">
                             <a href={`https://truckersmp.com/vtc/${vtc.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link fw-bold">
                               {vtc.name}
                             </a>
@@ -427,6 +438,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                 <>
                   <BSButton
                     variant="outline"
+                    text="theme"
                     onClick={() => setUsersOpen(!usersOpen)}
                     aria-controls="users-collapse-menu"
                     aria-expanded={usersOpen}
@@ -434,13 +446,19 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                     {usersOpen ? (
                       <>
                         <div className="d-flex align-items-center gap-1">
-                          <span>{detailDict.hideUsers}</span><FaAngleRight className="rotate-90-cw" />
+                          <span>{detailDict.hideUsers}</span>
+                          <span className={`chevron-rotate-90 ${usersOpen ? 'is-open' : ''}`}>
+                            <FaAngleRight />
+                          </span>
                         </div>
                       </>
                     ) : (
                       <>
                         <div className="d-flex align-items-center gap-1">
-                          <span>{detailDict.showUsers}</span><FaAngleDown className="rotate-90-ccw" />
+                          <span>{detailDict.showUsers}</span>
+                          <span className={`chevron-rotate-90 ${usersOpen ? 'is-open' : ''}`}>
+                            <FaAngleRight />
+                          </span>
                         </div>
                       </>
                     )}
@@ -449,7 +467,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
                     <Row id="users-collapse-menu" className={`mb-3 row-gap-3 row-gap-md-4 ${usersOpen ? "d-flex justify-content-center": "justify-content-center"}`}>
                       {event.attendances.confirmed_users.map((user: any) => (
                         <Col key={user.id} xs={12} md={6} lg={4}>
-                          <div className="bg-dark-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center rounded-1">
+                          <div className="bg-surface-lighter shadow-sm p-2 h-100 d-flex flex-column align-items-center justify-content-center rounded-1">
                             <a href={`https://truckersmp.com/user/${user.id}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-primary event-link fw-bold">
                               {user.username}
                             </a>

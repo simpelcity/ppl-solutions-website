@@ -46,6 +46,10 @@ export default function Footer({ dict, lang }: FooterProps) {
   const bottom3 = dict.footer.bottom.copyright.slice(start2, end2);
   const developer = dict.footer.bottom.copyright.slice(end2);
 
+  const brandSplit = dict.footer.footer1.brand.split(" ");
+  const brand1 = brandSplit[0] + (brandSplit.length > 1 ? " " : "") + (brandSplit.length > 1 ? brandSplit[1] : "");
+  const brand2 = brandSplit[2];
+
   return (
     <footer className="bg-surface text-theme py-4">
       <Container className="px-3 d-flex flex-column align-items-center" fluid>
@@ -65,7 +69,11 @@ export default function Footer({ dict, lang }: FooterProps) {
                   height={50}
                   roundedCircle
                 />
-                <h3 className="my-auto">{dict.footer.footer1.brand}</h3>
+                <span className="my-auto">
+                  <span className={`font-freestyle fw-normal fs-1`}>{brand1}</span>{" "}
+                  <span className={`font-freestyle fw-normal fs-1`}>{brand2}</span>
+                </span>
+                {/* <h3 className="my-auto">{dict.footer.footer1.brand}</h3> */}
               </a>
             </div>
             <p className="fs-5">

@@ -8,6 +8,7 @@ import { useUserJobs } from "@/hooks/useUserJobs";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { useTheme } from "next-themes";
 
 type Props = {
   dict: Dictionary;
@@ -20,6 +21,8 @@ export default function TableJobsClient({ lang, dict }: Props) {
   const adminLog = (...args: any[]) => {
     if (isAdmin) console.log(...args);
   };
+
+  const { theme } = useTheme();
 
   const {
     jobs,
@@ -117,7 +120,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
   return (
     <>
       <Container className="p-3 p-md-4" fluid>
-        <Card className="bg-dark rounded-1 border-0 shadow-sm">
+        <Card className="bg-surface rounded-1 border-0 shadow-sm">
           <CardBody className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4">
             <CardTitle className="text-uppercase fs-3 m-0">{dict.drivershub.jobs.title}</CardTitle>
 
@@ -125,11 +128,11 @@ export default function TableJobsClient({ lang, dict }: Props) {
               <PlaceholderTable columns={8} rows={10} />
             ) : (
               <div className="table-card-scroll">
-                <Table variant="dark" className="text-start table-jobs" borderless>
+                <Table variant={theme} className="text-start table-jobs" borderless>
                   <thead>
                     <tr className="text-uppercase">
                       {tableItems.map((item) => (
-                        <th key={item.title} className="bg-primary px-4 py-2">
+                        <th key={item.title} className="bg-primary px-4 py-2 text-theme">
                           {item.title}
                         </th>
                       ))}
@@ -139,20 +142,20 @@ export default function TableJobsClient({ lang, dict }: Props) {
                   <tbody>
                     {jobs.map((job) => (
                       <tr key={job.jobID} className="border-0">
-                        <td className="px-4 py-2">{formatDate(job.realtime?.end ?? Date.now())}</td>
-                        <td className="px-4 py-2">{job.driver?.username ?? "—"}</td>
-                        <td className="text-uppercase px-4 py-2">{job.game?.id ?? "—"}</td>
-                        <td className="px-4 py-2">
+                        <td className="px-4 py-2 text-theme">{formatDate(job.realtime?.end ?? Date.now())}</td>
+                        <td className="px-4 py-2 text-theme">{job.driver?.username ?? "—"}</td>
+                        <td className="text-uppercase px-4 py-2 text-theme">{job.game?.id ?? "—"}</td>
+                        <td className="px-4 py-2 text-theme">
                           {job.source?.city?.name ?? "—"} - {job.destination?.city?.name ?? "—"}
                         </td>
-                        <td className="px-4 py-2">
+                        <td className="px-4 py-2 text-theme">
                           {job.cargo?.name ?? "—"} ({Math.floor((job.cargo?.mass ?? 0) / 1000)}t)
                         </td>
-                        <td className="px-4 py-2">
+                        <td className="px-4 py-2 text-theme">
                           {job.truck?.name ?? "—"} {job.truck?.model?.name ?? ""}
                         </td>
-                        <td className="px-4 py-2">{job.distanceDriven ?? "—"} km</td>
-                        <td className="px-4 py-2">€ {job.income ?? "—"}</td>
+                        <td className="px-4 py-2 text-theme">{job.distanceDriven ?? "—"} km</td>
+                        <td className="px-4 py-2 text-theme">€ {job.income ?? "—"}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -162,7 +165,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
 
             <div className="d-flex flex-column flex-xl-row align-items-center justify-content-md-between row-gap-3 row-gap-md-4">
               {!showAll && (
-                <div className="text-primary border border-light border-opacity-25 px-3 py-2 rounded-1 small">
+                <div className="text-primary border border-theme border-opacity-25 px-3 py-2 rounded-1 small">
                   {showingText}
                 </div>
               )}
@@ -174,10 +177,10 @@ export default function TableJobsClient({ lang, dict }: Props) {
                 {!showAll && lastPage > 1 && (
                   <div className="d-flex justify-content-center align-items-center column-gap-1">
                     <button
-                      className="p-2 btn btn-pagination d-flex align-items-center text-light border-0 rounded-1 bg-light bg-opacity-25"
+                      className="p-2 btn btn-pagination d-flex align-items-center text-theme border-0 rounded-1 bg-dark bg-opacity-25"
                       onClick={goToPreviousPage}
                       disabled={displayPage === 1}>
-                      <FaAngleLeft className="fs-6 text-light" />
+                      <FaAngleLeft className="fs-6 text-theme" />
                     </button>
 
                     <nav aria-label="Job pages">
@@ -185,7 +188,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                         {getPageNumbers().map((page, idx) =>
                           page === "..." ? (
                             <li key={`ellipsis-${idx}`} className="page-item disabled">
-                              <span className="page-link bg-transparent py-1 d-flex align-items-center border-0 text-light text-opacity-50">
+                              <span className="page-link bg-transparent py-1 d-flex align-items-center border-0 text-theme text-opacity-50">
                                 …
                               </span>
                             </li>
@@ -196,7 +199,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                               <button
                                 className={`page-link rounded-1 py-1 d-flex align-items-center ${displayPage === page
                                   ? "bg-primary"
-                                  : "bg-transparent border-0 shadow-sm-none text-light text-opacity-50"
+                                  : "bg-transparent border-0 shadow-sm-none text-theme text-opacity-50"
                                   }`}
                                 onClick={() => goToPage(page as number)}
                                 disabled={displayPage === page}>
@@ -209,10 +212,10 @@ export default function TableJobsClient({ lang, dict }: Props) {
                     </nav>
 
                     <button
-                      className="p-2 btn btn-pagination d-flex align-items-center text-light border-0 rounded-1 bg-light bg-opacity-25"
+                      className="p-2 btn btn-pagination d-flex align-items-center text-theme border-0 rounded-1 bg-dark bg-opacity-25"
                       onClick={goToNextPage}
                       disabled={displayPage === lastPage}>
-                      <FaAngleRight className="fs-6 text-light" />
+                      <FaAngleRight className="fs-6 text-theme" />
                         </button>
                       </div>
                     )}

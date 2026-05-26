@@ -31,7 +31,7 @@ export async function proxy(request: NextRequest) {
 
     const rateLimit = checkRateLimit(request, {
       timeWindowInMs: 60000,
-      maxRequests: 3,
+      maxRequests: 100,
       keyPrefix: "api-global",
     });
 

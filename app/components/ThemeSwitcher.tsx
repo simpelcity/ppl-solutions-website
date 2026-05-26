@@ -17,9 +17,9 @@ export default function ThemeSwitcher() {
 
   if (!mounted) return null;
 
-  const activeTheme = theme === 'system' ? resolvedTheme : theme;
-  const icon = activeTheme === 'dark' ? <BsMoonStarsFill /> : <BsSunFill />;
-
+  const activeTheme = theme === 'system' ? theme : theme;
+  const icon = activeTheme === 'system' ? <BsCircleHalf /> : activeTheme === 'dark' ? <BsMoonStarsFill /> : <BsSunFill />;
+  
   return (
     <Dropdown align="end" className="" id="theme-switcher" style={{ width: 'min-content' }} onToggle={(nextShow) => setIsThemeDropdownOpen(Boolean(nextShow))}>
       <Dropdown.Toggle variant="transparent" id="theme-dropdown" className="d-flex align-items-center transparent-btn px-0 py-1">
@@ -32,10 +32,10 @@ export default function ThemeSwitcher() {
         <Dropdown.Item active={theme === 'light'} onClick={() => setTheme('light')} className={`d-flex align-items-center fw-semibold text-theme ${activeTheme === 'light' ? 'text-light' : ''}`}>
           <BsSunFill className="me-2" />Light
         </Dropdown.Item>
-        <Dropdown.Item active={theme === 'dark'} onClick={() => setTheme('dark')} className="d-flex align-items-center fw-semibold text-theme">
+        <Dropdown.Item active={theme === 'dark'} onClick={() => setTheme('dark')} className={`d-flex align-items-center fw-semibold text-theme ${activeTheme === 'dark' ? 'text-light' : ''}`}>
           <BsMoonStarsFill className="me-2" />Dark
         </Dropdown.Item>
-        <Dropdown.Item active={theme === 'system'} onClick={() => setTheme('system')} className="d-flex align-items-center fw-semibold text-theme">
+        <Dropdown.Item active={theme === 'system'} onClick={() => setTheme('system')} className={`d-flex align-items-center fw-semibold text-theme ${activeTheme === 'system' ? 'text-light' : ''}`}>
           <BsCircleHalf className="me-2" />System
         </Dropdown.Item>
       </Dropdown.Menu>

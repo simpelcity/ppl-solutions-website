@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
+import '@/styles/Events.scss'
 
 type PageProps = {
   params: Promise<{ lang: Locale }>

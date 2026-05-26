@@ -77,6 +77,11 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
 
   const activeTheme = theme === 'system' ? resolvedTheme : theme;
 
+  const brandSplit = dict.navbar.brand.split(" ");
+  console.log("Brand split:", brandSplit);
+  const brand1 = brandSplit[0] + (brandSplit.length > 1 ? " " : "") + (brandSplit.length > 1 ? brandSplit[1] : "");
+  const brand2 = brandSplit[2];
+
   return (
     <header className="position-sticky top-0" style={{ zIndex: 5 }}>
       <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg={activeTheme} variant={theme}  className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
@@ -94,8 +99,13 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
             onClick={() => setExpanded(false)}
             href={currentLocale}
             className="d-flex align-items-center mx-0 column-gap-2">
-            <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
-            <h5 className="my-auto">{dict.navbar.brand}</h5>
+              {width > 768 && (
+              <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
+              )}
+            <span className="my-auto">
+              <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand1}</span>{" "}
+              <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand2}</span>
+            </span>
           </BSNavbar.Brand>
           <BSNavbar.Toggle aria-controls="main-navbar" className="text-theme text-opacity-75">
             {expanded ? <RxHamburgerMenu className="" size={30} /> : <RxHamburgerMenu className="" size={30} />}

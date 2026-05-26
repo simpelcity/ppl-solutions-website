@@ -28,7 +28,7 @@ export default function CardEvents({ dict }: PageProps) {
   if (loading) {
     return (
       <Col xs={12} md={6} xl={4}>
-        <Card className="bg-dark text-light rounded-1 border-0 shadow-sm text-start">
+        <Card className="bg-surface text-theme rounded-1 border-0 shadow-sm text-start">
           <Card.Img as={Placeholder} variant="top" className="rounded-top-1" animation="glow">
             <Placeholder xs={12} style={{ height: "91px" }} />
           </Card.Img>
@@ -81,7 +81,7 @@ export default function CardEvents({ dict }: PageProps) {
     }
 
     return (
-      <div className="text-center text-light">
+      <div className="text-center text-theme">
         <div className="text-danger fw-bold fs-4">{error}</div>
       </div>
     );
@@ -91,7 +91,7 @@ export default function CardEvents({ dict }: PageProps) {
 
   if (events.length === 0) {
     return (
-      <div className="text-center text-light">
+      <div className="text-center text-theme">
         <div className="fw-bold fs-4 d-flex justify-content-center align-items-center column-gap-2">{dict.errors.events.NO_EVENTS} <IoCalendar /></div>
       </div>
     );
@@ -121,13 +121,13 @@ export default function CardEvents({ dict }: PageProps) {
     const dlcArray = Object.values(dlcObject);
     const keys = Object.keys(dlcObject);
     return (
-      <Dropdown>
+      <Dropdown id="dlc-dropdown">
         <Dropdown.Toggle className="p-0 text-decoration-none ms-1 bg-transparent border-0 text-primary fw-bold my-auto">
           +{dlcArray.length - 1} {dict.events.card.more}
         </Dropdown.Toggle>
-        <Dropdown.Menu variant="dark" className="bg-dark shadow-sm">
+        <Dropdown.Menu className="bg-surface-darker shadow-sm">
           {dlcArray.slice(1).map((dlc: any, index: number) => (
-            <Dropdown.Item key={index} href={`https://store.steampowered.com/app/${keys[index]}`} target="_blank" rel="noopener noreferrer" className="text-primary fw-bold">{dlc}</Dropdown.Item>
+            <Dropdown.Item key={index} href={`https://store.steampowered.com/app/${keys[index]}`} target="_blank" rel="noopener noreferrer" className="text-theme fw-bold">{dlc}</Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
@@ -147,7 +147,7 @@ export default function CardEvents({ dict }: PageProps) {
       {events.map((event: any) => {
         return (
           <Col xs={12} md={6} xl={4} key={event.id}>
-            <Card className="bg-dark text-light rounded-1 border-0 shadow-sm">
+            <Card className="bg-surface text-theme rounded-1 border-0 shadow-sm">
               <Card.Img
                 variant="top"
                 className="rounded-top-1"
@@ -215,7 +215,7 @@ export default function CardEvents({ dict }: PageProps) {
                     )}
                   </div>
                 </DivEvents>
-                <BSButton variant="outline" size="lg" href={`/events/${event.id}`}>
+                <BSButton variant="outline" text="theme" size="lg" href={`/events/${event.id}`}>
                   {dict.events.card.event}
                 </BSButton>
               </Card.Body>

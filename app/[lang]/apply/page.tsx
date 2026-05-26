@@ -55,11 +55,11 @@ export default async function ApplyPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <StartBanner>{dict.apply.title}</StartBanner>
-        <section className="d-flex w-100 bg-dark-subtle text-center">
-          <Container className="my-5 d-flex justify-content-center">
+        <section className="d-flex w-100 bg-surface-darker text-center">
+          <Container className="d-flex justify-content-center p-3 p-md-4">
             <Row className="w-100 d-flex justify-content-center">
               <Col xs={12} md={10} xl={7}>
-                <Card className="bg-dark text-light">
+                <Card className="bg-surface text-theme border-0 shadow-sm rounded-1">
                   <CardBody>
                     <CardTitle>
                       {apply1}
