@@ -8,7 +8,7 @@ type Props = {
 
 export default function LoaderSpinner({ dict, children }: Props) {
   return (
-    <div className="loader w-auto d-flex justify-content-center align-items-center vh-100 text-light p-0">
+    <div className="loader w-auto d-flex justify-content-center align-items-center vh-100 text-theme p-0">
       <Spinner animation="border" className="me-2" />
       {children ? children : <span>{dict?.status.loading.loadingSpinner}</span>}
     </div>

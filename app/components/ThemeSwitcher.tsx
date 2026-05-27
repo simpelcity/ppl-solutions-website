@@ -22,20 +22,20 @@ export default function ThemeSwitcher() {
   
   return (
     <Dropdown align="end" className="" id="theme-switcher" style={{ width: 'min-content' }} onToggle={(nextShow) => setIsThemeDropdownOpen(Boolean(nextShow))}>
-      <Dropdown.Toggle variant="transparent" id="theme-dropdown" className="d-flex align-items-center transparent-btn px-0 py-1">
+      <Dropdown.Toggle variant="transparent" id="theme-dropdown" className="d-flex align-items-center px-0 py-1">
         {icon}
         <span className={`ms-1 chevron-rotate-180 ${isThemeDropdownOpen ? 'is-open' : ''}`}>
           <FaAngleDown />
         </span>
       </Dropdown.Toggle>
-      <Dropdown.Menu className="mt-3 position-absolute rounded-1 border-0 shadow-sm bg-surface-darker py-0">
-        <Dropdown.Item active={theme === 'light'} onClick={() => setTheme('light')} className={`d-flex align-items-center fw-semibold text-theme ${activeTheme === 'light' ? 'text-light' : ''}`}>
+      <Dropdown.Menu className="mt-3 position-absolute rounded-1 border-0 shadow-sm py-0">
+        <Dropdown.Item active={theme === 'light'} onClick={() => setTheme('light')} className="d-flex align-items-center fw-semibold">
           <BsSunFill className="me-2" />Light
         </Dropdown.Item>
-        <Dropdown.Item active={theme === 'dark'} onClick={() => setTheme('dark')} className={`d-flex align-items-center fw-semibold text-theme ${activeTheme === 'dark' ? 'text-light' : ''}`}>
+        <Dropdown.Item active={theme === 'dark'} onClick={() => setTheme('dark')} className="d-flex align-items-center fw-semibold">
           <BsMoonStarsFill className="me-2" />Dark
         </Dropdown.Item>
-        <Dropdown.Item active={theme === 'system'} onClick={() => setTheme('system')} className={`d-flex align-items-center fw-semibold text-theme ${activeTheme === 'system' ? 'text-light' : ''}`}>
+        <Dropdown.Item active={theme === 'system'} onClick={() => setTheme('system')} className="d-flex align-items-center fw-semibold">
           <BsCircleHalf className="me-2" />System
         </Dropdown.Item>
       </Dropdown.Menu>

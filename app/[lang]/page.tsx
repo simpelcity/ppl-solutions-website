@@ -130,7 +130,7 @@ export default async function HomePage({ params }: PageProps) {
             </Row>
           </Container>
         </section>
-        <section className="apply-today d-flex justify-conetent-center text-center bg-surface-darker">
+        <section className="apply-today d-flex justify-content-center text-center bg-surface-darker">
           <Container className="my-5">
             <h2 className="text-uppercase">
               <span>{apply1}</span> <span className="text-primary">{apply2} {apply3}</span>

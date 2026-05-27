@@ -78,7 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const activeTheme = theme === 'system' ? resolvedTheme : theme;
 
   const brandSplit = dict.navbar.brand.split(" ");
-  console.log("Brand split:", brandSplit);
   const brand1 = brandSplit[0] + (brandSplit.length > 1 ? " " : "") + (brandSplit.length > 1 ? brandSplit[1] : "");
   const brand2 = brandSplit[2];
 

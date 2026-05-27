@@ -7,6 +7,7 @@ import { applyCorsHeaders, getCorsContext } from "@/utils/cors";
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const normalizedPathname = stripLocalePrefix(pathname);
 
   if (pathname.startsWith("/api")) {
     const { isAllowedOrigin, headers } = getCorsContext(request);
@@ -29,9 +30,19 @@ export async function proxy(request: NextRequest) {
       );
     }
 
+    let maxRequests = 0;
+    let timeWindowInMs = 0;
+    if (process.env.NODE_ENV === 'production') {
+      maxRequests = 100;
+      timeWindowInMs = 3600000;
+    } else if (process.env.NODE_ENV === 'development') {
+      maxRequests = 1000;
+      timeWindowInMs = 60000;
+    }
+
     const rateLimit = checkRateLimit(request, {
-      timeWindowInMs: 60000,
-      maxRequests: 100,
+      timeWindowInMs: timeWindowInMs,
+      maxRequests: maxRequests,
       keyPrefix: "api-global",
     });
 
@@ -46,6 +57,7 @@ export async function proxy(request: NextRequest) {
 
   // Exclude static files from rewrites/redirects
   const staticFiles = [
+    "/.well-known",
     "/robots.txt",
     "/sitemap.xml",
     "/favicon.ico",
@@ -54,7 +66,7 @@ export async function proxy(request: NextRequest) {
     "/_next/static",
     "/_next/image",
   ];
-  if (staticFiles.some((file) => pathname === file || pathname.startsWith(file + "/"))) {
+  if (staticFiles.some((file) => normalizedPathname === file || normalizedPathname.startsWith(file + "/"))) {
     return NextResponse.next();
   }
 
@@ -62,29 +74,35 @@ export async function proxy(request: NextRequest) {
     request: { headers: request.headers },
   });
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({
-            request: { headers: request.headers },
-          });
-          cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
-        },
-      },
-    },
+  const requiresAuthSession = ["/drivershub"].some(
+    (prefix) => normalizedPathname === prefix || normalizedPathname.startsWith(`${prefix}/`),
   );
 
-  try {
-    await supabase.auth.getUser();
-  } catch (error) {
-    console.warn("Supabase auth check failed in proxy:", error);
+  if (requiresAuthSession) {
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+            response = NextResponse.next({
+              request: { headers: request.headers },
+            });
+            cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+          },
+        },
+      },
+    );
+
+    try {
+      await supabase.auth.getUser();
+    } catch (error) {
+      console.warn("Supabase auth check failed in proxy:", error);
+    }
   }
 
   const pathnameLocale = i18n.locales.find((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
@@ -130,6 +148,14 @@ function getLocale(request: NextRequest): string {
   }
 
   return i18n.defaultLocale;
+}
+
+function stripLocalePrefix(pathname: string): string {
+  const localePrefix = i18n.locales.find((locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`));
+  if (!localePrefix) return pathname;
+
+  const stripped = pathname.slice(localePrefix.length + 1);
+  return stripped.startsWith("/") ? stripped : `/${stripped}`;
 }
 
 export const config = {

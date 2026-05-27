@@ -4,10 +4,10 @@ type ButtonVariant = "primary" | "secondary" | "outline" | "transparent";
 type ButtonSize = "sm" | "md" | "lg";
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "primary-btn",
-  secondary: "secondary-btn",
-  outline: "outline-btn",
-  transparent: "transparent-btn",
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  outline: "btn-outline",
+  transparent: "btn-transparent",
 };
 
 const sizeStyles: Record<ButtonSize, React.CSSProperties> = {

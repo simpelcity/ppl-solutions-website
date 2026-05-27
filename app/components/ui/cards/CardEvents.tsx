@@ -113,33 +113,44 @@ export default function CardEvents({ dict }: PageProps) {
 
   function dlcs(dlcObject: object) {
     if (!dlcObject) return `${dict.errors.events.NO_DLC}`;
-    const arr = Object.values(dlcObject);
-    return arr;
-  }
-
-  function dlcDiv(dlcObject: object) {
-    const dlcArray = Object.values(dlcObject);
+    const values = Object.values(dlcObject);
     const keys = Object.keys(dlcObject);
-    return (
-      <Dropdown id="dlc-dropdown">
-        <Dropdown.Toggle className="p-0 text-decoration-none ms-1 bg-transparent border-0 text-primary fw-bold my-auto">
-          +{dlcArray.length - 1} {dict.events.card.more}
-        </Dropdown.Toggle>
-        <Dropdown.Menu className="bg-surface-darker shadow-sm">
-          {dlcArray.slice(1).map((dlc: any, index: number) => (
-            <Dropdown.Item key={index} href={`https://store.steampowered.com/app/${keys[index]}`} target="_blank" rel="noopener noreferrer" className="text-theme fw-bold">{dlc}</Dropdown.Item>
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
-    );
-  }
 
-  function dlcKeys(dlcObject: object) {
-    if (!dlcObject) return `${dict.errors.events.NO_DLC}`;
-    const dlcArray = Object.values(dlcObject);
-    const keys = Object.keys(dlcObject);
-    const entries = Object.entries(dlcObject);
-    return keys || null;
+    if (values.length > 2) {
+      return (
+        <>
+          <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
+          <a href={`https://store.steampowered.com/app/${keys[0]}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
+            <span className="text-primary fw-bold">{values[0]}</span>
+          </a>
+          <Dropdown id="dlc-dropdown">
+            <Dropdown.Toggle className="p-0 text-decoration-none ms-1 bg-transparent border-0 text-primary fw-bold my-auto">
+              +{values.length - 1} {dict.events.card.more}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="shadow-sm">
+              {values.slice(1).map((dlc: any, index: number) => (
+                <Dropdown.Item key={index} href={`https://store.steampowered.com/app/${keys[index]}`} target="_blank" rel="noopener noreferrer" className="text-theme fw-bold">{dlc}</Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </>
+      )
+    } else if (values.length > 0) {
+      return (
+        <>
+          <a href={`https://store.steampowered.com/app/${keys}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
+            <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
+            <span className="text-primary fw-bold">{values}</span>
+          </a>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>{dict.errors.events.NO_DLC}
+        </>
+      )
+    }
   }
 
   return (
@@ -192,28 +203,7 @@ export default function CardEvents({ dict }: PageProps) {
                     <BsHddStackFill size={25} /><strong>{dict.events.card.server}: </strong>
                     {event.server.name ? event.server.name === "To be determined" ? `${dict.events.card.toBeDetermined}` : event.server.name : `${dict.errors.events.NO_SERVER}`}
                   </div>
-                  <div className="d-flex column-gap-1">
-                    {dlcs(event.dlcs).length > 2 ? (
-                      <>
-                        <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
-                        <a href={`https://store.steampowered.com/app/${dlcKeys(event.dlcs)}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
-                          <span className="text-primary fw-bold">{dlcs(event.dlcs)[0]}</span>
-                        </a>
-                        {dlcDiv(event.dlcs)}
-                        
-                      </>
-                    ) : dlcs(event.dlcs).length > 0 ? (
-                      <a href={`https://store.steampowered.com/app/${dlcKeys(event.dlcs)}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none text-light d-flex align-items-center column-gap-1">
-                        <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
-                        <span className="text-primary fw-bold">{dlcs(event.dlcs)}</span>
-                      </a>
-                    ) : (
-                      <>
-                        <FiDownload size={25} /><strong>{dict.events.card.dlc}: </strong>
-                        {dict.errors.events.NO_DLC}
-                      </>
-                    )}
-                  </div>
+                  <div className="d-flex column-gap-1">{dlcs(event.dlcs)}</div>
                 </DivEvents>
                 <BSButton variant="outline" text="theme" size="lg" href={`/events/${event.id}`}>
                   {dict.events.card.event}

@@ -97,7 +97,7 @@ export default async function ProfileSettingsPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub d-flex bg-dark-subtle">
+        <section className="drivershub d-flex bg-surface-darker">
           <CardProfileSettingsForm params={params} dict={dict} />
         </section>
       </main>

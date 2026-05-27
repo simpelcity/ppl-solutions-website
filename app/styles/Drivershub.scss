@@ -127,3 +127,11 @@
   max-width: 60px;
   max-height: 60px;
 }
+
+#dropdown-split-basic::after {
+  display: none;
+}
+
+#dropdown-leaderboard .dropdown-item:hover {
+  color: $light !important;
+}

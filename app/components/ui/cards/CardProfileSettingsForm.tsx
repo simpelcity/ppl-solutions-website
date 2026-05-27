@@ -8,6 +8,7 @@ import { Container, Card, Image, Form, Modal, Row, Col, Alert } from 'react-boot
 import { BSButton, BSLink } from '@/components'
 import { supabase } from "@/lib";
 import { FileInput } from "lucide-react";
+import { useTheme } from 'next-themes'
 
 type Props = {
   params: Promise<{ userId: string }>
@@ -26,6 +27,8 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
   };
 
   const { user, session, refreshSession } = useAuth();
+
+  const { theme } = useTheme();
 
   const settingsDict = dict.drivershub.profile.settingsPage;
 
@@ -301,23 +304,23 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
   return (
     <>
       <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
-        <Card className="border-0 rounded-1 shadow-sm p-3 p-md-4" data-bs-theme="dark">
-          <Card.Header className="bg-dark border-0 p-0 mb-3 mb-md-4">
+        <Card className="border-0 rounded-1 shadow-sm p-3 p-md-4 bg-surface">
+          <Card.Header className="bg-surface border-0 p-0 mb-3 mb-md-4">
             <h4 className="m-0 p-0">{settingsDict.form.accountInfo.title}</h4>
           </Card.Header>
           <Card.Body className="p-0">
             <Form onSubmit={handleUpdate} className="d-flex flex-column row-gap-3 row-gap-md-4">
               <Row className="row-gap-3">
                 <Col xs={12} md={5} xl={4}>
-                  <Card className="bg-dark-subtle border-0 rounded-1 shadow-sm h-100">
+                  <Card className="bg-surface-darker border-0 rounded-1 shadow-sm h-100">
                     <Card.Body className="d-flex flex-column align-items-center row-gap-3">
-                      <Image src={profileUrl ?? "/assets/icons/profile-user.png"} className={`pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
+                      <Image src={profileUrl ?? `/assets/icons/profile-user-${theme}.png`} className={`pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-surface'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
                       <BSButton variant="secondary" border="primary" onClick={handleShowProfilePictureModal}>{settingsDict.form.accountInfo.pfpButton}</BSButton>
                     </Card.Body>
                   </Card>
                 </Col>
                 <Col xs={12} md={7} xl={8}>
-                  <Card className="bg-dark-subtle border-0 rounded-1 shadow-sm h-100">
+                  <Card className="bg-surface-darker border-0 rounded-1 shadow-sm h-100">
                     <Card.Body className="d-flex flex-column align-items-center row-gap-3">
                       <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`pfp-banner w-100 rounded-1 ${profile?.banner_url ? "object-fit-cover" : ""}`} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
                       <BSButton variant="secondary" border="primary" onClick={handleShowBannerModal}>{settingsDict.form.accountInfo.bannerButton}</BSButton>
@@ -328,19 +331,19 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
               <Row className="row-gap-3">
                 <Form.Group as={Col} xs={12} md={6} controlId="displayName">
                   <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.displayName}</Form.Label>
-                  <Form.Control type="text" className="border-0 rounded-1 bg-dark-subtle shadow-sm" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder={settingsDict.form.accountInfo.displayNamePlaceholder} />
+                  <Form.Control type="text" className="border-0 rounded-1 shadow-sm" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder={settingsDict.form.accountInfo.displayNamePlaceholder} />
                 </Form.Group>
                 <Form.Group as={Col} xs={12} md={6} controlId="username">
                   <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.username}</Form.Label>
-                  <Form.Control type="text" className="border-0 rounded-1 bg-dark-subtle shadow-sm text-gray" value={username} disabled placeholder={settingsDict.form.accountInfo.usernamePlaceholder} />
+                  <Form.Control type="text" className="border-0 rounded-1 shadow-sm text-gray" value={username} disabled placeholder={settingsDict.form.accountInfo.usernamePlaceholder} />
                 </Form.Group>
                 <Form.Group controlId="email">
                   <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.email}</Form.Label>
-                  <Form.Control type="email" className="border-0 rounded-1 bg-dark-subtle shadow-sm" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={dict.contact.form.emailPlaceholder} />
+                  <Form.Control type="email" className="border-0 rounded-1 shadow-sm" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={dict.contact.form.emailPlaceholder} />
                 </Form.Group>
                 <Form.Group controlId="bio">
                   <Form.Label className="fw-bold fs-5">{settingsDict.form.accountInfo.bio}</Form.Label>
-                  <Form.Control as="textarea" rows={3} className="border-0 rounded-1 bg-dark-subtle shadow-sm" value={bio} onChange={(e) => setBio(e.target.value)} placeholder={settingsDict.form.accountInfo.bioPlaceholder} />
+                  <Form.Control as="textarea" rows={3} className="border-0 rounded-1 shadow-sm" value={bio} onChange={(e) => setBio(e.target.value)} placeholder={settingsDict.form.accountInfo.bioPlaceholder} />
                 </Form.Group>
               </Row>
               <BSButton type="submit" variant="primary" disabled={uploading || profilePictureFileError || bannerInputError} classes="align-self-start">
@@ -352,8 +355,8 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
           {success && <Alert variant="success" className="mt-3 mb-0 fw-bold" dismissible>{success}</Alert>}
         </Card>
 
-        <Card className="border-0 rounded-1 shadow-sm p-3 p-md-4" id="change-password" data-bs-theme="dark">
-          <Card.Header className="bg-dark border-0 p-0 mb-3 mb-md-4">
+        <Card className="border-0 rounded-1 shadow-sm p-3 p-md-4 bg-surface" id="change-password">
+          <Card.Header className="bg-surface border-0 p-0 mb-3 mb-md-4">
             <h4 className="m-0 p-0">{settingsDict.form.changePassword.title}</h4>
           </Card.Header>
           <Card.Body className="p-0">
@@ -361,11 +364,11 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
               <Row className="row-gap-3">
                 <Form.Group controlId="newPassword">
                   <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
-                  <Form.Control type="password" className="border-0 rounded-1 bg-dark-subtle shadow-sm" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.newPasswordPlaceholder} required />
+                  <Form.Control type="password" className="border-0 rounded-1 shadow-sm" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.newPasswordPlaceholder} required />
                 </Form.Group>
                 <Form.Group controlId="confirmNewPassword">
                   <Form.Label className="fw-bold fs-5">{settingsDict.form.changePassword.newPassword}</Form.Label>
-                  <Form.Control type="password" className="border-0 rounded-1 bg-dark-subtle shadow-sm" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.confirmNewPasswordPlaceholder} required />
+                  <Form.Control type="password" className="border-0 rounded-1 shadow-sm" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} placeholder={settingsDict.form.changePassword.confirmNewPasswordPlaceholder} required />
                 </Form.Group>
               </Row>
               <BSButton type="submit" variant="primary" disabled={passwordChanging} classes="align-self-start">
@@ -387,17 +390,17 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                 {pfpPreviewUrl ? (
                   <Image src={pfpPreviewUrl} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={pfpAlt} />
                 ) : (
-                  <Image src={profileUrl ?? "/assets/icons/profile-user.png"} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={pfpAlt} />
+                    <Image src={profileUrl ?? `/assets/icons/profile-user-${theme}.png`} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={profileUrl ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt} />
                 )}
               </div>
 
               <Form.Group controlId="profilePicture" className="border-bottom p-3">
                 <Form.Label className="fw-bold fs-5">{settingsDict.modal.profilePicture.label}</Form.Label>
                 <Form.Label className="rounded-0 d-flex position-relative m-0">
-                  <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1" style={{ padding: "6px 12px" }}>
+                  <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1 text-light" style={{ padding: "6px 12px" }}>
                     <Form.Control className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} title={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
                   </button>
-                  <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 rounded-end-0 fw-semibold" type="text" readOnly value={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!profilePictureFileError} />
+                  <Form.Control className={`border-0 shadow-sm d-flex rounded-start-1 rounded-end-0 fw-semibold ${profileFileName ? '' : 'text-placeholder'}`} type="text" readOnly value={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!profilePictureFileError} />
                 </Form.Label>
                 {profilePictureFileError && <p className="text-danger fw-bold m-0 fs-6">{profilePictureFileError}</p>}
               </Form.Group>
@@ -424,17 +427,17 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                 {bannerPreviewUrl ? (
                   <Image src={bannerPreviewUrl} className={`pfp-banner object-fit-cover w-100 rounded-1`} alt={bannerAlt} />
                 ) : (
-                  <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`pfp-banner w-100 rounded-1 ${profile?.banner_url ? "object-fit-cover" : ""}`} alt={bannerAlt} />
+                    <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`pfp-banner w-100 rounded-1 ${profile?.banner_url ? "object-fit-cover" : ""}`} alt={bannerUrl ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
                 )}
               </div>
 
               <Form.Group controlId="profileBanner" className="border-bottom p-3">
                 <Form.Label className="fw-bold fs-5">{settingsDict.modal.banner.label}</Form.Label>
                 <Form.Label className="rounded-0 d-flex position-relative m-0">
-                  <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-start-0 rounded-end-1" style={{ padding: "6px 12px" }}>
+                  <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-start-0 rounded-end-1 text-light" style={{ padding: "6px 12px" }}>
                     <Form.Control className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleBannerChange} title={bannerFileName ? bannerFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
                   </button>
-                  <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 fw-semibold" type="text" readOnly value={bannerFileName ? bannerFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!bannerInputError} />
+                  <Form.Control className={`border-0 bg-surface-darker shadow-sm d-flex rounded-start-1 fw-semibold ${bannerFileName ? '' : 'text-placeholder'}`} type="text" readOnly value={bannerFileName ? bannerFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!bannerInputError} />
                 </Form.Label>
                 {bannerInputError && <p className="text-danger fw-bold m-0 fs-6">{bannerInputError}</p>}
               </Form.Group>

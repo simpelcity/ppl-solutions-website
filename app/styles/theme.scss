@@ -9,6 +9,7 @@
   --color-primary: #009a86;
   --color-secondary: #045144;
   --color-gray: #b8b3bd;
+  --color-gray-darker: #6e6e6e;
 }
 
 [data-bs-theme="dark"] {  
@@ -19,6 +20,7 @@
   --color-primary: #009a86;
   --color-secondary: #043b32;
   --color-gray: gray;
+  --color-gray-darker: #5a5a5a;
 }
 
 .bg-surface {
@@ -35,4 +37,24 @@
 
 .text-theme {
   color: var(--color-text) !important;
+}
+
+.bg-muted {
+  background-color: var(--color-gray) !important;
+}
+
+.bg-gray {
+  background-color: gray !important;
+}
+
+.text-placeholder {
+  color: var(--color-gray-darker) !important;
+}
+
+.text-gray {
+  color: var(--color-gray) !important;
+}
+
+.border-surface {
+  border-color: var(--color-surface) !important;
 }

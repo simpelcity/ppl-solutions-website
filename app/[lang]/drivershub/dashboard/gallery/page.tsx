@@ -62,7 +62,7 @@ export default async function DashboardGalleryPage({ params }: PageProps) {
       <link rel="canonical" href="https://ppl-solutions.vercel.app/drivershub/dashboard" />
 
       <main className="fs-5">
-        <section className="drivershub w-100 d-flex justify-content-center bg-dark-subtle text-center text-light">
+        <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-theme">
           <CardGalleryForm dict={dict} />
         </section>
       </main>

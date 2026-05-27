@@ -132,7 +132,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                   <thead>
                     <tr className="text-uppercase">
                       {tableItems.map((item) => (
-                        <th key={item.title} className="bg-primary px-4 py-2 text-theme">
+                        <th key={item.title} className="bg-primary px-4 py-2 text-light">
                           {item.title}
                         </th>
                       ))}
