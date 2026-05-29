@@ -138,7 +138,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
           </Dropdown.Menu>
         </Dropdown>
         <div className={`vr text-theme ${offCanvas ? 'd-block' : width < 576 ? 'd-block' : 'd-none'}`}></div>
-        <ThemeSwitcher />
+        <ThemeSwitcher width={width} dict={dict} />
       </div>
     </Nav>
   )

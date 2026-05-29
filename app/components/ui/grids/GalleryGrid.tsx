@@ -78,7 +78,7 @@ export default function GalleryGrid({ dict }: Props) {
             <Card className="h-100 rounded-1 border-0 shadow-sm bg-surface">
               <Card.Img
                 variant="top"
-                src={it.image_url ?? "/assets/icons/image-missing.png"}
+                src={it.image_url ?? `/assets/icons/image-missing.png`}
                 alt={it.title ?? `Image ${it.id}`}
                 loading="lazy"
                 className="rounded-top-1"

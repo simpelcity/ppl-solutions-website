@@ -7,6 +7,7 @@ import type { Dictionary } from "@/app/i18n"
 import { LoaderSpinner, RateLimitError } from '@/components'
 import axios from "axios";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
+import { useTheme } from "next-themes";
 
 type Role = { id: number; name: string; code: string }
 type TeamMember = { id: number; name: string; profile_url?: string | null; profile_path?: string | null }
@@ -29,6 +30,8 @@ export default function TeamGrid({ lang, dict }: PageProps) {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState()
+
+  const { resolvedTheme } = useTheme();
 
   const fetchData = async (mounted: boolean) => {
     try {
@@ -89,7 +92,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
                 <Card className="h-100 rounded-1 border-0 shadow-sm bg-surface">
                   <Card.Body className="p-3 p-md-4">
                     <Image
-                      src={m.member.profile_url ?? "/assets/icons/profile-user.png"}
+                      src={m.member.profile_url ?? `/assets/icons/${resolvedTheme}/default-user.png`}
                       alt={m.member.name}
                       width={150}
                       height={150}

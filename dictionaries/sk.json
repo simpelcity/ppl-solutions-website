@@ -1,6 +1,7 @@
 {
   "navbar": {
     "brand": "PPL Solutions VTC",
+    "alt": "Logo PPL Solutions VTC",
     "navigation": {
       "title": "Navigačné tlačidlá",
       "home": "Domov",
@@ -17,7 +18,13 @@
   "footer": {
     "footer1": {
       "brand": "PPL Solutions VTC",
-      "text": "Založené 7. septembra 2024, naším cieľom je vytvoriť komunitu, kde sa ľudia môžu spájať a spoločne si užívať trucking."
+      "text": "Založené 7. septembra 2024, naším cieľom je vytvoriť komunitu, kde sa ľudia môžu spájať a spoločne si užívať trucking.",
+      "socials": {
+        "discord": "Discord server",
+        "tiktok": "Stránka na TikToku",
+        "instagram": "Stránka na Instagrame",
+        "truckersmp": "TruckersMP VTC stránka"
+      }
     },
     "footer2": {
       "title": "Stránky",
@@ -67,10 +74,29 @@
       "loader": "Načítava sa"
     }
   },
+  "themeSwitcher": {
+    "light": "Svetlo",
+    "dark": "Tmavé",
+    "system": "Systém",
+    "title": "Prepnúť tému"
+  },
+  "startBannerAlt": {
+    "light": "PPL Solutions VTC Scania S730 V8 zaparkovaná v priemyselnom depe počas dňa s jasnou oblohou",
+    "dark": "PPL Solutions VTC Scania S730 V8 zaparkovaná v priemyselnom depe v noci s jasnou oblohou a viditeľnými hviezdami"
+  },
+  "authBannerAlt": {
+    "light": "2 kamióny PPL Solutions VTC Scania S730 V8 zaparkované vedľa seba počas dňa v mestskej parkovacej oblasti",
+    "dark": "2 kamióny PPL Solutions VTC Scania S730 V8 zaparkované vedľa seba v noci v mestskej parkovacej oblasti osvetlenej pouličnými lampami"
+  },
   "home": {
     "meta": {
       "title": "Riadenie budúcnosti digitálnej logistiky",
       "description": "PPL Solutions bola založená 7. septembra 2024 Wietsegamingom a MaleklecoCZE s cieľom vytvoriť úspešnú a priateľskú VTC, kde sa ľudia z celého sveta môžu stretávať a jazdiť spolu."
+    },
+    "homeBannerAlt": {
+      "light": "PPL Solutions VTC Scania S650 V8 zaparkovaná pri západe slnka v mestskej parkovacej oblasti",
+      "dark": "PPL Solutions VTC Scania S650 V8 osvetlená v noci v mestskej parkovacej oblasti",
+      "default": "PPL Solutions VTC Scania S650 V8 zaparkovaná pri krásnom oranžovo-ružovom západe slnka v mestskej parkovacej oblasti"
     },
     "slogan": "Riadenie budúcnosti digitálnej logistiky",
     "buttons": {

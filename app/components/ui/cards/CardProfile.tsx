@@ -21,7 +21,7 @@ export default function CardProfile({ params, dict }: Props) {
     if (isAdmin) console.log("%c[ADMIN]", "color: #00fbff; font-weight: bold;", ...args);
   };
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const [userId, setUserId] = useState<string | null>(null);
   const [notMobile, setNotMobile] = useState(false);
@@ -85,7 +85,7 @@ export default function CardProfile({ params, dict }: Props) {
           <Card.Body className="d-flex flex-column pb-3 pb-md-0">
             <div className="d-flex pb-3 pb-md-0">
               <div className="pfp-position d-flex">
-                <Image src={profile?.profile_url ?? `/assets/icons/profile-user-${theme}.png`} className={`border-5 border-${theme} border pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-surface'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
+                <Image src={profile?.profile_url ?? `/assets/icons/${resolvedTheme}/default-user.png`} className={`border-5 border-${resolvedTheme} border pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-surface'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
               </div>
               <div className="ms-2 ms-md-4 d-flex flex-column flex-md-row text-start row-gap-4 column-gap-md-4">
                 <div className="m-0 p-0">

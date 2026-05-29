@@ -59,7 +59,7 @@ export default function TableStats({ dict }: Props) {
                   {Array.from({ length: 4 }).map((__, c) => (
                     <td key={c} className="py-2">
                       <Placeholder as="span" animation="glow">
-                        <Placeholder xs={12} />
+                        <Placeholder xs={12} className="rounded-1" />
                       </Placeholder>
                     </td>
                   ))}

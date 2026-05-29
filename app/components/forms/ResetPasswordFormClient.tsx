@@ -7,12 +7,15 @@ import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
 import "@/styles/AuthCards.scss";
 import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
+import { useTheme } from "next-themes";
 
 type Props = {
   dict: Dictionary;
+  lang: Locale;
 }
 
-export default function ResetPasswordFormClient({ dict }: Props) {
+export default function ResetPasswordFormClient({ dict, lang }: Props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +24,9 @@ export default function ResetPasswordFormClient({ dict }: Props) {
   const [tokenValid, setTokenValid] = useState(false);
   const [validating, setValidating] = useState(true);
   const router = useRouter();
+
+  const { resolvedTheme } = useTheme();
+  const currentLang = lang === 'en' ? '' : `/${lang}`;
 
   useEffect(() => {
     supabase.auth.getSession()
@@ -93,7 +99,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
       setSuccess(dict.resetPassword.form.success);
       setTimeout(() => {
-        router.push("/login");
+        router.push(`${currentLang}/login`);
       }, 2000);
     } catch (err: any) {
       setError(err?.message ?? dict.errors.resetPassword.UNEXPECTED);
@@ -104,19 +110,19 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
   if (validating) {
     return (
-      <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
+      <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
         <Card.Body className="p-4">
           <div className="d-flex mb-3">
             <Image
-              src={"/assets/images/ppls-logo.png"}
-              alt="PPLS Logo"
+              src={`/assets/images/${resolvedTheme}/logo.png`}
+              alt={dict.navbar.alt}
               width={20}
               height={20}
               roundedCircle
             />
             <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
           </div>
-          <p className="text-muted">{dict.resetPassword.form.validating}</p>
+          <p className="text-gray">{dict.resetPassword.form.validating}</p>
         </Card.Body>
       </Card>
     );
@@ -124,12 +130,12 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
   if (!tokenValid) {
     return (
-      <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
+      <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
         <Card.Body className="p-4">
           <div className="d-flex mb-3">
             <Image
-              src={"/assets/images/ppls-logo.png"}
-              alt="PPLS Logo"
+              src={`/assets/images/${resolvedTheme}/logo.png`}
+              alt={dict.navbar.alt}
               width={20}
               height={20}
               roundedCircle
@@ -139,7 +145,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
           <p className="text-danger">{error}</p>
           <div className="text-center">
             <small>
-              <a href="/forgot-password" className="text-light">{dict.resetPassword.form.requestNewPassword}</a>
+              <a href={`${currentLang}/forgot-password`} className="text-theme">{dict.resetPassword.form.requestNewPassword}</a>
             </small>
           </div>
         </Card.Body>
@@ -148,12 +154,12 @@ export default function ResetPasswordFormClient({ dict }: Props) {
   }
 
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
+    <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
-            src={"/assets/images/ppls-logo.png"}
-            alt="PPLS Logo"
+            src={`/assets/images/${resolvedTheme}/logo.png`}
+            alt={dict.navbar.alt}
             width={20}
             height={20}
             roundedCircle
@@ -161,9 +167,9 @@ export default function ResetPasswordFormClient({ dict }: Props) {
           <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
         </div>
         <h2 className="mb-3">{dict.resetPassword.form.title}</h2>
-        <p className="text-muted mb-4">{dict.resetPassword.form.newPasswordBelow}</p>
+        <p className="text-gray mb-4">{dict.resetPassword.form.newPasswordBelow}</p>
 
-        <Form onSubmit={handleResetPassword} data-bs-theme="dark">
+        <Form onSubmit={handleResetPassword}>
           <Form.Group className="mb-3">
             <Form.Label>{dict.resetPassword.form.newPassword}</Form.Label>
             <Form.Control
@@ -171,7 +177,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
               placeholder="••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input rounded-0 border-0 shadow-sm"
+              className="input rounded-1 border-0 shadow-sm"
               required
               disabled={loading}
             />
@@ -184,7 +190,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
               placeholder="••••••"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="input rounded-0 border-0 shadow-sm"
+              className="input rounded-1 border-0 shadow-sm"
               required
               disabled={loading}
             />
@@ -200,7 +206,7 @@ export default function ResetPasswordFormClient({ dict }: Props) {
 
           <div className="text-center">
             <small>
-              <a href="/login" className="text-light">{dict.resetPassword.form.backToLogin}</a>
+              <a href={`${currentLang}/login`} className="text-theme">{dict.resetPassword.form.backToLogin}</a>
             </small>
           </div>
         </Form>

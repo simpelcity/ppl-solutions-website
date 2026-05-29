@@ -18,6 +18,7 @@ export { default as FooterLink } from "./layout/FooterLink";
 export { default as Navbar } from "./layout/Navbar";
 // Sections
 export { default as StartBanner } from "./sections/StartBanner";
+export { default as HomeBanner } from "./sections/HomeBanner";
 // Cards
 export { default as Card404 } from "./ui/cards/Card404";
 export { default as CardContact } from "./ui/cards/CardContact";

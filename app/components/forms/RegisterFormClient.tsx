@@ -6,12 +6,16 @@ import { supabase } from "@/lib";
 import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
 import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
+import { useTheme } from "next-themes";
+
 
 type Props = {
   dict: Dictionary;
+  lang: Locale;
 }
 
-export default function RegisterFormClient({ dict }: Props) {
+export default function RegisterFormClient({ dict, lang }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -20,6 +24,9 @@ export default function RegisterFormClient({ dict }: Props) {
   const [loading, setLoading] = useState(false);
   const [checkingUsername, setCheckingUsername] = useState(false);
   const router = useRouter();
+
+  const { resolvedTheme } = useTheme();
+  const currentLang = lang === 'en' ? '' : `/${lang}`;
 
   const checkUsernameAvailability = async (username: string) => {
     if (!username.trim()) return;
@@ -86,7 +93,7 @@ export default function RegisterFormClient({ dict }: Props) {
       }
 
       setSuccess(`${dict.success.register.ACCOUNT_CREATED}`);
-      setTimeout(() => router.push("/login"), 900);
+      setTimeout(() => router.push(`${currentLang}/login`), 900);
     } catch (err: any) {
       setLoading(false);
       setError(err?.message ?? `${dict.errors.register.UNEXPECTED}`);
@@ -95,12 +102,12 @@ export default function RegisterFormClient({ dict }: Props) {
 
   return (
     <>
-      <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
+      <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
         <Card.Body className="p-4">
           <div className="d-flex mb-3">
             <Image
-              src={"/assets/images/ppls-logo.png"}
-              alt="PPLS Logo"
+              src={`/assets/images/${resolvedTheme}/logo.png`}
+              alt={dict.navbar.alt}
               width={20}
               height={20}
               className=""
@@ -109,7 +116,7 @@ export default function RegisterFormClient({ dict }: Props) {
             <small className="ms-1 my-auto">{dict.register.form.brand}</small>
           </div>
           <h2 className="mb-3">{dict.register.form.title}</h2>
-          <Form method="post" onSubmit={handleRegister} className="" data-bs-theme="dark">
+          <Form method="post" onSubmit={handleRegister} className="">
             <Form.Group className="mb-3">
               <Form.Label>{dict.register.form.email}</Form.Label>
               <Form.Control
@@ -117,7 +124,7 @@ export default function RegisterFormClient({ dict }: Props) {
                 placeholder={dict.register.form.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input rounded-0 border-0 shadow-sm"
+                className="input rounded-1 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -130,11 +137,11 @@ export default function RegisterFormClient({ dict }: Props) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onBlur={(e) => checkUsernameAvailability(e.target.value)}
-                className="input rounded-0 border-0 shadow-sm"
+                className="input rounded-1 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
-              <small className="text-muted">{dict.register.form.allowedChars}</small>
+              <small className="text-gray">{dict.register.form.allowedChars}</small>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>{dict.register.form.password}</Form.Label>
@@ -143,7 +150,7 @@ export default function RegisterFormClient({ dict }: Props) {
                 placeholder="••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input rounded-0 border-0 shadow-sm"
+                className="input rounded-1 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -158,7 +165,7 @@ export default function RegisterFormClient({ dict }: Props) {
             <div className="text-center">
               <small>
                 {dict.register.form.haveAccount}{" "}
-                <a href="/login" className="text-light">
+                <a href={`${currentLang}/login`} className="text-theme">
                   {dict.register.form.login}
                 </a>
               </small>

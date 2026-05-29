@@ -28,7 +28,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
   const { user, session, refreshSession } = useAuth();
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const settingsDict = dict.drivershub.profile.settingsPage;
 
@@ -314,7 +314,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                 <Col xs={12} md={5} xl={4}>
                   <Card className="bg-surface-darker border-0 rounded-1 shadow-sm h-100">
                     <Card.Body className="d-flex flex-column align-items-center row-gap-3">
-                      <Image src={profileUrl ?? `/assets/icons/profile-user-${theme}.png`} className={`pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-surface'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
+                      <Image src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`} className={`pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-surface'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
                       <BSButton variant="secondary" border="primary" onClick={handleShowProfilePictureModal}>{settingsDict.form.accountInfo.pfpButton}</BSButton>
                     </Card.Body>
                   </Card>
@@ -390,7 +390,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                 {pfpPreviewUrl ? (
                   <Image src={pfpPreviewUrl} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={pfpAlt} />
                 ) : (
-                    <Image src={profileUrl ?? `/assets/icons/profile-user-${theme}.png`} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={profileUrl ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt} />
+                    <Image src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`} className={`pfp-img object-fit-cover`} height={95} roundedCircle alt={profileUrl ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt} />
                 )}
               </div>
 
@@ -410,7 +410,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
               </div>
 
               <div className="d-flex justify-content-end column-gap-2 p-3">
-                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseProfilePictureModal}>{settingsDict.modal.profilePicture.cancel}</button>
+                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5 text-theme" style={{ padding: '6px 12px' }} onClick={handleCloseProfilePictureModal}>{settingsDict.modal.profilePicture.cancel}</button>
                 <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || profilePictureFileError}>{settingsDict.modal.profilePicture.submit}</BSButton>
               </div>
             </Modal.Body>
@@ -447,7 +447,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
               </div>
 
               <div className="d-flex justify-content-end column-gap-2 p-3">
-                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5" style={{ padding: '6px 12px' }} onClick={handleCloseBannerModal}>{settingsDict.modal.banner.cancel}</button>
+                <button type="button" className="bg-danger border border-danger rounded-1 fw-bold fs-5 text-theme" style={{ padding: '6px 12px' }} onClick={handleCloseBannerModal}>{settingsDict.modal.banner.cancel}</button>
                 <BSButton variant="primary" classes="text-capitalize fs-5" type="submit" disabled={uploading || bannerInputError}>{settingsDict.modal.banner.submit}</BSButton>
               </div>
             </Modal.Body>

@@ -48,7 +48,7 @@ function SidebarContent({
     if (isAdmin) console.log(...args);
   };
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const { user, logout, loading, session } = useAuth();
   const pathname = usePathname();
@@ -153,11 +153,11 @@ function SidebarContent({
   const handleLogout = async () => {
     if (!logout) return;
     await logout();
-    router.push("/");
+    router.push(currentLang);
   };
 
   useEffect(() => {
-    if (!loading && !session) router.push("/login");
+    if (!loading && !session) router.push(`${currentLang}/login`);
   }, [session, loading]);
 
   useEffect(() => {
@@ -251,7 +251,7 @@ function SidebarContent({
             variant="transparent"
             className="py-0 d-flex align-items-center text-theme w-100">
             <Image
-              src={profileUrl ?? `/assets/icons/profile-user-${theme}.png`}
+              src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
               alt="Profile"
               width={32}
               height={32}
@@ -278,7 +278,7 @@ function SidebarContent({
           <Dropdown.Toggle
             className="bg-transparent border-0 p-0 d-flex align-items-center justify-content-center text-theme text-decoration-none w-100">
             <Image
-              src={profileUrl ?? `/assets/icons/profile-user-${theme}.png`}
+              src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
               alt="Profile"
               width={32}
               height={32}

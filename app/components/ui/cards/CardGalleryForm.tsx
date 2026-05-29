@@ -191,7 +191,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                   {editingId && (
                     <Button
                       variant="danger"
-                      className="mt-2 ms-2 rounded-1 text-uppercase fw-bold text-light"
+                      className="mt-2 ms-2 rounded-1 text-uppercase fw-bold text-theme"
                       style={{ padding: "0.5rem 1rem", fontSize: "1rem" }}
                       onClick={resetForm}
                       disabled={submitting}
@@ -287,7 +287,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
           <BSButton variant="secondary" size="md" border="secondary" onClick={() => setShowModal(false)}>
             {dict.drivershub.gallery.modal.cancel || "Cancel"}
           </BSButton>
-          <Button variant="danger" className=" text-uppercase fw-bold rounded-1 text-light" style={{ padding: "0.5rem 1rem", fontSize: "1rem" }} onClick={handleConfirm}>
+          <Button variant="danger" className=" text-uppercase fw-bold rounded-1 text-theme" style={{ padding: "0.5rem 1rem", fontSize: "1rem" }} onClick={handleConfirm}>
             {dict.drivershub.gallery.modal.confirm || "Confirm"}
           </Button>
         </Modal.Footer>

@@ -28,9 +28,11 @@ $dropdown-link-color: var(--color-text);
 $nav-tabs-link-active-color: var(--color-text);
 $nav-tabs-link-active-bg: var(--color-surface-darker);
 $nav-tabs-border-radius: var(--bs-border-radius-sm);
+$nav-tabs-link-hover-border-color: transparent;
+$nav-tabs-link-active-border-color: transparent;
 /* --- NAV LINKS --- */
 $nav-link-color: $primary;
-$nav-link-hover-color: $primary;
+$nav-link-hover-color: $primary-hover;
 /* --- INPUT --- */
 $input-bg: var(--color-surface-darker);
 $input-placeholder-color: var(--color-gray-darker);

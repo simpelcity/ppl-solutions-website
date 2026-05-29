@@ -3,21 +3,29 @@
 import { Card, Form, Image } from "react-bootstrap";
 import { useState } from "react";
 import { supabase } from "@/lib";
+import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
 import type { Dictionary } from "@/app/i18n"
+import { type Locale } from "@/i18n"
+import { IoEyeOff, IoEye } from "react-icons/io5";
 
 type Props = {
   dict: Dictionary;
+  lang: Locale;
 }
 
-export default function LoginFormClient({ dict }: Props) {
+export default function LoginFormClient({ dict, lang }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const { resolvedTheme } = useTheme();
+  const currentLang = lang === 'en' ? '' : `/${lang}`;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +44,7 @@ export default function LoginFormClient({ dict }: Props) {
         return;
       }
 
-      router.push("/drivershub");
+      router.push(`${currentLang}/drivershub`);
     } catch (err: any) {
       setLoading(false);
       console.error(err);
@@ -44,13 +52,17 @@ export default function LoginFormClient({ dict }: Props) {
     }
   };
 
+  function togglePasswordVisibility() {
+    setShowPassword((prev) => !prev);
+  }
+
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
+    <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
-            src={"/assets/images/ppls-logo.png"}
-            alt="PPLS Logo"
+            src={`/assets/images/${resolvedTheme}/logo.png`}
+            alt={dict.navbar.alt}
             width={20}
             height={20}
             className=""
@@ -59,31 +71,41 @@ export default function LoginFormClient({ dict }: Props) {
           <small className="ms-1 my-auto">{dict.login.form.brand}</small>
         </div>
         <h2 className="mb-3">{dict.login.form.title}</h2>
-        <Form method="post" onSubmit={handleLogin} className="" data-bs-theme="dark">
+        <Form method="post" onSubmit={handleLogin} className="">
           <Form.Group className="mb-3">
             <Form.Label>{dict.login.form.email}</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder={dict.login.form.emailPlaceholder}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-0 border-0 shadow-sm"
-            />
+              <Form.Control
+                type="email"
+                placeholder={dict.login.form.emailPlaceholder}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input rounded-1 border-0 shadow-sm"
+              />
           </Form.Group>
           <Form.Group className="mb-2 d-flex justify-content-between align-items-center">
             <Form.Label className="m-0">{dict.login.form.password}</Form.Label>
-            <a href="/forgot-password" className="text-light m-0">
+            <a href={`${currentLang}/forgot-password`} className="text-theme m-0">
               {dict.login.form.forgotPassword}
             </a>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Control
-              type="password"
-              placeholder="••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input rounded-0 border-0 shadow-sm"
-            />
+            <div className="position-relative">
+              <Form.Control
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input rounded-1 border-0 shadow-sm pe-5"
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="position-absolute top-50 end-0 translate-middle-y me-3 p-0 border-0 bg-transparent"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <IoEye className="fs-4 text-primary" /> : <IoEyeOff className="fs-4 text-gray" />}
+              </button>
+            </div>
           </Form.Group>
           <Form.Group className="mb-3 d-flex align-items-center">
             <Form.Check
@@ -105,7 +127,7 @@ export default function LoginFormClient({ dict }: Props) {
           <div className="text-center">
             <small>
               {dict.login.form.noAccount}{" "}
-              <a href="/register" className="text-light">
+              <a href={`${currentLang}/register`} className="text-theme">
                 {dict.login.form.signUp}
               </a>
             </small>

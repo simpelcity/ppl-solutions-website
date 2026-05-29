@@ -2,7 +2,7 @@
 
 import { Card, Form, Col } from "react-bootstrap";
 import { BSButton } from "@/components";
-import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa";
+import { FaDiscord, FaTiktok, FaInstagram, FaTruck } from "react-icons/fa";
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
@@ -69,13 +69,19 @@ export default function CardContact({ dict }: Props) {
                 <p className="m-0">Discord</p>
               </div>
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
-                <a href="" target="_blank" className="me-1">
+                <a href="https://www.tiktok.com/@pplsolutionsvtc" target="_blank" className="me-1">
                   <FaTiktok className="react-icons tiktok-icon p-1" />
                 </a>
                 <p className="m-0">TikTok</p>
               </div>
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
-                <a href="" target="_blank" className="me-1">
+                <a href="https://instagram.com/ppl.solutions" target="_blank" className="me-1">
+                  <FaInstagram className="react-icons instagram-icon p-1" />
+                </a>
+                <p className="m-0">Instagram</p>
+              </div>
+              <div className="m-3 mt-0 d-flex flex-column align-items-center">
+                <a href="https://truckersmp.com/vtc/74455" target="_blank" className="me-1">
                   <FaTruck className="react-icons tmp-icon p-1" />
                 </a>
                 <p className="m-0">TruckersMP</p>

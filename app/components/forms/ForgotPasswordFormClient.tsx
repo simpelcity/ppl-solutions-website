@@ -7,6 +7,7 @@ import { BSButton } from "@/components";
 import "@/styles/AuthCards.scss";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
+import { useTheme } from "next-themes";
 
 type Props = {
   dict: Dictionary;
@@ -19,6 +20,8 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { resolvedTheme } = useTheme();
+  const currentLang = lang === 'en' ? '' : `/${lang}`;
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,12 +29,10 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
     setSuccess("");
     setLoading(true);
 
-    const locale = lang === 'en' ? '' : `/${lang}`;
-
     try {
       const siteUrl = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_SITE_URL : "http://localhost:8000";
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${siteUrl}${locale}/reset-password`,
+        redirectTo: `${siteUrl}${currentLang}/reset-password`,
       });
 
       if (error) {
@@ -50,12 +51,12 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
   };
 
   return (
-    <Card className="login-card text-light rounded-0 border-0 shadow-sm fs-6">
+    <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
       <Card.Body className="p-4">
         <div className="d-flex mb-3">
           <Image
-            src={"/assets/images/ppls-logo.png"}
-            alt="PPLS Logo"
+            src={`/assets/images/${resolvedTheme}/logo.png`}
+            alt={dict.navbar.alt}
             width={20}
             height={20}
             roundedCircle
@@ -63,11 +64,9 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
           <small className="ms-1 my-auto">{dict.forgotPassword.form.brand}</small>
         </div>
         <h2 className="mb-3">{dict.forgotPassword.form.title}</h2>
-        <p className="text-light mb-4">
-          {dict.forgotPassword.form.text}
-        </p>
+        <p className="mb-4">{dict.forgotPassword.form.text}</p>
 
-        <Form onSubmit={handleForgotPassword} data-bs-theme="dark">
+        <Form onSubmit={handleForgotPassword}>
           <Form.Group className="mb-3">
             <Form.Label>{dict.forgotPassword.form.email}</Form.Label>
             <Form.Control
@@ -75,7 +74,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
               placeholder={dict.forgotPassword.form.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-0 border-0 shadow-sm"
+              className="input rounded-1 border-0 shadow-sm"
               required
               disabled={loading}
             />
@@ -93,7 +92,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
           <div className="text-center">
             <small>
               {dict.forgotPassword.form.remember}{" "}
-              <a href="/login" className="text-light">
+              <a href={`${currentLang}/login`} className="text-theme">
                 {dict.forgotPassword.form.backToLogin}
               </a>
             </small>

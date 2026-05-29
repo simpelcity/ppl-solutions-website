@@ -14,8 +14,8 @@ export async function generateStaticParams() {
 }
 
 export default async function AppLayout({ children, params }: Props) {
-  const { lang } = await params
-  const dict = await getDictionary(lang as Locale)
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
 
   return (
     <AuthProvider>

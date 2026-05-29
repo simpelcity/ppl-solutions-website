@@ -1,5 +1,5 @@
 import { Container, Image, Row, Col } from "react-bootstrap";
-import { CardText, BSButton } from "@/components";
+import { CardText, BSButton, HomeBanner } from "@/components";
 import "@/styles/Home.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
@@ -69,34 +69,9 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="d-flex w-100 text-light">
-          <Container className="px-0 position-relative d-flex justify-content-center" fluid>
-            <Image
-              src={"/assets/images/banner.jpg"}
-              alt="PPL Solutions Scania S650 V8"
-              className="object-fit-cover w-100 home-img"
-              fluid
-            />
-            <div className="overlay position-absolute top-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
-              <h4 className="text-center">"{dict.home.slogan}"</h4>
-              <div className="mt-3 d-flex justify-content-center column-gap-3">
-                <BSButton variant="outline" size="lg" border="light" href={`${currentLang}/apply`}>
-                  {dict.home.buttons.apply}
-                </BSButton>
-                <BSButton
-                  variant="outline"
-                  size="lg"
-                  border="light"
-                  href="https://discord.gg/mnKcKwsYm4"
-                  target="_blank">
-                  {dict.home.buttons.discord}
-                </BSButton>
-              </div>
-            </div>
-          </Container>
-        </section>
+        <HomeBanner dict={dict} lang={lang} />
         <section className="short-about text-center d-flex justify-content-center bg-surface-darker text-theme">
-          <Container className="my-5">
+          <Container className="my-3 my-md-4 px-3 px-md-4">
             <h1 className="text-uppercase">
               <span>{aboutUs1}</span> <span className="text-primary">{aboutUs2}</span>
             </h1>
@@ -106,12 +81,12 @@ export default async function HomePage({ params }: PageProps) {
           </Container>
         </section>
         <section className="offers d-flex justify-content-center text-center bg-surface text-theme">
-          <Container className="my-5 d-flex flex-column align-items-center">
-            <h2 className="text-uppercase mb-3 mb-4">
+          <Container className="my-3 my-md-4 px-3 px-md-4 d-flex flex-column align-items-center">
+            <h2 className="text-uppercase mb-3 mb-md-4">
               <span>{normal}</span>{" "}
               <span className="text-primary">{primary}</span> ?
             </h2>
-            <Row className="w-100 d-flex justify-content-center row-gap-4">
+            <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4">
               <Col xs={12} md={6} xl={4}>
                 <CardText title={dict.home.offers.card1.title} icon="FaUsers">
                   {dict.home.offers.card1.text}
@@ -131,12 +106,12 @@ export default async function HomePage({ params }: PageProps) {
           </Container>
         </section>
         <section className="apply-today d-flex justify-content-center text-center bg-surface-darker">
-          <Container className="my-5">
+          <Container className="my-3 my-md-4 px-3 px-md-4">
             <h2 className="text-uppercase">
               <span>{apply1}</span> <span className="text-primary">{apply2} {apply3}</span>
             </h2>
             <p>{dict.home.apply.text}</p>
-            <div className="d-grid d-md-inline-block">
+            <div className="">
               <BSButton variant="outline" border="primary" text="primary" href={`${currentLang}/apply`}>
                 {dict.home.apply.button}
               </BSButton>

@@ -6,6 +6,7 @@ import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
 import { BSButton, RateLimitError } from "@/components";
 import { useTeam, TeamMember } from "@/hooks/useTeam";
 import type { Dictionary } from "@/app/i18n"
+import { useTheme } from "next-themes";
 
 type ConfirmAction = "delete-member" | "delete-picture" | null;
 
@@ -20,6 +21,8 @@ const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 export default function CardTeamForm({ dict }: CardTeamFormProps) {
   const teamDict = dict.drivershub.team;
   const settingsDict = dict.drivershub.profile.settingsPage;
+
+  const { resolvedTheme } = useTheme();
 
   const {
     members,
@@ -282,7 +285,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                   {editingId && (
                     <Button
                       variant="danger"
-                      className="mt-2 ms-2 rounded-1 text-uppercase fw-bold text-light"
+                      className="mt-2 ms-2 rounded-1 text-uppercase fw-bold text-theme"
                       style={{ padding: "0.5rem 1rem", fontSize: "1rem" }}
                       onClick={resetForm}
                       disabled={submitting}
@@ -331,7 +334,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                         className="d-flex align-items-center justify-content-between bg-surface flex-wrap row-gap-2">
                         <div className="d-flex align-items-center">
                           <Image
-                            src={member.profile_url || "/assets/icons/profile-user.png"}
+                            src={member.profile_url || `/assets/icons/${resolvedTheme}/default-user.png`}
                             alt={dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", member.name)}
                             width={40}
                             height={40}
@@ -390,7 +393,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
           <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
             {dict.drivershub.team.modal.cancel || "Cancel"}
           </BSButton>
-          <Button variant="danger" className=" text-uppercase fw-bold rounded-1 text-light" style={{ padding: "0.5rem 1rem", fontSize: "1rem" }} onClick={handleConfirm}>
+          <Button variant="danger" className=" text-uppercase fw-bold rounded-1 text-theme" style={{ padding: "0.5rem 1rem", fontSize: "1rem" }} onClick={handleConfirm}>
             {dict.drivershub.team.modal.confirm || "Confirm"}
           </Button>
         </Modal.Footer>

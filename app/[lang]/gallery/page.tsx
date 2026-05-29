@@ -47,7 +47,7 @@ export default async function GalleryPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <StartBanner>{dict.gallery.title}</StartBanner>
+        <StartBanner dict={dict}>{dict.gallery.title}</StartBanner>
         <section className="d-flex w-100 bg-surface-darker text-center">
           <Container className="d-flex justify-content-center p-3 p-md-4">
             <GalleryGrid dict={dict} />

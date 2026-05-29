@@ -6,6 +6,7 @@ import { Card, Container, Row, Col, Image } from 'react-bootstrap'
 import { BSButton, LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import { useTheme } from 'next-themes'
 
 type Props = {
   params: Promise<{ userId: string }>;
@@ -29,6 +30,8 @@ export default function CardProfileSkills({ params, dict }: Props) {
   };
 
   const [userId, setUserId] = useState<string | null>(null);
+
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     params.then(({ userId }) => setUserId(userId));
@@ -81,7 +84,7 @@ export default function CardProfileSkills({ params, dict }: Props) {
     { id: "Skill_High_Value", name: dict.drivershub.profile.profilePage.skillsCard.highValue.title, desc: dict.drivershub.profile.profilePage.skillsCard.highValue.description, value: skillsObject.valuable },
     { id: "Skill_Fragile", name: dict.drivershub.profile.profilePage.skillsCard.fragile.title, desc: dict.drivershub.profile.profilePage.skillsCard.fragile.description, value: skillsObject.fragile },
     { id: "Skill_Overweight", name: dict.drivershub.profile.profilePage.skillsCard.overweight.title, desc: dict.drivershub.profile.profilePage.skillsCard.overweight.description, value: skillsObject.overweight },
-    { id: "Skill_Cost", name: dict.drivershub.profile.profilePage.skillsCard.cost.title, desc: dict.drivershub.profile.profilePage.skillsCard.cost.description, value: skillsObject.cost },
+    { id: `Skill_Cost-${resolvedTheme}`, name: dict.drivershub.profile.profilePage.skillsCard.cost.title, desc: dict.drivershub.profile.profilePage.skillsCard.cost.description, value: skillsObject.cost },
   ];
 
   if (loading) return <LoaderSpinner dict={dict} />;

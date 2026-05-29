@@ -13,6 +13,22 @@
   font-display: swap;
 }
 
+:root {
+  --height-navbar: 76px;
+}
+
+@media (max-width: 992px) {
+  :root {
+    --height-navbar: 77px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --height-navbar: 67px;
+  }
+}
+
 .font-freestyle {
   font-family: "Freestyle Script" !important;
 }
@@ -43,7 +59,7 @@ h6,
 }
 
 .banner-img {
-  height: calc(100vh - 76px);
+  height: calc(100vh - var(--height-navbar));
 }
 
 .bg-dark-darker {
@@ -59,17 +75,27 @@ h6,
 }
 
 main {
-  min-height: calc(100vh - 76px);
+  min-height: calc(100vh - var(--height-navbar));
 }
 
-.main {
-  background: url(/assets/images/banner-3.jpg);
-  background-size: cover;
-  background-position: center;
+[data-bs-theme="light"] {
+  .main {
+    background: url(/assets/images/light/auth-banner.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+[data-bs-theme="dark"] {
+  .main {
+    background: url(/assets/images/dark/auth-banner.jpg);
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 .main > section {
-  min-height: calc(100vh - 76px);
+  min-height: calc(100vh - var(--height-navbar));
 }
 
 .text-gray {

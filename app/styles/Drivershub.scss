@@ -60,7 +60,7 @@
 }
 
 .drivershub {
-  min-height: calc(100vh - 76px);
+  min-height: calc(100vh - var(--height-navbar));
 }
 
 .btn-close {

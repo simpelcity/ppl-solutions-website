@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const handleShow = () => setShow(true);
 
   const currentLocale = lang === "en" ? "" : `/${lang}`;
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const isDrivershub = pathname.startsWith(`${currentLocale}/drivershub`);
 
@@ -75,15 +75,13 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
     { title: dict.navbar.navigation.contact, href: `${currentLocale}/contact` },
   ];
 
-  const activeTheme = theme === 'system' ? resolvedTheme : theme;
-
   const brandSplit = dict.navbar.brand.split(" ");
   const brand1 = brandSplit[0] + (brandSplit.length > 1 ? " " : "") + (brandSplit.length > 1 ? brandSplit[1] : "");
   const brand2 = brandSplit[2];
 
   return (
     <header className="position-sticky top-0" style={{ zIndex: 5 }}>
-      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg={activeTheme} variant={theme}  className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
+      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg={resolvedTheme} variant={resolvedTheme}  className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
         <Container className="m-0 p-0 d-flex align-items-center" fluid>
           {isMobile && isDrivershub && (
             <button
@@ -96,10 +94,10 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
           <BSNavbar.Brand
             as={Link}
             onClick={() => setExpanded(false)}
-            href={currentLocale}
+            href={`${lang === 'en' ? '/' : currentLocale}`}
             className="d-flex align-items-center mx-0 column-gap-2">
               {width > 768 && (
-              <Image src="/assets/images/ppls-logo.png" alt="PPLS Logo" width={50} height={50} roundedCircle />
+              <Image src={`/assets/images/${resolvedTheme}/logo.png`} alt={dict.navbar.alt} width={50} height={50} roundedCircle />
               )}
             <span className="my-auto">
               <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand1}</span>{" "}
