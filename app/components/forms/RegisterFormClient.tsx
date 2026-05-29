@@ -8,7 +8,7 @@ import { BSButton } from "@/components";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useTheme } from "next-themes";
-
+import { IoEyeOff, IoEye } from "react-icons/io5";
 
 type Props = {
   dict: Dictionary;
@@ -23,6 +23,7 @@ export default function RegisterFormClient({ dict, lang }: Props) {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [checkingUsername, setCheckingUsername] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const { resolvedTheme } = useTheme();
@@ -100,6 +101,10 @@ export default function RegisterFormClient({ dict, lang }: Props) {
     }
   };
 
+  function togglePasswordVisibility() {
+    setShowPassword((prev) => !prev);
+  }
+
   return (
     <>
       <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
@@ -145,15 +150,25 @@ export default function RegisterFormClient({ dict, lang }: Props) {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>{dict.register.form.password}</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="input rounded-1 border-0 shadow-sm"
-                required
-                disabled={loading}
-              />
+              <div className="position-relative">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="input rounded-1 border-0 shadow-sm"
+                  required
+                  disabled={loading}
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="position-absolute top-50 end-0 translate-middle-y me-3 p-0 border-0 bg-transparent"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <IoEye className="text-primary" size={25} /> : <IoEyeOff className="text-gray" size={25} />}
+                </button>
+              </div>
             </Form.Group>
             {error && <p className="text-danger mt-3">{error}</p>}
             {success && <p className="text-success mt-3">{success}</p>}

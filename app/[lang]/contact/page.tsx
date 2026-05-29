@@ -52,11 +52,11 @@ export default async function ContactPage({ params }: PageProps) {
         <section className="d-flex w-100 bg-surface-darker text-center">
           <Container className="d-flex justify-content-center flex-column align-items-center p-3 p-md-4">
             <p className="text-gray mb-3 mb-md-4">{dict.contact.form.required}</p>
-            <Row className="w-100 d-flex justify-content-center align-items-start row-gap-3 row-gap-md-4">
-              <Col xs={12} md={12} xl={8}>
+            <Row className="w-100 d-flex row-gap-3 row-gap-md-4">
+              <Col xs={12} md={12} xl={8} className="">
                 <CardContact dict={dict} />
               </Col>
-              <Col xs={12} md={8} xl={4} className="d-flex align-items-center justify-content-center">
+              <Col xs={12} md={8} xl={4} className="">
                 <DiscordWidget />
               </Col>
             </Row>

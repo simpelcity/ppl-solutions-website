@@ -57,11 +57,7 @@ export default function CardContact({ dict }: Props) {
                 </BSButton>
               </div>
             </Col>
-            <Col
-              xs={12}
-              md={2}
-              xl={2}
-              className="d-flex flex-row flex-md-column align-items-center justify-content-center">
+            <Col xs={12} md={2} xl={2} className="d-flex flex-row flex-md-column align-items-center justify-content-center">
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
                 <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="me-1">
                   <FaDiscord className="react-icons discord-icon p-1" />

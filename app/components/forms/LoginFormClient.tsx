@@ -103,7 +103,7 @@ export default function LoginFormClient({ dict, lang }: Props) {
                 className="position-absolute top-50 end-0 translate-middle-y me-3 p-0 border-0 bg-transparent"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? <IoEye className="fs-4 text-primary" /> : <IoEyeOff className="fs-4 text-gray" />}
+                {showPassword ? <IoEye className="text-primary" size={25} /> : <IoEyeOff className="text-gray" size={25} />}
               </button>
             </div>
           </Form.Group>

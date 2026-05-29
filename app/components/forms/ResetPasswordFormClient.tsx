@@ -9,6 +9,7 @@ import "@/styles/AuthCards.scss";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useTheme } from "next-themes";
+import { IoEyeOff, IoEye } from "react-icons/io5";
 
 type Props = {
   dict: Dictionary;
@@ -23,6 +24,8 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
   const [loading, setLoading] = useState(false);
   const [tokenValid, setTokenValid] = useState(false);
   const [validating, setValidating] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
 
   const { resolvedTheme } = useTheme();
@@ -108,10 +111,18 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
     }
   };
 
+  function togglePasswordVisibility() {
+    setShowPassword((prev) => !prev);
+  }
+
+  function toggleConfirmPasswordVisibility() {
+    setShowConfirmPassword((prev) => !prev);
+  }
+
   if (validating) {
     return (
       <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
-        <Card.Body className="p-4">
+        <Card.Body className="p-3 p-md-4">
           <div className="d-flex mb-3">
             <Image
               src={`/assets/images/${resolvedTheme}/logo.png`}
@@ -122,7 +133,7 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
             />
             <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
           </div>
-          <p className="text-gray">{dict.resetPassword.form.validating}</p>
+          <p className="text-gray text-center">{dict.resetPassword.form.validating}</p>
         </Card.Body>
       </Card>
     );
@@ -131,7 +142,7 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
   if (!tokenValid) {
     return (
       <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
-        <Card.Body className="p-4">
+        <Card.Body className="p-3 p-md-4">
           <div className="d-flex mb-3">
             <Image
               src={`/assets/images/${resolvedTheme}/logo.png`}
@@ -155,7 +166,7 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
 
   return (
     <Card className="auth-card text-theme rounded-1 border-0 shadow-sm fs-6">
-      <Card.Body className="p-4">
+      <Card.Body className="p-3 p-md-4">
         <div className="d-flex mb-3">
           <Image
             src={`/assets/images/${resolvedTheme}/logo.png`}
@@ -167,33 +178,53 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
           <small className="ms-1 my-auto">{dict.resetPassword.form.brand}</small>
         </div>
         <h2 className="mb-3">{dict.resetPassword.form.title}</h2>
-        <p className="text-gray mb-4">{dict.resetPassword.form.newPasswordBelow}</p>
+        <p className="text-gray mb-3">{dict.resetPassword.form.newPasswordBelow}</p>
 
         <Form onSubmit={handleResetPassword}>
           <Form.Group className="mb-3">
             <Form.Label>{dict.resetPassword.form.newPassword}</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input rounded-1 border-0 shadow-sm"
-              required
-              disabled={loading}
-            />
+            <div className="position-relative">
+              <Form.Control
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input rounded-1 border-0 shadow-sm"
+                required
+                disabled={loading}
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="position-absolute top-50 end-0 translate-middle-y me-3 p-0 border-0 bg-transparent"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <IoEye className="text-primary" size={25} /> : <IoEyeOff className="text-gray" size={25} />}
+              </button>
+            </div>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>{dict.resetPassword.form.confirmPassword}</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="••••••"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="input rounded-1 border-0 shadow-sm"
-              required
-              disabled={loading}
-            />
+            <div className="position-relative">
+              <Form.Control
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="input rounded-1 border-0 shadow-sm"
+                required
+                disabled={loading}
+              />
+              <button
+                type="button"
+                onClick={toggleConfirmPasswordVisibility}
+                className="position-absolute top-50 end-0 translate-middle-y me-3 p-0 border-0 bg-transparent"
+                aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+              >
+                {showConfirmPassword ? <IoEye className="text-primary" size={25} /> : <IoEyeOff className="text-gray" size={25} />}
+              </button>
+            </div>
           </Form.Group>
           {error && <p className="text-danger mt-3 mb-3">{error}</p>}
           {success && <p className="text-success mt-3 mb-3">{success}</p>}
