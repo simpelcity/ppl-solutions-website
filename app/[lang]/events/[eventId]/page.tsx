@@ -83,12 +83,12 @@ export default async function EventDetailPage({ params }: PageProps) {
               style={{ height: '500px' }}
             />
             <div className="position-absolute top-0 w-100 h-100 d-flex justify-content-center align-items-center">
-              <h1 className="text-uppercase px-3 mb-3 text-center">{event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND}</h1>
+              <h1 className="text-uppercase px-3 mb-3 text-center text-light">{event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND}</h1>
             </div>
           </Container>
         </section>
 
-        <section className="d-flex w-100 bg-dark-subtle text-center flex-grow-1">
+        <section className="d-flex w-100 bg-surface-darker text-center flex-grow-1">
           <Container className="d-flex justify-content-center p-3 p-md-4">
             <Row className="d-flex justify-content-center">
               {pageError ? (

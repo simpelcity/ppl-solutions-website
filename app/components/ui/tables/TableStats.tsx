@@ -4,6 +4,7 @@ import { useUserStats } from '@/hooks/useUserStats'
 import { Table, Placeholder } from 'react-bootstrap'
 import { PlaceholderTable, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
+import { useTheme } from 'next-themes'
 
 type Props = {
   dict: Dictionary;
@@ -11,6 +12,8 @@ type Props = {
 
 export default function TableStats({ dict }: Props) {
   const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryStats } = useUserStats(dict);
+
+  const { theme } = useTheme();
 
   if (error) {
     if (isRateLimited) {
@@ -38,11 +41,11 @@ export default function TableStats({ dict }: Props) {
   return (
     <>
       <div className="table-card-scroll">
-        <Table variant="dark" className="table-stats" borderless>
+        <Table variant={theme} className="table-stats" borderless>
           <thead>
             <tr>
               {tableItems.map((item) => (
-                <th key={item.title} className="bg-primary text-start px-4">
+                <th key={item.title} className="bg-primary text-start text-light px-4">
                   {item.title}
                 </th>
               ))}
@@ -56,7 +59,7 @@ export default function TableStats({ dict }: Props) {
                   {Array.from({ length: 4 }).map((__, c) => (
                     <td key={c} className="py-2">
                       <Placeholder as="span" animation="glow">
-                        <Placeholder xs={12} />
+                        <Placeholder xs={12} className="rounded-1" />
                       </Placeholder>
                     </td>
                   ))}

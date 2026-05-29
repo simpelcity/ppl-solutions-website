@@ -11,7 +11,7 @@
 }
 
 .table-card-scroll::-webkit-scrollbar-track {
-  background: rgba($light, 0.3);
+  background: var(--color-gray);
 }
 
 .table-card-scroll::-webkit-scrollbar-thumb {
@@ -55,10 +55,12 @@
 
 .page-link:hover {
   color: $light !important;
+  background-color: $muted !important;
+  border-color: $muted !important;
 }
 
 .drivershub {
-  min-height: calc(100vh - 76px);
+  min-height: calc(100vh - var(--height-navbar));
 }
 
 .btn-close {
@@ -124,4 +126,12 @@
 .skill-level {
   max-width: 60px;
   max-height: 60px;
+}
+
+#dropdown-split-basic::after {
+  display: none;
+}
+
+#dropdown-leaderboard .dropdown-item:hover {
+  color: $light !important;
 }

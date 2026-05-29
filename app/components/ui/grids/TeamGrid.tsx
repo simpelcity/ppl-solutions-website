@@ -7,6 +7,7 @@ import type { Dictionary } from "@/app/i18n"
 import { LoaderSpinner, RateLimitError } from '@/components'
 import axios from "axios";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
+import { useTheme } from "next-themes";
 
 type Role = { id: number; name: string; code: string }
 type TeamMember = { id: number; name: string; profile_url?: string | null; profile_path?: string | null }
@@ -29,6 +30,8 @@ export default function TeamGrid({ lang, dict }: PageProps) {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState()
+
+  const { resolvedTheme } = useTheme();
 
   const fetchData = async (mounted: boolean) => {
     try {
@@ -79,17 +82,17 @@ export default function TeamGrid({ lang, dict }: PageProps) {
   return (
     <>
       {departments.map((dept, idx) => (
-        <Row key={idx} className="w-100 d-flex justify-content-center">
+        <Row key={idx} className="d-flex justify-content-center w-100">
           {departments.length === 0 && <Col>{dict.errors.team.NO_DEPTS_OR_MEMBERS_FOUND}</Col>}
 
           <h2 className="text-primary my-4">{dept.name}</h2>
-          <Row className="d-flex justify-content-center row-gap-4">
+          <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4 p-0">
             {dept.members.map((m, i) => (
               <Col key={i} xs={12} md={6} xl={3}>
-                <Card className="h-100 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-                  <Card.Body className="p-4">
+                <Card className="h-100 rounded-1 border-0 shadow-sm bg-surface">
+                  <Card.Body className="p-3 p-md-4">
                     <Image
-                      src={m.member.profile_url ?? "/assets/icons/profile-user.png"}
+                      src={m.member.profile_url ?? `/assets/icons/${resolvedTheme}/default-user.png`}
                       alt={m.member.name}
                       width={150}
                       height={150}

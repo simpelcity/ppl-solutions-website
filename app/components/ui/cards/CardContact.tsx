@@ -2,7 +2,7 @@
 
 import { Card, Form, Col } from "react-bootstrap";
 import { BSButton } from "@/components";
-import { FaDiscord, FaTiktok, FaTruck } from "react-icons/fa";
+import { FaDiscord, FaTiktok, FaInstagram, FaTruck } from "react-icons/fa";
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
@@ -12,13 +12,13 @@ type Props = {
 export default function CardContact({ dict }: Props) {
   return (
     <>
-      <Card className="rounded-1 border-0 shadow-sm bg-dark h-100">
+      <Card className="rounded-1 border-0 shadow-sm bg-surface h-100">
         <Card.Body className="p-4">
           <Form
             method="post"
             action="https://formspree.io/f/mqapoajo"
-            className="text-light text-start d-flex flex-column flex-md-row column-gap-2 row-gap-3"
-            data-bs-theme="dark">
+            className="text-start d-flex flex-column flex-md-row column-gap-2 row-gap-3"
+          >
             <Col xs={12} md={10} xl={10}>
               <Form.Group className="mb-2">
                 <Form.Label>{`${dict.contact.form.name} *`}</Form.Label>
@@ -26,7 +26,7 @@ export default function CardContact({ dict }: Props) {
                   type="text"
                   name="name"
                   placeholder={dict.contact.form.namePlaceholder}
-                  className="input rounded-1 border-0 shadow-sm bg-dark-subtle"
+                  className="input rounded-1 border-0 shadow-sm"
                   required
                 />
               </Form.Group>
@@ -36,7 +36,7 @@ export default function CardContact({ dict }: Props) {
                   type="email"
                   name="email"
                   placeholder={dict.contact.form.emailPlaceholder}
-                  className="input rounded-1 border-0 shadow-sm bg-dark-subtle"
+                  className="input rounded-1 border-0 shadow-sm"
                   required
                 />
               </Form.Group>
@@ -47,7 +47,7 @@ export default function CardContact({ dict }: Props) {
                   name="message"
                   placeholder={dict.contact.form.messagePlaceholder}
                   rows={5}
-                  className="input rounded-1 border-0 shadow-sm bg-dark-subtle"
+                  className="input rounded-1 border-0 shadow-sm"
                   required
                 />
               </Form.Group>
@@ -57,11 +57,7 @@ export default function CardContact({ dict }: Props) {
                 </BSButton>
               </div>
             </Col>
-            <Col
-              xs={12}
-              md={2}
-              xl={2}
-              className="d-flex flex-row flex-md-column align-items-center justify-content-center">
+            <Col xs={12} md={2} xl={2} className="d-flex flex-row flex-md-column align-items-center justify-content-center">
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
                 <a href="https://discord.gg/mnKcKwsYm4" target="_blank" className="me-1">
                   <FaDiscord className="react-icons discord-icon p-1" />
@@ -69,13 +65,19 @@ export default function CardContact({ dict }: Props) {
                 <p className="m-0">Discord</p>
               </div>
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
-                <a href="" target="_blank" className="me-1">
+                <a href="https://www.tiktok.com/@pplsolutionsvtc" target="_blank" className="me-1">
                   <FaTiktok className="react-icons tiktok-icon p-1" />
                 </a>
                 <p className="m-0">TikTok</p>
               </div>
               <div className="m-3 mt-0 d-flex flex-column align-items-center">
-                <a href="" target="_blank" className="me-1">
+                <a href="https://instagram.com/ppl.solutions" target="_blank" className="me-1">
+                  <FaInstagram className="react-icons instagram-icon p-1" />
+                </a>
+                <p className="m-0">Instagram</p>
+              </div>
+              <div className="m-3 mt-0 d-flex flex-column align-items-center">
+                <a href="https://truckersmp.com/vtc/74455" target="_blank" className="me-1">
                   <FaTruck className="react-icons tmp-icon p-1" />
                 </a>
                 <p className="m-0">TruckersMP</p>

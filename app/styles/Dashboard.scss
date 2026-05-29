@@ -27,15 +27,22 @@
 
 .sidebar .nav-item .nav-link:hover,
 .sidebar .nav-item #dashboard-collapse-menu li:hover {
-  background-color: #5a5a5a;
+  background-color: var(--color-gray-darker);
+  color: $light !important;
+}
+
+.sidebar .nav-item #dashboard-collapse-menu li a:hover {
+  color: $light !important;
 }
 
 .sidebar .nav-item .nav-link.active {
-  background-color: $primary;
+  background-color: $primary-active;
+  color: $light !important;
 }
 
 .profile-dropdown .dropdown-item:hover {
   background-color: $primary;
+  color: $light !important;
 }
 
 .profile-dropdown .dropdown-toggle::after {

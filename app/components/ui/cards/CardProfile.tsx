@@ -7,6 +7,7 @@ import { BSButton, LoaderSpinner, CardProfileSkills } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from '@/lib/AuthContext'
+import { useTheme } from 'next-themes'
 
 type Props = {
   params: Promise<{ userId: string }>;
@@ -19,6 +20,8 @@ export default function CardProfile({ params, dict }: Props) {
   const adminLog = (...args: any[]) => {
     if (isAdmin) console.log("%c[ADMIN]", "color: #00fbff; font-weight: bold;", ...args);
   };
+
+  const { resolvedTheme } = useTheme();
 
   const [userId, setUserId] = useState<string | null>(null);
   const [notMobile, setNotMobile] = useState(false);
@@ -75,14 +78,14 @@ export default function CardProfile({ params, dict }: Props) {
   return (
     <>
       <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
-        <Card className="border-0 rounded-1 shadow-sm" data-bs-theme="dark">
+        <Card className="border-0 rounded-1 shadow-sm bg-surface text-theme">
           <Card.Header className="p-0">
             <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`pfp-banner rounded-top-1 ${profile?.banner_url ? "object-fit-cover w-100" : "w-100"}`}  alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
           </Card.Header>
           <Card.Body className="d-flex flex-column pb-3 pb-md-0">
             <div className="d-flex pb-3 pb-md-0">
               <div className="pfp-position d-flex">
-                <Image src={profile?.profile_url ?? "/assets/icons/profile-user.png"} className={`border border-5 border-dark pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-dark'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.profilePictureAlt}`} />
+                <Image src={profile?.profile_url ?? `/assets/icons/${resolvedTheme}/default-user.png`} className={`border-5 border-${resolvedTheme} border pfp-img object-fit-cover ${profile?.profile_url ? '' : 'bg-surface'}`} roundedCircle alt={`${profile?.profile_url ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}`} />
               </div>
               <div className="ms-2 ms-md-4 d-flex flex-column flex-md-row text-start row-gap-4 column-gap-md-4">
                 <div className="m-0 p-0">
@@ -90,11 +93,11 @@ export default function CardProfile({ params, dict }: Props) {
                     <h3 className="m-0 p-0">{fetchedProfile?.user.user_metadata.display_name}</h3>
                     {memberRoles[0] ? (
                       <>
-                        <span className="text-muted">•</span>
+                        <span className="text-gray">•</span>
                         <p className={`m-0 p-0 ${memberRoles[0]?.role.code}`}>{memberRoles[0]?.role.name}</p>
                       </>
                     ) : (
-                      <span className="text-muted">• {dict.errors.profile.NO_ROLE}</span>
+                      <span className="text-gray">• {dict.errors.profile.NO_ROLE}</span>
                     )}
                   </div>
 
@@ -104,7 +107,7 @@ export default function CardProfile({ params, dict }: Props) {
                       <span>{driver?.country}</span>
                     </div>
                   )}
-                  <p className="m-0 p-0 text-muted">@{fetchedProfile?.user.user_metadata.username}</p>
+                  <p className="m-0 p-0 text-gray">@{fetchedProfile?.user.user_metadata.username}</p>
                 </div>
 
                 {userId === user?.id && notMobile && (
@@ -112,7 +115,7 @@ export default function CardProfile({ params, dict }: Props) {
                     <div className="m-0 p-0">
                       <ButtonGroup>
                         <BSButton variant="primary" classes="rounded-end-0 d-flex align-items-center" href={`/drivershub/profile/${user.id}/settings`}>{dict.drivershub.profile.profilePage.card.buttons.settings}</BSButton>
-                        <BSButton variant="outline" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/${user.id}/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
+                        <BSButton variant="outline" text="theme" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/${user.id}/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
                       </ButtonGroup>
                     </div>
                   </>
@@ -123,7 +126,7 @@ export default function CardProfile({ params, dict }: Props) {
               <div className="m-0 p-0">
                 <ButtonGroup>
                   <BSButton variant="primary" classes="rounded-end-0 d-flex align-items-center" href={`/drivershub/profile/${user?.id}/settings`}>{dict.drivershub.profile.profilePage.card.buttons.settings}</BSButton>
-                  <BSButton variant="outline" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
+                  <BSButton variant="outline" text="theme" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
                 </ButtonGroup>
               </div>
             )}

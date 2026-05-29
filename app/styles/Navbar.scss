@@ -1,5 +1,9 @@
 @use "variables" as *;
 
+.navbar {
+  max-height: var(--height-navbar);
+}
+
 #main-navbar > .navbar-nav > .active {
   border-bottom: solid 2px $primary !important;
   @media (min-width: 1200px) {
@@ -90,6 +94,7 @@
 #theme-switcher .dropdown-item:last-child {
   border-bottom-left-radius: var(--bs-border-radius-sm) !important;
   border-bottom-right-radius: var(--bs-border-radius-sm) !important;
+  padding-left: 14px !important;
 }
 
 #theme-switcher .dropdown-item.active {
@@ -99,8 +104,4 @@
 #lang-dropdown .dropdown-toggle::after,
 #theme-switcher .dropdown-toggle::after {
   content: none;
-}
-
-#lang-dropdown .dropdown-item:hover {
-  color: $light !important;
 }

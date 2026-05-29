@@ -1,6 +1,7 @@
 {
   "navbar": {
     "brand": "PPL Solutions VTC",
+    "alt": "PPL Solutions VTC-logo",
     "navigation": {
       "title": "Navigatieknoppen",
       "home": "Thuis",
@@ -17,7 +18,13 @@
   "footer": {
     "footer1": {
       "brand": "PPL Solutions VTC",
-      "text": "Opgericht op 7 september 2024, ons doel is om een gemeenschap te creëren waar mensen elkaar kunnen ontmoeten en samen van het vrachtwagenrijden kunnen genieten."
+      "text": "Opgericht op 7 september 2024, ons doel is om een gemeenschap te creëren waar mensen elkaar kunnen ontmoeten en samen van het vrachtwagenrijden kunnen genieten.",
+      "socials": {
+        "discord": "Discord server",
+        "tiktok": "TikTok-pagina",
+        "instagram": "Instagram-pagina",
+        "truckersmp": "TruckersMP VTC-pagina"
+      }
     },
     "footer2": {
       "title": "Pagina's",
@@ -67,10 +74,29 @@
       "loader": "Laden"
     }
   },
+  "themeSwitcher": {
+    "light": "Licht",
+    "dark": "Donker",
+    "system": "Systeem",
+    "title": "Thema wisselen"
+  },
+  "startBannerAlt": {
+    "light": "PPL Solutions VTC Scania S730 V8 geparkeerd bij een industrieel depot overdag met een heldere lucht",
+    "dark": "PPL Solutions VTC Scania S730 V8 geparkeerd bij een industrieel depot 's nachts met een heldere lucht en zichtbare sterren"
+  },
+  "authBannerAlt": {
+    "light": "2 PPL Solutions VTC Scania S730 V8-trucks naast elkaar geparkeerd overdag in een stedelijk parkeergebied",
+    "dark": "2 PPL Solutions VTC Scania S730 V8-trucks naast elkaar geparkeerd 's nachts in een stedelijk parkeergebied verlicht door straatlantaarns"
+  },
   "home": {
     "meta": {
       "title": "De toekomst van digitale logistiek vormgeven",
       "description": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
+    },
+    "homeBannerAlt": {
+      "light": "PPL Solutions VTC Scania S650 V8 geparkeerd bij zonsondergang in een stedelijk parkeergebied",
+      "dark": "PPL Solutions VTC Scania S650 V8 's nachts verlicht in een stedelijk parkeergebied",
+      "default": "PPL Solutions VTC Scania S650 V8 geparkeerd bij een prachtige oranje-roze zonsondergang in een stedelijk parkeergebied"
     },
     "slogan": "De toekomst van digitale logistiek vormgeven",
     "buttons": {

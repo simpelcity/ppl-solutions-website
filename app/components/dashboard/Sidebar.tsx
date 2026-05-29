@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib";
+import { useTheme } from 'next-themes'
 import { Dropdown, Image, Nav, Collapse, Offcanvas, Placeholder } from "react-bootstrap";
 import { FaAngleRight, FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { GoHomeFill } from "react-icons/go";
@@ -46,6 +47,8 @@ function SidebarContent({
   const adminLog = (...args: any[]) => {
     if (isAdmin) console.log(...args);
   };
+
+  const { resolvedTheme } = useTheme();
 
   const { user, logout, loading, session } = useAuth();
   const pathname = usePathname();
@@ -150,11 +153,11 @@ function SidebarContent({
   const handleLogout = async () => {
     if (!logout) return;
     await logout();
-    router.push("/");
+    router.push(currentLang);
   };
 
   useEffect(() => {
-    if (!loading && !session) router.push("/login");
+    if (!loading && !session) router.push(`${currentLang}/login`);
   }, [session, loading]);
 
   useEffect(() => {
@@ -177,7 +180,7 @@ function SidebarContent({
           <Nav.Item key={item.href}>
             <Nav.Link
               href={item.href}
-              className={`text-light d-flex align-items-center ${isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : "rounded-1"
+              className={`text-theme d-flex align-items-center ${isSidebarCollapsed ? "justify-content-center p-3 rounded-0" : "rounded-1"
                 } ${pathname === item.href ? "active fw-bold" : "fw-semibold"}`}
               title={item.label}>
               <span className={`fs-5 ${isSidebarCollapsed ? "me-0" : "me-2"}`}>{item.icon}</span>
@@ -188,12 +191,12 @@ function SidebarContent({
 
         {isAdmin && !isSidebarCollapsed && (
           <>
-            <Nav.Item className={open ? "bg-light bg-opacity-10 rounded-1" : ""}>
+            <Nav.Item className={open ? "bg-muted rounded-1" : ""}>
               <Nav.Link
                 onClick={() => setOpen(!open)}
                 aria-controls="dashboard-collapse-menu"
                 aria-expanded={open}
-                className={`d-flex align-items-center justify-content-between text-light rounded-1 ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active fw-bold" : "fw-semibold"
+                className={`d-flex align-items-center justify-content-between text-theme rounded-1 ${pathname.startsWith(`${currentLang}/drivershub/dashboard`) ? "active fw-bold" : "fw-semibold"
                   } ${open ? "rounded-bottom-0" : ""}`}>
                 <div className="d-flex align-items-center">
                   <span className="me-2 fs-5"><BiSolidDashboard /></span>
@@ -208,10 +211,10 @@ function SidebarContent({
                 <div id="dashboard-collapse-menu">
                   <ul className="list-unstyled m-0">
                     {collapseItems.map((item, index) => (
-                      <li key={item.href} className={`${index === collapseItems.length - 1 && "rounded-bottom-1"}`}>
+                      <li key={item.href} className={`${index === collapseItems.length - 1 && "rounded-bottom-1"} ${pathname === item.href ? 'bg-gray' : ''}`}>
                         <a
                           href={item.href}
-                          className={`text-decoration-none text-light d-flex align-items-center px-4 py-2 ${pathname === item.href ? "bg-light bg-opacity-10 fw-bold" : "fw-semibold"
+                          className={`text-decoration-none text-theme d-flex align-items-center px-4 py-2 ${pathname === item.href ? "fw-bold text-light" : "fw-semibold"
                             }`}
                           title={item.label}>
                           <span className="me-2">{item.icon}</span>
@@ -231,7 +234,7 @@ function SidebarContent({
               <Nav.Item key={item.href}>
                 <Nav.Link
                   href={item.href}
-                  className={`text-light d-flex align-items-center justify-content-center p-3 rounded-0 ${pathname === item.href ? "active" : ""
+                  className={`text-theme d-flex align-items-center justify-content-center p-3 rounded-0 ${pathname === item.href ? "active" : ""
                     }`}
                   title={item.label}>
                   <span className="fs-5">{item.icon}</span>
@@ -245,10 +248,10 @@ function SidebarContent({
       {!isSidebarCollapsed && (
         <Dropdown className="profile-dropdown" onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle
-            variant="dark"
-            className="bg-transparent border-0 p-0 d-flex align-items-center text-light text-decoration-none w-100">
+            variant="transparent"
+            className="py-0 d-flex align-items-center text-theme w-100">
             <Image
-              src={profileUrl ?? "/assets/icons/profile-user.png"}
+              src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
               alt="Profile"
               width={32}
               height={32}
@@ -260,38 +263,33 @@ function SidebarContent({
               <FaAngleDown />
             </span>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow-sm mb-1 bg-dark-subtle border-0 rounded-1" style={{ zIndex: 1050 }}>
-            <Dropdown.Item href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
+          <Dropdown.Menu className="shadow-sm mb-1 border-0 rounded-1" align="end" style={{ zIndex: 1050 }}>
+            <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
+            <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
+            <Dropdown.Item className="text-theme fw-semibold" onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       )}
       {isSidebarCollapsed && (
         <Dropdown
-          data-bs-theme="dark"
           className="profile-dropdown"
           onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle
-            variant="dark"
-            className="bg-transparent border-0 p-0 d-flex align-items-center justify-content-center text-light text-decoration-none w-100">
+            className="bg-transparent border-0 p-0 d-flex align-items-center justify-content-center text-theme text-decoration-none w-100">
             <Image
-              src={profileUrl ?? "/assets/icons/profile-user.png"}
+              src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
               alt="Profile"
               width={32}
               height={32}
               roundedCircle
             />
-            <span className={`ms-1 chevron-rotate-180 ${isProfileDropdownOpen ? 'is-open' : ''}`}>
-              <FaAngleDown />
-            </span>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropdown-menu-dark shadow-sm ms-3 mb-1 bg-dark-subtle border-0 rounded-1" style={{ zIndex: 1050 }}>
-            <Dropdown.Item href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
+          <Dropdown.Menu className="shadow-sm ms-3 mb-1 border-0 rounded-1" align="end" style={{ zIndex: 1050 }}>
+            <Dropdown.Item className="text-theme fw-semibold" href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
+            <Dropdown.Item className="text-theme fw-semibold" href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
+            <Dropdown.Item className="text-theme fw-semibold" onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       )}
@@ -320,13 +318,12 @@ export default function Sidebar({
       placement="start"
       scroll={false}
       backdrop={true}
-      className={`sidebar bg-light-subtle w-100`}
+      className={`sidebar bg-surface-lighter w-100`}
       style={{ maxWidth: window.innerWidth < 576 ? "100%" : "16.25rem" }}
-      data-bs-theme="dark"
     >
       <Offcanvas.Header className="pb-0">
         <Offcanvas.Title className="fs-3">{dict.drivershub.sidebar.title || "Sidebar"}</Offcanvas.Title>
-        <button type="button" className="ms-auto p-0 btn btn-link text-light text-opacity-75" aria-label="Close" onClick={() => setShowOffcanvas(false)}>
+        <button type="button" className="ms-auto p-0 btn btn-link text-theme text-opacity-75" aria-label="Close" onClick={() => setShowOffcanvas(false)}>
           <GoSidebarCollapse className="flip" size={30} />
         </button>
       </Offcanvas.Header>
@@ -345,7 +342,7 @@ export default function Sidebar({
   ) : (
     <div
       id="sidebar"
-      className={`sidebar d-flex flex-column text-light bg-light-subtle text-start bg-danger ${isSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"}`}
+      className={`sidebar d-flex flex-column bg-surface-lighter text-start ${isSidebarCollapsed ? "sidebar-collapsed" : "sidebar-expanded"}`}
       style={{
         height: "calc(100dvh - 76px)",
         position: "sticky",
@@ -359,9 +356,9 @@ export default function Sidebar({
       }}
       {...props}>
       <div
-        className={`sidebar-header d-flex align-items-center text-light text-decoration-none ${isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
+        className={`sidebar-header d-flex align-items-center text-decoration-none ${isSidebarCollapsed ? "justify-content-center pb-3" : "justify-content-between"
           }`}>
-        <a href="#" className="text-light text-decoration-none column-gap-2">
+        <a className="text-theme text-decoration-none column-gap-2">
           <h3 className="m-0" style={{ display: isSidebarCollapsed ? "none" : "block" }}>
             {dict.drivershub.sidebar.title || "Sidebar"}
           </h3>

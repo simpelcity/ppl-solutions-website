@@ -47,7 +47,7 @@ export default async function LeaderboardPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub d-flex w-100 bg-dark-subtle text-center text-light">
+        <section className="drivershub d-flex w-100 bg-surface-darker text-center text-theme">
           <TableLeaderboard dict={dict} />
         </section>
       </main>

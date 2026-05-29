@@ -108,7 +108,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
       <div className={`vr text-theme ${offCanvas ? 'd-none' : width < 576 ? 'd-none' : 'd-block'}`}></div>
       <div className="d-flex align-items-center justify-content-center column-gap-2">
         <Dropdown align="end" id="lang-dropdown" style={{ width: 'min-content' }} onToggle={(nextShow) => setIsLangDropdownOpen(Boolean(nextShow))}>
-          <Dropdown.Toggle variant="transparent" className="border-0 d-flex align-items-center p-0 fw-semibold text-theme" id="dropdown-lang">
+          <Dropdown.Toggle variant="transparent" className="border-0 d-flex align-items-center p-0 fw-semibold" id="dropdown-lang">
             <Image
               src={languageNames[currentLocale].url}
               alt={languageNames[currentLocale].alt}
@@ -120,10 +120,10 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
               <FaAngleDown />
             </span>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="mt-3 position-absolute rounded-1 border-0 shadow-sm bg-surface-darker py-0">
+          <Dropdown.Menu className="mt-3 position-absolute rounded-1 border-0 shadow-sm py-0">
             {i18n.locales.map((locale) => (
               <Dropdown.Item
-                className={`d-flex align-items-center fw-semibold text-theme ${theme === 'light' && currentLocale === locale ? 'text-light' : ''}`}
+                className={`d-flex align-items-center fw-semibold`}
                 key={locale}
                 active={currentLocale === locale}
                 onClick={() => switchLanguage(locale)}>
@@ -138,7 +138,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
           </Dropdown.Menu>
         </Dropdown>
         <div className={`vr text-theme ${offCanvas ? 'd-block' : width < 576 ? 'd-block' : 'd-none'}`}></div>
-        <ThemeSwitcher />
+        <ThemeSwitcher width={width} dict={dict} />
       </div>
     </Nav>
   )

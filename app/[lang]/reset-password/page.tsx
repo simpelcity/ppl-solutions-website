@@ -45,7 +45,7 @@ export default function ResetPasswordPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5 main">
-        <section className="d-flex w-100 bg-dark-subtle text-center">
+        <section className="d-flex w-100">
           <Container className="d-flex justify-content-center my-5">
             <Row className="w-100 d-flex justify-content-center align-items-center">
               <Col xs={12} md={10} xl={4}>

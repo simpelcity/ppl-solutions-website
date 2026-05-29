@@ -1,5 +1,8 @@
+'use client'
+
 import Placeholder from "react-bootstrap/Placeholder"
 import Table from "react-bootstrap/Table"
+import { useTheme } from "next-themes"
 
 interface PlaceholderTableProps {
   columns?: number
@@ -18,14 +21,16 @@ const tableItems = [
 ]
 
 export default function PlaceholderTable({ columns = 8, rows = 5 }: PlaceholderTableProps) {
+  const { theme } = useTheme()
+
   return (
     <>
       <div className="table-card-scroll">
-        <Table variant="dark" className="table-jobs text-start" borderless>
+        <Table variant={theme} className="table-jobs text-start" borderless>
           <thead className="">
             <tr className="text-uppercase">
               {tableItems.map((item) => (
-                <th key={item.title} className="bg-primary px-4 py-2">
+                <th key={item.title} className="bg-primary px-4 py-2 text-light">
                   {item.title}
                 </th>
               ))}
@@ -37,7 +42,7 @@ export default function PlaceholderTable({ columns = 8, rows = 5 }: PlaceholderT
                 {Array.from({ length: columns }).map((__, c) => (
                   <td key={c} className="py-2">
                     <Placeholder as="span" animation="glow">
-                      <Placeholder xs={12} />
+                      <Placeholder xs={12} className="rounded-1" />
                     </Placeholder>
                   </td>
                 ))}

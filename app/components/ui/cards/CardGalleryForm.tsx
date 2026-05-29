@@ -148,7 +148,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
       <Container className="p-3 p-md-4" fluid>
         <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={10} lg={6}>
-            <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
+            <Card className="px-0 rounded-1 border-0 shadow-sm bg-surface">
               <Card.Title className="fs-4 border-bottom border-dark-darker m-0 py-3 py-md-4">{editingId ? (dict.drivershub.gallery.form.titleEditItem || "Edit Gallery Item") : (dict.drivershub.gallery.form.titleNewItem || "Add Gallery Item")}</Card.Title>
               <Card.Body className="p-3 p-md-4 text-start">
                 <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
@@ -157,7 +157,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     <Form.Control
                       type="text"
                       placeholder={dict.drivershub.gallery.form.titlePlaceholder || "Image title"}
-                      className="rounded-1 border-0 shadow-sm bg-dark-subtle"
+                      className="rounded-1 border-0 shadow-sm fw-semibold"
                       required
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -165,13 +165,13 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="galleryPicture" className="mb-3">
-                    <Form.Label className="fw-bold fs-5">{}</Form.Label>
+                  <Form.Group className="mb-3">
+                    <Form.Label className="fw-bold fs-5">{editingId ? dict.drivershub.gallery.form.imageEdit : dict.drivershub.gallery.form.image}</Form.Label>
                     <Form.Label className="rounded-0 d-flex position-relative m-0">
-                      <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1 fs-6" style={{ padding: "6px 12px" }}>
+                      <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1 fs-6 text-light" style={{ padding: "6px 12px" }}>
                         <Form.Control id="gallery-file-input" className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleGalleryPictureChange} title={galleryFileName ? galleryFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
                       </button>
-                      <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 rounded-end-0 fw-semibold" type="text" readOnly value={galleryFileName ? galleryFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!galleryPictureFileError} />
+                      <Form.Control className={`border-0 shadow-sm d-flex rounded-start-1 rounded-end-0 fw-semibold ${galleryFileName ? 'text-theme' : 'text-placeholder'}`} type="text" readOnly value={galleryFileName ? galleryFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!galleryPictureFileError} />
                     </Form.Label>
                     {galleryPictureFileError && <p className="text-danger fw-bold m-0 fs-6">{galleryPictureFileError}</p>}
                   </Form.Group>
@@ -189,13 +189,15 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                   </BSButton>
 
                   {editingId && (
-                    <BSButton
-                      variant="secondary"
-                      classes="mt-2 ms-2 border-secondary"
+                    <Button
+                      variant="danger"
+                      className="mt-2 ms-2 rounded-1 text-uppercase fw-bold text-theme"
+                      style={{ padding: "0.5rem 1rem", fontSize: "1rem" }}
                       onClick={resetForm}
-                      disabled={submitting}>
+                      disabled={submitting}
+                    >
                       {dict.drivershub.gallery.form.cancel || "Cancel"}
-                    </BSButton>
+                    </Button>
                   )}
                 </Form>
 
@@ -219,7 +221,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
 
           {/* Gallery Items List */}
           <Col xs={12} md={10} lg={6}>
-            <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
+            <Card className="px-0 rounded-1 border-0 shadow-sm bg-surface">
               <Card.Title className="fs-4 border-bottom border-dark-darker m-0 py-3 py-md-4">{dict.drivershub.gallery.card.title || "Gallery Items"}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 {loading ? (
@@ -228,13 +230,13 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
                     <span className="fs-4">{dict.gallery.loading}</span>
                   </div>
                 ) : items.length === 0 ? (
-                  <p className="text-muted">{dict.errors.gallery.NO_IMAGES_FOUND}</p>
+                  <p className="text-gray fw-semibold">{dict.errors.gallery.NO_IMAGES_FOUND}</p>
                 ) : (
                   <ListGroup variant="flush">
                     {items.map((item) => (
                       <ListGroup.Item
                         key={item.id}
-                        className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-darker flex-wrap row-gap-2">
+                        className="d-flex align-items-center justify-content-between bg-surface flex-wrap row-gap-2 fw-semibold">
                         <div className="d-flex align-items-center">
                           <Image
                             src={item.image_url || "/assets/icons/image-placeholder.png"}
@@ -274,7 +276,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
       </Container>
 
       {/* Confirmation Modal */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>{dict.drivershub.gallery.modal.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
@@ -282,10 +284,10 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
           {confirmAction === "delete-item" && (dict.drivershub.gallery.modal.text || "Are you sure you want to delete this gallery item?")}
         </Modal.Body>
         <Modal.Footer>
-          <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
+          <BSButton variant="secondary" size="md" border="secondary" onClick={() => setShowModal(false)}>
             {dict.drivershub.gallery.modal.cancel || "Cancel"}
           </BSButton>
-          <Button variant="danger" className="border border-1 border-danger text-uppercase fw-bold rounded-1" style={{ padding: "10px 20px" }} onClick={handleConfirm}>
+          <Button variant="danger" className=" text-uppercase fw-bold rounded-1 text-theme" style={{ padding: "0.5rem 1rem", fontSize: "1rem" }} onClick={handleConfirm}>
             {dict.drivershub.gallery.modal.confirm || "Confirm"}
           </Button>
         </Modal.Footer>

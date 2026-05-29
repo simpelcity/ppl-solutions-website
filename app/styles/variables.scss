@@ -1,35 +1,44 @@
 $primary: #009a86;
-// $primary-hover: #008075;
 $primary-hover: #00b39c;
-// $primary-active: #007068;
 $primary-active: #00806f;
 // $primary-emphasis: #66c2b6;
 $primary-emphasis: #ffb03a;
 $secondary: #043b32;
-// $secondary-hover: #032f29;
 $secondary-hover: #075c4e;
-// $secondary-active: #02241f;
 $secondary-active: #02241e;
 // $secondary-emphasis: #688984;
 $secondary-emphasis: #e29578;
 $light-lighter: #fafafa;
-// $light: #f2f8f7;
 $light: #f5f5f5;
 $light-darker: #e5e5e5;
 $gray: gray;
 $muted: #b8b3bd;
 $muted-gray: #607d79;
-// $dark-lighter: #2b3035;
 $dark-lighter: #343a40;
-// $dark: #12111a;
 $dark: #212529;
 $dark-darker: #121416;
-$dropdown-link-hover-bg: $primary;
-$dropdown-link-color: $light;
-$nav-tabs-link-active-color: $light;
-$nav-tabs-link-active-bg: #1a1d20;
+/* --- DROPDOWN --- */
+$dropdown-bg: var(--color-surface-darker);
+$dropdown-link-hover-color: $light;
+$dropdown-link-hover-bg: $primary-hover;
+$dropdown-link-active-color: $light;
+$dropdown-link-active-bg: $primary-active;
+$dropdown-link-color: var(--color-text);
+/* --- NAV TABS --- */
+$nav-tabs-link-active-color: var(--color-text);
+$nav-tabs-link-active-bg: var(--color-surface-darker);
 $nav-tabs-border-radius: var(--bs-border-radius-sm);
+$nav-tabs-link-hover-border-color: transparent;
+$nav-tabs-link-active-border-color: transparent;
+/* --- NAV LINKS --- */
 $nav-link-color: $primary;
-$nav-link-hover-color: $primary;
+$nav-link-hover-color: $primary-hover;
+/* --- INPUT --- */
+$input-bg: var(--color-surface-darker);
+$input-placeholder-color: var(--color-gray-darker);
+/* --- FORM SELECT --- */
+$form-select-bg: var(--color-surface-darker);
+/* --- MODAL --- */
+$modal-content-bg: var(--color-surface);
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "bootstrap";

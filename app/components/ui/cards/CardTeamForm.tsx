@@ -6,6 +6,7 @@ import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
 import { BSButton, RateLimitError } from "@/components";
 import { useTeam, TeamMember } from "@/hooks/useTeam";
 import type { Dictionary } from "@/app/i18n"
+import { useTheme } from "next-themes";
 
 type ConfirmAction = "delete-member" | "delete-picture" | null;
 
@@ -20,6 +21,8 @@ const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 export default function CardTeamForm({ dict }: CardTeamFormProps) {
   const teamDict = dict.drivershub.team;
   const settingsDict = dict.drivershub.profile.settingsPage;
+
+  const { resolvedTheme } = useTheme();
 
   const {
     members,
@@ -138,6 +141,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
   };
 
   function handleEdit(member: TeamMember) {
+    resetForm();
     setEditingId(member.id);
     setName(member.name);
     setFile(null);
@@ -165,8 +169,8 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
       <Container className="p-3 p-md-4" fluid>
         <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={10} lg={6}>
-            <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-              <Card.Title className="fs-4 border-bottom border-dark-darker m-0 py-3 py-md-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
+            <Card className="px-0 rounded-1 border-0 shadow-sm bg-surface">
+              <Card.Title className="fs-4 border-bottom m-0 py-3 py-md-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
               <Card.Body className="p-3 p-md-4 text-start">
                 <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
                   <Form.Group className="mb-3">
@@ -174,7 +178,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                     <Form.Control
                       type="text"
                       placeholder={dict.drivershub.team.form.usernamePlaceholder || "Username"}
-                      className="rounded-1 border-0 shadow-sm bg-dark-subtle"
+                      className="rounded-1 border-0 shadow-sm fw-semibold"
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
@@ -182,13 +186,13 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="profilePicture" className="mb-3">
+                  <Form.Group className="mb-3">
                     <Form.Label className="fw-bold fs-5">{teamDict.form.profilePicture}</Form.Label>
                     <Form.Label className="rounded-0 d-flex position-relative m-0">
-                      <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1 fs-6" style={{ padding: "6px 12px" }}>
+                      <button className="d-block overflow-hidden position-absolute top-0 end-0 float-none border-0 m-0 bg-primary fw-bold rounded-end-1 fs-6 text-light" style={{ padding: "6px 12px" }}>
                         <Form.Control id="pfp-file-input" className="border-0 rounded-0 opacity-0 d-block position-absolute top-0 end-0" style={{ padding: "6px 12px" }} type="file" accept="image/png,image/jpeg,image/webp,image/gif" onChange={handleProfilePictureChange} title={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} />{settingsDict.modal.profilePicture.browse}
                       </button>
-                      <Form.Control className="border-0 bg-dark-subtle shadow-none d-flex rounded-start-1 rounded-end-0 fw-semibold" type="text" readOnly value={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!profilePictureFileError} />
+                      <Form.Control className={`border-0 shadow-sm d-flex rounded-start-1 rounded-end-0 fw-semibold ${profileFileName ? 'text-light' : 'text-placeholder'}`} type="text" readOnly value={profileFileName ? profileFileName : settingsDict.modal.profilePicture.placeholder} isInvalid={!!profilePictureFileError} />
                     </Form.Label>
                     {profilePictureFileError && <p className="text-danger fw-bold m-0 fs-6">{profilePictureFileError}</p>}
                   </Form.Group>
@@ -207,7 +211,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                         <>
                           {memberRoles.length > 0 && (
                             <div className="mb-3">
-                              <Form.Label>{dict.drivershub.team.form.rolesDepartments?.currentRoles || "Current Roles:"}</Form.Label>
+                              <Form.Label className="fw-bold">{dict.drivershub.team.form.rolesDepartments?.currentRoles || "Current Roles:"}</Form.Label>
                               <div className="d-flex flex-wrap gap-2">
                                 {memberRoles.map((mr, idx) => (
                                   <Badge key={idx} bg={mr.role.code} className="d-flex align-items-center gap-2 p-2 rounded-1">
@@ -224,13 +228,13 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                             </div>
                           )}
 
-                          <Form.Label>{dict.drivershub.team.form.rolesDepartments?.addRole || "Add Role:"}</Form.Label>
+                          <Form.Label className="fw-bold">{dict.drivershub.team.form.rolesDepartments?.addRole || "Add Role:"}</Form.Label>
                           <div className="d-flex gap-2 mb-3">
                             <Form.Select
                               value={selectedDepartment}
                               onChange={(e) => setSelectedDepartment(e.target.value)}
                               disabled={submitting}
-                              className="rounded-1 border shadow-none">
+                              className="rounded-1 border-0 shadow-sm text-theme">
                               <option>{dict.drivershub.team.form.rolesDepartments?.department || "Select Department"}</option>
                               {departments.map((dept) => (
                                 <option key={dept.id} value={dept.id}>
@@ -243,7 +247,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                               value={selectedRole}
                               onChange={(e) => setSelectedRole(e.target.value)}
                               disabled={submitting}
-                              className="rounded-1 shadow-none border">
+                              className="rounded-1 border-0 shadow-sm text-theme">
                               <option>{dict.drivershub.team.form.rolesDepartments?.role || "Select Role"}</option>
                               {roles.map((role) => (
                                 <option key={role.id} value={role.id}>
@@ -279,13 +283,15 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                   </BSButton>
 
                   {editingId && (
-                    <BSButton
-                      variant="secondary"
-                      classes="mt-2 ms-2 border-secondary"
+                    <Button
+                      variant="danger"
+                      className="mt-2 ms-2 rounded-1 text-uppercase fw-bold text-theme"
+                      style={{ padding: "0.5rem 1rem", fontSize: "1rem" }}
                       onClick={resetForm}
-                      disabled={submitting}>
+                      disabled={submitting}
+                    >
                       {dict.drivershub.team.form.cancelEditMember || "Cancel"}
-                    </BSButton>
+                    </Button>
                   )}
                 </Form>
                 {error && (isRateLimited ? (
@@ -310,8 +316,8 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
           </Col>
 
           <Col xs={12} md={10} lg={6}>
-            <Card className="px-0 rounded-1 border-0 shadow-sm" data-bs-theme="dark">
-              <Card.Title className="fs-4 border-bottom border-dark-darker py-3 py-md-4 m-0">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
+            <Card className="px-0 rounded-1 border-0 shadow-sm bg-surface">
+              <Card.Title className="fs-4 border-bottom py-3 py-md-4 m-0">{dict.drivershub.team.card.title || "Team Members"}</Card.Title>
               <Card.Body className="p-3 p-md-4">
                 {loading ? (
                   <div className="d-flex justify-content-center align-items-center column-gap-2">
@@ -319,16 +325,16 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
                     <span className="fs-4">{teamDict.form.loading}</span>
                   </div>
                 ) : members.length === 0 ? (
-                  <p className="text-muted">{dict.errors.members.NO_MEMBERS_FOUND}</p>
+                  <p className="text-gray fw-semibold">{dict.errors.members.NO_MEMBERS_FOUND}</p>
                 ) : (
                   <ListGroup variant="flush">
                     {members.map((member) => (
                       <ListGroup.Item
                         key={member.id}
-                        className="d-flex align-items-center justify-content-between bg-dark text-light border-dark-darker flex-wrap row-gap-2">
+                        className="d-flex align-items-center justify-content-between bg-surface flex-wrap row-gap-2">
                         <div className="d-flex align-items-center">
                           <Image
-                            src={member.profile_url || "/assets/icons/profile-user.png"}
+                            src={member.profile_url || `/assets/icons/${resolvedTheme}/default-user.png`}
                             alt={dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", member.name)}
                             width={40}
                             height={40}
@@ -375,7 +381,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
         </Row>
       </Container>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered data-bs-theme="dark">
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>{dict.drivershub.team.modal.title || "Confirm Action"}</Modal.Title>
         </Modal.Header>
@@ -387,11 +393,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
           <BSButton variant="secondary" size="lg" classes="border-secondary" onClick={() => setShowModal(false)}>
             {dict.drivershub.team.modal.cancel || "Cancel"}
           </BSButton>
-          <Button
-            variant="danger"
-            className="border border-1 border-danger text-uppercase fw-bold rounded-1"
-            style={{ padding: "10px 20px" }}
-            onClick={handleConfirm}>
+          <Button variant="danger" className=" text-uppercase fw-bold rounded-1 text-theme" style={{ padding: "0.5rem 1rem", fontSize: "1rem" }} onClick={handleConfirm}>
             {dict.drivershub.team.modal.confirm || "Confirm"}
           </Button>
         </Modal.Footer>

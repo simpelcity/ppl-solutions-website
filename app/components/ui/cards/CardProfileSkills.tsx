@@ -6,6 +6,7 @@ import { Card, Container, Row, Col, Image } from 'react-bootstrap'
 import { BSButton, LoaderSpinner } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
+import { useTheme } from 'next-themes'
 
 type Props = {
   params: Promise<{ userId: string }>;
@@ -29,6 +30,8 @@ export default function CardProfileSkills({ params, dict }: Props) {
   };
 
   const [userId, setUserId] = useState<string | null>(null);
+
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     params.then(({ userId }) => setUserId(userId));
@@ -81,19 +84,19 @@ export default function CardProfileSkills({ params, dict }: Props) {
     { id: "Skill_High_Value", name: dict.drivershub.profile.profilePage.skillsCard.highValue.title, desc: dict.drivershub.profile.profilePage.skillsCard.highValue.description, value: skillsObject.valuable },
     { id: "Skill_Fragile", name: dict.drivershub.profile.profilePage.skillsCard.fragile.title, desc: dict.drivershub.profile.profilePage.skillsCard.fragile.description, value: skillsObject.fragile },
     { id: "Skill_Overweight", name: dict.drivershub.profile.profilePage.skillsCard.overweight.title, desc: dict.drivershub.profile.profilePage.skillsCard.overweight.description, value: skillsObject.overweight },
-    { id: "Skill_Cost", name: dict.drivershub.profile.profilePage.skillsCard.cost.title, desc: dict.drivershub.profile.profilePage.skillsCard.cost.description, value: skillsObject.cost },
+    { id: `Skill_Cost-${resolvedTheme}`, name: dict.drivershub.profile.profilePage.skillsCard.cost.title, desc: dict.drivershub.profile.profilePage.skillsCard.cost.description, value: skillsObject.cost },
   ];
 
   if (loading) return <LoaderSpinner dict={dict} />;
 
   return (
     <>
-      <Card className="border-0 rounded-1 shadow-sm" data-bs-theme="dark">
+      <Card className="border-0 rounded-1 shadow-sm bg-surface">
         <Card.Body className="p-3 p-md-4">
           <h3 className="mb-3 mb-md-4">{dict.drivershub.profile.profilePage.skillsCard.title}</h3>
           <Container className="m-0 p-0 d-flex flex-column row-gap-2 align-items-center">
             {skillsList.map((skill, index) => (
-              <Row key={index} className={`w-100 row-gap-2 row-gap-md-0 ${index !== skillsList.length - 1 ? "border-bottom border-2 border-light border-opacity-25 pb-2" : ""}`}>
+              <Row key={index} className={`w-100 row-gap-2 row-gap-md-0 ${index !== skillsList.length - 1 ? "border-bottom border-2 pb-2" : ""}`}>
                 {skill.id === "Skill_ADR" ? (
                   <>
                     <Col xs={12} md={5} className="d-flex align-items-center column-gap-2">

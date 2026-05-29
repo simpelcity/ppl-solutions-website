@@ -10,5 +10,5 @@ export default async function ResetPasswordForm({ params }: LoginFormProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
 
-  return <ResetPasswordFormClient dict={dict} />
+  return <ResetPasswordFormClient dict={dict} lang={lang} />
 }

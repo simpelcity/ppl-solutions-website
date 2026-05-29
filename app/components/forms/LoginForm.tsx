@@ -10,5 +10,5 @@ export default async function LoginForm({ params }: LoginFormProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
 
-  return <LoginFormClient dict={dict} />
+  return <LoginFormClient dict={dict} lang={lang} />
 }

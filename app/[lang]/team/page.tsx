@@ -48,9 +48,9 @@ export default async function TeamPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <StartBanner>{dict.team.title}</StartBanner>
-        <section className="team d-flex w-100 bg-dark-subtle text-center">
-          <Container className="d-flex flex-column align-items-center p-3">
+        <StartBanner dict={dict}>{dict.team.title}</StartBanner>
+        <section className="team d-flex w-100 bg-surface-darker text-center">
+          <Container className="d-flex flex-column align-items-center p-3 p-md-4">
             <TeamGrid lang={lang} dict={dict} />
           </Container>
         </section>

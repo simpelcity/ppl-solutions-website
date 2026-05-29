@@ -1,6 +1,7 @@
 {
   "navbar": {
     "brand": "PPL Solutions VTC",
+    "alt": "PPL Solutions VTC Logo",
     "navigation": {
       "title": "Navigation Buttons",
       "home": "Home",
@@ -17,7 +18,13 @@
   "footer": {
     "footer1": {
       "brand": "PPL Solutions VTC",
-      "text": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together."
+      "text": "Founded on 7 September 2024, our goal is to create a community where people can connect and enjoy trucking together.",
+      "socials": {
+        "discord": "Discord Server",
+        "tiktok": "TikTok Page",
+        "instagram": "Instagram Page",
+        "truckersmp": "TruckersMP VTC Page"
+      }
     },
     "footer2": {
       "title": "Pages",
@@ -67,10 +74,29 @@
       "loader": "Loading"
     }
   },
+  "themeSwitcher": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "title": "Toggle theme"
+  },
+  "startBannerAlt": {
+    "light": "PPL Solutions VTC Scania S730 V8 parked at an industrial depot during daytime with a clear sky",
+    "dark": "PPL Solutions VTC Scania S730 V8 parked at an industrial depot during nighttime with a clear sky and stars visible"
+  },
+  "authBannerAlt": {
+    "light": "2 PPL Solutions VTC Scania S730 V8 trucks, parked side by side during daytime in an urban parking area",
+    "dark": "2 PPL Solutions VTC Scania S730 V8 trucks, parked side by side during nighttime in an urban parking area illuminated by streetlights"
+  },
   "home": {
     "meta": {
       "title": "Steering the future of Digital Logistics",
       "description": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+    },
+    "homeBannerAlt": {
+      "light": "PPL Solutions VTC Scania S650 V8 parked at sunset in an urban parking area",
+      "dark": "PPL Solutions VTC Scania S650 V8 illuminated at night in an urban parking area",
+      "default": "PPL Solutions VTC Scania S650 V8 parked at a beautiful orange/pink sunset in an urban parking area"
     },
     "slogan": "Steering the future of Digital Logistics",
     "buttons": {

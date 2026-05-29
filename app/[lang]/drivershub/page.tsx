@@ -47,7 +47,7 @@ export default async function DriversHubPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub d-flex justify-content-center w-100 bg-dark-subtle text-center text-light">
+        <section className="drivershub d-flex justify-content-center w-100 bg-surface-darker text-center text-theme">
           <TableJobs params={params} />
         </section>
       </main>

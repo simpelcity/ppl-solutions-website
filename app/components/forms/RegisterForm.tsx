@@ -10,6 +10,6 @@ export default async function RegisterForm({ params }: RegisterFormProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
 
-  return <RegisterFormClient dict={dict} />
+  return <RegisterFormClient dict={dict} lang={lang} />
 }
 

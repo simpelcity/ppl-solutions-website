@@ -45,7 +45,7 @@ export default function LoginPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5 main">
-        <section className="d-flex w-100 text-light">
+        <section className="d-flex w-100 text-theme">
           <Container className="my-5 d-flex justify-content-center">
             <Row className="w-100 d-flex justify-content-center align-items-center">
               <Col xs={12} md={10} xl={4}>

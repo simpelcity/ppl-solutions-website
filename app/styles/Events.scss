@@ -1,0 +1,5 @@
+@use 'variables' as *;
+
+#dlc-dropdown .dropdown-item:hover {
+  color: $light !important;
+}
