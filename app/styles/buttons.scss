@@ -63,8 +63,8 @@
 
 .btn-outline {
   &:hover {
-    background-color: $primary !important;
-    border-color: $primary !important;
+    background-color: $primary-hover !important;
+    border-color: $primary-hover !important;
     color: $light !important;
   }
   &:active {

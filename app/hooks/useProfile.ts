@@ -179,7 +179,9 @@ export function useProfile({ userId, dict }: Props) {
         if (res.status !== 200) throw new Error(dict.errors.country.FAILED_TO_FETCH_COUNTRY_DATA, { cause: res.status });
         const data = await res.data;
         if (!data || data.length === 0) throw new Error(dict.errors.country.COUNTRY_NOT_FOUND);
-        return data[0];
+        const matchingCountry = data.find((c: any) => c.name.common.toLowerCase() === driver.country.toLowerCase());
+        if (!matchingCountry) throw new Error(dict.errors.country.COUNTRY_NOT_FOUND);
+        return matchingCountry;
       } catch (err: any) {
         console.error(err);
         const message = err?.response?.data?.message || err?.message || dict.errors.country.FAILED_TO_FETCH_COUNTRY_DATA;

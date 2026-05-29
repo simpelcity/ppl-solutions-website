@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
     root: configDir,
   },
   sassOptions: {
+    loadPaths: [path.join(configDir, "node_modules/bootstrap/scss")],
     silenceDeprecations: [
       "color-functions",
       "global-builtin",

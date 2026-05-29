@@ -84,7 +84,7 @@ export default function LoginFormClient({ dict, lang }: Props) {
           </Form.Group>
           <Form.Group className="mb-2 d-flex justify-content-between align-items-center">
             <Form.Label className="m-0">{dict.login.form.password}</Form.Label>
-            <a href={`${currentLang}/forgot-password`} className="text-theme m-0">
+            <a href={`${currentLang}/forgot-password`} className="text-theme m-0 primary-link">
               {dict.login.form.forgotPassword}
             </a>
           </Form.Group>
@@ -127,7 +127,7 @@ export default function LoginFormClient({ dict, lang }: Props) {
           <div className="text-center">
             <small>
               {dict.login.form.noAccount}{" "}
-              <a href={`${currentLang}/register`} className="text-theme">
+              <a href={`${currentLang}/register`} className="text-theme primary-link">
                 {dict.login.form.signUp}
               </a>
             </small>

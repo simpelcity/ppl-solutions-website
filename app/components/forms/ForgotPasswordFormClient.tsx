@@ -92,7 +92,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
           <div className="text-center">
             <small>
               {dict.forgotPassword.form.remember}{" "}
-              <a href={`${currentLang}/login`} className="text-theme">
+              <a href={`${currentLang}/login`} className="text-theme primary-link">
                 {dict.forgotPassword.form.backToLogin}
               </a>
             </small>

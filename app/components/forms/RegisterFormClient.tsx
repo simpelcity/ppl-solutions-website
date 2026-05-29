@@ -180,7 +180,7 @@ export default function RegisterFormClient({ dict, lang }: Props) {
             <div className="text-center">
               <small>
                 {dict.register.form.haveAccount}{" "}
-                <a href={`${currentLang}/login`} className="text-theme">
+                <a href={`${currentLang}/login`} className="text-theme primary-link">
                   {dict.register.form.login}
                 </a>
               </small>

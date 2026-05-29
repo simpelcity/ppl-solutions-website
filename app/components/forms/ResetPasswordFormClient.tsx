@@ -156,7 +156,7 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
           <p className="text-danger">{error}</p>
           <div className="text-center">
             <small>
-              <a href={`${currentLang}/forgot-password`} className="text-theme">{dict.resetPassword.form.requestNewPassword}</a>
+              <a href={`${currentLang}/forgot-password`} className="text-theme primary-link">{dict.resetPassword.form.requestNewPassword}</a>
             </small>
           </div>
         </Card.Body>
@@ -237,7 +237,7 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
 
           <div className="text-center">
             <small>
-              <a href={`${currentLang}/login`} className="text-theme">{dict.resetPassword.form.backToLogin}</a>
+              <a href={`${currentLang}/login`} className="text-theme primary-link">{dict.resetPassword.form.backToLogin}</a>
             </small>
           </div>
         </Form>
