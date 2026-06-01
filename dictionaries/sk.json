@@ -320,6 +320,17 @@
         "logout": "Odhlásiť sa"
       }
     },
+    "breadcrumbs": {
+      "drivershub": "Centrum vodičov",
+      "user-statistics": "Štatistiky uživatele",
+      "leaderboard": "Rebríček",
+      "statistics": "Statistiky VTC",
+      "dashboard": "Dashboard",
+      "team": "Tím",
+      "gallery": "Galéria",
+      "profile":"Profil",
+      "settings": "Nastavenia"
+    },
     "jobs": {
       "title": "používateľské zákazky",
       "table": {

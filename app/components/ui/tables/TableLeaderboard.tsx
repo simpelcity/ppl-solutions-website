@@ -5,7 +5,7 @@ import { useLeaderboard } from '@/hooks/useLeaderboard'
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { BSButton, LoaderSpinner, RateLimitError } from '@/components'
+import { BSButton, Loader, RateLimitError } from '@/components'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FaAngleLeft, FaAngleRight, FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import type { Dictionary } from "@/app/i18n"
@@ -208,7 +208,7 @@ export default function TableLeaderboard({ dict }: Props) {
                 <div className="text-danger text-center fw-bold py-3">{error}</div>
               )
             ) : loading ? (
-              <LoaderSpinner dict={dict} />
+              <Loader dict={dict} />
             ) : (
               <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4">
                 <Col xs={12} md={6} lg={4} className="m-0">

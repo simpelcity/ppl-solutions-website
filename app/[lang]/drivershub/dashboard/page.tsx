@@ -1,11 +1,9 @@
-import { VtcStats } from "@/components"
-import { Row } from "react-bootstrap"
+import { DashboardCard } from "@/components"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
 import "@/styles/roles.scss"
 import { type Metadata } from "next"
-
 
 type PageProps = {
   params: Promise<{ lang: Locale }>
@@ -20,11 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.drivershub.vtcStats.meta.title} | PPL Solutions VTC`,
-    description: dict.drivershub.vtcStats.meta.description,
+    title: `${dict.drivershub.team.meta.title} | PPL Solutions VTC`,
+    description: dict.drivershub.team.meta.description,
     openGraph: {
-      title: `${dict.drivershub.vtcStats.meta.title} | PPL Solutions VTC`,
-      description: dict.drivershub.vtcStats.meta.description,
+      title: `${dict.drivershub.team.meta.title} | PPL Solutions VTC`,
+      description: dict.drivershub.team.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',
       images: '/assets/images/ppls-logo.png',
@@ -43,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function VtcStatisticsPage({ params }: PageProps) {
+export default async function DashboardPage({ params }: PageProps) {
   const { lang } = await params
   const dict = await getDictionary(lang)
 
@@ -51,9 +49,7 @@ export default async function VtcStatisticsPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-theme">
-          <Row className="w-100 d-flex p-3 p-md-4">
-            <VtcStats dict={dict} />
-          </Row>
+          <DashboardCard dict={dict} />
         </section>
       </main>
     </>

@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND} | PPL Solutions`,
+    title: `${event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND} | PPL Solutions VTC`,
     description: dict.events.meta.description,
     openGraph: {
-      title: `${event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND} | PPL Solutions`,
+      title: `${event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND} | PPL Solutions VTC`,
       description: dict.events.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',

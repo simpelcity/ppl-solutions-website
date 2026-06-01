@@ -17,6 +17,11 @@ $muted-gray: #607d79;
 $dark-lighter: #343a40;
 $dark: #212529;
 $dark-darker: #121416;
+/* --- SOCIALS --- */
+$discord: #5865f2;
+$tiktok: #fe2c55;
+$truckersmp: #b91f28;
+$instagram: #e1306c;
 /* --- DROPDOWN --- */
 $dropdown-bg: var(--color-surface-darker);
 $dropdown-link-hover-color: $light;
@@ -36,11 +41,14 @@ $nav-link-hover-color: $primary-hover;
 /* --- INPUT --- */
 $input-bg: var(--color-surface-darker);
 $input-placeholder-color: var(--color-gray-darker);
+$input-color: var(--color-text);
 /* --- FORM SELECT --- */
 $form-select-bg: var(--color-surface-darker);
 /* --- MODAL --- */
 $modal-content-bg: var(--color-surface);
 /* --- BUTTONS --- */
 $btn-transition: 0.4s ease;
+
+$breadcrumb-margin-bottom: 0;
 
 @import "bootstrap";

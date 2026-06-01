@@ -86,7 +86,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
   const offCanvas = width >= 992 && width <= 1150;
 
   return (
-    <Nav className={`d-flex justify-content-center gap-2 ${offCanvas ? 'flex-column' : width < 576 ? 'flex-column' : 'flex-row'}`}>
+    <Nav className={`d-flex justify-content-center row-gap-3 column-gap-md-2 ${offCanvas ? 'flex-column' : width < 576 ? 'flex-column' : 'flex-row'}`}>
       <div className="d-flex justify-content-center column-gap-2">
         <BSButton
           variant="secondary"

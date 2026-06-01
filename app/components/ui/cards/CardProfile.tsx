@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useProfile } from "@/hooks/useProfile";
 import { Container, Card, Image, ButtonGroup } from 'react-bootstrap'
-import { BSButton, LoaderSpinner, CardProfileSkills } from '@/components'
+import { BSButton, Loader, CardProfileSkills } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from '@/lib/AuthContext'
@@ -67,7 +67,7 @@ export default function CardProfile({ params, dict }: Props) {
   // adminLog('countryData:', countryData)
   // adminLog(user)
 
-  if (loading) return <LoaderSpinner dict={dict} />;
+  if (loading) return <Loader dict={dict} />;
   if (!loading && (!profile || Object.keys(profile).length === 0)) {
     return <p className="text-danger fw-bold">{dict.errors.profile.profile.PROFILE_NOT_FOUND}</p>;
   }

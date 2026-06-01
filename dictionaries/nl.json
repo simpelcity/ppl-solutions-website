@@ -320,6 +320,17 @@
         "logout": "Uitloggen"
       }
     },
+    "breadcrumbs": {
+      "drivershub": "Bestuurdershub",
+      "user-statistics": "Gebruikersstatistieken",
+      "leaderboard": "Klassement",
+      "statistics": "VTC-statistieken",
+      "dashboard": "Dashboard",
+      "team": "Team",
+      "gallery": "Galerij",
+      "profile": "Profiel",
+      "settings": "Instellingen"
+    },
     "jobs": {
       "title": "gebruikers vrachten",
       "table": {

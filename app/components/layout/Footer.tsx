@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { Container, Row, Col, Image, Tab, Tabs, ListGroup } from "react-bootstrap"
 import { FaDiscord, FaTiktok, FaInstagram, FaTruck, FaRegCopyright } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { FooterLink, BSLink } from "@/components"
-import "@/styles/Footer.scss"
+import { BSLink } from "@/components"
+import "@/styles/icons.scss"
 import type { Dictionary } from "@/app/i18n";
 import { type Locale } from "@/i18n"
 import { useSidebar } from "@/lib";
@@ -40,12 +40,12 @@ export default function Footer({ dict, lang }: FooterProps) {
 
   const split = dict.footer.footer3.tab2.text.split(" ");
   const message1 = split.slice(0, split.indexOf("Simpelcity.")).join(" ");
-  const message2 = dict.footer.footer3.tab2.text.match(/\bSimpelcity\b/);
+  const simpelcity = dict.footer.footer3.tab2.text.match(/\bSimpelcity\b/);
   const start1 = dict.footer.footer3.tab2.text.indexOf("Simpelcity") + "Simpelcity".length;
   const end1 = dict.footer.footer3.tab2.text.indexOf("PPL Solutions VTC");
-  const message3 = dict.footer.footer3.tab2.text.slice(start1, end1);
-  const message4 = dict.footer.footer3.tab2.text.match(/\bPPL Solutions VTC\b/);
-  const message5 = dict.footer.footer3.tab2.text.slice(end1 + "PPL Solutions VTC".length);
+  const message2 = dict.footer.footer3.tab2.text.slice(start1, end1);
+  const vtcName = dict.footer.footer3.tab2.text.match(/\bPPL Solutions VTC\b/);
+  const message3 = dict.footer.footer3.tab2.text.slice(end1 + "PPL Solutions VTC".length);
 
   const bottom1 = dict.footer.bottom.copyright.split(" ")[0];
   const brand = dict.footer.bottom.copyright.match(/\bPPL Solutions VTC\b/);
@@ -59,8 +59,8 @@ export default function Footer({ dict, lang }: FooterProps) {
   const brand2 = brandSplit[2];
 
   return (
-    <footer className="bg-surface text-theme py-4">
-      <Container className="px-3 d-flex flex-column align-items-center" fluid>
+    <footer className="bg-surface text-theme">
+      <Container className="p-3 p-md-4 d-flex flex-column align-items-center" fluid>
         <Row className="w-100 d-flex row-gap-4">
           <Col
             xs={12}
@@ -90,22 +90,22 @@ export default function Footer({ dict, lang }: FooterProps) {
             <div className="d-flex flex-row column-gap-3">
               <a href="https://discord.gg/mnKcKwsYm4" title={dict.footer.footer1.socials.discord} target="_blank" className="text-light">
                 <IconContext.Provider value={{ className: "react-icons" }}>
-                  <FaDiscord className="bg-discord p-2 rounded-circle" />
+                  <FaDiscord className="discord-bg p-2 rounded-circle" />
                 </IconContext.Provider>
               </a>
               <a href="https://www.tiktok.com/@pplsolutionsvtc" title={dict.footer.footer1.socials.tiktok} target="_blank" className="text-light">
                 <IconContext.Provider value={{ className: "react-icons" }}>
-                  <FaTiktok className="bg-tiktok p-2 rounded-circle" />
+                  <FaTiktok className="tiktok-bg p-2 rounded-circle" />
                 </IconContext.Provider>
               </a>
               <a href="https://www.instagram.com/ppl.solutions" title={dict.footer.footer1.socials.instagram} target="_blank" className="text-light">
                 <IconContext.Provider value={{ className: "react-icons" }}>
-                  <FaInstagram className="bg-instagram p-2 rounded-circle" />
+                  <FaInstagram className="instagram-bg p-2 rounded-circle" />
                 </IconContext.Provider>
               </a>
               <a href="https://truckersmp.com/vtc/74455" title={dict.footer.footer1.socials.truckersmp} target="_blank" className="text-light">
                 <IconContext.Provider value={{ className: "react-icons" }}>
-                  <FaTruck className="bg-tmp p-2 rounded-circle" />
+                  <FaTruck className="truckersmp-bg p-2 rounded-circle" />
                 </IconContext.Provider>
               </a>
             </div>
@@ -139,7 +139,7 @@ export default function Footer({ dict, lang }: FooterProps) {
                   </Tab>
                   <Tab eventKey="message" title={dict.footer.footer3.tab2.title} className="">
                     <p className="text-center text-md-start">
-                      {message1} <strong>{message2}</strong>{message3}<strong>{message4}</strong>{message5}
+                      {message1} <strong>{simpelcity}</strong>{message2}<strong>{vtcName}</strong>{message3}
                     </p>
                   </Tab>
                 </Tabs>

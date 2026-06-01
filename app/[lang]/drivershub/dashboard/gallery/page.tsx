@@ -17,10 +17,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.drivershub.gallery.meta.title} | PPL Solutions`,
+    title: `${dict.drivershub.gallery.meta.title} | PPL Solutions VTC`,
     description: dict.drivershub.gallery.meta.description,
     openGraph: {
-      title: `${dict.drivershub.gallery.meta.title} | PPL Solutions`,
+      title: `${dict.drivershub.gallery.meta.title} | PPL Solutions VTC`,
       description: dict.drivershub.gallery.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',
@@ -46,21 +46,6 @@ export default async function DashboardGalleryPage({ params }: PageProps) {
 
   return (
     <>
-      <title>{`${dict.drivershub.gallery.meta.title} | PPL Solutions`}</title>
-      <meta
-        name="description"
-        content={dict.drivershub.gallery.meta.description}
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={`${dict.drivershub.gallery.meta.title} | PPL Solutions`} />
-      <meta
-        property="og:description"
-        content={dict.drivershub.gallery.meta.description}
-      />
-      <meta property="og:url" content="https://ppl-solutions.vercel.app/drivershub/dashboard" />
-      <meta property="og:image" content="https://ppl-solutions.vercel.app/assets/images/ppls-logo.png" />
-      <link rel="canonical" href="https://ppl-solutions.vercel.app/drivershub/dashboard" />
-
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-theme">
           <CardGalleryForm dict={dict} />

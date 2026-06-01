@@ -320,6 +320,17 @@
         "logout": "Sign out"
       }
     },
+    "breadcrumbs": {
+      "drivershub": "Drivershub",
+      "user-statistics": "User Statistics",
+      "statistics": "VTC Statistics",
+      "leaderboard": "Leaderboard",
+      "dashboard": "Dashboard",
+      "team": "Team",
+      "gallery": "Gallery",
+      "profile": "Profile",
+      "settings": "Settings"
+    },
     "jobs": {
       "title": "user jobs",
       "table": {

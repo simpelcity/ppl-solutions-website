@@ -48,3 +48,15 @@
 .profile-dropdown .dropdown-toggle::after {
   content: none;
 }
+
+.breadcrumb-item > a {
+  // text-decoration: none;
+  font-weight: 600 !important;
+  color: $primary;
+  &:hover {
+    color: $primary-hover;
+  }
+  &:active {
+    color: $primary-active;
+  }
+}

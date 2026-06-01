@@ -96,15 +96,12 @@ export default async function ApplyPage({ params }: PageProps) {
                       <Col xs={4} md={3}>
                         <div className="m-0 d-flex flex-column align-items-center">
                           <a href="" target="_blank" className="me-1">
-                            <FaTruck className="react-icons tmp-icon p-1" />
+                            <FaTruck className="react-icons truckersmp-icon p-1" />
                           </a>
                           <p className="m-0">TruckersMP</p>
                         </div>
                       </Col>
                     </Row>
-                    <div className="d-flex justify-content-center column-gap-3 column-gap-md-4 mt-3 mt-md-4">
-                      
-                    </div>
                   </CardBody>
                 </Card>
               </Col>

@@ -114,7 +114,8 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
                   key={link.href}
                   variant="nav"
                   href={link.href}
-                  classes={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : ''}
+                  state={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : undefined}
+                  classes="nav-link"
                   onClick={() => setExpanded(false)}
                 >
                   {link.title}

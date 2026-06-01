@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Row, Col, Card, Spinner } from "react-bootstrap"
-import { LoaderSpinner, RateLimitError } from '@/components'
+import { Loader, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import axios from "axios";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
@@ -56,7 +56,7 @@ export default function GalleryGrid({ dict }: Props) {
     }
   }, [])
 
-  if (loading) return <LoaderSpinner dict={dict} />
+  if (loading) return <Loader dict={dict} />
 
   if (error) {
     if (isRateLimited) {

@@ -5,9 +5,8 @@ import { useProfile } from "@/hooks/useProfile";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from "@/lib";
 import { Container, Card, Image, Form, Modal, Row, Col, Alert } from 'react-bootstrap'
-import { BSButton, BSLink } from '@/components'
+import { BSButton } from '@/components'
 import { supabase } from "@/lib";
-import { FileInput } from "lucide-react";
 import { useTheme } from 'next-themes'
 
 type Props = {
@@ -298,8 +297,6 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
   const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
   const bannerAlt = dict.drivershub.profile.profilePage.card.bannerAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
-
-
 
   return (
     <>

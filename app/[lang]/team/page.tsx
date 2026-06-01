@@ -18,10 +18,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.team.meta.title} | PPL Solutions`,
+    title: `${dict.team.meta.title} | PPL Solutions VTC`,
     description: dict.team.meta.description,
     openGraph: {
-      title: `${dict.team.meta.title} | PPL Solutions`,
+      title: `${dict.team.meta.title} | PPL Solutions VTC`,
       description: dict.team.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useProfile } from "@/hooks/useProfile";
 import { Card, Container, Row, Col, Image } from 'react-bootstrap'
-import { BSButton, LoaderSpinner } from '@/components'
+import { BSButton, Loader } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useTheme } from 'next-themes'
@@ -87,7 +87,7 @@ export default function CardProfileSkills({ params, dict }: Props) {
     { id: `Skill_Cost-${resolvedTheme}`, name: dict.drivershub.profile.profilePage.skillsCard.cost.title, desc: dict.drivershub.profile.profilePage.skillsCard.cost.description, value: skillsObject.cost },
   ];
 
-  if (loading) return <LoaderSpinner dict={dict} />;
+  if (loading) return <Loader dict={dict} />;
 
   return (
     <>

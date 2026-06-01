@@ -1,15 +1,49 @@
+@use 'variables' as *;
+
 .discord-icon {
-  color: #5865f2;
+  color: $discord;
+}
+
+.discord-bg {
+  background-color: $discord;
+  &:hover {
+    background-color: shift-color($discord, -20%);
+  }
 }
 
 .tiktok-icon {
-  color: #fe2c55;
+  color: $tiktok;
 }
 
-.tmp-icon {
-  color: #ac2925;
+.tiktok-bg {
+  background-color: $tiktok;
+  &:hover {
+    background-color: shift-color($tiktok, -20%);
+  }
+}
+
+.truckersmp-icon {
+  color: $truckersmp;
+}
+
+.truckersmp-bg {
+  background-color: $truckersmp;
+  &:hover {
+    background-color: shift-color($truckersmp, -20%);
+  }
 }
 
 .instagram-icon {
-  color: #e1306c;
+  color: $instagram;
+}
+
+.instagram-bg {
+  background-color: $instagram;
+  &:hover {
+    background-color: shift-color($instagram, -20%);
+  }
+}
+
+.react-icons {
+  font-size: 3rem;
 }
