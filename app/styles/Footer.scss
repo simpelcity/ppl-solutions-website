@@ -19,12 +19,3 @@
 .bg-instagram {
   background-color: #e1306c;
 }
-
-.footer-link > span {
-  &:hover {
-    color: $primary-hover;
-  }
-  &:active {
-    color: $primary-active;
-  }
-}

@@ -40,5 +40,7 @@ $input-placeholder-color: var(--color-gray-darker);
 $form-select-bg: var(--color-surface-darker);
 /* --- MODAL --- */
 $modal-content-bg: var(--color-surface);
+/* --- BUTTONS --- */
+$btn-transition: 0.4s ease;
 
 @import "bootstrap";

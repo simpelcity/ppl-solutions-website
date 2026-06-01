@@ -47,11 +47,11 @@
       },
       "tab2": {
         "title": "Zpráva",
-        "text": "Ahoj cestovateli, jmenuji se Simpelcity. Vítej na webových stránkách virtuální truckingové společnosti PPL Solutions. Stojíme za pohodlím řidičů a radostí ze společného dosahování skvělých věcí."
+        "text": "Ahoj cestovateli, jmenuji se Simpelcity. Vítej na webových stránkách virtuální truckingové společnosti PPL Solutions VTC. Stojíme za pohodlím řidičů a radostí ze společného dosahování skvělých věcí."
       }
     },
     "bottom": {
-      "copyright": "Copyright {year} PPL Solutions. Všechna práva vyhrazena | Vytvořil Simpelcity"
+      "copyright": "Copyright {year} PPL Solutions VTC. Všechna práva vyhrazena | Vytvořil Simpelcity"
     }
   },
   "notFound": {
@@ -91,7 +91,7 @@
   "home": {
     "meta": {
       "title": "Řídíme budoucnost digitální logistiky",
-      "description": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
+      "description": "PPL Solutions VTC byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
     },
     "homeBannerAlt": {
       "light": "PPL Solutions VTC Scania S650 V8 zaparkovaná při západu slunce v městské parkovací oblasti",
@@ -105,7 +105,7 @@
     },
     "aboutUs": {
       "title": "o nás",
-      "text": "PPL Solutions byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
+      "text": "PPL Solutions VTC byla založena 7. září 2024 Wietsegamingem a MaleklecoCZE s cílem vytvořit úspěšnou a přátelskou VTC, kde se lidé z celého světa mohou setkávat a jezdit společně."
     },
     "offers": {
       "title": "co nabízíme?",
@@ -119,12 +119,12 @@
       },
       "card3": {
         "title": "vlastní módy",
-        "text": "Nabízíme také exkluzivní módy PPL Solutions pro použití v singleplayeru nebo konvojovém režimu."
+        "text": "Nabízíme také exkluzivní módy PPL Solutions VTC pro použití v singleplayeru nebo konvojovém režimu."
       }
     },
     "apply": {
       "title": "přihlas se ještě dnes",
-      "text": "Přihlas se prostřednictvím našeho Discord serveru a začni svou úžasnou cestu s PPL Solutions.",
+      "text": "Přihlas se prostřednictvím našeho Discord serveru a začni svou úžasnou cestu s PPL Solutions VTC.",
       "button": "přihlásit se nyní"
     }
   },
@@ -177,7 +177,7 @@
   "team": {
     "meta": {
       "title": "Tým",
-      "description": "Podívej se na všechny úžasné členy našeho týmu, kteří stojí za PPL Solutions."
+      "description": "Podívej se na všechny úžasné členy našeho týmu, kteří stojí za PPL Solutions VTC."
     },
     "title": "tým",
     "loading": "Načítání týmu..."
@@ -185,7 +185,7 @@
   "gallery": {
     "meta": {
       "title": "Galerie",
-      "description": "Prohlédni si galerii s nejlepšími momenty a kamiony z PPL Solutions."
+      "description": "Prohlédni si galerii s nejlepšími momenty a kamiony z PPL Solutions VTC."
     },
     "title": "galerie",
     "loading": "Načítání galerie..."
@@ -193,7 +193,7 @@
   "contact": {
     "meta": {
       "title": "Kontakt",
-      "description": "Kontaktuj tým PPL Solutions s dotazy, žádostmi o podporu nebo zpětnou vazbou."
+      "description": "Kontaktuj tým PPL Solutions VTC s dotazy, žádostmi o podporu nebo zpětnou vazbou."
     },
     "title": "kontakt",
     "form": {
@@ -210,20 +210,20 @@
   "apply": {
     "meta": {
       "title": "Přihláška",
-      "description": "Přihlas se jako řidič PPL Solutions prostřednictvím našeho Discord serveru."
+      "description": "Přihlas se jako řidič PPL Solutions VTC prostřednictvím našeho Discord serveru."
     },
     "title": "přihláška",
     "card": {
-      "text": "Chceš se přihlásit jako řidič PPL Solutions? Vytvoř si ticket na našem Discord serveru, těšíme se na tebe!"
+      "text": "Chceš se přihlásit jako řidič PPL Solutions VTC? Vytvoř si ticket na našem Discord serveru, těšíme se na tebe!"
     }
   },
   "login": {
     "meta": {
       "title": "Přihlášení",
-      "description": "Přihlas se do svého účtu PPL Solutions Centrum řidičů."
+      "description": "Přihlas se do svého účtu PPL Solutions VTC Centrum řidičů."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Přihlášení",
       "email": "E-mail",
       "emailPlaceholder": "tvuj@email.cz",
@@ -241,10 +241,10 @@
   "register": {
     "meta": {
       "title": "Registrace",
-      "description": "Zaregistruj si účet PPL Solutions Centrum řidičů."
+      "description": "Zaregistruj si účet PPL Solutions VTC Centrum řidičů."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Registrace",
       "email": "E-mail",
       "emailPlaceholder": "tvuj@email.cz",
@@ -263,10 +263,10 @@
   "forgotPassword": {
     "meta": {
       "title": "Zapomněl jsi heslo?",
-      "description": "Zapomněl jsi heslo ke svému účtu PPL Solutions Centrum řidičů."
+      "description": "Zapomněl jsi heslo ke svému účtu PPL Solutions VTC Centrum řidičů."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Zapomenuté heslo",
       "text": "Zadej svůj email a pošleme ti odkaz pro reset hesla.",
       "email": "E-mail",
@@ -282,10 +282,10 @@
   "resetPassword": {
     "meta": {
       "title": "Obnovení hesla",
-      "description": "Obnov heslo ke svému účtu PPL Solutions Centrum řidičů."
+      "description": "Obnov heslo ke svému účtu PPL Solutions VTC Centrum řidičů."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Obnovení hesla",
       "newPasswordBelow": "Níže zadej své nové heslo.",
       "newPassword": "Nové heslo",
@@ -301,7 +301,7 @@
   "drivershub": {
     "meta": {
       "title": "Centrum řidičů",
-      "description": "Přihlas se do svého účtu PPL Solutions Centrum řidičů a zobraz si statistiky jízd a další informace."
+      "description": "Přihlas se do svého účtu PPL Solutions VTC Centrum řidičů a zobraz si statistiky jízd a další informace."
     },
     "sidebar": {
       "title": "Postranní panel",
@@ -537,7 +537,7 @@
       "profilePage": {
         "meta": {
           "title": "Profil uživatele {driver}",
-          "description": "Profil uživatele {driver} na PPL Solutions Centrum řidičů"
+          "description": "Profil uživatele {driver} na PPL Solutions VTC Centrum řidičů"
         },
         "card": {
           "bannerAlt": "Profilový banner uživatele {driver}",
@@ -590,7 +590,7 @@
       "settingsPage": {
         "meta": {
           "title": "Nastavení uživatele {driver}",
-          "description": "Stránka nastavení {driver} na PPL Solutions Centrum řidičů"
+          "description": "Stránka nastavení {driver} na PPL Solutions VTC Centrum řidičů"
         },
         "form": {
           "accountInfo": {

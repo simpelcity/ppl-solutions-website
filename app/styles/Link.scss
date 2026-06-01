@@ -49,3 +49,13 @@
 .footer-link {
   width: min-content !important;
 }
+
+.footer-link > span {
+  &:hover {
+    color: $primary-hover;
+    font-weight: bold;
+  }
+  &:active {
+    color: $primary-active;
+  }
+}

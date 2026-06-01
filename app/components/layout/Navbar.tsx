@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from 'next-themes'
-import { NavButtons } from "@/components";
+import { NavButtons, BSLink } from "@/components";
 import { Navbar as BSNavbar, Nav, Container, Image, Offcanvas } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GoSidebarExpand } from "react-icons/go";
@@ -110,15 +110,15 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
           <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
             <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
               {navLinks.map((link) => (
-                <Nav.Link
+                <BSLink
                   key={link.href}
-                  as={Link}
-                  onClick={() => setExpanded(false)}
+                  variant="nav"
                   href={link.href}
-                  className={`${(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? "active" : ""
-                    } text-theme fs-5 px-xl-0 pt-xl-0 text-center mx-xl-2`}>
+                  classes={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : ''}
+                  onClick={() => setExpanded(false)}
+                >
                   {link.title}
-                </Nav.Link>
+                </BSLink>
               ))}
             </Nav>
             <hr className="text-theme" />
