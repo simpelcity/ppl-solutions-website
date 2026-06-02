@@ -311,6 +311,7 @@
       "vtcStats": "VTC-statistieken",
       "dashboard": {
         "title": "Beheren",
+        "dashboard": "Dashboard",
         "team": "Team",
         "gallery": "Galerij"
       },
@@ -789,6 +790,7 @@
         "FAILED_TO_UPDATE_PROFILE_PICTURE": "Kan profielfoto niet bijwerken"
       },
       "profileBanner": {
+        "FAILED_TO_DELETE_PROFILE_BANNER": "Kon profielbanner niet verwijderen",
         "FAILED_TO_FETCH_PROFILE_BANNER": "Kan profielbanner niet laden",
         "FAILED_TO_UPLOAD_PROFILE_BANNER": "Kan profielbanner niet uploaden",
         "FAILED_TO_ADD_PROFILE_BANNER": "Kan profielbanner niet toevoegen",

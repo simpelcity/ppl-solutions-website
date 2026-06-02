@@ -9,9 +9,9 @@ export async function POST(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const body = await request.json();
-    const message = typeof body?.message === 'string' ? body.message.trim() : '';
-    const username = body?.username || 'PPL Solutions';
-    const avatar_url = body?.avatar_url || 'https://ppl-solutions.vercel.app/assets/images/logo.png';
+    
+    // const username = body?.username || 'PPL Solutions';
+    // const avatar_url = body?.avatar_url || 'https://ppl-solutions.vercel.app/assets/images/logo.png';
     const embeds = Array.isArray(body?.embeds) ? body.embeds : [];
 
     if (!embeds.length) {
@@ -23,8 +23,8 @@ export async function POST(request: NextRequest) {
     }
 
     const res = await axios.post(process.env.DISCORD_WEBHOOK_URL!, {
-      username,
-      avatar_url,
+      // username,
+      // avatar_url,
       embeds
     });
 

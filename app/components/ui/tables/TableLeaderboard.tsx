@@ -145,9 +145,9 @@ export default function TableLeaderboard({ dict }: Props) {
             <Card.Title className="m-0 fs-3">{dict.drivershub.leaderboard.card.title}</Card.Title>
             {selectedPeriod === 'monthly' ? (
               <ButtonGroup className="btn-group-leaderboard">
-                <Button variant="primary" className="text-light rounded-start-1 d-flex align-items-center" onClick={handlePreviousMonth} disabled={selectedYear === 2020 && selectedMonth === 0}><FaAngleLeft /></Button>
+                <BSButton variant="primary" className="text-light rounded-start-1 d-flex align-items-center" onClick={handlePreviousMonth} disabled={selectedYear === 2020 && selectedMonth === 0}><FaAngleLeft /></BSButton>
                 <Dropdown as={ButtonGroup} id="dropdown-leaderboard" onToggle={(nextShow) => setIsDropdownOpen(Boolean(nextShow))}>
-                  <Button variant="primary" className="text-light fw-semibold">{monthNames[selectedMonth - 1]} {selectedYear}</Button>
+                  <BSButton variant="primary" className="text-light fw-semibold">{monthNames[selectedMonth - 1]} {selectedYear}</BSButton>
 
                   <Dropdown.Toggle split variant="primary" className="px-2 d-flex align-items-center text-light" id="dropdown-split-basic">
                     <span className={`px-1 chevron-rotate-180 ${isDropdownOpen ? 'is-open' : ''}`}>
@@ -168,11 +168,11 @@ export default function TableLeaderboard({ dict }: Props) {
                     }}>{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-                <Button variant="primary" className="text-light rounded-end-1 d-flex align-items-center" onClick={handleNextMonth}><FaAngleRight /></Button>
+                <BSButton variant="primary" className="text-light rounded-end-1 d-flex align-items-center" onClick={handleNextMonth}><FaAngleRight /></BSButton>
               </ButtonGroup>
             ) : (
               <Dropdown as={ButtonGroup} id="dropdown-leaderboard" className="btn-group-leaderboard" onToggle={(nextShow) => setIsDropdownOpen(Boolean(nextShow))}>
-                <Button variant="primary" className="text-light rounded-start-1 fw-semibold">{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</Button>
+                <BSButton variant="primary" className="text-light rounded-start-1 fw-semibold">{dict.drivershub.leaderboard.card.btnGroupNavigation.allTime}</BSButton>
 
                 <Dropdown.Toggle split variant="primary" className="text-light px-2 rounded-end-1 d-flex align-items-center" id="dropdown-split-basic">
                   <span className={`px-1 chevron-rotate-180 ${isDropdownOpen ? 'is-open' : ''}`}>

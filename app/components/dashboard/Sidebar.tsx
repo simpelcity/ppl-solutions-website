@@ -84,6 +84,11 @@ function SidebarContent({
 
   const collapseItems: NavItem[] = [
     {
+      href: `${currentLang}/drivershub/dashboard`,
+      icon: <BiSolidDashboard />,
+      label: dict.drivershub.sidebar.dashboard.dashboard || "Dashboard",
+    },
+    {
       href: `${currentLang}/drivershub/dashboard/team`,
       icon: <FaUsers />,
       label: dict.drivershub.sidebar.dashboard.team || "Team",

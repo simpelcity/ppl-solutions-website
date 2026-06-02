@@ -74,7 +74,7 @@ export default function ForgotPasswordFormClient({ dict, lang }: Props) {
               placeholder={dict.forgotPassword.form.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input rounded-1 border-0 shadow-sm"
+              className="rounded-1 border-0 shadow-sm"
               required
               disabled={loading}
             />

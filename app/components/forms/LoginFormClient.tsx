@@ -79,7 +79,7 @@ export default function LoginFormClient({ dict, lang }: Props) {
                 placeholder={dict.login.form.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input rounded-1 border-0 shadow-sm"
+                className="rounded-1 border-0 shadow-sm"
               />
           </Form.Group>
           <Form.Group className="mb-2 d-flex justify-content-between align-items-center">
@@ -95,7 +95,7 @@ export default function LoginFormClient({ dict, lang }: Props) {
                 placeholder="••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input rounded-1 border-0 shadow-sm pe-5"
+                className="rounded-1 border-0 shadow-sm pe-5"
               />
               <button
                 type="button"

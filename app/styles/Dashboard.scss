@@ -1,62 +1,64 @@
-@use "variables" as *;
+@use 'variables' as *;
 
-:root {
-  --sidebar-collapsed-width: 4.5rem;
-  --sidebar-expanded-width: 16.25rem;
-}
-
-.sidebar-collapsed {
-  width: var(--sidebar-collapsed-width);
-}
-
-.sidebar-expanded {
-  width: var(--sidebar-expanded-width);
-}
-
-.dashboard-expanded {
-  width: calc(100% - var(--sidebar-collapsed-width)) !important;
-}
-
-.dashboard-collapsed {
-  width: calc(100% - var(--sidebar-expanded-width)) !important;
-}
-
-.flip {
-  transform: scaleX(-1)
-}
-
-.sidebar .nav-item .nav-link:hover,
-.sidebar .nav-item #dashboard-collapse-menu li:hover {
-  background-color: var(--color-gray-darker);
-  color: $light !important;
-}
-
-.sidebar .nav-item #dashboard-collapse-menu li a:hover {
-  color: $light !important;
-}
-
-.sidebar .nav-item .nav-link.active {
-  background-color: $primary-active;
-  color: $light !important;
-}
-
-.profile-dropdown .dropdown-item:hover {
-  background-color: $primary;
-  color: $light !important;
-}
-
-.profile-dropdown .dropdown-toggle::after {
+#method-dropdown .dropdown-toggle::after {
   content: none;
 }
 
-.breadcrumb-item > a {
-  // text-decoration: none;
-  font-weight: 600 !important;
-  color: $primary;
+select,
+::picker(select) {
+  appearance: base-select !important;
+}
+
+::picker(select) {
+  border: none;
+}
+
+[data-bs-theme="dark"] {
+  ::picker-icon {
+    content: url('/assets/icons/dark/angle-down-solid-full.svg');
+    transition: 0.4s rotate;
+    width: 24px;
+    height: 24px;
+    content-visibility: visible;
+  }
+}
+
+[data-bs-theme="light"] {
+  ::picker-icon {
+    content: url('/assets/icons/light/angle-down-solid-full.svg');
+    transition: 0.4s rotate;
+    width: 24px;
+    height: 24px;
+    content-visibility: visible;
+  }
+}
+
+select:open::picker-icon {
+  rotate: 180deg;
+}
+
+.form-select {
+  --bs-form-select-bg-img: none !important;
+  padding: 6px 12px;
+}
+
+option {
+  background-color: var(--color-surface-darker);
   &:hover {
-    color: $primary-hover;
+    background-color: $primary-hover;
   }
-  &:active {
-    color: $primary-active;
+  &::checkmark {
+    display: none;
   }
+  &:focus {
+    background-color: $primary-active;
+  }
+}
+
+option:first-of-type {
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+option:last-of-type {
+  border-radius: 0 0 0.25rem 0.25rem;
 }

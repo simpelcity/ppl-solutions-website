@@ -43,8 +43,8 @@ export { default as TableJobsClient } from "./ui/tables/TableJobsClient";
 export { default as TableLeaderboard } from "./ui/tables/TableLeaderboard";
 export { default as TableStats } from "./ui/tables/TableStats";
 // UI Components
-export { default as BSButton } from "./ui/Button";
-export { default as BSLink } from "./ui/Link";
+export { default as BSButton } from "./ui/BSButton";
+export { default as BSLink } from "./ui/BSLink";
 export { default as Loader } from "./ui/Loader";
 export { default as NavButtons } from "./ui/NavButtons";
 export { default as RateLimitError } from "./ui/RateLimitError";

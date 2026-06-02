@@ -33,6 +33,7 @@ export default async function RootLayout({ children }: Props) {
           href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
           rel="stylesheet"
         />
+        <script src="https://kit.fontawesome.com/555ef81382.js" crossOrigin="anonymous"></script>
         <link rel="icon" href={`/assets/icons/favicon.ico`} />
       </head>
       <body>

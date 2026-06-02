@@ -27,7 +27,7 @@ export default function CardContact({ dict }: Props) {
                     type="text"
                     name="name"
                     placeholder={dict.contact.form.namePlaceholder}
-                    className="input rounded-1 border-0 shadow-sm"
+                    className="rounded-1 border-0 shadow-sm"
                     required
                   />
                 </Form.Group>
@@ -37,7 +37,7 @@ export default function CardContact({ dict }: Props) {
                     type="email"
                     name="email"
                     placeholder={dict.contact.form.emailPlaceholder}
-                    className="input rounded-1 border-0 shadow-sm"
+                    className="rounded-1 border-0 shadow-sm"
                     required
                   />
                 </Form.Group>
@@ -48,7 +48,7 @@ export default function CardContact({ dict }: Props) {
                     name="message"
                     placeholder={dict.contact.form.messagePlaceholder}
                     rows={5}
-                    className="input rounded-1 border-0 shadow-sm"
+                    className="rounded-1 border-0 shadow-sm"
                     required
                   />
                 </Form.Group>

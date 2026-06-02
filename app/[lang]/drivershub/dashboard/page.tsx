@@ -3,6 +3,7 @@ import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/Drivershub.scss"
 import "@/styles/roles.scss"
+import "@/styles/Dashboard.scss"
 import { type Metadata } from "next"
 
 type PageProps = {
@@ -48,7 +49,7 @@ export default async function DashboardPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-theme">
+        <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-theme">
           <DashboardCard dict={dict} />
         </section>
       </main>

@@ -189,7 +189,7 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
                 placeholder="••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input rounded-1 border-0 shadow-sm"
+                className="rounded-1 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -212,7 +212,7 @@ export default function ResetPasswordFormClient({ dict, lang }: Props) {
                 placeholder="••••••"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="input rounded-1 border-0 shadow-sm"
+                className="rounded-1 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
