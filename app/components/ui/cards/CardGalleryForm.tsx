@@ -3,7 +3,7 @@
 import { useState, type ChangeEvent } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Modal, Row, Container } from "react-bootstrap";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { BSButton, LoaderSpinner, RateLimitError } from "@/components";
+import { BSButton, Loader, RateLimitError } from "@/components";
 import { useGallery, GalleryItem } from "@/hooks/useGallery";
 import type { Dictionary } from "@/app/i18n"
 

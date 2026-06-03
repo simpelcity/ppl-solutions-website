@@ -18,10 +18,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.drivershub.team.meta.title} | PPL Solutions`,
+    title: `${dict.drivershub.team.meta.title} | PPL Solutions VTC`,
     description: dict.drivershub.team.meta.description,
     openGraph: {
-      title: `${dict.drivershub.team.meta.title} | PPL Solutions`,
+      title: `${dict.drivershub.team.meta.title} | PPL Solutions VTC`,
       description: dict.drivershub.team.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',
@@ -48,7 +48,7 @@ export default async function DashboardTeamPage({ params }: PageProps) {
   return (
     <>
       <main className="fs-5">
-        <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-light">
+        <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-theme">
           <CardTeamForm dict={dict} />
         </section>
       </main>

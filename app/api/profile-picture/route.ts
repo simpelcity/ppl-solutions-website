@@ -201,8 +201,8 @@ export async function DELETE(request: NextRequest) {
           const oldFilePath = pathParts.slice(bucketIndex + 1).join("/");
           await supabaseAdmin.storage.from("profile-pictures").remove([oldFilePath]);
         }
-      } catch (e) {
-        console.warn(dict.errors.files.FAILED_TO_DELETE_OLD_FILE, e);
+      } catch (err: any) {
+        console.warn(dict.errors.files.FAILED_TO_DELETE_OLD_FILE, err);
       }
     }
 

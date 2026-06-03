@@ -2,7 +2,7 @@
 
 import { useUserStats } from '@/hooks/useUserStats'
 import { Card, Row, Col } from 'react-bootstrap'
-import { TableStats, LoaderSpinner, RateLimitError } from '@/components'
+import { TableStats, Loader, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
@@ -28,7 +28,7 @@ export default function UserStats({ dict }: Props) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  if (loading) return <LoaderSpinner dict={dict} />
+  if (loading) return <Loader dict={dict} />
   if (error) {
     if (isRateLimited) {
       return (

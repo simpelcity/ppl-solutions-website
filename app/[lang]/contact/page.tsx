@@ -18,10 +18,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.contact.meta.title} | PPL Solutions`,
+    title: `${dict.contact.meta.title} | PPL Solutions VTC`,
     description: dict.contact.meta.description,
     openGraph: {
-      title: `${dict.contact.meta.title} | PPL Solutions`,
+      title: `${dict.contact.meta.title} | PPL Solutions VTC`,
       description: dict.contact.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',
@@ -52,7 +52,7 @@ export default async function ContactPage({ params }: PageProps) {
         <section className="d-flex w-100 bg-surface-darker text-center">
           <Container className="d-flex justify-content-center flex-column align-items-center p-3 p-md-4">
             <p className="text-gray mb-3 mb-md-4">{dict.contact.form.required}</p>
-            <Row className="w-100 d-flex row-gap-3 row-gap-md-4">
+            <Row className="w-100 d-flex row-gap-3 row-gap-md-4 justify-content-center">
               <Col xs={12} md={12} xl={8} className="">
                 <CardContact dict={dict} />
               </Col>

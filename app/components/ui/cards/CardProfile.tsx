@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useProfile } from "@/hooks/useProfile";
 import { Container, Card, Image, ButtonGroup } from 'react-bootstrap'
-import { BSButton, LoaderSpinner, CardProfileSkills } from '@/components'
+import { BSButton, Loader, CardProfileSkills } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from '@/lib/AuthContext'
@@ -67,20 +67,21 @@ export default function CardProfile({ params, dict }: Props) {
   // adminLog('countryData:', countryData)
   // adminLog(user)
 
-  if (loading) return <LoaderSpinner dict={dict} />;
+  if (loading) return <Loader dict={dict} />;
   if (!loading && (!profile || Object.keys(profile).length === 0)) {
     return <p className="text-danger fw-bold">{dict.errors.profile.profile.PROFILE_NOT_FOUND}</p>;
   }
 
   const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
   const bannerAlt = dict.drivershub.profile.profilePage.card.bannerAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
+  const defaultBannerUrl = dict.drivershub.profile.profilePage.card.defaultBannerAlt.replace(" ", "+");
 
   return (
     <>
       <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
         <Card className="border-0 rounded-1 shadow-sm bg-surface text-theme">
           <Card.Header className="p-0">
-            <Image src={profile?.banner_url ?? "https://placehold.co/900x160"} className={`pfp-banner rounded-top-1 ${profile?.banner_url ? "object-fit-cover w-100" : "w-100"}`}  alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
+            <Image src={profile?.banner_url ?? `https://placehold.co/900x160/2b3035/808080?text=${defaultBannerUrl}`} className={`pfp-banner rounded-top-1 w-100 object-fit-cover`}  alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
           </Card.Header>
           <Card.Body className="d-flex flex-column pb-3 pb-md-0">
             <div className="d-flex pb-3 pb-md-0">

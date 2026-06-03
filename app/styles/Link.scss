@@ -17,13 +17,22 @@
   @media (min-width: 1200px) {
     padding: 0 0 2px 0;
     &:hover {
-      border-bottom: solid 2px $light;
+      border-bottom: solid 2px var(--color-text);
       padding: 0;
     }
   }
 
   @media (max-width: 992px) {
     padding: 1rem 0;
+    background-color: var(--color-surface-darker);
+    border-radius: 0.25rem;
+  }
+}
+
+.navbar-link.active {
+  border-bottom: solid 2px $primary !important;
+  @media (min-width: 1200px) {
+    padding: 0 !important;
   }
 }
 
@@ -48,4 +57,14 @@
 
 .footer-link {
   width: min-content !important;
+}
+
+.footer-link > span {
+  &:hover {
+    color: $primary-hover;
+    font-weight: bold;
+  }
+  &:active {
+    color: $primary-active;
+  }
 }

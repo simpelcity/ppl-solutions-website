@@ -1,17 +1,17 @@
-import { } from "react-bootstrap"
+import { Spinner } from 'react-bootstrap'
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
-  children?: React.ReactNode;
   dict: Dictionary;
+  children?: React.ReactNode;
+  vh?: boolean;
 }
 
-export default function Loader({ children, dict }: Props) {
+export default function Loader({ dict, children, vh }: Props) {
   return (
-    <div className="loader">
-      <p className="text-light fw-bold">{dict.status.loading.loader}</p>
-      <div className="words text-primary fw-bold text-start">{children}</div>
+    <div className="loader w-auto d-flex justify-content-center align-items-center text-theme p-0 fw-semibold" style={{ height: vh ? "100vh" : "auto" }}>
+      <Spinner animation="border" className="me-2" />
+      {children ? children : <span className="fs-4">{dict?.status.loading.loadingSpinner}</span>}
     </div>
   )
 }
-

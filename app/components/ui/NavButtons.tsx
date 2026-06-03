@@ -4,7 +4,7 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from 'next-themes'
 import { Nav, Dropdown, Image } from 'react-bootstrap'
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { FaAngleDown } from "react-icons/fa6";
 import { BSButton, ThemeSwitcher } from "@/components";
 import { i18n, type Locale } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
@@ -86,7 +86,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
   const offCanvas = width >= 992 && width <= 1150;
 
   return (
-    <Nav className={`d-flex justify-content-center gap-2 ${offCanvas ? 'flex-column' : width < 576 ? 'flex-column' : 'flex-row'}`}>
+    <Nav className={`d-flex justify-content-center row-gap-3 column-gap-md-2 ${offCanvas ? 'flex-column' : width < 576 ? 'flex-column' : 'flex-row'}`}>
       <div className="d-flex justify-content-center column-gap-2">
         <BSButton
           variant="secondary"

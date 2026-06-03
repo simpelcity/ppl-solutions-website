@@ -49,12 +49,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: titleText + " | PPL Solutions" || dict.drivershub.userStats.meta.title,
+    title: titleText + " | PPL Solutions VTC",
     description: descriptionText || dict.drivershub.userStats.meta.description,
     openGraph: {
       type: "website",
-      title: titleText + " | PPL Solutions" || dict.drivershub.userStats.meta.title,
-      description: descriptionText || dict.drivershub.userStats.meta.description,
+      title: titleText + " | PPL Solutions VTC",
+      description: descriptionText,
       url: "/drivershub/statistics",
       images: "/assets/images/ppls-logo.png"
     },

@@ -47,11 +47,11 @@
       },
       "tab2": {
         "title": "Message",
-        "text": "Hello there traveler, my name is Simpelcity. Welcome to the website of the Virtual Trucking Company PPL Solutions. We stand for driver comfort, and the fun in doing great things together."
+        "text": "Hello there traveler, my name is Simpelcity. Welcome to the website of the Virtual Trucking Company PPL Solutions VTC. We stand for driver comfort, and the fun in doing great things together."
       }
     },
     "bottom": {
-      "copyright": "Copyright {year} PPL Solutions. All rights Reserved | Developed by Simpelcity"
+      "copyright": "Copyright {year} PPL Solutions VTC. All rights Reserved | Developed by Simpelcity"
     }
   },
   "notFound": {
@@ -91,7 +91,7 @@
   "home": {
     "meta": {
       "title": "Steering the future of Digital Logistics",
-      "description": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+      "description": "PPL Solutions VTC was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
     },
     "homeBannerAlt": {
       "light": "PPL Solutions VTC Scania S650 V8 parked at sunset in an urban parking area",
@@ -105,7 +105,7 @@
     },
     "aboutUs": {
       "title": "about us",
-      "text": "PPL Solutions was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
+      "text": "PPL Solutions VTC was founded on 7 September 2024, by Wietsegaming and MaleklecoCZE with the goal to make a succesful and friendly VTC where people from all over the world can hangout and drive with eachother."
     },
     "offers": {
       "title": "what do we offer?",
@@ -119,12 +119,12 @@
       },
       "card3": {
         "title": "custom mods",
-        "text": "We also offer some exclusive PPL Solutions mods to use while playing singleplayer or convoys mode."
+        "text": "We also offer some exclusive PPL Solutions VTC mods to use while playing singleplayer or convoys mode."
       }
     },
     "apply": {
       "title": "apply today",
-      "text": "Apply through our discord server today, and start your amazing journey with PPL Solutions.",
+      "text": "Apply through our discord server today, and start your amazing journey with PPL Solutions VTC.",
       "button": "apply now"
     }
   },
@@ -177,7 +177,7 @@
   "team": {
     "meta": {
       "title": "Team",
-      "description": "See all of our amazing team members who make PPL Solutions possible."
+      "description": "See all of our amazing team members who make PPL Solutions VTC possible."
     },
     "title": "team",
     "loading": "Loading team..."
@@ -185,7 +185,7 @@
   "gallery": {
     "meta": {
       "title": "Gallery",
-      "description": "Browse through our gallery showcasing the best moments and trucks from PPL Solutions."
+      "description": "Browse through our gallery showcasing the best moments and trucks from PPL Solutions VTC."
     },
     "title": "gallery",
     "loading": "Loading gallery..."
@@ -193,7 +193,7 @@
   "contact": {
     "meta": {
       "title": "Contact",
-      "description": "Get in touch with the PPL Solutions team for any inquiries, support, or feedback."
+      "description": "Get in touch with the PPL Solutions VTC team for any inquiries, support, or feedback."
     },
     "title": "contact",
     "form": {
@@ -210,20 +210,20 @@
   "apply": {
     "meta": {
       "title": "Apply",
-      "description": "Apply to become a driver for PPL Solutions through our Discord server."
+      "description": "Apply to become a driver for PPL Solutions VTC through our Discord server."
     },
     "title": "apply",
     "card": {
-      "text": "So you want to apply to become a driver for PPL Solutions? Please make a ticket in our Discord server, see you there!"
+      "text": "So you want to apply to become a driver for PPL Solutions VTC? Please make a ticket in our Discord server, see you there!"
     }
   },
   "login": {
     "meta": {
       "title": "Sign in",
-      "description": "Log into your PPL Solutions Drivershub account."
+      "description": "Log into your PPL Solutions VTC Drivershub account."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Sign in",
       "email": "Email",
       "emailPlaceholder": "your@email.com",
@@ -241,10 +241,10 @@
   "register": {
     "meta": {
       "title": "Sign up",
-      "description": "Sign up for a PPL Solutions Drivershub account."
+      "description": "Sign up for a PPL Solutions VTC Drivershub account."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Sign up",
       "email": "Email",
       "emailPlaceholder": "your@email.com",
@@ -263,10 +263,10 @@
   "forgotPassword": {
     "meta": {
       "title": "Forgot your password?",
-      "description": "Forgot your PPL Solutions Drivershub account password?"
+      "description": "Forgot your PPL Solutions VTC Drivershub account password?"
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Forgot Password?",
       "text": "Enter your email and we'll send you a link to reset your password.",
       "email": "Email",
@@ -282,10 +282,10 @@
   "resetPassword": {
     "meta": {
       "title": "Reset your password",
-      "description": "Reset your PPL Solutions Drivershub account password."
+      "description": "Reset your PPL Solutions VTC Drivershub account password."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Reset Password",
       "newPasswordBelow": "Enter your new password below.",
       "newPassword": "New Password",
@@ -301,7 +301,7 @@
   "drivershub": {
     "meta": {
       "title": "Drivershub",
-      "description": "Log into your PPL Solutions Drivershub account to view your driving statistics and more."
+      "description": "Log into your PPL Solutions VTC Drivershub account to view your driving statistics and more."
     },
     "sidebar": {
       "title": "Sidebar",
@@ -311,6 +311,7 @@
       "vtcStats": "VTC Statistics",
       "dashboard": {
         "title": "Manage",
+        "dashboard": "Dashboard",
         "team": "Team",
         "gallery": "Gallery"
       },
@@ -319,6 +320,17 @@
         "profile": "Profile",
         "logout": "Sign out"
       }
+    },
+    "breadcrumbs": {
+      "drivershub": "Drivershub",
+      "user-statistics": "User Statistics",
+      "statistics": "VTC Statistics",
+      "leaderboard": "Leaderboard",
+      "dashboard": "Dashboard",
+      "team": "Team",
+      "gallery": "Gallery",
+      "profile": "Profile",
+      "settings": "Settings"
     },
     "jobs": {
       "title": "user jobs",
@@ -537,7 +549,7 @@
       "profilePage": {
         "meta": {
           "title": "{driver}'s Profile",
-          "description": "{driver}'s profile on PPL Solutions Drivershub"
+          "description": "{driver}'s profile on PPL Solutions VTC Drivershub"
         },
         "card": {
           "bannerAlt": "{driver}'s profile banner",
@@ -590,7 +602,7 @@
       "settingsPage": {
         "meta": {
           "title": "{driver}'s Settings",
-          "description": "{driver}'s settings page on PPL Solutions Drivershub"
+          "description": "{driver}'s settings page on PPL Solutions VTC Drivershub"
         },
         "form": {
           "accountInfo": {
@@ -778,6 +790,7 @@
         "FAILED_TO_UPDATE_PROFILE_PICTURE": "Failed to update profile picture"
       },
       "profileBanner": {
+        "FAILED_TO_DELETE_PROFILE_BANNER": "Failed to delete profile banner",
         "FAILED_TO_FETCH_PROFILE_BANNER": "Failed to fetch profile banner",
         "FAILED_TO_UPLOAD_PROFILE_BANNER": "Failed to upload profile banner",
         "FAILED_TO_ADD_PROFILE_BANNER": "Failed to add profile banner",

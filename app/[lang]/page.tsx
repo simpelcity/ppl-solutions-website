@@ -18,10 +18,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `PPL Solutions | ${dict.home.meta.title}`,
+    title: `PPL Solutions VTC | ${dict.home.meta.title}`,
     description: dict.home.meta.description,
     openGraph: {
-      title: `PPL Solutions | ${dict.home.meta.title}`,
+      title: `PPL Solutions VTC | ${dict.home.meta.title}`,
       description: dict.home.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',
@@ -71,7 +71,7 @@ export default async function HomePage({ params }: PageProps) {
       <main className="fs-5">
         <HomeBanner dict={dict} lang={lang} />
         <section className="short-about text-center d-flex justify-content-center bg-surface-darker text-theme">
-          <Container className="my-3 my-md-4 px-3 px-md-4">
+          <Container className="p-3 p-md-4">
             <h1 className="text-uppercase">
               <span>{aboutUs1}</span> <span className="text-primary">{aboutUs2}</span>
             </h1>
@@ -81,7 +81,7 @@ export default async function HomePage({ params }: PageProps) {
           </Container>
         </section>
         <section className="offers d-flex justify-content-center text-center bg-surface text-theme">
-          <Container className="my-3 my-md-4 px-3 px-md-4 d-flex flex-column align-items-center">
+          <Container className="p-3 p-md-4 d-flex flex-column align-items-center">
             <h2 className="text-uppercase mb-3 mb-md-4">
               <span>{normal}</span>{" "}
               <span className="text-primary">{primary}</span> ?
@@ -106,7 +106,7 @@ export default async function HomePage({ params }: PageProps) {
           </Container>
         </section>
         <section className="apply-today d-flex justify-content-center text-center bg-surface-darker">
-          <Container className="my-3 my-md-4 px-3 px-md-4">
+          <Container className="p-3 p-md-4">
             <h2 className="text-uppercase">
               <span>{apply1}</span> <span className="text-primary">{apply2} {apply3}</span>
             </h2>

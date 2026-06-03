@@ -5,9 +5,8 @@ import { useProfile } from "@/hooks/useProfile";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from "@/lib";
 import { Container, Card, Image, Form, Modal, Row, Col, Alert } from 'react-bootstrap'
-import { BSButton, BSLink } from '@/components'
+import { BSButton } from '@/components'
 import { supabase } from "@/lib";
-import { FileInput } from "lucide-react";
 import { useTheme } from 'next-themes'
 
 type Props = {
@@ -171,7 +170,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     
     if (confirm(dict.drivershub.profile.settingsPage.modal.profilePicture.warning)) {
       try {
-        await updateProfile(displayName, null, null, true);
+        await updateProfile(displayName, null, null, true, false);
         if (typeof refreshSession === "function") {
           refreshSession();
         }
@@ -191,7 +190,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     
     if (confirm(dict.drivershub.profile.settingsPage.modal.banner.warning)) {
       try {
-        await updateProfile(displayName, null, null, true);
+        await updateProfile(displayName, null, null, false, true);
         if (typeof refreshSession === "function") {
           refreshSession();
         }
@@ -298,8 +297,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
 
   const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
   const bannerAlt = dict.drivershub.profile.profilePage.card.bannerAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
-
-
+  const defaultBannerUrl = dict.drivershub.profile.profilePage.card.defaultBannerAlt.replace(" ", "+");
 
   return (
     <>
@@ -322,7 +320,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
                 <Col xs={12} md={7} xl={8}>
                   <Card className="bg-surface-darker border-0 rounded-1 shadow-sm h-100">
                     <Card.Body className="d-flex flex-column align-items-center row-gap-3">
-                      <Image src={bannerUrl ?? "https://placehold.co/900x160"} className={`pfp-banner w-100 rounded-1 ${profile?.banner_url ? "object-fit-cover" : ""}`} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
+                      <Image src={bannerUrl ?? `https://placehold.co/900x160/2b3035/808080?text=${defaultBannerUrl}`} className={`pfp-banner w-100 rounded-1 object-fit-cover`} alt={profile?.banner_url ? bannerAlt : dict.drivershub.profile.profilePage.card.defaultBannerAlt} />
                       <BSButton variant="secondary" border="primary" onClick={handleShowBannerModal}>{settingsDict.form.accountInfo.bannerButton}</BSButton>
                     </Card.Body>
                   </Card>

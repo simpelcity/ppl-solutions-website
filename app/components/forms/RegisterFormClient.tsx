@@ -129,7 +129,7 @@ export default function RegisterFormClient({ dict, lang }: Props) {
                 placeholder={dict.register.form.emailPlaceholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input rounded-1 border-0 shadow-sm"
+                className="rounded-1 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -142,7 +142,7 @@ export default function RegisterFormClient({ dict, lang }: Props) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onBlur={(e) => checkUsernameAvailability(e.target.value)}
-                className="input rounded-1 border-0 shadow-sm"
+                className="rounded-1 border-0 shadow-sm"
                 required
                 disabled={loading}
               />
@@ -156,7 +156,7 @@ export default function RegisterFormClient({ dict, lang }: Props) {
                   placeholder="••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="input rounded-1 border-0 shadow-sm"
+                  className="rounded-1 border-0 shadow-sm"
                   required
                   disabled={loading}
                 />

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useProfile } from "@/hooks/useProfile";
 import { Card, Container, Row, Col, Image } from 'react-bootstrap'
-import { BSButton, LoaderSpinner } from '@/components'
+import { BSButton, Loader } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useTheme } from 'next-themes'
@@ -87,7 +87,7 @@ export default function CardProfileSkills({ params, dict }: Props) {
     { id: `Skill_Cost-${resolvedTheme}`, name: dict.drivershub.profile.profilePage.skillsCard.cost.title, desc: dict.drivershub.profile.profilePage.skillsCard.cost.description, value: skillsObject.cost },
   ];
 
-  if (loading) return <LoaderSpinner dict={dict} />;
+  if (loading) return <Loader dict={dict} />;
 
   return (
     <>
@@ -110,7 +110,7 @@ export default function CardProfileSkills({ params, dict }: Props) {
                       <Row className="w-100">
                         {adrClasses.map((adrClass) => (
                           <Col xs={2} key={adrClass} className="px-1" title={adrClassNames[adrClass]}>
-                            <div className={`rounded-1 p-md-2 border border-primary skill ${ownedClasses.includes(adrClass) ? 'bg-primary' : ''}`}>
+                            <div className={`rounded-1 p-md-2 border border-primary d-flex justify-content-center align-items-center skill ${ownedClasses.includes(adrClass) ? 'bg-primary' : ''}`}>
                               <Image src={`/assets/images/skills/ADR_${adrClass}.webp`} alt={`${dict.drivershub.profile.profilePage.skillsCard.adr.alt} ${adrClass}`} className="skill-level w-100 h-100" />
                             </div>
                           </Col>

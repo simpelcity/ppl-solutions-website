@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, Row, Col, Placeholder } from "react-bootstrap"
-import { Loader, RateLimitError } from "@/components"
+import { RateLimitError } from "@/components"
 import { useVtcStats } from "@/hooks/useVtcStats"
 import type { Dictionary } from "@/app/i18n"
 

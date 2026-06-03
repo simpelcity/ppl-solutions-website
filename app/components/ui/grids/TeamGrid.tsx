@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Row, Col, Card, Image, Spinner } from "react-bootstrap"
 import { type Locale } from "@/i18n"
 import type { Dictionary } from "@/app/i18n"
-import { LoaderSpinner, RateLimitError } from '@/components'
+import { Loader, RateLimitError } from '@/components'
 import axios from "axios";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 import { useTheme } from "next-themes";
@@ -60,7 +60,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
     }
   }, [])
 
-  if (loading) return <LoaderSpinner dict={dict}>{dict.team.loading}</LoaderSpinner>;
+  if (loading) return <Loader dict={dict}>{dict.team.loading}</Loader>;
   if (error) {
     if (isRateLimited) {
       return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={() => fetchData(true)} retryLoading={loading} />;

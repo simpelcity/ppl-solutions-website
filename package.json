@@ -1,6 +1,6 @@
 {
   "name": "ppl-solutions-website",
-  "version": "4.22.57",
+  "version": "4.25.57",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
@@ -41,5 +41,6 @@
     "eslint-config-next": "^0.2.4",
     "ts-node": "^10.9.2",
     "typescript": "^5"
-  }
+  },
+  "type":"module"
 }

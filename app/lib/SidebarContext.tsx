@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from "react"
-import { LoaderSpinner } from '@/components'
+import { Loader } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 
@@ -51,7 +51,7 @@ export function SidebarProvider({ children, dict }: Props) {
     }
   }
 
-  if (!isReady) return <LoaderSpinner dict={dict} />;
+  if (!isReady) return <Loader dict={dict} vh />;
 
   return (
     <SidebarContext.Provider value={{ isSidebarCollapsed, setIsSidebarCollapsed, toggleSidebar, isMobile, showOffcanvas, setShowOffcanvas }}>

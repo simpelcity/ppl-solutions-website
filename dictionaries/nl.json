@@ -47,11 +47,11 @@
       },
       "tab2": {
         "title": "Bericht",
-        "text": "Hallo daar reiziger, mijn naam is Simpelcity. Welkom op de website van het Virtuele Transportbedrijf PPL Solutions. Wij staan voor chauffeurscomfort, en het plezier om samen mooie dingen te doen."
+        "text": "Hallo daar reiziger, mijn naam is Simpelcity. Welkom op de website van het Virtuele Transportbedrijf PPL Solutions VTC. Wij staan voor chauffeurscomfort, en het plezier om samen mooie dingen te doen."
       }
     },
     "bottom": {
-      "copyright": "Copyright {year} PPL Solutions. Alle rechten voorbehouden | Ontwikkeld door Simpelcity"
+      "copyright": "Copyright {year} PPL Solutions VTC. Alle rechten voorbehouden | Ontwikkeld door Simpelcity"
     }
   },
   "notFound": {
@@ -91,7 +91,7 @@
   "home": {
     "meta": {
       "title": "De toekomst van digitale logistiek vormgeven",
-      "description": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
+      "description": "PPL Solutions VTC is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
     },
     "homeBannerAlt": {
       "light": "PPL Solutions VTC Scania S650 V8 geparkeerd bij zonsondergang in een stedelijk parkeergebied",
@@ -105,7 +105,7 @@
     },
     "aboutUs": {
       "title": "over ons",
-      "text": "PPL Solutions is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
+      "text": "PPL Solutions VTC is op 7 september 2024 opgericht door Wietsegaming en MaleklecoCZE met als doel een succesvolle en vriendelijke VTC te maken waar mensen van over de hele wereld met elkaar kunnen rondhangen en rijden."
     },
     "offers": {
       "title": "wat bieden wij?",
@@ -119,12 +119,12 @@
       },
       "card3": {
         "title": "aangepaste mods",
-        "text": "We bieden ook enkele exclusieve PPL Solutions mods die je kunt gebruiken tijdens het spelen van de singleplayer- of konvooimodus."
+        "text": "We bieden ook enkele exclusieve PPL Solutions VTC mods die je kunt gebruiken tijdens het spelen van de singleplayer- of konvooimodus."
       }
     },
     "apply": {
       "title": "solliciteer vandaag nog",
-      "text": "Solliciteer vandaag nog via onze discord-server en begin uw geweldige reis met PPL Solutions.",
+      "text": "Solliciteer vandaag nog via onze discord-server en begin uw geweldige reis met PPL Solutions VTC.",
       "button": "solliciteer nu"
     }
   },
@@ -177,7 +177,7 @@
   "team": {
     "meta": {
       "title": "Team",
-      "description": "Bekijk al onze geweldige teamleden die PPL Solutions mogelijk maken."
+      "description": "Bekijk al onze geweldige teamleden die PPL Solutions VTC mogelijk maken."
     },
     "title": "team",
     "loading": "Team laden..."
@@ -185,7 +185,7 @@
   "gallery": {
     "meta": {
       "title": "Galerij",
-      "description": "Blader door onze galerij met de mooiste momenten en vrachtwagens van PPL Solutions."
+      "description": "Blader door onze galerij met de mooiste momenten en vrachtwagens van PPL Solutions VTC."
     },
     "title": "galerij",
     "loading": "Galerij laden..."
@@ -193,7 +193,7 @@
   "contact": {
     "meta": {
       "title": "Contact",
-      "description": "Neem voor vragen, ondersteuning of feedback contact op met het team van PPL Solutions."
+      "description": "Neem voor vragen, ondersteuning of feedback contact op met het team van PPL Solutions VTC."
     },
     "title": "contact",
     "form": {
@@ -210,20 +210,20 @@
   "apply": {
     "meta": {
       "title": "Solliciteer",
-      "description": "Solliciteer om chauffeur te worden voor PPL Solutions via onze Discord-server."
+      "description": "Solliciteer om chauffeur te worden voor PPL Solutions VTC via onze Discord-server."
     },
     "title": "solliciteer",
     "card": {
-      "text": "Dus jij wilt solliciteren om chauffeur te worden bij PPL Solutions? Maak een ticket aan op onze Discord server, tot daar!"
+      "text": "Dus jij wilt solliciteren om chauffeur te worden bij PPL Solutions VTC? Maak een ticket aan op onze Discord server, tot daar!"
     }
   },
   "login": {
     "meta": {
       "title": "Inloggen",
-      "description": "Log in op uw PPL Solutions Bestuurdershub account."
+      "description": "Log in op uw PPL Solutions VTC Bestuurdershub account."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Inloggen",
       "email": "E-mail",
       "emailPlaceholder": "jouw@e-mail.com",
@@ -241,10 +241,10 @@
   "register": {
     "meta": {
       "title": "Aanmelden",
-      "description": "Meld u aan voor een PPL Solutions Drivershub account."
+      "description": "Meld u aan voor een PPL Solutions VTC Drivershub account."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Schrijf je in",
       "email": "E-mail",
       "emailPlaceholder": "jouw@e-mail.com",
@@ -263,10 +263,10 @@
   "forgotPassword": {
     "meta": {
       "title": "Wachtwoord vergeten?",
-      "description": "Wachtwoord vergeten voor uw PPL Solutions Drivershub-account?"
+      "description": "Wachtwoord vergeten voor uw PPL Solutions VTC Drivershub-account?"
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Wachtwoord vergeten?",
       "text": "Vul uw e-mailadres in om een link voor het opnieuw instellen van uw wachtwoord te ontvangen.",
       "email": "E-mail",
@@ -282,10 +282,10 @@
   "resetPassword": {
     "meta": {
       "title": "Reset uw wachtwoord",
-      "description": "Stel het wachtwoord van uw PPL Solutions Drivershub-account opnieuw in."
+      "description": "Stel het wachtwoord van uw PPL Solutions VTC Drivershub-account opnieuw in."
     },
     "form": {
-      "brand": "PPL Solutions",
+      "brand": "PPL Solutions VTC",
       "title": "Wachtwoord opnieuw instellen",
       "newPasswordBelow": "Voer hieronder uw nieuwe wachtwoord in.",
       "newPassword": "Nieuw wachtwoord",
@@ -301,7 +301,7 @@
   "drivershub": {
     "meta": {
       "title": "Bestuurdershub",
-      "description": "Log in op uw PPL Solutions Bestuurdershub account om uw rijstatistieken te bekijken en meer."
+      "description": "Log in op uw PPL Solutions VTC Bestuurdershub account om uw rijstatistieken te bekijken en meer."
     },
     "sidebar": {
       "title": "Zijbalk",
@@ -311,6 +311,7 @@
       "vtcStats": "VTC-statistieken",
       "dashboard": {
         "title": "Beheren",
+        "dashboard": "Dashboard",
         "team": "Team",
         "gallery": "Galerij"
       },
@@ -319,6 +320,17 @@
         "profile": "Profiel",
         "logout": "Uitloggen"
       }
+    },
+    "breadcrumbs": {
+      "drivershub": "Bestuurdershub",
+      "user-statistics": "Gebruikersstatistieken",
+      "leaderboard": "Klassement",
+      "statistics": "VTC-statistieken",
+      "dashboard": "Dashboard",
+      "team": "Team",
+      "gallery": "Galerij",
+      "profile": "Profiel",
+      "settings": "Instellingen"
     },
     "jobs": {
       "title": "gebruikers vrachten",
@@ -537,7 +549,7 @@
       "profilePage": {
         "meta": {
           "title": "{driver}'s Profiel",
-          "description": "{driver}'s profiel op PPL Solutions Bestuurdershub"
+          "description": "{driver}'s profiel op PPL Solutions VTC Bestuurdershub"
         },
         "card": {
           "bannerAlt": "Profielbanner van {driver}",
@@ -590,7 +602,7 @@
       "settingsPage": {
         "meta": {
           "title": "{driver}'s Instellingen",
-          "description": "{driver}'s instellingenpagina op PPL Solutions Bestuurdershub"
+          "description": "{driver}'s instellingenpagina op PPL Solutions VTC Bestuurdershub"
         },
         "form": {
           "accountInfo": {
@@ -778,6 +790,7 @@
         "FAILED_TO_UPDATE_PROFILE_PICTURE": "Kan profielfoto niet bijwerken"
       },
       "profileBanner": {
+        "FAILED_TO_DELETE_PROFILE_BANNER": "Kon profielbanner niet verwijderen",
         "FAILED_TO_FETCH_PROFILE_BANNER": "Kan profielbanner niet laden",
         "FAILED_TO_UPLOAD_PROFILE_BANNER": "Kan profielbanner niet uploaden",
         "FAILED_TO_ADD_PROFILE_BANNER": "Kan profielbanner niet toevoegen",
