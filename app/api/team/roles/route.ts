@@ -3,6 +3,7 @@ import { supabaseAdmin } from "@/supabaseAdmin/";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 import { errorHandler } from "@/utils/errorHandler";
+import { requireAuth, requireAdmin } from "@/utils/requireAuth";
 
 export async function GET(request: NextRequest) {
   try {
@@ -40,6 +41,11 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+  const adminError = requireAdmin(auth.user);
+  if (adminError) return adminError;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -69,6 +75,11 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+  const adminError = requireAdmin(auth.user);
+  if (adminError) return adminError;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);

@@ -3,6 +3,7 @@ import { supabaseAdmin } from "@/supabaseAdmin/";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 import { errorHandler } from "@/utils/errorHandler";
+import { requireAuth, requireAdmin, isAdmin } from "@/utils/requireAuth";
 
 export async function GET(request: NextRequest) {
   try {
@@ -57,6 +58,11 @@ async function validateImageFile(
 }
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+  const adminError = requireAdmin(auth.user);
+  if (adminError) return adminError;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -98,6 +104,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -107,6 +116,10 @@ export async function PUT(request: NextRequest) {
     const file = formData.get("file") as File | null;
 
     if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
+
+    if (auth.user.id !== id && !isAdmin(auth.user)) {
+      return errorHandler({ error: dict.statusCodes.FORBIDDEN }, request, lang, 403);
+    }
 
     const updates: any = {};
 
@@ -170,6 +183,9 @@ export async function PUT(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -178,6 +194,10 @@ export async function DELETE(request: NextRequest) {
     const userId = searchParams.get("userId");
 
     if (!userId) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
+
+    if (auth.user.id !== userId && !isAdmin(auth.user)) {
+      return errorHandler({ error: dict.statusCodes.FORBIDDEN }, request, lang, 403);
+    }
 
     const { data: memberData, error: fetchError } = await supabaseAdmin
       .from("profiles")
