@@ -5,7 +5,7 @@ import { createServerClient } from "@supabase/ssr";
 import { checkRateLimit, createRateLimitResponse } from "@/utils/rateLimit";
 import { applyCorsHeaders, getCorsContext } from "@/utils/cors";
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const normalizedPathname = stripLocalePrefix(pathname);
 
