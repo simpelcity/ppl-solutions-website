@@ -123,11 +123,11 @@ export default function CardProfile({ params, dict }: Props) {
                 )}
               </div>
             </div>
-            {!notMobile && (
+            {!notMobile && userId === user?.id && (
               <div className="m-0 p-0">
                 <ButtonGroup>
                   <BSButton variant="primary" classes="rounded-end-0 d-flex align-items-center" href={`/drivershub/profile/${user?.id}/settings`}>{dict.drivershub.profile.profilePage.card.buttons.settings}</BSButton>
-                  <BSButton variant="outline" text="theme" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
+                  <BSButton variant="outline" text="theme" classes="rounded-start-0 d-flex align-items-center" href={`/drivershub/profile/${user?.id}/settings#change-password`}>{dict.drivershub.profile.profilePage.card.buttons.changePassword}</BSButton>
                 </ButtonGroup>
               </div>
             )}

@@ -3,7 +3,7 @@ import { supabaseAdmin } from "@/supabaseAdmin/";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 import { errorHandler } from "@/utils/errorHandler";
-import { error } from "console";
+import { getAuthenticatedUser } from "@/utils/getAuthenticatedUser";
 
 export async function GET(request: NextRequest) {
   try {
@@ -115,11 +115,22 @@ export async function PUT(request: NextRequest) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
 
+    const caller = await getAuthenticatedUser(request);
+    if (!caller) {
+      return errorHandler({ error: dict.statusCodes.UNAUTHORIZED }, request, lang, 401);
+    }
+
     const formData = await request.formData();
     const id = formData.get("userId") as string;
     const file = formData.get("bannerFile") as File | null;
 
     if (!id) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
+
+    const isOwner = caller.id === id;
+    const isAdmin = caller.app_metadata?.is_admin === true;
+    if (!isOwner && !isAdmin) {
+      return errorHandler({ error: dict.statusCodes.FORBIDDEN }, request, lang, 403);
+    }
 
     let banner_url: string | null = null;
 
@@ -199,10 +210,21 @@ export async function DELETE(request: NextRequest) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
 
+    const caller = await getAuthenticatedUser(request);
+    if (!caller) {
+      return errorHandler({ error: dict.statusCodes.UNAUTHORIZED }, request, lang, 401);
+    }
+
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get("userId");
 
     if (!userId) return errorHandler({ error: dict.errors.team.ID_REQUIRED }, request, lang, 400);
+
+    const isOwner = caller.id === userId;
+    const isAdmin = caller.app_metadata?.is_admin === true;
+    if (!isOwner && !isAdmin) {
+      return errorHandler({ error: dict.statusCodes.FORBIDDEN }, request, lang, 403);
+    }
 
     const { data: memberData, error: fetchError } = await supabaseAdmin
       .from("profiles")
