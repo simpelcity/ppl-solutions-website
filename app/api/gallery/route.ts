@@ -3,6 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { errorHandler } from "@/utils/errorHandler";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
+import { requireAuth, requireAdmin } from "@/utils/requireAuth";
 
 export type GalleryItem = {
   id: number;
@@ -62,6 +63,11 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+  const adminError = requireAdmin(auth.user);
+  if (adminError) return adminError;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -120,6 +126,11 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+  const adminError = requireAdmin(auth.user);
+  if (adminError) return adminError;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
@@ -179,6 +190,11 @@ export async function PUT(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const auth = await requireAuth();
+  if (auth.response) return auth.response;
+  const adminError = requireAdmin(auth.user);
+  if (adminError) return adminError;
+
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
