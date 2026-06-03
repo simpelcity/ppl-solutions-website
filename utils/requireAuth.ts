@@ -16,7 +16,16 @@ export async function requireAuth(): Promise<AuthResult> {
     {
       cookies: {
         getAll: () => cookieStore.getAll(),
-        setAll: () => {},
+        setAll: (cookiesToSet) => {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options),
+            );
+          } catch {
+            // setAll is called from a Server Component context where cookies
+            // are read-only; safe to ignore in that case.
+          }
+        },
       },
     },
   );
