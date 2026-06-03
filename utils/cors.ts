@@ -5,8 +5,8 @@ const DEFAULT_ALLOWED_HEADERS = "Content-Type, Authorization";
 const DEFAULT_MAX_AGE_SECONDS = "86400";
 
 function getAllowedOrigins(): string[] {
-  return (process.env.ALLOWED_ORIGIN ?? "")
-    .split(",")
+  return (process.env.ALLOWED_ORIGINS ?? "")
+    .split(", ")
     .map((origin) => origin.trim())
     .filter(Boolean);
 }
@@ -15,6 +15,7 @@ function resolveAllowedOrigin(requestOrigin: string | null): string | null {
   if (!requestOrigin) return null;
 
   const allowedOrigins = getAllowedOrigins();
+  console.log("Allowed Origins:", allowedOrigins);
   if (allowedOrigins.length === 0) return null;
   if (allowedOrigins.includes("*")) return "*";
 
