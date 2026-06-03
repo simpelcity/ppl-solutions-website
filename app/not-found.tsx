@@ -6,6 +6,7 @@ import { cookies } from "next/headers"
 import { AuthProvider, SidebarProvider } from "@/lib"
 import LayoutClient from "./[lang]/LayoutClient"
 import { type Metadata } from "next"
+import "@/styles/pages/404.scss"
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies()
@@ -19,10 +20,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.notFound.meta.title} | PPL Solutions`,
+    title: `${dict.notFound.meta.title} | PPL Solutions VTC`,
     description: dict.notFound.meta.description,
     openGraph: {
-      title: `${dict.notFound.meta.title} | PPL Solutions`,
+      title: `${dict.notFound.meta.title} | PPL Solutions VTC`,
       description: dict.notFound.meta.description,
       siteName: 'PPL Solutions VTC',
       images: '/assets/images/ppls-logo.png',
@@ -31,10 +32,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       languages: {
-        'en-US': '/drivershub/dashboard',
-        'nl-NL': '/nl/drivershub/dashboard',
-        'cs-CZ': '/cs/drivershub/dashboard',
-        'sk-SK': '/sk/drivershub/dashboard',
+        'en-US': '/not-found',
+        'nl-NL': '/nl/not-found',
+        'cs-CZ': '/cs/not-found',
+        'sk-SK': '/sk/not-found',
       },
     },
   }

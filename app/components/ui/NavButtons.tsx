@@ -9,6 +9,8 @@ import { BSButton, ThemeSwitcher } from "@/components";
 import { i18n, type Locale } from "@/i18n";
 import type { Dictionary } from "@/app/i18n";
 import { useAuth } from '@/lib'
+import "@/styles/layout/NavButtons.scss"
+import "@/styles/layout/LangDropdown.scss"
 
 type LanguageNamesProps = {
   [key in Locale]: {
@@ -87,7 +89,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
 
   return (
     <Nav className={`d-flex justify-content-center row-gap-3 column-gap-md-2 ${offCanvas ? 'flex-column' : width < 576 ? 'flex-column' : 'flex-row'}`}>
-      <div className="d-flex justify-content-center column-gap-2">
+      <div className="d-flex justify-content-center column-gap-2 nav-buttons">
         <BSButton
           variant="secondary"
           border="primary 2"

@@ -11,7 +11,7 @@ import { GoSidebarExpand } from "react-icons/go";
 import { useSidebar } from "@/lib";
 import type { Dictionary } from "@/app/i18n";
 import { type Locale } from "@/i18n"
-import "@/styles/Navbar.scss";
+import "@/styles/layout/Navbar.scss";
 
 interface NavbarProps {
   dict: Dictionary;
@@ -104,7 +104,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
               <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand2}</span>
             </span>
           </BSNavbar.Brand>
-          <BSNavbar.Toggle aria-controls="main-navbar" className="text-theme text-opacity-75">
+          <BSNavbar.Toggle aria-controls="main-navbar" className="text-theme text-opacity-75 border-0 shadow-none">
             {expanded ? <RxHamburgerMenu className="" size={30} /> : <RxHamburgerMenu className="" size={30} />}
           </BSNavbar.Toggle>
           <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">

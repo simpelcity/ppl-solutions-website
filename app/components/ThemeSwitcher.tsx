@@ -7,6 +7,7 @@ import { BsSunFill, BsFillMoonFill } from "react-icons/bs";
 import { FaAngleDown } from "react-icons/fa6";
 import { LuLaptopMinimal } from "react-icons/lu";
 import type { Dictionary } from "@/app/i18n";
+import "@/styles/layout/ThemeSwitcher.scss"
 
 type Props = {
   width: number;

@@ -1,0 +1,18 @@
+#theme-switcher .dropdown-item:first-child {
+  border-top-left-radius: var(--bs-border-radius-sm) !important;
+  border-top-right-radius: var(--bs-border-radius-sm) !important;
+}
+
+#theme-switcher .dropdown-item:last-child {
+  border-bottom-left-radius: var(--bs-border-radius-sm) !important;
+  border-bottom-right-radius: var(--bs-border-radius-sm) !important;
+  padding-left: 14px !important;
+}
+
+#theme-switcher .dropdown-item.active {
+  font-weight: bold !important;
+}
+
+#theme-switcher .dropdown-toggle::after {
+  content: none;
+}

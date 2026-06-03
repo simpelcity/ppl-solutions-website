@@ -5,7 +5,7 @@ import { Container, Row, Col, Image, Tab, Tabs, ListGroup } from "react-bootstra
 import { FaDiscord, FaTiktok, FaInstagram, FaTruck, FaRegCopyright } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { BSLink } from "@/components"
-import "@/styles/icons.scss"
+import "@/styles/ui/Icons.scss"
 import type { Dictionary } from "@/app/i18n";
 import { type Locale } from "@/i18n"
 import { useSidebar } from "@/lib";

@@ -198,8 +198,8 @@ export default function TableJobsClient({ lang, dict }: Props) {
                               className={`page-item d-flex align-items-center ${displayPage === page ? "active" : ""}`}>
                               <button
                                 className={`page-link rounded-1 py-1 d-flex align-items-center ${displayPage === page
-                                  ? "bg-primary"
-                                  : "bg-transparent border-0 shadow-sm-none text-theme text-opacity-50"
+                                  ? "active"
+                                  : "bg-transparent border-surface shadow-sm-none text-theme"
                                   }`}
                                 onClick={() => goToPage(page as number)}
                                 disabled={displayPage === page}>

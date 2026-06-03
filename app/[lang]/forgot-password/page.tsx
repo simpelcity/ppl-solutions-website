@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { ForgotPasswordForm } from "@/components";
-import "@/styles/AuthCards.scss";
+import "@/styles/ui/AuthCards.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"

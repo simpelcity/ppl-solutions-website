@@ -1,42 +1,4 @@
-@use "variables" as *;
-
-.btn:disabled {
-  pointer-events: all !important;
-  color: black !important;
-  cursor: not-allowed !important;
-  &:active {
-    color: black !important;
-  }
-}
-
-.navbar .btn-link:hover {
-  background-color: transparent !important;
-  border: none !important;
-}
-
-.sidebar .btn:hover {
-  background-color: transparent !important;
-  border: none !important;
-}
-
-.dropdown-toggle.btn:hover {
-  background-color: transparent !important;
-  border: none !important;
-}
-
-#dropdown-split-basic:hover {
-  background-color: $primary-hover !important;
-  border: solid 1px $primary-hover !important;
-}
-
-#dropdown-split-basic.show {
-  background-color: $primary-active !important;
-  border: solid 1px $primary-active !important;
-}
-
-.btn-file {
-  max-height: 36px;
-}
+@use "../variables" as *;
 
 .btn-primary {
   &:hover {
@@ -85,23 +47,5 @@
   &:active {
     background-color: transparent !important;
     border-color: transparent !important;
-  }
-}
-
-.btn-outline-primary {
-  &:hover {
-    color: $light !important;
-  }
-  &:active {
-    color: $light !important;
-  }
-}
-
-.btn-outline-warning {
-  &:hover {
-    color: $light !important;
-  }
-  &:active {
-    color: $light !important;
   }
 }

@@ -15,7 +15,6 @@ function resolveAllowedOrigin(requestOrigin: string | null): string | null {
   if (!requestOrigin) return null;
 
   const allowedOrigins = getAllowedOrigins();
-  console.log("Allowed Origins:", allowedOrigins);
   if (allowedOrigins.length === 0) return null;
   if (allowedOrigins.includes("*")) return "*";
 

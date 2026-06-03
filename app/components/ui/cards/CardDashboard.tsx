@@ -14,7 +14,7 @@ type Props = {
 
 type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
-export default function DashboardCard({ dict }: Props) {
+export default function CardDashboard({ dict }: Props) {
   const { data, loading, error, sendData } = useDashboard();
   const { resolvedTheme } = useTheme();
 

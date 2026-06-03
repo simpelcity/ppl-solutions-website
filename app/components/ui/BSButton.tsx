@@ -1,4 +1,5 @@
 import Button from "react-bootstrap/Button";
+import "@/styles/ui/BSButton.scss"
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "transparent";
 type ButtonSize = "sm" | "md" | "lg";

@@ -1,9 +1,9 @@
 @use "variables" as *;
-@use "buttons";
-@use "icons";
-@use "animations";
-@use "input";
-@use "theme";
+@use "ui/Buttons";
+@use "ui/Icons";
+@use "ui/Animations";
+@use "ui/Input";
+@use "Theme";
 
 @font-face {
   font-family: "Freestyle Script";

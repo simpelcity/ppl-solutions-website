@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "../variables" as *;
 
 .primary-link {
   color: $primary;
@@ -23,8 +23,8 @@
   }
 
   @media (max-width: 992px) {
-    padding: 1rem 0;
-    background-color: var(--color-surface-darker);
+    padding: 1rem 0 !important;
+    background-color: var(--color-surface-darker) !important;
     border-radius: 0.25rem;
   }
 }
@@ -33,6 +33,11 @@
   border-bottom: solid 2px $primary !important;
   @media (min-width: 1200px) {
     padding: 0 !important;
+  }
+  
+  @media (max-width: 992px) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 

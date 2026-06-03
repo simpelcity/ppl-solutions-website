@@ -1,0 +1,15 @@
+[data-bs-theme="light"] {
+  .card-404 {
+    background: #e5e5e5e6 !important;
+    backdrop-filter: blur(4.9px) !important;
+    -webkit-backdrop-filter: blur(4.9px) !important;
+  }
+}
+
+[data-bs-theme="dark"] {
+  .card-404 {
+    background: #212529e6 !important;
+    backdrop-filter: blur(4.9px) !important;
+    -webkit-backdrop-filter: blur(4.9px) !important;
+  }
+}

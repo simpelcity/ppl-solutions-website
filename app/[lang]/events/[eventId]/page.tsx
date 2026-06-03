@@ -4,7 +4,7 @@ import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"
 import axios from "axios";
-import '@/styles/Home.scss'
+import '@/styles/pages/Events.scss'
 
 type PageProps = {
   params: Promise<{ lang: Locale, eventId: string }>

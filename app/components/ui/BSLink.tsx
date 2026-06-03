@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "@/styles/Link.scss";
+import "@/styles/ui/BSLink.scss";
 import { FaAngleRight } from "react-icons/fa6";
 
 type LinkVariant = 'primary' | 'nav' | 'transparent' | 'light' | 'sidebar' | 'footer';

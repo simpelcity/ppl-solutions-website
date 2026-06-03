@@ -13,7 +13,7 @@ export default function Card404({ dict, lang }: Card404Props) {
   const currentLang = lang === 'en' ? '' : `/${lang}`
 
   return (
-    <Card className="card-404 rounded-0 border-0 shadow-sm text-light">
+    <Card className="card-404 rounded-1 border-0 shadow-sm text-theme">
       <CardBody className="p-4 d-flex justify-content-center">
         <Row className="w-100">
           <Col xs={12} md={5} className="d-flex justify-content-center align-items-center">
@@ -23,8 +23,8 @@ export default function Card404({ dict, lang }: Card404Props) {
             <h1 className="">{dict.notFound.card.title}</h1>
             <p className="">{dict.notFound.card.text}</p>
             <div className="d-flex column-gap-2">
-              <BSButton variant="primary" href={`${currentLang}/`}>{dict.notFound.card.buttons.home}</BSButton>
-              <BSButton variant="outline" href={`${currentLang}/contact`}>{dict.notFound.card.buttons.contact}</BSButton>
+              <BSButton variant="primary" href={`${lang === 'en' ? '/' : currentLang}`}>{dict.notFound.card.buttons.home}</BSButton>
+              <BSButton variant="outline" text="theme" href={`${currentLang}/contact`}>{dict.notFound.card.buttons.contact}</BSButton>
             </div>
           </Col>
         </Row>

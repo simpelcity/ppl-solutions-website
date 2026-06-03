@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "../../variables" as *;
 
 :root {
   --sidebar-collapsed-width: 4.5rem;
@@ -11,18 +11,6 @@
 
 .sidebar-expanded {
   width: var(--sidebar-expanded-width);
-}
-
-.dashboard-expanded {
-  width: calc(100% - var(--sidebar-collapsed-width)) !important;
-}
-
-.dashboard-collapsed {
-  width: calc(100% - var(--sidebar-expanded-width)) !important;
-}
-
-.flip {
-  transform: scaleX(-1)
 }
 
 .sidebar .nav-item .nav-link:hover,
@@ -47,16 +35,4 @@
 
 .profile-dropdown .dropdown-toggle::after {
   content: none;
-}
-
-.breadcrumb-item > a {
-  // text-decoration: none;
-  font-weight: 600 !important;
-  color: $primary;
-  &:hover {
-    color: $primary-hover;
-  }
-  &:active {
-    color: $primary-active;
-  }
 }
