@@ -3,12 +3,8 @@ import { supabaseAdmin } from "@/supabaseAdmin/";
 import { errorHandler } from "@/utils/errorHandler";
 import { getDictionary } from "@/app/i18n";
 import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
-import { requireAuth } from "@/utils/requireAuth";
 
 export async function POST(request: NextRequest) {
-  const auth = await requireAuth();
-  if (auth.response) return auth.response;
-
   try {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
