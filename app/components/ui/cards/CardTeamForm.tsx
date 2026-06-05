@@ -3,22 +3,24 @@
 import { useState, type ChangeEvent } from "react";
 import { Card, Form, Col, Button, Alert, Spinner, ListGroup, Image, Badge, Modal, Row, Container } from "react-bootstrap";
 import { FaEdit, FaTrash, FaUserSlash, FaTimes, FaPlus } from "react-icons/fa";
-import { BSButton, RateLimitError } from "@/components";
+import { BSButton, RateLimitError, Unavailable } from "@/components";
 import { useTeam, TeamMember } from "@/hooks/useTeam";
 import type { Dictionary } from "@/app/i18n"
 import { useTheme } from "next-themes";
+import { type Locale } from "@/i18n";
 
 type ConfirmAction = "delete-member" | "delete-picture" | null;
 
 type CardTeamFormProps = {
   dict: Dictionary;
+  lang: Locale;
 };
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
-export default function CardTeamForm({ dict }: CardTeamFormProps) {
+export default function CardTeamForm({ dict, lang }: CardTeamFormProps) {
   const teamDict = dict.drivershub.team;
   const settingsDict = dict.drivershub.profile.settingsPage;
 
@@ -169,7 +171,7 @@ export default function CardTeamForm({ dict }: CardTeamFormProps) {
       <Container className="p-3 p-md-4" fluid>
         <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
           <Col xs={12} md={10} lg={6}>
-            
+            <Unavailable dict={dict} lang={lang} />
           </Col>
 
           <Col xs={12} md={10} lg={6}>

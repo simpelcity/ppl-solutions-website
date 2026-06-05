@@ -45,6 +45,7 @@ export { default as TableStats } from "./ui/tables/TableStats";
 // UI Components
 export { default as BSButton } from "./ui/BSButton";
 export { default as BSLink } from "./ui/BSLink";
+export { default as ComingSoon } from "./ui/ComingSoon";
 export { default as Loader } from "./ui/Loader";
 export { default as NavButtons } from "./ui/NavButtons";
 export { default as RateLimitError } from "./ui/RateLimitError";

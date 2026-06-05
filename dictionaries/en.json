@@ -860,5 +860,13 @@
       "back": "Go back",
       "contact": "Contact us"
     }
+  },
+  "ComingSoon": {
+    "title": "This feature is coming soon.",
+    "body": "We're working hard to bring this feature to you as soon as possible. Stay tuned!",
+    "buttons": {
+      "back": "Go back",
+      "contact": "Contact us"
+    }
   }
 }
