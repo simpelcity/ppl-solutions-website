@@ -12,6 +12,12 @@ export type GalleryItem = {
   created_at?: string | null;
 };
 
+async function methodNotAllowed(request: NextRequest) {
+  const lang = getLocaleFromRequest(request);
+  const dict = await getDictionary(lang);
+  return errorHandler({ error: dict.statusCodes.METHOD_NOT_ALLOWED }, request, lang, 405);
+}
+
 export async function GET(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
@@ -213,4 +219,8 @@ export async function DELETE(request: NextRequest) {
     const serverMessage = err.message || String(err);
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
+}
+
+export async function PATCH(request: NextRequest) {
+  return methodNotAllowed(request);
 }

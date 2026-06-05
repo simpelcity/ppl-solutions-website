@@ -137,6 +137,23 @@ export default function TableLeaderboard({ dict }: Props) {
     }
   }, [searchParams]);
 
+  if (error) {
+    if (isRateLimited) {
+      return (
+        <RateLimitError
+          dict={dict}
+          secondsRemaining={rateLimitSecondsRemaining ?? 0}
+          onRetry={retryLeaderboard}
+          retryLoading={loading}
+        />
+      )
+    }
+
+    return (
+      <div className="d-flex align-items-center text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
+  }
+
   return (
     <>
       <Container className="p-3 p-md-4" fluid>
@@ -196,18 +213,7 @@ export default function TableLeaderboard({ dict }: Props) {
             )}
           </Card.Header>
           <Card.Body className="p-3 p-md-4">
-            {error ? (
-              isRateLimited ? (
-                <RateLimitError
-                  dict={dict}
-                  secondsRemaining={rateLimitSecondsRemaining ?? 0}
-                  onRetry={retryLeaderboard}
-                  retryLoading={loading}
-                />
-              ) : (
-                <div className="text-danger text-center fw-bold py-3">{error}</div>
-              )
-            ) : loading ? (
+            {loading ? (
               <Loader dict={dict} />
             ) : (
               <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4">

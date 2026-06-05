@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/lib";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
-import { useLang } from "@/hooks/useLang";
 import type { Dictionary } from "@/app/i18n";
 
 type Job = any;
@@ -15,7 +14,6 @@ type RateLimitPayload = {
 };
 
 export function useUserJobs(dict: Dictionary) {
-  const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -41,7 +39,7 @@ export function useUserJobs(dict: Dictionary) {
   const displayPage = lastPage - currentPage + 1;
 
   const fetchMembers = async () => {
-    const res = await axios.get(`/api/members?lang=${lang}`);
+    const res = await axios.get('/api/members');
     if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS);
     const data = res.data;
     return data.members || data || [];
@@ -64,7 +62,7 @@ export function useUserJobs(dict: Dictionary) {
   const fetchJobsPage = async (page: number) => {
     const sid = await ensureSteamID();
     try {
-      const res = await axios.post(`/api/jobs?lang=${lang}`, { steamID: sid, page });
+      const res = await axios.post('/api/jobs', { steamID: sid, page });
       if (res.status !== 200) throw new Error(dict.errors.jobs.FAILED_TO_FETCH_JOBS, { cause: res.status });
       const data = res.data;
       return data;
@@ -86,7 +84,7 @@ export function useUserJobs(dict: Dictionary) {
   };
 
   const handleJobsError = (err: any) => {
-    const message = err?.message || dict.errors.jobs.FAILED_TO_FETCH_JOBS;
+    const message = err?.response?.data?.message || err?.message || dict.errors.jobs.FAILED_TO_FETCH_JOBS;
     setError(message);
 
     const rateLimit = err?.rateLimit as RateLimitPayload | undefined;

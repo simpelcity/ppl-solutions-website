@@ -5,6 +5,12 @@ import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 import { errorHandler } from "@/utils/errorHandler";
 import { error } from "console";
 
+async function methodNotAllowed(request: NextRequest) {
+  const lang = getLocaleFromRequest(request);
+  const dict = await getDictionary(lang);
+  return errorHandler({ error: dict.statusCodes.METHOD_NOT_ALLOWED }, request, lang, 405);
+}
+
 export async function GET(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
@@ -243,4 +249,8 @@ export async function DELETE(request: NextRequest) {
     const message = dict.errors.profile.profileBanner.FAILED_TO_DELETE_PROFILE_BANNER;
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
+}
+
+export async function PATCH(request: NextRequest) {
+  return methodNotAllowed(request);
 }

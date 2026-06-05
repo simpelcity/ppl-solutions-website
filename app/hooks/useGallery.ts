@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Dictionary } from "@/app/i18n";
-import { useLang } from "@/hooks/useLang";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 export interface GalleryItem {
@@ -14,12 +13,12 @@ export interface GalleryItem {
 }
 
 export function useGallery(dict: Dictionary) {
-  const lang = useLang();
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<number | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
@@ -32,13 +31,14 @@ export function useGallery(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.get(`/api/gallery?lang=${lang}`);
+      const res = await axios.get('/api/gallery');
       if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status });
       const data = res.data;
       setItems(data.gallery || []);
     } catch (err: any) {
       const parsed = parseApiError(err, dict.errors.gallery.ERROR_LOADING_GALLERY);
       setError(parsed.message);
+      setStatus(err.status || null);
       applyRateLimit(parsed.rateLimit);
       throw new Error(parsed.message);
     }
@@ -55,7 +55,7 @@ export function useGallery(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.post(`/api/gallery?lang=${lang}`, fd, {
+      const res = await axios.post('/api/gallery', fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_ADD_ITEM, { cause: res.status });
@@ -83,7 +83,7 @@ export function useGallery(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.put(`/api/gallery?lang=${lang}`, fd, {
+      const res = await axios.put('/api/gallery', fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_UPDATE_ITEM, { cause: res.status });
@@ -106,7 +106,7 @@ export function useGallery(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.delete(`/api/gallery?lang=${lang}`, { data: { id } });
+      const res = await axios.delete('/api/gallery', { data: { id } });
       if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_DELETE_ITEM, { cause: res.status });
       setSuccess(dict.success.gallery.ITEM_DELETED);
       fetchItems();
@@ -124,6 +124,7 @@ export function useGallery(dict: Dictionary) {
     submitting,
     editingId,
     error,
+    status,
     isRateLimited,
     rateLimitSecondsRemaining,
     success,

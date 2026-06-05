@@ -112,7 +112,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
         );
       }
 
-      return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.GENERAL_ERROR}: {error}</div>;
+      return <div className="d-flex align-items-center text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>;
     }
     if (jobs.length === 0) return <div className="d-flex align-items-center text-danger fw-bold">{dict.errors.jobs.NO_JOBS}</div>;
   }

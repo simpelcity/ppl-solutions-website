@@ -63,7 +63,7 @@ export default function GalleryGrid({ dict }: Props) {
       return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={() => fetchGallery(true)} retryLoading={loading} />
     }
 
-    return <div className="text-danger">{dict.errors.gallery.ERROR_LOADING_GALLERY} {error}</div>
+    return <div className="text-danger fw-bold fs-4">{dict.errors.gallery.ERROR_LOADING_GALLERY} {error}</div>
   }
 
   if (items.length === 0) {

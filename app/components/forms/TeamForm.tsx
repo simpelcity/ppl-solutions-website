@@ -20,149 +20,156 @@ const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
 export default function TeamForm({ dict }: Props) {
   const teamDict = dict.drivershub.team;
-    const settingsDict = dict.drivershub.profile.settingsPage;
-  
-    const { resolvedTheme } = useTheme();
-  
-    const {
-      members,
-      departments,
-      roles,
-      memberRoles,
-      loading,
-      loadingRoles,
-      submitting,
-      editingId,
-      error,
-      isRateLimited,
-      rateLimitSecondsRemaining,
-      success,
-      setEditingId,
-      createMember,
-      updateMember,
-      deleteMember,
-      deleteProfilePicture,
-      addRole,
-      removeRole,
-      retryTeamData,
-    } = useTeam(dict);
-  
-    const [name, setName] = useState("");
-    const [file, setFile] = useState<File | null>(null);
-    const [selectedDepartment, setSelectedDepartment] = useState("");
-    const [selectedRole, setSelectedRole] = useState("");
-  
-    const [profilePictureFileError, setProfilePictureFileError] = useState<string | null>(null);
-    const [profileFileName, setProfileFileName] = useState<string>("");
-  
-  
-    const [showModal, setShowModal] = useState(false);
-    const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
-    const [targetId, setTargetId] = useState<number | null>(null);
-  
-    function validateImageFile(file: File) {
-      if (file.size > MAX_FILE_SIZE) {
-        return dict.errors.files.FILE_TOO_LARGE;
-      }
-  
-      if (!ALLOWED_TYPES.includes(file.type)) {
-        return dict.errors.files.INVALID_FILE_TYPE;
-      }
-  
-      const extension = `.${file.name.split(".").pop()?.toLowerCase() ?? ""}`;
-      if (!ALLOWED_EXTENSIONS.includes(extension)) {
-        return dict.errors.files.INVALID_FILE_EXTENSION;
-      }
-  
-      return null;
+  const settingsDict = dict.drivershub.profile.settingsPage;
+
+  const { resolvedTheme } = useTheme();
+
+  const {
+    members,
+    departments,
+    roles,
+    memberRoles,
+    loading,
+    loadingRoles,
+    submitting,
+    editingId,
+    error,
+    status,
+    isRateLimited,
+    rateLimitSecondsRemaining,
+    success,
+    setEditingId,
+    createMember,
+    updateMember,
+    deleteMember,
+    deleteProfilePicture,
+    addRole,
+    removeRole,
+    retryTeamData,
+  } = useTeam(dict);
+
+  const [name, setName] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
+
+  const [profilePictureFileError, setProfilePictureFileError] = useState<string | null>(null);
+  const [profileFileName, setProfileFileName] = useState<string>("");
+
+
+  const [showModal, setShowModal] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
+  const [targetId, setTargetId] = useState<number | null>(null);
+
+  function validateImageFile(file: File) {
+    if (file.size > MAX_FILE_SIZE) {
+      return dict.errors.files.FILE_TOO_LARGE;
     }
-  
-    function handleProfilePictureChange(e: ChangeEvent<HTMLInputElement>) {
-      const selectedFile = e.target.files?.[0] ?? null;
-  
-      if (!selectedFile) {
-        setFile(null);
-        setProfilePictureFileError(null);
-        return;
-      }
-  
-      const validationError = validateImageFile(selectedFile);
-      if (validationError) {
-        setFile(null);
-        setProfilePictureFileError(validationError);
-        return;
-      }
-  
-      setProfilePictureFileError(null);
-      setFile(selectedFile);
-      setProfileFileName(selectedFile.name);
-    };
-  
-    function resetForm() {
-      setName("");
+
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return dict.errors.files.INVALID_FILE_TYPE;
+    }
+
+    const extension = `.${file.name.split(".").pop()?.toLowerCase() ?? ""}`;
+    if (!ALLOWED_EXTENSIONS.includes(extension)) {
+      return dict.errors.files.INVALID_FILE_EXTENSION;
+    }
+
+    return null;
+  }
+
+  function handleProfilePictureChange(e: ChangeEvent<HTMLInputElement>) {
+    const selectedFile = e.target.files?.[0] ?? null;
+
+    if (!selectedFile) {
       setFile(null);
-      setSelectedDepartment("");
-      setSelectedRole("");
-      setProfileFileName("");
       setProfilePictureFileError(null);
-      setEditingId(null);
-  
-      const input = document.getElementById("pfp-file-input") as HTMLInputElement | null;
-      if (input) input.value = "";
-    };
-  
-    async function handleSubmit(e: React.FormEvent) {
-      e.preventDefault();
-      setProfilePictureFileError(null);
-  
-      try {
-        await createMember(name, file);
-        
-        resetForm();
-      } catch (err: any) {
-        const message = err?.message || dict.errors.UNEXPECTED;
-        setProfilePictureFileError(message);
-      }
-    };
-  
-    async function handleUpdate(e: React.FormEvent) {
-      e.preventDefault();
-      setProfilePictureFileError(null);
-  
-      try {
-        if (!editingId) return;
-        await updateMember(editingId, name, file);
-  
-        resetForm();
-      } catch (err: any) {
-        const message = err?.message || dict.errors.UNEXPECTED;
-        setProfilePictureFileError(message);
-      }
-    };
-  
-    function handleEdit(member: TeamMember) {
+      return;
+    }
+
+    const validationError = validateImageFile(selectedFile);
+    if (validationError) {
+      setFile(null);
+      setProfilePictureFileError(validationError);
+      return;
+    }
+
+    setProfilePictureFileError(null);
+    setFile(selectedFile);
+    setProfileFileName(selectedFile.name);
+  };
+
+  function resetForm() {
+    setName("");
+    setFile(null);
+    setSelectedDepartment("");
+    setSelectedRole("");
+    setProfileFileName("");
+    setProfilePictureFileError(null);
+    setEditingId(null);
+
+    const input = document.getElementById("pfp-file-input") as HTMLInputElement | null;
+    if (input) input.value = "";
+  };
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setProfilePictureFileError(null);
+
+    try {
+      await createMember(name, file);
+      
       resetForm();
-      setEditingId(member.id);
-      setName(member.name);
-      setFile(null);
-    };
-  
-    function confirm(action: ConfirmAction, id: number) {
-      setConfirmAction(action);
-      setTargetId(id);
-      setShowModal(true);
-    };
-  
-    async function handleConfirm() {
-      if (!targetId || !confirmAction) return;
-  
-      if (confirmAction === "delete-member") await deleteMember(targetId);
-      if (confirmAction === "delete-picture") await deleteProfilePicture(targetId);
-  
-      setShowModal(false);
-      setTargetId(null);
-      setConfirmAction(null);
-    };
+    } catch (err: any) {
+      const message = err?.message || dict.errors.UNEXPECTED;
+      setProfilePictureFileError(message);
+    }
+  };
+
+  async function handleUpdate(e: React.FormEvent) {
+    e.preventDefault();
+    setProfilePictureFileError(null);
+
+    try {
+      if (!editingId) return;
+      await updateMember(editingId, name, file);
+
+      resetForm();
+    } catch (err: any) {
+      const message = err?.message || dict.errors.UNEXPECTED;
+      setProfilePictureFileError(message);
+    }
+  };
+
+  function handleEdit(member: TeamMember) {
+    resetForm();
+    setEditingId(member.id);
+    setName(member.name);
+    setFile(null);
+  };
+
+  function confirm(action: ConfirmAction, id: number) {
+    setConfirmAction(action);
+    setTargetId(id);
+    setShowModal(true);
+  };
+
+  async function handleConfirm() {
+    if (!targetId || !confirmAction) return;
+
+    if (confirmAction === "delete-member") await deleteMember(targetId);
+    if (confirmAction === "delete-picture") await deleteProfilePicture(targetId);
+
+    setShowModal(false);
+    setTargetId(null);
+    setConfirmAction(null);
+  };
+
+  if (error && status === 403) {
+    return (
+      <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
+  }
 
   return (
     <>

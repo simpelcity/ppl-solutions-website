@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { i18n } from "./i18n";
+import { getDictionary } from "@/app/i18n";
 import { createServerClient } from "@supabase/ssr";
 import { checkRateLimit, createRateLimitResponse } from "@/utils/rateLimit";
 import { applyCorsHeaders, getCorsContext } from "@/utils/cors";
+import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const normalizedPathname = stripLocalePrefix(pathname);
+  const localePrefix = getLocaleFromRequest(request);
+  const dict = await getDictionary(localePrefix);
 
   if (pathname.startsWith("/api")) {
     const { isAllowedOrigin, headers } = getCorsContext(request);
@@ -15,7 +19,7 @@ export async function proxy(request: NextRequest) {
     if (request.method === "OPTIONS") {
       if (!isAllowedOrigin) {
         return new NextResponse(
-          JSON.stringify({ error: "Forbidden", message: "Origin not allowed." }),
+          JSON.stringify({ error: "Forbidden", message: dict.errors.cors.ORIGIN_NOT_ALLOWED }),
           { status: 403, headers: { "Content-Type": "application/json", ...headers } },
         );
       }
@@ -25,7 +29,7 @@ export async function proxy(request: NextRequest) {
 
     if (!isAllowedOrigin) {
       return new NextResponse(
-        JSON.stringify({ error: "Forbidden", message: "Origin not allowed." }),
+        JSON.stringify({ error: "Forbidden", message: dict.errors.cors.ORIGIN_NOT_ALLOWED }),
         { status: 403, headers: { "Content-Type": "application/json", ...headers } },
       );
     }
@@ -115,7 +119,7 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  const locale = getLocale(request);
+  const locale = getLocaleFromRequest(request);
 
   if (locale !== i18n.defaultLocale) {
     return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url));
@@ -129,25 +133,6 @@ export async function proxy(request: NextRequest) {
   });
 
   return rewriteResponse;
-}
-
-function getLocale(request: NextRequest): string {
-  const localeCookie = request.cookies.get("NEXT_LOCALE")?.value;
-  if (localeCookie && i18n.locales.includes(localeCookie as any)) {
-    return localeCookie;
-  }
-
-  const acceptLanguage = request.headers.get("accept-language");
-  if (acceptLanguage) {
-    const preferredLocale = acceptLanguage
-      .split(",")
-      .map((lang) => lang.split(";")[0].trim().split("-")[0])
-      .find((lang) => i18n.locales.includes(lang as any));
-
-    if (preferredLocale) return preferredLocale;
-  }
-
-  return i18n.defaultLocale;
 }
 
 function stripLocalePrefix(pathname: string): string {

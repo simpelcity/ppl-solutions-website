@@ -674,6 +674,9 @@
       "TOO_MANY_REQUESTS": "Limit požiadaviek bol prekročený. Skúste to znova o {seconds} sekúnd.",
       "TRY_AGAIN": "Skúsiť znova"
     },
+    "cors": {
+      "ORIGIN_NOT_ALLOWED": "Pôvod nie je povolený"
+    },
     "events": {
       "NO_EVENTS": "Žiadne nadchádzajúce udalosti",
       "NA": "Nie je k dispozícii",

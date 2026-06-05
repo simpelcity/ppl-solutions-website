@@ -674,6 +674,9 @@
       "TOO_MANY_REQUESTS": "Aanvraaglimiet overschreden. Probeer het opnieuw over {seconds} seconden.",
       "TRY_AGAIN": "Probeer opnieuw"
     },
+    "cors": {
+      "ORIGIN_NOT_ALLOWED": "Oorsprong niet toegestaan"
+    },
     "events": {
       "NO_EVENTS": "Geen aankomende evenementen",
       "NA": "Niet van toepassing",

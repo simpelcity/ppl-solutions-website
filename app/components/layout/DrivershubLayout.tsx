@@ -24,7 +24,6 @@ export default function DrivershubLayout({ children, isNavbarVisible = false, di
   const pathname = usePathname();
   const split = pathname.slice(1).split("/");
   const isLast = split[split.length - 1];
-  console.log("split:", split, "isLast:", isLast);
 
   return (
     <Container className="d-flex p-0 m-0" fluid>

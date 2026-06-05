@@ -6,6 +6,8 @@ import { type Metadata } from "next"
 import axios from "axios";
 import '@/styles/pages/Events.scss'
 
+import { headers } from "next/headers";
+
 type PageProps = {
   params: Promise<{ lang: Locale, eventId: string }>
 }
@@ -58,6 +60,20 @@ export default async function EventDetailPage({ params }: PageProps) {
   const dict = await getDictionary(lang)
   const { eventId } = await params
 
+  function getAllowedOrigins(): string[] {
+    return (process.env.ALLOWED_ORIGINS ?? "")
+      .split(", ")
+      .map((origin) => origin.trim())
+      .filter(Boolean);
+  }
+
+  const h = await headers();
+  const proto = h.get("x-forwarded-proto") ?? "http";
+  const host = h.get("x-forwarded-host") ?? h.get("host");
+  const origin = host ? `${proto}://${host}` : null;
+  
+  const isOriginAllowed = origin ? getAllowedOrigins().includes(origin) || getAllowedOrigins().includes("*") : false;
+
   let event: any = null;
   let pageError: string | null = null;
 
@@ -70,21 +86,35 @@ export default async function EventDetailPage({ params }: PageProps) {
   }
 
   const bannerUrl = dict.errors.events.details.NO_BANNER.replace(" ", "+");
+  const bannerUrl2 = dict.errors.cors.ORIGIN_NOT_ALLOWED.replace(" ", "+");
 
   return (
     <>
       <main className="fs-5 d-flex flex-column">
         <section className="d-flex w-100">
           <Container className="px-0 position-relative d-flex justify-content-center" fluid>
-            <Image
-              src={event ? event.banner : `https://placehold.co/1920x500/2b3035/808080?text=${bannerUrl}`}
-              alt={event ? event.name : dict.errors.events.details.NO_BANNER}
-              className="w-100 object-fit-cover"
-              style={{ height: '500px' }}
-            />
-            <div className="position-absolute top-0 w-100 h-100 d-flex justify-content-center align-items-center">
-              <h1 className="text-uppercase px-3 mb-3 text-center text-light">{event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND}</h1>
-            </div>
+            {!isOriginAllowed ? (
+              <>
+                <Image
+                  src={`https://placehold.co/1920x500/2b3035/808080?text=${bannerUrl2}`}
+                  alt={dict.errors.cors.ORIGIN_NOT_ALLOWED}
+                  className="w-100 object-fit-cover"
+                  style={{ height: '500px' }}
+                />
+              </>
+            ) : (
+              <>
+                <Image
+                  src={event ? event.banner : `https://placehold.co/1920x500/2b3035/808080?text=${bannerUrl}`}
+                  alt={event ? event.name : dict.errors.events.details.NO_BANNER}
+                  className="w-100 object-fit-cover"
+                  style={{ height: '500px' }}
+                />
+                <div className="position-absolute top-0 w-100 h-100 d-flex justify-content-center align-items-center">
+                  <h1 className="text-uppercase px-3 mb-3 text-center text-light">{event ? event.name : dict.errors.events.details.EVENT_NOT_FOUND}</h1>
+                </div>
+              </>
+            )}
           </Container>
         </section>
 

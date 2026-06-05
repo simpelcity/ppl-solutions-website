@@ -81,9 +81,7 @@ export default function CardEvents({ dict }: PageProps) {
     }
 
     return (
-      <div className="text-center text-theme">
-        <div className="text-danger fw-bold fs-4">{error}</div>
-      </div>
+        <div className="text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
     );
   }
 

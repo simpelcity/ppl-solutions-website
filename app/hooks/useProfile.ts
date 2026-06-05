@@ -6,8 +6,6 @@ import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useAuth } from "@/lib";
 import { usePathname, useRouter } from "next/navigation";
 import type { Dictionary } from "@/app/i18n";
-import { useLang } from "@/hooks/useLang";
-import { type Locale } from "@/i18n";
 
 export interface Profile {
   id: string;
@@ -45,7 +43,6 @@ type Props = {
 };
 
 export function useProfile({ userId, dict }: Props) {
-  const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -59,6 +56,7 @@ export function useProfile({ userId, dict }: Props) {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<number | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -76,7 +74,7 @@ export function useProfile({ userId, dict }: Props) {
   async function fetchProfile() {
     setError(null);
     try {
-      const res = await axios.get(`/api/profile-picture?id=${encodeURIComponent(userId)}&lang=${lang}`);
+      const res = await axios.get(`/api/profile-picture?id=${encodeURIComponent(userId)}`);
       if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE, { cause: res.status });
       const data = res.data;
       return data.profile;
@@ -84,6 +82,7 @@ export function useProfile({ userId, dict }: Props) {
       const message =
           err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
@@ -91,7 +90,7 @@ export function useProfile({ userId, dict }: Props) {
   async function fetchProfileById() {
     setError(null);
     try {
-      const res = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}&lang=${lang}`);
+      const res = await axios.get(`/api/profile?id=${encodeURIComponent(userId)}`);
       if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE_BY_ID, { cause: res.status });
       const data = res.data;
       return data.profile;
@@ -99,19 +98,21 @@ export function useProfile({ userId, dict }: Props) {
       const message =
           err?.response?.data?.message || err?.message || dict.errors.profile.profile.FAILED_TO_FETCH_PROFILE_BY_ID;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
 
   async function fetchDrivers() {
     try {
-      const res = await axios.get(`/api/members?lang=${lang}`);
+      const res = await axios.get('/api/members');
       if (res.status !== 200) throw new Error(dict.errors.drivers.FAILED_TO_FETCH_DRIVERS, { cause: res.status });
       const data = res.data;
       return data.members || data || [];
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.drivers.FAILED_TO_FETCH_DRIVERS;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
@@ -131,6 +132,7 @@ export function useProfile({ userId, dict }: Props) {
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.drivers.FAILED_TO_GET_DRIVER_DATA;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
@@ -186,18 +188,20 @@ export function useProfile({ userId, dict }: Props) {
         console.error(err);
         const message = err?.response?.data?.message || err?.message || dict.errors.country.FAILED_TO_FETCH_COUNTRY_DATA;
         setError(message);
+        setStatus(err?.response?.data?.status || err?.status || null);
         return null;
       }
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.country.FAILED_TO_FETCH_COUNTRY_DATA;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
 
   async function fetchTeam(memberId: number) {
     try {
-      const res = await axios.get(`/api/team?lang=${lang}`);
+      const res = await axios.get('/api/team');
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_TEAM, { cause: res.status });
       const data = res.data;
       const memberData = data.team.find((m: any) => m.team_member.id === memberId) || null;
@@ -207,13 +211,14 @@ export function useProfile({ userId, dict }: Props) {
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.team.FAILED_TO_FETCH_TEAM;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
 
   async function fetchMembers() {
     try {
-      const res = await axios.get(`/api/team/members?lang=${lang}`);
+      const res = await axios.get('/api/team/members');
       if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS, { cause: res.status });
       const data = res.data;
       setMembers(data.members || []);
@@ -221,32 +226,35 @@ export function useProfile({ userId, dict }: Props) {
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.members.FAILED_TO_FETCH_MEMBERS;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
 
   async function fetchDepartments() {
     try {
-      const res = await axios.get(`/api/departments?lang=${lang}`);
+      const res = await axios.get('/api/departments');
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS, { cause: res.status });
       const data = res.data;
       setDepartments(data.departments || []);
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
 
   async function fetchRoles() {
     try {
-      const res = await axios.get(`/api/roles?lang=${lang}`);
+      const res = await axios.get('/api/roles');
       if (res.status !== 200) throw new Error(dict.errors.roles.FAILED_TO_FETCH_ROLES, { cause: res.status });
       const data = res.data;
       setRoles(data.roles || []);
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.roles.FAILED_TO_FETCH_ROLES;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
@@ -269,6 +277,7 @@ export function useProfile({ userId, dict }: Props) {
     } catch (err: any) {
       const message = err?.response?.data?.message || err?.message || dict.errors.members.FAILED_TO_GET_MEMBER_ID;
       setError(message);
+      setStatus(err?.response?.data?.status || err?.status || null);
       throw new Error(message);
     }
   };
@@ -284,7 +293,7 @@ export function useProfile({ userId, dict }: Props) {
         fd.append("userId", userId);
         fd.append("file", file);
 
-        const res = await axios.put(`/api/profile-picture?lang=${lang}`, fd, {
+        const res = await axios.put('/api/profile-picture', fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
@@ -300,7 +309,7 @@ export function useProfile({ userId, dict }: Props) {
         fd.append("userId", userId);
         fd.append("bannerFile", bannerFile);
 
-        const res = await axios.put(`/api/profile-banner?lang=${lang}`, fd, {
+        const res = await axios.put('/api/profile-banner', fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
@@ -312,7 +321,7 @@ export function useProfile({ userId, dict }: Props) {
         const fetchedProfileData = await fetchProfileById();
         setFetchedProfile(fetchedProfileData);
       } else if (removeProfilePicture) {
-        const res = await axios.delete(`/api/profile-picture?lang=${lang}&userId=${encodeURIComponent(userId)}`);
+        const res = await axios.delete(`/api/profile-picture?userId=${encodeURIComponent(userId)}`);
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
         setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
         setProfile(null);
@@ -322,7 +331,7 @@ export function useProfile({ userId, dict }: Props) {
         const fetchedProfileData = await fetchProfileById();
         setFetchedProfile(fetchedProfileData);
       } else if (removeBanner) {
-        const res = await axios.delete(`/api/profile-banner?lang=${lang}&userId=${encodeURIComponent(userId)}`);
+        const res = await axios.delete(`/api/profile-banner?userId=${encodeURIComponent(userId)}`);
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
         setSuccess(dict.success.profile.profile.PROFILE_UPDATED);
         setProfile(null);
@@ -336,7 +345,7 @@ export function useProfile({ userId, dict }: Props) {
         fd.append("userId", userId);
         fd.append("displayName", displayName);
 
-        const res = await axios.put(`/api/profile?lang=${lang}`, fd, {
+        const res = await axios.put('/api/profile', fd, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         if (res.status !== 200) throw new Error(dict.errors.profile.profile.FAILED_TO_UPDATE_PROFILE, { cause: res.status });
@@ -363,7 +372,6 @@ export function useProfile({ userId, dict }: Props) {
     }
 
     async function init() {
-      if (isAdmin) adminLog("Init started for ID:", userId);
       setLoading(true);
       setError(null);
       try {
@@ -396,6 +404,7 @@ export function useProfile({ userId, dict }: Props) {
     profile,
     loading,
     error,
+    status,
     success,
     submitting,
     updateProfile,

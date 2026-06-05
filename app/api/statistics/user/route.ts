@@ -7,6 +7,12 @@ import { getLocaleFromRequest } from "@/utils/getLocaleFromRequest";
 axios.defaults.headers.common["Authorization"] = process.env.TRUCKERSHUB_API_TOKEN;
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
+async function methodNotAllowed(request: NextRequest) {
+  const lang = getLocaleFromRequest(request);
+  const dict = await getDictionary(lang);
+  return errorHandler({ error: dict.statusCodes.METHOD_NOT_ALLOWED }, request, lang, 405);
+}
+
 export async function POST(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
@@ -59,4 +65,20 @@ export async function POST(request: NextRequest) {
     const message = dict.errors.userStats.FAILED_TO_FETCH_STATS;
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
+}
+
+export async function GET(request: NextRequest) {
+  return methodNotAllowed(request);
+}
+
+export async function PUT(request: NextRequest) {
+  return methodNotAllowed(request);
+}
+
+export async function PATCH(request: NextRequest) {
+  return methodNotAllowed(request);
+}
+
+export async function DELETE(request: NextRequest) {
+  return methodNotAllowed(request);
 }

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
-import { useLang } from "@/hooks/useLang";
 import type { Dictionary } from "@/app/i18n";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
@@ -24,7 +23,6 @@ export function useLeaderboard(
   selectedYear?: number,
   selectedMonth?: number
 ) {
-  const lang = useLang();
   const isAdmin = useIsAdmin();
 
   const adminLog = (...args: any[]) => {
@@ -54,9 +52,9 @@ export function useLeaderboard(
   const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
   const fetchStatistics = async (month?: number, year?: number) => {
-    let url = `/api/statistics`;
+    let url = '/api/statistics';
     if (month !== undefined && year !== undefined) {
-      url += `?month=${month}&year=${year}&lang=${lang}`;
+      url += `?month=${month}&year=${year}`;
     }
     try {
       const res = await axios.get(url);

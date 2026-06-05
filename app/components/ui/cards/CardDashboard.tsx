@@ -17,7 +17,7 @@ type Props = {
 type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export default function CardDashboard({ dict, lang }: Props) {
-  const { data, loading, error, sendData } = useDashboard();
+  const { data, loading, error, status, sendData } = useDashboard();
   const { resolvedTheme } = useTheme();
 
   const [title, setTitle] = useState('');
@@ -25,7 +25,7 @@ export default function CardDashboard({ dict, lang }: Props) {
   const [message, setMessage] = useState('');
   const [requestUrl, setRequestUrl] = useState('');
   const [method, setMethod] = useState('');
-  const [status, setStatus] = useState('');
+  const [HTTPStatus, setHTTPStatus] = useState('');
 
   const [isMethodDropdownOpen, setIsMethodDropdownOpen] = useState(false);
   
@@ -43,7 +43,7 @@ export default function CardDashboard({ dict, lang }: Props) {
     e.preventDefault();
     
     try {
-      await sendData(title, url, message, requestUrl, method, status);
+      await sendData(title, url, message, requestUrl, method, HTTPStatus);
 
       resetForm();
     } catch (err: any) {
@@ -58,9 +58,15 @@ export default function CardDashboard({ dict, lang }: Props) {
     setMessage('');
   }
 
+  if (error && status === 403) {
+    return (
+      <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
+  }
+
   if (isComingSoon) {
     return (
-      <Container className="p-3 p-md-4 d-flex justify-content-center" fluid>
+      <Container className="p-3 p-md-4 d-flex justify-content-center align-items-center" fluid>
         <Col xs={12} md={10} lg={6}>
           <ComingSoon dict={dict} lang={lang} />
         </Col>
@@ -143,8 +149,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                     type="text"
                     className="rounded-1 border-0 shadow-sm"
                     placeholder="e.g. 200, 404, 500"
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
+                    value={HTTPStatus}
+                    onChange={(e) => setHTTPStatus(e.target.value)}
                   />
                 </Form.Group>
               </Col>

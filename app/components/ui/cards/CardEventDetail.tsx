@@ -37,8 +37,6 @@ export default function CardEventDetail({ eventId, dict }: Props) {
   if (serverName === "To be determined") event.server.name = dict.events.card.toBeDetermined;
   else if (serverName === "Event Server") event.server.name = dict.events.card.eventServer;
 
-  adminLog(event)
-
   if (loading) {
     return (
       <Col xs={12} md={11} xl={10} className="px-3">
@@ -175,7 +173,7 @@ export default function CardEventDetail({ eventId, dict }: Props) {
       return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryEventDetails} retryLoading={loading} />;
     }
 
-    return <div>Error: {error}</div>
+    return <div className="text-danger fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
   }
   if (!event) return <div>No event data found.</div>
 
