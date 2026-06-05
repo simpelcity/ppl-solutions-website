@@ -47,8 +47,8 @@ export default async function DashboardPage({ params }: PageProps) {
 
   return (
     <>
-      <main className="fs-5">
-        <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-theme">
+      <main className="fs-5 drivershub">
+        <section className="h-100 w-100 d-flex justify-content-center bg-surface-darker text-theme">
           <CardDashboard dict={dict} lang={lang} />
         </section>
       </main>

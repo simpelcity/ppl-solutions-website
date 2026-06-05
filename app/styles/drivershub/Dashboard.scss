@@ -1,7 +1,10 @@
 @use '../variables' as *;
 
 #method-dropdown .dropdown-toggle::after,
-.message-type-dropdown .dropdown-toggle::after {
+.message-type-dropdown .dropdown-toggle::after,
+.tag-dropdown .dropdown-toggle::after,
+.role-dropdown .dropdown-toggle::after,
+.emoji-dropdown .dropdown-toggle::after {
   content: none;
 }
 
@@ -62,4 +65,13 @@ option:first-of-type {
 
 option:last-of-type {
   border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.tag-dropdown .dropdown-item:hover,
+.role-dropdown .dropdown-item:hover,
+.emoji-dropdown .dropdown-item:hover,
+.tag-dropdown .dropdown-toggle:hover,
+.role-dropdown .dropdown-toggle:hover,
+.emoji-dropdown .dropdown-toggle:hover {
+  color: $light !important;
 }

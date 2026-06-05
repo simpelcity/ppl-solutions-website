@@ -16,23 +16,39 @@ export async function POST(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
     const body = await request.json();
+
+    const { searchParams } = new URL(request.url);
+    const messageType = searchParams.get("messageType") as "embed" | "error" | "announcement" | null;
+    const webhookUrl = messageType === "announcement" ? process.env.DISCORD_DASHBOARD_WEBHOOK_URL : process.env.DISCORD_DASHBOARD_WEBHOOK_URL;
     
     // const username = body?.username || 'PPL Solutions';
     // const avatar_url = body?.avatar_url || 'https://ppl-solutions.vercel.app/assets/images/logo.png';
     const embeds = Array.isArray(body?.embeds) ? body.embeds : [];
+    const content = typeof body?.content === 'string' ? body.content : '';
+    const username = body?.username ? String(body.username) : '';
+    const avatar_url = body?.avatar_url ? String(body.avatar_url) : '';
 
-    if (!embeds.length) {
+    let postData: any = {};
+    if (messageType === 'announcement') {
+      postData.username = username;
+      postData.avatar_url = avatar_url;
+      postData.content = content;
+    } else {
+      postData.embeds = embeds;
+    }
+
+    if ((messageType === 'embed' || messageType === 'error') && !embeds.length) {
       return errorHandler({ error: 'Missing message or embeds' }, request, lang, 400);
     }
 
-    if (!process.env.DISCORD_WEBHOOK_URL) {
+    if (!webhookUrl) {
       return errorHandler({ error: 'Discord webhook URL is not configured' }, request, lang, 500);
     }
 
-    const res = await axios.post(process.env.DISCORD_WEBHOOK_URL!, {
+    const res = await axios.post(webhookUrl!, {
       // username,
       // avatar_url,
-      embeds
+      ...postData
     });
 
     const data = res.data;

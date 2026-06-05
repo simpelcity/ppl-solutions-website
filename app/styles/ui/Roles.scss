@@ -1,92 +1,143 @@
+@use "../variables" as *;
+
 .founder {
-  color: #009a86;
+  color: #009a86 !important;
 }
 
 .ceo {
-  color: #ffdd00;
+  color: #ffdd00 !important;
 }
 
 .cao {
-  color: #00f867;
+  color: #00f867 !important;
 }
 
 .coo {
-  color: #00e1ff;
+  color: #00e1ff !important;
 }
 
 .cm {
-  color: #ff0e0e;
+  color: #ff0e0e !important;
 }
 
 .hrd,
 .hr {
-  color: #05493a;
+  color: #05493a !important;
 }
 
 .rtd,
 .rt {
-  color: #ff00a1;
+  color: #ff00a1 !important;
 }
 
 .etm,
 .et {
-  color: #0ba500;
+  color: #0ba500 !important;
 }
 
 .mtm,
 .mt {
-  color: #dd00ff;
+  color: #dd00ff !important;
 }
 
 .ccm,
 .cc {
-  color: #ccff00;
+  color: #ccff00 !important;
+}
+
+.staff {
+  color: #810022 !important;
+}
+
+.driver {
+  color: $primary !important;
+}
+
+.member {
+  color: #755b94 !important;
+}
+
+.ping {
+  color: #1f8b4c !important;
+}
+
+.theme {
+  color: var(--color-text) !important;
 }
 
 .bg-founder {
-  background: #009a86;
+  background: #009a86 !important;
+  color: $light !important;
 }
 
 .bg-ceo {
-  background: #ffdd00;
-  color: black;
+  background: #ffdd00 !important;
+  color: $dark !important;
 }
 
 .bg-cao {
-  background: #00f867;
+  background: #00f867 !important;
+  color: $dark !important;
 }
 
 .bg-coo {
-  background: #00e1ff;
+  background: #00e1ff !important;
+  color: $dark !important;
 }
 
 .bg-cm {
-  background: #ff0e0e;
+  background: #ff0e0e !important;
+  color: $light !important;
 }
 
 .bg-hrd,
 .bg-hr {
-  background: #05493a;
+  background: #05493a !important;
+  color: $light !important;
 }
 
 .bg-rtd,
 .bg-rt {
-  background: #ff00a1;
+  background: #ff00a1 !important;
 }
 
 .bg-etm,
 .bg-et {
-  background: #0ba500;
+  background: #0ba500 !important;
+  color: $light !important;
 }
 
 .bg-mtm,
 .bg-mt {
-  background: #dd00ff;
+  background: #dd00ff !important;
 }
 
 .bg-ccm,
 .bg-cc {
-  background: #ccff00;
-  color: black;
+  background: #ccff00 !important;
 }
 
+.bg-staff {
+  background-color: #810022 !important;
+  color: $light !important;
+}
+
+.bg-driver {
+  background-color: $primary !important;
+  color: $light !important;
+}
+
+.bg-member {
+  background-color: #755b94 !important;
+  color: $light !important;
+}
+
+.bg-ping {
+  background-color: #1f8b4c !important;
+  color: $light !important;
+}
+
+.bg-theme {
+  background-color: var(--color-surface-darker) !important;
+  color: var(--color-text) !important;
+}
