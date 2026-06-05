@@ -2,8 +2,7 @@ import { VtcStats } from "@/components"
 import { Row } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
-import "@/styles/Drivershub.scss"
-import "@/styles/roles.scss"
+import "@/styles/ui/Roles.scss"
 import { type Metadata } from "next"
 
 

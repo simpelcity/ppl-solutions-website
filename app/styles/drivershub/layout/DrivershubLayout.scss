@@ -1,0 +1,44 @@
+@use "../../variables" as *;
+
+:root {
+  --sidebar-collapsed-width: 4.5rem;
+  --sidebar-expanded-width: 16.25rem;
+}
+
+.dashboard-expanded {
+  width: calc(100% - var(--sidebar-collapsed-width)) !important;
+}
+
+.dashboard-collapsed {
+  width: calc(100% - var(--sidebar-expanded-width)) !important;
+}
+
+.breadcrumb-item > a {
+  // text-decoration: none;
+  font-weight: 600 !important;
+  color: $primary;
+  &:hover {
+    color: $primary-hover;
+  }
+  &:active {
+    color: $primary-active;
+  }
+}
+
+.table-card-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table-card-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.table-card-scroll::-webkit-scrollbar-track {
+  background: var(--color-gray);
+}
+
+.table-card-scroll::-webkit-scrollbar-thumb {
+  background: $primary;
+}

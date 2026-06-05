@@ -1,0 +1,9 @@
+@use '../variables' as *;
+
+#dlc-dropdown .dropdown-item:hover {
+  color: $light !important;
+}
+
+.event-link:hover {
+  text-decoration: underline !important;
+}

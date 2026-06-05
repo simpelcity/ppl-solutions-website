@@ -1,9 +1,8 @@
-import { DashboardCard } from "@/components"
+import { CardDashboard } from "@/components"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
-import "@/styles/Drivershub.scss"
-import "@/styles/roles.scss"
-import "@/styles/Dashboard.scss"
+import "@/styles/ui/Roles.scss"
+import "@/styles/drivershub/Dashboard.scss"
 import { type Metadata } from "next"
 
 type PageProps = {
@@ -43,14 +42,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function DashboardPage({ params }: PageProps) {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
 
   return (
     <>
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-theme">
-          <DashboardCard dict={dict} />
+          <CardDashboard dict={dict} />
         </section>
       </main>
     </>

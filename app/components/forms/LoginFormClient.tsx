@@ -107,6 +107,7 @@ export default function LoginFormClient({ dict, lang }: Props) {
               </button>
             </div>
           </Form.Group>
+          {error && <p className="text-danger">{error}</p>}
           <Form.Group className="mb-3 d-flex align-items-center">
             <Form.Check
               type="checkbox"
@@ -118,7 +119,6 @@ export default function LoginFormClient({ dict, lang }: Props) {
             />
             <Form.Label className="m-0">{dict.login.form.rememberMe}</Form.Label>
           </Form.Group>
-          {error && <p className="text-danger mt-3">{error}</p>}
           <Form.Group className="mb-3">
             <BSButton variant="primary" type="submit">
               {loading ? `${dict.login.form.statuses.loading}` : `${dict.login.form.submit}`}

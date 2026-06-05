@@ -1,0 +1,9 @@
+@use "../variables" as *;
+
+#dropdown-split-basic::after {
+  display: none;
+}
+
+#dropdown-leaderboard .dropdown-item:hover {
+  color: $light !important;
+}

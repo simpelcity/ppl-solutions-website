@@ -1,0 +1,41 @@
+@use "../variables" as *;
+
+.navbar {
+  max-height: var(--height-navbar);
+}
+
+@media (max-width: 991px) {
+  #main-navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--color-surface);
+    z-index: -1;
+    box-shadow: var(--bs-box-shadow);
+  }
+
+  [data-bs-theme="light"] {
+    #main-navbar {
+      border-top: solid 1px rgba($dark, 0.25);
+    }
+  }
+
+  [data-bs-theme="dark"] {
+    #main-navbar {
+      border-top: solid 1px rgba($light, 0.25);
+    }
+  }
+
+  .navbar-collapse.collapse:not(.show) {
+    display: none !important;
+  }
+
+  .navbar-collapse.show {
+    display: block !important;
+  }
+
+  header {
+    position: relative;
+  }
+}

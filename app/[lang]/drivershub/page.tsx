@@ -1,5 +1,5 @@
 import { TableJobs } from "@/components";
-import "@/styles/Drivershub.scss";
+import "@/styles/drivershub/Drivershub.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"

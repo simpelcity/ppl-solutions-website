@@ -5,17 +5,18 @@ import { Sidebar } from "@/components";
 import { useSidebar } from "@/lib";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
-import "@/styles/DrivershubLayout.scss";
+import "@/styles/drivershub/layout/DrivershubLayout.scss"
+import "@/styles/drivershub/DrivershubGlobals.scss"
 import { usePathname } from 'next/navigation'
 
-interface DashboardProps {
+interface Props {
   children: React.ReactNode;
   isNavbarVisible?: boolean;
   dict: Dictionary;
   lang: Locale;
 }
 
-export default function Dashboard({ children, isNavbarVisible = false, dict, lang }: DashboardProps) {
+export default function DrivershubLayout({ children, isNavbarVisible = false, dict, lang }: Props) {
   const { isSidebarCollapsed, setIsSidebarCollapsed, isMobile } = useSidebar();
 
   const dashboardWidth = isSidebarCollapsed ? "dashboard-expanded" : "dashboard-collapsed";

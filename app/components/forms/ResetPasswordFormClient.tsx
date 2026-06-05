@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { BSButton } from "@/components";
-import "@/styles/AuthCards.scss";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useTheme } from "next-themes";

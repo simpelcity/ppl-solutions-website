@@ -3,6 +3,10 @@
   animation: flip-180 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 
+.flip {
+  transform: scaleX(-1)
+}
+
 .chevron-rotate-180 {
   display: inline-flex;
   transition: transform 0.3s ease;

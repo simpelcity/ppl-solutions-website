@@ -1,9 +1,7 @@
-// Dashboard
-export { default as Dashboard } from "./dashboard/Dashboard";
-export { default as DashboardCard } from "./dashboard/DashboardCard";
-export { default as VtcStats } from "./dashboard/VtcStats";
-export { default as Sidebar } from "./dashboard/Sidebar";
-export { default as UserStats } from "./dashboard/UserStats";
+// Drivershub
+export { default as Sidebar } from "./drivershub/Sidebar";
+export { default as VtcStats } from "./drivershub/VtcStats";
+export { default as UserStats } from "./drivershub/UserStats";
 // Forms
 export { default as ForgotPasswordForm } from "./forms/ForgotPasswordForm";
 export { default as ForgotPasswordFormClient } from "./forms/ForgotPasswordFormClient";
@@ -13,7 +11,9 @@ export { default as RegisterForm } from "./forms/RegisterForm";
 export { default as RegisterFormClient } from "./forms/RegisterFormClient";
 export { default as ResetPasswordForm } from "./forms/ResetPasswordForm";
 export { default as ResetPasswordFormClient } from "./forms/ResetPasswordFormClient";
+export { default as TeamForm } from "./forms/TeamForm";
 // Layout
+export { default as DrivershubLayout } from "./layout/DrivershubLayout";
 export { default as Footer } from "./layout/Footer";
 export { default as FooterLink } from "./layout/FooterLink";
 export { default as Navbar } from "./layout/Navbar";
@@ -23,6 +23,7 @@ export { default as HomeBanner } from "./sections/HomeBanner";
 // Cards
 export { default as Card404 } from "./ui/cards/Card404";
 export { default as CardContact } from "./ui/cards/CardContact";
+export { default as CardDashboard } from "./ui/cards/CardDashboard";
 export { default as CardEventDetail } from "./ui/cards/CardEventDetail";
 export { default as CardEvents } from "./ui/cards/CardEvents";
 export { default as CardGallery } from "./ui/cards/CardGallery";

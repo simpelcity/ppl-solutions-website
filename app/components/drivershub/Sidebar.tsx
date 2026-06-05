@@ -16,6 +16,7 @@ import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
+import "@/styles/drivershub/layout/Sidebar.scss"
 
 interface NavItem {
   href: string;

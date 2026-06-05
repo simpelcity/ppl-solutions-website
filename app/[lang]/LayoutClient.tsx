@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import { Navbar, Footer, Dashboard } from "@/components"
+import { Navbar, Footer, DrivershubLayout } from "@/components"
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 
@@ -20,17 +20,17 @@ export default function LayoutClient({ children, dict, lang, forceHideFooter = f
 
   const currentLang = lang === 'en' ? '' : `/${lang}`;
 
-  const showDashboardByPath = pathname.startsWith(`${currentLang}/drivershub`);
-  const drivershubPages = showDashboardByPath && !forceHideDashboard;
+  const showDrivershubLayoutByPath = pathname.startsWith(`${currentLang}/drivershub`);
+  const drivershubPages = showDrivershubLayoutByPath && !forceHideDashboard;
 
   return (
     <>
       <Navbar dict={dict} lang={lang} />
       {drivershubPages ? (
-        <Dashboard dict={dict} lang={lang}>
+        <DrivershubLayout dict={dict} lang={lang}>
           {children}
           {!hideFooter && <Footer dict={dict} lang={lang} />}
-        </Dashboard>
+        </DrivershubLayout>
       ) : (
         <>
           {children}

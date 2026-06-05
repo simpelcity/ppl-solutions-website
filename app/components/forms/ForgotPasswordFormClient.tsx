@@ -4,7 +4,6 @@ import { Container, Row, Col, Card, Form, Image } from "react-bootstrap";
 import { useState } from "react";
 import { supabase } from "@/lib";
 import { BSButton } from "@/components";
-import "@/styles/AuthCards.scss";
 import type { Dictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { useTheme } from "next-themes";

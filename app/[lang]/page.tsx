@@ -1,6 +1,6 @@
 import { Container, Image, Row, Col } from "react-bootstrap";
 import { CardText, BSButton, HomeBanner } from "@/components";
-import "@/styles/Home.scss";
+import "@/styles/pages/Home.scss";
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"

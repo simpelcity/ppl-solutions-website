@@ -1,5 +1,5 @@
-import "@/styles/Drivershub.scss";
-import "@/styles/roles.scss"
+import "@/styles/drivershub/Profile.scss"
+import "@/styles/ui/Roles.scss"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"

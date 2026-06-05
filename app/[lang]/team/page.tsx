@@ -1,6 +1,6 @@
 import { StartBanner, TeamGrid } from "@/components"
 import { Container } from "react-bootstrap"
-import "@/styles/roles.scss"
+import "@/styles/ui/Roles.scss"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import { type Metadata } from "next"

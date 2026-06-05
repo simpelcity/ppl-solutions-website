@@ -1,0 +1,26 @@
+@use "../variables" as *;
+
+.table-jobs {
+  white-space: nowrap;
+  min-width: 1300px;
+}
+
+.table-jobs thead th:first-child {
+  border-radius: var(--bs-border-radius-sm) 0 0 var(--bs-border-radius-sm);
+}
+
+.table-jobs thead th:last-child {
+  border-radius: 0 var(--bs-border-radius-sm) var(--bs-border-radius-sm) 0;
+}
+
+.page-link {
+  &:hover {
+    color: $light !important;
+    background-color: var(--color-gray) !important;
+    border-color: var(--color-gray) !important;
+  }
+  &.active {
+    background-color: $primary-active !important;
+    border-color: $primary-active !important;
+  }
+}
