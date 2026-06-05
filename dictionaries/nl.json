@@ -324,8 +324,8 @@
     "breadcrumbs": {
       "drivershub": "Bestuurdershub",
       "user-statistics": "Gebruikersstatistieken",
-      "leaderboard": "Klassement",
       "statistics": "VTC-statistieken",
+      "leaderboard": "Klassement",
       "dashboard": "Dashboard",
       "team": "Team",
       "gallery": "Galerij",
@@ -475,74 +475,81 @@
         "totalTimeDriven": "Totale rijtijd"
       }
     },
-    "team": {
+    "dashboard": {
       "meta": {
-        "title": "Dashboard - Team beheren",
-        "description": "Beheer je teamleden door ze toe te voegen, te bewerken of te verwijderen."
+        "title": "Dashboard",
+        "description": "Beheer uw team en galerij in het Drivershub-dashboard."
       },
-      "form": {
-        "titleNewMember": "Lid toevoegen",
-        "titleEditMember": "Lid bewerken",
-        "username": "Lidnaam",
-        "usernamePlaceholder": "Gebruikersnaam",
-        "profilePicture": "Profielfoto (optioneel)",
-        "submitNewMember": "lid toevoegen",
-        "submitEditMember": "lid bijwerken",
-        "cancelEditMember": "annuleren",
-        "updating": "Lid bijwerken...",
-        "saving": "Lid opslaan...",
-        "loading": "Teamleden laden...",
-        "editMember": "Lid bewerken",
-        "deletePfp": "Profielfoto verwijderen",
-        "deleteMember": "Lid verwijderen",
-        "rolesDepartments": {
-          "title": "Beheer rollen en afdelingen",
-          "currentRoles": "Huidige Rollen",
-          "addRole": "Rol Toevoegen",
-          "department": "Selecteer Afdeling",
-          "role": "Selecteer Rol",
-          "loading": "Rollen laden..."
+      "dashboard": {},
+      "team": {
+        "meta": {
+          "title": "Dashboard - Team beheren",
+          "description": "Beheer je teamleden door ze toe te voegen, te bewerken of te verwijderen."
+        },
+        "form": {
+          "titleNewMember": "Lid toevoegen",
+          "titleEditMember": "Lid bewerken",
+          "username": "Lidnaam",
+          "usernamePlaceholder": "Gebruikersnaam",
+          "profilePicture": "Profielfoto (optioneel)",
+          "submitNewMember": "lid toevoegen",
+          "submitEditMember": "lid bijwerken",
+          "cancelEditMember": "annuleren",
+          "updating": "Lid bijwerken...",
+          "saving": "Lid opslaan...",
+          "loading": "Teamleden laden...",
+          "editMember": "Lid bewerken",
+          "deletePfp": "Profielfoto verwijderen",
+          "deleteMember": "Lid verwijderen",
+          "rolesDepartments": {
+            "title": "Beheer rollen en afdelingen",
+            "currentRoles": "Huidige Rollen",
+            "addRole": "Rol Toevoegen",
+            "department": "Selecteer Afdeling",
+            "role": "Selecteer Rol",
+            "loading": "Rollen laden..."
+          }
+        },
+        "card": {
+          "title": "Teamleden"
+        },
+        "modal": {
+          "title": "Bevestig Actie",
+          "textmember": "Weet je zeker dat je dit lid wilt verwijderen",
+          "textPicture": "Weet je zeker dat je de profielfoto van dit lid wilt verwijderen",
+          "cancel": "annuleren",
+          "confirm": "bevestigen"
         }
       },
-      "card": {
-        "title": "Teamleden"
-      },
-      "modal": {
-        "title": "Bevestig Actie",
-        "textmember": "Weet je zeker dat je dit lid wilt verwijderen",
-        "textPicture": "Weet je zeker dat je de profielfoto van dit lid wilt verwijderen",
-        "cancel": "annuleren",
-        "confirm": "bevestigen"
-      }
-    },
-    "gallery": {
-      "meta": {
-        "title": "Dashboard - Galerij beheren",
-        "description": "Beheer de items in uw galerij door afbeeldingen toe te voegen, te bewerken of te verwijderen."
-      },
-      "form": {
-        "titleNewItem": "Galerij Item Toevoegen",
-        "titleEditItem": "Galerij Item Bewerken",
-        "title": "Titel",
-        "titlePlaceholder": "Afbeeldingstitel",
-        "image": "Afbeelding",
-        "imageEdit": "Afbeelding (leeg laten om huidige te behouden)",
-        "submit": "item toevoegen",
-        "submitEdit": "item bijwerken",
-        "cancel": "annuleren",
-        "editGalleryItem": "Galerij-item bewerken",
-        "deleteGalleryItem": "Galerij-item verwijderen",
-        "updating": "Galerij-item bijwerken...",
-        "saving": "Galerij-item opslaan..."
-      },
-      "card": {
-        "title": "Galerij Items"
-      },
-      "modal": {
-        "title": "Bevestig Actie",
-        "text": "Weet je zeker dat je dit galerij item wilt verwijderen",
-        "cancel": "annuleren",
-        "confirm": "bevestigen"
+      "gallery": {
+        "meta": {
+          "title": "Dashboard - Galerij beheren",
+          "description": "Beheer de items in uw galerij door afbeeldingen toe te voegen, te bewerken of te verwijderen."
+        },
+        "form": {
+          "titleNewItem": "Galerij Item Toevoegen",
+          "titleEditItem": "Galerij Item Bewerken",
+          "title": "Titel",
+          "titlePlaceholder": "Afbeeldingstitel",
+          "image": "Afbeelding",
+          "imageEdit": "Afbeelding (leeg laten om huidige te behouden)",
+          "submit": "item toevoegen",
+          "submitEdit": "item bijwerken",
+          "cancel": "annuleren",
+          "editGalleryItem": "Galerij-item bewerken",
+          "deleteGalleryItem": "Galerij-item verwijderen",
+          "updating": "Galerij-item bijwerken...",
+          "saving": "Galerij-item opslaan..."
+        },
+        "card": {
+          "title": "Galerij Items"
+        },
+        "modal": {
+          "title": "Bevestig Actie",
+          "text": "Weet je zeker dat je dit galerij item wilt verwijderen",
+          "cancel": "annuleren",
+          "confirm": "bevestigen"
+        }
       }
     },
     "profile": {

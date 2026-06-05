@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     metadataBase: new URL('https://ppl-solutions.vercel.app'),
-    title: `${dict.drivershub.team.meta.title} | PPL Solutions VTC`,
-    description: dict.drivershub.team.meta.description,
+    title: `${dict.drivershub.dashboard.team.meta.title} | PPL Solutions VTC`,
+    description: dict.drivershub.dashboard.team.meta.description,
     openGraph: {
-      title: `${dict.drivershub.team.meta.title} | PPL Solutions VTC`,
-      description: dict.drivershub.team.meta.description,
+      title: `${dict.drivershub.dashboard.team.meta.title} | PPL Solutions VTC`,
+      description: dict.drivershub.dashboard.team.meta.description,
       url: canonical,
       siteName: 'PPL Solutions VTC',
       images: '/assets/images/ppls-logo.png',

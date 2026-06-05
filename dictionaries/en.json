@@ -475,74 +475,83 @@
         "totalTimeDriven": "Total Time Driven"
       }
     },
-    "team": {
+    "dashboard": {
       "meta": {
-        "title": "Dashboard - Team Management",
-        "description": "Manage your team members by adding, editing, or removing them."
+        "title": "Dashboard",
+        "description": "Manage your team and gallery in the Drivershub dashboard."
       },
-      "form": {
-        "titleNewMember": "Add Member",
-        "titleEditMember": "Edit Member",
-        "username": "Member Name",
-        "usernamePlaceholder": "Username",
-        "profilePicture": "Profile Picture (optional)",
-        "submitNewMember": "add member",
-        "submitEditMember": "update member",
-        "cancelEditMember": "cancel",
-        "updating": "Updating Member...",
-        "saving": "Saving Member...",
-        "loading": "Loading Team Members...",
-        "editMember": "Edit Member",
-        "deletePfp": "Delete Profile Picture",
-        "deleteMember": "Delete Member",
-        "rolesDepartments": {
-          "title": "Manage Roles & Departments",
-          "currentRoles": "Current Roles",
-          "addRole": "Add Role",
-          "department": "Select Department",
-          "role": "Select Role",
-          "loading": "Loading Roles..."
+      "dashboard": {
+        
+      },
+      "team": {
+        "meta": {
+          "title": "Dashboard - Team Management",
+          "description": "Manage your team members by adding, editing, or removing them."
+        },
+        "form": {
+          "titleNewMember": "Add Member",
+          "titleEditMember": "Edit Member",
+          "username": "Member Name",
+          "usernamePlaceholder": "Username",
+          "profilePicture": "Profile Picture (optional)",
+          "submitNewMember": "add member",
+          "submitEditMember": "update member",
+          "cancelEditMember": "cancel",
+          "updating": "Updating Member...",
+          "saving": "Saving Member...",
+          "loading": "Loading Team Members...",
+          "editMember": "Edit Member",
+          "deletePfp": "Delete Profile Picture",
+          "deleteMember": "Delete Member",
+          "rolesDepartments": {
+            "title": "Manage Roles & Departments",
+            "currentRoles": "Current Roles",
+            "addRole": "Add Role",
+            "department": "Select Department",
+            "role": "Select Role",
+            "loading": "Loading Roles..."
+          }
+        },
+        "card": {
+          "title": "Team Members"
+        },
+        "modal": {
+          "title": "Confirm Action",
+          "textmember": "Are you sure you want to delete this member",
+          "textPicture": "Are you sure you want to delete this member's profile picture",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
         }
       },
-      "card": {
-        "title": "Team Members"
-      },
-      "modal": {
-        "title": "Confirm Action",
-        "textmember": "Are you sure you want to delete this member",
-        "textPicture": "Are you sure you want to delete this member's profile picture",
-        "cancel": "Cancel",
-        "confirm": "Confirm"
-      }
-    },
-    "gallery": {
-      "meta": {
-        "title": "Dashboard - Manage Gallery",
-        "description": "Manage your gallery items by adding, editing, or deleting images."
-      },
-      "form": {
-        "titleNewItem": "Add Gallery Item",
-        "titleEditItem": "Edit Gallery Item",
-        "title": "Title",
-        "titlePlaceholder": "Image title",
-        "image": "Image",
-        "imageEdit": "Image (leave empty to keep current)",
-        "submit": "add item",
-        "submitEdit": "update item",
-        "cancel": "cancel",
-        "editGalleryItem": "Edit Gallery Item",
-        "deleteGalleryItem": "Delete Gallery Item",
-        "updating": "Updating Gallery Item...",
-        "saving": "Saving Gallery Item..."
-      },
-      "card": {
-        "title": "Gallery Items"
-      },
-      "modal": {
-        "title": "Confirm Action",
-        "text": "Are you sure you want to delete this gallery item",
-        "cancel": "cancel",
-        "confirm": "confirm"
+      "gallery": {
+        "meta": {
+          "title": "Dashboard - Manage Gallery",
+          "description": "Manage your gallery items by adding, editing, or deleting images."
+        },
+        "form": {
+          "titleNewItem": "Add Gallery Item",
+          "titleEditItem": "Edit Gallery Item",
+          "title": "Title",
+          "titlePlaceholder": "Image title",
+          "image": "Image",
+          "imageEdit": "Image (leave empty to keep current)",
+          "submit": "add item",
+          "submitEdit": "update item",
+          "cancel": "cancel",
+          "editGalleryItem": "Edit Gallery Item",
+          "deleteGalleryItem": "Delete Gallery Item",
+          "updating": "Updating Gallery Item...",
+          "saving": "Saving Gallery Item..."
+        },
+        "card": {
+          "title": "Gallery Items"
+        },
+        "modal": {
+          "title": "Confirm Action",
+          "text": "Are you sure you want to delete this gallery item",
+          "cancel": "cancel",
+          "confirm": "confirm"
+        }
       }
     },
     "profile": {

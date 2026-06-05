@@ -324,12 +324,12 @@
     "breadcrumbs": {
       "drivershub": "Centrum vodičov",
       "user-statistics": "Štatistiky uživatele",
-      "leaderboard": "Rebríček",
       "statistics": "Statistiky VTC",
+      "leaderboard": "Rebríček",
       "dashboard": "Dashboard",
       "team": "Tím",
       "gallery": "Galéria",
-      "profile":"Profil",
+      "profile": "Profil",
       "settings": "Nastavenia"
     },
     "jobs": {
@@ -475,74 +475,81 @@
         "totalTimeDriven": "Celkový čas jazdy"
       }
     },
-    "team": {
+    "dashboard": {
       "meta": {
-        "title": "Ovládací panel – Správa tímu",
-        "description": "Spravujte členov svojho tímu ich pridávaním, úpravou alebo odstraňovaním."
+        "title": "Dashboard",
+        "description": "Spravujte svoj tím a galériu na ovládacom paneli Drivershub."
       },
-      "form": {
-        "titleNewMember": "Pridať člena",
-        "titleEditMember": "Upraviť člena",
-        "username": "Meno člena",
-        "usernamePlaceholder": "Používateľské meno",
-        "profilePicture": "Profilový obrázok (voliteľné)",
-        "submitNewMember": "pridať člena",
-        "submitEditMember": "aktualizovať člena",
-        "cancelEditMember": "zrušiť",
-        "updating": "Aktualizácia člena...",
-        "saving": "Ukladanie člena...",
-        "loading": "Načítavanie členov tímu...",
-        "editMember": "Upraviť člena",
-        "deletePfp": "Odstrániť profilový obrázok",
-        "deleteMember": "Odstrániť člena",
-        "rolesDepartments": {
-          "title": "Správa rolí a oddelení",
-          "currentRoles": "Aktuálne roly",
-          "addRole": "Pridať rolu",
-          "department": "Vybrať oddelenie",
-          "role": "Vybrať rolu",
-          "loading": "Načítavanie rolí..."
+      "dashboard": {},
+      "team": {
+        "meta": {
+          "title": "Ovládací panel – Správa tímu",
+          "description": "Spravujte členov svojho tímu ich pridávaním, úpravou alebo odstraňovaním."
+        },
+        "form": {
+          "titleNewMember": "Pridať člena",
+          "titleEditMember": "Upraviť člena",
+          "username": "Meno člena",
+          "usernamePlaceholder": "Používateľské meno",
+          "profilePicture": "Profilový obrázok (voliteľné)",
+          "submitNewMember": "pridať člena",
+          "submitEditMember": "aktualizovať člena",
+          "cancelEditMember": "zrušiť",
+          "updating": "Aktualizácia člena...",
+          "saving": "Ukladanie člena...",
+          "loading": "Načítavanie členov tímu...",
+          "editMember": "Upraviť člena",
+          "deletePfp": "Odstrániť profilový obrázok",
+          "deleteMember": "Odstrániť člena",
+          "rolesDepartments": {
+            "title": "Správa rolí a oddelení",
+            "currentRoles": "Aktuálne roly",
+            "addRole": "Pridať rolu",
+            "department": "Vybrať oddelenie",
+            "role": "Vybrať rolu",
+            "loading": "Načítavanie rolí..."
+          }
+        },
+        "card": {
+          "title": "Členovia tímu"
+        },
+        "modal": {
+          "title": "Potvrdiť akciu",
+          "textmember": "Naozaj chceš odstrániť tohto člena?",
+          "textPicture": "Naozaj chceš odstrániť profilový obrázok tohto člena?",
+          "cancel": "zrušiť",
+          "confirm": "potvrdiť"
         }
       },
-      "card": {
-        "title": "Členovia tímu"
-      },
-      "modal": {
-        "title": "Potvrdiť akciu",
-        "textmember": "Naozaj chceš odstrániť tohto člena?",
-        "textPicture": "Naozaj chceš odstrániť profilový obrázok tohto člena?",
-        "cancel": "zrušiť",
-        "confirm": "potvrdiť"
-      }
-    },
-    "gallery": {
-      "meta": {
-        "title": "Ovládací panel – Spravovať galériu",
-        "description": "Spravujte položky galérie pridávaním, úpravou alebo odstraňovaním obrázkov."
-      },
-      "form": {
-        "titleNewItem": "Pridať položku galérie",
-        "titleEditItem": "Upraviť položku galérie",
-        "title": "Názov",
-        "titlePlaceholder": "Názov obrázka",
-        "image": "Obrázok",
-        "imageEdit": "Obrázok (ponechaj prázdne pre zachovanie aktuálneho)",
-        "submit": "pridať položku",
-        "submitEdit": "aktualizovať položku",
-        "cancel": "zrušiť",
-        "editGalleryItem": "Upraviť položku galérie",
-        "deleteGalleryItem": "Odstrániť položku galérie",
-        "updating": "Aktualizácia položky galérie...",
-        "saving": "Ukladanie položky galérie..."
-      },
-      "card": {
-        "title": "Položky galérie"
-      },
-      "modal": {
-        "title": "Potvrdiť akciu",
-        "text": "Naozaj chceš odstrániť túto položku galérie?",
-        "cancel": "zrušiť",
-        "confirm": "potvrdiť"
+      "gallery": {
+        "meta": {
+          "title": "Ovládací panel – Spravovať galériu",
+          "description": "Spravujte položky galérie pridávaním, úpravou alebo odstraňovaním obrázkov."
+        },
+        "form": {
+          "titleNewItem": "Pridať položku galérie",
+          "titleEditItem": "Upraviť položku galérie",
+          "title": "Názov",
+          "titlePlaceholder": "Názov obrázka",
+          "image": "Obrázok",
+          "imageEdit": "Obrázok (ponechaj prázdne pre zachovanie aktuálneho)",
+          "submit": "pridať položku",
+          "submitEdit": "aktualizovať položku",
+          "cancel": "zrušiť",
+          "editGalleryItem": "Upraviť položku galérie",
+          "deleteGalleryItem": "Odstrániť položku galérie",
+          "updating": "Aktualizácia položky galérie...",
+          "saving": "Ukladanie položky galérie..."
+        },
+        "card": {
+          "title": "Položky galérie"
+        },
+        "modal": {
+          "title": "Potvrdiť akciu",
+          "text": "Naozaj chceš odstrániť túto položku galérie?",
+          "cancel": "zrušiť",
+          "confirm": "potvrdiť"
+        }
       }
     },
     "profile": {
