@@ -34,6 +34,7 @@ export default function TeamForm({ dict }: Props) {
       submitting,
       editingId,
       error,
+      status,
       isRateLimited,
       rateLimitSecondsRemaining,
       success,
