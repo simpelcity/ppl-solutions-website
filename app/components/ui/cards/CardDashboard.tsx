@@ -4,17 +4,19 @@ import { Container, Card, Form, Row, Col, Dropdown } from 'react-bootstrap'
 import type { Dictionary } from "@/app/i18n"
 import useDashboard from "@/hooks/useDashboard";
 import { useState } from "react";
-import { BSButton } from "@/components";
+import { BSButton, ComingSoon } from "@/components";
 import { FaAngleDown } from "react-icons/fa6";
 import { useTheme } from 'next-themes'
+import { type Locale } from '@/i18n'
 
 type Props = {
   dict: Dictionary;
+  lang: Locale;
 }
 
 type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
-export default function CardDashboard({ dict }: Props) {
+export default function CardDashboard({ dict, lang }: Props) {
   const { data, loading, error, sendData } = useDashboard();
   const { resolvedTheme } = useTheme();
 
@@ -26,6 +28,8 @@ export default function CardDashboard({ dict }: Props) {
   const [status, setStatus] = useState('');
 
   const [isMethodDropdownOpen, setIsMethodDropdownOpen] = useState(false);
+  
+  const isComingSoon = true;
 
   const methods = [
     { method: "GET" },
@@ -52,6 +56,16 @@ export default function CardDashboard({ dict }: Props) {
     setTitle('');
     setUrl('');
     setMessage('');
+  }
+
+  if (isComingSoon) {
+    return (
+      <Container className="p-3 p-md-4 d-flex justify-content-center" fluid>
+        <Col xs={12} md={10} lg={6}>
+          <ComingSoon dict={dict} lang={lang} />
+        </Col>
+      </Container>
+    )
   }
 
   return (

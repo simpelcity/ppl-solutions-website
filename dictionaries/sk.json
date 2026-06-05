@@ -860,5 +860,13 @@
       "back": "vrátiť sa",
       "contact": "Kontaktujte nás"
     }
+  },
+  "ComingSoon": {
+    "title": "Tato funkce brzy přichází!",
+    "body": "Na této funkci ještě pracujeme, ale brzy bude k dispozici. Sledujte nás pro aktualizace a novinky.",
+    "buttons": {
+      "back": "vrátit se",
+      "contact": "Kontaktujte nás"
+    }
   }
 }
