@@ -90,6 +90,7 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     profile,
     loading,
     error,
+    status,
     success,
     submitting,
     updateProfile,
@@ -293,6 +294,12 @@ export default function CardProfileSettingsForm({ params, dict }: Props) {
     } finally {
       setPasswordChanging(false);
     }
+  }
+
+  if (error && status === 403) {
+    return (
+      <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
   }
 
   const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);

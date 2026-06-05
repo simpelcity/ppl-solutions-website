@@ -182,11 +182,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
     }
 
     return (
-      <Card className="px-0 rounded-1 border-0 shadow-sm">
-        <Card.Body className="p-4">
-          <p className="text-danger">{error}</p>
-        </Card.Body>
-      </Card>
+      <div className="text-danger text-center d-flex align-items-center justify-content-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
     )
   }
 

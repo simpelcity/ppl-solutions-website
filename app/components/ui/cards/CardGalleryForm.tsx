@@ -27,6 +27,7 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     submitting,
     editingId,
     error,
+    status,
     isRateLimited,
     rateLimitSecondsRemaining,
     success,
@@ -142,6 +143,12 @@ export default function CardGalleryForm({ dict }: CardGalleryFormProps) {
     setTargetId(null);
     setConfirmAction(null);
   };
+
+  if (error && status === 403) {
+    return (
+      <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
+  }
 
   return (
     <>

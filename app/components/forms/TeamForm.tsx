@@ -164,6 +164,12 @@ export default function TeamForm({ dict }: Props) {
       setConfirmAction(null);
     };
 
+  if (error && status === 403) {
+    return (
+      <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
+  }
+
   return (
     <>
       <Card className="px-0 rounded-1 border-0 shadow-sm bg-surface">

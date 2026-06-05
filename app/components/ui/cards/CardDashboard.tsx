@@ -4,18 +4,20 @@ import { Container, Card, Form, Row, Col, Dropdown } from 'react-bootstrap'
 import type { Dictionary } from "@/app/i18n"
 import useDashboard from "@/hooks/useDashboard";
 import { useState } from "react";
-import { BSButton } from "@/components";
+import { BSButton, ComingSoon } from "@/components";
 import { FaAngleDown } from "react-icons/fa6";
 import { useTheme } from 'next-themes'
+import { type Locale } from '@/i18n'
 
 type Props = {
   dict: Dictionary;
+  lang: Locale;
 }
 
 type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
-export default function CardDashboard({ dict }: Props) {
-  const { data, loading, error, sendData } = useDashboard();
+export default function CardDashboard({ dict, lang }: Props) {
+  const { data, loading, error, status, sendData } = useDashboard();
   const { resolvedTheme } = useTheme();
 
   const [title, setTitle] = useState('');
@@ -23,9 +25,11 @@ export default function CardDashboard({ dict }: Props) {
   const [message, setMessage] = useState('');
   const [requestUrl, setRequestUrl] = useState('');
   const [method, setMethod] = useState('');
-  const [status, setStatus] = useState('');
+  const [HTTPStatus, setHTTPStatus] = useState('');
 
   const [isMethodDropdownOpen, setIsMethodDropdownOpen] = useState(false);
+  
+  const isComingSoon = true;
 
   const methods = [
     { method: "GET" },
@@ -39,7 +43,7 @@ export default function CardDashboard({ dict }: Props) {
     e.preventDefault();
     
     try {
-      await sendData(title, url, message, requestUrl, method, status);
+      await sendData(title, url, message, requestUrl, method, HTTPStatus);
 
       resetForm();
     } catch (err: any) {
@@ -52,6 +56,22 @@ export default function CardDashboard({ dict }: Props) {
     setTitle('');
     setUrl('');
     setMessage('');
+  }
+
+  if (error && status === 403) {
+    return (
+      <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
+  }
+
+  if (isComingSoon) {
+    return (
+      <Container className="p-3 p-md-4 d-flex justify-content-center align-items-center" fluid>
+        <Col xs={12} md={10} lg={6}>
+          <ComingSoon dict={dict} lang={lang} />
+        </Col>
+      </Container>
+    )
   }
 
   return (
@@ -129,8 +149,8 @@ export default function CardDashboard({ dict }: Props) {
                     type="text"
                     className="rounded-1 border-0 shadow-sm"
                     placeholder="e.g. 200, 404, 500"
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
+                    value={HTTPStatus}
+                    onChange={(e) => setHTTPStatus(e.target.value)}
                   />
                 </Form.Group>
               </Col>

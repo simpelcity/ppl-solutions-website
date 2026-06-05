@@ -66,7 +66,7 @@ export default function TeamGrid({ lang, dict }: PageProps) {
       return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={() => fetchData(true)} retryLoading={loading} />;
     }
 
-    return <div className="text-danger">{dict.errors.team.ERROR_LOADING_TEAM} {error}</div>;
+    return <div className="text-danger fw-bold fs-4">{dict.errors.team.ERROR_LOADING_TEAM} {error}</div>;
   }
 
   const departmentsMap: Record<number, { name: string; members: { member: TeamMember; role: Role }[] }> = {}

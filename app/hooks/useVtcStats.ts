@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import type { Dictionary } from "@/app/i18n";
-import { useLang } from "@/hooks/useLang";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 interface GameStats {
@@ -23,7 +22,6 @@ interface VtcStats {
 }
 
 export function useVtcStats(dict: Dictionary) {
-  const lang = useLang();
   const isAdmin = useIsAdmin();
   const [stats, setStats] = useState<VtcStats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,7 +34,7 @@ export function useVtcStats(dict: Dictionary) {
 
   const fetchStatistics = async () => {
     try {
-      const res = await axios.get(`/api/statistics?lang=${lang}`);
+      const res = await axios.get('/api/statistics');
 
       if (res.status !== 200) {
         throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS);

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import type { Dictionary } from "@/app/i18n";
-import { useLang } from "@/hooks/useLang";
 import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 
 export interface TeamMember {
@@ -30,7 +29,6 @@ export interface MemberRole {
 }
 
 export function useTeam(dict: Dictionary) {
-  const lang = useLang();
   const [members, setMembers] = useState<TeamMember[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
   const [roles, setRoles] = useState<Role[]>([]);
@@ -42,6 +40,7 @@ export function useTeam(dict: Dictionary) {
 
   const [editingId, setEditingId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<number | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const { isRateLimited, rateLimitSecondsRemaining, clearRateLimitCountdown, applyRateLimit } = useRateLimitState();
 
@@ -61,13 +60,14 @@ export function useTeam(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.get(`/api/team/members?lang=${lang}`);
+      const res = await axios.get('/api/team/members');
       if (res.status !== 200) throw new Error(dict.errors.members.FAILED_TO_FETCH_MEMBERS, { cause: res.status });
       const data = res.data;
       setMembers(data.members || []);
     } catch (err: any) {
       const parsed = parseApiError(err, dict.errors.members.FAILED_TO_FETCH_MEMBERS);
       setError(parsed.message);
+      setStatus(err.status || null);
       applyRateLimit(parsed.rateLimit);
       throw new Error(parsed.message);
     }
@@ -78,13 +78,14 @@ export function useTeam(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.get(`/api/departments?lang=${lang}`);
+      const res = await axios.get('/api/departments');
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS, { cause: res.status });
       const data = res.data;
       setDepartments(data.departments || []);
     } catch (err: any) {
       const parsed = parseApiError(err, dict.errors.team.FAILED_TO_FETCH_DEPARTMENTS);
       setError(parsed.message);
+      setStatus(err.status || null);
       applyRateLimit(parsed.rateLimit);
       throw new Error(parsed.message);
     }
@@ -92,12 +93,13 @@ export function useTeam(dict: Dictionary) {
 
   async function fetchRoles() {
     try {
-      const res = await axios.get(`/api/roles?lang=${lang}`);
+      const res = await axios.get('/api/roles');
       const data = res.data;
       if (res.status === 200) setRoles(data.roles || []);
     } catch (err: any) {
       const parsed = parseApiError(err, dict.errors.roles.FAILED_TO_FETCH_ROLES);
       setError(parsed.message);
+      setStatus(err.status || null);
       applyRateLimit(parsed.rateLimit);
       throw new Error(parsed.message);
     }
@@ -108,12 +110,13 @@ export function useTeam(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.get(`/api/team/roles?memberId=${memberId}&lang=${lang}`);
+      const res = await axios.get(`/api/team/roles?memberId=${memberId}`);
       const data = res.data;
       if (res.status === 200) setMemberRoles(data.roles || []);
     } catch (err: any) {
       const parsed = parseApiError(err, dict.errors.roles.FAILED_TO_FETCH_ROLES);
       setError(parsed.message);
+      setStatus(err.status || null);
       applyRateLimit(parsed.rateLimit);
       throw new Error(parsed.message);
     }
@@ -130,7 +133,7 @@ export function useTeam(dict: Dictionary) {
       fd.append("name", name);
       if (file) fd.append("file", file);
 
-      const res = await axios.post(`/api/team?lang=${lang}`, fd, {
+      const res = await axios.post('/api/team', fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_ADD_TEAM_MEMBER, { cause: res.status });
@@ -159,7 +162,7 @@ export function useTeam(dict: Dictionary) {
       fd.append("name", name);
       if (file) fd.append("file", file);
 
-      const res = await axios.put(`/api/team?lang=${lang}`, fd, {
+      const res = await axios.put('/api/team', fd, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_UPDATE_TEAM_MEMBER, { cause: res.status });
@@ -183,7 +186,7 @@ export function useTeam(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.delete(`/api/team?lang=${lang}`, { data: { id } });
+      const res = await axios.delete('/api/team', { data: { id } });
       if (res.status !== 200) throw new Error(dict.errors.team.FAILED_TO_DELETE_TEAM_MEMBER, { cause: res.status });
 
       setSuccess(dict.success.team.TEAM_MEMBER_DELETED);
@@ -202,7 +205,7 @@ export function useTeam(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.patch(`/api/team?lang=${lang}`, { id });
+      const res = await axios.patch('/api/team', { id });
       if (res.status !== 200) throw new Error(dict.errors.profile.profilePicture.FAILED_TO_DELETE_PROFILE_PICTURE, { cause: res.status });
 
       setSuccess(dict.success.profile.profilePicture.PROFILE_PICTURE_DELETED);
@@ -220,7 +223,7 @@ export function useTeam(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.post(`/api/team/roles?lang=${lang}`, {
+      const res = await axios.post('/api/team/roles', {
         team_member_id: memberId,
         department_id: departmentId,
         role_id: roleId,
@@ -243,7 +246,7 @@ export function useTeam(dict: Dictionary) {
     clearRateLimitCountdown();
 
     try {
-      const res = await axios.delete(`/api/team/roles?lang=${lang}`, {
+      const res = await axios.delete('/api/team/roles', {
         data: {
           team_member_id: memberId,
           department_id: departmentId,
@@ -272,6 +275,7 @@ export function useTeam(dict: Dictionary) {
     submitting,
     editingId,
     error,
+    status,
     isRateLimited,
     rateLimitSecondsRemaining,
     success,

@@ -48,7 +48,7 @@ export default async function DashboardTeamPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-theme">
-          <CardTeamForm dict={dict} />
+          <CardTeamForm dict={dict} lang={lang} />
         </section>
       </main>
     </>

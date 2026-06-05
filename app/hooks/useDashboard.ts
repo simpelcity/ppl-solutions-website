@@ -48,12 +48,13 @@ export default function useDashboard() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<number | null>(null);
 
-  const sendData = async (title: string, url: string, message: string, requestUrl: string, method: string, status: string) => {
+  const sendData = async (title: string, url: string, message: string, requestUrl: string, method: string, HTTPStatus: string) => {
     setLoading(true);
     setError(null);
 
-    const statusNumber = Number(status);
+    const statusNumber = Number(HTTPStatus);
     const errorName = statusToErrorName[statusNumber];
 
     try {
@@ -68,7 +69,7 @@ export default function useDashboard() {
             [${formatTimestamp(new Date())}]
 URL: ${requestUrl}
 Method: ${method}
-Status: ${status}
+Status: ${HTTPStatus}
 Error: ${errorName}
 Message: ${message}
 -----------------------------
@@ -90,11 +91,12 @@ Message: ${message}
     } catch (err: any) {
       const message = err?.response?.data?.error || err?.message || 'Failed to send dashboard data';
       setError(message);
+      setStatus(err?.response?.status || null);
       throw err;
     } finally {
       setLoading(false);
     }
   };
 
-  return { data, loading, error, sendData };
+  return { data, loading, error, status, sendData };
 }

@@ -20,7 +20,7 @@ export default function TableStats({ dict }: Props) {
       return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryStats} retryLoading={loading} />;
     }
 
-    return <div className="text-danger text-center fw-bold py-3">{dict.errors.GENERAL_ERROR}: {error}</div>
+    return <div className="text-danger text-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
   }
 
   const numberWithCommas = (x: number) => {

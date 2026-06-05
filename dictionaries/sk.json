@@ -681,6 +681,9 @@
       "TOO_MANY_REQUESTS": "Limit požiadaviek bol prekročený. Skúste to znova o {seconds} sekúnd.",
       "TRY_AGAIN": "Skúsiť znova"
     },
+    "cors": {
+      "ORIGIN_NOT_ALLOWED": "Pôvod nie je povolený"
+    },
     "events": {
       "NO_EVENTS": "Žiadne nadchádzajúce udalosti",
       "NA": "Nie je k dispozícii",
@@ -865,6 +868,14 @@
     "body": "Na našej strane sa niečo pokazilo, skúste to prosím neskôr znova.",
     "buttons": {
       "back": "vrátiť sa",
+      "contact": "Kontaktujte nás"
+    }
+  },
+  "ComingSoon": {
+    "title": "Tato funkce brzy přichází!",
+    "body": "Na této funkci ještě pracujeme, ale brzy bude k dispozici. Sledujte nás pro aktualizace a novinky.",
+    "buttons": {
+      "back": "vrátit se",
       "contact": "Kontaktujte nás"
     }
   }

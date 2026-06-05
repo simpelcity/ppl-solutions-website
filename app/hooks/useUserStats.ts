@@ -5,7 +5,6 @@ import { useAuth } from "@/lib";
 import axios from "axios";
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import type { Dictionary } from "@/app/i18n";
-import { useLang } from '@/hooks/useLang'
 
 type Job = any;
 type RateLimitPayload = {
@@ -73,7 +72,6 @@ interface GameStats {
 }
 
 export function useUserStats(dict: Dictionary) {
-  const lang = useLang();
   const { session } = useAuth();
   const isAdmin = useIsAdmin();
   const [steamID, setSteamID] = useState<string | null>(null);
@@ -92,7 +90,7 @@ export function useUserStats(dict: Dictionary) {
   };
 
   const fetchMembers = async () => {
-    const res = await axios.get(`/api/members?lang=${lang}`);
+    const res = await axios.get('/api/members');
     if (res.status !== 200) throw new Error(dict.errors.drivers.FAILED_TO_FETCH_DRIVERS, { cause: res.status });
     const data = res.data;
     return data.members || data || [];
@@ -110,7 +108,7 @@ export function useUserStats(dict: Dictionary) {
 
   const fetchScenarios = async () => {
     const sid = await ensureSteamID();
-    const res = await axios.post(`/api/scenarios?lang=${lang}`, { steamID: sid });
+    const res = await axios.post('/api/scenarios', { steamID: sid });
     if (res.status !== 200) throw new Error(dict.errors.userStats.FAILED_TO_FETCH_SCENARIOS, { cause: res.status });
     return res.data;
   };
@@ -118,7 +116,7 @@ export function useUserStats(dict: Dictionary) {
   const fetchStatistics = async () => {
     const sid = await ensureSteamID();
     try {
-      const res = await axios.post(`/api/statistics/user?lang=${lang}`, { steamID: sid });
+      const res = await axios.post('/api/statistics/user', { steamID: sid });
       if (res.status !== 200) throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS, { cause: res.status });
       const data = res.data;
       return data.jobs;

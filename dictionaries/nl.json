@@ -681,6 +681,9 @@
       "TOO_MANY_REQUESTS": "Aanvraaglimiet overschreden. Probeer het opnieuw over {seconds} seconden.",
       "TRY_AGAIN": "Probeer opnieuw"
     },
+    "cors": {
+      "ORIGIN_NOT_ALLOWED": "Oorsprong niet toegestaan"
+    },
     "events": {
       "NO_EVENTS": "Geen aankomende evenementen",
       "NA": "Niet van toepassing",
@@ -863,6 +866,14 @@
   "unavailable": {
     "title": "Deze functie is tijdelijk niet beschikbaar.",
     "body": "Er is iets misgegaan aan onze kant, probeer het later opnieuw.",
+    "buttons": {
+      "back": "Ga terug",
+      "contact": "Contacteer ons"
+    }
+  },
+  "ComingSoon": {
+    "title": "Deze functie is binnenkort beschikbaar.",
+    "body": "We werken er hard aan om deze functie zo snel mogelijk beschikbaar te maken. Blijf op de hoogte voor updates!",
     "buttons": {
       "back": "Ga terug",
       "contact": "Contacteer ons"

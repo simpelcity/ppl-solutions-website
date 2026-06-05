@@ -49,6 +49,7 @@ export default function CardProfile({ params, dict }: Props) {
     profile,
     loading,
     error,
+    status,
     success,
     submitting,
     updateProfile,
@@ -68,8 +69,13 @@ export default function CardProfile({ params, dict }: Props) {
   // adminLog(user)
 
   if (loading) return <Loader dict={dict} />;
+  if (error && status === 403) {
+    return (
+      <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
+    )
+  }
   if (!loading && (!profile || Object.keys(profile).length === 0)) {
-    return <p className="text-danger fw-bold">{dict.errors.profile.profile.PROFILE_NOT_FOUND}</p>;
+    return <p className="text-danger fw-bold d-flex align-items-center fs-4">{dict.errors.GENERAL_ERROR}: {dict.errors.profile.profile.PROFILE_NOT_FOUND}</p>;
   }
 
   const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", fetchedProfile?.user.user_metadata.display_name);
