@@ -86,8 +86,8 @@ Message: ${message}
       if (res.status !== 200) throw new Error('Failed to send dashboard data');
 
       const data = res.data;
-      setData(data);
-      return data;
+      setData(data.success);
+      return data.success;
     } catch (err: any) {
       const message = err?.response?.data?.error || err?.message || 'Failed to send dashboard data';
       setError(message);

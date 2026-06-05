@@ -1,6 +1,7 @@
 @use '../variables' as *;
 
-#method-dropdown .dropdown-toggle::after {
+#method-dropdown .dropdown-toggle::after,
+.message-type-dropdown .dropdown-toggle::after {
   content: none;
 }
 
