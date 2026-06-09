@@ -65,9 +65,18 @@
   color: var(--color-text) !important;
 }
 
+.blurple {
+  color: $discord !important;
+}
+
 .bg-founder {
   background: #009a86 !important;
   color: $light !important;
+}
+
+.mention-founder {
+  background-color: shift-color(#009a855b, 20%) !important;
+  color: #009a86 !important;
 }
 
 .bg-ceo {
@@ -75,9 +84,28 @@
   color: $dark !important;
 }
 
+[data-bs-theme="dark"] {
+  .mention-ceo {
+    background-color: shift-color(#ffdd005b, 20%) !important;
+    color: #ffdd00 !important;
+  }
+}
+
+[data-bs-theme="light"] {
+  .mention-ceo {
+    background-color: shift-color(#ffdd005b, -60%) !important;
+    color: #ffdd00 !important;
+  }
+}
+
 .bg-cao {
   background: #00f867 !important;
   color: $dark !important;
+}
+
+.mention-cao {
+  background-color: shift-color(#00f8675b, 20%) !important;
+  color: #00f867 !important;
 }
 
 .bg-coo {
@@ -85,9 +113,19 @@
   color: $dark !important;
 }
 
+.mention-coo {
+  background-color: shift-color(#00e1ff5b, 20%) !important;
+  color: #00e1ff !important;
+}
+
 .bg-cm {
   background: #ff0e0e !important;
   color: $light !important;
+}
+
+.mention-cm {
+  background-color: shift-color(#ff0e0e5b, 20%) !important;
+  color: #ff0e0e !important;
 }
 
 .bg-hrd,
@@ -96,9 +134,21 @@
   color: $light !important;
 }
 
+.mention-hrd,
+.mention-hr {
+  background-color: shift-color(#05493a5b, 20%) !important;
+  color: #05493a !important;
+}
+
 .bg-rtd,
 .bg-rt {
   background: #ff00a1 !important;
+}
+
+.mention-rtd,
+.mention-rt {
+  background-color: shift-color(#ff00a15b, 20%) !important;
+  color: #ff00a1 !important;
 }
 
 .bg-etm,
@@ -107,9 +157,21 @@
   color: $light !important;
 }
 
+.mention-etm,
+.mention-et {
+  background-color: shift-color(#0ba5005b, 20%) !important;
+  color: #0ba500 !important;
+}
+
 .bg-mtm,
 .bg-mt {
   background: #dd00ff !important;
+}
+
+.mention-mtm,
+.mention-mt {
+  background-color: shift-color(#dd00ff5b, 20%) !important;
+  color: #dd00ff !important;
 }
 
 .bg-ccm,
@@ -117,9 +179,20 @@
   background: #ccff00 !important;
 }
 
+.mention-ccm,
+.mention-cc {
+  background-color: shift-color(#ccff005b, 20%) !important;
+  color: #ccff00 !important;
+}
+
 .bg-staff {
   background-color: #810022 !important;
   color: $light !important;
+}
+
+.mention-staff {
+  background-color: shift-color(#8100225b, 20%) !important;
+  color: #810022 !important;
 }
 
 .bg-driver {
@@ -127,9 +200,19 @@
   color: $light !important;
 }
 
+.mention-driver {
+  background-color: shift-color(#009a865b, 20%) !important;
+  color: #009a86 !important;
+}
+
 .bg-member {
   background-color: #755b94 !important;
   color: $light !important;
+}
+
+.mention-member {
+  background-color: shift-color(#755b945b, 20%) !important;
+  color: #755b94 !important;
 }
 
 .bg-ping {
@@ -137,7 +220,27 @@
   color: $light !important;
 }
 
+.mention-ping {
+  background-color: shift-color(#1f8b4c5b, 20%) !important;
+  color: #1f8b4c !important;
+}
+
 .bg-theme {
   background-color: var(--color-surface-darker) !important;
   color: var(--color-text) !important;
+}
+
+.mention-theme {
+  background-color: shift-color(#f5f5f55b, 10%) !important;
+  color: shift-color(#f5f5f5, -50%) !important;
+}
+
+.bg-blurple {
+  background-color: $discord !important;
+  color: var(--color-text) !important;
+}
+
+.mention-blurple {
+  background-color: shift-color(hsla(234.935, calc(1*85.556%), 64.706%, 40%), 10%) !important;
+  color: shift-color(hsla(234.935, calc(1*85.556%), 64.706%, 50%), -50%) !important;
 }

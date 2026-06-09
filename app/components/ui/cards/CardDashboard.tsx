@@ -1,16 +1,15 @@
 'use client'
 
-import { Container, Card, Form, Row, Col, Dropdown, ButtonGroup, Image } from 'react-bootstrap'
+import { Container, Card, Form, Row, Col, Dropdown, ButtonGroup, Image, Badge } from 'react-bootstrap'
 import type { Dictionary } from "@/app/i18n"
 import useDashboard from "@/hooks/useDashboard";
 import { useState } from "react";
-import { BSButton, ComingSoon } from "@/components";
+import { BSButton, ComingSoon, BSLink } from "@/components";
 import { FaAngleDown } from "react-icons/fa6";
 import { useTheme } from 'next-themes'
 import { type Locale } from '@/i18n'
 import '@/styles/ui/Roles.scss'
 import Markdown from 'react-markdown'
-import ReactMarkdown from 'react-markdown'
 
 type Props = {
   dict: Dictionary;
@@ -18,6 +17,76 @@ type Props = {
 }
 
 type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+
+const DISCORD_TIMESTAMP_REGEX = /<t:(\d+)(?::([tTdDfFR]))?>/g;
+
+function formatRelativeTime(date: Date, locale: string) {
+  const diffInSeconds = Math.round((date.getTime() - Date.now()) / 1000);
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
+
+  const ranges: Array<[Intl.RelativeTimeFormatUnit, number]> = [
+    ["year", 31536000],
+    ["month", 2592000],
+    ["week", 604800],
+    ["day", 86400],
+    ["hour", 3600],
+    ["minute", 60],
+    ["second", 1],
+  ];
+
+  for (const [unit, secondsInUnit] of ranges) {
+    if (Math.abs(diffInSeconds) >= secondsInUnit || unit === "second") {
+      return rtf.format(Math.round(diffInSeconds / secondsInUnit), unit);
+    }
+  }
+
+  return rtf.format(diffInSeconds, "second");
+}
+
+function formatDiscordTimestampTag(input: string, locale: string) {
+  return input.replace(DISCORD_TIMESTAMP_REGEX, (match, unixRaw, styleRaw) => {
+    const unixSeconds = Number(unixRaw);
+    if (!Number.isFinite(unixSeconds)) return match;
+
+    const style = (styleRaw || "f") as "t" | "T" | "d" | "D" | "f" | "F" | "R";
+    const date = new Date(unixSeconds * 1000);
+    if (Number.isNaN(date.getTime())) return match;
+
+    switch (style) {
+      case "t":
+        return date.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit" });
+      case "T":
+        return date.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit", second: "2-digit" });
+      case "d":
+        return date.toLocaleDateString(locale, { year: "numeric", month: "2-digit", day: "2-digit" });
+      case "D":
+        return date.toLocaleDateString(locale, { year: "numeric", month: "long", day: "numeric" });
+      case "f":
+        return date.toLocaleString(locale, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: false
+        });
+      case "F":
+        return date.toLocaleString(locale, {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        });
+      case "R":
+        return formatRelativeTime(date, locale);
+      default:
+        return match;
+    }
+  });
+}
 
 export default function CardDashboard({ dict, lang }: Props) {
   const { data, loading, error, status, markdownPreview, sendAnnouncement, sendError, sendEmbed, clearFeedback } = useDashboard();
@@ -55,8 +124,18 @@ export default function CardDashboard({ dict, lang }: Props) {
   const [announcementFooterEmojiTag, setAnnouncementFooterEmojiTag] = useState<string | null>(null);
 
   const [formError, setFormError] = useState<string | null>(null);
-  const [formSuccess, setFormSuccess] = useState<string | null>(null);
 
+  const [embedFormMessageError, setEmbedFormMessageError] = useState<string | null>(null);
+
+  const [errorFormRequestUrlError, setErrorFormRequestUrlError] = useState<string | null>(null);
+  const [errorFormMethodError, setErrorFormMethodError] = useState<string | null>(null);
+  const [errorFormHTTPStatusError, setErrorFormHTTPStatusError] = useState<string | null>(null);
+  const [errorFormMessageError, setErrorFormMessageError] = useState<string | null>(null);
+
+  const [announcementFormMentionTagError, setAnnouncementFormMentionTagError] = useState<string | null>(null);
+  const [announcementFormTitleError, setAnnouncementFormTitleError] = useState<string | null>(null);
+  const [announcementFormFooterError, setAnnouncementFormFooterError] = useState<string | null>(null);
+  const [announcementFormMessageError, setAnnouncementFormMessageError] = useState<string | null>(null);
 
   const [messageType, setMessageType] = useState<"embed" | "error" | "announcement" | null>(null);
 
@@ -96,7 +175,7 @@ export default function CardDashboard({ dict, lang }: Props) {
     { label: 'Driver🚚', color: 'driver', role_id: '1282026105238327317' },
     { label: 'Member👤', color: 'member', role_id: '1282224309741293610' },
     { label: 'News Ping', color: 'ping', role_id: '1285587879896027187' },
-    { label: 'everyone', color: 'theme', role_id: 'everyone' },
+    { label: 'everyone', color: 'blurple', role_id: 'everyone' },
   ];
 
   const announcementFooterRoleTags = [
@@ -129,6 +208,21 @@ export default function CardDashboard({ dict, lang }: Props) {
     { emoji_name: ':ets2:', emoji_id: '1283513953439322132' },
   ];
 
+  const statusToErrorName: Record<number, string> = {
+    400: "BAD_REQUEST",
+    401: "UNAUTHORIZED",
+    403: "FORBIDDEN",
+    404: "NOT_FOUND",
+    405: "METHOD_NOT_ALLOWED",
+    409: "CONFLICT",
+    422: "UNPROCESSABLE_ENTITY",
+    429: "TOO_MANY_REQUESTS",
+    500: "INTERNAL_SERVER_ERROR",
+    502: "BAD_GATEWAY",
+    503: "SERVICE_UNAVAILABLE",
+    504: "GATEWAY_TIMEOUT",
+  };
+
   const selectedAnnouncementMentionTag = announcementMentionTags.find((tag) => tag.role_id === announcementMentionTag);
   const selectedFooterRoleTag = announcementFooterRoleTags.find((role) => role.role_id === announcementFooterRoleTag);
   const selectedFooterEmojiTag = announcementFooterEmojiTags.find((emoji) => emoji.emoji_id === announcementFooterEmojiTag);
@@ -153,6 +247,13 @@ export default function CardDashboard({ dict, lang }: Props) {
           message: errorEmbedMessage,
         }
 
+        if (!errorEmbedRequestUrl) setErrorFormRequestUrlError('Request URL is required');
+        if (!errorEmbedMethod) setErrorFormMethodError('HTTP Method is required');
+        if (!errorEmbedHTTPStatus) setErrorFormHTTPStatusError('HTTP Status is required');
+        if (!errorEmbedMessage) setErrorFormMessageError('Message is required');
+
+        if (!errorEmbedRequestUrl || !errorEmbedMethod || !errorEmbedHTTPStatus || !errorEmbedMessage) return;
+
         await sendError(errorsFormData)
 
         resetErrorForm();
@@ -172,6 +273,11 @@ export default function CardDashboard({ dict, lang }: Props) {
           footerRoleTag: announcementFooterRoleTag,
           footerEmojiTag: announcementFooterEmojiTag,
         }
+
+        if (!announcementMentionTag) setAnnouncementFormMentionTagError('Announcement mention tag is required');
+        if (!announcementTitle) setAnnouncementFormTitleError('Announcement title is required');
+        if (!announcementFooter) setAnnouncementFormFooterError('Announcement footer is required');
+        if (!announcementMessage) setAnnouncementFormMessageError('Announcement message is required');
 
         await sendAnnouncement(announcementsFormData);
 
@@ -219,26 +325,18 @@ export default function CardDashboard({ dict, lang }: Props) {
     setFormError(null);
   }
 
-  // console.log(markdownPreview)
-  // const jsonData = typeof markdownPreview?.config?.data === 'string' ? JSON.parse(markdownPreview.config.data) : null;
-  // console.log(jsonData)
-  // const embedData = jsonData?.embeds && Array.isArray(jsonData.embeds) && jsonData.embeds.length > 0 ? jsonData.embeds[0] : null;
-  // const roleIdRegex = /<@&(\d+)>/g;
-  // const roleIdsInContent = [];
-  // let match;
-  // if (jsonData?.content) {
-  //   while ((match = roleIdRegex.exec(jsonData.content)) !== null) {
-  //     roleIdsInContent.push(match[1]);
-  //   }
-  // }
-  // console.log('Extracted role IDs from content:', roleIdsInContent);
-  console.log()
-
   if (error?.success === false && status === 403) {
     return (
       <div className="text-danger text-center d-flex align-items-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error.message}</div>
     )
   }
+
+  const statusNumber = Number(errorEmbedHTTPStatus);
+
+  const locale = lang || "en";
+  const currentFullTime = formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, lang);
+  const previewAnnouncement = formatDiscordTimestampTag(`**${announcementTitle}**\n\n${announcementMessage}\n\n*${announcementFooter}*`, locale);
+  const previewEmbedMessage = formatDiscordTimestampTag(embedMessage, locale);
 
   return (
     <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
@@ -264,6 +362,7 @@ export default function CardDashboard({ dict, lang }: Props) {
         </Card.Header>
 
         <Card.Body className="p-3 p-md-4">
+          <p className="text-gray mb-3 text-center">{dict.contact.form.required}</p>
           {loading && <p>Loading...</p>}
           {data && <p className="text-success">Message sent successfully!</p>}
           {error && <p className="text-danger">Error: {error.message}</p>}
@@ -273,7 +372,7 @@ export default function CardDashboard({ dict, lang }: Props) {
               <Row className="mb-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorUsername">
-                    <Form.Label className="fw-bold">Webhook Username</Form.Label>
+                    <Form.Label className="fw-bold">Webhook Username (optional)</Form.Label>
                     <Form.Control
                       type="text"
                       name="username"
@@ -284,11 +383,24 @@ export default function CardDashboard({ dict, lang }: Props) {
                       />
                   </Form.Group>
                 </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="errorUsernameIcon">
+                    <Form.Label className="fw-bold">Webhook Username Icon (optional)</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="usernameIcon"
+                      placeholder="https://example.com/icon.png"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={errorWebhookUsernameIcon}
+                      onChange={(e) => setErrorWebhookUsernameIcon(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
               </Row>
               <Row className="mb-3">
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formUrl">
-                    <Form.Label className="fw-bold">Request URL</Form.Label>
+                    <Form.Label className="fw-bold">Request URL <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       type="text"
                       name="url"
@@ -296,18 +408,17 @@ export default function CardDashboard({ dict, lang }: Props) {
                       className="rounded-1 border-0 shadow-sm"
                       value={errorEmbedRequestUrl}
                       onChange={(e) => setErrorEmbedRequestUrl(e.target.value)}
-                      required
                     />
                   </Form.Group>
+                  {errorFormRequestUrlError && <Form.Text className="text-danger">{errorFormRequestUrlError}</Form.Text>}
                 </Col>
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formMethod">
-                    <Form.Label className="fw-bold">HTTP Method</Form.Label>
+                    <Form.Label className="fw-bold">HTTP Method <span className="text-danger">*</span></Form.Label>
                     <Form.Select
                       value={errorEmbedMethod}
                       onChange={(e) => setErrorEmbedMethod(e.target.value)}
                       className={`rounded-1 border-0 shadow-sm d-flex ${errorEmbedMethod ? 'text-theme' : 'text-placeholder'}`}
-                      required
                     >
                       <option value="" className="py-1 px-3 text-placeholder" disabled>Select method</option>
                       {methods.map((m) => (
@@ -318,7 +429,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formStatus">
-                    <Form.Label className="fw-bold">HTTP Status</Form.Label>
+                    <Form.Label className="fw-bold">HTTP Status <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       type="text"
                       className="rounded-1 border-0 shadow-sm"
@@ -331,7 +442,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                 <Col xs={12} md={6} xl={4}></Col>
               </Row>
               <Form.Group controlId="formMessage" className="mb-3">
-                <Form.Label className="fw-bold">Message</Form.Label>
+                <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
                 <Form.Control
                   as="textarea"
                   name="message"
@@ -340,7 +451,6 @@ export default function CardDashboard({ dict, lang }: Props) {
                   className="rounded-1 border-0 shadow-sm"
                   value={errorEmbedMessage}
                   onChange={(e) => setErrorEmbedMessage(e.target.value)}
-                  required
                 />
               </Form.Group>
               <BSButton variant="primary" type="submit">Send to Discord</BSButton>
@@ -481,6 +591,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                     className="rounded-1 border-0 shadow-sm"
                     value={announcementMessage}
                     onChange={(e) => setAnnouncementMessage(e.target.value)}
+                    onInvalid={(e) => setAnnouncementFormMessageError('Announcement message is required')}
                     required
                   />
                 </Form.Group>
@@ -488,7 +599,6 @@ export default function CardDashboard({ dict, lang }: Props) {
               </Form>
           ) : (
             <Form onSubmit={handleSubmit} method="post">
-                  <p className="text-gray mb-3 mb-md-4 text-center">{dict.contact.form.required}</p>
               <Row className="mb-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="webhookUsername">
@@ -563,39 +673,170 @@ export default function CardDashboard({ dict, lang }: Props) {
           )}
         </Card.Body>
       </Card>
-
+      
       <Card className="rounded-1 border-0 shadow-sm px-0 bg-surface text-theme">
         <Card.Header className="bg-surface p-3 p-md-4 border-bottom">
           <Card.Title className="fs-3 m-0">Preview</Card.Title>
         </Card.Header>
 
         <Card.Body className="p-3 p-md-4">
-          {messageType === 'announcement' && (
-            <Markdown>
-              {`**${embedTitle}**\n\n${embedMessage}`}
-            </Markdown>
-          )}
-          <div className="discord-embed d-flex my-2 text-theme">
-            <div className="discord-left-border" style={{ backgroundColor: `#009a86` }}></div>
-            <div className="discord-embed-root d-grid">
-              <div className="discord-embed-wrapper bg-surface-darker d-grid">
-                <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
-                  <div className="discord-embed-title mt-2 fw-bold">
-                    <span>{announcementTitle}</span>
+          {messageType === 'error' ? (
+            <>
+              <div className="discord-message-error">
+                <div className="discord-message-inner d-flex">
+                  <div className="discord-author-avatar me-3 mt-1">
+                    <Image src={errorWebhookUsernameIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png'} width={40} height={40} roundedCircle />
                   </div>
+                  <div className="discord-message-content">
+                    <span className="discord-author-info d-inline-flex align-items-center">
+                      <span className="discord-author-username">{errorWebhookUsername || 'PPL Solutions VTC Error Logger'}</span>
+                      <Badge bg="discord" className="discord-application-tag small py-1 px-2 ms-1">APP</Badge>
+                    </span>
 
-                  <div className="discord-embed-description mt-2">
+                    <span className="discord-message-timestamp ms-2 text-gray small">
+                      {formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:t>`, 'nl')}
+                    </span>
+
+                    <div className="discord-embed d-flex my-2 text-theme my-2">
+                      <div className="discord-left-border" style={{ backgroundColor: `#009a86` }}></div>
+
+                      <div className="discord-embed-root d-grid rounded-1">
+                        <div className="discord-embed-wrapper bg-surface-darker d-grid rounded-1 border border-1  border-start-0 rounded-start-0">
+                          <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
+                            <div className="discord-embed-author d-flex align-items-center mt-2">
+                              <Image src={errorEmbedAuthorIcon || 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg'} className="me-1" width={24} height={24} roundedCircle />
+                              <small className="fw-bold">{errorEmbedAuthor || 'Simpelcity'}</small>
+                            </div>
+
+                            <div className="discord-embed-title mt-2 fw-bold">
+                              <BSLink variant="discord" href={errorEmbedTitleUrl || 'https://ppl-solutions.vercel.app/drivershub/dashboard'} target="_blank" classes="fw-bold">{errorEmbedTitle || 'New Dashboard Error'}</BSLink>
+                            </div>
+
+                            <div className="discord-embed-description mt-2 d-flex flex-column">
+                              <strong className="bg-surface px-1 rounded-1">{formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, 'en')}</strong>
+
+                              <div className="">
+                                <span>URL:</span>{" "}
+                                <BSLink variant="discord" href={errorEmbedRequestUrl} target="_blank">
+                                  {errorEmbedRequestUrl}
+                                </BSLink>
+                              </div>
+
+                              <span>Method: {errorEmbedMethod}</span>
+
+                              <span>Status: {errorEmbedHTTPStatus}</span>
+
+                              <span>Error: {statusToErrorName[statusNumber]}</span>
+
+                              <div>
+                                <span>Message:</span>{" "}
+                                {errorEmbedMessage.split("\\n").map((line, i) => (
+                                  <span key={i}>
+                                    {line}
+                                    <br />
+                                  </span>
+                                ))}
+                              </div>
+                              -----------------------------
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : messageType === 'announcement' ? (
+            <div className="discord-message-announcement py-1">
+              <div className="discord-message-inner d-flex">
+                <div className="discord-author-avatar me-3 mt-1 ms-3">
+                  <Image src={embedWebhookUsernameIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png'} width={40} height={40} roundedCircle />
+                </div>
+                <div className="discord-message-content">
+                  <span className="discord-author-info d-inline-flex align-items-center">
+                    <span className="discord-author-username">{embedWebhookUsername || 'PPL Solutions VTC'}</span>
+                    <Badge bg="discord" className="discord-application-tag small py-1 px-2 ms-1">APP</Badge>
+                  </span>
+
+                  <span className="discord-message-timestamp ms-2 text-gray small">
+                    {formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:t>`, 'nl')}
+                  </span>
+
+                  <div className="discord-message-body d-flex flex-column">
+                    <h1 className="">{announcementTitle}</h1>
+
+                    <div className="d-inline-block">
+                      <span className="">{`Greetings `}</span>
+                      <span className={`px-1 rounded-1 mention-${selectedAnnouncementMentionTag?.color}`}>{`@${selectedAnnouncementMentionTag?.label}`}</span>
+                      <Image src={`https://cdn.discordapp.com/emojis/1288523924094845030`} width={24} height={24} />
+                    </div><br />
+                    
                     {announcementMessage.split("\\n").map((line, i) => (
                       <span key={i}>
                         {line}
                         <br />
                       </span>
-                    ))}
+                    ))}<br />
+                    
+                    <div className="d-flex flex-column">
+                      <span className="">{announcementFooter}</span>
+                      <div className="">
+                        <span className={`mention-${selectedFooterRoleTag?.color} px-1 rounded-1`} style={{  }}>{`@${selectedFooterRoleTag?.label}`}</span>
+                        <Image src={`https://cdn.discordapp.com/emojis/${selectedFooterEmojiTag?.emoji_id}`} width={24} height={24} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="discord-message-embed">
+              <div className="discord-message-inner d-flex">
+                <div className="discord-author-avatar me-3 mt-1">
+                  <Image src={embedWebhookUsernameIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png'} width={40} height={40} roundedCircle />
+                </div>
+                <div className="discord-message-content">
+                  <span className="discord-author-info d-inline-flex align-items-center">
+                    <span className="discord-author-username">{embedWebhookUsername || 'PPL Solutions VTC'}</span>
+                    <Badge bg="discord" className="discord-application-tag small py-1 px-2 ms-1">APP</Badge>
+                  </span>
+
+                  <span className="discord-message-timestamp ms-2 text-gray small">
+                    {formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:t>`, 'nl')}
+                  </span>
+
+                  <div className="discord-embed d-flex my-2 text-theme my-2">
+                    <div className="discord-left-border" style={{ backgroundColor: `#009a86` }}></div>
+
+                    <div className="discord-embed-root d-grid">
+                          <div className="discord-embed-wrapper bg-surface-darker d-grid rounded-1 border border-1  border-start-0 rounded-start-0">
+                        <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
+                          <div className="discord-embed-author d-flex align-items-center mt-2">
+                            <Image src={embedAuthorIcon || 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg'} className="me-1" width={24} height={24} roundedCircle />
+                            <small className="fw-bold">{embedAuthor || 'Simpelcity'}</small>
+                          </div>
+
+                          <div className="discord-embed-title mt-2 fw-bold">
+                            <BSLink variant="discord" href={embedTitleUrl || 'https://ppl-solutions.vercel.app/drivershub/dashboard'} target="_blank" classes="fw-bold">{embedTitle || 'New Dashboard Message'}</BSLink>
+                          </div>
+
+                          <div className="discord-embed-description mt-2 d-flex flex-column">
+                            {embedMessage.split("\\n").map((line, i) => (
+                              <span key={i}>
+                                {line}
+                                <br />
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </Card.Body>
       </Card>
     </Container>

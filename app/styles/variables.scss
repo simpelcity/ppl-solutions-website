@@ -46,9 +46,9 @@ $input-color: var(--color-text);
 $modal-content-bg: var(--color-surface);
 /* --- BUTTONS --- */
 $btn-transition: 0.4s ease;
-
+/* --- BREADCRUMBS --- */
 $breadcrumb-margin-bottom: 0;
-
+/* --- SHADOWS --- */
 $box-shadow: 0 0.5rem 1rem #7b7b7b26;
 
 @import "bootstrap";

@@ -80,3 +80,25 @@ option:last-of-type {
   border-radius: 4px 0 0 4px;
   width: 4px;
 }
+
+.bg-discord {
+  background-color: $discord;
+}
+
+.discord-embed-description > strong {
+  width: fit-content;
+}
+
+[data-bs-theme="dark"] {
+  .discord-message-announcement {
+    background-color: hsla(39.435, calc(1*100%), 48.627%, 20%);
+    border-left: 2px solid hsla(39.435, calc(1*100%), 48.627%, 100%);
+  }
+}
+
+[data-bs-theme="light"] {
+  .discord-message-announcement {
+    background-color: hsla(39.435, calc(1*100%), 48.627%, 3%);
+    border-left: 2px solid hsla(39.435, calc(1*100%), 48.627%, 100%);
+  }
+}
