@@ -75,3 +75,8 @@ option:last-of-type {
 .emoji-dropdown .dropdown-toggle:hover {
   color: $light !important;
 }
+
+.discord-left-border {
+  border-radius: 4px 0 0 4px;
+  width: 4px;
+}

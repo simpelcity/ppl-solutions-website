@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Card, Form, Row, Col, Dropdown, ButtonGroup } from 'react-bootstrap'
+import { Container, Card, Form, Row, Col, Dropdown, ButtonGroup, Image } from 'react-bootstrap'
 import type { Dictionary } from "@/app/i18n"
 import useDashboard from "@/hooks/useDashboard";
 import { useState } from "react";
@@ -9,6 +9,8 @@ import { FaAngleDown } from "react-icons/fa6";
 import { useTheme } from 'next-themes'
 import { type Locale } from '@/i18n'
 import '@/styles/ui/Roles.scss'
+import Markdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown'
 
 type Props = {
   dict: Dictionary;
@@ -18,27 +20,43 @@ type Props = {
 type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export default function CardDashboard({ dict, lang }: Props) {
-  const { data, loading, error, status, sendData, sendAnnouncement } = useDashboard();
+  const { data, loading, error, status, markdownPreview, sendAnnouncement, sendError, sendEmbed, clearFeedback } = useDashboard();
   const { resolvedTheme } = useTheme();
 
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
-  const [message, setMessage] = useState('');
-  const [requestUrl, setRequestUrl] = useState('');
-  const [method, setMethod] = useState('');
-  const [HTTPStatus, setHTTPStatus] = useState('');
+  /* --- EMBED --- */
+  const [embedWebhookUsername, setEmbedWebhookUsername] = useState('');
+  const [embedWebhookUsernameIcon, setEmbedWebhookUsernameIcon] = useState('');
+  const [embedAuthor, setEmbedAuthor] = useState('');
+  const [embedAuthorIcon, setEmbedAuthorIcon] = useState('');
+  const [embedTitle, setEmbedTitle] = useState('');
+  const [embedTitleUrl, setEmbedTitleUrl] = useState('');
+  const [embedMessage, setEmbedMessage] = useState('');
 
-  const [messageTitle, setMessageTitle] = useState('');
-  const [messageDescription, setMessageDescription] = useState('');
-  const [messageAuthor, setMessageAuthor] = useState('');
-  const [messageFooter, setMessageFooter] = useState('');
-  const [messageAuthorIcon, setMessageAuthorIcon] = useState('');
-  const [announcementTag, setAnnouncementTag] = useState('');
-  const [roleTag, setRoleTag] = useState<string | null>(null);
-  const [emojiTag, setEmojiTag] = useState<string | null>(null);
+  /* --- ERROR --- */
+  const [errorWebhookUsername, setErrorWebhookUsername] = useState('');
+  const [errorWebhookUsernameIcon, setErrorWebhookUsernameIcon] = useState('');
+  const [errorEmbedAuthor, setErrorEmbedAuthor] = useState('');
+  const [errorEmbedAuthorIcon, setErrorEmbedAuthorIcon] = useState('');
+  const [errorEmbedTitle, setErrorEmbedTitle] = useState('');
+  const [errorEmbedTitleUrl, setErrorEmbedTitleUrl] = useState('');
+  const [errorEmbedRequestUrl, setErrorEmbedRequestUrl] = useState('');
+  const [errorEmbedMethod, setErrorEmbedMethod] = useState('');
+  const [errorEmbedHTTPStatus, setErrorEmbedHTTPStatus] = useState('');
+  const [errorEmbedMessage, setErrorEmbedMessage] = useState('');
+
+  /* --- ANNOUNCEMENT --- */
+  const [announcementWebhookUsername, setAnnouncementWebhookUsername] = useState('');
+  const [announcementWebhookUsernameIcon, setAnnouncementWebhookUsernameIcon] = useState('');
+  const [announcementTitle, setAnnouncementTitle] = useState('');
+  const [announcementMentionTag, setAnnouncementMentionTag] = useState('');
+  const [announcementMessage, setAnnouncementMessage] = useState('');
+  const [announcementFooter, setAnnouncementFooter] = useState('');
+  const [announcementFooterRoleTag, setAnnouncementFooterRoleTag] = useState<string | null>(null);
+  const [announcementFooterEmojiTag, setAnnouncementFooterEmojiTag] = useState<string | null>(null);
 
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState<string | null>(null);
+
 
   const [messageType, setMessageType] = useState<"embed" | "error" | "announcement" | null>(null);
 
@@ -55,7 +73,7 @@ export default function CardDashboard({ dict, lang }: Props) {
     { method: "DELETE" }
   ];
 
-  const announcementTags = [
+  const announcementMentionTags = [
     { label: '🜲 Founder', color: 'founder', role_id: '1282025660730310676' },
     { label: '♛Chief Executive Officer', color: 'ceo', role_id: '1282025846676127785' },
     { label: '👑Chief Administrative Officer', color: 'cao', role_id: '1282300248533897227' },
@@ -78,10 +96,10 @@ export default function CardDashboard({ dict, lang }: Props) {
     { label: 'Driver🚚', color: 'driver', role_id: '1282026105238327317' },
     { label: 'Member👤', color: 'member', role_id: '1282224309741293610' },
     { label: 'News Ping', color: 'ping', role_id: '1285587879896027187' },
-    { label: 'everyone', color: 'theme', role_id: '1282025492354170972' },
+    { label: 'everyone', color: 'theme', role_id: 'everyone' },
   ];
 
-  const roleTags = [
+  const announcementFooterRoleTags = [
     { label: '🜲 Founder', color: 'founder', role_id: '1282025660730310676' },
     { label: '♛Chief Executive Officer', color: 'ceo', role_id: '1282025846676127785' },
     { label: '👑Chief Administrative Officer', color: 'cao', role_id: '1282300248533897227' },
@@ -103,17 +121,17 @@ export default function CardDashboard({ dict, lang }: Props) {
     { label: 'Lower Staff', color: 'theme', role_id: '1285560716085952623' },
   ];
 
-  const emojiTags = [
-    { src: '/assets/icons/emojis/', emoji_name: ':ppls_logo:', emoji_id: '1288512722157441065' },
-    { src: '/assets/icons/emojis/', emoji_name: ':peepo_ppls:', emoji_id: '1288526719992725577' },
-    { src: '/assets/icons/emojis/', emoji_name: ':Scania:', emoji_id: '1282671955983601715' },
-    { src: '/assets/icons/emojis/', emoji_name: ':peepo_love:', emoji_id: '1288523924094845030' },
-    { src: '/assets/icons/emojis/', emoji_name: ':ets2:', emoji_id: '1283513953439322132' },
+  const announcementFooterEmojiTags = [
+    { emoji_name: ':ppls_logo:', emoji_id: '1513842708316426311' },
+    { emoji_name: ':peepo_ppls:', emoji_id: '1288526719992725577' },
+    { emoji_name: ':Scania:', emoji_id: '1513844409765199942' },
+    { emoji_name: ':peepo_love:', emoji_id: '1288523924094845030' },
+    { emoji_name: ':ets2:', emoji_id: '1283513953439322132' },
   ];
 
-  const selectedAnnouncementTag = announcementTags.find((tag) => tag.role_id === announcementTag);
-  const selectedRoleTag = roleTags.find((role) => role.role_id === roleTag);
-  const selectedEmojiTag = emojiTags.find((emoji) => emoji.emoji_id === emojiTag);
+  const selectedAnnouncementMentionTag = announcementMentionTags.find((tag) => tag.role_id === announcementMentionTag);
+  const selectedFooterRoleTag = announcementFooterRoleTags.find((role) => role.role_id === announcementFooterRoleTag);
+  const selectedFooterEmojiTag = announcementFooterEmojiTags.find((emoji) => emoji.emoji_id === announcementFooterEmojiTag);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -122,38 +140,61 @@ export default function CardDashboard({ dict, lang }: Props) {
     
     if (messageType === "error") {
       try {
-        await sendData("error", title, url, message, requestUrl, method, HTTPStatus);
+        const errorsFormData = {
+          username: errorWebhookUsername,
+          avatar_url: errorWebhookUsernameIcon,
+          errorAuthor: errorEmbedAuthor,
+          errorAuthorIcon: errorEmbedAuthorIcon,
+          title: errorEmbedTitle,
+          titleUrl: errorEmbedTitleUrl,
+          requestUrl: errorEmbedRequestUrl,
+          method: errorEmbedMethod as HTTPMethods,
+          HTTPStatus: errorEmbedHTTPStatus,
+          message: errorEmbedMessage,
+        }
 
-        resetForm();
+        await sendError(errorsFormData)
+
+        resetErrorForm();
       } catch (err: any) {
         const message = err?.message;
         setFormError(`Error sending message to Discord: ${message}`);
       }
     } else if (messageType === "announcement") {
       try {
-        const formData = {
-          title: messageTitle,
-          description: messageDescription,
-          footer: messageFooter,
-          author: messageAuthor,
-          authorIcon: messageAuthorIcon,
-          announcementTag: announcementTag,
-          roleTag: roleTag,
-          emojiTag: selectedEmojiTag?.emoji_name ? selectedEmojiTag.emoji_name + emojiTag : ''
-        };
+        const announcementsFormData = {
+          username: announcementWebhookUsername,
+          avatar_url: announcementWebhookUsernameIcon,
+          title: announcementTitle,
+          announcementMentionTag: announcementMentionTag,
+          message: announcementMessage,
+          footer: announcementFooter,
+          footerRoleTag: announcementFooterRoleTag,
+          footerEmojiTag: announcementFooterEmojiTag,
+        }
 
-        await sendAnnouncement(formData);
+        await sendAnnouncement(announcementsFormData);
 
-        resetForm();
+        resetAnnouncementForm();
       } catch (err: any) {
         const message = err?.message;
         setFormError(`Error sending message to Discord: ${message}`);
       }
     } else {
       try {
-        await sendData("embed", title, url, message, '', '', '');
+        const embedFormData = {
+          username: embedWebhookUsername,
+          avatar_url: embedWebhookUsernameIcon,
+          author: embedAuthor,
+          authorIcon: embedAuthorIcon,
+          title: embedTitle,
+          titleUrl: embedTitleUrl,
+          message: embedMessage,
+        }
 
-        resetForm();
+        await sendEmbed(embedFormData);
+
+        resetEmbedForm();
       } catch (err: any) {
         const message = err?.message;
         setFormError(`Error sending message to Discord: ${message}`);
@@ -161,15 +202,37 @@ export default function CardDashboard({ dict, lang }: Props) {
     }
   }
 
-  function resetForm() {
-    setTitle('');
-    setUrl('');
-    setMessage('');
-    setRequestUrl('');
-    setMethod('');
-    setHTTPStatus('');
+  function handleMessageTypeSelect(type: "embed" | "error" | "announcement") {
+    setMessageType(type);
+    clearFeedback();
+  }
+
+  function resetEmbedForm() {
     setFormError(null);
   }
+
+  function resetErrorForm() {
+    setFormError(null);
+  }
+
+  function resetAnnouncementForm() {
+    setFormError(null);
+  }
+
+  // console.log(markdownPreview)
+  // const jsonData = typeof markdownPreview?.config?.data === 'string' ? JSON.parse(markdownPreview.config.data) : null;
+  // console.log(jsonData)
+  // const embedData = jsonData?.embeds && Array.isArray(jsonData.embeds) && jsonData.embeds.length > 0 ? jsonData.embeds[0] : null;
+  // const roleIdRegex = /<@&(\d+)>/g;
+  // const roleIdsInContent = [];
+  // let match;
+  // if (jsonData?.content) {
+  //   while ((match = roleIdRegex.exec(jsonData.content)) !== null) {
+  //     roleIdsInContent.push(match[1]);
+  //   }
+  // }
+  // console.log('Extracted role IDs from content:', roleIdsInContent);
+  console.log()
 
   if (error?.success === false && status === 403) {
     return (
@@ -178,8 +241,8 @@ export default function CardDashboard({ dict, lang }: Props) {
   }
 
   return (
-    <Container className="p-3 p-md-4" fluid>
-      <Card className="rounded-1 border-0 shadow-sm-sm px-0 bg-surface text-theme">
+    <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
+      <Card className="rounded-1 border-0 shadow-sm px-0 bg-surface text-theme">
         <Card.Header className="bg-surface d-flex justify-content-between align-items-center p-3 p-md-4 border-bottom">
           <Card.Title className="fs-3 m-0">Dashboard</Card.Title>
 
@@ -193,9 +256,9 @@ export default function CardDashboard({ dict, lang }: Props) {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="rounded-1 border-0 shadow-sm">
-              <Dropdown.Item onClick={() => setMessageType("embed")} className="py-1 px-3">Embed</Dropdown.Item>
-              <Dropdown.Item onClick={() => setMessageType("error")} className="py-1 px-3">Error</Dropdown.Item>
-              <Dropdown.Item onClick={() => setMessageType("announcement")} className="py-1 px-3">Announcement</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleMessageTypeSelect("embed")} className="py-1 px-3">Embed</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleMessageTypeSelect("error")} className="py-1 px-3">Error</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleMessageTypeSelect("announcement")} className="py-1 px-3">Announcement</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Card.Header>
@@ -209,29 +272,16 @@ export default function CardDashboard({ dict, lang }: Props) {
             <Form onSubmit={handleSubmit} method="post">
               <Row className="mb-3">
                 <Col xs={12} md={6}>
-                  <Form.Group controlId="formTitle">
-                    <Form.Label className="fw-bold">Title (optional)</Form.Label>
+                  <Form.Group controlId="errorUsername">
+                    <Form.Label className="fw-bold">Webhook Username</Form.Label>
                     <Form.Control
                       type="text"
-                      name="title"
-                      placeholder="Your message title"
+                      name="username"
+                      placeholder="PPL Solutions VTC Website Alerts"
                       className="rounded-1 border-0 shadow-sm"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Form.Group controlId="formUrl">
-                    <Form.Label className="fw-bold">URL (optional)</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="url"
-                      placeholder="https://example.com/dashboard"
-                      className="rounded-1 border-0 shadow-sm"
-                      value={url}
-                      onChange={(e) => setUrl(e.target.value)}
-                    />
+                      value={errorWebhookUsername}
+                      onChange={(e) => setErrorWebhookUsername(e.target.value)}
+                      />
                   </Form.Group>
                 </Col>
               </Row>
@@ -244,8 +294,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                       name="url"
                       placeholder="https://example.com/api/endpoint"
                       className="rounded-1 border-0 shadow-sm"
-                      value={requestUrl}
-                      onChange={(e) => setRequestUrl(e.target.value)}
+                      value={errorEmbedRequestUrl}
+                      onChange={(e) => setErrorEmbedRequestUrl(e.target.value)}
                       required
                     />
                   </Form.Group>
@@ -254,9 +304,9 @@ export default function CardDashboard({ dict, lang }: Props) {
                   <Form.Group controlId="formMethod">
                     <Form.Label className="fw-bold">HTTP Method</Form.Label>
                     <Form.Select
-                      value={method}
-                      onChange={(e) => setMethod(e.target.value)}
-                      className={`rounded-1 border-0 shadow-sm d-flex ${method ? 'text-theme' : 'text-placeholder'}`}
+                      value={errorEmbedMethod}
+                      onChange={(e) => setErrorEmbedMethod(e.target.value)}
+                      className={`rounded-1 border-0 shadow-sm d-flex ${errorEmbedMethod ? 'text-theme' : 'text-placeholder'}`}
                       required
                     >
                       <option value="" className="py-1 px-3 text-placeholder" disabled>Select method</option>
@@ -273,8 +323,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                       type="text"
                       className="rounded-1 border-0 shadow-sm"
                       placeholder="e.g. 200, 404, 500"
-                      value={HTTPStatus}
-                      onChange={(e) => setHTTPStatus(e.target.value)}
+                      value={errorEmbedHTTPStatus}
+                      onChange={(e) => setErrorEmbedHTTPStatus(e.target.value)}
                     />
                   </Form.Group>
                 </Col>
@@ -288,8 +338,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                   placeholder="Enter your message here..."
                   rows={5}
                   className="rounded-1 border-0 shadow-sm"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  value={errorEmbedMessage}
+                  onChange={(e) => setErrorEmbedMessage(e.target.value)}
                   required
                 />
               </Form.Group>
@@ -304,10 +354,10 @@ export default function CardDashboard({ dict, lang }: Props) {
                       <Form.Control
                         type="text"
                         name="title"
-                        placeholder="Your announcement author"
+                        placeholder="Simpelcity"
                         className="rounded-1 border-0 shadow-sm"
-                        value={messageAuthor}
-                        onChange={(e) => setMessageAuthor(e.target.value)}
+                        value={announcementWebhookUsername}
+                        onChange={(e) => setAnnouncementWebhookUsername(e.target.value)}
                       />
                     </Form.Group>
                   </Col>
@@ -319,8 +369,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                         name="url"
                         placeholder="https://example.com/icon.png"
                         className="rounded-1 border-0 shadow-sm"
-                        value={messageAuthorIcon}
-                        onChange={(e) => setMessageAuthorIcon(e.target.value)}
+                        value={announcementWebhookUsernameIcon}
+                        onChange={(e) => setAnnouncementWebhookUsernameIcon(e.target.value)}
                       />
                     </Form.Group>
                   </Col>
@@ -330,16 +380,16 @@ export default function CardDashboard({ dict, lang }: Props) {
                     <Form.Group controlId="announcementTag">
                       <Form.Label className="fw-bold">Announcement Tag</Form.Label>
                       <Dropdown className="tag-dropdown" onToggle={(nextShow) => setIsTagDropdownOpen(Boolean(nextShow))}>
-                        <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedAnnouncementTag ? selectedAnnouncementTag.color : ''}`}>
-                          <span className={selectedAnnouncementTag ? '' : 'text-placeholder'}>{selectedAnnouncementTag ? `@${selectedAnnouncementTag.label}` : 'Select tag'}</span>
+                        <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedAnnouncementMentionTag ? selectedAnnouncementMentionTag.color : ''}`}>
+                          <span className={selectedAnnouncementMentionTag ? '' : 'text-placeholder'}>{selectedAnnouncementMentionTag ? `@${selectedAnnouncementMentionTag.label}` : 'Select Tag'}</span>
                           <span className={`ms-1 chevron-rotate-180 text-theme ${isTagDropdownOpen ? 'is-open' : ''}`}>
                             <FaAngleDown />
                           </span>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="rounded-1 border-0 shadow-sm">
-                          {announcementTags.map((tag) => (
-                            <Dropdown.Item key={tag.role_id} onClick={() => setAnnouncementTag(tag.role_id)} className={`py-1 px-3 ${tag.color}`}>@{tag.label}</Dropdown.Item>
+                          {announcementMentionTags.map((tag) => (
+                            <Dropdown.Item key={tag.role_id} onClick={() => setAnnouncementMentionTag(tag.role_id)} className={`py-1 px-3 ${tag.color}`}>@{tag.label}</Dropdown.Item>
                           ))}
                         </Dropdown.Menu>
                       </Dropdown>
@@ -349,17 +399,17 @@ export default function CardDashboard({ dict, lang }: Props) {
                     <Form.Group controlId="announcementRole">
                       <Form.Label className="fw-bold">Footer Role</Form.Label>
                       <Dropdown className="role-dropdown" onToggle={(nextShow) => setIsRoleDropdownOpen(Boolean(nextShow))}>
-                        <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedRoleTag ? selectedRoleTag.color : ''}`}>
-                          <span className={selectedRoleTag ? '' : 'text-placeholder'}>{selectedRoleTag ? `@${selectedRoleTag.label}` : 'Select tag'}</span>
+                        <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedFooterRoleTag ? selectedFooterRoleTag.color : ''}`}>
+                          <span className={selectedFooterRoleTag ? '' : 'text-placeholder'}>{selectedFooterRoleTag ? `@${selectedFooterRoleTag.label}` : 'Select Role'}</span>
                           <span className={`ms-1 chevron-rotate-180 text-theme ${isRoleDropdownOpen ? 'is-open' : ''}`}>
                             <FaAngleDown />
                           </span>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="rounded-1 border-0 shadow-sm">
-                          <Dropdown.Item onClick={() => setRoleTag(null)} className="py-1 px-3 text-theme">No Role</Dropdown.Item>
-                          {roleTags.map((role) => (
-                            <Dropdown.Item key={role.role_id} onClick={() => setRoleTag(role.role_id)} className={`py-1 px-3 ${role.color}`}>@{role.label}</Dropdown.Item>
+                          <Dropdown.Item onClick={() => setAnnouncementFooterRoleTag(null)} className="py-1 px-3 text-theme">No Role</Dropdown.Item>
+                          {announcementFooterRoleTags.map((role) => (
+                            <Dropdown.Item key={role.role_id} onClick={() => setAnnouncementFooterRoleTag(role.role_id)} className={`py-1 px-3 ${role.color}`}>@{role.label}</Dropdown.Item>
                           ))}
                         </Dropdown.Menu>
                       </Dropdown>
@@ -369,17 +419,24 @@ export default function CardDashboard({ dict, lang }: Props) {
                     <Form.Group controlId="announcementEmoji">
                       <Form.Label className="fw-bold">Footer Emoji</Form.Label>
                       <Dropdown className="emoji-dropdown" onToggle={(nextShow) => setIsEmojiDropdownOpen(Boolean(nextShow))}>
-                        <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedEmojiTag ? 'theme' : ''}`}>
-                          <span className={selectedEmojiTag ? '' : 'text-placeholder'}>{selectedEmojiTag ? `${selectedEmojiTag.emoji_name}` : 'Select tag'}</span>
+                        <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedFooterEmojiTag ? 'theme' : ''}`}>
+                          {selectedFooterEmojiTag ? (
+                            <div className="d-flex align-items-center">
+                              <Image src={`https://cdn.discordapp.com/emojis/${selectedFooterEmojiTag.emoji_id}`} alt="" className="" width="24" height="24" />
+                              <span className="ms-1">{selectedFooterEmojiTag.emoji_name}</span>
+                            </div>
+                          ) : (
+                            <span className="text-placeholder">Select Emoji</span>
+                          )}
                           <span className={`ms-1 chevron-rotate-180 text-theme ${isEmojiDropdownOpen ? 'is-open' : ''}`}>
                             <FaAngleDown />
                           </span>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="rounded-1 border-0 shadow-sm">
-                          <Dropdown.Item onClick={() => setEmojiTag(null)} className="py-1 px-3 text-theme">No Emoji</Dropdown.Item>
-                          {emojiTags.map((emoji) => (
-                            <Dropdown.Item key={emoji.emoji_id} onClick={() => setEmojiTag(emoji.emoji_id)} className={`py-1 px-3 ${emoji.emoji_name}`}>{emoji.emoji_name}</Dropdown.Item>
+                          <Dropdown.Item onClick={() => setAnnouncementFooterEmojiTag(null)} className="py-1 px-3 text-theme">No Emoji</Dropdown.Item>
+                          {announcementFooterEmojiTags.map((emoji) => (
+                            <Dropdown.Item key={emoji.emoji_id} onClick={() => setAnnouncementFooterEmojiTag(emoji.emoji_id)} className={`py-1 px-3 ${emoji.emoji_name}`}>{emoji.emoji_name}</Dropdown.Item>
                           ))}
                         </Dropdown.Menu>
                       </Dropdown>
@@ -395,8 +452,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                         name="title"
                         placeholder="Your announcement title"
                         className="rounded-1 border-0 shadow-sm"
-                        value={messageTitle}
-                        onChange={(e) => setMessageTitle(e.target.value)}
+                        value={announcementTitle}
+                        onChange={(e) => setAnnouncementTitle(e.target.value)}
                       />
                     </Form.Group>
                   </Col>
@@ -408,8 +465,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                         name="title"
                         placeholder="Your announcement footer"
                         className="rounded-1 border-0 shadow-sm"
-                        value={messageFooter}
-                        onChange={(e) => setMessageFooter(e.target.value)}
+                        value={announcementFooter}
+                        onChange={(e) => setAnnouncementFooter(e.target.value)}
                       />
                     </Form.Group>
                   </Col>
@@ -422,8 +479,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                     placeholder="Enter your announcement here..."
                     rows={5}
                     className="rounded-1 border-0 shadow-sm"
-                    value={messageDescription}
-                    onChange={(e) => setMessageDescription(e.target.value)}
+                    value={announcementMessage}
+                    onChange={(e) => setAnnouncementMessage(e.target.value)}
                     required
                   />
                 </Form.Group>
@@ -431,50 +488,114 @@ export default function CardDashboard({ dict, lang }: Props) {
               </Form>
           ) : (
             <Form onSubmit={handleSubmit} method="post">
+                  <p className="text-gray mb-3 mb-md-4 text-center">{dict.contact.form.required}</p>
               <Row className="mb-3">
                 <Col xs={12} md={6}>
-                  <Form.Group controlId="formTitle">
-                    <Form.Label className="fw-bold">Title (optional)</Form.Label>
+                  <Form.Group controlId="webhookUsername">
+                    <Form.Label className="fw-bold">Webhook Username (optional)</Form.Label>
                     <Form.Control
                       type="text"
-                      name="title"
-                      placeholder="Your message title"
+                      name="username"
+                      placeholder="Example Username"
                       className="rounded-1 border-0 shadow-sm"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
+                      value={embedWebhookUsername}
+                      onChange={(e) => setEmbedWebhookUsername(e.target.value)}
                     />
                   </Form.Group>
                 </Col>
                 <Col xs={12} md={6}>
-                  <Form.Group controlId="formUrl">
-                    <Form.Label className="fw-bold">URL (optional)</Form.Label>
+                  <Form.Group controlId="webhookUsernameIcon">
+                    <Form.Label className="fw-bold">Webhook Username Icon (optional)</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="usernameIcon"
+                      placeholder="https://example.com/icon.png"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={embedWebhookUsernameIcon}
+                      onChange={(e) => setEmbedWebhookUsernameIcon(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="embedTitle">
+                    <Form.Label className="fw-bold">Embed Title (optional)</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      placeholder="New Dashboard Message"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={embedTitle}
+                      onChange={(e) => setEmbedTitle(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="embedTitleUrl">
+                    <Form.Label className="fw-bold">Embed URL (optional)</Form.Label>
                     <Form.Control
                       type="text"
                       name="url"
                       placeholder="https://example.com/dashboard"
                       className="rounded-1 border-0 shadow-sm"
-                      value={url}
-                      onChange={(e) => setUrl(e.target.value)}
+                      value={embedTitleUrl}
+                      onChange={(e) => setEmbedTitleUrl(e.target.value)}
                     />
                   </Form.Group>
                 </Col>
               </Row>
               <Form.Group controlId="formMessage" className="mb-3">
-                <Form.Label className="fw-bold">Message</Form.Label>
+                <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
                 <Form.Control
                   as="textarea"
                   name="message"
                   placeholder="Enter your message here..."
                   rows={5}
                   className="rounded-1 border-0 shadow-sm"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  value={embedMessage}
+                  onChange={(e) => setEmbedMessage(e.target.value)}
                   required
                 />
               </Form.Group>
               <BSButton variant="primary" type="submit">Send to Discord</BSButton>
             </Form>
           )}
+        </Card.Body>
+      </Card>
+
+      <Card className="rounded-1 border-0 shadow-sm px-0 bg-surface text-theme">
+        <Card.Header className="bg-surface p-3 p-md-4 border-bottom">
+          <Card.Title className="fs-3 m-0">Preview</Card.Title>
+        </Card.Header>
+
+        <Card.Body className="p-3 p-md-4">
+          {messageType === 'announcement' && (
+            <Markdown>
+              {`**${embedTitle}**\n\n${embedMessage}`}
+            </Markdown>
+          )}
+          <div className="discord-embed d-flex my-2 text-theme">
+            <div className="discord-left-border" style={{ backgroundColor: `#009a86` }}></div>
+            <div className="discord-embed-root d-grid">
+              <div className="discord-embed-wrapper bg-surface-darker d-grid">
+                <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
+                  <div className="discord-embed-title mt-2 fw-bold">
+                    <span>{announcementTitle}</span>
+                  </div>
+
+                  <div className="discord-embed-description mt-2">
+                    {announcementMessage.split("\\n").map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        <br />
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </Card.Body>
       </Card>
     </Container>

@@ -19,7 +19,17 @@ export async function POST(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const messageType = searchParams.get("messageType") as "embed" | "error" | "announcement" | null;
-    const webhookUrl = messageType === "announcement" ? process.env.DISCORD_DASHBOARD_WEBHOOK_URL : process.env.DISCORD_DASHBOARD_WEBHOOK_URL;
+
+    let webhookUrl: string = '';
+    if (messageType === 'announcement') {
+      webhookUrl = process.env.DISCORD_ANNOUNCEMENTS_WEBHOOK_URL as string;
+    } else if (messageType === 'error') {
+      webhookUrl = process.env.DISCORD_WEBSITE_ALERTS_WEBHOOK_URL as string;
+    } else if (messageType === 'embed') {
+      webhookUrl = process.env.DISCORD_DASHBOARD_WEBHOOK_URL as string;
+    }
+
+    const testUrl = process.env.DISCORD_TEST_DUMMY_WEBHOOK_URL;
     
     // const username = body?.username || 'PPL Solutions';
     // const avatar_url = body?.avatar_url || 'https://ppl-solutions.vercel.app/assets/images/logo.png';
@@ -27,12 +37,18 @@ export async function POST(request: NextRequest) {
     const content = typeof body?.content === 'string' ? body.content : '';
     const username = body?.username ? String(body.username) : '';
     const avatar_url = body?.avatar_url ? String(body.avatar_url) : '';
+    const allowed_mentions = body?.allowed_mentions && typeof body.allowed_mentions === 'object'
+      ? body.allowed_mentions
+      : undefined;
 
     let postData: any = {};
     if (messageType === 'announcement') {
-      postData.username = username;
-      postData.avatar_url = avatar_url;
+      // postData.username = username;
+      // postData.avatar_url = avatar_url;
       postData.content = content;
+      if (allowed_mentions) {
+        postData.allowed_mentions = allowed_mentions;
+      }
     } else {
       postData.embeds = embeds;
     }
@@ -41,11 +57,11 @@ export async function POST(request: NextRequest) {
       return errorHandler({ error: 'Missing message or embeds' }, request, lang, 400);
     }
 
-    if (!webhookUrl) {
+    if (!testUrl) {
       return errorHandler({ error: 'Discord webhook URL is not configured' }, request, lang, 500);
     }
 
-    const res = await axios.post(webhookUrl!, {
+    const res = await axios.post(testUrl!, {
       // username,
       // avatar_url,
       ...postData
