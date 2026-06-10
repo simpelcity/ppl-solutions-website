@@ -76,9 +76,20 @@ option:last-of-type {
   color: $light !important;
 }
 
-.discord-left-border {
-  border-radius: 4px 0 0 4px;
+.discord-left-border-error {
   width: 4px;
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 5px !important;
+  }
+}
+
+.discord-left-border {
+  width: 4px;
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 5px !important;
+  }
 }
 
 .bg-discord {
@@ -89,16 +100,45 @@ option:last-of-type {
   width: fit-content;
 }
 
+@media (max-width: 576px) {
+  .discord-message-announcement {
+    border-radius: 0 !important;
+  }
+}
+
 [data-bs-theme="dark"] {
   .discord-message-announcement {
     background-color: hsla(39.435, calc(1*100%), 48.627%, 20%);
     border-left: 2px solid hsla(39.435, calc(1*100%), 48.627%, 100%);
+    &:hover {
+      background-color: hsla(39.435, calc(1*100%), 48.627%, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .discord-message-announcement {
+    background-color: hsla(39.435, calc(1*100%), 48.627%, 5%);
+    border-left: 2px solid shift-color(hsla(39.435, calc(1*100%), 48.627%, 100%), 40%);
+    &:hover {
+      background-color: hsla(39.435, calc(1*100%), 48.627%, 10%);
+    }
   }
 }
 
-[data-bs-theme="light"] {
-  .discord-message-announcement {
-    background-color: hsla(39.435, calc(1*100%), 48.627%, 3%);
-    border-left: 2px solid hsla(39.435, calc(1*100%), 48.627%, 100%);
+.announcement-message > h1,
+.announcement-message > h2,
+.announcement-message > h3,
+.announcement-message > h4,
+.announcement-message > h5,
+.announcement-message > h6,
+.announcement-message > p {
+  margin: 0;
+}
+
+.announcement-message a {
+  color: $discord;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
 }

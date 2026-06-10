@@ -43,8 +43,6 @@ export async function POST(request: NextRequest) {
 
     let postData: any = {};
     if (messageType === 'announcement') {
-      // postData.username = username;
-      // postData.avatar_url = avatar_url;
       postData.content = content;
       if (allowed_mentions) {
         postData.allowed_mentions = allowed_mentions;
@@ -62,8 +60,8 @@ export async function POST(request: NextRequest) {
     }
 
     const res = await axios.post(testUrl!, {
-      // username,
-      // avatar_url,
+      username,
+      avatar_url,
       ...postData
     });
 

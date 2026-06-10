@@ -153,51 +153,51 @@ export default function CardDashboard({ dict, lang }: Props) {
   ];
 
   const announcementMentionTags = [
-    { label: '🜲 Founder', color: 'founder', role_id: '1282025660730310676' },
-    { label: '♛Chief Executive Officer', color: 'ceo', role_id: '1282025846676127785' },
-    { label: '👑Chief Administrative Officer', color: 'cao', role_id: '1282300248533897227' },
-    { label: '👑Chief Operating Officer', color: 'coo', role_id: '1282300202753069117' },
-    { label: 'Community Manager', color: 'cm', role_id: '1282247458675757086' },
-    { label: 'Management', color: 'theme', role_id: '1285559909060182026' },
-    { label: 'Human Resources Director👥', color: 'hrd', role_id: '1282300994046394498' },
-    { label: 'Human Resources👥', color: 'hr', role_id: '1282090397828382802' },
-    { label: 'Recruitment Team Director📋', color: 'rtd', role_id: '1282301484788092979' },
-    { label: 'Event Team Manager', color: 'etm', role_id: '1282301578312941588' },
-    { label: 'Media Team Manager', color: 'mtm', role_id: '1282301155598405674' },
-    { label: 'Convoy Control Manager', color: 'ccm', role_id: '1282301688266358795' },
-    { label: 'Upper Staff', color: 'theme', role_id: '1285585227091279883' },
-    { label: 'Recruitment Team📋', color: 'rt', role_id: '1282091153910661170' },
-    { label: 'Event Team', color: 'et', role_id: '1282301640589705226' },
-    { label: 'Media Team', color: 'mt', role_id: '1282301423413104701' },
-    { label: 'Convoy Control', color: 'cc', role_id: '1282301801080815636' },
-    { label: 'Staff Team', color: 'staff', role_id: '1282090713751883857' },
-    { label: 'Lower Staff', color: 'theme', role_id: '1285560716085952623' },
-    { label: 'Driver🚚', color: 'driver', role_id: '1282026105238327317' },
-    { label: 'Member👤', color: 'member', role_id: '1282224309741293610' },
-    { label: 'News Ping', color: 'ping', role_id: '1285587879896027187' },
+    { label: '👑 Founder', color: 'founder', role_id: '1282025660730310676' },
+    { label: '👑 Chief Executive Officer', color: 'ceo', role_id: '1282025846676127785' },
+    { label: '⚖️ Chief Administrative Officer', color: 'cao', role_id: '1282300248533897227' },
+    { label: '⚙️ Chief Operating Officer', color: 'coo', role_id: '1282300202753069117' },
+    { label: '🌐 Community Manager', color: 'cm', role_id: '1282247458675757086' },
+    { label: 'Management', divider: true, color: 'theme', role_id: '1285559909060182026' },
+    { label: '👥 Human Resources Director', color: 'hrd', role_id: '1282300994046394498' },
+    { label: '👥 Human Resources', color: 'hr', role_id: '1282090397828382802' },
+    { label: '📋 Recruitment Team Director', color: 'rtd', role_id: '1282301484788092979' },
+    { label: '🎉 Event Team Manager', color: 'etm', role_id: '1282301578312941588' },
+    { label: '📸 Media Team Manager', color: 'mtm', role_id: '1282301155598405674' },
+    { label: '🚧 Convoy Control Manager', color: 'ccm', role_id: '1282301688266358795' },
+    { label: 'Upper Staff', divider: true, color: 'theme', role_id: '1285585227091279883' },
+    { label: '📋 Recruitment Team', color: 'rt', role_id: '1282091153910661170' },
+    { label: '🎉 Event Team', color: 'et', role_id: '1282301640589705226' },
+    { label: '📸 Media Team', color: 'mt', role_id: '1282301423413104701' },
+    { label: '🚧 Convoy Control', color: 'cc', role_id: '1282301801080815636' },
+    { label: '🛡️ Staff Team', color: 'staff', role_id: '1282090713751883857' },
+    { label: 'Lower Staff', divider: true, color: 'theme', role_id: '1285560716085952623' },
+    { label: '🚚 Driver', color: 'driver', role_id: '1282026105238327317' },
+    { label: '👤 Member', color: 'member', role_id: '1282224309741293610' },
+    { label: '🔔 News Ping', color: 'ping', role_id: '1285587879896027187' },
     { label: 'everyone', color: 'blurple', role_id: 'everyone' },
   ];
 
   const announcementFooterRoleTags = [
-    { label: '🜲 Founder', color: 'founder', role_id: '1282025660730310676' },
-    { label: '♛Chief Executive Officer', color: 'ceo', role_id: '1282025846676127785' },
-    { label: '👑Chief Administrative Officer', color: 'cao', role_id: '1282300248533897227' },
-    { label: '👑Chief Operating Officer', color: 'coo', role_id: '1282300202753069117' },
-    { label: 'Community Manager', color: 'cm', role_id: '1282247458675757086' },
-    { label: 'Management', color: 'theme', role_id: '1285559909060182026' },
-    { label: 'Human Resources Director👥', color: 'hrd', role_id: '1282300994046394498' },
-    { label: 'Human Resources👥', color: 'hr', role_id: '1282090397828382802' },
-    { label: 'Recruitment Team Director📋', color: 'rtd', role_id: '1282301484788092979' },
-    { label: 'Event Team Manager', color: 'etm', role_id: '1282301578312941588' },
-    { label: 'Media Team Manager', color: 'mtm', role_id: '1282301155598405674' },
-    { label: 'Convoy Control Manager', color: 'ccm', role_id: '1282301688266358795' },
-    { label: 'Upper Staff', color: 'theme', role_id: '1285585227091279883' },
-    { label: 'Recruitment Team📋', color: 'rt', role_id: '1282091153910661170' },
-    { label: 'Event Team', color: 'et', role_id: '1282301640589705226' },
-    { label: 'Media Team', color: 'mt', role_id: '1282301423413104701' },
-    { label: 'Convoy Control', color: 'cc', role_id: '1282301801080815636' },
-    { label: 'Staff Team', color: 'staff', role_id: '1282090713751883857' },
-    { label: 'Lower Staff', color: 'theme', role_id: '1285560716085952623' },
+    { label: '👑 Founder', color: 'founder', role_id: '1282025660730310676' },
+    { label: '👑 Chief Executive Officer', color: 'ceo', role_id: '1282025846676127785' },
+    { label: '⚖️ Chief Administrative Officer', color: 'cao', role_id: '1282300248533897227' },
+    { label: '⚙️ Chief Operating Officer', color: 'coo', role_id: '1282300202753069117' },
+    { label: '🌐 Community Manager', color: 'cm', role_id: '1282247458675757086' },
+    { label: 'Management', divider: true, color: 'theme', role_id: '1285559909060182026' },
+    { label: '👥 Human Resources Director', color: 'hrd', role_id: '1282300994046394498' },
+    { label: '👥 Human Resources', color: 'hr', role_id: '1282090397828382802' },
+    { label: '📋 Recruitment Team Director', color: 'rtd', role_id: '1282301484788092979' },
+    { label: '🎉 Event Team Manager', color: 'etm', role_id: '1282301578312941588' },
+    { label: '📸 Media Team Manager', color: 'mtm', role_id: '1282301155598405674' },
+    { label: '🚧 Convoy Control Manager', color: 'ccm', role_id: '1282301688266358795' },
+    { label: 'Upper Staff', divider: true, color: 'theme', role_id: '1285585227091279883' },
+    { label: '📋 Recruitment Team', color: 'rt', role_id: '1282091153910661170' },
+    { label: '🎉 Event Team', color: 'et', role_id: '1282301640589705226' },
+    { label: '📸 Media Team', color: 'mt', role_id: '1282301423413104701' },
+    { label: '🚧 Convoy Control', color: 'cc', role_id: '1282301801080815636' },
+    { label: '🛡️ Staff Team', color: 'staff', role_id: '1282090713751883857' },
+    { label: 'Lower Staff', divider: true, color: 'theme', role_id: '1285560716085952623' },
   ];
 
   const announcementFooterEmojiTags = [
@@ -271,13 +271,15 @@ export default function CardDashboard({ dict, lang }: Props) {
           message: announcementMessage,
           footer: announcementFooter,
           footerRoleTag: announcementFooterRoleTag,
-          footerEmojiTag: announcementFooterEmojiTag,
+          footerEmojiTag: selectedFooterEmojiTag ? selectedFooterEmojiTag?.emoji_name + selectedFooterEmojiTag?.emoji_id : null,
         }
 
         if (!announcementMentionTag) setAnnouncementFormMentionTagError('Announcement mention tag is required');
         if (!announcementTitle) setAnnouncementFormTitleError('Announcement title is required');
         if (!announcementFooter) setAnnouncementFormFooterError('Announcement footer is required');
         if (!announcementMessage) setAnnouncementFormMessageError('Announcement message is required');
+
+        if (!announcementMentionTag || !announcementTitle || !announcementFooter || !announcementMessage) return;
 
         await sendAnnouncement(announcementsFormData);
 
@@ -298,6 +300,11 @@ export default function CardDashboard({ dict, lang }: Props) {
           message: embedMessage,
         }
 
+        if (!embedMessage) {
+          setEmbedFormMessageError('Embed message is required');
+          return;
+        }
+
         await sendEmbed(embedFormData);
 
         resetEmbedForm();
@@ -311,18 +318,55 @@ export default function CardDashboard({ dict, lang }: Props) {
   function handleMessageTypeSelect(type: "embed" | "error" | "announcement") {
     setMessageType(type);
     clearFeedback();
+    resetEmbedForm();
+    resetErrorForm();
+    resetAnnouncementForm();
   }
 
   function resetEmbedForm() {
     setFormError(null);
+    setEmbedFormMessageError(null);
+    setEmbedWebhookUsername('');
+    setEmbedWebhookUsernameIcon('');
+    setEmbedAuthor('');
+    setEmbedAuthorIcon('');
+    setEmbedTitle('');
+    setEmbedTitleUrl('');
+    setEmbedMessage('');
   }
 
   function resetErrorForm() {
     setFormError(null);
+    setErrorFormHTTPStatusError(null);
+    setErrorFormMessageError(null);
+    setErrorFormMethodError(null);
+    setErrorFormRequestUrlError(null);
+    setErrorWebhookUsername('');
+    setErrorWebhookUsernameIcon('');
+    setErrorEmbedAuthor('');
+    setErrorEmbedAuthorIcon('');
+    setErrorEmbedTitle('');
+    setErrorEmbedTitleUrl('');
+    setErrorEmbedRequestUrl('');
+    setErrorEmbedMethod('');
+    setErrorEmbedHTTPStatus('');
+    setErrorEmbedMessage('');
   }
 
   function resetAnnouncementForm() {
     setFormError(null);
+    setAnnouncementFormFooterError(null);
+    setAnnouncementFormMentionTagError(null);
+    setAnnouncementFormMessageError(null);
+    setAnnouncementFormTitleError(null);
+    setAnnouncementWebhookUsername('');
+    setAnnouncementWebhookUsernameIcon('');
+    setAnnouncementTitle('');
+    setAnnouncementMentionTag('');
+    setAnnouncementFooter('');
+    setAnnouncementFooterRoleTag('');
+    setAnnouncementFooterEmojiTag('');
+    setAnnouncementMessage('');
   }
 
   if (error?.success === false && status === 403) {
@@ -333,10 +377,8 @@ export default function CardDashboard({ dict, lang }: Props) {
 
   const statusNumber = Number(errorEmbedHTTPStatus);
 
-  const locale = lang || "en";
-  const currentFullTime = formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, lang);
-  const previewAnnouncement = formatDiscordTimestampTag(`**${announcementTitle}**\n\n${announcementMessage}\n\n*${announcementFooter}*`, locale);
-  const previewEmbedMessage = formatDiscordTimestampTag(embedMessage, locale);
+  const mentionTag = selectedAnnouncementMentionTag?.divider ? 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' + selectedAnnouncementMentionTag.label + 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' : selectedAnnouncementMentionTag?.label;
+  const footerTag = selectedFooterRoleTag?.divider ? 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' + selectedFooterRoleTag.label + 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' : selectedFooterRoleTag?.label;
 
   return (
     <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
@@ -369,14 +411,14 @@ export default function CardDashboard({ dict, lang }: Props) {
           
           {messageType === "error" ? (
             <Form onSubmit={handleSubmit} method="post">
-              <Row className="mb-3">
+              <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorUsername">
-                    <Form.Label className="fw-bold">Webhook Username (optional)</Form.Label>
+                    <Form.Label className="fw-bold">Webhook Username</Form.Label>
                     <Form.Control
                       type="text"
                       name="username"
-                      placeholder="PPL Solutions VTC Website Alerts"
+                      placeholder="ExampleUsername"
                       className="rounded-1 border-0 shadow-sm"
                       value={errorWebhookUsername}
                       onChange={(e) => setErrorWebhookUsername(e.target.value)}
@@ -385,7 +427,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorUsernameIcon">
-                    <Form.Label className="fw-bold">Webhook Username Icon (optional)</Form.Label>
+                    <Form.Label className="fw-bold">Webhook Icon</Form.Label>
                     <Form.Control
                       type="text"
                       name="usernameIcon"
@@ -397,7 +439,63 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Form.Group>
                 </Col>
               </Row>
-              <Row className="mb-3">
+              <Row className="mb-3 row-gap-3">
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="errorEmbedAuthor">
+                    <Form.Label className="fw-bold">Embed Author</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="embedAuthor"
+                      placeholder="ExampleUsername"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={errorEmbedAuthor}
+                      onChange={(e) => setErrorEmbedAuthor(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="errorEmbedAuthorIcon">
+                    <Form.Label className="fw-bold">Embed Icon</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="embedAuthorIcon"
+                      placeholder="https://example.com/icon.png"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={errorEmbedAuthorIcon}
+                      onChange={(e) => setErrorEmbedAuthorIcon(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3 row-gap-3">
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="errorEmbedTitle">
+                    <Form.Label className="fw-bold">Embed Title</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="errorEmbedTitle"
+                      placeholder="New Dashboard Error"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={errorEmbedTitle}
+                      onChange={(e) => setErrorEmbedTitle(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="errorEmbedTitleUrl">
+                    <Form.Label className="fw-bold">Embed URL</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="errorEmbedTitleUrl"
+                      placeholder="https://example.com/dashboard"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={errorEmbedTitleUrl}
+                      onChange={(e) => setErrorEmbedTitleUrl(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formUrl">
                     <Form.Label className="fw-bold">Request URL <span className="text-danger">*</span></Form.Label>
@@ -426,6 +524,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                       ))}
                     </Form.Select>
                   </Form.Group>
+                  {errorFormMethodError && <Form.Text className="text-danger">{errorFormMethodError}</Form.Text>}
                 </Col>
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formStatus">
@@ -438,33 +537,36 @@ export default function CardDashboard({ dict, lang }: Props) {
                       onChange={(e) => setErrorEmbedHTTPStatus(e.target.value)}
                     />
                   </Form.Group>
+                  {errorFormHTTPStatusError && <Form.Text className="text-danger">{errorFormHTTPStatusError}</Form.Text>}
                 </Col>
-                <Col xs={12} md={6} xl={4}></Col>
               </Row>
-              <Form.Group controlId="formMessage" className="mb-3">
-                <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="message"
-                  placeholder="Enter your message here..."
-                  rows={5}
-                  className="rounded-1 border-0 shadow-sm"
-                  value={errorEmbedMessage}
-                  onChange={(e) => setErrorEmbedMessage(e.target.value)}
-                />
-              </Form.Group>
+              <Row className="mb-3">
+                <Form.Group controlId="formMessage">
+                  <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    name="message"
+                    placeholder="Enter your message here..."
+                    rows={5}
+                    className="rounded-1 border-0 shadow-sm"
+                    value={errorEmbedMessage}
+                    onChange={(e) => setErrorEmbedMessage(e.target.value)}
+                  />
+                </Form.Group>
+                {errorFormMessageError && <Form.Text className="text-danger">{errorFormMessageError}</Form.Text>}
+              </Row>
               <BSButton variant="primary" type="submit">Send to Discord</BSButton>
             </Form>
           ) : messageType === 'announcement' ? (
               <Form onSubmit={handleSubmit} method="post">
-                <Row className="mb-3">
+                <Row className="mb-3 row-gap-3">
                   <Col xs={12} md={6}>
                     <Form.Group controlId="formAuthor">
-                      <Form.Label className="fw-bold">Author</Form.Label>
+                      <Form.Label className="fw-bold">Webhook Username</Form.Label>
                       <Form.Control
                         type="text"
-                        name="title"
-                        placeholder="Simpelcity"
+                        name="username"
+                        placeholder="ExampleUsername"
                         className="rounded-1 border-0 shadow-sm"
                         value={announcementWebhookUsername}
                         onChange={(e) => setAnnouncementWebhookUsername(e.target.value)}
@@ -473,10 +575,10 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Col>
                   <Col xs={12} md={6}>
                     <Form.Group controlId="formAuthorIcon">
-                      <Form.Label className="fw-bold">Author Icon</Form.Label>
+                      <Form.Label className="fw-bold">Webhook Icon</Form.Label>
                       <Form.Control
                         type="text"
-                        name="url"
+                        name="usernameIcon"
                         placeholder="https://example.com/icon.png"
                         className="rounded-1 border-0 shadow-sm"
                         value={announcementWebhookUsernameIcon}
@@ -485,10 +587,24 @@ export default function CardDashboard({ dict, lang }: Props) {
                     </Form.Group>
                   </Col>
                 </Row>
-                <Row className="mb-3">
+                <Row className="mb-3 row-gap-3">
+                  <Col xs={12} md={6}>
+                    <Form.Group controlId="formTitle">
+                      <Form.Label className="fw-bold">Title <span className="text-danger">*</span></Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="title"
+                        placeholder="Your announcement title"
+                        className="rounded-1 border-0 shadow-sm"
+                        value={announcementTitle}
+                        onChange={(e) => setAnnouncementTitle(e.target.value)}
+                      />
+                    </Form.Group>
+                    {announcementFormTitleError && <Form.Text className="text-danger">{announcementFormTitleError}</Form.Text>}
+                  </Col>
                   <Col xs={12} md={6}>
                     <Form.Group controlId="announcementTag">
-                      <Form.Label className="fw-bold">Announcement Tag</Form.Label>
+                      <Form.Label className="fw-bold">Mention Tag <span className="text-danger">*</span></Form.Label>
                       <Dropdown className="tag-dropdown" onToggle={(nextShow) => setIsTagDropdownOpen(Boolean(nextShow))}>
                         <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedAnnouncementMentionTag ? selectedAnnouncementMentionTag.color : ''}`}>
                           <span className={selectedAnnouncementMentionTag ? '' : 'text-placeholder'}>{selectedAnnouncementMentionTag ? `@${selectedAnnouncementMentionTag.label}` : 'Select Tag'}</span>
@@ -504,13 +620,30 @@ export default function CardDashboard({ dict, lang }: Props) {
                         </Dropdown.Menu>
                       </Dropdown>
                     </Form.Group>
+                    {announcementFormMentionTagError && <Form.Text className="text-danger">{announcementFormMentionTagError}</Form.Text>}
+                  </Col>
+                </Row>
+                <Row className="mb-3 row-gap-3">
+                  <Col xs={12} md={6}>
+                    <Form.Group controlId="formFooter">
+                      <Form.Label className="fw-bold">Footer <span className="text-danger">*</span></Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        name="title"
+                        placeholder="Your announcement footer"
+                        className="rounded-1 border-0 shadow-sm"
+                        value={announcementFooter}
+                        onChange={(e) => setAnnouncementFooter(e.target.value)}
+                      />
+                    </Form.Group>
+                    {announcementFormFooterError && <Form.Text className="text-danger">{announcementFormFooterError}</Form.Text>}
                   </Col>
                   <Col xs={12} md={3}>
                     <Form.Group controlId="announcementRole">
                       <Form.Label className="fw-bold">Footer Role</Form.Label>
                       <Dropdown className="role-dropdown" onToggle={(nextShow) => setIsRoleDropdownOpen(Boolean(nextShow))}>
                         <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedFooterRoleTag ? selectedFooterRoleTag.color : ''}`}>
-                          <span className={selectedFooterRoleTag ? '' : 'text-placeholder'}>{selectedFooterRoleTag ? `@${selectedFooterRoleTag.label}` : 'Select Role'}</span>
+                          <span className={selectedFooterRoleTag ? 'overflow-hidden' : 'text-placeholder'}>{selectedFooterRoleTag ? `@${selectedFooterRoleTag.label}` : 'Select Role'}</span>
                           <span className={`ms-1 chevron-rotate-180 text-theme ${isRoleDropdownOpen ? 'is-open' : ''}`}>
                             <FaAngleDown />
                           </span>
@@ -533,7 +666,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                           {selectedFooterEmojiTag ? (
                             <div className="d-flex align-items-center">
                               <Image src={`https://cdn.discordapp.com/emojis/${selectedFooterEmojiTag.emoji_id}`} alt="" className="" width="24" height="24" />
-                              <span className="ms-1">{selectedFooterEmojiTag.emoji_name}</span>
+                              <span className="ms-1 overflow-hidden">{selectedFooterEmojiTag.emoji_name}</span>
                             </div>
                           ) : (
                             <span className="text-placeholder">Select Emoji</span>
@@ -543,7 +676,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                           </span>
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu className="rounded-1 border-0 shadow-sm">
+                        <Dropdown.Menu align={{ md: 'end' }} className="rounded-1 border-0 shadow-sm">
                           <Dropdown.Item onClick={() => setAnnouncementFooterEmojiTag(null)} className="py-1 px-3 text-theme">No Emoji</Dropdown.Item>
                           {announcementFooterEmojiTags.map((emoji) => (
                             <Dropdown.Item key={emoji.emoji_id} onClick={() => setAnnouncementFooterEmojiTag(emoji.emoji_id)} className={`py-1 px-3 ${emoji.emoji_name}`}>{emoji.emoji_name}</Dropdown.Item>
@@ -554,59 +687,33 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Col>
                 </Row>
                 <Row className="mb-3">
-                  <Col xs={12} md={6}>
-                    <Form.Group controlId="formTitle">
-                      <Form.Label className="fw-bold">Title</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="title"
-                        placeholder="Your announcement title"
-                        className="rounded-1 border-0 shadow-sm"
-                        value={announcementTitle}
-                        onChange={(e) => setAnnouncementTitle(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12} md={6}>
-                    <Form.Group controlId="formFooter">
-                      <Form.Label className="fw-bold">Footer</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        name="title"
-                        placeholder="Your announcement footer"
-                        className="rounded-1 border-0 shadow-sm"
-                        value={announcementFooter}
-                        onChange={(e) => setAnnouncementFooter(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
+                  <Form.Group controlId="formMessage">
+                    <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="message"
+                      placeholder="Enter your announcement here..."
+                      rows={5}
+                      className="rounded-1 border-0 shadow-sm"
+                      value={announcementMessage}
+                      onChange={(e) => setAnnouncementMessage(e.target.value)}
+                      onInvalid={(e) => setAnnouncementFormMessageError('Announcement message is required')}
+                    />
+                  </Form.Group>
+                  {announcementFormMessageError && <Form.Text className="text-danger">{announcementFormMessageError}</Form.Text>}
                 </Row>
-                <Form.Group controlId="formMessage" className="mb-3">
-                  <Form.Label className="fw-bold">Message</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    name="message"
-                    placeholder="Enter your announcement here..."
-                    rows={5}
-                    className="rounded-1 border-0 shadow-sm"
-                    value={announcementMessage}
-                    onChange={(e) => setAnnouncementMessage(e.target.value)}
-                    onInvalid={(e) => setAnnouncementFormMessageError('Announcement message is required')}
-                    required
-                  />
-                </Form.Group>
                 <BSButton variant="primary" type="submit">Send to Discord</BSButton>
               </Form>
           ) : (
             <Form onSubmit={handleSubmit} method="post">
-              <Row className="mb-3">
+              <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
-                  <Form.Group controlId="webhookUsername">
-                    <Form.Label className="fw-bold">Webhook Username (optional)</Form.Label>
+                  <Form.Group controlId="embedUsername">
+                    <Form.Label className="fw-bold">Webhook Username</Form.Label>
                     <Form.Control
                       type="text"
                       name="username"
-                      placeholder="Example Username"
+                      placeholder="ExampleUsername"
                       className="rounded-1 border-0 shadow-sm"
                       value={embedWebhookUsername}
                       onChange={(e) => setEmbedWebhookUsername(e.target.value)}
@@ -614,8 +721,8 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Form.Group>
                 </Col>
                 <Col xs={12} md={6}>
-                  <Form.Group controlId="webhookUsernameIcon">
-                    <Form.Label className="fw-bold">Webhook Username Icon (optional)</Form.Label>
+                  <Form.Group controlId="embedUsernameIcon">
+                    <Form.Label className="fw-bold">Webhook Icon</Form.Label>
                     <Form.Control
                       type="text"
                       name="usernameIcon"
@@ -627,10 +734,38 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Form.Group>
                 </Col>
               </Row>
-              <Row className="mb-3">
+              <Row className="mb-3 row-gap-3">
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="embedAuthor">
+                    <Form.Label className="fw-bold">Embed Author</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="embedAuthor"
+                      placeholder="ExampleUsername"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={embedAuthor}
+                      onChange={(e) => setEmbedAuthor(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="embedIcon">
+                    <Form.Label className="fw-bold">Embed Icon</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="embedIcon"
+                      placeholder="https://example.com/icon.png"
+                      className="rounded-1 border-0 shadow-sm"
+                      value={embedAuthorIcon}
+                      onChange={(e) => setEmbedAuthorIcon(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedTitle">
-                    <Form.Label className="fw-bold">Embed Title (optional)</Form.Label>
+                    <Form.Label className="fw-bold">Embed Title</Form.Label>
                     <Form.Control
                       type="text"
                       name="title"
@@ -643,7 +778,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedTitleUrl">
-                    <Form.Label className="fw-bold">Embed URL (optional)</Form.Label>
+                    <Form.Label className="fw-bold">Embed URL</Form.Label>
                     <Form.Control
                       type="text"
                       name="url"
@@ -655,19 +790,21 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Form.Group>
                 </Col>
               </Row>
-              <Form.Group controlId="formMessage" className="mb-3">
-                <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="message"
-                  placeholder="Enter your message here..."
-                  rows={5}
-                  className="rounded-1 border-0 shadow-sm"
-                  value={embedMessage}
-                  onChange={(e) => setEmbedMessage(e.target.value)}
-                  required
-                />
-              </Form.Group>
+              <Row className="mb-3">
+                <Form.Group controlId="formMessage">
+                  <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    name="message"
+                    placeholder="Enter your message here..."
+                    rows={5}
+                    className="rounded-1 border-0 shadow-sm"
+                    value={embedMessage}
+                    onChange={(e) => setEmbedMessage(e.target.value)}
+                  />
+                </Form.Group>
+                {embedFormMessageError && <Form.Text className="text-danger">{embedFormMessageError}</Form.Text>}
+              </Row>
               <BSButton variant="primary" type="submit">Send to Discord</BSButton>
             </Form>
           )}
@@ -684,7 +821,7 @@ export default function CardDashboard({ dict, lang }: Props) {
             <>
               <div className="discord-message-error">
                 <div className="discord-message-inner d-flex">
-                  <div className="discord-author-avatar me-3 mt-1">
+                  <div className="discord-author-avatar me-2 me-md-3 mt-1">
                     <Image src={errorWebhookUsernameIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png'} width={40} height={40} roundedCircle />
                   </div>
                   <div className="discord-message-content">
@@ -697,11 +834,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                       {formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:t>`, 'nl')}
                     </span>
 
-                    <div className="discord-embed d-flex my-2 text-theme my-2">
-                      <div className="discord-left-border" style={{ backgroundColor: `#009a86` }}></div>
+                    <div className="discord-embed d-flex my-2 text-theme my-2 text-break">
+                      <div className="discord-left-border-error rounded-start" style={{ backgroundColor: `#009a86` }}></div>
 
-                      <div className="discord-embed-root d-grid rounded-1">
-                        <div className="discord-embed-wrapper bg-surface-darker d-grid rounded-1 border border-1  border-start-0 rounded-start-0">
+                      <div className="discord-embed-root">
+                        <div className="discord-embed-wrapper bg-surface-darker d-grid rounded border border-1 border-start-0 rounded-start-0">
                           <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
                             <div className="discord-embed-author d-flex align-items-center mt-2">
                               <Image src={errorEmbedAuthorIcon || 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg'} className="me-1" width={24} height={24} roundedCircle />
@@ -748,14 +885,14 @@ export default function CardDashboard({ dict, lang }: Props) {
               </div>
             </>
           ) : messageType === 'announcement' ? (
-            <div className="discord-message-announcement py-1">
+            <div className="discord-message-announcement py-1 rounded-end text-break">
               <div className="discord-message-inner d-flex">
-                <div className="discord-author-avatar me-3 mt-1 ms-3">
+                <div className="discord-author-avatar mx-2 mt-1">
                   <Image src={embedWebhookUsernameIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png'} width={40} height={40} roundedCircle />
                 </div>
                 <div className="discord-message-content">
                   <span className="discord-author-info d-inline-flex align-items-center">
-                    <span className="discord-author-username">{embedWebhookUsername || 'PPL Solutions VTC'}</span>
+                    <span className="discord-author-username small">{announcementWebhookUsername || 'PPL Solutions VTC'}</span>
                     <Badge bg="discord" className="discord-application-tag small py-1 px-2 ms-1">APP</Badge>
                   </span>
 
@@ -764,26 +901,44 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </span>
 
                   <div className="discord-message-body d-flex flex-column">
-                    <h1 className="">{announcementTitle}</h1>
+                    {announcementTitle && (
+                      <h1 className="">{announcementTitle}</h1>
+                    )}
 
-                    <div className="d-inline-block">
-                      <span className="">{`Greetings `}</span>
-                      <span className={`px-1 rounded-1 mention-${selectedAnnouncementMentionTag?.color}`}>{`@${selectedAnnouncementMentionTag?.label}`}</span>
-                      <Image src={`https://cdn.discordapp.com/emojis/1288523924094845030`} width={24} height={24} />
-                    </div><br />
+                    {selectedAnnouncementMentionTag && (
+                      <>
+                        <div className="d-inline-block">
+                          <span className="">Greetings</span>{" "}
+                          <span className={`px-1 rounded-1 announcement-mention-tag mention-${selectedAnnouncementMentionTag.color}`}>{`@${mentionTag}`}</span>
+                          <Image src={`https://cdn.discordapp.com/emojis/1288523924094845030`} width={27} height={27} />
+                        </div><br />
+                      </>
+                    )}
                     
-                    {announcementMessage.split("\\n").map((line, i) => (
-                      <span key={i}>
-                        {line}
-                        <br />
-                      </span>
-                    ))}<br />
+                    {announcementMessage && (
+                      <>
+                        {announcementMessage.split('\\n').map((line, i) => (
+                          <span key={i} className="announcement-message">
+                            <Markdown>{line}</Markdown>
+                            <br />
+                          </span>
+                        ))}
+                      </>
+                    )}
                     
                     <div className="d-flex flex-column">
-                      <span className="">{announcementFooter}</span>
+                      {announcementFooter && (
+                        <span className="">{announcementFooter}</span>
+                      )}
+                      
                       <div className="">
-                        <span className={`mention-${selectedFooterRoleTag?.color} px-1 rounded-1`} style={{  }}>{`@${selectedFooterRoleTag?.label}`}</span>
-                        <Image src={`https://cdn.discordapp.com/emojis/${selectedFooterEmojiTag?.emoji_id}`} width={24} height={24} />
+                        {selectedFooterRoleTag && (
+                          <span className={`announcement-footer-role-tag mention-${selectedFooterRoleTag?.color} px-1 rounded-1`}>{`@${footerTag}`}</span>
+                        )}
+                        
+                        {selectedFooterEmojiTag && (
+                          <Image src={`https://cdn.discordapp.com/emojis/${selectedFooterEmojiTag?.emoji_id}`} width={27} height={27} />
+                        )}
                       </div>
                     </div>
                   </div>
@@ -807,7 +962,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </span>
 
                   <div className="discord-embed d-flex my-2 text-theme my-2">
-                    <div className="discord-left-border" style={{ backgroundColor: `#009a86` }}></div>
+                    <div className="discord-left-border rounded-start" style={{ backgroundColor: `#009a86` }}></div>
 
                     <div className="discord-embed-root d-grid">
                           <div className="discord-embed-wrapper bg-surface-darker d-grid rounded-1 border border-1  border-start-0 rounded-start-0">
