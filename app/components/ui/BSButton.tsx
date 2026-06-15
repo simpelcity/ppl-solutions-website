@@ -36,13 +36,18 @@ export default function BSButton({
   size = "md",
   ...props
 }: ButtonProps) {
+  const borderClasses = border
+    ?.split(" ")
+    .filter(Boolean)
+    .map((b) => `border-${b}`)
+    .join(" ");
+
+  const optionalClasses = [borderClasses, classes].filter(Boolean).join(" ");
+
   return (
     <Button
       variant={variant}
-      className={`border ${border
-        ?.split(" ")
-        .map((b) => `border-${b}`)
-        .join(" ")} text-uppercase text-${text} fw-bold rounded-1 ${classes} ${variantStyles[variant]}`}
+      className={`${variantStyles[variant]} border text-uppercase fw-bold rounded-1 text-${text}${optionalClasses ? ` ${optionalClasses}` : ''}`}
       style={sizeStyles[size]}
       {...props}>
       {children}

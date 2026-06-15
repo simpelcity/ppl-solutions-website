@@ -1,92 +1,486 @@
+@use "../variables" as *;
+
 .founder {
-  color: #009a86;
+  color: #009a86 !important;
 }
 
 .ceo {
-  color: #ffdd00;
+  color: #ffdd00 !important;
 }
 
 .cao {
-  color: #00f867;
+  color: #00f867 !important;
 }
 
 .coo {
-  color: #00e1ff;
+  color: #00e1ff !important;
 }
 
 .cm {
-  color: #ff0e0e;
+  color: #ff0e0e !important;
 }
 
 .hrd,
 .hr {
-  color: #05493a;
+  color: #05493a !important;
 }
 
 .rtd,
 .rt {
-  color: #ff00a1;
+  color: #ff00a1 !important;
 }
 
 .etm,
 .et {
-  color: #0ba500;
+  color: #0ba500 !important;
 }
 
 .mtm,
 .mt {
-  color: #dd00ff;
+  color: #dd00ff !important;
+}
+
+[data-bs-theme="dark"] {
+  .ccm,
+  .cc {
+    color: #ccff00 !important;
+  }
+}
+[data-bs-theme="light"] {
+  .ccm,
+  .cc {
+    color: shift-color(#ccff00, 10%) !important;
+  }
 }
 
 .ccm,
 .cc {
-  color: #ccff00;
+  color: #ccff00 !important;
 }
 
+.staff {
+  color: #810022 !important;
+}
+
+.driver {
+  color: $primary !important;
+}
+
+.member {
+  color: #755b94 !important;
+}
+
+.ping {
+  color: #1f8b4c !important;
+}
+
+.theme {
+  color: var(--color-text) !important;
+}
+
+.blurple {
+  color: $discord !important;
+}
+
+.announcement-mention-tag:hover,
+.announcement-footer-role-tag:hover {
+  cursor: pointer;
+}
+
+/* --- FOUNDER ROLE ---*/
 .bg-founder {
-  background: #009a86;
+  background: #009a86 !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-founder {
+    background-color: shift-color(#009a855b, 20%);
+    color: #009a86;
+    &:hover {
+      background-color: shift-color(#009a855b, 0%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-founder {
+    background-color: shift-color(#009a855b, -40%);
+    color: #009a86;
+    &:hover {
+      background-color: shift-color(#009a855b, -10%);
+    }
+  }
 }
 
+/* --- CEO ROLE ---*/
 .bg-ceo {
-  background: #ffdd00;
-  color: black;
+  background: #ffdd00 !important;
+  color: $dark !important;
+}
+[data-bs-theme="dark"] {
+  .mention-ceo {
+    background-color: shift-color(#ffdd005b, 20%);
+    color: #ffdd00;
+    &:hover {
+      background-color: shift-color(#ffdd005b, 0%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-ceo {
+    background-color: shift-color(#ffdd005b, -40%);
+    color: #ffdd00;
+    &:hover {
+      background-color: shift-color(#ffdd005b, -10%);
+    }
+  }
 }
 
+/* --- CAO ROLE ---*/
 .bg-cao {
-  background: #00f867;
+  background: #00f867 !important;
+  color: $dark !important;
+}
+[data-bs-theme="dark"] {
+  .mention-cao {
+    background-color: shift-color(#00f8675b, 20%);
+    color: #00f867;
+    &:hover {
+      background-color: shift-color(#00f8675b, 0%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-cao {
+    background-color: shift-color(#00f8675b, -40%);
+    color: #00f867;
+    &:hover {
+      background-color: shift-color(#00f8675b, -10%);
+    }
+  }
 }
 
+/* --- COO ROLE ---*/
 .bg-coo {
-  background: #00e1ff;
+  background: #00e1ff !important;
+  color: $dark !important;
+}
+[data-bs-theme="dark"] {
+  .mention-coo {
+    background-color: shift-color(#00e1ff5b, 20%);
+    color: #00e1ff;
+    &:hover {
+      background-color: shift-color(#00e1ff5b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-coo {
+    background-color: shift-color(#00e1ff5b, -40%);
+    color: #00e1ff;
+    &:hover {
+      background-color: shift-color(#00e1ff5b, -10%);
+    }
+  }
 }
 
+/* --- CM ROLE ---*/
 .bg-cm {
-  background: #ff0e0e;
+  background: #ff0e0e !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-cm {
+    background-color: shift-color(#ff0e0e5b, 20%);
+    color: #ff0e0e;
+    &:hover {
+      background-color: shift-color(#ff0e0e5b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-cm {
+    background-color: shift-color(#ff0e0e5b, -40%);
+    color: #ff0e0e;
+    &:hover {
+      background-color: shift-color(#ff0e0e5b, -10%);
+    }
+  }
 }
 
+/* --- HR ROLE ---*/
 .bg-hrd,
 .bg-hr {
-  background: #05493a;
+  background: #05493a !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-hrd,
+  .mention-hr {
+    background-color: shift-color(#05493a5b, 20%);
+    color: #05493a;
+    &:hover {
+      background-color: shift-color(#05493a5b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-hrd,
+  .mention-hr {
+    background-color: shift-color(#05493a5b, -40%);
+    color: #05493a;
+    &:hover {
+      background-color: shift-color(#05493a5b, -10%);
+    }
+  }
 }
 
+/* --- RT ROLE ---*/
 .bg-rtd,
 .bg-rt {
-  background: #ff00a1;
+  background: #ff00a1 !important;
+}
+[data-bs-theme="dark"] {
+  .mention-rtd,
+  .mention-rt {
+    background-color: shift-color(#ff00a15b, 20%);
+    color: #ff00a1;
+    &:hover {
+      background-color: shift-color(#ff00a15b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-rtd,
+  .mention-rt {
+    background-color: shift-color(#ff00a15b, -40%);
+    color: #ff00a1;
+    &:hover {
+      background-color: shift-color(#ff00a15b, -10%);
+    }
+  }
 }
 
+/* --- ET ROLE ---*/
 .bg-etm,
 .bg-et {
-  background: #0ba500;
+  background: #0ba500 !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-etm,
+  .mention-et {
+    background-color: shift-color(#0ba5005b, 20%);
+    color: #0ba500;
+    &:hover {
+      background-color: shift-color(#0ba5005b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-etm,
+  .mention-et {
+    background-color: shift-color(#0ba5005b, -40%);
+    color: #0ba500;
+    &:hover {
+      background-color: shift-color(#0ba5005b, -10%);
+    }
+  }
 }
 
+/* --- MT ROLE ---*/
 .bg-mtm,
 .bg-mt {
-  background: #dd00ff;
+  background: #dd00ff !important;
+}
+[data-bs-theme="dark"] {
+  .mention-mtm,
+  .mention-mt {
+    background-color: shift-color(#dd00ff5b, 20%);
+    color: #dd00ff;
+    &:hover {
+      background-color: shift-color(#dd00ff5b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-mtm,
+  .mention-mt {
+    background-color: shift-color(#dd00ff5b, -40%);
+    color: #dd00ff;
+    &:hover {
+      background-color: shift-color(#dd00ff5b, -10%);
+    }
+  }
 }
 
+/* --- CC ROLE ---*/
 .bg-ccm,
 .bg-cc {
-  background: #ccff00;
-  color: black;
+  background: #ccff00 !important;
+}
+[data-bs-theme="dark"] {
+  .mention-ccm,
+  .mention-cc {
+    background-color: shift-color(#ccff005b, 20%);
+    color: #ccff00;
+    &:hover {
+      background-color: shift-color(#ccff005b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-ccm,
+  .mention-cc {
+    background-color: shift-color(#ccff005b, -40%);
+    color: shift-color(#ccff00, 10%);
+    &:hover {
+      background-color: shift-color(#ccff005b, -10%);
+    }
+  }
 }
 
+/* --- STAFF ROLE ---*/
+.bg-staff {
+  background-color: #810022 !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-staff {
+    background-color: shift-color(#8100225b, 20%);
+    color: #810022;
+    &:hover {
+      background-color: shift-color(#8100225b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-staff {
+    background-color: shift-color(#8100225b, -40%);
+    color: #810022;
+    &:hover {
+      background-color: shift-color(#8100225b, -10%);
+    }
+  }
+}
+
+/* --- DRIVER ROLE ---*/
+.bg-driver {
+  background-color: $primary !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-driver {
+    background-color: shift-color(#009a865b, 20%);
+    color: #009a86;
+    &:hover {
+      background-color: shift-color(#009a865b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-driver {
+    background-color: shift-color(#009a865b, -40%);
+    color: #009a86;
+    &:hover {
+      background-color: shift-color(#009a865b, -10%);
+    }
+  }
+}
+
+/* --- MEMBER ROLE ---*/
+.bg-member {
+  background-color: #755b94 !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-member {
+    background-color: shift-color(#755b945b, 20%);
+    color: #755b94;
+    &:hover {
+      background-color: shift-color(#755b945b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-member {
+    background-color: shift-color(#755b945b, -40%);
+    color: #755b94;
+    &:hover {
+      background-color: shift-color(#755b945b, -10%);
+    }
+  }
+}
+
+/* --- PING ROLE ---*/
+.bg-ping {
+  background-color: #1f8b4c !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-ping {
+    background-color: shift-color(#1f8b4c5b, 20%);
+    color: #1f8b4c;
+    &:hover {
+      background-color: shift-color(#1f8b4c5b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-ping {
+    background-color: shift-color(#1f8b4c5b, -40%);
+    color: #1f8b4c;
+    &:hover {
+      background-color: shift-color(#1f8b4c5b, -10%);
+    }
+  }
+}
+
+/* --- DIVIDER ROLE ---*/
+.bg-theme {
+  background-color: var(--color-surface-darker) !important;
+  color: var(--color-text) !important;
+}
+[data-bs-theme="dark"] {
+  .mention-theme {
+    background-color: shift-color(#f5f5f55b, 10%);
+    color: $light;
+    &:hover {
+      background-color: shift-color(#f5f5f55b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-theme {
+    background-color: shift-color(#f5f5f55b, 1%);
+    color: shift-color($light, -10%);
+    &:hover {
+      background-color: shift-color(#f5f5f55b, -2%);
+    }
+  }
+}
+
+/* --- @EVERYONE ROLE ---*/
+.bg-blurple {
+  background-color: $discord !important;
+  color: var(--color-text) !important;
+}
+[data-bs-theme="dark"] {
+  .mention-blurple {
+    background-color: shift-color(hsla(234.935, calc(1*85.556%), 64.706%, 50%), 20%);
+    color: shift-color(hsla(234.935, calc(1*85.556%), 64.706%, 100%), -50%);
+    &:hover {
+      background-color: $discord;
+      color: $light;
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-blurple {
+    background-color: shift-color(hsla(234.935, calc(1*85.556%), 64.706%, 50%), -20%);
+    color: shift-color(hsla(234.935, calc(1*85.556%), 64.706%, 100%), 50%);
+    &:hover {
+      background-color: $discord;
+      color: $light;
+    }
+  }
+}

@@ -19,151 +19,151 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
 export default function TeamForm({ dict }: Props) {
-  const teamDict = dict.drivershub.team;
-  const settingsDict = dict.drivershub.profile.settingsPage;
-
-  const { resolvedTheme } = useTheme();
-
-  const {
-    members,
-    departments,
-    roles,
-    memberRoles,
-    loading,
-    loadingRoles,
-    submitting,
-    editingId,
-    error,
-    status,
-    isRateLimited,
-    rateLimitSecondsRemaining,
-    success,
-    setEditingId,
-    createMember,
-    updateMember,
-    deleteMember,
-    deleteProfilePicture,
-    addRole,
-    removeRole,
-    retryTeamData,
-  } = useTeam(dict);
-
-  const [name, setName] = useState("");
-  const [file, setFile] = useState<File | null>(null);
-  const [selectedDepartment, setSelectedDepartment] = useState("");
-  const [selectedRole, setSelectedRole] = useState("");
-
-  const [profilePictureFileError, setProfilePictureFileError] = useState<string | null>(null);
-  const [profileFileName, setProfileFileName] = useState<string>("");
-
-
-  const [showModal, setShowModal] = useState(false);
-  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
-  const [targetId, setTargetId] = useState<number | null>(null);
-
-  function validateImageFile(file: File) {
-    if (file.size > MAX_FILE_SIZE) {
-      return dict.errors.files.FILE_TOO_LARGE;
+  const teamDict = dict.drivershub.dashboard.team;
+    const settingsDict = dict.drivershub.profile.settingsPage;
+  
+    const { resolvedTheme } = useTheme();
+  
+    const {
+      members,
+      departments,
+      roles,
+      memberRoles,
+      loading,
+      loadingRoles,
+      submitting,
+      editingId,
+      error,
+      status,
+      isRateLimited,
+      rateLimitSecondsRemaining,
+      success,
+      setEditingId,
+      createMember,
+      updateMember,
+      deleteMember,
+      deleteProfilePicture,
+      addRole,
+      removeRole,
+      retryTeamData,
+    } = useTeam(dict);
+  
+    const [name, setName] = useState("");
+    const [file, setFile] = useState<File | null>(null);
+    const [selectedDepartment, setSelectedDepartment] = useState("");
+    const [selectedRole, setSelectedRole] = useState("");
+  
+    const [profilePictureFileError, setProfilePictureFileError] = useState<string | null>(null);
+    const [profileFileName, setProfileFileName] = useState<string>("");
+  
+  
+    const [showModal, setShowModal] = useState(false);
+    const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
+    const [targetId, setTargetId] = useState<number | null>(null);
+  
+    function validateImageFile(file: File) {
+      if (file.size > MAX_FILE_SIZE) {
+        return dict.errors.files.FILE_TOO_LARGE;
+      }
+  
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        return dict.errors.files.INVALID_FILE_TYPE;
+      }
+  
+      const extension = `.${file.name.split(".").pop()?.toLowerCase() ?? ""}`;
+      if (!ALLOWED_EXTENSIONS.includes(extension)) {
+        return dict.errors.files.INVALID_FILE_EXTENSION;
+      }
+  
+      return null;
     }
-
-    if (!ALLOWED_TYPES.includes(file.type)) {
-      return dict.errors.files.INVALID_FILE_TYPE;
-    }
-
-    const extension = `.${file.name.split(".").pop()?.toLowerCase() ?? ""}`;
-    if (!ALLOWED_EXTENSIONS.includes(extension)) {
-      return dict.errors.files.INVALID_FILE_EXTENSION;
-    }
-
-    return null;
-  }
-
-  function handleProfilePictureChange(e: ChangeEvent<HTMLInputElement>) {
-    const selectedFile = e.target.files?.[0] ?? null;
-
-    if (!selectedFile) {
-      setFile(null);
+  
+    function handleProfilePictureChange(e: ChangeEvent<HTMLInputElement>) {
+      const selectedFile = e.target.files?.[0] ?? null;
+  
+      if (!selectedFile) {
+        setFile(null);
+        setProfilePictureFileError(null);
+        return;
+      }
+  
+      const validationError = validateImageFile(selectedFile);
+      if (validationError) {
+        setFile(null);
+        setProfilePictureFileError(validationError);
+        return;
+      }
+  
       setProfilePictureFileError(null);
-      return;
-    }
-
-    const validationError = validateImageFile(selectedFile);
-    if (validationError) {
+      setFile(selectedFile);
+      setProfileFileName(selectedFile.name);
+    };
+  
+    function resetForm() {
+      setName("");
       setFile(null);
-      setProfilePictureFileError(validationError);
-      return;
-    }
-
-    setProfilePictureFileError(null);
-    setFile(selectedFile);
-    setProfileFileName(selectedFile.name);
-  };
-
-  function resetForm() {
-    setName("");
-    setFile(null);
-    setSelectedDepartment("");
-    setSelectedRole("");
-    setProfileFileName("");
-    setProfilePictureFileError(null);
-    setEditingId(null);
-
-    const input = document.getElementById("pfp-file-input") as HTMLInputElement | null;
-    if (input) input.value = "";
-  };
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setProfilePictureFileError(null);
-
-    try {
-      await createMember(name, file);
-      
+      setSelectedDepartment("");
+      setSelectedRole("");
+      setProfileFileName("");
+      setProfilePictureFileError(null);
+      setEditingId(null);
+  
+      const input = document.getElementById("pfp-file-input") as HTMLInputElement | null;
+      if (input) input.value = "";
+    };
+  
+    async function handleSubmit(e: React.FormEvent) {
+      e.preventDefault();
+      setProfilePictureFileError(null);
+  
+      try {
+        await createMember(name, file);
+        
+        resetForm();
+      } catch (err: any) {
+        const message = err?.message || dict.errors.UNEXPECTED;
+        setProfilePictureFileError(message);
+      }
+    };
+  
+    async function handleUpdate(e: React.FormEvent) {
+      e.preventDefault();
+      setProfilePictureFileError(null);
+  
+      try {
+        if (!editingId) return;
+        await updateMember(editingId, name, file);
+  
+        resetForm();
+      } catch (err: any) {
+        const message = err?.message || dict.errors.UNEXPECTED;
+        setProfilePictureFileError(message);
+      }
+    };
+  
+    function handleEdit(member: TeamMember) {
       resetForm();
-    } catch (err: any) {
-      const message = err?.message || dict.errors.UNEXPECTED;
-      setProfilePictureFileError(message);
-    }
-  };
-
-  async function handleUpdate(e: React.FormEvent) {
-    e.preventDefault();
-    setProfilePictureFileError(null);
-
-    try {
-      if (!editingId) return;
-      await updateMember(editingId, name, file);
-
-      resetForm();
-    } catch (err: any) {
-      const message = err?.message || dict.errors.UNEXPECTED;
-      setProfilePictureFileError(message);
-    }
-  };
-
-  function handleEdit(member: TeamMember) {
-    resetForm();
-    setEditingId(member.id);
-    setName(member.name);
-    setFile(null);
-  };
-
-  function confirm(action: ConfirmAction, id: number) {
-    setConfirmAction(action);
-    setTargetId(id);
-    setShowModal(true);
-  };
-
-  async function handleConfirm() {
-    if (!targetId || !confirmAction) return;
-
-    if (confirmAction === "delete-member") await deleteMember(targetId);
-    if (confirmAction === "delete-picture") await deleteProfilePicture(targetId);
-
-    setShowModal(false);
-    setTargetId(null);
-    setConfirmAction(null);
-  };
+      setEditingId(member.id);
+      setName(member.name);
+      setFile(null);
+    };
+  
+    function confirm(action: ConfirmAction, id: number) {
+      setConfirmAction(action);
+      setTargetId(id);
+      setShowModal(true);
+    };
+  
+    async function handleConfirm() {
+      if (!targetId || !confirmAction) return;
+  
+      if (confirmAction === "delete-member") await deleteMember(targetId);
+      if (confirmAction === "delete-picture") await deleteProfilePicture(targetId);
+  
+      setShowModal(false);
+      setTargetId(null);
+      setConfirmAction(null);
+    };
 
   if (error && status === 403) {
     return (
@@ -174,14 +174,14 @@ export default function TeamForm({ dict }: Props) {
   return (
     <>
       <Card className="px-0 rounded-1 border-0 shadow-sm bg-surface">
-        <Card.Title className="fs-4 border-bottom m-0 py-3 py-md-4">{editingId ? (dict.drivershub.team.form.titleEditMember || "Edit Member") : (dict.drivershub.team.form.titleNewMember || "Add Member")}</Card.Title>
+        <Card.Title className="fs-4 border-bottom m-0 py-3 py-md-4">{editingId ? (teamDict.form.titleEditMember || "Edit Member") : (teamDict.form.titleNewMember || "Add Member")}</Card.Title>
         <Card.Body className="p-3 p-md-4 text-start">
           <Form onSubmit={editingId ? handleUpdate : handleSubmit}>
             <Form.Group className="mb-3">
-              <Form.Label className="fw-bold fs-5">{dict.drivershub.team.form.username || "Member Name"}</Form.Label>
+              <Form.Label className="fw-bold fs-5">{teamDict.form.username || "Member Name"}</Form.Label>
               <Form.Control
                 type="text"
-                placeholder={dict.drivershub.team.form.usernamePlaceholder || "Username"}
+                placeholder={teamDict.form.usernamePlaceholder || "Username"}
                 className="rounded-1 border-0 shadow-sm fw-semibold"
                 required
                 value={name}
@@ -204,7 +204,7 @@ export default function TeamForm({ dict }: Props) {
             {editingId && (
               <>
                 <hr className="my-4" />
-                <h5 className="mb-3">{dict.drivershub.team.form.rolesDepartments?.title || "Manage Roles & Departments"}</h5>
+                <h5 className="mb-3">{teamDict.form.rolesDepartments?.title || "Manage Roles & Departments"}</h5>
 
                 {loadingRoles ? (
                   <div className="d-flex justify-content-center align-items-center column-gap-2 mb-3">
@@ -215,7 +215,7 @@ export default function TeamForm({ dict }: Props) {
                   <>
                     {memberRoles.length > 0 && (
                       <div className="mb-3">
-                        <Form.Label className="fw-bold">{dict.drivershub.team.form.rolesDepartments?.currentRoles || "Current Roles:"}</Form.Label>
+                        <Form.Label className="fw-bold">{teamDict.form.rolesDepartments?.currentRoles || "Current Roles:"}</Form.Label>
                         <div className="d-flex flex-wrap gap-2">
                           {memberRoles.map((mr, idx) => (
                             <Badge key={idx} bg={mr.role.code} className="d-flex align-items-center gap-2 p-2 rounded-1">
@@ -232,14 +232,14 @@ export default function TeamForm({ dict }: Props) {
                       </div>
                     )}
 
-                    <Form.Label className="fw-bold">{dict.drivershub.team.form.rolesDepartments?.addRole || "Add Role:"}</Form.Label>
+                    <Form.Label className="fw-bold">{teamDict.form.rolesDepartments?.addRole || "Add Role:"}</Form.Label>
                     <div className="d-flex gap-2 mb-3">
                       <Form.Select
                         value={selectedDepartment}
                         onChange={(e) => setSelectedDepartment(e.target.value)}
                         disabled={submitting}
                         className="rounded-1 border-0 shadow-sm text-theme">
-                        <option>{dict.drivershub.team.form.rolesDepartments?.department || "Select Department"}</option>
+                        <option>{teamDict.form.rolesDepartments?.department || "Select Department"}</option>
                         {departments.map((dept) => (
                           <option key={dept.id} value={dept.id}>
                             {dept.name}
@@ -252,7 +252,7 @@ export default function TeamForm({ dict }: Props) {
                         onChange={(e) => setSelectedRole(e.target.value)}
                         disabled={submitting}
                         className="rounded-1 border-0 shadow-sm text-theme">
-                        <option>{dict.drivershub.team.form.rolesDepartments?.role || "Select Role"}</option>
+                        <option>{teamDict.form.rolesDepartments?.role || "Select Role"}</option>
                         {roles.map((role) => (
                           <option key={role.id} value={role.id}>
                             {role.name}
@@ -280,9 +280,9 @@ export default function TeamForm({ dict }: Props) {
                   {editingId ? teamDict.form.updating : teamDict.form.saving}
                 </>
               ) : editingId ? (
-                dict.drivershub.team.form.submitEditMember || "Update Member"
+                teamDict.form.submitEditMember || "Update Member"
               ) : (
-                dict.drivershub.team.form.submitNewMember || "Add Member"
+                teamDict.form.submitNewMember || "Add Member"
               )}
             </BSButton>
 
@@ -294,7 +294,7 @@ export default function TeamForm({ dict }: Props) {
                 onClick={resetForm}
                 disabled={submitting}
               >
-                {dict.drivershub.team.form.cancelEditMember || "Cancel"}
+                {teamDict.form.cancelEditMember || "Cancel"}
               </Button>
             )}
           </Form>

@@ -11,6 +11,7 @@ export { default as RegisterForm } from "./forms/RegisterForm";
 export { default as RegisterFormClient } from "./forms/RegisterFormClient";
 export { default as ResetPasswordForm } from "./forms/ResetPasswordForm";
 export { default as ResetPasswordFormClient } from "./forms/ResetPasswordFormClient";
+export { default as TeamForm } from "./forms/TeamForm";
 // Layout
 export { default as DrivershubLayout } from "./layout/DrivershubLayout";
 export { default as Footer } from "./layout/Footer";

@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "../variables" as *;
 
 .primary-link {
@@ -71,5 +72,12 @@
   }
   &:active {
     color: $primary-active;
+  }
+}
+
+.discord-link {
+  color: hsl(215.514, calc(1*80.995%), math.div(56.667%, 1)) !important;
+  &:hover {
+    text-decoration: underline !important;
   }
 }

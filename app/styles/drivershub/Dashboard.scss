@@ -1,6 +1,10 @@
 @use '../variables' as *;
 
-#method-dropdown .dropdown-toggle::after {
+#method-dropdown .dropdown-toggle::after,
+.message-type-dropdown .dropdown-toggle::after,
+.tag-dropdown .dropdown-toggle::after,
+.role-dropdown .dropdown-toggle::after,
+.emoji-dropdown .dropdown-toggle::after {
   content: none;
 }
 
@@ -61,4 +65,80 @@ option:first-of-type {
 
 option:last-of-type {
   border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.tag-dropdown .dropdown-item:hover,
+.role-dropdown .dropdown-item:hover,
+.emoji-dropdown .dropdown-item:hover,
+.tag-dropdown .dropdown-toggle:hover,
+.role-dropdown .dropdown-toggle:hover,
+.emoji-dropdown .dropdown-toggle:hover {
+  color: $light !important;
+}
+
+.discord-left-border-error {
+  width: 4px;
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 5px !important;
+  }
+}
+
+.discord-left-border {
+  width: 4px;
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 5px !important;
+  }
+}
+
+.bg-discord {
+  background-color: $discord;
+}
+
+.discord-embed-description > strong {
+  width: fit-content;
+}
+
+@media (max-width: 576px) {
+  .discord-message-announcement {
+    border-radius: 0 !important;
+  }
+}
+
+[data-bs-theme="dark"] {
+  .discord-message-announcement {
+    background-color: hsla(39.435, calc(1*100%), 48.627%, 20%);
+    border-left: 2px solid hsla(39.435, calc(1*100%), 48.627%, 100%);
+    &:hover {
+      background-color: hsla(39.435, calc(1*100%), 48.627%, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .discord-message-announcement {
+    background-color: hsla(39.435, calc(1*100%), 48.627%, 5%);
+    border-left: 2px solid shift-color(hsla(39.435, calc(1*100%), 48.627%, 100%), 40%);
+    &:hover {
+      background-color: hsla(39.435, calc(1*100%), 48.627%, 10%);
+    }
+  }
+}
+
+.announcement-message > h1,
+.announcement-message > h2,
+.announcement-message > h3,
+.announcement-message > h4,
+.announcement-message > h5,
+.announcement-message > h6,
+.announcement-message > p {
+  margin: 0;
+}
+
+.announcement-message a {
+  color: $discord;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
