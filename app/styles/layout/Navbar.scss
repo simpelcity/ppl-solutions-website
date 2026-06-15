@@ -4,7 +4,7 @@
   max-height: var(--height-navbar);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 576px) {
   #main-navbar {
     position: absolute;
     top: 100%;
@@ -27,15 +27,11 @@
     }
   }
 
-  .navbar-collapse.collapse:not(.show) {
-    display: none !important;
-  }
+  // .navbar-collapse.collapse:not(.show) {
+  //   display: none !important;
+  // }
 
-  .navbar-collapse.show {
-    display: block !important;
-  }
-
-  header {
-    position: relative;
-  }
+  // .navbar-collapse.show {
+  //   display: block !important;
+  // }
 }

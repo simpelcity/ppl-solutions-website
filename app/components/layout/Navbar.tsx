@@ -37,6 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const [expanded, setExpanded] = useState(false);
   const { toggleSidebar, isMobile, setShowOffcanvas } = useSidebar();
   const [show, setShow] = useState(false);
+  const [showOffcanvasNavbar, setShowOffcanvasNavbar] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -65,7 +66,11 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
     }
   }, []);
 
+  const handleShowOffcanvasNavbar = () => setShowOffcanvasNavbar(true);
+  const handleCloseOffcanvasNavbar = () => setShowOffcanvasNavbar(false);
+
   const offCanvas = width >= 992 && width <= 1150;
+  const isTablet = width >= 576 && width <= 1150;
 
   const navLinks = [
     { title: dict.navbar.navigation.home, href: `${lang === 'en' ? '/' : currentLocale}` },
@@ -79,9 +84,11 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const brand1 = brandSplit[0] + (brandSplit.length > 1 ? " " : "") + (brandSplit.length > 1 ? brandSplit[1] : "");
   const brand2 = brandSplit[2];
 
+  console.log('isTablet:', isTablet, 'offCanvas:', offCanvas, 'width:', width, 'isDrivershub:', isDrivershub)
+
   return (
     <header className="position-sticky top-0" style={{ zIndex: 5 }}>
-      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="lg" bg={resolvedTheme} variant={resolvedTheme}  className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
+      <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="md" bg={resolvedTheme} variant={resolvedTheme}  className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>
         <Container className="m-0 p-0 d-flex align-items-center" fluid>
           {isMobile && isDrivershub && (
             <button
@@ -91,6 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
               <GoSidebarExpand className="flip" size={30} />
             </button>
           )}
+
           <BSNavbar.Brand
             as={Link}
             onClick={() => setExpanded(false)}
@@ -99,49 +107,175 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
               {width > 768 && (
               <Image src={`/assets/images/${resolvedTheme}/logo.png`} alt={dict.navbar.alt} width={50} height={50} roundedCircle />
               )}
-            <span className="my-auto">
-              <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand1}</span>{" "}
-              <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand2}</span>
-            </span>
-          </BSNavbar.Brand>
-          <BSNavbar.Toggle aria-controls="main-navbar" className="text-theme text-opacity-75 border-0 shadow-none">
-            {expanded ? <RxHamburgerMenu className="" size={30} /> : <RxHamburgerMenu className="" size={30} />}
-          </BSNavbar.Toggle>
-          <BSNavbar.Collapse className="p-3 p-lg-0" id="main-navbar">
-            <Nav className="mx-auto d-flex justify-content-center mb-3 mb-lg-0 row-gap-1">
-              {navLinks.map((link) => (
-                <BSLink
-                  key={link.href}
-                  variant="nav"
-                  href={link.href}
-                  state={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : undefined}
-                  classes="nav-link"
-                  onClick={() => setExpanded(false)}
-                >
-                  {link.title}
-                </BSLink>
-              ))}
-            </Nav>
-            <hr className="text-theme" />
-            {offCanvas ? (
-              <>
-                <button onClick={handleShow} className="btn btn-link text-theme border-0">
-                  <RxHamburgerMenu size={30} />
-                </button>
 
-                <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-surface text-theme">
-                  <Offcanvas.Header closeButton closeVariant="white">
-                    <Offcanvas.Title>{dict.navbar.navigation.title}</Offcanvas.Title>
-                  </Offcanvas.Header>
-                  <Offcanvas.Body>
+              {isDrivershub ? (
+                <span className="my-auto">
+                  <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand1}</span>{" "}
+                  <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand2}</span>
+                </span>
+              ) : (
+                <span className="my-auto">
+                  <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand1}</span>{" "}
+                  <span className={`font-freestyle fw-normal ${isMobile ? 'fs-1' : 'fs-2'}`}>{brand2}</span>
+                </span>
+              )}
+          </BSNavbar.Brand>
+
+          {width < 576 && (
+            <BSNavbar.Toggle aria-controls="main-navbar" className="text-theme text-opacity-75 border-0 shadow-none">
+              {expanded ? <RxHamburgerMenu className="" size={30} /> : <RxHamburgerMenu className="" size={30} />}
+            </BSNavbar.Toggle>
+          )}
+
+          {isDrivershub ? (
+            <>
+              {isTablet && !offCanvas ? (
+                <>
+                  <button onClick={handleShow} className="btn btn-link text-theme border-0">
+                    <RxHamburgerMenu size={30} />
+                  </button>
+
+                  <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-surface text-theme">
+                    <Offcanvas.Header closeButton>
+                      <Offcanvas.Title>{dict.navbar.navigation.title}</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                      <Nav className="mx-auto d-flex justify-content-center mb-3 mb-md-0 row-gap-1 column-gap-md-3 drivershub-nav">
+                        {navLinks.map((link) => (
+                          <BSLink
+                            key={link.href}
+                            variant="nav"
+                            href={link.href}
+                            state={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : undefined}
+                            classes=""
+                            onClick={() => setExpanded(false)}
+                          >
+                            <span>{link.title}</span>
+                          </BSLink>
+                        ))}
+                      </Nav>
+
+                      <hr className="text-theme" />
+
+                      <NavButtons dict={dict} width={width} isMobile={isMobile} />
+                    </Offcanvas.Body>
+                  </Offcanvas>
+                </>
+              ) : (
+                <BSNavbar.Collapse className="p-3 p-md-0" id="main-navbar">
+                  <Nav className="mx-auto d-flex justify-content-center mb-3 mb-md-0 row-gap-1 column-gap-md-3 column-gap-xl-0">
+                    {navLinks.map((link) => (
+                      <BSLink
+                        key={link.href}
+                        variant="nav"
+                        href={link.href}
+                        state={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : undefined}
+                        classes=""
+                        onClick={() => setExpanded(false)}
+                      >
+                        <span>{link.title}</span>
+                      </BSLink>
+                    ))}
+                  </Nav>
+
+                  <hr className="text-theme" />
+
+                  {offCanvas || isTablet ? (
+                    <>
+                      <button onClick={handleShow} className="btn btn-link text-theme border-0">
+                        <RxHamburgerMenu size={30} />
+                      </button>
+
+                      <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-surface text-theme">
+                        <Offcanvas.Header closeButton>
+                          <Offcanvas.Title>{dict.navbar.buttons.title}</Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                          <NavButtons dict={dict} width={width} isMobile={isMobile} />
+                        </Offcanvas.Body>
+                      </Offcanvas>
+                    </>
+                  ) : (
                     <NavButtons dict={dict} width={width} isMobile={isMobile} />
-                  </Offcanvas.Body>
-                </Offcanvas>
-              </>
-            ) : (
-              <NavButtons dict={dict} width={width} isMobile={isMobile} />
-            )}
-          </BSNavbar.Collapse>
+                  )}
+                </BSNavbar.Collapse>
+              )}
+            </>
+          ) : (
+            <>
+              {isTablet && !offCanvas ? (
+                <>
+                  <button onClick={handleShow} className="btn btn-link text-theme border-0">
+                    <RxHamburgerMenu size={30} />
+                  </button>
+
+                  <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-surface text-theme">
+                    <Offcanvas.Header closeButton>
+                      <Offcanvas.Title>{dict.navbar.navigation.title}</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                      <Nav className="mx-auto d-flex justify-content-center mb-3 mb-md-0 row-gap-1 column-gap-md-3 drivershub-nav">
+                        {navLinks.map((link) => (
+                          <BSLink
+                            key={link.href}
+                            variant="nav"
+                            href={link.href}
+                            state={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : undefined}
+                            classes=""
+                            onClick={() => setExpanded(false)}
+                          >
+                            <span>{link.title}</span>
+                          </BSLink>
+                        ))}
+                      </Nav>
+
+                      <hr className="text-theme" />
+
+                      <NavButtons dict={dict} width={width} isMobile={isMobile} />
+                    </Offcanvas.Body>
+                  </Offcanvas>
+                </>
+              ) : (
+                <BSNavbar.Collapse className="p-3 p-md-0" id="main-navbar">
+                  <Nav className="mx-auto d-flex justify-content-center mb-3 mb-md-0 row-gap-1 column-gap-md-3 column-gap-xl-0">
+                    {navLinks.map((link) => (
+                      <BSLink
+                        key={link.href}
+                        variant="nav"
+                        href={link.href}
+                        state={(link.href === `${currentLocale}/events` && pathname.startsWith(`${currentLocale}/events`)) || pathname === link.href ? 'active' : undefined}
+                        classes=""
+                        onClick={() => setExpanded(false)}
+                      >
+                        <span>{link.title}</span>
+                      </BSLink>
+                    ))}
+                  </Nav>
+
+                  <hr className="text-theme" />
+
+                  {offCanvas || isTablet ? (
+                    <>
+                      <button onClick={handleShow} className="btn btn-link text-theme border-0">
+                        <RxHamburgerMenu size={30} />
+                      </button>
+
+                      <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-surface text-theme">
+                        <Offcanvas.Header closeButton>
+                          <Offcanvas.Title>{dict.navbar.buttons.title}</Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                          <NavButtons dict={dict} width={width} isMobile={isMobile} />
+                        </Offcanvas.Body>
+                      </Offcanvas>
+                    </>
+                  ) : (
+                    <NavButtons dict={dict} width={width} isMobile={isMobile} />
+                  )}
+                </BSNavbar.Collapse>
+              )}
+            </>
+          )}
         </Container>
       </BSNavbar>
     </header>

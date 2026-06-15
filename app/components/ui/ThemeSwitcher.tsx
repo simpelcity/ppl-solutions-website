@@ -31,7 +31,7 @@ export default function ThemeSwitcher({ width, dict }: Props) {
   const show = width <= 1150;
   
   return (
-    <Dropdown align="end" className="" id="theme-switcher" style={{ width: 'min-content' }} onToggle={(nextShow) => setIsThemeDropdownOpen(Boolean(nextShow))}>
+    <Dropdown className="" align="end" id="theme-switcher" style={{ width: 'min-content' }} onToggle={(nextShow) => setIsThemeDropdownOpen(Boolean(nextShow))}>
       <Dropdown.Toggle variant="transparent" id="theme-dropdown" className="d-flex align-items-center px-0 py-1">
         {icon}
         {show && (

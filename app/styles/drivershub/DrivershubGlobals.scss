@@ -2,6 +2,10 @@
   min-height: calc(100vh - var(--height-navbar) - 62px);
 }
 
+.content-wrapper > main {
+  min-height: calc(100vh - var(--height-navbar) - 62px);
+}
+
 .btn-close {
   padding: 0.8rem 1rem !important;
   box-shadow: none !important;

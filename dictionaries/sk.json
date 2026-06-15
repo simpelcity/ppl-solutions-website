@@ -3,7 +3,7 @@
     "brand": "PPL Solutions VTC",
     "alt": "Logo PPL Solutions VTC",
     "navigation": {
-      "title": "Navigačné tlačidlá",
+      "title": "Navigácia",
       "home": "Domov",
       "events": "Udalosti",
       "gallery": "Galéria",
@@ -11,6 +11,7 @@
       "contact": "Kontakt"
     },
     "buttons": {
+      "title": "Navigačné tlačidlá",
       "apply": "Prihlásiť sa",
       "drivershub": "Centrum vodičov"
     }

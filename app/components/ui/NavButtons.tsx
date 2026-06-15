@@ -86,9 +86,10 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
   };
 
   const offCanvas = width >= 992 && width <= 1150;
+  const isTablet = width >= 576 && width <= 1150;
 
   return (
-    <Nav className={`d-flex justify-content-center row-gap-3 column-gap-md-2 ${offCanvas ? 'flex-column' : width < 576 ? 'flex-column' : 'flex-row'}`}>
+    <Nav className={`d-flex justify-content-center row-gap-3 column-gap-md-2 ${offCanvas || width < 576 || isTablet ? 'flex-column' : 'flex-row'}`}>
       <div className="d-flex justify-content-center column-gap-2 nav-buttons">
         <BSButton
           variant="secondary"
@@ -107,7 +108,9 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
           {dict.navbar.buttons.drivershub}
         </BSButton>
       </div>
-      <div className={`vr text-theme ${offCanvas ? 'd-none' : width < 576 ? 'd-none' : 'd-block'}`}></div>
+
+      <div className={`vr text-theme ${offCanvas || width < 576 || isTablet ? 'd-none' : 'd-block'}`} />
+
       <div className="d-flex align-items-center justify-content-center column-gap-2">
         <Dropdown align="end" id="lang-dropdown" style={{ width: 'min-content' }} onToggle={(nextShow) => setIsLangDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle variant="transparent" className="border-0 d-flex align-items-center p-0 fw-semibold" id="dropdown-lang">
@@ -117,7 +120,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
               className="me-1"
               style={{ width: "25px", height: "17px" }}
             />
-            {isMobile ? languageNames[currentLocale].long : languageNames[currentLocale].short}
+            {isMobile || isTablet ? languageNames[currentLocale].long : languageNames[currentLocale].short}
             <span className={`ms-1 chevron-rotate-180 ${isLangDropdownOpen ? 'is-open' : ''}`}>
               <FaAngleDown />
             </span>
@@ -139,7 +142,7 @@ export default function NavButtons({ dict, width, isMobile }: { dict: Dictionary
             ))}
           </Dropdown.Menu>
         </Dropdown>
-        <div className={`vr text-theme ${offCanvas ? 'd-block' : width < 576 ? 'd-block' : 'd-none'}`}></div>
+        <div className={`vr text-theme ${offCanvas || width < 576 || isTablet ? 'd-block' : 'd-none'}`}></div>
         <ThemeSwitcher width={width} dict={dict} />
       </div>
     </Nav>
