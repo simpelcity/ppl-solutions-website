@@ -12,9 +12,45 @@ interface VtcStatsProps {
 export default function VtcStats({ dict }: VtcStatsProps) {
   const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryVtcStats } = useVtcStats(dict);
 
+  console.log(stats)
+
+  const numberWithCommas = (x: number) => {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const formatIncome = (income: number, unit: string = 'euro') => {
+    const incomeString = income.toString();
+    const icon = unit === 'euro' ? '€' : '$';
+    console.log(incomeString.length)
+    let value = 0;
+    if (incomeString.length >= 7) {
+      value = income / 1000000;
+      const incomeValue = value.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      return `${icon}${incomeValue.replace('.', ',')}M`
+    }
+    if (incomeString.length >= 6) {
+      value = income / 1000;
+      const incomeValue = value.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      return `${icon}${incomeValue.replace('.', ',')}K`
+    }
+    if (incomeString.length >= 4) {
+      value = income / 1000;
+      const incomeValue = value.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      return `${icon}${incomeValue.replace('.', ',')}K`
+    }
+  }
+
+  console.log(formatIncome(6280))
+
   const formatDistance = (distance: number, unit: string = "km"): string => {
-    const value = distance / 1000
-    return `${value.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${unit}`
+    const distanceString = distance.toLocaleString();
+    const distanceValue = distance / 1000;
+    const value = distanceValue.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    if (distanceString.length > 4) {
+      return `${value.replace('.', ',')}K ${unit}`
+    } else {
+      return `${value.replace('.', ',')} ${unit}`
+    }
   }
 
   if (loading) {
@@ -216,7 +252,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
             </Col>
             <Col xs={12} md={6} xl={3}>
               <div className="border border-1 border-primary border-custom rounded-1 h-100 p-2">
-                <p className="fs-2 fw-bold mb-0">€{stats.total.revenue.toLocaleString()},-</p>
+                <p className="fs-2 fw-bold mb-0">{formatIncome(stats.total.revenue)}</p>
                 <h5 className="mb-0">{dict.drivershub.vtcStats.vtc.totalIncome || "Total Revenue"}</h5>
               </div>
             </Col>
@@ -252,7 +288,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
                     </Col>
                     <Col xs={12} md={6}>
                       <div className="border border-1 border-primary border-custom rounded-1 h-100 p-2">
-                        <p className="fs-2 fw-bold mb-0">€{stats.ets2.revenue.toLocaleString()}</p>
+                        <p className="fs-2 fw-bold mb-0">{formatIncome(stats.ets2.revenue)}</p>
                         <h5 className="mb-0">{dict.drivershub.vtcStats.ets2.totalIncome || "Total Revenue"}</h5>
                       </div>
                     </Col>
@@ -287,7 +323,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
                     </Col>
                     <Col xs={12} md={6}>
                       <div className="border border-1 border-primary border-custom rounded-1 h-100 p-2">
-                        <p className="fs-2 fw-bold mb-0">€{stats.ats.revenue.toLocaleString()}</p>
+                        <p className="fs-2 fw-bold mb-0">{formatIncome(stats.ats.revenue)}</p>
                         <h5 className="mb-0">{dict.drivershub.vtcStats.ats.totalIncome || "Total Revenue"}</h5>
                       </div>
                     </Col>

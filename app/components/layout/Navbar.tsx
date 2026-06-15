@@ -84,8 +84,6 @@ const Navbar: React.FC<NavbarProps> = ({ dict, lang }) => {
   const brand1 = brandSplit[0] + (brandSplit.length > 1 ? " " : "") + (brandSplit.length > 1 ? brandSplit[1] : "");
   const brand2 = brandSplit[2];
 
-  console.log('isTablet:', isTablet, 'offCanvas:', offCanvas, 'width:', width, 'isDrivershub:', isDrivershub)
-
   return (
     <header className="position-sticky top-0" style={{ zIndex: 5 }}>
       <BSNavbar expanded={expanded} onToggle={(next) => setExpanded(next)} expand="md" bg={resolvedTheme} variant={resolvedTheme}  className={`${isMobile && isDrivershub ? 'ps-1' : 'ps-3'} pe-1 px-lg-3`}>

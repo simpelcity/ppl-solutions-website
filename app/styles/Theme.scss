@@ -58,3 +58,7 @@
 .border-surface {
   border-color: var(--color-surface) !important;
 }
+
+.border-theme {
+  border: solid 1px rgb(from var(--color-text) r g b / 0.2) !important;
+}

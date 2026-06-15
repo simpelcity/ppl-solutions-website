@@ -141,7 +141,7 @@ export default function UserStats({ dict }: Props) {
                   <Col xs={6}>
                     <div>
                       <h5>{dict.drivershub.userStats.cards.distance.max}</h5>
-                      <p>{rounded(stats.distance.max)} km</p>
+                      <p>{numberWithCommas(rounded(stats.distance.max))} km</p>
                     </div>
                   </Col>
                 </Row>
