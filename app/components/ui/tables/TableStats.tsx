@@ -73,13 +73,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.jobsDelivered}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{stats?.ets2.jobs ?? 0}</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ets2.jobs ?? 0))}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{stats?.ats.jobs ?? 0}</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ats.jobs ?? 0))}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{stats?.total.jobs ?? 0}</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.total.jobs ?? 0))}</div>
                 </td>
               </tr>
               <tr>
@@ -87,13 +87,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.weightTransported}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{Math.floor((stats?.ets2.mass ?? 0) / 1000)} t</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(Math.floor((stats?.ets2.mass ?? 0) / 1000)))} t</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{Math.floor((stats?.ats.mass ?? 0) / 1000)} lbs</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(Math.floor((stats?.ats.mass ?? 0) / 1000)))} lbs</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{Math.floor((stats?.total.mass ?? 0) / 1000)} t</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(Math.floor((stats?.total.mass ?? 0) / 1000)))} t</div>
                 </td>
               </tr>
               <tr>
@@ -101,13 +101,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.avgDistance}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{rounded(stats?.ets2.distance.avg)} km</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(rounded(stats?.ets2.distance.avg ?? 0)))} km</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{rounded(stats?.ats.distance.avg)} mi</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(rounded(stats?.ats.distance.avg ?? 0)))} mi</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{rounded(stats?.total.distance.avg)} km</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(rounded(stats?.total.distance.avg ?? 0)))} km</div>
                 </td>
               </tr>
               <tr>
@@ -115,13 +115,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.longestJob}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{stats?.ets2.distance.max} km</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ets2.distance.max ?? 0))} km</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{stats?.ats.distance.max} mi</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ats.distance.max ?? 0))} mi</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{stats?.total.distance.max} km</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.total.distance.max ?? 0))} km</div>
                 </td>
               </tr>
               <tr>
@@ -129,13 +129,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.totalDistance}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(stats?.ets2.distance.distance ?? 0)} km</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ets2.distance.distance ?? 0))} km</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(stats?.ats.distance.distance ?? 0)} mi</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ats.distance.distance ?? 0))} mi</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(stats?.total.distance.distance ?? 0)} km</div>
+                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.total.distance.distance ?? 0))} km</div>
                 </td>
               </tr>
               <tr>

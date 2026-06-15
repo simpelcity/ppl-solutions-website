@@ -3,7 +3,7 @@
     "brand": "PPL Solutions VTC",
     "alt": "PPL Solutions VTC Logo",
     "navigation": {
-      "title": "Navigation Buttons",
+      "title": "Navigation",
       "home": "Home",
       "events": "Events",
       "gallery": "Gallery",
@@ -11,6 +11,7 @@
       "contact": "Contact"
     },
     "buttons": {
+      "title": "Navigation Buttons",
       "apply": "Apply",
       "drivershub": "Drivershub"
     }

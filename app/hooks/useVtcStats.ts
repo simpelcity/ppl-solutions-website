@@ -40,7 +40,9 @@ export function useVtcStats(dict: Dictionary) {
         throw new Error(dict.errors.userStats.FAILED_TO_FETCH_STATS);
       }
 
-      return res.data.jobs || [];
+      const data = res.data;
+
+      return data.jobs || [];
     } catch (err: any) {
       throw parseApiError(err, dict.errors.userStats.FAILED_TO_FETCH_STATS);
     }
@@ -61,6 +63,7 @@ export function useVtcStats(dict: Dictionary) {
 
   const getStatistics = async () => {
     const jobs = await fetchStatistics();
+    console.log(jobs)
 
     let ets2Distance = 0;
     let ets2Jobs = 0;
@@ -93,10 +96,10 @@ export function useVtcStats(dict: Dictionary) {
         if (isATS) atsJobs += 1;
       }
 
-      if (job.revenue) {
-        totalRevenue += job.revenue;
-        if (isETS2) ets2Revenue += job.revenue;
-        if (isATS) atsRevenue += job.revenue;
+      if (job.income) {
+        totalRevenue += job.income;
+        if (isETS2) ets2Revenue += job.income;
+        if (isATS) atsRevenue += job.income;
       }
 
       if (job.realtime?.actualTimeDriven) {

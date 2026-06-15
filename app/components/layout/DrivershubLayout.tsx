@@ -36,7 +36,7 @@ export default function DrivershubLayout({ children, isNavbarVisible = false, di
         lang={lang}
       />
       <Container
-        className={`content-footer-wrapper d-flex flex-column p-0 m-0 ${isMobile ? "vw-100" : dashboardWidth}`}
+        className={`content-footer-wrapper d-flex flex-column p-0 m-0 ${isMobile ? "dvw-100" : dashboardWidth}`}
         style={{
           // width: isMobile ? "100vw" : `calc(100% - ${sidebarWidth})`,
           transition: "width 0.3s ease, margin-top 0.3s ease",

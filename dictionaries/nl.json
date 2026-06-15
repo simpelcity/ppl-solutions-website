@@ -3,7 +3,7 @@
     "brand": "PPL Solutions VTC",
     "alt": "PPL Solutions VTC-logo",
     "navigation": {
-      "title": "Navigatieknoppen",
+      "title": "Navigatie",
       "home": "Thuis",
       "events": "Evenementen",
       "gallery": "Galerij",
@@ -11,6 +11,7 @@
       "contact": "Contact"
     },
     "buttons": {
+      "title": "Navigatieknoppen",
       "apply": "Solliciteer",
       "drivershub": "Bestuurdershub"
     }

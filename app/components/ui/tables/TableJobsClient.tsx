@@ -88,6 +88,10 @@ export default function TableJobsClient({ lang, dict }: Props) {
     return new Date(date).toLocaleDateString("nl-NL", { day: "2-digit", month: "2-digit", year: "numeric" });
   };
 
+  const numberWithCommas = (x: number) => {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const tableItems = [
     { title: dict.drivershub.jobs.table.date },
     { title: dict.drivershub.jobs.table.username },
@@ -154,8 +158,8 @@ export default function TableJobsClient({ lang, dict }: Props) {
                         <td className="px-4 py-2 text-theme">
                           {job.truck?.name ?? "—"} {job.truck?.model?.name ?? ""}
                         </td>
-                        <td className="px-4 py-2 text-theme">{job.distanceDriven ?? "—"} km</td>
-                        <td className="px-4 py-2 text-theme">€ {job.income ?? "—"}</td>
+                        <td className="px-4 py-2 text-theme">{numberWithCommas(job.distanceDriven) ?? "—"} km</td>
+                        <td className="px-4 py-2 text-theme">€ {numberWithCommas(job.income) ?? "—"}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -165,7 +169,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
 
             <div className="d-flex flex-column flex-xl-row align-items-center justify-content-md-between row-gap-3 row-gap-md-4">
               {!showAll && (
-                <div className="text-primary border border-theme border-opacity-25 px-3 py-2 rounded-1 small">
+                <div className="text-primary border-theme px-3 py-2 rounded-1 small">
                   {showingText}
                 </div>
               )}
@@ -177,10 +181,10 @@ export default function TableJobsClient({ lang, dict }: Props) {
                 {!showAll && lastPage > 1 && (
                   <div className="d-flex justify-content-center align-items-center column-gap-1">
                     <button
-                      className="p-2 btn btn-pagination d-flex align-items-center text-theme border-0 rounded-1 bg-dark bg-opacity-25"
+                      className="p-2 btn btn-pagination d-flex align-items-center text-theme border-0 rounded-1 bg-muted"
                       onClick={goToPreviousPage}
                       disabled={displayPage === 1}>
-                      <FaAngleLeft className="fs-6 text-theme" />
+                      <FaAngleLeft className="fs-6" />
                     </button>
 
                     <nav aria-label="Job pages">
@@ -199,7 +203,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
                               <button
                                 className={`page-link rounded-1 py-1 d-flex align-items-center ${displayPage === page
                                   ? "active"
-                                  : "bg-transparent border-surface shadow-sm-none text-theme"
+                                  : "bg-transparent border-surface shadow-none text-theme"
                                   }`}
                                 onClick={() => goToPage(page as number)}
                                 disabled={displayPage === page}>
@@ -212,10 +216,10 @@ export default function TableJobsClient({ lang, dict }: Props) {
                     </nav>
 
                     <button
-                      className="p-2 btn btn-pagination d-flex align-items-center text-theme border-0 rounded-1 bg-dark bg-opacity-25"
+                      className="p-2 btn btn-pagination d-flex align-items-center text-theme border-0 rounded-1 bg-muted"
                       onClick={goToNextPage}
                       disabled={displayPage === lastPage}>
-                      <FaAngleRight className="fs-6 text-theme" />
+                      <FaAngleRight className="fs-6" />
                         </button>
                       </div>
                     )}

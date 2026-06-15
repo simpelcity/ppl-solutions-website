@@ -2,11 +2,8 @@
 
 .btn:disabled {
   pointer-events: all !important;
-  color: black !important;
+  color: var(--color-text) !important;
   cursor: not-allowed !important;
-  &:active {
-    color: black !important;
-  }
 }
 
 .navbar .btn-link:hover {
