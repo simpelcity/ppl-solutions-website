@@ -323,7 +323,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
                     </Col>
                     <Col xs={12} md={6}>
                       <div className="border border-1 border-primary border-custom rounded-1 h-100 p-2">
-                        <p className="fs-2 fw-bold mb-0">{formatIncome(stats.ats.revenue)}</p>
+                        <p className="fs-2 fw-bold mb-0">{formatIncome(stats.ats.revenue, 'dollar')}</p>
                         <h5 className="mb-0">{dict.drivershub.vtcStats.ats.totalIncome || "Total Revenue"}</h5>
                       </div>
                     </Col>
