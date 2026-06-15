@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "../variables" as *;
 
 .primary-link {
@@ -75,7 +76,7 @@
 }
 
 .discord-link {
-  color: hsl(215.514, calc(1*80.995%), 56.667% /1) !important;
+  color: hsl(215.514, calc(1*80.995%), math.div(56.667%, 1)) !important;
   &:hover {
     text-decoration: underline !important;
   }
