@@ -47,7 +47,7 @@ export default function BSButton({
   return (
     <Button
       variant={variant}
-      className={`${variantStyles[variant]} border text-uppercase fw-bold rounded-1 shadow-none text-${text}${optionalClasses ? ` ${optionalClasses}` : ''}`}
+      className={`${variantStyles[variant]} border text-uppercase fw-bold rounded-1 text-${text}${optionalClasses ? ` ${optionalClasses}` : ''}`}
       style={sizeStyles[size]}
       {...props}>
       {children}
