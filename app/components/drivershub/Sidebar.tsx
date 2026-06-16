@@ -255,7 +255,7 @@ function SidebarContent({
         <Dropdown className="profile-dropdown" onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle
             variant="transparent"
-            className="py-0 d-flex align-items-center text-theme w-100" drop="up">
+            className="py-0 d-flex align-items-center text-theme w-100">
             <Image
               src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
               alt="Profile"
