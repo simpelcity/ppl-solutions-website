@@ -255,7 +255,7 @@ function SidebarContent({
         <Dropdown className="profile-dropdown" onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
           <Dropdown.Toggle
             variant="transparent"
-            className="py-0 d-flex align-items-center text-theme w-100">
+            className="py-0 d-flex align-items-center text-theme w-100" drop="up">
             <Image
               src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
               alt="Profile"
@@ -269,7 +269,7 @@ function SidebarContent({
               <FaAngleDown />
             </span>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="shadow-sm mb-1 border-0 rounded-1" align={{ sm: "end", xs: "end" }} style={{ zIndex: 1050 }}>
+          <Dropdown.Menu className="shadow-sm mb-1 border-0 rounded-1" align="end" style={{ zIndex: 1050 }}>
             <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
             <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
