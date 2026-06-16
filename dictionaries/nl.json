@@ -481,7 +481,85 @@
         "title": "Dashboard",
         "description": "Beheer uw team en galerij in het Drivershub-dashboard."
       },
-      "dashboard": {},
+      "dashboard": {
+        "formCard": {
+          "title": "Dashboard",
+          "buttonGroup": {
+            "placeholder": "Selecteer berichttype",
+            "embed": "Embed",
+            "error": "Fout",
+            "announcement": "Aankondiging"
+          },
+          "embedForm": {
+            "username": "Webhook-gebruikersnaam",
+            "icon": "Webhook-icoon",
+            "embedAuthor": "Embed-auteur",
+            "embedIcon": "Embed-icoon",
+            "embedTitle": "Embed-titel",
+            "embedUrl": "Embed-URL",
+            "message": "Bericht",
+            "placeholders": {
+              "username": "Voorbeeldgebruikersnaam",
+              "icon": "https://voorbeeld.com/icoon.png",
+              "embedAuthor": "Voorbeeldgebruikersnaam",
+              "embedIcon": "https://voorbeeld.com/icoon.png",
+              "embedTitle": "Nieuw dashboardbericht",
+              "embedUrl": "https://voorbeeld.com/dashboard",
+              "message": "Voer hier je bericht in..."
+            }
+          },
+          "errorForm": {
+            "username": "Webhook-gebruikersnaam",
+            "icon": "Webhook-icoon",
+            "embedAuthor": "Embed-auteur",
+            "embedIcon": "Embed-icoon",
+            "embedTitle": "Embed-titel",
+            "embedUrl": "Embed-URL",
+            "requestUrl": "Aanvraag-URL",
+            "httpMethod": "HTTP-methode",
+            "httpStatus": "HTTP-status",
+            "message": "Bericht",
+            "placeholders": {
+              "username": "Voorbeeldgebruikersnaam",
+              "icon": "https://voorbeeld.com/icoon.png",
+              "embedAuthor": "Voorbeeldgebruikersnaam",
+              "embedIcon": "https://voorbeeld.com/icoon.png",
+              "embedTitle": "Nieuwe dashboardfout",
+              "embedUrl": "https://voorbeeld.com/dashboard",
+              "requestUrl": "https://voorbeeld.com/api/eindpunt",
+              "httpMethod": "Selecteer methode",
+              "httpStatus": "bijv. 200, 404, 500",
+              "message": "Voer hier je bericht in..."
+            }
+          },
+          "announcementForm": {
+            "username": "Webhook-gebruikersnaam",
+            "icon": "Webhook-icoon",
+            "title": "Titel",
+            "mentionTag": "Vermeldingstag",
+            "footer": "Voettekst",
+            "footerRole": "Voettekstrol",
+            "noRole": "Geen rol",
+            "footerEmoji": "Voettekst-emoji",
+            "noEmoji": "Geen emoji",
+            "message": "Bericht",
+            "placeholders": {
+              "username": "Voorbeeldgebruikersnaam",
+              "icon": "https://voorbeeld.com/icoon.png",
+              "title": "Titel van je aankondiging",
+              "mentionTag": "Selecteer tag",
+              "footer": "Voettekst van je aankondiging",
+              "footerRole": "Selecteer rol",
+              "footerEmoji": "Selecteer emoji",
+              "message": "Voer hier je aankondiging in..."
+            }
+          },
+          "submit": "Naar Discord sturen"
+        },
+        "previewCard": {
+          "title": "Voorbeeld"
+        }
+      },
       "team": {
         "meta": {
           "title": "Dashboard - Team beheren",
@@ -783,6 +861,44 @@
     "vtcStats": {
       "NO_STATS": "Geen statistieken beschikbaar"
     },
+    "dashboard": {
+      "form": {
+        "embed": {
+          "EMBED_MESSAGE_REQUIRED": "Embed-bericht is verplicht"
+        },
+        "error": {
+          "REQUEST_URL_REQUIRED": "Aanvraag-URL is verplicht",
+          "HTTP_METHOD_REQUIRED": "HTTP-methode is verplicht",
+          "HTTP_STATUS_REQUIRED": "HTTP-status is verplicht",
+          "ERROR_MESSAGE_REQUIRED": "Foutbericht is verplicht"
+        },
+        "announcement": {
+          "MENTION_TAG_REQUIRED": "Aankondigingsvermelding is verplicht",
+          "TITLE_REQUIRED": "Aankondigingstitel is verplicht",
+          "FOOTER_MESSAGE_REQUIRED": "Voettekstbericht van de aankondiging is verplicht",
+          "ANNOUNCEMENT_MESSAGE_REQUIRED": "Aankondigingsbericht is verplicht"
+        },
+        "ERROR_SENDING_MESSAGE_TO_DISCORD": "Fout bij het sturen van het bericht naar Discord"
+      },
+      "hook": {
+        "embed": {
+          "FAILED_TO_SEND_EMBED_DATA": "Kon dashboard-embedgegevens niet verzenden"
+        },
+        "error": {
+          "FAILED_TO_SEND_ERROR_DATA": "Kon dashboard-foutgegevens niet verzenden"
+        },
+        "announcement": {
+          "FAILED_TO_SEND_ANNOUNCEMENT_DATA": "Kon aankondigingsgegevens niet verzenden"
+        }
+      },
+      "route": {
+        "INVALID_MESSAGE_TYPE": "Ongeldig of ontbrekend berichttype",
+        "MISSING_MESSAGE_EMBEDS": "Bericht of embeds ontbreken",
+        "INVALID_WEBHOOK_URL": "Ongeldige Discord-webhook-URL",
+        "FAILED_TO_SEND_MESSAGE_TO_DISCORD": "Kon bericht niet naar Discord sturen",
+        "HTTP_CODE": "code"
+      }
+    },
     "profile": {
       "profile": {
         "PROFILE_NOT_FOUND": "Profiel niet gevonden",
@@ -854,6 +970,17 @@
     "userStats": {},
     "leaderboard": {},
     "vtcStats": {},
+    "dashboard": {
+      "embed": {
+        "MESSAGE_SENT": "Embed-bericht succesvol verzonden!"
+      },
+      "error": {
+        "MESSAGE_SENT": "Foutbericht succesvol verzonden!"
+      },
+      "announcement": {
+        "MESSAGE_SENT": "Aankondiging succesvol verzonden!"
+      }
+    },
     "profile": {
       "profile": {
         "PROFILE_UPDATED": "Profiel succesvol bijgewerkt!",

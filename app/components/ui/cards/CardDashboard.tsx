@@ -1,10 +1,10 @@
 'use client'
 
-import { Container, Card, Form, Row, Col, Dropdown, ButtonGroup, Image, Badge } from 'react-bootstrap'
+import { Container, Card, Form, Row, Col, Dropdown, ButtonGroup, Image, Badge, Tooltip, OverlayTrigger } from 'react-bootstrap'
 import type { Dictionary } from "@/app/i18n"
 import useDashboard from "@/hooks/useDashboard";
 import { useState } from "react";
-import { BSButton, ComingSoon, BSLink } from "@/components";
+import { BSButton, ComingSoon, BSLink, Loader } from "@/components";
 import { FaAngleDown } from "react-icons/fa6";
 import { useTheme } from 'next-themes'
 import { type Locale } from '@/i18n'
@@ -89,8 +89,10 @@ function formatDiscordTimestampTag(input: string, locale: string) {
 }
 
 export default function CardDashboard({ dict, lang }: Props) {
-  const { data, loading, error, status, markdownPreview, sendAnnouncement, sendError, sendEmbed, clearFeedback } = useDashboard();
+  const { data, loading, error, success, status, sendAnnouncement, sendError, sendEmbed, clearFeedback } = useDashboard(dict);
   const { resolvedTheme } = useTheme();
+
+  const dashboardDict = dict.drivershub.dashboard.dashboard;
 
   /* --- EMBED --- */
   const [embedWebhookUsername, setEmbedWebhookUsername] = useState('');
@@ -229,8 +231,8 @@ export default function CardDashboard({ dict, lang }: Props) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
-    // if (!messageType) return null;
+    clearFeedback();
+    setFormError(null);
     
     if (messageType === "error") {
       try {
@@ -247,10 +249,10 @@ export default function CardDashboard({ dict, lang }: Props) {
           message: errorEmbedMessage,
         }
 
-        if (!errorEmbedRequestUrl) setErrorFormRequestUrlError('Request URL is required');
-        if (!errorEmbedMethod) setErrorFormMethodError('HTTP Method is required');
-        if (!errorEmbedHTTPStatus) setErrorFormHTTPStatusError('HTTP Status is required');
-        if (!errorEmbedMessage) setErrorFormMessageError('Message is required');
+        if (!errorEmbedRequestUrl) setErrorFormRequestUrlError(dict.errors.dashboard.form.error.REQUEST_URL_REQUIRED);
+        if (!errorEmbedMethod) setErrorFormMethodError(dict.errors.dashboard.form.error.HTTP_METHOD_REQUIRED);
+        if (!errorEmbedHTTPStatus) setErrorFormHTTPStatusError(dict.errors.dashboard.form.error.HTTP_STATUS_REQUIRED);
+        if (!errorEmbedMessage) setErrorFormMessageError(dict.errors.dashboard.form.error.ERROR_MESSAGE_REQUIRED);
 
         if (!errorEmbedRequestUrl || !errorEmbedMethod || !errorEmbedHTTPStatus || !errorEmbedMessage) return;
 
@@ -259,7 +261,7 @@ export default function CardDashboard({ dict, lang }: Props) {
         resetErrorForm();
       } catch (err: any) {
         const message = err?.message;
-        setFormError(`Error sending message to Discord: ${message}`);
+        setFormError(`${dict.errors.dashboard.form.ERROR_SENDING_MESSAGE_TO_DISCORD}: ${message}`);
       }
     } else if (messageType === "announcement") {
       try {
@@ -274,10 +276,10 @@ export default function CardDashboard({ dict, lang }: Props) {
           footerEmojiTag: selectedFooterEmojiTag ? selectedFooterEmojiTag?.emoji_name + selectedFooterEmojiTag?.emoji_id : null,
         }
 
-        if (!announcementMentionTag) setAnnouncementFormMentionTagError('Announcement mention tag is required');
-        if (!announcementTitle) setAnnouncementFormTitleError('Announcement title is required');
-        if (!announcementFooter) setAnnouncementFormFooterError('Announcement footer is required');
-        if (!announcementMessage) setAnnouncementFormMessageError('Announcement message is required');
+        if (!announcementMentionTag) setAnnouncementFormMentionTagError(dict.errors.dashboard.form.announcement.MENTION_TAG_REQUIRED);
+        if (!announcementTitle) setAnnouncementFormTitleError(dict.errors.dashboard.form.announcement.TITLE_REQUIRED);
+        if (!announcementFooter) setAnnouncementFormFooterError(dict.errors.dashboard.form.announcement.FOOTER_MESSAGE_REQUIRED);
+        if (!announcementMessage) setAnnouncementFormMessageError(dict.errors.dashboard.form.announcement.ANNOUNCEMENT_MESSAGE_REQUIRED);
 
         if (!announcementMentionTag || !announcementTitle || !announcementFooter || !announcementMessage) return;
 
@@ -286,7 +288,7 @@ export default function CardDashboard({ dict, lang }: Props) {
         resetAnnouncementForm();
       } catch (err: any) {
         const message = err?.message;
-        setFormError(`Error sending message to Discord: ${message}`);
+        setFormError(`${dict.errors.dashboard.form.ERROR_SENDING_MESSAGE_TO_DISCORD}: ${message}`);
       }
     } else {
       try {
@@ -301,7 +303,7 @@ export default function CardDashboard({ dict, lang }: Props) {
         }
 
         if (!embedMessage) {
-          setEmbedFormMessageError('Embed message is required');
+          setEmbedFormMessageError(dict.errors.dashboard.form.embed.EMBED_MESSAGE_REQUIRED);
           return;
         }
 
@@ -310,7 +312,7 @@ export default function CardDashboard({ dict, lang }: Props) {
         resetEmbedForm();
       } catch (err: any) {
         const message = err?.message;
-        setFormError(`Error sending message to Discord: ${message}`);
+        setFormError(`${dict.errors.dashboard.form.ERROR_SENDING_MESSAGE_TO_DISCORD}: ${message}`);
       }
     }
   }
@@ -380,14 +382,24 @@ export default function CardDashboard({ dict, lang }: Props) {
   const mentionTag = selectedAnnouncementMentionTag?.divider ? 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' + selectedAnnouncementMentionTag.label + 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' : selectedAnnouncementMentionTag?.label;
   const footerTag = selectedFooterRoleTag?.divider ? 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' + selectedFooterRoleTag.label + 'ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ' : selectedFooterRoleTag?.label;
 
+  const tooltip = (
+    <Tooltip id="tooltip">
+      {formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, 'en')}
+    </Tooltip>
+  );
+
+  const selectedMessageType = messageType === 'error' ? dashboardDict.formCard.buttonGroup.error : messageType === 'announcement' ? dashboardDict.formCard.buttonGroup.announcement : messageType === 'embed' && dashboardDict.formCard.buttonGroup.embed;
+
+  console.log(success)
+
   return (
     <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
       <Card className="rounded-1 border-0 shadow-sm px-0 bg-surface text-theme">
         <Card.Header className="bg-surface d-flex justify-content-between align-items-center p-3 p-md-4 border-bottom">
-          <Card.Title className="fs-3 m-0">Dashboard</Card.Title>
+          <Card.Title className="fs-3 m-0">{dashboardDict.formCard.title}</Card.Title>
 
           <Dropdown as={ButtonGroup} className="message-type-dropdown" onToggle={(nextShow) => setIsTypeDropdownOpen(Boolean(nextShow))}>
-            <BSButton variant="primary" className="text-light rounded-start-1 fw-semibold">{messageType ? messageType.charAt(0).toUpperCase() + messageType.slice(1) : 'Select Message Type'}</BSButton>
+            <BSButton variant="primary" className="text-light rounded-start-1 fw-semibold">{selectedMessageType || dashboardDict.formCard.buttonGroup.placeholder}</BSButton>
             
             <Dropdown.Toggle split variant="primary" className="px-2 d-flex align-items-center text-light" id="dropdown-split-basic">
               <span className={`ms-1 chevron-rotate-180 ${isTypeDropdownOpen ? 'is-open' : ''}`}>
@@ -396,29 +408,27 @@ export default function CardDashboard({ dict, lang }: Props) {
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="rounded-1 border-0 shadow-sm">
-              <Dropdown.Item onClick={() => handleMessageTypeSelect("embed")} className="py-1 px-3">Embed</Dropdown.Item>
-              <Dropdown.Item onClick={() => handleMessageTypeSelect("error")} className="py-1 px-3">Error</Dropdown.Item>
-              <Dropdown.Item onClick={() => handleMessageTypeSelect("announcement")} className="py-1 px-3">Announcement</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleMessageTypeSelect("embed")} className="py-1 px-3">{dashboardDict.formCard.buttonGroup.embed}</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleMessageTypeSelect("error")} className="py-1 px-3">{dashboardDict.formCard.buttonGroup.error}</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleMessageTypeSelect("announcement")} className="py-1 px-3">{dashboardDict.formCard.buttonGroup.announcement}</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Card.Header>
 
         <Card.Body className="p-3 p-md-4">
           <p className="text-gray mb-3 text-center">{dict.contact.form.required}</p>
-          {loading && <p>Loading...</p>}
-          {data && <p className="text-success">Message sent successfully!</p>}
-          {error && <p className="text-danger">Error: {error.message}</p>}
+          {loading && <Loader dict={dict} />}
           
           {messageType === "error" ? (
             <Form onSubmit={handleSubmit} method="post">
               <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorUsername">
-                    <Form.Label className="fw-bold">Webhook Username</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.username}</Form.Label>
                     <Form.Control
                       type="text"
                       name="username"
-                      placeholder="ExampleUsername"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.username}
                       className="rounded-1 border-0 shadow-sm"
                       value={errorWebhookUsername}
                       onChange={(e) => setErrorWebhookUsername(e.target.value)}
@@ -427,11 +437,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorUsernameIcon">
-                    <Form.Label className="fw-bold">Webhook Icon</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.icon}</Form.Label>
                     <Form.Control
                       type="text"
                       name="usernameIcon"
-                      placeholder="https://example.com/icon.png"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.icon}
                       className="rounded-1 border-0 shadow-sm"
                       value={errorWebhookUsernameIcon}
                       onChange={(e) => setErrorWebhookUsernameIcon(e.target.value)}
@@ -442,11 +452,11 @@ export default function CardDashboard({ dict, lang }: Props) {
               <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorEmbedAuthor">
-                    <Form.Label className="fw-bold">Embed Author</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.embedAuthor}</Form.Label>
                     <Form.Control
                       type="text"
                       name="embedAuthor"
-                      placeholder="ExampleUsername"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.embedAuthor}
                       className="rounded-1 border-0 shadow-sm"
                       value={errorEmbedAuthor}
                       onChange={(e) => setErrorEmbedAuthor(e.target.value)}
@@ -455,11 +465,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorEmbedAuthorIcon">
-                    <Form.Label className="fw-bold">Embed Icon</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.embedIcon}</Form.Label>
                     <Form.Control
                       type="text"
                       name="embedAuthorIcon"
-                      placeholder="https://example.com/icon.png"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.embedIcon}
                       className="rounded-1 border-0 shadow-sm"
                       value={errorEmbedAuthorIcon}
                       onChange={(e) => setErrorEmbedAuthorIcon(e.target.value)}
@@ -470,11 +480,11 @@ export default function CardDashboard({ dict, lang }: Props) {
               <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorEmbedTitle">
-                    <Form.Label className="fw-bold">Embed Title</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.embedTitle}</Form.Label>
                     <Form.Control
                       type="text"
                       name="errorEmbedTitle"
-                      placeholder="New Dashboard Error"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.embedTitle}
                       className="rounded-1 border-0 shadow-sm"
                       value={errorEmbedTitle}
                       onChange={(e) => setErrorEmbedTitle(e.target.value)}
@@ -483,11 +493,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="errorEmbedTitleUrl">
-                    <Form.Label className="fw-bold">Embed URL</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.embedUrl}</Form.Label>
                     <Form.Control
                       type="text"
                       name="errorEmbedTitleUrl"
-                      placeholder="https://example.com/dashboard"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.embedUrl}
                       className="rounded-1 border-0 shadow-sm"
                       value={errorEmbedTitleUrl}
                       onChange={(e) => setErrorEmbedTitleUrl(e.target.value)}
@@ -498,75 +508,78 @@ export default function CardDashboard({ dict, lang }: Props) {
               <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formUrl">
-                    <Form.Label className="fw-bold">Request URL <span className="text-danger">*</span></Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.requestUrl} <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       type="text"
                       name="url"
-                      placeholder="https://example.com/api/endpoint"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.requestUrl}
                       className="rounded-1 border-0 shadow-sm"
                       value={errorEmbedRequestUrl}
                       onChange={(e) => setErrorEmbedRequestUrl(e.target.value)}
                     />
                   </Form.Group>
-                  {errorFormRequestUrlError && <Form.Text className="text-danger">{errorFormRequestUrlError}</Form.Text>}
+                  {errorFormRequestUrlError && !error && <Form.Text className="text-danger">{errorFormRequestUrlError}</Form.Text>}
                 </Col>
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formMethod">
-                    <Form.Label className="fw-bold">HTTP Method <span className="text-danger">*</span></Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.httpMethod} <span className="text-danger">*</span></Form.Label>
                     <Form.Select
                       value={errorEmbedMethod}
                       onChange={(e) => setErrorEmbedMethod(e.target.value)}
                       className={`rounded-1 border-0 shadow-sm d-flex ${errorEmbedMethod ? 'text-theme' : 'text-placeholder'}`}
                     >
-                      <option value="" className="py-1 px-3 text-placeholder" disabled>Select method</option>
+                      <option value="" className="py-1 px-3 text-placeholder" disabled>{dashboardDict.formCard.errorForm.placeholders.httpMethod}</option>
                       {methods.map((m) => (
                         <option key={m.method} value={m.method} className="py-1 px-3">{m.method}</option>
                       ))}
                     </Form.Select>
                   </Form.Group>
-                  {errorFormMethodError && <Form.Text className="text-danger">{errorFormMethodError}</Form.Text>}
+                  {errorFormMethodError && !error && <Form.Text className="text-danger">{errorFormMethodError}</Form.Text>}
                 </Col>
                 <Col xs={12} md={6} xl={4}>
                   <Form.Group controlId="formStatus">
-                    <Form.Label className="fw-bold">HTTP Status <span className="text-danger">*</span></Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.httpStatus} <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       type="text"
+                      name="formStatus"
                       className="rounded-1 border-0 shadow-sm"
-                      placeholder="e.g. 200, 404, 500"
+                      placeholder={dashboardDict.formCard.errorForm.placeholders.httpStatus}
                       value={errorEmbedHTTPStatus}
                       onChange={(e) => setErrorEmbedHTTPStatus(e.target.value)}
                     />
                   </Form.Group>
-                  {errorFormHTTPStatusError && <Form.Text className="text-danger">{errorFormHTTPStatusError}</Form.Text>}
+                  {errorFormHTTPStatusError && !error && <Form.Text className="text-danger">{errorFormHTTPStatusError}</Form.Text>}
                 </Col>
               </Row>
               <Row className="mb-3">
                 <Form.Group controlId="formMessage">
-                  <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
+                  <Form.Label className="fw-bold">{dashboardDict.formCard.errorForm.message} <span className="text-danger">*</span></Form.Label>
                   <Form.Control
                     as="textarea"
                     name="message"
-                    placeholder="Enter your message here..."
+                    placeholder={dashboardDict.formCard.errorForm.placeholders.message}
                     rows={5}
                     className="rounded-1 border-0 shadow-sm"
                     value={errorEmbedMessage}
                     onChange={(e) => setErrorEmbedMessage(e.target.value)}
                   />
                 </Form.Group>
-                {errorFormMessageError && <Form.Text className="text-danger">{errorFormMessageError}</Form.Text>}
+                {errorFormMessageError && !error && <Form.Text className="text-danger">{errorFormMessageError}</Form.Text>}
+                {error && <Form.Text className="text-danger fs-5">{dict.errors.GENERAL_ERROR}: {error.message}</Form.Text>}
+                {success && <Form.Text className="text-success fs-5">{success}</Form.Text>}
               </Row>
-              <BSButton variant="primary" type="submit">Send to Discord</BSButton>
+              <BSButton variant="primary" type="submit">{dashboardDict.formCard.submit}</BSButton>
             </Form>
           ) : messageType === 'announcement' ? (
               <Form onSubmit={handleSubmit} method="post">
                 <Row className="mb-3 row-gap-3">
                   <Col xs={12} md={6}>
                     <Form.Group controlId="formAuthor">
-                      <Form.Label className="fw-bold">Webhook Username</Form.Label>
+                      <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.username}</Form.Label>
                       <Form.Control
                         type="text"
                         name="username"
-                        placeholder="ExampleUsername"
+                        placeholder={dashboardDict.formCard.announcementForm.placeholders.username}
                         className="rounded-1 border-0 shadow-sm"
                         value={announcementWebhookUsername}
                         onChange={(e) => setAnnouncementWebhookUsername(e.target.value)}
@@ -575,11 +588,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Col>
                   <Col xs={12} md={6}>
                     <Form.Group controlId="formAuthorIcon">
-                      <Form.Label className="fw-bold">Webhook Icon</Form.Label>
+                      <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.icon}</Form.Label>
                       <Form.Control
                         type="text"
                         name="usernameIcon"
-                        placeholder="https://example.com/icon.png"
+                        placeholder={dashboardDict.formCard.announcementForm.placeholders.icon}
                         className="rounded-1 border-0 shadow-sm"
                         value={announcementWebhookUsernameIcon}
                         onChange={(e) => setAnnouncementWebhookUsernameIcon(e.target.value)}
@@ -590,24 +603,24 @@ export default function CardDashboard({ dict, lang }: Props) {
                 <Row className="mb-3 row-gap-3">
                   <Col xs={12} md={6}>
                     <Form.Group controlId="formTitle">
-                      <Form.Label className="fw-bold">Title <span className="text-danger">*</span></Form.Label>
+                      <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.title} <span className="text-danger">*</span></Form.Label>
                       <Form.Control
                         type="text"
                         name="title"
-                        placeholder="Your announcement title"
+                        placeholder={dashboardDict.formCard.announcementForm.placeholders.title}
                         className="rounded-1 border-0 shadow-sm"
                         value={announcementTitle}
                         onChange={(e) => setAnnouncementTitle(e.target.value)}
                       />
                     </Form.Group>
-                    {announcementFormTitleError && <Form.Text className="text-danger">{announcementFormTitleError}</Form.Text>}
+                    {announcementFormTitleError && !error && <Form.Text className="text-danger">{announcementFormTitleError}</Form.Text>}
                   </Col>
                   <Col xs={12} md={6}>
                     <Form.Group controlId="announcementTag">
-                      <Form.Label className="fw-bold">Mention Tag <span className="text-danger">*</span></Form.Label>
+                      <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.mentionTag} <span className="text-danger">*</span></Form.Label>
                       <Dropdown className="tag-dropdown" onToggle={(nextShow) => setIsTagDropdownOpen(Boolean(nextShow))}>
                         <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedAnnouncementMentionTag ? selectedAnnouncementMentionTag.color : ''}`}>
-                          <span className={selectedAnnouncementMentionTag ? '' : 'text-placeholder'}>{selectedAnnouncementMentionTag ? `@${selectedAnnouncementMentionTag.label}` : 'Select Tag'}</span>
+                          <span className={selectedAnnouncementMentionTag ? '' : 'text-placeholder'}>{selectedAnnouncementMentionTag ? `@${selectedAnnouncementMentionTag.label}` : dashboardDict.formCard.announcementForm.placeholders.mentionTag}</span>
                           <span className={`ms-1 chevron-rotate-180 text-theme ${isTagDropdownOpen ? 'is-open' : ''}`}>
                             <FaAngleDown />
                           </span>
@@ -620,37 +633,37 @@ export default function CardDashboard({ dict, lang }: Props) {
                         </Dropdown.Menu>
                       </Dropdown>
                     </Form.Group>
-                    {announcementFormMentionTagError && <Form.Text className="text-danger">{announcementFormMentionTagError}</Form.Text>}
+                    {announcementFormMentionTagError && !error && <Form.Text className="text-danger">{announcementFormMentionTagError}</Form.Text>}
                   </Col>
                 </Row>
                 <Row className="mb-3 row-gap-3">
                   <Col xs={12} md={6}>
                     <Form.Group controlId="formFooter">
-                      <Form.Label className="fw-bold">Footer <span className="text-danger">*</span></Form.Label>
+                      <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.footer} <span className="text-danger">*</span></Form.Label>
                       <Form.Control
                         as="textarea"
                         name="title"
-                        placeholder="Your announcement footer"
+                        placeholder={dashboardDict.formCard.announcementForm.placeholders.footer}
                         className="rounded-1 border-0 shadow-sm"
                         value={announcementFooter}
                         onChange={(e) => setAnnouncementFooter(e.target.value)}
                       />
                     </Form.Group>
-                    {announcementFormFooterError && <Form.Text className="text-danger">{announcementFormFooterError}</Form.Text>}
+                    {announcementFormFooterError && !error && <Form.Text className="text-danger">{announcementFormFooterError}</Form.Text>}
                   </Col>
                   <Col xs={12} md={3}>
                     <Form.Group controlId="announcementRole">
-                      <Form.Label className="fw-bold">Footer Role</Form.Label>
+                      <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.footerRole}</Form.Label>
                       <Dropdown className="role-dropdown" onToggle={(nextShow) => setIsRoleDropdownOpen(Boolean(nextShow))}>
                         <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedFooterRoleTag ? selectedFooterRoleTag.color : ''}`}>
-                          <span className={selectedFooterRoleTag ? 'overflow-hidden' : 'text-placeholder'}>{selectedFooterRoleTag ? `@${selectedFooterRoleTag.label}` : 'Select Role'}</span>
+                          <span className={selectedFooterRoleTag ? 'overflow-hidden' : 'text-placeholder'}>{selectedFooterRoleTag ? `@${selectedFooterRoleTag.label}` : dashboardDict.formCard.announcementForm.placeholders.footerRole}</span>
                           <span className={`ms-1 chevron-rotate-180 text-theme ${isRoleDropdownOpen ? 'is-open' : ''}`}>
                             <FaAngleDown />
                           </span>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="rounded-1 border-0 shadow-sm">
-                          <Dropdown.Item onClick={() => setAnnouncementFooterRoleTag(null)} className="py-1 px-3 text-theme">No Role</Dropdown.Item>
+                          <Dropdown.Item onClick={() => setAnnouncementFooterRoleTag(null)} className="py-1 px-3 text-theme">{dashboardDict.formCard.announcementForm.noRole}</Dropdown.Item>
                           {announcementFooterRoleTags.map((role) => (
                             <Dropdown.Item key={role.role_id} onClick={() => setAnnouncementFooterRoleTag(role.role_id)} className={`py-1 px-3 ${role.color}`}>@{role.label}</Dropdown.Item>
                           ))}
@@ -660,7 +673,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                   </Col>
                   <Col xs={12} md={3}>
                     <Form.Group controlId="announcementEmoji">
-                      <Form.Label className="fw-bold">Footer Emoji</Form.Label>
+                      <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.footerEmoji}</Form.Label>
                       <Dropdown className="emoji-dropdown" onToggle={(nextShow) => setIsEmojiDropdownOpen(Boolean(nextShow))}>
                         <Dropdown.Toggle className={`d-flex align-items-center justify-content-between w-100 rounded-1 border-0 shadow-sm bg-surface-darker fw-semibold ${selectedFooterEmojiTag ? 'theme' : ''}`}>
                           {selectedFooterEmojiTag ? (
@@ -669,7 +682,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                               <span className="ms-1 overflow-hidden">{selectedFooterEmojiTag.emoji_name}</span>
                             </div>
                           ) : (
-                            <span className="text-placeholder">Select Emoji</span>
+                            <span className="text-placeholder">{dashboardDict.formCard.announcementForm.placeholders.footerEmoji}</span>
                           )}
                           <span className={`ms-1 chevron-rotate-180 text-theme ${isEmojiDropdownOpen ? 'is-open' : ''}`}>
                             <FaAngleDown />
@@ -677,7 +690,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu align={{ md: 'end' }} className="rounded-1 border-0 shadow-sm">
-                          <Dropdown.Item onClick={() => setAnnouncementFooterEmojiTag(null)} className="py-1 px-3 text-theme">No Emoji</Dropdown.Item>
+                          <Dropdown.Item onClick={() => setAnnouncementFooterEmojiTag(null)} className="py-1 px-3 text-theme">{dashboardDict.formCard.announcementForm.noEmoji}</Dropdown.Item>
                           {announcementFooterEmojiTags.map((emoji) => (
                             <Dropdown.Item key={emoji.emoji_id} onClick={() => setAnnouncementFooterEmojiTag(emoji.emoji_id)} className={`py-1 px-3 ${emoji.emoji_name}`}>{emoji.emoji_name}</Dropdown.Item>
                           ))}
@@ -688,11 +701,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Row>
                 <Row className="mb-3">
                   <Form.Group controlId="formMessage">
-                    <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.announcementForm.message} <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       as="textarea"
                       name="message"
-                      placeholder="Enter your announcement here..."
+                      placeholder={dashboardDict.formCard.announcementForm.placeholders.message}
                       rows={5}
                       className="rounded-1 border-0 shadow-sm"
                       value={announcementMessage}
@@ -700,20 +713,22 @@ export default function CardDashboard({ dict, lang }: Props) {
                       onInvalid={(e) => setAnnouncementFormMessageError('Announcement message is required')}
                     />
                   </Form.Group>
-                  {announcementFormMessageError && <Form.Text className="text-danger">{announcementFormMessageError}</Form.Text>}
+                  {announcementFormMessageError && !error && <Form.Text className="text-danger">{announcementFormMessageError}</Form.Text>}
+                  {error && <Form.Text className="text-danger fs-5">{dict.errors.GENERAL_ERROR}: {error.message}</Form.Text>}
+                  {success && <Form.Text className="text-success fs-5">{success}</Form.Text>}
                 </Row>
-                <BSButton variant="primary" type="submit">Send to Discord</BSButton>
+                <BSButton variant="primary" type="submit">{dashboardDict.formCard.submit}</BSButton>
               </Form>
           ) : (
             <Form onSubmit={handleSubmit} method="post">
               <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedUsername">
-                    <Form.Label className="fw-bold">Webhook Username</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.embedForm.username}</Form.Label>
                     <Form.Control
                       type="text"
                       name="username"
-                      placeholder="ExampleUsername"
+                      placeholder={dashboardDict.formCard.embedForm.placeholders.username}
                       className="rounded-1 border-0 shadow-sm"
                       value={embedWebhookUsername}
                       onChange={(e) => setEmbedWebhookUsername(e.target.value)}
@@ -722,11 +737,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedUsernameIcon">
-                    <Form.Label className="fw-bold">Webhook Icon</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.embedForm.icon}</Form.Label>
                     <Form.Control
                       type="text"
                       name="usernameIcon"
-                      placeholder="https://example.com/icon.png"
+                      placeholder={dashboardDict.formCard.embedForm.placeholders.icon}
                       className="rounded-1 border-0 shadow-sm"
                       value={embedWebhookUsernameIcon}
                       onChange={(e) => setEmbedWebhookUsernameIcon(e.target.value)}
@@ -737,11 +752,11 @@ export default function CardDashboard({ dict, lang }: Props) {
               <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedAuthor">
-                    <Form.Label className="fw-bold">Embed Author</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.embedForm.embedAuthor}</Form.Label>
                     <Form.Control
                       type="text"
                       name="embedAuthor"
-                      placeholder="ExampleUsername"
+                      placeholder={dashboardDict.formCard.embedForm.placeholders.embedAuthor}
                       className="rounded-1 border-0 shadow-sm"
                       value={embedAuthor}
                       onChange={(e) => setEmbedAuthor(e.target.value)}
@@ -750,11 +765,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedIcon">
-                    <Form.Label className="fw-bold">Embed Icon</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.embedForm.embedIcon}</Form.Label>
                     <Form.Control
                       type="text"
                       name="embedIcon"
-                      placeholder="https://example.com/icon.png"
+                      placeholder={dashboardDict.formCard.embedForm.placeholders.embedIcon}
                       className="rounded-1 border-0 shadow-sm"
                       value={embedAuthorIcon}
                       onChange={(e) => setEmbedAuthorIcon(e.target.value)}
@@ -765,11 +780,11 @@ export default function CardDashboard({ dict, lang }: Props) {
               <Row className="mb-3 row-gap-3">
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedTitle">
-                    <Form.Label className="fw-bold">Embed Title</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.embedForm.embedTitle}</Form.Label>
                     <Form.Control
                       type="text"
                       name="title"
-                      placeholder="New Dashboard Message"
+                      placeholder={dashboardDict.formCard.embedForm.placeholders.embedTitle}
                       className="rounded-1 border-0 shadow-sm"
                       value={embedTitle}
                       onChange={(e) => setEmbedTitle(e.target.value)}
@@ -778,11 +793,11 @@ export default function CardDashboard({ dict, lang }: Props) {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group controlId="embedTitleUrl">
-                    <Form.Label className="fw-bold">Embed URL</Form.Label>
+                    <Form.Label className="fw-bold">{dashboardDict.formCard.embedForm.embedUrl}</Form.Label>
                     <Form.Control
                       type="text"
                       name="url"
-                      placeholder="https://example.com/dashboard"
+                      placeholder={dashboardDict.formCard.embedForm.placeholders.embedUrl}
                       className="rounded-1 border-0 shadow-sm"
                       value={embedTitleUrl}
                       onChange={(e) => setEmbedTitleUrl(e.target.value)}
@@ -792,20 +807,22 @@ export default function CardDashboard({ dict, lang }: Props) {
               </Row>
               <Row className="mb-3">
                 <Form.Group controlId="formMessage">
-                  <Form.Label className="fw-bold">Message <span className="text-danger">*</span></Form.Label>
+                  <Form.Label className="fw-bold">{dashboardDict.formCard.embedForm.message} <span className="text-danger">*</span></Form.Label>
                   <Form.Control
                     as="textarea"
                     name="message"
-                    placeholder="Enter your message here..."
+                    placeholder={dashboardDict.formCard.embedForm.placeholders.message}
                     rows={5}
                     className="rounded-1 border-0 shadow-sm"
                     value={embedMessage}
                     onChange={(e) => setEmbedMessage(e.target.value)}
                   />
                 </Form.Group>
-                {embedFormMessageError && <Form.Text className="text-danger">{embedFormMessageError}</Form.Text>}
+                {embedFormMessageError && !error && <Form.Text className="text-danger">{embedFormMessageError}</Form.Text>}
+                {error && <Form.Text className="text-danger fs-5">{dict.errors.GENERAL_ERROR}: {error.message}</Form.Text>}
+                {success && <Form.Text className="text-success fs-5">{success}</Form.Text>}
               </Row>
-              <BSButton variant="primary" type="submit">Send to Discord</BSButton>
+              <BSButton variant="primary" type="submit">{dashboardDict.formCard.submit}</BSButton>
             </Form>
           )}
         </Card.Body>
@@ -813,7 +830,7 @@ export default function CardDashboard({ dict, lang }: Props) {
       
       <Card className="rounded-1 border-0 shadow-sm px-0 bg-surface text-theme">
         <Card.Header className="bg-surface p-3 p-md-4 border-bottom">
-          <Card.Title className="fs-3 m-0">Preview</Card.Title>
+          <Card.Title className="fs-3 m-0">{dashboardDict.previewCard.title}</Card.Title>
         </Card.Header>
 
         <Card.Body className="p-3 p-md-4">
@@ -821,7 +838,7 @@ export default function CardDashboard({ dict, lang }: Props) {
             <>
               <div className="discord-message-error">
                 <div className="discord-message-inner d-flex">
-                  <div className="discord-author-avatar me-2 me-md-3 mt-1">
+                  <div className="discord-author-avatar mx-2 me-md-3 mt-1">
                     <Image src={errorWebhookUsernameIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png'} width={40} height={40} roundedCircle />
                   </div>
                   <div className="discord-message-content">
@@ -838,7 +855,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                       <div className="discord-left-border-error rounded-start" style={{ backgroundColor: `#009a86` }}></div>
 
                       <div className="discord-embed-root">
-                        <div className="discord-embed-wrapper bg-surface-darker d-grid rounded border border-1 border-start-0 rounded-start-0">
+                        <div className="discord-embed-wrapper bg-surface d-grid rounded border border-1 border-start-0 rounded-start-0">
                           <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
                             <div className="discord-embed-author d-flex align-items-center mt-2">
                               <Image src={errorEmbedAuthorIcon || 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg'} className="me-1" width={24} height={24} roundedCircle />
@@ -850,7 +867,9 @@ export default function CardDashboard({ dict, lang }: Props) {
                             </div>
 
                             <div className="discord-embed-description mt-2 d-flex flex-column">
-                              <strong className="bg-surface px-1 rounded-1">{formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, 'en')}</strong>
+                              <OverlayTrigger placement="top" overlay={tooltip}>
+                                <strong className={`${resolvedTheme === 'dark' ? 'bg-surface-lighter' : 'bg-surface-darker'} px-1 rounded-1`}>{formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, 'en')}</strong>
+                              </OverlayTrigger>
 
                               <div className="">
                                 <span>URL:</span>{" "}
@@ -948,7 +967,7 @@ export default function CardDashboard({ dict, lang }: Props) {
           ) : (
             <div className="discord-message-embed">
               <div className="discord-message-inner d-flex">
-                <div className="discord-author-avatar me-3 mt-1">
+                <div className="discord-author-avatar mx-2 me-md-3 mt-1">
                   <Image src={embedWebhookUsernameIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png'} width={40} height={40} roundedCircle />
                 </div>
                 <div className="discord-message-content">
@@ -965,7 +984,7 @@ export default function CardDashboard({ dict, lang }: Props) {
                     <div className="discord-left-border rounded-start" style={{ backgroundColor: `#009a86` }}></div>
 
                     <div className="discord-embed-root d-grid">
-                          <div className="discord-embed-wrapper bg-surface-darker d-grid rounded-1 border border-1  border-start-0 rounded-start-0">
+                      <div className="discord-embed-wrapper bg-surface d-grid rounded-1 border border-1  border-start-0 rounded-start-0">
                         <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
                           <div className="discord-embed-author d-flex align-items-center mt-2">
                             <Image src={embedAuthorIcon || 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg'} className="me-1" width={24} height={24} roundedCircle />
@@ -976,14 +995,16 @@ export default function CardDashboard({ dict, lang }: Props) {
                             <BSLink variant="discord" href={embedTitleUrl || 'https://ppl-solutions.vercel.app/drivershub/dashboard'} target="_blank" classes="fw-bold">{embedTitle || 'New Dashboard Message'}</BSLink>
                           </div>
 
-                          <div className="discord-embed-description mt-2 d-flex flex-column">
-                            {embedMessage.split("\\n").map((line, i) => (
-                              <span key={i}>
-                                {line}
-                                <br />
-                              </span>
-                            ))}
-                          </div>
+                          {embedMessage && (
+                            <div className="discord-embed-description mt-2 d-flex flex-column">
+                              {embedMessage.split("\\n").map((line, i) => (
+                                <span key={i}>
+                                  {line}
+                                  <br />
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

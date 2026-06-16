@@ -15,28 +15,33 @@ async function methodNotAllowed(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const lang = getLocaleFromRequest(request);
+    const dict = await getDictionary(lang);
     const body = await request.json();
 
     const { searchParams } = new URL(request.url);
-    const messageType = searchParams.get("messageType") as "embed" | "error" | "announcement" | null;
+    const messageType = searchParams.get("messageType");
 
-    let webhookUrl: string = '';
-    if (messageType === 'announcement') {
-      webhookUrl = process.env.DISCORD_ANNOUNCEMENTS_WEBHOOK_URL as string;
-    } else if (messageType === 'error') {
-      webhookUrl = process.env.DISCORD_WEBSITE_ALERTS_WEBHOOK_URL as string;
-    } else if (messageType === 'embed') {
-      webhookUrl = process.env.DISCORD_DASHBOARD_WEBHOOK_URL as string;
+    if (messageType !== 'announcement' && messageType !== 'error' && messageType !== 'embed') {
+      return errorHandler({ error: dict.errors.dashboard.route.INVALID_MESSAGE_TYPE }, request, lang, 400);
     }
 
-    const testUrl = process.env.DISCORD_TEST_DUMMY_WEBHOOK_URL;
+    const typedWebhookUrlMap: Record<'announcement' | 'error' | 'embed', string | undefined> = {
+      announcement: process.env.DISCORD_ANNOUNCEMENTS_WEBHOOK_URL,
+      error: process.env.DISCORD_WEBSITE_ALERTS_WEBHOOK_URL,
+      embed: process.env.DISCORD_DASHBOARD_WEBHOOK_URL,
+    };
+
+    let webhookUrl;
+    if (process.env.NODE_ENV === 'development') {
+      webhookUrl = process.env.DISCORD_TEST_DUMMY_WEBHOOK_URL;
+    } else {
+      webhookUrl = typedWebhookUrlMap[messageType];
+    }
     
-    // const username = body?.username || 'PPL Solutions';
-    // const avatar_url = body?.avatar_url || 'https://ppl-solutions.vercel.app/assets/images/logo.png';
     const embeds = Array.isArray(body?.embeds) ? body.embeds : [];
     const content = typeof body?.content === 'string' ? body.content : '';
-    const username = body?.username ? String(body.username) : '';
-    const avatar_url = body?.avatar_url ? String(body.avatar_url) : '';
+    const username = typeof body?.username === 'string' ? body.username.trim() : '';
+    const avatar_url = typeof body?.avatar_url === 'string' ? body.avatar_url.trim() : '';
     const allowed_mentions = body?.allowed_mentions && typeof body.allowed_mentions === 'object'
       ? body.allowed_mentions
       : undefined;
@@ -52,26 +57,43 @@ export async function POST(request: NextRequest) {
     }
 
     if ((messageType === 'embed' || messageType === 'error') && !embeds.length) {
-      return errorHandler({ error: 'Missing message or embeds' }, request, lang, 400);
+      return errorHandler({ error: dict.errors.dashboard.route.MISSING_MESSAGE_EMBEDS }, request, lang, 400);
     }
 
-    if (!testUrl) {
-      return errorHandler({ error: 'Discord webhook URL is not configured' }, request, lang, 500);
+    if (!webhookUrl) {
+      return errorHandler({ error: dict.errors.dashboard.route.INVALID_WEBHOOK_URL }, request, lang, 500);
     }
 
-    const res = await axios.post(testUrl!, {
-      username,
-      avatar_url,
-      ...postData
-    });
+    const webhookPayload = {
+      ...(username ? { username } : {}),
+      ...(avatar_url ? { avatar_url } : {}),
+      ...postData,
+    };
+
+    const res = await axios.post(webhookUrl, webhookPayload);
 
     const data = res.data;
     return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (err: any) {
     const lang = getLocaleFromRequest(request);
-    const serverMessage = err?.response?.data?.message || err?.message;
-    const message = 'Failed to send message to Discord';
-    return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
+    const dict = await getDictionary(lang);
+    const responseData = err?.response?.data;
+    const responseMessage = responseData?.message;
+
+    const serverMessage = typeof responseMessage === 'string'
+      ? responseMessage
+      : typeof responseData === 'string'
+        ? responseData
+        : typeof err?.message === 'string'
+          ? err.message
+          : JSON.stringify(responseData || err);
+
+    const statusCode = typeof err?.response?.status === 'number' ? err.response.status : 500;
+    const discordCode = responseData?.code;
+    const message = discordCode
+      ? `${dict.errors.dashboard.route.FAILED_TO_SEND_MESSAGE_TO_DISCORD}: ${serverMessage} (${dict.errors.dashboard.route.HTTP_CODE}: ${discordCode})`
+      : `${dict.errors.dashboard.route.FAILED_TO_SEND_MESSAGE_TO_DISCORD}: ${serverMessage}`;
+    return errorHandler({ error: message, serverError: serverMessage }, request, lang, statusCode);
   }
 }
 

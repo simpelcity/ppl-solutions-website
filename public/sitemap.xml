@@ -37,24 +37,6 @@
 		<priority>1</priority>
 	</url>
   <url>
-		<loc>https://ppl-solutions.vercel.app/drivershub</loc>
-		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
-		<changefreq>daily</changefreq>
-		<priority>1</priority>
-	</url>
-  <url>
-		<loc>https://ppl-solutions.vercel.app/drivershub/dashboard</loc>
-		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-  <url>
-		<loc>https://ppl-solutions.vercel.app/drivershub/profile</loc>
-		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
-		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
-	</url>
-  <url>
 		<loc>https://ppl-solutions.vercel.app/login</loc>
 		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
 		<changefreq>monthly</changefreq>
@@ -77,5 +59,35 @@
 		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.5</priority>
+	</url>
+  <url>
+		<loc>https://ppl-solutions.vercel.app/drivershub</loc>
+		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+  <url>
+		<loc>https://ppl-solutions.vercel.app/drivershub/user-statistics</loc>
+		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+  <url>
+		<loc>https://ppl-solutions.vercel.app/drivershub/leaderboard</loc>
+		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+  <url>
+		<loc>https://ppl-solutions.vercel.app/drivershub/statistics</loc>
+		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+  <url>
+		<loc>https://ppl-solutions.vercel.app/drivershub/profile</loc>
+		<lastmod>2025-11-25-T13:46:05+01:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
 	</url>
 </urlset>

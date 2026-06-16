@@ -482,7 +482,83 @@
         "description": "Manage your team and gallery in the Drivershub dashboard."
       },
       "dashboard": {
-        
+        "formCard": {
+          "title": "Dashboard",
+          "buttonGroup": {
+            "placeholder": "Select Message Type",
+            "embed": "Embed",
+            "error": "Error",
+            "announcement": "Announcement"
+          },
+          "embedForm": {
+            "username": "Webhook Username",
+            "icon": "Webhook Icon",
+            "embedAuthor": "Embed Author",
+            "embedIcon": "Embed Icon",
+            "embedTitle": "Embed Title",
+            "embedUrl": "Embed URL",
+            "message": "Message",
+            "placeholders": {
+              "username": "ExampleUsername",
+              "icon": "https://example.com/icon.png",
+              "embedAuthor": "ExampleUsername",
+              "embedIcon": "https://example.com/icon.png",
+              "embedTitle": "New Dashboard Message",
+              "embedUrl": "https://example.com/dashboard",
+              "message": "Enter your message here..."
+            }
+          },
+          "errorForm": {
+            "username": "Webhook Username",
+            "icon": "Webhook Icon",
+            "embedAuthor": "Embed Author",
+            "embedIcon": "Embed Icon",
+            "embedTitle": "Embed Title",
+            "embedUrl": "Embed URL",
+            "requestUrl": "Request URL",
+            "httpMethod": "HTTP Method",
+            "httpStatus": "HTTP Status",
+            "message": "Message",
+            "placeholders": {
+              "username": "ExampleUsername",
+              "icon": "https://example.com/icon.png",
+              "embedAuthor": "ExampleUsername",
+              "embedIcon": "https://example.com/icon.png",
+              "embedTitle": "New Dashboard Error",
+              "embedUrl": "https://example.com/dashboard",
+              "requestUrl": "https://example.com/api/endpoint",
+              "httpMethod": "Select Method",
+              "httpStatus": "e.g. 200, 404, 500",
+              "message": "Enter your message here..."
+            }
+          },
+          "announcementForm": {
+            "username": "Webhook Username",
+            "icon": "Webhook Icon",
+            "title": "Title",
+            "mentionTag": "Mention Tag",
+            "footer": "Footer",
+            "footerRole": "Footer Role",
+            "noRole": "No Role",
+            "footerEmoji": "Footer Emoji",
+            "noEmoji": "No Emoji",
+            "message": "Message",
+            "placeholders": {
+              "username": "ExampleUsername",
+              "icon": "https://example.com/icon.png",
+              "title": "Your announcement title",
+              "mentionTag": "Select Tag",
+              "footer": "Your announcement footer",
+              "footerRole": "Select Role",
+              "footerEmoji": "Select Emoji",
+              "message": "Enter your announcement here..."
+            }
+          },
+          "submit": "Send to Discord"
+        },
+        "previewCard": {
+          "title": "Preview"
+        }
       },
       "team": {
         "meta": {
@@ -785,6 +861,44 @@
     "vtcStats": {
       "NO_STATS": "No statistics available"
     },
+    "dashboard": {
+      "form": {
+        "embed": {
+          "EMBED_MESSAGE_REQUIRED": "Embed message is required"
+        },
+        "error": {
+          "REQUEST_URL_REQUIRED": "Request URL is required",
+          "HTTP_METHOD_REQUIRED": "HTTP Method is required",
+          "HTTP_STATUS_REQUIRED": "HTTP Status is required",
+          "ERROR_MESSAGE_REQUIRED": "Error message is required"
+        },
+        "announcement": {
+          "MENTION_TAG_REQUIRED": "Announcement mention tag is required",
+          "TITLE_REQUIRED": "Announcement title is required",
+          "FOOTER_MESSAGE_REQUIRED": "Announcement footer message is required",
+          "ANNOUNCEMENT_MESSAGE_REQUIRED": "Announcement message is required"
+        },
+        "ERROR_SENDING_MESSAGE_TO_DISCORD": "Error sending message to Discord"
+      },
+      "hook": {
+        "embed": {
+          "FAILED_TO_SEND_EMBED_DATA": "Failed to send dashboard embed data"
+        },
+        "error": {
+          "FAILED_TO_SEND_ERROR_DATA": "Failed to send dashboard error data"
+        },
+        "announcement": {
+          "FAILED_TO_SEND_ANNOUNCEMENT_DATA": "Failed to send announcement data"
+        }
+      },
+      "route": {
+        "INVALID_MESSAGE_TYPE":"Invalid or missing message type",
+        "MISSING_MESSAGE_EMBEDS": "Missing message or embeds",
+        "INVALID_WEBHOOK_URL": "Invalid Discord Webhook URL",
+        "FAILED_TO_SEND_MESSAGE_TO_DISCORD": "Failed to send message to Discord",
+        "HTTP_CODE": "code"
+      }
+    },
     "profile": {
       "profile": {
         "PROFILE_NOT_FOUND": "Profile not found",
@@ -856,6 +970,17 @@
     "userStats": {},
     "leaderboard": {},
     "vtcStats": {},
+    "dashboard": {
+      "embed": {
+        "MESSAGE_SENT": "Embed message sent successfully!"
+      },
+      "error": {
+        "MESSAGE_SENT": "Error message sent successfully!"
+      },
+      "announcement": {
+        "MESSAGE_SENT": "Announcement sent successfully!"
+      }
+    },
     "profile": {
       "profile": {
         "PROFILE_UPDATED": "Profile updated successfully!",

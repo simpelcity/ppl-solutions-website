@@ -312,7 +312,7 @@
       "vtcStats": "Štatistiky VTC",
       "dashboard": {
         "title": "Spravovať",
-        "dashboard": "Dashboard",
+        "dashboard": "Prístrojová doska",
         "team": "Tím",
         "gallery": "Galéria"
       },
@@ -327,7 +327,7 @@
       "user-statistics": "Štatistiky uživatele",
       "statistics": "Statistiky VTC",
       "leaderboard": "Rebríček",
-      "dashboard": "Dashboard",
+      "dashboard": "Prístrojová doska",
       "team": "Tím",
       "gallery": "Galéria",
       "profile": "Profil",
@@ -451,7 +451,7 @@
     },
     "vtcStats": {
       "meta": {
-        "title": "Ovládací panel – Štatistiky VTC",
+        "title": "Prístrojová doska – Štatistiky VTC",
         "description": "Pozrite si štatistiky VTC a ďalšie informácie."
       },
       "vtc": {
@@ -478,13 +478,91 @@
     },
     "dashboard": {
       "meta": {
-        "title": "Dashboard",
+        "title": "Prístrojová doska",
         "description": "Spravujte svoj tím a galériu na ovládacom paneli Drivershub."
       },
-      "dashboard": {},
+      "dashboard": {
+        "formCard": {
+          "title": "Prístrojová doska",
+          "buttonGroup": {
+            "placeholder": "Vyberte typ správy",
+            "embed": "Embed",
+            "error": "Chyba",
+            "announcement": "Oznámenie"
+          },
+          "embedForm": {
+            "username": "Používateľské meno webhooku",
+            "icon": "Ikona webhooku",
+            "embedAuthor": "Autor embedu",
+            "embedIcon": "Ikona embedu",
+            "embedTitle": "Názov embedu",
+            "embedUrl": "URL embedu",
+            "message": "Správa",
+            "placeholders": {
+              "username": "Príklad používateľského mena",
+              "icon": "https://príklad.com/ikona.png",
+              "embedAuthor": "Príklad používateľského mena",
+              "embedIcon": "https://príklad.com/ikona.png",
+              "embedTitle": "Nová správa dashboardu",
+              "embedUrl": "https://príklad.com/dashboard",
+              "message": "Zadajte svoju správu sem..."
+            }
+          },
+          "errorForm": {
+            "username": "Používateľské meno webhooku",
+            "icon": "Ikona webhooku",
+            "embedAuthor": "Autor embedu",
+            "embedIcon": "Ikona embedu",
+            "embedTitle": "Názov embedu",
+            "embedUrl": "URL embedu",
+            "requestUrl": "URL požiadavky",
+            "httpMethod": "Metóda HTTP",
+            "httpStatus": "Stav HTTP",
+            "message": "Správa",
+            "placeholders": {
+              "username": "Príklad používateľského mena",
+              "icon": "https://príklad.com/ikona.png",
+              "embedAuthor": "Príklad používateľského mena",
+              "embedIcon": "https://príklad.com/ikona.png",
+              "embedTitle": "Nová chyba dashboardu",
+              "embedUrl": "https://príklad.com/dashboard",
+              "requestUrl": "https://príklad.com/api/koncový-bod",
+              "httpMethod": "Vyberte metódu",
+              "httpStatus": "napr. 200, 404, 500",
+              "message": "Zadajte svoju správu sem..."
+            }
+          },
+          "announcementForm": {
+            "username": "Používateľské meno webhooku",
+            "icon": "Ikona webhooku",
+            "title": "Názov",
+            "mentionTag": "Značka zmienky",
+            "footer": "Pätička",
+            "footerRole": "Rola v pätičke",
+            "noRole": "Žiadna rola",
+            "footerEmoji": "Emoji v pätičke",
+            "noEmoji": "Žiadne Emoji",
+            "message": "Správa",
+            "placeholders": {
+              "username": "Príklad používateľského mena",
+              "icon": "https://príklad.com/ikona.png",
+              "title": "Názov vášho oznámenia",
+              "mentionTag": "Vyberte značku",
+              "footer": "Pätička vášho oznámenia",
+              "footerRole": "Vyberte rolu",
+              "footerEmoji": "Vyberte emoji",
+              "message": "Zadajte svoje oznámenie sem..."
+            }
+          },
+          "submit": "Odoslať na Discord"
+        },
+        "previewCard": {
+          "title": "Náhľad"
+        }
+      },
       "team": {
         "meta": {
-          "title": "Ovládací panel – Správa tímu",
+          "title": "Prístrojová doska – Správa tímu",
           "description": "Spravujte členov svojho tímu ich pridávaním, úpravou alebo odstraňovaním."
         },
         "form": {
@@ -524,7 +602,7 @@
       },
       "gallery": {
         "meta": {
-          "title": "Ovládací panel – Spravovať galériu",
+          "title": "Prístrojová doska – Spravovať galériu",
           "description": "Spravujte položky galérie pridávaním, úpravou alebo odstraňovaním obrázkov."
         },
         "form": {
@@ -783,6 +861,44 @@
     "vtcStats": {
       "NO_STATS": "Nie sú dostupné žiadne štatistiky"
     },
+    "dashboard": {
+      "form": {
+        "embed": {
+          "EMBED_MESSAGE_REQUIRED": "Správa embedu je povinná"
+        },
+        "error": {
+          "REQUEST_URL_REQUIRED": "URL požiadavky je povinná",
+          "HTTP_METHOD_REQUIRED": "Metóda HTTP je povinná",
+          "HTTP_STATUS_REQUIRED": "Stav HTTP je povinný",
+          "ERROR_MESSAGE_REQUIRED": "Chybová správa je povinná"
+        },
+        "announcement": {
+          "MENTION_TAG_REQUIRED": "Značka zmienky oznámenia je povinná",
+          "TITLE_REQUIRED": "Názov oznámenia je povinný",
+          "FOOTER_MESSAGE_REQUIRED": "Správa pätičky oznámenia je povinná",
+          "ANNOUNCEMENT_MESSAGE_REQUIRED": "Správa oznámenia je povinná"
+        },
+        "ERROR_SENDING_MESSAGE_TO_DISCORD": "Chyba pri odosielaní správy na Discord"
+      },
+      "hook": {
+        "embed": {
+          "FAILED_TO_SEND_EMBED_DATA": "Nepodarilo sa odoslať dáta embedu dashboardu"
+        },
+        "error": {
+          "FAILED_TO_SEND_ERROR_DATA": "Nepodarilo sa odoslať chybové dáta dashboardu"
+        },
+        "announcement": {
+          "FAILED_TO_SEND_ANNOUNCEMENT_DATA": "Nepodarilo sa odoslať dáta oznámenia"
+        }
+      },
+      "route": {
+        "INVALID_MESSAGE_TYPE": "Neplatný alebo chýbajúci typ správy",
+        "MISSING_MESSAGE_EMBEDS": "Chýba správa alebo embedy",
+        "INVALID_WEBHOOK_URL": "Neplatná URL adresa Discord webhooku",
+        "FAILED_TO_SEND_MESSAGE_TO_DISCORD": "Nepodarilo sa odoslať správu na Discord",
+        "HTTP_CODE": "kód"
+      }
+    },
     "profile": {
       "profile": {
         "PROFILE_NOT_FOUND": "Profil nebol nájdený",
@@ -854,6 +970,17 @@
     "userStats": {},
     "leaderboard": {},
     "vtcStats": {},
+    "dashboard": {
+      "embed": {
+        "MESSAGE_SENT": "Embed správa bola úspešne odoslaná!"
+      },
+      "error": {
+        "MESSAGE_SENT": "Chybová správa bola úspešne odoslaná!"
+      },
+      "announcement": {
+        "MESSAGE_SENT": "Oznámenie bolo úspešne odoslané!"
+      }
+    },
     "profile": {
       "profile": {
         "PROFILE_UPDATED": "Profil bol úspešne aktualizovaný!",

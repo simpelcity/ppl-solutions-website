@@ -1,6 +1,6 @@
 {
   "name": "ppl-solutions-website",
-  "version": "4.29.64",
+  "version": "4.30.64",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8000",
@@ -33,6 +33,7 @@
     "vitest": "^4.0.15"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.11",
     "@types/node": "^20.19.25",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19",

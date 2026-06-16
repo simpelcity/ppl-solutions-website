@@ -114,6 +114,11 @@ option:last-of-type {
       background-color: hsla(39.435, calc(1*100%), 48.627%, 10%);
     }
   }
+
+  .discord-message-error:hover,
+  .discord-message-embed:hover {
+    background-color: var(--color-surface-lighter);
+  }
 }
 [data-bs-theme="light"] {
   .discord-message-announcement {
@@ -122,6 +127,11 @@ option:last-of-type {
     &:hover {
       background-color: hsla(39.435, calc(1*100%), 48.627%, 10%);
     }
+  }
+
+  .discord-message-error:hover,
+  .discord-message-embed:hover {
+    background-color: var(--color-surface-darker);
   }
 }
 
@@ -140,5 +150,20 @@ option:last-of-type {
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+[data-bs-theme="dark"] {
+  #tooltip {
+    --bs-tooltip-color: var(--color-text);
+    --bs-tooltip-bg: var(--color-surface-lighter);
+    --bs-tooltip-opacity: 1;
+  }
+}
+[data-bs-theme="light"] {
+  #tooltip {
+    --bs-tooltip-color: var(--color-text);
+    --bs-tooltip-bg: var(--color-surface-darker);
+    --bs-tooltip-opacity: 1;
   }
 }

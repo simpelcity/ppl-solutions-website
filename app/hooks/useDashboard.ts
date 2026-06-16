@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import axios from 'axios';
+import type { Dictionary } from "@/app/i18n";
 
 type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -54,37 +55,22 @@ const statusToErrorName: Record<number, string> = {
   504: "GATEWAY_TIMEOUT",
 };
 
-function formatTimestamp(date: Date): string {
-  const pad = (n: number) => n.toString().padStart(2, "0");
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const day = pad(date.getDate());
-  const month = months[date.getMonth()];
-  const year = date.getFullYear();
-  const hours = pad(date.getHours());
-  const minutes = pad(date.getMinutes());
-  const seconds = pad(date.getSeconds());
-  const tzOffset = -date.getTimezoneOffset();
-  const sign = tzOffset >= 0 ? "+" : "-";
-  const tzHours = pad(Math.floor(Math.abs(tzOffset) / 60));
-  const tzMinutes = pad(Math.abs(tzOffset) % 60);
-  return `${day}-${month}-${year}:${hours}:${minutes}:${seconds} ${sign}${tzHours}${tzMinutes}`;
-}
-
 function toUnixTimestamp(date: Date): number {
   return Math.floor(date.getTime() / 1000);
 }
 
-export default function useDashboard() {
+export default function useDashboard(dict: Dictionary) {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const [status, setStatus] = useState<number | null>(null);
-  const [markdownPreview, setMarkdownPreview] = useState<any | null>(null);
 
   function clearFeedback() {
     setData(null);
     setError(null);
     setStatus(null);
+    setSuccess(null);
   }
 
   async function sendAnnouncement(formData: announcementsFormData) {
@@ -93,8 +79,6 @@ export default function useDashboard() {
 
     const { username, avatar_url, title, announcementMentionTag, message, footer, footerRoleTag, footerEmojiTag } = formData;
     
-    // const username = author || 'PPL Solutions VTC';
-    // const authorIconUrl = authorIcon || 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png';
     const announcementTitle = title ? title : 'Announcement';
     const announcementMention = announcementMentionTag === 'everyone' ? '@everyone' : `<@&${announcementMentionTag}>`;
     const announcementFooter = footer ? footer : 'Best regards,\n';
@@ -114,13 +98,13 @@ export default function useDashboard() {
         ...payload,
       });
 
-      if (res.status !== 200) throw new Error('Failed to send announcement data');
+      if (res.status !== 200) throw new Error(dict.errors.dashboard.hook.announcement.FAILED_TO_SEND_ANNOUNCEMENT_DATA);
 
       const data = res.data;
+      setSuccess(dict.success.dashboard.announcement.MESSAGE_SENT);
       setData(data);
-      setMarkdownPreview(res);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || 'Failed to send announcement data';
+      const message = err?.response?.data?.message || err?.message || dict.errors.dashboard.hook.announcement.FAILED_TO_SEND_ANNOUNCEMENT_DATA;
       setError({ message: message, success: false });
       setStatus(err?.response?.status || null);
       throw err;
@@ -167,12 +151,13 @@ Message: ${message}
         ...payload,
       });
 
-      if (res.status !== 200) throw new Error('Failed to send dashboard error data');
+      if (res.status !== 200) throw new Error(dict.errors.dashboard.hook.error.FAILED_TO_SEND_ERROR_DATA);
 
       const data = res.data;
+      setSuccess(dict.success.dashboard.error.MESSAGE_SENT);
       setData(data);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || 'Failed to send dashboard error data';
+      const message = err?.response?.data?.message || err?.message || dict.errors.dashboard.hook.error.FAILED_TO_SEND_ERROR_DATA;
       setError({ message: message, success: false });
       setStatus(err?.response?.status || null);
       throw err;
@@ -209,12 +194,13 @@ Message: ${message}
         ...payload,
       });
 
-      if (res.status !== 200) throw new Error('Failed to send dashboard embed data');
+      if (res.status !== 200) throw new Error(dict.errors.dashboard.hook.embed.FAILED_TO_SEND_EMBED_DATA);
 
       const data = res.data;
+      setSuccess(dict.success.dashboard.embed.MESSAGE_SENT);
       setData(data);
     } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || 'Failed to send dashboard embed data';
+      const message = err?.response?.data?.message || err?.message || dict.errors.dashboard.hook.embed.FAILED_TO_SEND_EMBED_DATA;
       setError({ message: message, success: false });
       setStatus(err?.response?.status || null);
       throw err;
@@ -223,82 +209,5 @@ Message: ${message}
     }
   }
 
-  const sendData = async (messageType: "embed" | "error" | null, title: string, url: string, message: string, requestUrl: string, method: string, HTTPStatus: string) => {
-    clearFeedback();
-    setLoading(true);
-
-    const statusNumber = Number(HTTPStatus);
-    const errorName = statusToErrorName[statusNumber];
-
-    const errorPayload = {
-      embeds: [
-        {
-          title: title || 'New Dashboard Error',
-          url: url || 'https://ppl-solutions.vercel.app/drivershub/dashboard',
-          description: `
-**<t:${toUnixTimestamp(new Date())}:F>**
-URL: ${requestUrl}
-Method: ${method}
-Status: ${HTTPStatus}
-Error: ${errorName}
-Message: ${message}
------------------------------
-                `,
-          color: 0x009a86,
-          author: {
-            name: 'Simpelcity',
-            icon_url: 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg',
-          }
-        }
-      ]
-    };
-
-    const embedPayload = {
-      embeds: [
-        {
-          title: title || 'New Dashboard Message',
-          url: url || 'https://ppl-solutions.vercel.app/drivershub/dashboard',
-          description: message,
-          color: 0x009a86,
-          author: {
-            name: 'Simpelcity',
-            icon_url: 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg',
-          }
-        }
-      ]
-    };
-
-    let payload = null;
-    let authorName = '';
-    if (messageType === "error") {
-      payload = errorPayload;
-      authorName = 'PPL Solutions VTC Error Logger';
-    } else {
-      payload = embedPayload;
-      authorName = 'PPL Solutions VTC Dashboard Messager';
-    }
-
-    try {
-      const res = await axios.post(`/api/discord-webhook?messageType=${messageType}`, {
-        username: messageType === 'error' ? 'PPL Solutions VTC Error Logger' : 'PPL Solutions VTC Dashboard Messager',
-        avatar_url: 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png',
-        ...payload,
-      });
-
-      if (res.status !== 200) throw new Error('Failed to send dashboard data');
-
-      const data = res.data;
-      setData(data);
-      setMarkdownPreview(res);
-    } catch (err: any) {
-      const message = err?.response?.data?.message || err?.message || 'Failed to send dashboard data';
-      setError({ message: message, success: false });
-      setStatus(err?.response?.status || null);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return { data, loading, error, status, markdownPreview, sendAnnouncement, sendError, sendEmbed, clearFeedback };
+  return { data, loading, error, success, status, sendAnnouncement, sendError, sendEmbed, clearFeedback };
 }

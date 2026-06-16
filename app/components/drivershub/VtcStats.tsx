@@ -40,7 +40,7 @@ export default function VtcStats({ dict }: VtcStatsProps) {
     }
   }
 
-  console.log(formatIncome(6280))
+  // console.log(formatIncome(6280))
 
   const formatDistance = (distance: number, unit: string = "km"): string => {
     const distanceString = distance.toLocaleString();
