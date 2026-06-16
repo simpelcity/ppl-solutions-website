@@ -269,7 +269,7 @@ function SidebarContent({
               <FaAngleDown />
             </span>
           </Dropdown.Toggle>
-          <Dropdown.Menu className="shadow-sm mb-1 border-0 rounded-1" align="end" style={{ zIndex: 1050 }}>
+          <Dropdown.Menu className="shadow-sm mb-1 border-0 rounded-1" align={{ md: "end" }} style={{ zIndex: 1050 }}>
             <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
             <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
             <Dropdown.Divider />
