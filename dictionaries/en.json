@@ -458,21 +458,21 @@
         "title": "VTC Statistics",
         "totalDistance": "Total Distance",
         "totalJobs": "Total Jobs",
-        "totalIncome": "Total Revenue",
+        "totalIncome": "Total Income",
         "totalTimeDriven": "Total Time Driven"
       },
       "ets2": {
         "title": "ETS2 Statistics",
         "totalDistance": "Total Distance",
         "totalJobs": "Total Jobs",
-        "totalIncome": "Total Revenue",
+        "totalIncome": "Total Income",
         "totalTimeDriven": "Total Time Driven"
       },
       "ats": {
         "title": "ATS Statistics",
         "totalDistance": "Total Distance",
         "totalJobs": "Total Jobs",
-        "totalIncome": "Total Revenue",
+        "totalIncome": "Total Income",
         "totalTimeDriven": "Total Time Driven"
       }
     },

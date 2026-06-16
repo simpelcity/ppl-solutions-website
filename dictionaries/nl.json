@@ -458,21 +458,21 @@
         "title": "VTC-statistieken",
         "totalDistance": "Totale afstand",
         "totalJobs": "Totaal aantal vrachten",
-        "totalIncome": "Totale omzet",
+        "totalIncome": "Totaal inkomen",
         "totalTimeDriven": "Totale rijtijd"
       },
       "ets2": {
         "title": "ETS2-statistieken",
         "totalDistance": "Totale afstand",
         "totalJobs": "Totaal aantal vrachten",
-        "totalIncome": "Totale omzet",
+        "totalIncome": "Totaal inkomen",
         "totalTimeDriven": "Totale rijtijd"
       },
       "ats": {
         "title": "ATS-statistieken",
         "totalDistance": "Totale afstand",
         "totalJobs": "Totaal aantal vrachten",
-        "totalIncome": "Totale omzet",
+        "totalIncome": "Totaal inkomen",
         "totalTimeDriven": "Totale rijtijd"
       }
     },

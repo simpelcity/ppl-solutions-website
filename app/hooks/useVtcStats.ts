@@ -9,7 +9,7 @@ import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 interface GameStats {
   distance: number;
   jobs: number;
-  revenue: number;
+  income: number;
   days: number;
   hours: number;
   minutes: number;
@@ -67,17 +67,17 @@ export function useVtcStats(dict: Dictionary) {
 
     let ets2Distance = 0;
     let ets2Jobs = 0;
-    let ets2Revenue = 0;
+    let ets2Income = 0;
     let ets2Time = 0;
 
     let atsDistance = 0;
     let atsJobs = 0;
-    let atsRevenue = 0;
+    let atsIncome = 0;
     let atsTime = 0;
 
     let totalDistance = 0;
     let totalJobs = 0;
-    let totalRevenue = 0;
+    let totalIncome = 0;
     let totalTime = 0;
 
     for (const job of jobs) {
@@ -97,9 +97,9 @@ export function useVtcStats(dict: Dictionary) {
       }
 
       if (job.income) {
-        totalRevenue += job.income;
-        if (isETS2) ets2Revenue += job.income;
-        if (isATS) atsRevenue += job.income;
+        totalIncome += job.income;
+        if (isETS2) ets2Income += job.income;
+        if (isATS) atsIncome += job.income;
       }
 
       if (job.realtime?.actualTimeDriven) {
@@ -119,7 +119,7 @@ export function useVtcStats(dict: Dictionary) {
       ets2: {
         distance: ets2Distance,
         jobs: ets2Jobs,
-        revenue: ets2Revenue,
+        income: ets2Income,
         days: ets2TimeFormatted.days,
         hours: ets2TimeFormatted.hours,
         minutes: ets2TimeFormatted.minutes,
@@ -127,7 +127,7 @@ export function useVtcStats(dict: Dictionary) {
       ats: {
         distance: atsDistanceMiles,
         jobs: atsJobs,
-        revenue: atsRevenue,
+        income: atsIncome,
         days: atsTimeFormatted.days,
         hours: atsTimeFormatted.hours,
         minutes: atsTimeFormatted.minutes,
@@ -135,7 +135,7 @@ export function useVtcStats(dict: Dictionary) {
       total: {
         distance: totalDistance,
         jobs: totalJobs,
-        revenue: totalRevenue,
+        income: totalIncome,
         days: totalTimeFormatted.days,
         hours: totalTimeFormatted.hours,
         minutes: totalTimeFormatted.minutes,
