@@ -474,7 +474,8 @@
         "totalJobs": "Total Jobs",
         "totalIncome": "Total Income",
         "totalTimeDriven": "Total Time Driven"
-      }
+      },
+      "hour": "Hours"
     },
     "dashboard": {
       "meta": {

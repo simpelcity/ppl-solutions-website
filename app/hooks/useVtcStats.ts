@@ -10,9 +10,7 @@ interface GameStats {
   distance: number;
   jobs: number;
   income: number;
-  days: number;
   hours: number;
-  minutes: number;
 }
 
 interface VtcStats {
@@ -49,11 +47,8 @@ export function useVtcStats(dict: Dictionary) {
   };
 
   const convertTime = (ms: number) => {
-    const totalMinutes = Math.floor(ms / 60000);
     return {
-      days: Math.floor(totalMinutes / 1440),
-      hours: Math.floor((totalMinutes % 1440) / 60),
-      minutes: totalMinutes % 60,
+      hours: Math.floor(ms / 3600000),
     };
   };
 
@@ -63,7 +58,6 @@ export function useVtcStats(dict: Dictionary) {
 
   const getStatistics = async () => {
     const jobs = await fetchStatistics();
-    console.log(jobs)
 
     let ets2Distance = 0;
     let ets2Jobs = 0;
@@ -120,25 +114,19 @@ export function useVtcStats(dict: Dictionary) {
         distance: ets2Distance,
         jobs: ets2Jobs,
         income: ets2Income,
-        days: ets2TimeFormatted.days,
         hours: ets2TimeFormatted.hours,
-        minutes: ets2TimeFormatted.minutes,
       },
       ats: {
         distance: atsDistanceMiles,
         jobs: atsJobs,
         income: atsIncome,
-        days: atsTimeFormatted.days,
         hours: atsTimeFormatted.hours,
-        minutes: atsTimeFormatted.minutes,
       },
       total: {
         distance: totalDistance,
         jobs: totalJobs,
         income: totalIncome,
-        days: totalTimeFormatted.days,
         hours: totalTimeFormatted.hours,
-        minutes: totalTimeFormatted.minutes,
       },
     };
   };

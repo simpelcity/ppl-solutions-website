@@ -474,7 +474,8 @@
         "totalJobs": "Celkový počet zákaziek",
         "totalIncome": "Celkový príjem",
         "totalTimeDriven": "Celkový čas jazdy"
-      }
+      },
+      "hour": "Hodina"
     },
     "dashboard": {
       "meta": {

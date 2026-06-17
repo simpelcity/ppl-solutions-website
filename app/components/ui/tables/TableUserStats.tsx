@@ -8,12 +8,52 @@ import { useTheme } from 'next-themes'
 
 type Props = {
   dict: Dictionary;
+  isLoading: boolean;
 }
 
-export default function TableStats({ dict }: Props) {
+type Unit = "km" | "mi" | "thp" | "lb" | "ton" | "euro" | "dollar" | "thorn";
+
+export default function TableUserStats({ dict, isLoading }: Props) {
   const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryStats } = useUserStats(dict);
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+
+  const currencySymbols: Partial<Record<Unit, string>> = {
+    euro: "€",
+    dollar: "$",
+    thorn: "Ŧ",
+  };
+
+  const typeLabels: Partial<Record<Unit, string>> = {
+    km: "km",
+    mi: "mi",
+    thp: "THP",
+    lb: "lbs",
+    ton: "t",
+  };
+
+  function formatValue(value: number, unit: Unit): string {
+    const icon = currencySymbols[unit] ?? "";
+    const type = typeLabels[unit] ?? "";
+
+    const rounded = Math.round(value * 10) / 10;
+
+    let formatted: string;
+
+    if (rounded >= 1_000_000) {
+      formatted = `${(rounded / 1_000_000).toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })}M`;
+    } else {
+      formatted = rounded.toLocaleString(undefined, {
+        minimumFractionDigits: Number.isInteger(rounded) ? 0 : 1,
+        maximumFractionDigits: 1,
+      });
+    }
+
+    return `${icon}${formatted}${type ? ` ${type}` : ""}`;
+  }
 
   if (error) {
     if (isRateLimited) {
@@ -41,7 +81,7 @@ export default function TableStats({ dict }: Props) {
   return (
     <>
       <div className="table-card-scroll">
-        <Table variant={theme} className="table-stats" borderless>
+        <Table variant={resolvedTheme} className="table-stats" borderless>
           <thead>
             <tr>
               {tableItems.map((item) => (
@@ -57,9 +97,9 @@ export default function TableStats({ dict }: Props) {
               {Array.from({ length: 18 }).map((_, r) => (
                 <tr key={r}>
                   {Array.from({ length: 4 }).map((__, c) => (
-                    <td key={c} className="py-2">
-                      <Placeholder as="span" animation="glow">
-                        <Placeholder xs={12} className="rounded-1" />
+                    <td key={c} className="">
+                      <Placeholder as="div" animation="glow">
+                        <Placeholder xs={12} className="rounded-1 fs-1" />
                       </Placeholder>
                     </td>
                   ))}
@@ -87,13 +127,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.weightTransported}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(Math.floor((stats?.ets2.mass ?? 0) / 1000)))} t</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(Math.floor((stats?.ets2.mass ?? 0) / 1000)), "ton")}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(Math.floor((stats?.ats.mass ?? 0) / 1000)))} lbs</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(Math.floor((stats?.ats.mass ?? 0) / 1000)), "lb")}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(Math.floor((stats?.total.mass ?? 0) / 1000)))} t</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(Math.floor((stats?.total.mass ?? 0) / 1000)), "ton")}</div>
                 </td>
               </tr>
               <tr>
@@ -101,13 +141,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.avgDistance}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(rounded(stats?.ets2.distance.avg ?? 0)))} km</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(rounded(stats?.ets2.distance.avg ?? 0)), "km")}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(rounded(stats?.ats.distance.avg ?? 0)))} mi</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(rounded(stats?.ats.distance.avg ?? 0)), "mi")}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(rounded(stats?.total.distance.avg ?? 0)))} km</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(rounded(stats?.total.distance.avg ?? 0)), "km")}</div>
                 </td>
               </tr>
               <tr>
@@ -115,13 +155,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.longestJob}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ets2.distance.max ?? 0))} km</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(stats?.ets2.distance.max), "km") ?? 0}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ats.distance.max ?? 0))} mi</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(stats?.ats.distance.max), "mi") ?? 0}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.total.distance.max ?? 0))} km</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(stats?.total.distance.max), "km") ?? 0}</div>
                 </td>
               </tr>
               <tr>
@@ -129,13 +169,13 @@ export default function TableStats({ dict }: Props) {
                   <div className="py-2">{dict.drivershub.userStats.table.tbody.totalDistance}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ets2.distance.distance ?? 0))} km</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(stats?.ets2.distance.distance ?? 0), "km")}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.ats.distance.distance ?? 0))} mi</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(stats?.ats.distance.distance ?? 0), "mi")}</div>
                 </td>
                 <td>
-                  <div className="border rounded-1 py-2">{numberWithCommas(Number(stats?.total.distance.distance ?? 0))} km</div>
+                  <div className="border rounded-1 py-2">{formatValue(Number(stats?.total.distance.distance ?? 0), "km")}</div>
                 </td>
               </tr>
               <tr>

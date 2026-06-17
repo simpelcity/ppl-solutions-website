@@ -474,7 +474,8 @@
         "totalJobs": "Totaal aantal vrachten",
         "totalIncome": "Totaal inkomen",
         "totalTimeDriven": "Totale rijtijd"
-      }
+      },
+      "hour": "Uur"
     },
     "dashboard": {
       "meta": {

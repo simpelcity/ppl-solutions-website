@@ -15,6 +15,8 @@ type Props = {
   lang: Locale;
 }
 
+type Unit = "km" | "mi" | "thp" | "lb" | "ton" | "euro" | "dollar" | "thorn";
+
 export default function TableJobsClient({ lang, dict }: Props) {
   const isAdmin = useIsAdmin();
 
@@ -42,6 +44,43 @@ export default function TableJobsClient({ lang, dict }: Props) {
     retryJobs,
   } = useUserJobs(dict);
 
+  const currencySymbols: Partial<Record<Unit, string>> = {
+    euro: "€",
+    dollar: "$",
+    thorn: "Ŧ",
+  };
+
+  const typeLabels: Partial<Record<Unit, string>> = {
+    km: "km",
+    mi: "mi",
+    thp: "THP",
+    lb: "lbs",
+    ton: "t",
+  };
+
+  function formatValue(value: number, unit: Unit): string {
+    const icon = currencySymbols[unit] ?? "";
+    const type = typeLabels[unit] ?? "";
+
+    const rounded = Math.round(value * 10) / 10;
+
+    let formatted: string;
+
+    if (rounded >= 1_000_000) {
+      formatted = `${(rounded / 1_000_000).toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })}M`;
+    } else {
+      formatted = rounded.toLocaleString(undefined, {
+        minimumFractionDigits: Number.isInteger(rounded) ? 0 : 1,
+        maximumFractionDigits: 1,
+      });
+    }
+
+    return `${icon}${formatted}${type ? ` ${type}` : ""}`;
+  }
+
   const split = dict.drivershub.jobs.table.navigation.showing.split(" ");
 
   let showingText = '';
@@ -56,7 +95,7 @@ export default function TableJobsClient({ lang, dict }: Props) {
   }
 
 
-  const getPageNumbers = () => {
+  function getPageNumbers() {
     const pages: (number | string)[] = [];
     const maxVisible = 5;
 
@@ -84,11 +123,11 @@ export default function TableJobsClient({ lang, dict }: Props) {
     return pages;
   };
 
-  const formatDate = (date: number) => {
+  function formatDate(date: number) {
     return new Date(date).toLocaleDateString("nl-NL", { day: "2-digit", month: "2-digit", year: "numeric" });
   };
 
-  const numberWithCommas = (x: number) => {
+  function numberWithCommas(x: number) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
@@ -153,13 +192,15 @@ export default function TableJobsClient({ lang, dict }: Props) {
                           {job.source?.city?.name ?? "—"} - {job.destination?.city?.name ?? "—"}
                         </td>
                         <td className="px-4 py-2 text-theme">
-                          {job.cargo?.name ?? "—"} ({Math.floor((job.cargo?.mass ?? 0) / 1000)}t)
+                          {job.cargo.name ?? "-"}
+                          {job.game.id === 'ets2' ? ` (${formatValue(Math.floor((job.cargo?.mass ?? 0) / 1000), "ton")})` : ` (${formatValue(Math.floor((job.cargo?.mass ?? 0) / 1000), "lb")})`}
+                          
                         </td>
                         <td className="px-4 py-2 text-theme">
                           {job.truck?.name ?? "—"} {job.truck?.model?.name ?? ""}
                         </td>
-                        <td className="px-4 py-2 text-theme">{numberWithCommas(job.distanceDriven) ?? "—"} km</td>
-                        <td className="px-4 py-2 text-theme">€ {numberWithCommas(job.income) ?? "—"}</td>
+                        <td className="px-4 py-2 text-theme">{job.game.id === "ets2" ? formatValue(job.distanceDriven, "km") ?? "-" : formatValue(job.distanceDrive, "mi") ?? "-"}</td>
+                        <td className="px-4 py-2 text-theme">{job.game.id === "ets2" ? formatValue(job.income, "euro") ?? "-" : formatValue(job.income, "dollar") ?? "-"}</td>
                       </tr>
                     ))}
                   </tbody>
