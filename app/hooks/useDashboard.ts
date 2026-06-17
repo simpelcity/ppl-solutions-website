@@ -131,7 +131,8 @@ export default function useDashboard(dict: Dictionary) {
 **<t:${toUnixTimestamp(new Date())}:F>**
 URL: ${requestUrl}
 Method: ${method}
-Status: ${HTTPStatus}: ${errorName}
+Status: ${HTTPStatus}
+Error: ${errorName}
 Message: ${message}
 -----------------------------
           `,
