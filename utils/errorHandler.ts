@@ -3,6 +3,7 @@ import path from "path";
 import { NextRequest, NextResponse } from "next/server";
 import type { Locale } from "@/i18n";
 import { getDictionary } from "@/app/i18n";
+import axios from "axios";
 
 // const LOG_FILE = path.join(process.cwd(), "logs", "errors.log");
 
@@ -74,6 +75,10 @@ export async function errorHandler(
     return `${day}-${month}-${year}:${hours}:${minutes}:${seconds} ${sign}${tzHours}${tzMinutes}`;
   }
 
+  function toUnixTimestamp(date: Date): number {
+    return Math.floor(date.getTime() / 1000);
+  }
+
   const logEntry = `
 [${formatTimestamp(new Date())}]
 URL: ${request?.url ?? "NO URL"}
@@ -84,11 +89,55 @@ Message: ${logMessage}
 -----------------------------
 `;
 
+  const payload = {
+    embeds: [
+      {
+        title: 'New Dashboard Error',
+        url: 'https://ppl-solutions.vercel.app/drivershub/dashboard',
+        description: `
+**<t:${toUnixTimestamp(new Date())}:F>**
+URL: ${request?.url ?? "NO URL"}
+Method: ${request?.method ?? "UNKNOWN"}
+Status: ${statusCode}
+Error: ${errorName}
+Message: ${logMessage}
+-----------------------------
+          `,
+        color: 0x009a86,
+        author: {
+          name: 'PPL Solutions VTC Error Logger',
+          icon_url: 'https://ppl-solutions.vercel.app/assets/images/dark/logo.png',
+        }
+      }
+    ]
+  };
+
+  const dict = await getDictionary(locale);
+
+  let domain;
+  if (process.env.NODE_ENV === 'development') {
+    domain = 'http://localhost:8000';
+  } else {
+    domain = process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : 'https://ppl-solutions.vercel.app';
+  }
+
+  try {
+    const res = await axios.post(`${domain}/api/discord-webhook?messageType=error`, {
+      ...payload,
+    });
+
+    if (res.status !== 200) throw new Error(dict.errors.dashboard.hook.error.FAILED_TO_SEND_ERROR_DATA);
+
+  } catch (err: any) {
+    const message = err?.response?.data?.message || err?.message || dict.errors.dashboard.hook.error.FAILED_TO_SEND_ERROR_DATA;
+    console.error(`Failed to send error log to Discord: ${message}`);
+    throw err;
+  }
+
   // await fs.mkdir(path.dirname(LOG_FILE), { recursive: true });
   // await fs.appendFile(LOG_FILE, logEntry, "utf8");
   console.error(logEntry);
 
-  const dict = await getDictionary(locale);
   const errorCodeKey = statusToErrorName[statusCode];
   // const translatedErrorName = errorCodeKey ? dict.statusCodes[errorCodeKey] : "Error";
   const translatedErrorName =
