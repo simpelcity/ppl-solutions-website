@@ -9,10 +9,8 @@ import { parseApiError, useRateLimitState } from "@/hooks/useRateLimitState";
 interface GameStats {
   distance: number;
   jobs: number;
-  revenue: number;
-  days: number;
+  income: number;
   hours: number;
-  minutes: number;
 }
 
 interface VtcStats {
@@ -49,11 +47,8 @@ export function useVtcStats(dict: Dictionary) {
   };
 
   const convertTime = (ms: number) => {
-    const totalMinutes = Math.floor(ms / 60000);
     return {
-      days: Math.floor(totalMinutes / 1440),
-      hours: Math.floor((totalMinutes % 1440) / 60),
-      minutes: totalMinutes % 60,
+      hours: Math.floor(ms / 3600000),
     };
   };
 
@@ -63,21 +58,20 @@ export function useVtcStats(dict: Dictionary) {
 
   const getStatistics = async () => {
     const jobs = await fetchStatistics();
-    console.log(jobs)
 
     let ets2Distance = 0;
     let ets2Jobs = 0;
-    let ets2Revenue = 0;
+    let ets2Income = 0;
     let ets2Time = 0;
 
     let atsDistance = 0;
     let atsJobs = 0;
-    let atsRevenue = 0;
+    let atsIncome = 0;
     let atsTime = 0;
 
     let totalDistance = 0;
     let totalJobs = 0;
-    let totalRevenue = 0;
+    let totalIncome = 0;
     let totalTime = 0;
 
     for (const job of jobs) {
@@ -97,9 +91,9 @@ export function useVtcStats(dict: Dictionary) {
       }
 
       if (job.income) {
-        totalRevenue += job.income;
-        if (isETS2) ets2Revenue += job.income;
-        if (isATS) atsRevenue += job.income;
+        totalIncome += job.income;
+        if (isETS2) ets2Income += job.income;
+        if (isATS) atsIncome += job.income;
       }
 
       if (job.realtime?.actualTimeDriven) {
@@ -119,26 +113,20 @@ export function useVtcStats(dict: Dictionary) {
       ets2: {
         distance: ets2Distance,
         jobs: ets2Jobs,
-        revenue: ets2Revenue,
-        days: ets2TimeFormatted.days,
+        income: ets2Income,
         hours: ets2TimeFormatted.hours,
-        minutes: ets2TimeFormatted.minutes,
       },
       ats: {
         distance: atsDistanceMiles,
         jobs: atsJobs,
-        revenue: atsRevenue,
-        days: atsTimeFormatted.days,
+        income: atsIncome,
         hours: atsTimeFormatted.hours,
-        minutes: atsTimeFormatted.minutes,
       },
       total: {
         distance: totalDistance,
         jobs: totalJobs,
-        revenue: totalRevenue,
-        days: totalTimeFormatted.days,
+        income: totalIncome,
         hours: totalTimeFormatted.hours,
-        minutes: totalTimeFormatted.minutes,
       },
     };
   };

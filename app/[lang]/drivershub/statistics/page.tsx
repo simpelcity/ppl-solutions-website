@@ -1,5 +1,5 @@
 import { VtcStats } from "@/components"
-import { Row } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import { getDictionary } from "@/app/i18n"
 import { type Locale } from "@/i18n"
 import "@/styles/ui/Roles.scss"
@@ -50,9 +50,9 @@ export default async function VtcStatisticsPage({ params }: PageProps) {
     <>
       <main className="fs-5">
         <section className="drivershub w-100 d-flex justify-content-center bg-surface-darker text-center text-theme">
-          <Row className="w-100 d-flex p-3 p-md-4">
+          <Container className="p-3 p-md-4" fluid>
             <VtcStats dict={dict} />
-          </Row>
+          </Container>
         </section>
       </main>
     </>

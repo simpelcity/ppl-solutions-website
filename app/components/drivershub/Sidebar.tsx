@@ -179,6 +179,9 @@ function SidebarContent({
 
   const username = user.user_metadata.display_name || user.email;
 
+  const pfpAlt = dict.drivershub.profile.profilePage.card.profilePictureAlt.replace("{driver}", username);
+  const defaultPfpAlt = dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt
+
   return (
     <>
       <Nav variant="pills" className="flex-column mb-auto">
@@ -250,55 +253,37 @@ function SidebarContent({
           </>
         )}
       </Nav>
+
       <hr />
-      {!isSidebarCollapsed && (
-        <Dropdown className="profile-dropdown" onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
-          <Dropdown.Toggle
-            variant="transparent"
-            className="py-0 d-flex align-items-center text-theme w-100">
-            <Image
-              src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
-              alt="Profile"
-              width={32}
-              height={32}
-              roundedCircle
-              className="me-2 object-fit-cover"
-            />
-            <strong>{username}</strong>
-            <span className={`ms-1 chevron-rotate-180 ${isProfileDropdownOpen ? 'is-open' : ''}`}>
-              <FaAngleDown />
-            </span>
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="shadow-sm mb-1 border-0 rounded-1" align={isMobile ? "start" : "end"} style={{ zIndex: 1050 }}>
-            <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item className="text-theme fw-semibold" onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      )}
-      {isSidebarCollapsed && (
-        <Dropdown
-          className="profile-dropdown"
-          onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
-          <Dropdown.Toggle
-            className="bg-transparent border-0 p-0 d-flex align-items-center justify-content-center text-theme text-decoration-none w-100">
-            <Image
-              src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
-              alt="Profile"
-              width={32}
-              height={32}
-              roundedCircle
-            />
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="shadow-sm ms-3 mb-1 border-0 rounded-1" align="end" style={{ zIndex: 1050 }}>
-            <Dropdown.Item className="text-theme fw-semibold" href="/drivershub/profile/settings">{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
-            <Dropdown.Item className="text-theme fw-semibold" href="/drivershub/profile">{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item className="text-theme fw-semibold" onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      )}
+
+      <Dropdown className="profile-dropdown" onToggle={(nextShow) => setIsProfileDropdownOpen(Boolean(nextShow))}>
+        <Dropdown.Toggle
+          variant="transparent"
+          className={`py-0 d-flex align-items-center text-theme w-100${isSidebarCollapsed && ' justify-content-center'}`}>
+          <Image
+            src={profileUrl ?? `/assets/icons/${resolvedTheme}/default-user.png`}
+            alt={profileUrl ? pfpAlt : dict.drivershub.profile.profilePage.card.defaultProfilePictureAlt}
+            width={32}
+            height={32}
+            roundedCircle
+            className={!isSidebarCollapsed ? "me-2 object-fit-cover" : undefined}
+          />
+          {!isSidebarCollapsed && (
+            <>
+              <strong>{username}</strong>
+              <span className={`ms-1 chevron-rotate-180 ${isProfileDropdownOpen ? 'is-open' : ''}`}>
+                <FaAngleDown />
+              </span>
+            </>
+          )}
+        </Dropdown.Toggle>
+        <Dropdown.Menu className={`shadow-sm mb-1 border-0 rounded-1${isSidebarCollapsed && " ms-3"}`} align={isMobile ? "start" : "end"} style={{ zIndex: 1050 }}>
+          <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}/settings`}>{dict.drivershub.sidebar.profile.settings || "Settings"}</Dropdown.Item>
+          <Dropdown.Item className="text-theme fw-semibold" href={`/drivershub/profile/${session.user.id}`}>{dict.drivershub.sidebar.profile.profile || "Profile"}</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item className="text-theme fw-semibold" onClick={handleLogout}>{dict.drivershub.sidebar.profile.logout || "Sign out"}</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </>
   )
 }

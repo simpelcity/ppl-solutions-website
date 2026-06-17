@@ -458,23 +458,24 @@
         "title": "Štatistiky VTC",
         "totalDistance": "Celková vzdialenosť",
         "totalJobs": "Celkový počet zákaziek",
-        "totalIncome": "Celkové príjmy",
+        "totalIncome": "Celkový príjem",
         "totalTimeDriven": "Celkový čas jazdy"
       },
       "ets2": {
         "title": "Štatistiky ETS2",
         "totalDistance": "Celková vzdialenosť",
         "totalJobs": "Celkový počet zákaziek",
-        "totalIncome": "Celkové príjmy",
+        "totalIncome": "Celkový príjem",
         "totalTimeDriven": "Celkový čas jazdy"
       },
       "ats": {
         "title": "Štatistiky ATS",
         "totalDistance": "Celková vzdialenosť",
         "totalJobs": "Celkový počet zákaziek",
-        "totalIncome": "Celkové príjmy",
+        "totalIncome": "Celkový príjem",
         "totalTimeDriven": "Celkový čas jazdy"
-      }
+      },
+      "hour": "Hodina"
     },
     "dashboard": {
       "meta": {

@@ -42,7 +42,7 @@ export { default as PlaceholderTable } from "./ui/tables/PlaceholderTable";
 export { default as TableJobs } from "./ui/tables/TableJobs";
 export { default as TableJobsClient } from "./ui/tables/TableJobsClient";
 export { default as TableLeaderboard } from "./ui/tables/TableLeaderboard";
-export { default as TableStats } from "./ui/tables/TableStats";
+export { default as TableUserStats } from "./ui/tables/TableUserStats";
 // UI Components
 export { default as BSButton } from "./ui/BSButton";
 export { default as BSLink } from "./ui/BSLink";

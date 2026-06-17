@@ -390,8 +390,6 @@ export default function CardDashboard({ dict, lang }: Props) {
 
   const selectedMessageType = messageType === 'error' ? dashboardDict.formCard.buttonGroup.error : messageType === 'announcement' ? dashboardDict.formCard.buttonGroup.announcement : messageType === 'embed' && dashboardDict.formCard.buttonGroup.embed;
 
-  console.log(success)
-
   return (
     <Container className="p-3 p-md-4 d-flex flex-column row-gap-3 row-gap-md-4" fluid>
       <Card className="rounded-1 border-0 shadow-sm px-0 bg-surface text-theme">

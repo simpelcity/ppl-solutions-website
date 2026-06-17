@@ -14,6 +14,8 @@ type Props = {
   dict: Dictionary;
 }
 
+type Unit = "km" | "mi" | "thp" | "lb" | "ton" | "euro" | "dollar" | "thorn";
+
 export default function TableLeaderboard({ dict }: Props) {
   const isAdmin = useIsAdmin();
 
@@ -53,6 +55,43 @@ export default function TableLeaderboard({ dict }: Props) {
     rateLimitSecondsRemaining,
     retryLeaderboard,
   } = useLeaderboard(dict, selectedPeriod, selectedYear, selectedMonth);
+
+  const currencySymbols: Partial<Record<Unit, string>> = {
+    euro: "€",
+    dollar: "$",
+    thorn: "Ŧ",
+  };
+
+  const typeLabels: Partial<Record<Unit, string>> = {
+    km: "km",
+    mi: "mi",
+    thp: "THP",
+    lb: "lbs",
+    ton: "t",
+  };
+
+  function formatValue(value: number, unit: Unit): string {
+    const icon = currencySymbols[unit] ?? "";
+    const type = typeLabels[unit] ?? "";
+
+    const rounded = Math.round(value * 10) / 10;
+
+    let formatted: string;
+
+    if (rounded >= 1_000_000) {
+      formatted = `${(rounded / 1_000_000).toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })}M`;
+    } else {
+      formatted = rounded.toLocaleString(undefined, {
+        minimumFractionDigits: Number.isInteger(rounded) ? 0 : 1,
+        maximumFractionDigits: 1,
+      });
+    }
+
+    return `${icon}${formatted}${type ? ` ${type}` : ""}`;
+  }
 
   const distanceLeaderboard = selectedPeriod === 'all-time' ? allTimeDistanceLeaderboard : monthlyDistanceLeaderboard;
   const thpLeaderboard = selectedPeriod === 'all-time' ? allTimeThpLeaderboard : monthlyThpLeaderboard;
@@ -234,7 +273,7 @@ export default function TableLeaderboard({ dict }: Props) {
                       ) : null}
                       <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
                         <span className="me-auto">{entry.username ?? "Guest"}</span>
-                        <span className="text-success fs-6">{numberWithCommas(rounded(entry.value ?? 0))} THP</span>
+                        <span className="text-success fs-6">{formatValue(entry.value, "thp") ?? 0}</span>
                       </div>
                     </div>
                   ))}
@@ -256,7 +295,7 @@ export default function TableLeaderboard({ dict }: Props) {
                       ) : null}
                       <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
                         <span className="me-auto">{entry.username ?? "Guest"}</span>
-                        <span className="text-success fs-6">{numberWithCommas(rounded(entry.value ?? 0))} km</span>
+                        <span className="text-success fs-6">{formatValue(entry.value, "km") ?? 0}</span>
                       </div>
                     </div>
                   ))}
@@ -278,7 +317,7 @@ export default function TableLeaderboard({ dict }: Props) {
                       ) : null}
                       <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
                         <span className="me-auto">{entry.username ?? "Guest"}</span>
-                        <span className="text-success fs-6">{numberWithCommas(rounded(Math.floor((entry.value ?? 0) / 1000)))} t</span>
+                        <span className="text-success fs-6">{formatValue(Math.floor(entry.value / 1000), "ton") ?? 0}</span>
                       </div>
                     </div>
                   ))}
@@ -300,7 +339,7 @@ export default function TableLeaderboard({ dict }: Props) {
                       ) : null}
                       <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
                         <span className="me-auto">{entry.username ?? "Guest"}</span>
-                        <span className="text-success fs-6">{numberWithCommas(rounded(entry.value ?? 0))} THP</span>
+                        <span className="text-success fs-6">{formatValue(entry.value, "thp") ?? 0}</span>
                       </div>
                     </div>
                   ))}
@@ -322,7 +361,7 @@ export default function TableLeaderboard({ dict }: Props) {
                       ) : null}
                       <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
                         <span className="me-auto">{entry.username ?? "Guest"}</span>
-                        <span className="text-success fs-6">{numberWithCommas(rounded(entry.value ?? 0))} km</span>
+                        <span className="text-success fs-6">{formatValue(entry.value, "km") ?? 0}</span>
                       </div>
                     </div>
                   ))}
@@ -344,7 +383,7 @@ export default function TableLeaderboard({ dict }: Props) {
                       ) : null}
                       <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
                         <span className="me-auto">{entry.username ?? "Guest"}</span>
-                        <span className="text-success fs-6">{numberWithCommas(rounded(Math.floor((entry.value ?? 0) / 1000)))} t</span>
+                        <span className="text-success fs-6">{formatValue(Math.floor(entry.value / 1000), "ton") ?? 0}</span>
                       </div>
                     </div>
                   ))}

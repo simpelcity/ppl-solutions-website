@@ -2,26 +2,51 @@
 
 import { useUserStats } from '@/hooks/useUserStats'
 import { Card, Row, Col } from 'react-bootstrap'
-import { TableStats, Loader, RateLimitError } from '@/components'
+import { TableUserStats, Loader, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
 type Props = {
   dict: Dictionary;
 }
 
+type Unit = "km" | "mi" | "thp" | "euro" | "dollar" | "thorn";
+
 export default function UserStats({ dict }: Props) {
   const { stats, loading, error, isRateLimited, rateLimitSecondsRemaining, retryStats } = useUserStats(dict);
 
-  const rounded = (value: any) => {
-    const valueNum = value.toFixed(1);
-    const decimalValue = valueNum.toString().indexOf(".");
-    const result = valueNum.toString().substring(decimalValue + 1);
+  const currencySymbols: Partial<Record<Unit, string>> = {
+    euro: "€",
+    dollar: "$",
+    thorn: "Ŧ",
+  };
 
-    if (result > 0) {
-      return value.toFixed(1)
+  const typeLabels: Partial<Record<Unit, string>> = {
+    km: "km",
+    mi: "mi",
+    thp: "THP",
+  };
+
+  function formatValue(value: number, unit: Unit): string {
+    const icon = currencySymbols[unit] ?? "";
+    const type = typeLabels[unit] ?? "";
+
+    const rounded = Math.round(value * 10) / 10;
+
+    let formatted: string;
+
+    if (rounded >= 1_000_000) {
+      formatted = `${(rounded / 1_000_000).toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })}M`;
     } else {
-      return value.toFixed(0);
+      formatted = rounded.toLocaleString(undefined, {
+        minimumFractionDigits: Number.isInteger(rounded) ? 0 : 1,
+        maximumFractionDigits: 1,
+      });
     }
+
+    return `${icon}${formatted}${type ? ` ${type}` : ""}`;
   }
 
   const numberWithCommas = (x: number) => {
@@ -55,27 +80,27 @@ export default function UserStats({ dict }: Props) {
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.thp.total}</h5>
-                      <p>{numberWithCommas(rounded(stats.thp.thp))} THP</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.thp.total}</span>
+                      <span>{formatValue(stats.thp.thp, "thp")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.thp.avg}</h5>
-                      <p>{rounded(stats.thp.avg)} THP</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.thp.avg}</span>
+                      <span>{formatValue(stats.thp.avg, "thp")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.thp.min}</h5>
-                      <p>{rounded(stats.thp.min)} THP</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.thp.min}</span>
+                      <span>{formatValue(stats.thp.min, "thp")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.thp.max}</h5>
-                      <p>{rounded(stats.thp.max)} THP</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.thp.max}</span>
+                      <span>{formatValue(stats.thp.max, "thp")}</span>
                     </div>
                   </Col>
                 </Row>
@@ -88,27 +113,27 @@ export default function UserStats({ dict }: Props) {
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.income.total}</h5>
-                      <p>€ {numberWithCommas(rounded(stats.income.income))}</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.income.total}</span>
+                      <span>{formatValue(stats.income.income, "euro")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.income.avg}</h5>
-                      <p>€ {numberWithCommas(rounded(stats.income.avg))}</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.income.avg}</span>
+                      <span>{formatValue(stats.income.avg, "euro")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.income.min}</h5>
-                      <p>€ {numberWithCommas(rounded(stats.income.min))}</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.income.min}</span>
+                      <span>{formatValue(stats.income.min, "euro")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.income.max}</h5>
-                      <p>€ {numberWithCommas(rounded(stats.income.max))}</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.income.max}</span>
+                      <span>{formatValue(stats.income.max, "euro")}</span>
                     </div>
                   </Col>
                 </Row>
@@ -121,27 +146,27 @@ export default function UserStats({ dict }: Props) {
               <Card.Body className="p-3 p-md-4">
                 <Row>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.distance.total}</h5>
-                      <p>{numberWithCommas(rounded(stats.distance.distance))} km</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.distance.total}</span>
+                      <span>{formatValue(stats.distance.distance, "km")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.distance.avg}</h5>
-                      <p>{rounded(stats.distance.avg)} km</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.distance.avg}</span>
+                      <span>{formatValue(stats.distance.avg, "km")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.distance.min}</h5>
-                      <p>{rounded(stats.distance.min)} km</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.distance.min}</span>
+                      <span>{formatValue(stats.distance.min, "km")}</span>
                     </div>
                   </Col>
                   <Col xs={6}>
-                    <div>
-                      <h5>{dict.drivershub.userStats.cards.distance.max}</h5>
-                      <p>{numberWithCommas(rounded(stats.distance.max))} km</p>
+                    <div className="d-flex flex-column">
+                      <span className="fw-bold">{dict.drivershub.userStats.cards.distance.max}</span>
+                      <span>{formatValue(stats.distance.max, "km")}</span>
                     </div>
                   </Col>
                 </Row>
@@ -156,7 +181,7 @@ export default function UserStats({ dict }: Props) {
                 <Card.Title className="m-0 fs-3">{dict.drivershub.userStats.table.title}</Card.Title>
               </Card.Header>
               <Card.Body className="p-3 p-md-4">
-                <TableStats dict={dict} />
+                <TableUserStats dict={dict} isLoading={loading} />
               </Card.Body>
             </Card>
           </Col>
