@@ -483,6 +483,10 @@
         "description": "Beheer uw team en galerij in het Drivershub-dashboard."
       },
       "dashboard": {
+        "meta": {
+          "title": "Dashboard - Berichten beheren",
+          "description": "Verstuur berichten naar Discord via het Drivershub-dashboard."
+        },
         "formCard": {
           "title": "Dashboard",
           "buttonGroup": {

@@ -483,6 +483,10 @@
         "description": "Spravujte svoj tím a galériu na ovládacom paneli Drivershub."
       },
       "dashboard": {
+        "meta": {
+          "title": "Prístrojová doska - Spravovať správy",
+          "description": "Posielajte správy na Discord cez ovládací panel Drivershub."
+        },
         "formCard": {
           "title": "Prístrojová doska",
           "buttonGroup": {

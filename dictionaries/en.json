@@ -483,6 +483,10 @@
         "description": "Manage your team and gallery in the Drivershub dashboard."
       },
       "dashboard": {
+        "meta": {
+          "title": "Dashboard - Manage Messages",
+          "description": "Send messages to Discord through the Drivershub dashboard."
+        },
         "formCard": {
           "title": "Dashboard",
           "buttonGroup": {

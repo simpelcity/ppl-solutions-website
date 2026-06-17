@@ -483,6 +483,10 @@
         "description": "Spravujte svůj tým a galerii na řídicím panelu Drivershub."
       },
       "dashboard": {
+        "meta": {
+          "title": "Řídicí panel - Správa zpráv",
+          "description": "Posílejte zprávy na Discord přes dashboard Drivershub."
+        },
         "formCard": {
           "title": "Řídicí panel",
           "buttonGroup": {
