@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Table, Card, ButtonGroup, Row, Col, Button, Dropdown } from 'react-bootstrap'
+import { Container, Table, Card, ButtonGroup, Row, Col, Button, Dropdown, Placeholder, Image } from 'react-bootstrap'
 import { useLeaderboard } from '@/hooks/useLeaderboard'
 import { useIsAdmin } from "@/lib/useIsAdmin";
 import { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import { BSButton, Loader, RateLimitError } from '@/components'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FaAngleLeft, FaAngleRight, FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import type { Dictionary } from "@/app/i18n"
+import { useTheme } from 'next-themes'
 
 type Props = {
   dict: Dictionary;
@@ -26,6 +27,8 @@ export default function TableLeaderboard({ dict }: Props) {
   const adminError = (...args: any[]) => {
     { isAdmin && console.error(...args) };
   }
+
+  const { resolvedTheme } = useTheme();
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -253,7 +256,134 @@ export default function TableLeaderboard({ dict }: Props) {
           </Card.Header>
           <Card.Body className="p-3 p-md-4">
             {loading ? (
-              <Loader dict={dict} />
+              <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4">
+                <Col xs={12} md={6} lg={4} className="m-0">
+                  <Placeholder as="h4" animation="glow" className="border-bottom pb-2 mb-3">
+                    <Placeholder xs={7} md={7} xl={9} className="rounded-1" />
+                  </Placeholder>
+                  {Array.from({ length: 6 }).map((__, index) => (
+                    <div className="my-2 bg-surface-darker shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={index + 1}>
+                      <Placeholder xs={1} className="rounded-1" />
+                      <Image
+                        src={`/assets/icons/${resolvedTheme}/default-user.png`}
+                        alt="avatar"
+                        roundedCircle
+                        width={40}
+                        height={40}
+                      />
+                      <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
+                        <Placeholder xs={6} className="rounded-1 me-auto" />
+                        <Placeholder xs={5} className="rounded-1" />
+                      </div>
+                    </div>
+                  ))}
+                </Col>
+                <Col xs={12} md={6} lg={4} className="m-0">
+                  <Placeholder as="h4" animation="glow" className="border-bottom pb-2 mb-3">
+                    <Placeholder xs={8} md={8} xl={10} className="rounded-1" />
+                  </Placeholder>
+                  {Array.from({ length: 6 }).map((__, index) => (
+                    <div className="my-2 bg-surface-darker shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={index + 1}>
+                      <Placeholder xs={1} className="rounded-1" />
+                      <Image
+                        src={`/assets/icons/${resolvedTheme}/default-user.png`}
+                        alt="avatar"
+                        roundedCircle
+                        width={40}
+                        height={40}
+                      />
+                      <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
+                        <Placeholder xs={6} className="rounded-1 me-auto" />
+                        <Placeholder xs={5} className="rounded-1" />
+                      </div>
+                    </div>
+                  ))}
+                </Col>
+                <Col xs={12} md={6} lg={4} className="m-0">
+                  <Placeholder as="h4" animation="glow" className="border-bottom pb-2 mb-3">
+                    <Placeholder xs={10} md={10} xl={12} className="rounded-1" />
+                  </Placeholder>
+                  {Array.from({ length: 6 }).map((__, index) => (
+                    <div className="my-2 bg-surface-darker shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={index + 1}>
+                      <Placeholder xs={1} className="rounded-1" />
+                      <Image
+                        src={`/assets/icons/${resolvedTheme}/default-user.png`}
+                        alt="avatar"
+                        roundedCircle
+                        width={40}
+                        height={40}
+                      />
+                      <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
+                        <Placeholder xs={6} className="rounded-1 me-auto" />
+                        <Placeholder xs={3} className="rounded-1" />
+                      </div>
+                    </div>
+                  ))}
+                </Col>
+                <Col xs={12} md={6} lg={4} className="m-0">
+                  <Placeholder as="h4" animation="glow" className="border-bottom pb-2 mb-3">
+                    <Placeholder xs={8} md={8} xl={10} className="rounded-1" />
+                  </Placeholder>
+                  {Array.from({ length: 6 }).map((__, index) => (
+                    <div className="my-2 bg-surface-darker shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={index + 1}>
+                      <Placeholder xs={1} className="rounded-1" />
+                      <Image
+                        src={`/assets/icons/${resolvedTheme}/default-user.png`}
+                        alt="avatar"
+                        roundedCircle
+                        width={40}
+                        height={40}
+                      />
+                      <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
+                        <Placeholder xs={6} className="rounded-1 me-auto" />
+                        <Placeholder xs={5} className="rounded-1" />
+                      </div>
+                    </div>
+                  ))}
+                </Col>
+                <Col xs={12} md={6} lg={4} className="m-0">
+                  <Placeholder as="h4" animation="glow" className="border-bottom pb-2 mb-3">
+                    <Placeholder xs={9} md={9} xl={11} className="rounded-1" />
+                  </Placeholder>
+                  {Array.from({ length: 6 }).map((__, index) => (
+                    <div className="my-2 bg-surface-darker shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={index + 1}>
+                      <Placeholder xs={1} className="rounded-1" />
+                      <Image
+                        src={`/assets/icons/${resolvedTheme}/default-user.png`}
+                        alt="avatar"
+                        roundedCircle
+                        width={40}
+                        height={40}
+                      />
+                      <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
+                        <Placeholder xs={6} className="rounded-1 me-auto" />
+                        <Placeholder xs={4} className="rounded-1" />
+                      </div>
+                    </div>
+                  ))}
+                </Col>
+                <Col xs={12} md={6} lg={4} className="m-0">
+                  <Placeholder as="h4" animation="glow" className="border-bottom pb-2 mb-3">
+                    <Placeholder xs={7} md={7} xl={9} className="rounded-1" />
+                  </Placeholder>
+                  {Array.from({ length: 6 }).map((__, index) => (
+                    <div className="my-2 bg-surface-darker shadow-sm-sm p-2 d-flex align-items-center gap-2 rounded-1" key={index + 1}>
+                      <Placeholder xs={1} className="rounded-1" />
+                      <Image
+                        src={`/assets/icons/${resolvedTheme}/default-user.png`}
+                        alt="avatar"
+                        roundedCircle
+                        width={40}
+                        height={40}
+                      />
+                      <div className="d-flex flex-wrap flex-grow-1 column-gap-1 align-items-baseline">
+                        <Placeholder xs={6} className="rounded-1 me-auto" />
+                        <Placeholder xs={2} className="rounded-1" />
+                      </div>
+                    </div>
+                  ))}
+                </Col>
+              </Row>
             ) : (
               <Row className="d-flex justify-content-center row-gap-3 row-gap-md-4">
                 <Col xs={12} md={6} lg={4} className="m-0">

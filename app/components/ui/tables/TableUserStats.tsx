@@ -2,7 +2,7 @@
 
 import { useUserStats } from '@/hooks/useUserStats'
 import { Table, Placeholder } from 'react-bootstrap'
-import { PlaceholderTable, RateLimitError } from '@/components'
+import { RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 import { useTheme } from 'next-themes'
 
@@ -57,7 +57,7 @@ export default function TableUserStats({ dict, isLoading }: Props) {
 
   if (error) {
     if (isRateLimited) {
-      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryStats} retryLoading={loading} />;
+      return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={retryStats} retryLoading={isLoading} />;
     }
 
     return <div className="text-danger text-center fw-bold fs-4">{dict.errors.GENERAL_ERROR}: {error}</div>
@@ -83,23 +83,40 @@ export default function TableUserStats({ dict, isLoading }: Props) {
       <div className="table-card-scroll">
         <Table variant={resolvedTheme} className="table-stats" borderless>
           <thead>
-            <tr>
-              {tableItems.map((item) => (
-                <th key={item.title} className="bg-primary text-start text-light px-4">
-                  {item.title}
-                </th>
-              ))}
-            </tr>
+            {isLoading ? (
+              <tr id="table-stats-placeholder">
+                {[5, 10, 10, 5].map((width, c) => (
+                  <Placeholder key={c} as="th" animation="glow" className="bg-primary text-start px-4">
+                    <Placeholder xs={width} className="rounded-1 bg-light" />
+                  </Placeholder>
+                ))}
+              </tr>
+            ) : (
+              <tr>
+                {tableItems.map((item) => (
+                  <th key={item.title} className="bg-primary text-start text-light px-4">
+                    {item.title}
+                  </th>
+                ))}
+              </tr>
+            )}
           </thead>
 
-          {loading ? (
+          {isLoading ? (
             <tbody>
               {Array.from({ length: 18 }).map((_, r) => (
                 <tr key={r}>
-                  {Array.from({ length: 4 }).map((__, c) => (
-                    <td key={c} className="">
-                      <Placeholder as="div" animation="glow">
-                        <Placeholder xs={12} className="rounded-1 fs-1" />
+                  {Array.from({ length: 1 }).map((__, c) => (
+                    <td key={c} className="text-start px-4">
+                      <Placeholder as="div" animation="glow" className="py-2">
+                        <Placeholder xs={10} className="rounded-1" />
+                      </Placeholder>
+                    </td>
+                  ))}
+                  {[10, 2, 8].map((w, c) => (
+                    <td key={c}>
+                      <Placeholder as="div" animation="glow" className="border rounded-1 py-2">
+                        <Placeholder xs={w} className="rounded-1" />
                       </Placeholder>
                     </td>
                   ))}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useUserStats } from '@/hooks/useUserStats'
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card, Row, Col, Placeholder } from 'react-bootstrap'
 import { TableUserStats, Loader, RateLimitError } from '@/components'
 import type { Dictionary } from "@/app/i18n"
 
@@ -53,7 +53,107 @@ export default function UserStats({ dict }: Props) {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  if (loading) return <Loader dict={dict} />
+  function StatCardSkeleton({ labelWidth = 6, valueWidth = 11 }: { labelWidth?: number, valueWidth?: number }) {
+    return (
+      <Col xs={6}>
+        <div className="d-flex flex-column">
+          <Placeholder as="span" animation="glow" className="fw-bold">
+            <Placeholder xs={labelWidth} className="rounded-1" />
+          </Placeholder>
+          <Placeholder as="span" animation="glow" className="fw-bold">
+            <Placeholder xs={valueWidth} className="rounded-1" />
+          </Placeholder>
+        </div>
+      </Col>
+    );
+  }
+
+  const topStats1 = [
+    { label: 6, value: 11 },
+    { label: 8, value: 9 },
+    { label: 7, value: 8 },
+    { label: 8, value: 10 },
+  ];
+
+  const topStats2 = [
+    { label: 6, value: 7 },
+    { label: 8, value: 7 },
+    { label: 7, value: 5 },
+    { label: 8, value: 9 },
+  ];
+
+  const topStats3 = [
+    { label: 6, value: 10 },
+    { label: 8, value: 9 },
+    { label: 7, value: 5 },
+    { label: 8, value: 9 },
+  ];
+
+  if (loading) {
+    return (
+      <div className="w-100 d-flex flex-column p-3 p-md-4 row-gap-3 row-gap-md-4">
+        <Row className="row-gap-3 row-gap-md-4 d-flex justify-content-center">
+          <Col xs={12} md={6} lg={4}>
+            <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100 bg-surface">
+              <Placeholder as={Card.Title} animation="glow" className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">
+                <Placeholder xs={8} md={9} xl={12} className="rounded-1" />
+              </Placeholder>
+              <Card.Body className="p-3 p-md-4">
+                <Row>
+                  {topStats1.map((w, i) => (
+                    <StatCardSkeleton key={i} labelWidth={w.label} valueWidth={w.value} />
+                  ))}
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100 bg-surface">
+              <Placeholder as={Card.Title} animation="glow" className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">
+                <Placeholder xs={6} md={7} xl={9} className="rounded-1" />
+              </Placeholder>
+              <Card.Body className="p-3 p-md-4">
+                <Row>
+                  {topStats2.map((w, i) => (
+                    <StatCardSkeleton key={i} labelWidth={w.label} valueWidth={w.value} />
+                  ))}
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Card className="rounded-1 border-0 shadow-sm-sm px-0 h-100 bg-surface">
+              <Placeholder as={Card.Title} animation="glow" className="fs-3 p-3 p-md-4 mb-0 border-bottom border-dark-darker">
+                <Placeholder xs={7} md={8} xl={11} className="rounded-1" />
+              </Placeholder>
+              <Card.Body className="p-3 p-md-4">
+                <Row>
+                  {topStats3.map((w, i) => (
+                    <StatCardSkeleton key={i} labelWidth={w.label} valueWidth={w.value} />
+                  ))}
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Card className="rounded-1 border-0 shadow-sm bg-surface text-theme">
+              <Card.Header className="bg-surface p-3 p-md-4 border-bottom">
+                <Placeholder as={Card.Title} animation="glow" className="m-0 fs-3">
+                  <Placeholder xs={4} md={2} xl={2} className="rounded-1" />
+                </Placeholder>
+              </Card.Header>
+              <Card.Body className="p-3 p-md-4">
+                <TableUserStats dict={dict} isLoading={loading} />
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+
   if (error) {
     if (isRateLimited) {
       return (

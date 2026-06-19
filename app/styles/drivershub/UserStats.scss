@@ -10,3 +10,19 @@
 .table-stats thead th:last-child {
   border-radius: 0 var(--bs-border-radius-sm) var(--bs-border-radius-sm) 0;
 }
+
+.table-stats > thead > #table-stats-placeholder th:first-child {
+  min-width: 390.73px;
+}
+
+.table-stats > thead > #table-stats-placeholder th:nth-child(2) {
+  min-width: 317.98px;
+}
+
+.table-stats > thead > #table-stats-placeholder th:nth-child(3) {
+  min-width: 352.25px;
+}
+
+.table-stats > thead > #table-stats-placeholder th:last-child {
+  min-width: 239.03px;
+}
