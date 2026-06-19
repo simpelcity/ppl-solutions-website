@@ -90,6 +90,7 @@ Message: ${logMessage}
 `;
 
   const payload = {
+    content: "<@&1517495553553072258>",
     embeds: [
       {
         title: 'New Dashboard Error',

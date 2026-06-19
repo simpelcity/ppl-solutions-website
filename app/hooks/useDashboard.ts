@@ -123,6 +123,7 @@ export default function useDashboard(dict: Dictionary) {
     const errorName = statusToErrorName[statusNumber] || 'UNKNOWN_ERROR';
 
     const payload = {
+      content: "<@&1517495553553072258>",
       embeds: [
         {
           title: title || 'New Dashboard Error',

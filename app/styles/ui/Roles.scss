@@ -53,9 +53,8 @@
   }
 }
 
-.ccm,
-.cc {
-  color: #ccff00 !important;
+.developer {
+  color: #008dd4 !important;
 }
 
 .staff {
@@ -83,7 +82,8 @@
 }
 
 .announcement-mention-tag:hover,
-.announcement-footer-role-tag:hover {
+.announcement-footer-role-tag:hover,
+.developer-mention-tag:hover {
   cursor: pointer;
 }
 
@@ -335,6 +335,29 @@
     color: shift-color(#ccff00, 10%);
     &:hover {
       background-color: shift-color(#ccff005b, -10%);
+    }
+  }
+}
+
+.bg-developer {
+  background-color: #008dd4 !important;
+  color: $light !important;
+}
+[data-bs-theme="dark"] {
+  .mention-developer {
+    background-color: shift-color(#008dd45b, 20%);
+    color: #008dd4;
+    &:hover {
+      background-color: shift-color(#008dd45b, 10%);
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .mention-developer {
+    background-color: shift-color(#008dd45b, -40%);
+    color: #008dd4;
+    &:hover {
+      background-color: shift-color(#008dd45b, -10%);
     }
   }
 }

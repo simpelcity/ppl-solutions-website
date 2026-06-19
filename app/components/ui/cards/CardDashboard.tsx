@@ -849,54 +849,59 @@ export default function CardDashboard({ dict, lang }: Props) {
                       {formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:t>`, 'nl')}
                     </span>
 
-                    <div className="discord-embed d-flex my-2 text-theme my-2 text-break">
-                      <div className="discord-left-border-error rounded-start" style={{ backgroundColor: `#009a86` }}></div>
+                    <div className="discord-message-body">
+                      <span className="mention-developer px-1 rounded-1 developer-mention-tag">@🛠️ Developer</span>
 
-                      <div className="discord-embed-root">
-                        <div className="discord-embed-wrapper bg-surface d-grid rounded border border-1 border-start-0 rounded-start-0">
-                          <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
-                            <div className="discord-embed-author d-flex align-items-center mt-2">
-                              <Image src={errorEmbedAuthorIcon || 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg'} className="me-1" width={24} height={24} roundedCircle />
-                              <small className="fw-bold">{errorEmbedAuthor || 'Simpelcity'}</small>
-                            </div>
+                      <div className="discord-embed d-flex mb-2 text-theme text-break">
+                        <div className="discord-left-border-error rounded-start" style={{ backgroundColor: `#009a86` }}></div>
 
-                            <div className="discord-embed-title mt-2 fw-bold">
-                              <BSLink variant="discord" href={errorEmbedTitleUrl || 'https://ppl-solutions.vercel.app/drivershub/dashboard'} target="_blank" classes="fw-bold">{errorEmbedTitle || 'New Dashboard Error'}</BSLink>
-                            </div>
-
-                            <div className="discord-embed-description mt-2 d-flex flex-column">
-                              <OverlayTrigger placement="top" overlay={tooltip}>
-                                <strong className={`${resolvedTheme === 'dark' ? 'bg-surface-lighter' : 'bg-surface-darker'} px-1 rounded-1`}>{formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, 'en')}</strong>
-                              </OverlayTrigger>
-
-                              <div className="">
-                                <span>URL:</span>{" "}
-                                <BSLink variant="discord" href={errorEmbedRequestUrl} target="_blank">
-                                  {errorEmbedRequestUrl}
-                                </BSLink>
+                        <div className="discord-embed-root">
+                          <div className="discord-embed-wrapper bg-surface d-grid rounded border border-1 border-start-0 rounded-start-0">
+                            <div className="discord-embed-grid d-inline-grid pt-2 pe-3 pb-3 ps-3">
+                              <div className="discord-embed-author d-flex align-items-center mt-2">
+                                <Image src={errorEmbedAuthorIcon || 'https://ppl-solutions.vercel.app/assets/images/team/simpelcity.jpg'} className="me-1" width={24} height={24} roundedCircle />
+                                <small className="fw-bold">{errorEmbedAuthor || 'Simpelcity'}</small>
                               </div>
 
-                              <span>Method: {errorEmbedMethod}</span>
-
-                              <span>Status: {errorEmbedHTTPStatus}</span>
-
-                              <span>Error: {statusToErrorName[statusNumber]}</span>
-
-                              <div>
-                                <span>Message:</span>{" "}
-                                {errorEmbedMessage.split("\\n").map((line, i) => (
-                                  <span key={i}>
-                                    {line}
-                                    <br />
-                                  </span>
-                                ))}
+                              <div className="discord-embed-title mt-2 fw-bold">
+                                <BSLink variant="discord" href={errorEmbedTitleUrl || 'https://ppl-solutions.vercel.app/drivershub/dashboard'} target="_blank" classes="fw-bold">{errorEmbedTitle || 'New Dashboard Error'}</BSLink>
                               </div>
-                              -----------------------------
+
+                              <div className="discord-embed-description mt-2 d-flex flex-column">
+                                <OverlayTrigger placement="top" overlay={tooltip}>
+                                  <strong className={`${resolvedTheme === 'dark' ? 'bg-surface-lighter' : 'bg-surface-darker'} px-1 rounded-1`}>{formatDiscordTimestampTag(`<t:${Math.floor(Date.now() / 1000)}:F>`, 'en')}</strong>
+                                </OverlayTrigger>
+
+                                <div className="">
+                                  <span>URL:</span>{" "}
+                                  <BSLink variant="discord" href={errorEmbedRequestUrl} target="_blank">
+                                    {errorEmbedRequestUrl}
+                                  </BSLink>
+                                </div>
+
+                                <span>Method: {errorEmbedMethod}</span>
+
+                                <span>Status: {errorEmbedHTTPStatus}</span>
+
+                                <span>Error: {statusToErrorName[statusNumber]}</span>
+
+                                <div>
+                                  <span>Message:</span>{" "}
+                                  {errorEmbedMessage.split("\\n").map((line, i) => (
+                                    <span key={i}>
+                                      {line}
+                                      <br />
+                                    </span>
+                                  ))}
+                                </div>
+                                -----------------------------
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>

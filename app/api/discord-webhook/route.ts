@@ -54,6 +54,9 @@ export async function POST(request: NextRequest) {
       }
     } else {
       postData.embeds = embeds;
+      if (content) {
+        postData.content = content;
+      }
     }
 
     if ((messageType === 'embed' || messageType === 'error') && !embeds.length) {
