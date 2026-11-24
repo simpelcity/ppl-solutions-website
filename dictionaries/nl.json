@@ -787,10 +787,10 @@
       }
     },
     "team": {
-      "ERROR_LOADING_TEAM": "Fout bij het laden van het team.",
+      "ERROR_LOADING_TEAM": "Fout bij het laden van het team",
       "FAILED_TO_FETCH_TEAM": "Team ophalen mislukt",
-      "FAILED_TO_FETCH_TEAM_MEMBER": "Kan teamlid niet ophalen",
-      "FAILED_TO_FETCH_DEPARTMENTS": "Kan afdelingen niet ophalen",
+      "FAILED_TO_FETCH_TEAM_MEMBER": "Kon teamlid niet ophalen",
+      "FAILED_TO_FETCH_DEPARTMENTS": "Kon afdelingen niet ophalen",
       "NO_DEPTS_OR_MEMBERS_FOUND": "Geen afdelingen / leden gevonden.",
       "FAILED_TO_ADD_TEAM_MEMBER": "Kon teamlid niet toevoegen",
       "FAILED_TO_UPDATE_TEAM_MEMBER": "Kon teamlid niet bijwerken",
@@ -800,23 +800,24 @@
     },
     "members": {
       "MEMBER_NOT_FOUND": "Lid niet gevonden",
-      "FAILED_TO_FETCH_MEMBERS": "Kan leden niet ophalen",
-      "FAILED_TO_GET_MEMBER_ID": "Kan lid-ID niet ophalen",
+      "FAILED_TO_FETCH_MEMBERS": "Kon leden niet ophalen",
+      "FAILED_TO_GET_MEMBER_ID": "Kon lid-ID niet ophalen",
       "NO_MEMBERS_FOUND": "Geen leden gevonden"
     },
     "drivers": {
-      "FAILED_TO_FETCH_DRIVERS": "Kan chauffeurs niet ophalen",
-      "FAILED_TO_GET_DRIVER_DATA": "Kan chauffeursgegevens niet ophalen",
+      "FAILED_TO_FETCH_DRIVERS": "Kon chauffeurs niet ophalen",
+      "FAILED_TO_GET_DRIVER_DATA": "Kon chauffeursgegevens niet ophalen",
       "DRIVER_COUNTRY_NOT_SPECIFIED": "Land van chauffeur niet opgegeven",
       "DRIVER_NOT_FOUND": "Chauffeur niet gevonden"
     },
     "roles": {
       "FAILED_TO_ADD_ROLE": "Kon rol niet toevoegen",
       "FAILED_TO_REMOVE_ROLE": "Kon rol niet verwijderen",
-      "FAILED_TO_FETCH_ROLES": "Kan rollen niet ophalen"
+      "FAILED_TO_FETCH_ROLES": "Kon rollen niet ophalen"
     },
     "gallery": {
-      "ERROR_LOADING_GALLERY": "Fout bij het laden van de galerij:",
+      "ERROR_LOADING_GALLERY": "Fout bij het laden van de galerij",
+      "FAILED_TO_FETCH_GALLERY": "Kon galerij-items niet ophalen",
       "NO_IMAGES_FOUND": "Geen afbeeldingen gevonden.",
       "FAILED_TO_ADD_ITEM": "Kon galerij-item niet toevoegen",
       "FAILED_TO_UPDATE_ITEM": "Kon galerij-item niet bijwerken",
@@ -907,29 +908,29 @@
     "profile": {
       "profile": {
         "PROFILE_NOT_FOUND": "Profiel niet gevonden",
-        "FAILED_TO_FETCH_PROFILE": "Kan profiel niet ophalen",
-        "FAILED_TO_FETCH_PROFILE_BY_ID": "Kan profiel op ID niet ophalen",
-        "FAILED_TO_UPDATE_PROFILE": "Kan profiel niet bijwerken",
-        "FAILED_TO_CREATE_PROFILE": "Kan profiel niet aanmaken"
+        "FAILED_TO_FETCH_PROFILE": "Kon profiel niet ophalen",
+        "FAILED_TO_FETCH_PROFILE_BY_ID": "Kon profiel op ID niet ophalen",
+        "FAILED_TO_UPDATE_PROFILE": "Kon profiel niet bijwerken",
+        "FAILED_TO_CREATE_PROFILE": "Kon profiel niet aanmaken"
       },
       "profilePicture": {
         "FAILED_TO_DELETE_PROFILE_PICTURE": "Kon profielfoto niet verwijderen",
         "FAILED_TO_PARSE_PFP_URL": "Kon profile_url niet verwerken",
-        "FAILED_TO_GET_PROFILE_PICTURE": "Kan profielfoto niet ophalen",
-        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Kan profielfoto niet uploaden",
-        "FAILED_TO_ADD_PROFILE_PICTURE": "Kan profielfoto niet toevoegen",
-        "FAILED_TO_FETCH_PROFILE_PICTURE": "Kan profielfoto niet laden",
-        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Kan profielfoto niet bijwerken"
+        "FAILED_TO_GET_PROFILE_PICTURE": "Kon profielfoto niet ophalen",
+        "FAILED_TO_UPLOAD_PROFILE_PICTURE": "Kon profielfoto niet uploaden",
+        "FAILED_TO_ADD_PROFILE_PICTURE": "Kon profielfoto niet toevoegen",
+        "FAILED_TO_FETCH_PROFILE_PICTURE": "Kon profielfoto niet laden",
+        "FAILED_TO_UPDATE_PROFILE_PICTURE": "Kon profielfoto niet bijwerken"
       },
       "profileBanner": {
         "FAILED_TO_DELETE_PROFILE_BANNER": "Kon profielbanner niet verwijderen",
-        "FAILED_TO_FETCH_PROFILE_BANNER": "Kan profielbanner niet laden",
-        "FAILED_TO_UPLOAD_PROFILE_BANNER": "Kan profielbanner niet uploaden",
-        "FAILED_TO_ADD_PROFILE_BANNER": "Kan profielbanner niet toevoegen",
-        "FAILED_TO_UPDATE_PROFILE_BANNER": "Kan profielbanner niet bijwerken"
+        "FAILED_TO_FETCH_PROFILE_BANNER": "Kon profielbanner niet laden",
+        "FAILED_TO_UPLOAD_PROFILE_BANNER": "Kon profielbanner niet uploaden",
+        "FAILED_TO_ADD_PROFILE_BANNER": "Kon profielbanner niet toevoegen",
+        "FAILED_TO_UPDATE_PROFILE_BANNER": "Kon profielbanner niet bijwerken"
       },
       "NO_ROLE": "Geen rol",
-      "FAILED_TO_ENSURE_STEAMID": "Kan SteamID niet verifiëren"
+      "FAILED_TO_ENSURE_STEAMID": "Kon SteamID niet verifiëren"
     },
     "files": {
       "FAILED_TO_DELETE_OLD_FILE": "Kon oud bestand niet verwijderen (niet-kritiek):",
@@ -941,7 +942,7 @@
       "INVALID_FILE_EXTENSION": "Ongeldige bestandsextensie."
     },
     "country": {
-      "FAILED_TO_FETCH_COUNTRY_DATA": "Kan landgegevens niet ophalen",
+      "FAILED_TO_FETCH_COUNTRY_DATA": "Kon landgegevens niet ophalen",
       "COUNTRY_NOT_FOUND": "Land niet gevonden"
     }
   },
@@ -995,6 +996,11 @@
         "PROFILE_PICTURE_DELETED": "Profielfoto succesvol verwijderd!"
       }
     }
+  },
+  "databasePaused": {
+    "title": "De database is momenteel gepauzeerd.",
+    "body": "Ons database slaapt, waardoor sommige pagina's mogelijk niet correct laden. Neem contact op met de beheerder of ontwikkelaar om hem weer te activeren.",
+    "contact": "Contact opnemen met de beheerder"
   },
   "unavailable": {
     "title": "Deze functie is tijdelijk niet beschikbaar.",

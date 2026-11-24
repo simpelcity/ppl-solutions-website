@@ -787,7 +787,7 @@
       }
     },
     "team": {
-      "ERROR_LOADING_TEAM": "Error loading team.",
+      "ERROR_LOADING_TEAM": "Error loading team",
       "FAILED_TO_FETCH_TEAM": "Failed to fetch team",
       "FAILED_TO_FETCH_TEAM_MEMBER": "Failed to fetch team member",
       "FAILED_TO_FETCH_DEPARTMENTS": "Failed to fetch departments",
@@ -816,7 +816,8 @@
       "FAILED_TO_FETCH_ROLES": "Failed to fetch roles"
     },
     "gallery": {
-      "ERROR_LOADING_GALLERY": "Error loading gallery:",
+      "ERROR_LOADING_GALLERY": "Error loading gallery",
+      "FAILED_TO_FETCH_GALLERY": "Failed to fetch gallery items",
       "NO_IMAGES_FOUND": "No images found.",
       "FAILED_TO_ADD_ITEM": "Failed to add gallery item",
       "FAILED_TO_UPDATE_ITEM": "Failed to update gallery item",
@@ -995,6 +996,11 @@
         "PROFILE_PICTURE_DELETED": "Profile picture deleted successfully!"
       }
     }
+  },
+  "databasePaused": {
+    "title": "The database is currently paused.",
+    "body": "Our database is asleep, so some pages may not load correctly. Please contact the admin or developer to wake it up.",
+    "contact": "Contact the admin"
   },
   "unavailable": {
     "title": "This feature is temporarily unavailable.",

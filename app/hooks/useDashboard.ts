@@ -122,12 +122,19 @@ export default function useDashboard(dict: Dictionary) {
     const statusNumber = Number(HTTPStatus);
     const errorName = statusToErrorName[statusNumber] || 'UNKNOWN_ERROR';
 
+    let domain;
+    if (process.env.NODE_ENV === 'development') {
+      domain = 'http://localhost:7000';
+    } else {
+      domain = process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : 'https://ppl-solutions.vercel.app';
+    }
+
     const payload = {
       content: "<@&1517495553553072258>",
       embeds: [
         {
           title: title || 'New Dashboard Error',
-          url: titleUrl || 'https://ppl-solutions.vercel.app/drivershub/dashboard',
+          url: titleUrl || `${domain}/drivershub/dashboard`,
           description: `
 **<t:${toUnixTimestamp(new Date())}:F>**
 URL: ${requestUrl}
@@ -135,7 +142,7 @@ Method: ${method}
 Status: ${HTTPStatus}
 Error: ${errorName}
 Message: ${message}
------------------------------
+----------------------------------------
           `,
           color: 0x009a86,
           author: {
@@ -174,11 +181,18 @@ Message: ${message}
 
     const { username, avatar_url, author, authorIcon, title, titleUrl, message } = formData;
 
+    let domain;
+    if (process.env.NODE_ENV === 'development') {
+      domain = 'http://localhost:7000';
+    } else {
+      domain = process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : 'https://ppl-solutions.vercel.app';
+    }
+
     const payload = {
       embeds: [
         {
           title: title || 'New Dashboard Message',
-          url: titleUrl || 'https://ppl-solutions.vercel.app/drivershub/dashboard',
+          url: titleUrl || `${domain}/drivershub/dashboard`,
           description: message,
           color: 0x009a86,
           author: {

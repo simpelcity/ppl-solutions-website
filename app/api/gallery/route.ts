@@ -29,7 +29,8 @@ export async function GET(request: NextRequest) {
       .order("created_at", { ascending: true })
       .limit(100);
 
-    if (error) return errorHandler({ error: dict.errors.gallery.ERROR_LOADING_GALLERY }, request, lang, 500);
+    console.log(error)
+    if (error) return errorHandler({ error: dict.errors.gallery.FAILED_TO_FETCH_GALLERY, serverError: error.message }, request, lang, 500);
 
     const items = await Promise.all(
       (rows || []).map(async (r: any) => {
@@ -58,7 +59,7 @@ export async function GET(request: NextRequest) {
     const lang = getLocaleFromRequest(request);
     const dict = await getDictionary(lang);
     const serverMessage = err?.response?.data?.message || err?.message;
-    const message = dict.errors.gallery.ERROR_LOADING_GALLERY;
+    const message = dict.errors.gallery.FAILED_TO_FETCH_GALLERY;
     return errorHandler({ error: message, serverError: serverMessage }, request, lang, 500);
   }
 }

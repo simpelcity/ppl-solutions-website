@@ -20,8 +20,7 @@ export async function GET(request: NextRequest) {
       )
       .order("department_id", { ascending: true });
 
-
-      if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_FETCH_TEAM, serverError: error.message }, request, lang, 500);
+    if (error) return errorHandler({ error: dict.errors.team.FAILED_TO_FETCH_TEAM, serverError: error.message }, request, lang, 500);
 
     const translatedItems = (items || []).map((item: any) => {
       const dept = item.department || {};

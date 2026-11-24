@@ -79,6 +79,13 @@ export async function errorHandler(
     return Math.floor(date.getTime() / 1000);
   }
 
+  let domain;
+  if (process.env.NODE_ENV === 'development') {
+    domain = 'http://localhost:7000';
+  } else {
+    domain = process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : 'https://ppl-solutions.vercel.app';
+  }
+
   const logEntry = `
 [${formatTimestamp(new Date())}]
 URL: ${request?.url ?? "NO URL"}
@@ -94,7 +101,7 @@ Message: ${logMessage}
     embeds: [
       {
         title: 'New Dashboard Error',
-        url: 'https://ppl-solutions.vercel.app/drivershub/dashboard',
+        url: `${domain}/drivershub/dashboard`,
         description: `
 **<t:${toUnixTimestamp(new Date())}:F>**
 URL: ${request?.url ?? "NO URL"}
@@ -102,7 +109,7 @@ Method: ${request?.method ?? "UNKNOWN"}
 Status: ${statusCode}
 Error: ${errorName}
 Message: ${logMessage}
------------------------------
+----------------------------------------
           `,
         color: 0x009a86,
         author: {
@@ -114,13 +121,6 @@ Message: ${logMessage}
   };
 
   const dict = await getDictionary(locale);
-
-  let domain;
-  if (process.env.NODE_ENV === 'development') {
-    domain = 'http://localhost:8000';
-  } else {
-    domain = process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : 'https://ppl-solutions.vercel.app';
-  }
 
   try {
     const res = await axios.post(`${domain}/api/discord-webhook?messageType=error`, {

@@ -787,7 +787,7 @@
       }
     },
     "team": {
-      "ERROR_LOADING_TEAM": "Chyba pri načítavaní tímu.",
+      "ERROR_LOADING_TEAM": "Chyba pri načítavaní tímu",
       "FAILED_TO_FETCH_TEAM": "Nepodarilo sa načítať tím",
       "FAILED_TO_FETCH_TEAM_MEMBER": "Nepodarilo sa načítať člena tímu",
       "FAILED_TO_FETCH_DEPARTMENTS": "Nepodarilo sa načítať oddelenia",
@@ -816,7 +816,8 @@
       "FAILED_TO_FETCH_ROLES": "Nepodarilo sa načítať roly"
     },
     "gallery": {
-      "ERROR_LOADING_GALLERY": "Chyba pri načítavaní galérie:",
+      "ERROR_LOADING_GALLERY": "Chyba pri načítavaní galérie",
+      "FAILED_TO_FETCH_GALLERY": "Nepodarilo sa načítať položky galérie",
       "NO_IMAGES_FOUND": "Neboli nájdené žiadne obrázky.",
       "FAILED_TO_ADD_ITEM": "Nepodarilo sa pridať položku galérie",
       "FAILED_TO_UPDATE_ITEM": "Nepodarilo sa aktualizovať položku galérie",
@@ -995,6 +996,11 @@
         "PROFILE_PICTURE_DELETED": "Profilový obrázok bol úspešne odstránený!"
       }
     }
+  },
+  "databasePaused": {
+    "title": "Databáza je momentálne pozastavená.",
+    "body": "Naša databáza spí, preto sa niektoré stránky nemusia načítať správne. Kontaktujte, prosím, správcu alebo vývojára, aby ju prebudili.",
+    "contact": "Kontaktovať správcu"
   },
   "unavailable": {
     "title": "Táto funkcia je dočasne nedostupná.",

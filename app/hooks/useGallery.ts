@@ -32,11 +32,11 @@ export function useGallery(dict: Dictionary) {
 
     try {
       const res = await axios.get('/api/gallery');
-      if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status });
+      if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_FETCH_GALLERY, { cause: res.status });
       const data = res.data;
       setItems(data.gallery || []);
     } catch (err: any) {
-      const parsed = parseApiError(err, dict.errors.gallery.ERROR_LOADING_GALLERY);
+      const parsed = parseApiError(err, dict.errors.gallery.FAILED_TO_FETCH_GALLERY);
       setError(parsed.message);
       setStatus(err.status || null);
       applyRateLimit(parsed.rateLimit);

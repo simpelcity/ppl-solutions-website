@@ -32,13 +32,13 @@ export default function GalleryGrid({ dict }: Props) {
       setError(null)
       clearRateLimitCountdown()
       const res = await axios.get("/api/gallery")
-      if (res.status !== 200) throw new Error(dict.errors.gallery.ERROR_LOADING_GALLERY, { cause: res.status })
+      if (res.status !== 200) throw new Error(dict.errors.gallery.FAILED_TO_FETCH_GALLERY, { cause: res.status })
       const data = res.data
       if (!mounted) return
       setItems(data.gallery ?? [])
     } catch (err: any) {
       console.error("Failed to fetch gallery:", err)
-      const parsed = parseApiError(err, dict.errors.gallery.ERROR_LOADING_GALLERY)
+      const parsed = parseApiError(err, dict.errors.gallery.FAILED_TO_FETCH_GALLERY)
       if (mounted) {
         setError(parsed.message)
         applyRateLimit(parsed.rateLimit)
@@ -63,7 +63,7 @@ export default function GalleryGrid({ dict }: Props) {
       return <RateLimitError dict={dict} secondsRemaining={rateLimitSecondsRemaining ?? 0} onRetry={() => fetchGallery(true)} retryLoading={loading} />
     }
 
-    return <div className="text-danger fw-bold fs-4">{dict.errors.gallery.ERROR_LOADING_GALLERY} {error}</div>
+    return <div className="text-danger fw-bold fs-4">{dict.errors.gallery.ERROR_LOADING_GALLERY}: {error}</div>
   }
 
   if (items.length === 0) {

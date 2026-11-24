@@ -787,7 +787,7 @@
       }
     },
     "team": {
-      "ERROR_LOADING_TEAM": "Chyba při načítání týmu.",
+      "ERROR_LOADING_TEAM": "Chyba při načítání týmu",
       "FAILED_TO_FETCH_TEAM": "Nepodařilo se načíst tým",
       "FAILED_TO_FETCH_TEAM_MEMBER": "Nepodařilo se načíst člena týmu",
       "FAILED_TO_FETCH_DEPARTMENTS": "Nepodařilo se načíst oddělení",
@@ -816,7 +816,8 @@
       "FAILED_TO_FETCH_ROLES": "Nepodařilo se načíst role"
     },
     "gallery": {
-      "ERROR_LOADING_GALLERY": "Chyba při načítání galerie:",
+      "ERROR_LOADING_GALLERY": "Chyba při načítání galerie",
+      "FAILED_TO_FETCH_GALLERY": "Nepodařilo se načíst položky galerie",
       "NO_IMAGES_FOUND": "Nebyly nalezeny žádné obrázky.",
       "FAILED_TO_ADD_ITEM": "Nepodařilo se přidat položku galerie",
       "FAILED_TO_UPDATE_ITEM": "Nepodařilo se aktualizovat položku galerie",
@@ -995,6 +996,11 @@
         "PROFILE_PICTURE_DELETED": "Profilový obrázek byl úspěšně odstraněn!"
       }
     }
+  },
+  "databasePaused": {
+    "title": "Databáze je momentálně pozastavena.",
+    "body": "Naše databáze spí, takže se některé stránky nemusí načíst správně. Obraťte se prosím na správce nebo vývojáře, aby ji probudili.",
+    "contact": "Kontaktovat správce"
   },
   "unavailable": {
     "title": "Tato funkce je dočasně nedostupná.",
